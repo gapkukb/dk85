@@ -1,0 +1,33 @@
+// [
+//   'BoxedBook-Italic.woff2',
+//   'BoxedBook.woff2',
+//   'BoxedExtralight-Italic.woff2',
+//   'BoxedExtralight.woff2',
+//   'BoxedHeavy-Italic.woff2',
+//   'BoxedHeavy.woff2',
+//   'BoxedLight-Italic.woff2',
+//   'BoxedLight.woff2',
+//   'BoxedMedium-Italic.woff2',
+//   'BoxedMedium.woff2',
+//   'BoxedRegular-Bold.woff2',
+//   'BoxedRegular-BoldItalic.woff2',
+//   'BoxedRegular-Italic.woff2',
+//   'BoxedRegular.woff2',
+//   'BoxedSemibold-Italic.woff2',
+//   'BoxedSemibold.woff2',
+//   'BoxedThin-Italic.woff2',
+//   'BoxedThin.woff2',
+// ]
+
+@mixin font($weight, $url) {
+    @font-face {
+        font-family: Boxed;
+        font-weight: $weight;
+        src: url(/boxed/#{$url}.woff2) format('woff2');
+    }
+}
+
+@include font(400, BoxedBook);
+@include font(500, BoxedMedium);
+@include font(600, BoxedSemibold);
+@include font(700, BoxedHeavy);

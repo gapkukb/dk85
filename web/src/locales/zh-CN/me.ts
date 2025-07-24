@@ -1,0 +1,31 @@
+export default {
+    name: '我的',
+    turnOver: '洗码',
+    account: '账户设置',
+    invite: '邀请好友',
+    collection: '我收藏的游戏',
+    service: '联系客服',
+    message: '消息中心',
+    more: '更多',
+    realname: '真实姓名',
+    realnameWarn: '真实姓名一旦设置后，将不可修改,\n请确认填写正确',
+    unsettled: '未设置',
+    login: '登录',
+    logout: '退出登录',
+    logout_tip: '确认继续退出登录？',
+    logout_done: '退出成功',
+    signup: '注册',
+
+    // account: '账户设置',
+
+    vip: {
+        title: '会员专享',
+        more: '更多福利',
+        level: '当前等级',
+        advance: '高级福利',
+        weekly: '每周福利',
+        monthly: '每月福利',
+        annual: '年度福利',
+        rights: '权益',
+    },
+}

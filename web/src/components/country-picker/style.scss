@@ -1,0 +1,11 @@
+.country-picker {
+    &-trigger {
+        @apply inline-flex items-center lh-[1] h-full gap-4 pr-4 opacity-50;
+        // &::after {
+        //     content: ' ';
+        //     display: block;
+        //     height: 1em;
+        //     border-right: 2px solid currentColor;
+        // }
+    }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "4981190",
+  "name": "dk85",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "8669773",
+      "name": "验证码",
+      "font_class": "yanzhengma",
+      "unicode": "e67c",
+      "unicode_decimal": 59004
+    },
+    {
+      "icon_id": "22609377",
+      "name": "图形码",
+      "font_class": "tuxingma",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    }
+  ]
+}

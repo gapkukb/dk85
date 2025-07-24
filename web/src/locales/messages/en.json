@@ -1,0 +1,51 @@
+{
+    "login": "Sign up{' | '}Sign in",
+    "deposit": "Deposit",
+    "withdrawal": "Withdrawal",
+    "home": "Home",
+    "bonus": "Bonus",
+    "wallet": "Wallet",
+    "hot": "Hot",
+    "me": "Me",
+    "foru": "For U",
+    "slot": "Slot",
+    "fishing": "Fishing",
+    "poker": "Poker",
+    "casino": "Casino",
+    "announcement": "Bulletin",
+    "login2": "Log in",
+    "signup": "Sign up",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "loading": "Loading...",
+    "copy": "Copied Successfully",
+    "placeholder": {
+        "account": "Please enter account",
+        "password": "Please enter login password",
+        "repassword": "Please repeat your login password",
+        "code": "Graphic verification code",
+        "otp": "Please enter 6 numbers code",
+        "phone": "Please enter phone number",
+        "email": "Please enter email address",
+        "remember": "Remember password",
+        "forgot": "Forgot password"
+    },
+    "validator": {
+        "account": "Account must be 6-12 letters and numbers and start with a letter",
+        "password": "Password must be 8-16 characters",
+        "repassword": "Repeated password different from password",
+        "code": "Captcha is incorrect",
+        "phone": "Phone number is incorrect",
+        "email": "Email address is incorrect",
+        "otp": "One time passowrd (OTP) must be 6 numbers"
+    },
+    "instructions": {
+        "title": "Login Instructions",
+        "desc": "Enter the Username you used to register,It should be 6-12 characters, only alphanumeric, begin with alphabet.If you need any help, please contact our customer service."
+    },
+    "retrieval": {
+        "phone": "Mobile retrieval",
+        "email": "Email retrieval"
+    }
+}

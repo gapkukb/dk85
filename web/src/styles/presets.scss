@@ -1,0 +1,9 @@
+@unocss;
+
+.bg-image-op {
+    --bg-op: 1;
+    --transparent: url(data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==);
+    background-image: var(--image);
+    background-image: cross-fade(var(--transparent), var(--image), var(--bg-op));
+    background-image: -webkit-cross-fade(var(--transparent), var(--image), var(--bg-op));
+}

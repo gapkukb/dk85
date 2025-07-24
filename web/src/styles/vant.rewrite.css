@@ -1,0 +1,30 @@
+:root:root {
+    --van-button-danger-border-color: #ff5800;
+    --van-button-danger-background: #ff5800;
+}
+
+.van-field-solid {
+    background: #f6f6f6 !important;
+    border-radius: 100px !important;
+    overflow: visible !important;
+    .van-field__value {
+        position: static;
+    }
+    .van-field__error-message {
+        position: absolute;
+        left: 2em;
+        bottom: -2em;
+        font-size: 10px;
+    }
+}
+
+.van-field__left-icon {
+    min-width: 22px;
+    height: 24px;
+}
+
+.van-overflow-hidden {
+    .page-view {
+        filter: blur(2px);
+    }
+}

@@ -1,0 +1,9 @@
+{
+  "dart.cliAdditionalArgs": ["--enable-experiment=macros"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always"
+  },
+  // "code-runner.executorMap": {
+  //   "dart": "dart --enable-experiment=macros"
+  // },
+}

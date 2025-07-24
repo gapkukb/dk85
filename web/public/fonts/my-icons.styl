@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "my-icons";
+  src: url('my-icons.woff2?t=1751427848899') format('woff2');
+}
+
+[class^="my-icons-"], [class*=" my-icons-"] {
+  font-family: 'my-icons' !important;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.my-icons-adobe::before { content: "\ea01"; }
+.my-icons-custom-icon::before { content: "\ea02"; }
+.my-icons-test::before { content: "\ea03"; }
+
+
+$my-icons-adobe = '\ea01'
+$my-icons-custom-icon = '\ea02'
+$my-icons-test = '\ea03'
