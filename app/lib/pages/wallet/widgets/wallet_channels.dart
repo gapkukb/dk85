@@ -1,0 +1,50 @@
+import 'package:app/widgets/network_picture.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class WalletChannels extends StatelessWidget {
+  final bool isWidthrawal;
+  const WalletChannels(this.isWidthrawal, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        buidlItem(),
+        buidlItem(),
+        buidlItem(),
+        buidlItem(),
+        buidlItem(),
+        buidlItem(),
+        buidlItem(),
+        buidlItem(),
+        buidlItem(),
+      ],
+    );
+  }
+
+  buidlItem() {
+    return ListTile(
+      tileColor: Colors.white,
+      leading: ClipOval(
+        clipBehavior: Clip.hardEdge,
+        child: NetworkPicture(
+          width: 36,
+          height: 36,
+          imageUrl: "https://picsum.photos/id/248/200/300",
+          fit: BoxFit.cover,
+        ),
+      ),
+      title: Text(
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        isWidthrawal ? "Mrs. Akeem Kshlerin" : "Ms. Piper Wyman",
+        style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+      ),
+      trailing: Opacity(
+        opacity: 0.5,
+        child: Icon(Icons.arrow_forward_ios, size: 16),
+      ),
+    );
+  }
+}

@@ -3,7 +3,8 @@ part of './index.dart';
 class AppPages {
   AppPages._();
 
-  static final initial = Routes.home;
+  static final initial = Routes.userAccount;
+
   static final routes = [
     GetPage(
       name: '/',
@@ -32,6 +33,20 @@ class AppPages {
               name: _Paths.wallet,
               page: () => WalletView(),
               binding: WalletBinding(),
+              // preventDuplicates: true,
+              // participatesInRootNavigator: true,
+              // children: [
+              //   GetPage(
+              //     name: _Paths.deposit,
+              //     page: () => DepositView(),
+              //     binding: DepositBinding(),
+              //   ),
+              //   GetPage(
+              //     name: _Paths.withdrawal,
+              //     page: () => WithdrawalView(),
+              //     binding: WithdrawalBinding(),
+              //   ),
+              // ],
             ),
             GetPage(
               name: _Paths.profile,
@@ -41,6 +56,25 @@ class AppPages {
           ],
         ),
       ],
+    ),
+    GetPage(
+      name: _Paths.funds,
+      page: () => FundsView(),
+      binding: FundsBinding(),
+    ),
+    GetPage(
+      name: _Paths.customerService,
+      page: () => CustomeServiceView(),
+      // binding: CustomerServiceBinding(),
+    ),
+    GetPage(name: _Paths.userAccount, page: () => UserAccount()),
+    GetPage(
+      name: _Paths.completeProfile,
+      page: () => CompleteProfileView(),
+      binding: CompleteProfileBinding(),
+      fullscreenDialog: true,
+      alignment: Alignment.center,
+      opaque: true,
     ),
   ];
 }

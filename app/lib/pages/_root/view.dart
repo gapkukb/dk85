@@ -6,7 +6,7 @@ class RootView extends GetView<RootController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GetRouterOutlet(initialRoute: Routes.home, anchorRoute: '/'),
+      body: GetRouterOutlet(initialRoute: AppPages.initial, anchorRoute: '/'),
     );
   }
 }

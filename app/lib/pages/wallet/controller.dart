@@ -3,6 +3,12 @@ part of 'index.dart';
 class WalletController extends GetxController {
   WalletController();
 
+  final isWithdrawal = false.obs;
+
+  changeView(bool viewType) {
+    isWithdrawal.value = viewType;
+  }
+
   // tap
   void handleTap(int index) {
     Get.snackbar("标题", "消息");

@@ -22,49 +22,54 @@ class HomeView extends GetView<HomeController> {
             ],
             builder: (context, routes, index) {
               final delegate = context.delegate;
-              return BottomNavigationBar(
-                type: BottomNavigationBarType.fixed,
-                currentIndex: index,
-                selectedFontSize: 10,
-                unselectedFontSize: 10,
-                onTap: (value) {
-                  delegate.toNamed(routes[value]);
-                },
-                selectedItemColor: AppColor.main,
-                items: [
-                  // _Paths.HOME + [Empty]
-                  BottomNavigationBarItem(
-                    icon: Iconify(
-                      Arcticons.pokerstars,
-                      color: index == 0 ? AppColor.main : null,
+              return SizedBox(
+                height: 44,
+                child: BottomNavigationBar(
+                  type: BottomNavigationBarType.fixed,
+                  currentIndex: index,
+                  iconSize: 18,
+                  selectedFontSize: 10,
+                  unselectedFontSize: 10,
+                  selectedItemColor: AppColor.main,
+
+                  onTap: (value) {
+                    delegate.toNamed(routes[value]);
+                  },
+                  items: [
+                    // _Paths.HOME + [Empty]
+                    BottomNavigationBarItem(
+                      icon: Icon(
+                        IconFont.qipaishi,
+                        color: index == 0 ? AppColor.main : null,
+                      ),
+                      label: '首页',
                     ),
-                    label: '首页',
-                  ),
-                  // _Paths.HOME + Routes.PROMOS
-                  BottomNavigationBarItem(
-                    icon: Iconify(
-                      Ph.gift_light,
-                      color: index == 1 ? AppColor.main : null,
+                    // _Paths.HOME + Routes.PROMOS
+                    BottomNavigationBarItem(
+                      icon: Icon(
+                        IconFont.liwu,
+                        color: index == 1 ? AppColor.main : null,
+                      ),
+                      label: '福利',
                     ),
-                    label: '福利',
-                  ),
-                  // _Paths.HOME + Routes.PROFILE
-                  BottomNavigationBarItem(
-                    icon: Iconify(
-                      La.wallet,
-                      color: index == 2 ? AppColor.main : null,
+                    // _Paths.HOME + Routes.PROFILE
+                    BottomNavigationBarItem(
+                      icon: Icon(
+                        IconFont.qianbao,
+                        color: index == 2 ? AppColor.main : null,
+                      ),
+                      label: '钱包',
                     ),
-                    label: '钱包',
-                  ),
-                  // _Paths.HOME + _Paths.PRODUCTS
-                  BottomNavigationBarItem(
-                    icon: Iconify(
-                      MaterialSymbols.account_circle_outline,
-                      color: index == 3 ? AppColor.main : null,
+                    // _Paths.HOME + _Paths.PRODUCTS
+                    BottomNavigationBarItem(
+                      icon: Icon(
+                        IconFont.yonghu,
+                        color: index == 3 ? AppColor.main : null,
+                      ),
+                      label: '我的',
                     ),
-                    label: '我的',
-                  ),
-                ],
+                  ],
+                ),
               );
             },
           ),

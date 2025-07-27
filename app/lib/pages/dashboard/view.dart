@@ -3,20 +3,24 @@ part of 'index.dart';
 class DashboardView extends GetView<DashboardController> {
   const DashboardView({super.key});
 
-  // 主视图
-  Widget _buildView() {
-    return const Center(child: Text("DashboardPage"));
-  }
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DashboardController>(
       init: DashboardController(),
       id: "dashboard",
       builder: (_) {
+        const items = [
+          ForuView(),
+          SlotsView(),
+          SlotsView(),
+          SlotsView(),
+          SlotsView(),
+        ];
+
         return DefaultTabController(
-          length: 5,
+          length: items.length,
           child: Scaffold(
+            backgroundColor: Color(0xfff5f5f5),
             appBar: AppBar(
               titleSpacing: 8,
               title: SizedBox(
@@ -99,13 +103,9 @@ class DashboardView extends GetView<DashboardController> {
               bottom: HomeTabBar(),
             ),
             body: TabBarView(
-              children: [
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-                Text("data"),
-              ],
+              children: items
+                  .map((item) => KeepAliveWrapper(child: item))
+                  .toList(),
             ),
           ),
         );
