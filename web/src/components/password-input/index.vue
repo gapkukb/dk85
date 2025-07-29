@@ -3,8 +3,8 @@ import { REGEXP_PASSWORD } from '@/constants/regexp'
 import type { FieldRule } from 'vant'
 
 
-const value = defineModel<string>({ required: true })
-const props = defineProps<{ isRepeat?: boolean; password?: string }>()
+const value = defineModel<string>({ default: '' })
+const props = withDefaults(defineProps<{ isRepeat?: boolean; password?: string, name?: string }>(), { name: "password" })
 const rule: FieldRule = {
     pattern: REGEXP_PASSWORD,
     message: t('form.error.password'),
@@ -30,8 +30,8 @@ const rules = computed<FieldRule[]>(() => {
 </script>
 
 <template>
-    <van-field v-model="value" name="password" class="van-field-solid" autocomplete="off" autocorrect="off" clearable
-        maxlength="16" :border="false" :type="visible ? 'text' : 'password'" :placeholder="placeholder" :rules="rules">
+    <van-field v-model="value" :name="name" class="van-field-solid" autocomplete="off" autocorrect="off" clearable
+        maxlength="20" :border="false" :type="visible ? 'text' : 'password'" :placeholder="placeholder" :rules="rules">
         <template #left-icon>
             <van-icon class-prefix="iconfont" name="tuxingma" class="opacity-50 text-20" />
         </template>

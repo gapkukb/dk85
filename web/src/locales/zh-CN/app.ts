@@ -47,4 +47,5 @@ export default {
     claim:"立即领取",
     auto:"自动发放",
     details:"详情",
+    waiting:"请稍后...",
 }

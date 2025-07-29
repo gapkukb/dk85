@@ -1,26 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../widgets/custom_app_bar.dart';
 import 'index.dart';
 import 'widgets/widgets.dart';
 
 class MePage extends GetView<MeController> {
-  const MePage({Key? key}) : super(key: key);
-
-  // 主视图
-  Widget _buildView() {
-    return const HelloWidget();
-  }
+  const MePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<MeController>(
       builder: (_) {
         return Scaffold(
-          appBar: AppBar(title: const Text("me")),
-          body: SafeArea(
-            child: _buildView(),
-          ),
+          appBar: CustomAppBar(title: "我的"),
+          body: SafeArea(child: ListView(children: [])),
         );
       },
     );

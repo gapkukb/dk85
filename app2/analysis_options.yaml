@@ -20,11 +20,18 @@ linter:
   # or a specific dart file by using the `// ignore: name_of_lint` and
   # `// ignore_for_file: name_of_lint` syntax on the line or in the file
   # producing the lint.
+
   rules:
     camel_case_types: false
     constant_identifier_names: false
+    library_private_types_in_public_api: false
+    # always_use_package_imports: false
+    prefer_relative_imports: true
     # avoid_print: false  # Uncomment to disable the `avoid_print` rule
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
-
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
+# analyzer:
+#   errors:
+#     avoid_relative_lib_imports: error # Enforces package imports for files within lib
+#     always_use_package_imports: error # Ensures all imports use the package: syntax

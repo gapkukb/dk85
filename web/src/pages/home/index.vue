@@ -27,7 +27,7 @@ function a(index: number) {
         </van-swipe-item>
     </van-swipe>
     <!-- 公告弹窗 -->
-    <Announcement />
+    <!-- <Announcement /> -->
     <!-- 下载app -->
     <DownloadApp />
 </template>

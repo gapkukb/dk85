@@ -1,6 +1,6 @@
 import AbstractLogin from "./AbstractLogin";
 
-export default class LoginViaToken extends AbstractLogin {
+export default class loginViaToken extends AbstractLogin {
   constructor(public token: string, public loginName: string) {
     super();
   }

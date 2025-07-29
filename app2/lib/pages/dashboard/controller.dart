@@ -38,29 +38,29 @@ class DashboardController extends GetxController {
   final currentIndex = 0.obs;
   final tabs = [
     Tab(
-      icon: IconFont.qipai,
+      icon: IconFont.qipaishi,
       label: "首页",
       routeName: Routes.HOME,
       page: () => const HomePage(),
       binding: HomeBinding(),
     ),
     Tab(
-      icon: IconFont.qipai,
-      label: "首页",
+      icon: IconFont.liwu,
+      label: "福利",
       routeName: Routes.PROMOS,
       page: () => const PromosPage(),
       binding: PromosBinding(),
     ),
     Tab(
-      icon: IconFont.qipai,
-      label: "首页",
+      icon: IconFont.qianbao,
+      label: "钱包",
       routeName: Routes.FUNDS,
       page: () => const FundsPage(),
       binding: FundsBinding(),
     ),
     Tab(
-      icon: IconFont.qipai,
-      label: "首页",
+      icon: IconFont.yonghu,
+      label: "我的",
       routeName: Routes.ME,
       page: () => const MePage(),
       binding: MeBinding(),

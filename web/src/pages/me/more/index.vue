@@ -3,10 +3,10 @@ import { useLocale } from '@/locales'
 import { Modals, ModalsName } from '@/modals'
 import { useApp } from '@/stores/app.store'
 import { useUser } from '@/stores/user.store'
-import { showConfirmDialog, showToast } from 'vant'
+import { showConfirmDialog, showSuccessToast, showToast } from 'vant'
 
 const { localeName } = useLocale()
-const { logout } = useUser()
+const { clearUser } = useUser()
 const app = useApp()
 const version = import.meta.env.PACKAGE_VERSION
 
@@ -17,13 +17,12 @@ async function doLogout() {
         confirmButtonText: t("app.continue")
     })
 
-    await logout()
+    clearUser()
 
-    showToast({
+    showSuccessToast({
         message: t("me.logout_done"),
-        closeOnClick: false,
-        closeOnClickOverlay: false,
-        duration: 3000, onClose() {
+        forbidClick: true,
+        onClose() {
             window.location.href = '/'
         },
     })

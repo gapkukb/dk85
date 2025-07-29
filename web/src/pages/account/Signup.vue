@@ -1,29 +1,36 @@
 <script setup lang="ts">
-const account = ref('')
+import { register } from '@/api/user.api'
+import { useUser } from '@/stores/user.store'
+import { showLoadingToast, showToast } from 'vant'
+
+
+const user = useUser()
 const password = ref('')
-const repassword = ref('')
-const phone = ref('')
+const key = ref(1)
+function signup(form: any) {
+    form.time = Date.now().toString()
+    register(form).then(rs => {
+        showToast('注册成功')
+        // useUser().login()
+    }).finally(() => key.value++)
+}
+
 </script>
 
 <template>
-    <van-form class="px-24 grid gap-16">
-        <AccountInput v-model="account" />
+    <van-form class="px-24 grid gap-16" @submit="signup">
+        <AccountInput />
 
         <PasswordInput v-model="password" />
 
-        <PasswordInput
-            v-model="repassword"
-            :password="password"
-            is-repeat
-        />
+        <PasswordInput :password="password" is-repeat />
 
-        <PhoneNumberInput v-model="phone" />
+        <PhoneNumberInput />
 
-        <van-button
-            type="danger"
-            class="uppercase"
-        >
-            {{ $t('login2') }}
+        <GraphicInput :key="key" />
+        <div class="h-16"></div>
+        <van-button type="danger" class="uppercase" native-type="submit">
+            {{ $t( "me.signup") }}
         </van-button>
     </van-form>
 </template>

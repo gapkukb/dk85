@@ -1,6 +1,7 @@
-import loginViaAccount from './LoginViaAccount'
-import loginViaOauth from './LoginViaOAuth'
-import loginViaTicket from './LoginViaTicket'
+import { useUser } from '@/stores/user.store'
+import loginViaAccount from './loginViaAccount'
+import loginViaOauth from './loginViaOauth'
+import loginViaTicket from './loginViaTicket'
 
 export enum LoginType {
     Account,
@@ -9,11 +10,19 @@ export enum LoginType {
     Ticket,
 }
 
-export default function login(type: LoginType, payload: any): Promise<model.user.vo.Login> {
+function success(payload: any, type?: LoginType) {
     if (type === LoginType.OAuth) return loginViaOauth(payload)
     if (type === LoginType.OTP) return loginViaOauth(payload)
     if (type === LoginType.Ticket) return loginViaTicket(payload)
     return loginViaAccount(payload)
 }
 
-export {login}
+export default function login(payload: any, type?: LoginType): Promise<model.user.vo.Login> {
+    const user = useUser()
+    return success(payload, type).then((vo) => {
+        user.setUser(vo)
+        return vo
+    })
+}
+
+export { login }

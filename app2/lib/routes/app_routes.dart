@@ -13,4 +13,8 @@ abstract class Routes {
   static const SLOTS = '/slots';
   static const POKER = '/poker';
   static const CASINO = '/casino';
+  static const CUSTOMER_SERVICE = '/customer-service';
+  static const DEPOSIT = '/deposit';
+  static const WITHDRAWAL = '/withdrawal';
+  static const RECEIPT = '/receipt';
 }

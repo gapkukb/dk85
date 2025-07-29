@@ -1,4 +1,4 @@
-import 'package:app2/app.dart';
+import 'app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:scaled_app/scaled_app.dart';

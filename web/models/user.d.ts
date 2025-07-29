@@ -45,6 +45,7 @@ declare namespace model.user {
     namespace vo {
         interface Login {
             token: string
+            refreshToken: string
             user: User
         }
     }

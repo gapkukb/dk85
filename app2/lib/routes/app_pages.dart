@@ -1,10 +1,12 @@
-import 'package:app2/pages/dashboard/index.dart';
-import 'package:app2/pages/funds/index.dart';
-import 'package:app2/pages/funds/view.dart';
-import 'package:app2/pages/home/index.dart';
-import 'package:app2/pages/me/index.dart';
-import 'package:app2/pages/me/view.dart';
-import 'package:app2/pages/promos/index.dart';
+import '../pages/deposit-receipt/view.dart';
+import '/pages/customer-service/index.dart';
+import '/pages/dashboard/index.dart';
+import '/pages/deposit/index.dart';
+import '/pages/funds/index.dart';
+import '/pages/home/index.dart';
+import '/pages/me/index.dart';
+import '/pages/promos/index.dart';
+import '/pages/withdrawal/index.dart';
 import 'package:get/get.dart';
 
 part 'app_routes.dart';
@@ -33,9 +35,32 @@ class AppPages {
           name: Routes.FUNDS,
           page: () => FundsPage(),
           binding: FundsBinding(),
+          preventDuplicates: true,
+          children: [
+            GetPage(
+              name: Routes.DEPOSIT,
+              page: () => DepositView(),
+              binding: DepositBinding(),
+            ),
+            GetPage(
+              name: Routes.WITHDRAWAL,
+              page: () => WithdrawalView(),
+              binding: WithdrawalBinding(),
+            ),
+          ],
         ),
         GetPage(name: Routes.ME, page: () => MePage(), binding: MeBinding()),
       ],
+    ),
+    GetPage(
+      name: Routes.CUSTOMER_SERVICE,
+      page: () => CustomerServiceView(),
+      fullscreenDialog: true,
+    ),
+    GetPage(
+      name: Routes.RECEIPT,
+      page: () => DepositReceiptView(),
+      fullscreenDialog: true,
     ),
   ];
 }

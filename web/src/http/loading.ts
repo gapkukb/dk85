@@ -1,42 +1,36 @@
-import { type InternalAxiosRequestConfig, getAdapter } from "axios";
-import type Http from "./Http";
+import { type InternalAxiosRequestConfig, getAdapter } from 'axios'
+import type Http from './Http'
 
 export interface LoadingOption {
-  enable?: boolean;
-  default?: boolean;
-  onTrigger?: (loading: boolean) => void;
+    default?: boolean
+    show: (loading: boolean) => void
 }
 
-declare module "axios" {
-  interface AxiosRequestConfig {
-    loading?: boolean;
-  }
+declare module 'axios' {
+    interface AxiosRequestConfig {
+        loading?: boolean
+    }
 }
 
-export default function loadingPlugin(option?: LoadingOption) {
-  const { enable = true, default: _default = true, onTrigger } = option || {};
+export default function loadingPlugin(option: LoadingOption) {
+    const { default: enabled = true, show } = option
+    let n = 0
+    return function loading(http: Http) {
+        const adapter = getAdapter(http.inst.defaults.adapter)
 
-  let n = 0;
+        http.inst.defaults.adapter = function (config: InternalAxiosRequestConfig) {
+            const _loading = config.loading ?? enabled
+            if (_loading && n++ === 0) {
+                show(true)
+            }
 
-  return function loading(http: Http) {
-    if (!enable || !onTrigger) return;
+            function close() {
+                if (_loading && --n === 0) {
+                    show(false)
+                }
+            }
 
-    const adapter = getAdapter(http.inst.defaults.adapter);
-
-    http.inst.defaults.adapter = function (config: InternalAxiosRequestConfig) {
-      const _loading = config.loading ?? _default;
-
-      if (_loading && n++ === 0) {
-        onTrigger(true);
-      }
-
-      function close() {
-        if (_loading && --n === 0) {
-          onTrigger!(false);
+            return adapter(config).finally(close)
         }
-      }
-
-      return adapter(config).finally(close);
-    };
-  };
+    }
 }

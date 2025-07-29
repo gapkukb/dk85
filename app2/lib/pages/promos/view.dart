@@ -1,5 +1,7 @@
-import 'package:app2/widgets/account_balance.dart';
-import 'package:app2/widgets/network_picture.dart';
+import '../../iconfont/index.dart';
+import 'widgets/claim_center.dart';
+import '../../widgets/account_balance.dart';
+import '../../widgets/network_picture.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,21 +15,17 @@ class PromosPage extends GetView<PromosController> {
   Widget build(BuildContext context) {
     return GetBuilder<PromosController>(
       builder: (_) {
-        return Container(
-          padding: EdgeInsets.only(left: 8, right: 8),
-          child: Scaffold(
-            body: CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(child: AccountBalance()),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: EdgeInsetsGeometry.only(top: 8),
-                    child: CheckInWidget(),
-                  ),
-                ),
-                SliverPadding(
-                  padding: EdgeInsetsGeometry.only(top: 8),
-                  sliver: SliverList.separated(
+        return SafeArea(
+          child: Container(
+            padding: EdgeInsets.only(left: 8, right: 8),
+            child: Scaffold(
+              body: CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(child: AccountBalance()),
+                  SliverPadding(padding: EdgeInsetsGeometry.all(4)),
+                  SliverToBoxAdapter(child: CheckInWidget()),
+                  SliverPadding(padding: EdgeInsetsGeometry.all(4)),
+                  SliverList.separated(
                     itemCount: 10,
                     itemBuilder: (context, index) {
                       return ClipRRect(
@@ -39,12 +37,18 @@ class PromosPage extends GetView<PromosController> {
                         ),
                       );
                     },
-                    separatorBuilder: (context, index) => SizedBox(height: 8),
+                    separatorBuilder: (context, index) => SizedBox(height: 4),
                   ),
-                ),
 
-                SliverPadding(padding: EdgeInsetsGeometry.only(bottom: 44)),
-              ],
+                  // SliverPadding(padding: EdgeInsetsGeometry.only(bottom: 44)),
+                ],
+              ),
+              floatingActionButton: FloatingActionButton.small(
+                onPressed: () {
+                  Get.bottomSheet(ClaimCenterWidget());
+                },
+                child: Icon(IconFont.liwu),
+              ),
             ),
           ),
         );

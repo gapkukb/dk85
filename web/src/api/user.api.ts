@@ -1,5 +1,5 @@
 import { get, post } from './_http'
-
-/** 查询优惠活动列表 */
-export const queryActivities = get('/activities')
-export const queryClainmedList = get('/clainmed/list')
+import { refreshOption } from './_interceptor'
+export const register = post('/register', { loading: true })
+export const login = post('/login', { loading: true, protected: true })
+export const refresh = post('/login', { ...refreshOption })

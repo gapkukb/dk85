@@ -6,27 +6,29 @@ export const useUser = defineStore(
     'user',
     () => {
         const info = shallowRef<model.user.User>()
-        const balance = ref(0)
-        const authenticated = computed(() => !!info.value?.loginName)
         const token = ref('')
-        const webToken = ref('')
+        const refreshToken = ref('')
+        const balance = ref(0)
+        const authenticated = computed(() => !!token.value)
 
-        function setInfo(value: any) {
-            info.value = value
+        function setUser(value: model.user.vo.Login | Nullish) {
+            if (value) {
+                info.value = value.user
+                token.value = value.token
+                refreshToken.value = value.refreshToken
+            } else {
+                clearUser()
+            }
         }
 
-        async function login(loginType: LoginType, payload?: any) {
-            const result = await loginUtil(loginType, payload)
-            token.value = result.token
-            setInfo(result.user)
-            return true
-        }
-        function logout() {
-            alert('正在退出登录')
+        function clearUser() {
+            token.value = ''
+            refreshToken.value = ''
+            info.value = undefined
         }
 
-        return { info, authenticated, setInfo, token, webToken, login, logout, balance }
-    }
+        return { info, authenticated, setUser, clearUser, token, refreshToken, balance }
+    },
     // {
     //   persist: {
     //     afterHydrate(context) {
@@ -37,4 +39,8 @@ export const useUser = defineStore(
     //     },
     //   },
     // }
+
+    {
+        persist: {},
+    }
 )

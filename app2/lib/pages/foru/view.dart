@@ -1,5 +1,5 @@
-import 'package:app2/widgets/game_card.dart';
-import 'package:app2/widgets/network_picture.dart';
+import '../../widgets/game_card.dart';
+import '../../widgets/network_picture.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -72,7 +72,7 @@ class ForuPage extends GetView<ForuController> {
                 ),
               ),
               SliverPadding(
-                padding: EdgeInsetsGeometry.all(16),
+                padding: EdgeInsets.all(8),
                 sliver: SliverGrid.builder(
                   itemCount: 100,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

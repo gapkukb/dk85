@@ -13,8 +13,7 @@ export type NormalizeResponse = (response: AxiosResponse) => boolean
 
 declare module 'axios' {
     interface AxiosRequestConfig {
-        normalizePayload?: NormalizeRequest
-        normalizeResponse?: NormalizeRequest
+        normalizer?: NormalizeOption
     }
 }
 
@@ -55,9 +54,11 @@ export default function normalizePlugin(option: NormalizeOption) {
 
     return function normalize(http: Http) {
         http.inst.interceptors.request.use(function (config) {
-            if (!enable) return config
+            const _enable = config.normalizer?.enable ?? enable
 
-            const $validate = config.normalizePayload || normalizePayload
+            if (_enable) return config
+
+            const $validate = config.normalizer?.normalizePayload || normalizePayload
             const $filter = (o: any) => filter($validate, debug, config.url!, o)
 
             config.data = $filter(config.data)
@@ -67,9 +68,10 @@ export default function normalizePlugin(option: NormalizeOption) {
         })
 
         http.inst.interceptors.response.use(function response(resp) {
-            if (!enable) return resp
+            const _enable = resp.config.normalizer?.enable ?? enable
+            if (!_enable) return resp
 
-            const normalize = resp.config.normalizeResponse || normalizeResponse
+            const normalize = resp.config.normalizer?.normalizeResponse || normalizeResponse
 
             return normalize(resp)
         })

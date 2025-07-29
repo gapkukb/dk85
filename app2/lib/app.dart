@@ -1,3 +1,4 @@
+import '/theme/index.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scaled_app/scaled_app.dart';
@@ -23,6 +24,7 @@ class Application extends StatelessWidget {
         locale: TranslationService.locale,
         fallbackLocale: TranslationService.fallbackLocale,
         translations: TranslationService(),
+        theme: lightTheme,
       ),
     );
   }

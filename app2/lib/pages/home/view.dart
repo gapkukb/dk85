@@ -1,9 +1,9 @@
-import 'package:app2/pages/fishing/index.dart';
-import 'package:app2/pages/foru/view.dart';
-import 'package:app2/pages/home/widgets/home_tab_bar.dart';
-import 'package:app2/pages/poker/index.dart';
-import 'package:app2/pages/slots/index.dart';
-import 'package:app2/widgets/keep_alive_wrapper.dart';
+import '../fishing/index.dart';
+import '../foru/view.dart';
+import 'widgets/home_tab_bar.dart';
+import '../poker/index.dart';
+import '../slots/index.dart';
+import '../../widgets/keep_alive_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'index.dart';
@@ -23,10 +23,11 @@ class HomePage extends GetView<HomeController> {
     return DefaultTabController(
       length: items.length,
       child: Scaffold(
-        backgroundColor: Color(0xfff5f5f5),
+        // backgroundColor: Color(0xfff5f5f5),
         appBar: AppBar(
           automaticallyImplyLeading: false,
           titleSpacing: 8,
+          centerTitle: false,
           title: SizedBox(
             height: 32,
             child: FilledButton.tonal(

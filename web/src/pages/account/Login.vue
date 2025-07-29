@@ -1,18 +1,23 @@
 <script setup lang="ts">
 import { Modals, ModalsName } from '@/modals'
 import { useUser } from '@/stores/user.store'
-import { LoginType } from '@/utils/login'
+import login, { LoginType } from '@/utils/login'
 import { ls } from '@/utils/storage'
+import { showSuccessToast, showToast } from 'vant'
 
 const user = useUser()
 const account = ref(ls.get(ls.keys.currentUser, ''))
-const password = ref('')
-const code = ref('')
 const rememberMe = ref(false)
 
-async function doLogin(values: any) {
-    await user.login(LoginType.Account, values)
-    Modals.close(ModalsName.login)
+async function doLogin(form: any) {
+    await login(form)
+    showSuccessToast({
+        message: "登录成功",
+        forbidClick: true,
+        onClose() {
+            Modals.close(ModalsName.login)
+        },
+    })
     if (rememberMe.value) {
         ls.set(ls.keys.currentUser, account.value)
     }
@@ -23,9 +28,9 @@ async function doLogin(values: any) {
     <van-form class="px-24 grid gap-16" @submit="doLogin">
         <AccountInput v-model="account" />
 
-        <PasswordInput v-model="password" />
+        <PasswordInput />
 
-        <GraphicInput v-model="code" />
+        <GraphicInput />
 
         <div class="flex items-center justify-between py-16">
             <van-checkbox v-model="rememberMe" icon-size="16" checked-color="#ff5800" class="text-12">
