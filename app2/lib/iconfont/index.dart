@@ -1,0 +1,46 @@
+
+import 'package:flutter/widgets.dart';
+class IconFont{
+	static const String _family = 'iconfont';
+	IconFont._();
+		static const IconData gantanhao = IconData(0xe685, fontFamily: _family);
+		static const IconData gantanhao1 = IconData(0xe64c, fontFamily: _family);
+		static const IconData shanchu = IconData(0xe74b, fontFamily: _family);
+		static const IconData xiugai = IconData(0xe64b, fontFamily: _family);
+		static const IconData tianjia = IconData(0xe61e, fontFamily: _family);
+		static const IconData chongzhijilu = IconData(0xe645, fontFamily: _family);
+		static const IconData kefu = IconData(0xe63c, fontFamily: _family);
+		static const IconData yule = IconData(0xe668, fontFamily: _family);
+		static const IconData heart = IconData(0xe61f, fontFamily: _family);
+		static const IconData heart_fill = IconData(0xe738, fontFamily: _family);
+		static const IconData liwu = IconData(0xe67d, fontFamily: _family);
+		static const IconData qianbao = IconData(0xe667, fontFamily: _family);
+		static const IconData yinxingqia = IconData(0xe66b, fontFamily: _family);
+		static const IconData jiludanzilishijilu = IconData(0xe61d, fontFamily: _family);
+		static const IconData jilu = IconData(0xe625, fontFamily: _family);
+		static const IconData yonghu = IconData(0xe701, fontFamily: _family);
+		static const IconData jilu1 = IconData(0xe65e, fontFamily: _family);
+		static const IconData jilu2 = IconData(0xe60b, fontFamily: _family);
+		static const IconData riqi = IconData(0xe62a, fontFamily: _family);
+		static const IconData hotfill = IconData(0xe757, fontFamily: _family);
+		static const IconData lottery = IconData(0xe61c, fontFamily: _family);
+		static const IconData buyu = IconData(0xe60a, fontFamily: _family);
+		static const IconData qipai = IconData(0xe7af, fontFamily: _family);
+		static const IconData slots1 = IconData(0xe677, fontFamily: _family);
+		static const IconData chouma = IconData(0xe606, fontFamily: _family);
+		static const IconData casino = IconData(0xe618, fontFamily: _family);
+		static const IconData casino11 = IconData(0xe609, fontFamily: _family);
+		static const IconData spade_fill = IconData(0xe652, fontFamily: _family);
+		static const IconData n_casino_e = IconData(0xe631, fontFamily: _family);
+		static const IconData qipaishi = IconData(0xe654, fontFamily: _family);
+		static const IconData money = IconData(0xe602, fontFamily: _family);
+		static const IconData jinbi = IconData(0xe60e, fontFamily: _family);
+		static const IconData jinbi1 = IconData(0xe6b1, fontFamily: _family);
+		static const IconData a_1 = IconData(0xe6ea, fontFamily: _family);
+		static const IconData youxiangyanzhengma = IconData(0xe66a, fontFamily: _family);
+		static const IconData shouji = IconData(0xe692, fontFamily: _family);
+		static const IconData tuxingma = IconData(0xe69e, fontFamily: _family);
+		static const IconData tuxingma1 = IconData(0xe629, fontFamily: _family);
+		static const IconData duanxinyanzhengma = IconData(0xe61b, fontFamily: _family);
+		static const IconData yanzhengma = IconData(0xe67c, fontFamily: _family);
+}

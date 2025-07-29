@@ -1,0 +1,10 @@
+{
+  "dart.cliAdditionalArgs": ["--enable-experiment=macros"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always"
+  },
+  "java.configuration.updateBuildConfiguration": "interactive",
+  // "code-runner.executorMap": {
+  //   "dart": "dart --enable-experiment=macros"
+  // },
+}
