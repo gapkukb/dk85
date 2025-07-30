@@ -10,7 +10,7 @@ export enum LoginType {
     Ticket,
 }
 
-function success(payload: any, type?: LoginType) {
+function _login(payload: any, type?: LoginType) {
     if (type === LoginType.OAuth) return loginViaOauth(payload)
     if (type === LoginType.OTP) return loginViaOauth(payload)
     if (type === LoginType.Ticket) return loginViaTicket(payload)
@@ -19,7 +19,7 @@ function success(payload: any, type?: LoginType) {
 
 export default function login(payload: any, type?: LoginType): Promise<model.user.vo.Login> {
     const user = useUser()
-    return success(payload, type).then((vo) => {
+    return _login(payload, type).then((vo) => {
         user.setUser(vo)
         return vo
     })

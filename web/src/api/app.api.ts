@@ -4,8 +4,11 @@ import { get, post } from './_http'
 export const queryCaptcha = get('/captcha', {
     responseType: 'blob',
     silent: true,
-    predicate(resp) {
+    predicate(resp: any) {
         return resp.status === 200
     },
     normalizer: { enable: false },
 })
+
+export const testProtected = get('/protected')
+export const testRefresh = post('/refresh')

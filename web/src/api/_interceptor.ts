@@ -1,6 +1,6 @@
 import type { Http } from '@/http'
 import { useUser } from '@/stores/user.store'
-import type { AxiosRequestConfig } from 'axios'
+import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { refresh } from './user.api'
 import { Modals, ModalsName } from '@/modals'
 
@@ -28,28 +28,30 @@ export function interceptor() {
             }
             return config
         })
-        http.inst.interceptors.response.use(async function (response) {
+        http.inst.interceptors.response.use(undefined, async function (response:AxiosResponse|AxiosError) {
             // 登录过期
             if (response.data.code === 666) {
                 if (isRefresh(response.config)) {
+                    debugger
                     // 如果连刷新token的接口都过期了，那么就需要重新走登录流程
                     Modals.open(ModalsName.login)
-                    
-                    return response
+
+                    throw response
                 }
 
                 // 将已经失败的请求等待刷新接口完成后，再次调用
-                if (promise) await promise
-
-                promise = refresh({ token: user.refreshToken })
-                promise.then((rs) => {
-                    user.setUser(rs)
-                })
-                promise.finally(() => (promise = null))
+                if (!promise) {
+                    promise = refresh({ token: user.refreshToken })
+                    promise.then((rs) => {
+                        user.setUser(rs)
+                        response.config?.headers.setAuthorization(rs)
+                    })
+                    promise.finally(() => (promise = null))
+                }
                 await promise
-                return response.request(response.config)
+                // return response.request(response.config)
             }
-            return response
+            throw response
         })
     }
 }

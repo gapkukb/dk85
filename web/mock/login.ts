@@ -2,40 +2,48 @@ import type { MockConfig, MockMethod } from 'vite-plugin-mock'
 import casual from 'casual'
 import { User } from './user'
 
-const username = 'a123456'
-const password = 'a12345678'
-const graphic = '1234'
+let token = ''
+let refreshtoken = ''
 
 export default function (config: MockConfig): MockMethod[] {
     return [
         {
             url: '/api/login',
             method: 'post',
-            timeout: 300,
+            timeout: 2000,
             async rawResponse(req, res) {
-                let reqbody = ''
-                await new Promise((resolve) => {
-                    req.on('data', (chunk) => {
-                        reqbody += chunk
-                    })
-                    req.on('end', () => resolve(undefined))
-                })
-
-                try {
-                    const json = JSON.parse(reqbody)
-                    if (json.username !== username) return res.error('用户名不正确')
-                    if (json.password !== password) return res.error('密码不正确')
-                    if (json.graphic !== graphic) return res.error('图形验证码不正确')
-
-                    return res.ok({
-                        token: 'ssssssssssssssssssssssssssssssss',
-                        user: new User(),
-                    })
-                } catch (error: Error) {
-                    res.error(error.message)
+                token = Math.random().toString(32)
+                refreshtoken = Math.random().toString(32)
+                res.ok({ token, refreshtoken })
+                setTimeout(() => {
+                    token = ''
+                }, 7000)
+            },
+        },
+        {
+            url: '/api/protected',
+            method: 'get',
+            timeout: 2000,
+            async rawResponse(req, res) {
+                const t = req.headers.authorization
+                if (t === token) {
+                    res.ok('受保护内容')
+                } else {
+                    res.error('登录失效', 666, 200)
                 }
-
-                // if()
+            },
+        },
+        {
+            url: '/api/refresh',
+            method: 'post',
+            timeout: 2000,
+            async rawResponse(req, res) {
+                const t = req.headers.authorization
+                token = Math.random().toString(32)
+                res.ok(token)
+                setTimeout(() => {
+                    token = ''
+                }, 7000);
             },
         },
     ]

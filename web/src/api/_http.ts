@@ -4,7 +4,8 @@ import { showLoadingToast, showToast } from 'vant'
 import type { ToastWrapperInstance } from 'vant/es'
 import { interceptor } from './_interceptor'
 
-const http = new Http({ baseURL: '/api/app' })
+// const http = new Http({ baseURL: '/api/app' })
+const http = new Http({ baseURL: '/api' })
 
 http.use(
     errorPlugin({
