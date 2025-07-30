@@ -59,7 +59,7 @@ class BaseInputState extends State<BaseInput> {
     return TextFormField(
       controller: controller,
       cursorHeight: 16,
-      style: TextStyle(fontSize: 16),
+      style: const TextStyle(fontSize: 16),
       validator: widget.validator,
       keyboardType: widget.keyboardType,
       initialValue: widget.initialValue,
@@ -72,10 +72,10 @@ class BaseInputState extends State<BaseInput> {
       decoration: InputDecoration(
         counterText: '',
         filled: true,
-        fillColor: Color(0xfff6f6f6),
+        fillColor: const Color(0xfff6f6f6),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(4),
-          borderSide: BorderSide(width: 0, style: BorderStyle.none),
+          borderSide: const BorderSide(width: 0, style: BorderStyle.none),
         ),
         prefixIcon:
             widget.prefix ?? (widget.icon == null ? null : Icon(widget.icon)),
@@ -93,8 +93,8 @@ class BaseInputState extends State<BaseInput> {
                   child: Transform.scale(
                     scale: 1.2,
                     child: Transform.translate(
-                      offset: Offset(0, 2),
-                      child: Icon(
+                      offset: const Offset(0, 2),
+                      child: const Icon(
                         Icons.cancel,
                         size: 16,
                         color: AppColors.description,

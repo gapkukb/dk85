@@ -21,11 +21,11 @@ class _CirclePainter extends BoxPainter {
 
   @override
   void paint(Canvas canvas, Offset offset, ImageConfiguration cfg) {
-    final double tickness = 1.0;
-    final Rect rect = (offset - Offset(0, tickness)) & cfg.size!;
+    const double tickness = 1.0;
+    final Rect rect = (offset - const Offset(0, tickness)) & cfg.size!;
 
     final paint = Paint()
-      ..color = Color(0xffff5800)
+      ..color = const Color(0xffff5800)
       ..strokeWidth = tickness;
     canvas.drawLine(rect.bottomLeft, rect.bottomRight, paint);
     canvas.drawPath(

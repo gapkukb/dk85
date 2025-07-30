@@ -16,7 +16,7 @@ class DepositView extends GetView<DepositController> {
         return WalletChannels(
           false,
           onTap: (index) {
-            Get.bottomSheet(DepositBill(), isScrollControlled: true);
+            Get.bottomSheet(const DepositBill(), isScrollControlled: true);
           },
         );
       },

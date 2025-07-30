@@ -1,4 +1,4 @@
-import { refreshBalance } from '@/api'
+import { queryBalance } from '@/api/user.api'
 import { useUser } from '@/stores/user.store'
 import { formatter } from '@/utils/number'
 
@@ -7,12 +7,12 @@ const loading = ref(false)
 
 async function refresh() {
     const user = useUser()
-    // if (!user.authenticated) return
+    if (!user.authenticated) return
     if (loading.value) return
     loading.value = true
-    return refreshBalance()
+    return queryBalance()
         .then((n) => {
-            balance.value = n
+            balance.value = n.balance
             return n
         })
         .finally(() => {

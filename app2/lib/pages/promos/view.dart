@@ -17,37 +17,42 @@ class PromosPage extends GetView<PromosController> {
       builder: (_) {
         return SafeArea(
           child: Container(
-            padding: EdgeInsets.only(left: 8, right: 8),
+            padding: const EdgeInsets.only(left: 8, right: 8),
             child: Scaffold(
               body: CustomScrollView(
                 slivers: [
-                  SliverToBoxAdapter(child: AccountBalance()),
-                  SliverPadding(padding: EdgeInsetsGeometry.all(4)),
-                  SliverToBoxAdapter(child: CheckInWidget()),
-                  SliverPadding(padding: EdgeInsetsGeometry.all(4)),
-                  SliverList.separated(
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      return ClipRRect(
-                        borderRadius: BorderRadiusGeometry.circular(4),
-                        child: NetworkPicture(
-                          height: 84,
-                          imageUrl:
-                              "https://img.okszckoo.com/upload/images/202504/c6a5ac2d-b29a-4e4b-b785-30632e33fd9e.jpg",
-                        ),
-                      );
-                    },
-                    separatorBuilder: (context, index) => SizedBox(height: 4),
+                  const SliverToBoxAdapter(child: AccountBalance()),
+                  const SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsetsGeometry.only(top: 8),
+                      child: CheckInWidget(),
+                    ),
                   ),
-
-                  // SliverPadding(padding: EdgeInsetsGeometry.only(bottom: 44)),
+                  SliverPadding(
+                    padding: const EdgeInsetsGeometry.only(top: 8),
+                    sliver: SliverList.separated(
+                      itemCount: 10,
+                      itemBuilder: (context, index) {
+                        return ClipRRect(
+                          borderRadius: BorderRadiusGeometry.circular(4),
+                          child: NetworkPicture(
+                            height: 84,
+                            imageUrl:
+                                "https://img.okszckoo.com/upload/images/202504/c6a5ac2d-b29a-4e4b-b785-30632e33fd9e.jpg",
+                          ),
+                        );
+                      },
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(height: 8),
+                    ),
+                  ),
                 ],
               ),
               floatingActionButton: FloatingActionButton.small(
                 onPressed: () {
-                  Get.bottomSheet(ClaimCenterWidget());
+                  Get.bottomSheet(const ClaimCenterWidget());
                 },
-                child: Icon(IconFont.liwu),
+                child: const Icon(IconFont.liwu),
               ),
             ),
           ),

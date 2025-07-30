@@ -27,7 +27,6 @@ defineProps<{ balanceClass?: any; buttonClass?: string; iconClass?: string }>()
             :loading="loading"
         >
             <button
-                class="lh-1"
                 :class="[buttonClass, { spin: loading }]"
                 @click="refresh"
             >

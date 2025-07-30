@@ -1,4 +1,6 @@
 import '../pages/deposit-receipt/view.dart';
+import '../pages/favorites/view.dart';
+import '../pages/more/view.dart';
 import '/pages/customer-service/index.dart';
 import '/pages/dashboard/index.dart';
 import '/pages/deposit/index.dart';
@@ -18,49 +20,55 @@ class AppPages {
   static final routes = [
     GetPage(
       name: Routes.DASHBOARD,
-      page: () => DashboardPage(),
+      page: () => const DashboardPage(),
       binding: DashboardBinding(),
       children: [
         GetPage(
           name: Routes.HOME,
-          page: () => HomePage(),
+          page: () => const HomePage(),
           binding: HomeBinding(),
         ),
         GetPage(
           name: Routes.PROMOS,
-          page: () => PromosPage(),
+          page: () => const PromosPage(),
           binding: PromosBinding(),
         ),
         GetPage(
           name: Routes.FUNDS,
-          page: () => FundsPage(),
+          page: () => const FundsPage(),
           binding: FundsBinding(),
           preventDuplicates: true,
           children: [
             GetPage(
               name: Routes.DEPOSIT,
-              page: () => DepositView(),
+              page: () => const DepositView(),
               binding: DepositBinding(),
             ),
             GetPage(
               name: Routes.WITHDRAWAL,
-              page: () => WithdrawalView(),
+              page: () => const WithdrawalView(),
               binding: WithdrawalBinding(),
             ),
           ],
         ),
-        GetPage(name: Routes.ME, page: () => MePage(), binding: MeBinding()),
+        GetPage(
+          name: Routes.ME,
+          page: () => const MePage(),
+          binding: MeBinding(),
+        ),
       ],
     ),
     GetPage(
       name: Routes.CUSTOMER_SERVICE,
-      page: () => CustomerServiceView(),
+      page: () => const CustomerServiceView(),
       fullscreenDialog: true,
     ),
     GetPage(
       name: Routes.RECEIPT,
-      page: () => DepositReceiptView(),
+      page: () => const DepositReceiptView(),
       fullscreenDialog: true,
     ),
+    GetPage(name: Routes.MORE, page: () => const MoreView()),
+    GetPage(name: Routes.FAVORITES, page: () => const FavoritesPage()),
   ];
 }

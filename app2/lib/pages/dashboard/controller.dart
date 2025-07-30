@@ -1,17 +1,17 @@
-import 'package:app2/iconfont/index.dart';
-import 'package:app2/pages/fishing/index.dart';
-import 'package:app2/pages/fishing/view.dart';
-import 'package:app2/pages/foru/index.dart';
-import 'package:app2/pages/foru/view.dart';
-import 'package:app2/pages/funds/index.dart';
-import 'package:app2/pages/funds/view.dart';
-import 'package:app2/pages/home/bindings.dart';
-import 'package:app2/pages/home/view.dart';
-import 'package:app2/pages/me/index.dart';
-import 'package:app2/pages/me/view.dart';
-import 'package:app2/pages/promos/bindings.dart';
-import 'package:app2/pages/promos/view.dart';
-import 'package:app2/routes/app_pages.dart';
+import '../../iconfont/index.dart';
+import '../fishing/index.dart';
+import '../fishing/view.dart';
+import '../foru/index.dart';
+import '../foru/view.dart';
+import '../funds/index.dart';
+import '../funds/view.dart';
+import '../home/bindings.dart';
+import '../home/view.dart';
+import '../me/index.dart';
+import '../me/view.dart';
+import '../promos/bindings.dart';
+import '../promos/view.dart';
+import '../../routes/app_pages.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
@@ -78,7 +78,7 @@ class DashboardController extends GetxController {
     );
 
     if (tab == null) {
-      return GetPageRoute(settings: settings, page: () => Text("data"));
+      return GetPageRoute(settings: settings, page: () => const Text("data"));
     }
 
     return GetPageRoute(

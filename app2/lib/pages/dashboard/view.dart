@@ -1,5 +1,5 @@
-import 'package:app2/iconfont/index.dart';
-import 'package:app2/routes/app_pages.dart';
+import '../../iconfont/index.dart';
+import '../../routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,8 +25,13 @@ class DashboardPage extends GetView<DashboardController> {
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
             ),
-            child: SizedBox(
-              height: 44,
+            child: Container(
+              height: 48,
+              decoration: const BoxDecoration(
+                border: Border(
+                  top: BorderSide(color: Colors.black12, width: 0.5),
+                ),
+              ),
               child: Obx(
                 () => BottomNavigationBar(
                   elevation: 0.0,

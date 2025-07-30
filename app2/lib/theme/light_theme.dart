@@ -2,18 +2,18 @@ part of 'index.dart';
 
 final lightTheme = ThemeData.light().copyWith(
   scaffoldBackgroundColor: Colors.white,
-  appBarTheme: AppBarTheme().copyWith(
+  appBarTheme: const AppBarTheme().copyWith(
     backgroundColor: Colors.white,
-    centerTitle: true,
-    scrolledUnderElevation: 1,
-    toolbarTextStyle: TextStyle(fontSize: 14),
-    titleTextStyle: ThemeData.light().appBarTheme.titleTextStyle?.copyWith(
-      fontSize: 14,
+    leadingWidth: 48,
+    titleTextStyle: const TextStyle(fontSize: 16, color: AppColors.primary),
+    iconTheme: const IconThemeData(color: AppColors.label, size: 26),
+    scrolledUnderElevation: 0,
+    shape: LinearBorder.bottom(
+      side: BorderSide(color: Colors.black.withAlpha(10)),
     ),
   ),
-  textTheme: textTheme,
-  primaryColor: Color(0xffff5800),
-  cardTheme: CardThemeData().copyWith(color: Colors.white),
+  // textTheme: textTheme,
+  cardTheme: const CardThemeData().copyWith(color: Colors.white),
 
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: OutlinedButton.styleFrom(

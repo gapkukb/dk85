@@ -23,17 +23,19 @@ class HomePage extends GetView<HomeController> {
     return DefaultTabController(
       length: items.length,
       child: Scaffold(
-        // backgroundColor: Color(0xfff5f5f5),
+        backgroundColor: const Color(0xfff5f5f5),
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          titleSpacing: 8,
           centerTitle: false,
+          titleSpacing: 8,
           title: SizedBox(
             height: 32,
             child: FilledButton.tonal(
-              style: FilledButton.styleFrom(backgroundColor: Color(0xffff5800)),
+              style: FilledButton.styleFrom(
+                backgroundColor: const Color(0xffff5800),
+              ),
               onPressed: () {},
-              child: Text(
+              child: const Text(
                 "登录 | 注册",
                 style: TextStyle(
                   fontSize: 12,
@@ -44,7 +46,7 @@ class HomePage extends GetView<HomeController> {
             ),
           ),
 
-          actionsPadding: EdgeInsets.symmetric(horizontal: 8),
+          actionsPadding: const EdgeInsets.symmetric(horizontal: 8),
           actions: [
             Row(
               mainAxisSize: MainAxisSize.min,
@@ -53,8 +55,8 @@ class HomePage extends GetView<HomeController> {
                 SizedBox.square(
                   dimension: 32,
                   child: IconButton(
-                    padding: EdgeInsets.all(0.0),
-                    icon: Icon(Icons.support_agent),
+                    padding: const EdgeInsets.all(0.0),
+                    icon: const Icon(Icons.support_agent),
                     onPressed: () {},
                   ),
                 ),
@@ -62,8 +64,8 @@ class HomePage extends GetView<HomeController> {
                 SizedBox.square(
                   dimension: 32,
                   child: IconButton(
-                    padding: EdgeInsets.all(0.0),
-                    icon: Icon(Icons.search),
+                    padding: const EdgeInsets.all(0.0),
+                    icon: const Icon(Icons.search),
                     onPressed: () {},
                   ),
                 ),
@@ -71,11 +73,11 @@ class HomePage extends GetView<HomeController> {
                   height: 24,
                   child: FilledButton.tonal(
                     style: FilledButton.styleFrom(
-                      backgroundColor: Color(0xffff5800),
-                      padding: EdgeInsets.all(0),
+                      backgroundColor: const Color(0xffff5800),
+                      padding: const EdgeInsets.all(0),
                     ),
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       "充值",
                       style: TextStyle(
                         fontSize: 10,
@@ -89,10 +91,10 @@ class HomePage extends GetView<HomeController> {
                   height: 24,
                   child: FilledButton.tonal(
                     style: FilledButton.styleFrom(
-                      backgroundColor: Color(0xffff976a),
+                      backgroundColor: const Color(0xffff976a),
                     ),
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       "提款",
                       style: TextStyle(
                         fontSize: 10,
@@ -105,7 +107,7 @@ class HomePage extends GetView<HomeController> {
               ],
             ),
           ],
-          bottom: HomeTabBar(),
+          bottom: const HomeTabBar(),
         ),
         body: TabBarView(
           children: items.map((item) => KeepAliveWrapper(child: item)).toList(),

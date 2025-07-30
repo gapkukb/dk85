@@ -17,43 +17,43 @@ class DepositBill extends GetView<DepositController> {
     return Container(
       color: Colors.white,
       height: 500,
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Column(
         spacing: 8,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         // mainAxisAlignment: MainAxisAlignment.,
         children: [
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("充值渠道", style: AppText.title),
               ServiceCalling(),
             ],
           ),
-          SizedBox(),
-          Text("充值方式", style: AppText.label),
+          const SizedBox(),
+          const Text("充值方式", style: AppText.label),
           buildMethod(),
-          SizedBox(),
-          Text("充值金额", style: AppText.label),
+          const SizedBox(),
+          const Text("充值金额", style: AppText.label),
           buildAmount(),
-          SizedBox(),
+          const SizedBox(),
           BaseInput(
             controller: controller.inputController,
             maxLength: 11,
             placeholder: "Enter amount :2000-10000",
             keyboardType: TextInputType.number,
-            suffix: Text("MMK", style: TextStyle(height: 3)),
+            suffix: const Text("MMK", style: TextStyle(height: 3)),
             onSaved: (value) {},
             validator: (value) {
               return null;
             },
           ),
-          Spacer(),
+          const Spacer(),
           CupertinoButton.filled(
             borderRadius: BorderRadius.circular(4),
             sizeStyle: CupertinoButtonSize.medium,
             color: AppColors.danger,
-            child: Text("下一步"),
+            child: const Text("下一步"),
             onPressed: () {},
           ),
         ],
@@ -64,7 +64,7 @@ class DepositBill extends GetView<DepositController> {
   GridView buildAmount() {
     return GridView.builder(
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
         mainAxisExtent: 44,
@@ -89,7 +89,7 @@ class DepositBill extends GetView<DepositController> {
 
   Container buildMethod() {
     return Container(
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: AppColors.background,
         borderRadius: BorderRadius.circular(4),
@@ -103,14 +103,14 @@ class DepositBill extends GetView<DepositController> {
             width: 32,
             height: 32,
           ),
-          Text("KBZpay", style: AppText.normal),
+          const Text("KBZpay", style: AppText.normal),
           DecoratedBox(
             decoration: BoxDecoration(
               color: AppColors.warn,
               borderRadius: BorderRadius.circular(4),
             ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+            child: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 4, vertical: 2),
               child: Text(
                 "အများဆုံးလက်ဆောင်2500",
                 style: TextStyle(height: 1, color: Colors.white, fontSize: 9),

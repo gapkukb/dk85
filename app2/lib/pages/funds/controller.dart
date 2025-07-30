@@ -18,14 +18,14 @@ class FundsController extends GetxController {
       case Routes.DASHBOARD + Routes.FUNDS + Routes.WITHDRAWAL:
         return GetPageRoute(
           settings: settings,
-          page: () => WithdrawalView(),
+          page: () => const WithdrawalView(),
           // binding: WithdrawalBinding(),
           transition: Transition.leftToRightWithFade,
         );
     }
     return GetPageRoute(
       settings: settings,
-      page: () => DepositView(),
+      page: () => const DepositView(),
       // binding: DepositBinding(),
       transition: Transition.leftToRightWithFade,
     );

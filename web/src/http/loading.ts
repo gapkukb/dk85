@@ -19,7 +19,7 @@ export default function loadingPlugin(option: LoadingOption) {
         const adapter = getAdapter(http.inst.defaults.adapter)
 
         http.inst.defaults.adapter = function (config: InternalAxiosRequestConfig) {
-            const _loading = config.loading ?? enabled
+            const _loading = config.loading ?? (config.silent === void 0 ? enabled : !config.silent)
             if (_loading && n++ === 0) {
                 show(true)
             }

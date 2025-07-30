@@ -1,8 +1,6 @@
-import 'package:app2/iconfont/index.dart';
-import 'package:app2/theme/index.dart';
-import 'package:app2/widgets/empty_state.dart';
-import 'package:app2/widgets/service_calling.dart';
-import 'package:flutter/cupertino.dart';
+import '../../../theme/index.dart';
+import '../../../widgets/empty_state.dart';
+import '../../../widgets/service_calling.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,12 +14,12 @@ class ClaimCenterWidget extends GetView<PromosController> {
     return LayoutBuilder(
       builder: (context, constraints) {
         return Container(
-          padding: EdgeInsets.all(16),
-          decoration: BoxDecoration(
+          padding: const EdgeInsets.all(16),
+          decoration: const BoxDecoration(
             color: Colors.white,
             // borderRadius: BorderRadius.vertical(top: Radius.circular(8)),
           ),
-          child: Column(
+          child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(

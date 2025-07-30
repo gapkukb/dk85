@@ -44,6 +44,8 @@ dependencies:
   package_info_plus: ^8.3.0
   mobile_device_identifier: ^0.0.3
   carousel_slider: ^5.1.1
+  get_storage: ^2.1.1
+  material_symbols_icons: ^4.2815.1
 
 dev_dependencies:
   flutter_test:

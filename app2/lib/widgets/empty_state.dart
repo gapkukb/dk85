@@ -1,4 +1,4 @@
-import 'package:app2/theme/index.dart';
+import '../theme/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -50,7 +50,7 @@ class EmptyState extends StatelessWidget {
                     color: Colors.red,
                     child: Text(
                       buttonText!,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                 ),

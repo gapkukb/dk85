@@ -9,6 +9,6 @@ class HelloWidget extends GetView<DashboardController> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Obx(() => Text("controller.state.title")));
+    return Center(child: Obx(() => const Text("controller.state.title")));
   }
 }

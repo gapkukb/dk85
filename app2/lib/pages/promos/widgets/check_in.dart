@@ -1,4 +1,4 @@
-import 'package:app2/iconfont/index.dart';
+import '../../../iconfont/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,9 +11,9 @@ class CheckInWidget extends GetView<PromosController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: Color(0xffff5800).withAlpha(100),
+        color: const Color(0xffff5800).withAlpha(100),
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
@@ -23,16 +23,16 @@ class CheckInWidget extends GetView<PromosController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("每日签到", style: TextStyle(fontWeight: FontWeight.bold)),
+              const Text("每日签到", style: TextStyle(fontWeight: FontWeight.bold)),
               IconButton(
                 onPressed: () {
                   Get.bottomSheet(
                     Container(
-                      padding: EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(16),
                       width: double.infinity,
                       height: 400,
-                      decoration: BoxDecoration(color: Colors.white),
-                      child: Column(
+                      decoration: const BoxDecoration(color: Colors.white),
+                      child: const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
@@ -56,7 +56,7 @@ class CheckInWidget extends GetView<PromosController> {
                     ),
                   );
                 },
-                icon: Icon(IconFont.gantanhao1, color: Colors.red),
+                icon: const Icon(IconFont.gantanhao1, color: Colors.red),
               ),
             ],
           ),
@@ -64,22 +64,26 @@ class CheckInWidget extends GetView<PromosController> {
             height: 60,
             child: ListView.separated(
               separatorBuilder: (context, index) {
-                return SizedBox(width: 4);
+                return const SizedBox(width: 4);
               },
               scrollDirection: Axis.horizontal,
               itemCount: 31,
               itemBuilder: (context, index) {
-                return _CheckInItem(date: "31", status: 1, selected: true);
+                return const _CheckInItem(
+                  date: "31",
+                  status: 1,
+                  selected: true,
+                );
               },
             ),
           ),
-          SizedBox(height: 24),
+          const SizedBox(height: 24),
           SizedBox(
             height: 40,
             child: CupertinoButton.filled(
               sizeStyle: CupertinoButtonSize.small,
 
-              child: Text("签到"),
+              child: const Text("签到"),
               onPressed: () {},
             ),
           ),
@@ -107,7 +111,7 @@ class _CheckInItem extends StatelessWidget {
       width: 40,
       height: 60,
       decoration: BoxDecoration(
-        color: selected ? Color(0xffff5800) : Color(0xfff5f5f5),
+        color: selected ? const Color(0xffff5800) : const Color(0xfff5f5f5),
         borderRadius: BorderRadius.circular(4),
       ),
       child: Column(
@@ -119,7 +123,7 @@ class _CheckInItem extends StatelessWidget {
             "31 Jul",
             style: TextStyle(
               fontSize: 11,
-              color: selected ? Colors.white : Color(0xff666666),
+              color: selected ? Colors.white : const Color(0xff666666),
             ),
           ),
         ],

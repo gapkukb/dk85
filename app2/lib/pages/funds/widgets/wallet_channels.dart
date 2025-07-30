@@ -10,7 +10,7 @@ class WalletChannels extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       // mainAxisSize: MainAxisSize.min,
       children: [
         buidlItem(1),
@@ -43,9 +43,9 @@ class WalletChannels extends StatelessWidget {
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
         isWidthrawal ? "Mrs. Akeem Kshlerin" : "Ms. Piper Wyman",
-        style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+        style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
       ),
-      trailing: Opacity(
+      trailing: const Opacity(
         opacity: 0.5,
         child: Icon(Icons.arrow_forward_ios, size: 16),
       ),

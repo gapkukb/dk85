@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../theme/index.dart';
+
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
   const CustomAppBar({super.key, this.title});
@@ -29,11 +31,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               onPressed: () {
                 route!.navigator!.maybePop();
               },
-              child: Icon(icon),
+              child: Icon(icon, color: AppColors.primary),
             ),
     );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(44);
+  Size get preferredSize => const Size.fromHeight(44);
 }

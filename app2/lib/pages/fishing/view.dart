@@ -1,4 +1,4 @@
-import 'package:app2/widgets/game_card.dart';
+import '../../widgets/game_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -39,16 +39,16 @@ class _FishingViewGetX extends GetView<FishingController> {
       builder: (_) {
         return Scaffold(
           body: GridView.builder(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             itemCount: 100,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisSpacing: 8,
               mainAxisSpacing: 8,
               crossAxisCount: 3,
               childAspectRatio: 70 / 100,
             ),
             itemBuilder: (context, index) {
-              return GameCard();
+              return const GameCard();
             },
           ),
         );

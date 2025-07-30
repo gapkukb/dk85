@@ -1,5 +1,5 @@
-import 'package:app2/iconfont/index.dart';
-import 'package:app2/routes/app_pages.dart';
+import '../iconfont/index.dart';
+import '../routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +13,7 @@ class ServiceCalling extends StatelessWidget {
       onTap: () {
         Get.toNamed(Routes.CUSTOMER_SERVICE);
       },
-      child: child ?? Icon(IconFont.kefu),
+      child: child ?? const Icon(IconFont.kefu),
     );
   }
 }

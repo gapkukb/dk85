@@ -17,7 +17,7 @@ class GameCard extends StatelessWidget {
 
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(4)),
+          borderRadius: const BorderRadius.all(Radius.circular(4)),
           boxShadow: [
             BoxShadow(color: Colors.black.withAlpha(50), blurRadius: 2),
           ],
@@ -32,8 +32,8 @@ class GameCard extends StatelessWidget {
                     "https://hkp-s3.imgscache.com/bf91648b273c44338c4d8c7b5f1521e4123",
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 4),
               child: Text(
                 "Super Ace Jackpot",
                 maxLines: 1,
@@ -52,14 +52,17 @@ class GameCard extends StatelessWidget {
                 children: [
                   Text(
                     "${(likes)} Likes",
-                    style: TextStyle(color: Color(0xff666666), fontSize: 12),
+                    style: const TextStyle(
+                      color: Color(0xff666666),
+                      fontSize: 12,
+                    ),
                   ),
                   SizedBox.square(
                     dimension: 28,
                     child: IconButton(
                       padding: EdgeInsets.zero,
                       // icon: Icon(IconFont.heart, color: Colors.black, size: 16),
-                      icon: Icon(
+                      icon: const Icon(
                         IconFont.heart_fill,
                         color: Color(0xffff5800),
                         size: 16,

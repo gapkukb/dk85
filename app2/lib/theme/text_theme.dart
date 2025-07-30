@@ -1,22 +1,22 @@
 part of 'index.dart';
 
 const _common = TextStyle(fontSize: 14, inherit: true);
-final textTheme = TextTheme().copyWith(
-  // bodyLarge: _common,
-  // bodyMedium: _common,
-  // bodySmall: _common,
-  // displayLarge: _common,
-  // displayMedium: _common,
-  // displaySmall: _common,
-  // headlineLarge: _common,
-  // headlineMedium: _common,
-  // headlineSmall: _common,
-  // labelLarge: _common,
-  // labelMedium: _common,
-  // labelSmall: _common,
-  // titleLarge: _common,
-  // titleMedium: _common,
-  // titleSmall: _common,
+final textTheme = const TextTheme().copyWith(
+  bodyLarge: _common,
+  bodyMedium: _common,
+  bodySmall: _common,
+  displayLarge: _common,
+  displayMedium: _common,
+  displaySmall: _common,
+  headlineLarge: _common,
+  headlineMedium: _common,
+  headlineSmall: _common,
+  labelLarge: _common,
+  labelMedium: _common,
+  labelSmall: _common,
+  titleLarge: _common,
+  titleMedium: _common,
+  titleSmall: _common,
 );
 
 abstract class AppText {

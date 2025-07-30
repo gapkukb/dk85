@@ -25,9 +25,9 @@ class HomeTabBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return TabBar(
-      labelStyle: TextStyle(fontSize: 12),
+      labelStyle: const TextStyle(fontSize: 12),
       indicator: UnderlineArrowTabIndicator(
-        color: Color(0xffff5800),
+        color: const Color(0xffff5800),
         radius: 10,
       ),
       dividerHeight: 0,
@@ -35,8 +35,8 @@ class HomeTabBar extends StatelessWidget implements PreferredSizeWidget {
         return Column(
           children: [
             Icon(tab.icon, color: tab.color, size: 20),
-            Text(tab.label, style: TextStyle(color: Color(0xff111111))),
-            SizedBox(height: 4),
+            Text(tab.label, style: const TextStyle(color: Color(0xff111111))),
+            const SizedBox(height: 4),
           ],
         );
       }).toList(),
@@ -44,5 +44,5 @@ class HomeTabBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(40);
+  Size get preferredSize => const Size.fromHeight(40);
 }

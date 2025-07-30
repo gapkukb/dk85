@@ -17,4 +17,6 @@ abstract class Routes {
   static const DEPOSIT = '/deposit';
   static const WITHDRAWAL = '/withdrawal';
   static const RECEIPT = '/receipt';
+  static const MORE = '/more';
+  static const FAVORITES = '/favorites';
 }

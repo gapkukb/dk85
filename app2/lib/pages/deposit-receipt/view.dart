@@ -11,14 +11,16 @@ class DepositReceiptView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CupertinoNavigationBar(
+      appBar: const CupertinoNavigationBar(
         automaticallyImplyLeading: true,
         middle: Text("Recharge Details"),
         trailing: ServiceCalling(),
       ),
       body: ListView(
         children: [
-          Row(children: [Text("Receiving Account", style: AppText.title)]),
+          const Row(
+            children: [Text("Receiving Account", style: AppText.title)],
+          ),
           buildItem(
             title: "Receiving Account",
             child: Row(
@@ -31,13 +33,13 @@ class DepositReceiptView extends StatelessWidget {
                   width: 28,
                   height: 28,
                 ),
-                Text("KBZpay", style: AppText.title),
+                const Text("KBZpay", style: AppText.title),
               ],
             ),
           ),
           buildItem(
             title: "Receiving Account",
-            child: Row(
+            child: const Row(
               mainAxisSize: MainAxisSize.min,
               spacing: 4,
               children: [Text("09666094925", style: AppText.title)],
@@ -46,7 +48,7 @@ class DepositReceiptView extends StatelessWidget {
           buildItem(
             title: "Amount Due",
             child: RichText(
-              text: TextSpan(
+              text: const TextSpan(
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: AppColors.danger,
@@ -62,7 +64,7 @@ class DepositReceiptView extends StatelessWidget {
             ),
           ),
           RichText(
-            text: TextSpan(
+            text: const TextSpan(
               style: TextStyle(fontWeight: FontWeight.bold),
               text: "Transaction ID",
               children: [

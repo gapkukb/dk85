@@ -12,7 +12,11 @@ final placeHolderImage = Container(
     builder: (context, constraints) {
       var small = min(constraints.maxHeight, constraints.maxWidth);
 
-      return Icon(IconFont.yule, color: Colors.black26, size: small / 2);
+      return Icon(
+        IconFont.yule,
+        color: Colors.black.withAlpha(15),
+        size: small / 2,
+      );
     },
   ),
 );

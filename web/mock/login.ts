@@ -3,27 +3,26 @@ import casual from 'casual'
 import { User } from './user'
 
 let token = ''
-let refreshtoken = ''
+const f = () => {
+    token = Math.random().toString(32)
+}
+setInterval(f, 10000)
 
 export default function (config: MockConfig): MockMethod[] {
     return [
         {
             url: '/api/login',
             method: 'post',
-            timeout: 2000,
+            timeout: 300,
             async rawResponse(req, res) {
-                token = Math.random().toString(32)
-                refreshtoken = Math.random().toString(32)
-                res.ok({ token, refreshtoken })
-                setTimeout(() => {
-                    token = ''
-                }, 7000)
+                f()
+                res.ok({ token })
             },
         },
         {
             url: '/api/protected',
             method: 'get',
-            timeout: 2000,
+            timeout: 300,
             async rawResponse(req, res) {
                 const t = req.headers.authorization
                 if (t === token) {
@@ -36,14 +35,9 @@ export default function (config: MockConfig): MockMethod[] {
         {
             url: '/api/refresh',
             method: 'post',
-            timeout: 2000,
+            timeout: 300,
             async rawResponse(req, res) {
-                const t = req.headers.authorization
-                token = Math.random().toString(32)
-                res.ok(token)
-                setTimeout(() => {
-                    token = ''
-                }, 7000);
+                res.error('登录失效', 666, 200)
             },
         },
     ]

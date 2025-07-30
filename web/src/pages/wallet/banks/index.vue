@@ -4,7 +4,7 @@ import useDelegate from '@/composables/useDelegate';
 import { showActionsheet } from '@/utils/actionsheet';
 import Editor from './Editor.vue';
 import { showDialog } from 'vant';
-import { asyncDeleteBank } from '@/api/wallet';
+import { asyncDeleteBank } from '@/api/wallet.api';
 
 const job = shallowRef()
 const todo = useBack()
@@ -19,7 +19,7 @@ const edit = useDelegate("data-index", async function (index) {
 
     if (action.id === 2) {
         await showDialog({
-            showCancelButton:true,
+            showCancelButton: true,
             title: "确认删除吗?",
             message: "删除卡片可能会影响你收款",
         })

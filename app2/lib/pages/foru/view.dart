@@ -29,7 +29,7 @@ class ForuPage extends GetView<ForuController> {
                   options: CarouselOptions(
                     height: 90.0,
                     autoPlay: true,
-                    autoPlayInterval: Duration(seconds: 3),
+                    autoPlayInterval: const Duration(seconds: 3),
                     pauseAutoPlayOnTouch: true,
                     viewportFraction: 0.8,
                     enlargeFactor: 0.2,
@@ -40,7 +40,7 @@ class ForuPage extends GetView<ForuController> {
                   items: [1, 2].map((i) {
                     return PhysicalModel(
                       color: Colors.transparent,
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
+                      borderRadius: const BorderRadius.all(Radius.circular(4)),
                       clipBehavior: Clip.hardEdge,
                       child: NetworkPicture(
                         imageUrl:
@@ -53,36 +53,36 @@ class ForuPage extends GetView<ForuController> {
               SliverToBoxAdapter(
                 child: Container(
                   height: 20,
-                  padding: EdgeInsets.only(left: 8),
-                  margin: EdgeInsets.only(
+                  padding: const EdgeInsets.only(left: 8),
+                  margin: const EdgeInsets.only(
                     left: 8,
                     right: 0,
                     top: 16,
                     bottom: 8,
                   ),
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     border: Border(
                       left: BorderSide(color: Color(0xffff5800), width: 4),
                     ),
                   ),
-                  child: Text(
+                  child: const Text(
                     "Most Popular",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
               SliverPadding(
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsetsGeometry.all(8),
                 sliver: SliverGrid.builder(
                   itemCount: 100,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
                     childAspectRatio: 70 / 100,
                     crossAxisSpacing: 8,
                     mainAxisSpacing: 8,
                   ),
                   itemBuilder: (context, index) {
-                    return GameCard();
+                    return const GameCard();
                   },
                 ),
               ),
