@@ -1,11 +1,12 @@
-import '/theme/index.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scaled_app/scaled_app.dart';
-
-import 'lang/translation_service.dart';
-import 'routes/app_pages.dart';
-import 'shared/logger/logger_utils.dart';
+import '/theme/index.dart';
+import '/helper/reload.dart';
+import '/i18n/index.dart';
+import '/routes/app_pages.dart';
+import '/shared/logger/logger_utils.dart';
 
 class Application extends StatelessWidget {
   const Application({super.key});
@@ -15,16 +16,18 @@ class Application extends StatelessWidget {
     return MediaQuery(
       data: MediaQuery.of(context).scale(),
       child: GetMaterialApp(
+        key: appKey,
         initialRoute: AppPages.INITIAL,
         // debugShowCheckedModeBanner: false,
         enableLog: true,
         logWriterCallback: Logger.write,
         title: "DK85",
         getPages: AppPages.routes,
-        locale: TranslationService.locale,
-        fallbackLocale: TranslationService.fallbackLocale,
-        translations: TranslationService(),
+        locale: I18n.locale,
+        fallbackLocale: I18n.fallbackLocale,
+        translations: i18n,
         theme: lightTheme,
+        defaultTransition: Transition.cupertino,
       ),
     );
   }

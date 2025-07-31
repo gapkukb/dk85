@@ -1,12 +1,13 @@
 import 'package:get/get.dart';
-
-import '../storage/index.dart';
+import '/shared/audio_player/index.dart';
 
 class AppService extends GetxService {
-  final music = Storage.music;
+  final audioManager = AudioManager();
 
-  switchMusic(bool enable) {
-    music.value = enable;
+  @override
+  void onReady() {
+    super.onReady();
+    audioManager.startup();
   }
 
   @override

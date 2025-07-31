@@ -13,13 +13,7 @@ class HomePage extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    const items = [
-      ForuPage(),
-      SlotsPage(),
-      FishingPage(),
-      PokerPage(),
-      ForuPage(),
-    ];
+    const items = [ForuPage(), SlotsPage(), FishingPage(), PokerPage(), ForuPage()];
     return DefaultTabController(
       length: items.length,
       child: Scaffold(
@@ -31,17 +25,11 @@ class HomePage extends GetView<HomeController> {
           title: SizedBox(
             height: 32,
             child: FilledButton.tonal(
-              style: FilledButton.styleFrom(
-                backgroundColor: const Color(0xffff5800),
-              ),
+              style: FilledButton.styleFrom(backgroundColor: const Color(0xffff5800)),
               onPressed: () {},
-              child: const Text(
-                "登录 | 注册",
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                ),
+              child: Text(
+                "language".tr,
+                style: const TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.w600),
               ),
             ),
           ),
@@ -54,53 +42,32 @@ class HomePage extends GetView<HomeController> {
               children: [
                 SizedBox.square(
                   dimension: 32,
-                  child: IconButton(
-                    padding: const EdgeInsets.all(0.0),
-                    icon: const Icon(Icons.support_agent),
-                    onPressed: () {},
-                  ),
+                  child: IconButton(padding: const EdgeInsets.all(0.0), icon: const Icon(Icons.support_agent), onPressed: () {}),
                 ),
 
                 SizedBox.square(
                   dimension: 32,
-                  child: IconButton(
-                    padding: const EdgeInsets.all(0.0),
-                    icon: const Icon(Icons.search),
-                    onPressed: () {},
-                  ),
+                  child: IconButton(padding: const EdgeInsets.all(0.0), icon: const Icon(Icons.search), onPressed: () {}),
                 ),
                 SizedBox(
                   height: 24,
                   child: FilledButton.tonal(
-                    style: FilledButton.styleFrom(
-                      backgroundColor: const Color(0xffff5800),
-                      padding: const EdgeInsets.all(0),
-                    ),
+                    style: FilledButton.styleFrom(backgroundColor: const Color(0xffff5800), padding: const EdgeInsets.all(0)),
                     onPressed: () {},
                     child: const Text(
                       "充值",
-                      style: TextStyle(
-                        fontSize: 10,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: TextStyle(fontSize: 10, color: Colors.white, fontWeight: FontWeight.w600),
                     ),
                   ),
                 ),
                 SizedBox(
                   height: 24,
                   child: FilledButton.tonal(
-                    style: FilledButton.styleFrom(
-                      backgroundColor: const Color(0xffff976a),
-                    ),
+                    style: FilledButton.styleFrom(backgroundColor: const Color(0xffff976a)),
                     onPressed: () {},
                     child: const Text(
                       "提款",
-                      style: TextStyle(
-                        fontSize: 10,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: TextStyle(fontSize: 10, color: Colors.white, fontWeight: FontWeight.w600),
                     ),
                   ),
                 ),
@@ -109,9 +76,7 @@ class HomePage extends GetView<HomeController> {
           ],
           bottom: const HomeTabBar(),
         ),
-        body: TabBarView(
-          children: items.map((item) => KeepAliveWrapper(child: item)).toList(),
-        ),
+        body: TabBarView(children: items.map((item) => KeepAliveWrapper(child: item)).toList()),
       ),
     );
   }
