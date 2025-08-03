@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 class IconFont{
 	static const String _family = 'iconfont';
 	IconFont._();
+		static const IconData shuaxin = IconData(0xe69b, fontFamily: _family);
+		static const IconData refresh = IconData(0xe675, fontFamily: _family);
 		static const IconData mima = IconData(0xe850, fontFamily: _family);
 		static const IconData protect = IconData(0xe632, fontFamily: _family);
 		static const IconData mobile = IconData(0xe626, fontFamily: _family);
