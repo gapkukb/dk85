@@ -10,8 +10,8 @@ async function refresh() {
     if (!user.authenticated) return
     if (loading.value) return
     loading.value = true
-    return queryBalance()
-        .then((n) => {
+    return Promise.all([queryBalance(), Promise.delay(500)])
+        .then(([n]) => {
             balance.value = n.balance
             return n
         })

@@ -2,7 +2,7 @@ const path = require("path");
 const fs = require("fs");
 const http = require("http");
 
-download("//at.alicdn.com/t/c/font_4981191_4vafv6qujds.css");
+download("//at.alicdn.com/t/c/font_4981191_tbvzgmlxe5.css");
 
 
 

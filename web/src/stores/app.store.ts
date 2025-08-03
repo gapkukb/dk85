@@ -1,3 +1,4 @@
+import { queryAppInfo } from '@/api/app.api'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
@@ -6,8 +7,9 @@ export const useApp = defineStore(
     function () {
         const keepAlives = ref(new Set<string>())
         const unmuted = ref(true)
+        const appInfo = ref<model.app.AppInfo>({} as any)
 
-        return { keepAlives, unmuted }
+        return { keepAlives, unmuted, appInfo }
     },
     {
         persist: {

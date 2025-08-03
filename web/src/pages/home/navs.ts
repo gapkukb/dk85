@@ -27,3 +27,5 @@ function AsyncComponent(loader: AsyncComponentLoader<any>) {
         return loader().finally(() => nprogress.remove())
     })
 }
+
+

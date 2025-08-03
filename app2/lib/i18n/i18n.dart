@@ -28,40 +28,44 @@ class I18n extends Translations {
 
   static String getLocaleName(String key) => getLocale(key).localeName;
 
-  static Locale? get locale => Locale(Storage.locale.value);
+  static Locale? get locale => Locale(storage.locale.value);
 
   static const fallbackLocale = Locale('km');
 
-  final Map<String, Map<String, String>> _keys = {};
+  final Map<String, Map<String, String>> _keys = {'en': en, 'zh': zh, 'km': km, 'my': my, 'fil': fil};
 
   @override
   Map<String, Map<String, String>> get keys => _keys;
 
-  Future _load(String code) async {
-    final content = await rootBundle.loadString("translations/$code.json");
-    final map = jsonDecode(content);
+  // Future _load(String code) async {
+  //   final content = await rootBundle.loadString("translations/$code.json");
+  //   final map = jsonDecode(content);
 
-    _keys.clear();
-    _keys[code] = Map.from(map);
-  }
+  //   _keys.clear();
+  //   _keys[code] = Map.from(map);
+  // }
 
-  Future loadTranslation(String code) async {
-    await _load(code);
-    Future.microtask(reloadApp);
-  }
+  // Future loadTranslation(String code) async {
+  //   await _load(code);
+  //   Future.microtask(reloadApp);
+  // }
 
-  Future initializeTranslation() {
-    // 检查缓存
-    var locale = getLocale(Storage.locale.value);
-    Storage.locale.value = locale.code;
-    return _load(locale.code);
-  }
+  // Future initializeTranslation() {
+  //   // 检查缓存
+  //   var locale = getLocale(Storage.locale.value);
+  //   Storage.locale.value = locale.code;
+  //   return _load(locale.code);
+  // }
 
   Future updateLocale(String code) async {
     final locale = getLocale(code);
-    await loadTranslation(locale.code);
-    Storage.locale.value = code;
+    // await loadTranslation(locale.code);
+    storage.locale.value = code;
     Get.updateLocale(locale);
+  }
+
+  setup() {
+    Get.updateLocale(Locale(storage.locale.value));
   }
 }
 

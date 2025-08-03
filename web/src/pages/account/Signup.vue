@@ -1,18 +1,25 @@
 <script setup lang="ts">
 import { register } from '@/api/user.api'
+import { Modals, ModalsName } from '@/modals'
 import { useUser } from '@/stores/user.store'
-import { showLoadingToast, showToast } from 'vant'
+import { showLoadingToast, showSuccessToast, showToast } from 'vant'
 
 
 const user = useUser()
 const password = ref('')
-const key = ref(1)
+const time = ref(Date.now())
+const key = ref(1000)
+const router = useRouter()
+
 function signup(form: any) {
-    form.time = Date.now().toString()
-    register(form).then(rs => {
-        showToast('注册成功')
-        // useUser().login()
-    }).finally(() => key.value++)
+    form.time = document.getElementById('timestamp')?.dataset.timestamp;
+    register(form).then(async (rs) => {
+        user.updateToken(rs.token)
+        await user.updateUser();
+        showSuccessToast('注册成功')
+        router.replace('/')
+        Modals.close(ModalsName.login);
+    }).catch(() => key.value++)
 }
 
 </script>
@@ -27,10 +34,10 @@ function signup(form: any) {
 
         <PhoneNumberInput />
 
-        <GraphicInput :key="key" />
+        <GraphicInput :key="key" v-model:time="time" />
         <div class="h-16"></div>
         <van-button type="danger" class="uppercase" native-type="submit">
-            {{ $t( "me.signup") }}
+            {{ $t("me.signup") }}
         </van-button>
     </van-form>
 </template>

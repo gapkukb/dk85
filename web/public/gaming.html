@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="apple-mobile-web-app-capable"
+            content="yes"
+        />
+        <meta
+            name="mobile-web-app-capable"
+            content="yes"
+        />
+        <meta
+            name="theme-color"
+            content="#ffffff"
+        />
+        <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="white"
+        />
+        <meta
+            name="robots"
+            content="noindex,nofollow"
+        />
+        <link
+            rel="apple-touch-icon"
+            href="/pwa-192x192.png"
+        />
+        <link
+            rel="mask-icon"
+            href="/safari-pinned-tab.svg"
+            color="#f6d2d2"
+        />
+        <meta
+            name="msapplication-TileColor"
+            content="#f6d2d2"
+        />
+        <meta
+            name="description"
+            content="DK85"
+        />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="/favicon.svg"
+        />
+        <link
+            rel="stylesheet"
+            href="//at.alicdn.com/t/c/font_4981191_7xznml1w9ma.css"
+        />
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            href="/vite.svg"
+        />
+        <meta
+            name="viewport"
+            content="width=device-width,height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,viewport-fit=cover, user-scalable=no, interactive-widget=resizes-content"
+        />
+        <meta
+            id="keywords"
+            name="keywords"
+            content=""
+        />
+        <meta
+            id="description"
+            name="description"
+            content=""
+        />
+        <title>Gaming</title>
+        <style>
+            html,
+            body,
+            iframe {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            iframe{
+                position: fixed;
+                inset: 0;
+            }
+        </style>
+    </head>
+    <body ontouchstart="">
+        <iframe
+            crolling="no"
+            frameborder="0"
+        ></iframe>
+    </body>
+    <script type="text/javascript">
+        const gameUrl = new window.URL(window.location.href).searchParams.get('gameUrl')
+        if (gameUrl) {
+            document.querySelector('iframe').src = window.decodeURIComponent(window.decodeURIComponent(gameUrl))
+        } else {
+            alert('Game url not founded')
+        }
+    </script>
+</html>

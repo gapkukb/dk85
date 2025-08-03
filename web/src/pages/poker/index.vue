@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import useLoadMore from '@/composables/useLoadMore'
 
-useLoadMore(() => {})
+const props = defineProps<{ loading: boolean, games: model.game.GamesObject }>()
+const games = computed(() => props.loading ? [] : props.games.POKER)
 </script>
 
 <template>
     <div class="home-view">
-        <GameTable
-            paginable
-            title="ALL GAMES"
-        />
+           <GameTable title="ALL GAMES" :games="games"/>
     </div>
 </template>
 

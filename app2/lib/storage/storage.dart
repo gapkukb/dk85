@@ -1,6 +1,12 @@
 part of 'index.dart';
 
-abstract class Storage {
-  static final locale = _StoreageItem<String>(_global, "locale", I18n.defaultLocale.code);
-  static final music = _StoreageItem<bool>(_global, "music", true);
+class _Storage {
+  Future setup() {
+    return Future.wait([_global.initStorage, _game.initStorage, _user.initStorage]);
+  }
+
+  final locale = _StoreageItem<String>(_global, "locale", I18n.defaultLocale.code);
+  final music = _StoreageItem<bool>(_global, "music", true);
 }
+
+final storage = _Storage();

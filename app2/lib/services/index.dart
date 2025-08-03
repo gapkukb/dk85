@@ -6,6 +6,6 @@ import 'app_service.dart';
 
 export './app_service.dart';
 
-void initializeServices() {
+void setupServices() {
   Get.put(AppService());
 }

@@ -20,7 +20,7 @@ import bootstrap from './bootstrap'
 import App from './app/index.vue'
 import { i18n } from './locales'
 import { router } from './router'
-import startup from './startup'
+import startup from './setup'
 import diretives from './diretives'
 import { Lazyload } from 'vant'
 import db from './utils/db'
@@ -30,9 +30,3 @@ const app = createApp(App)
 app.use(stores).use(VueQueryPlugin).use(i18n).use(router).use(diretives).use(MotionPlugin).use(Lazyload)
 await startup()
 app.mount('#app')
-
-// db.slots.queryGames('1231').then(console.log)
-// db.slots.queryGames('1231').then(console.log)
-// db.slots.queryGames('1231').then(console.log)
-// db.poker.queryGames('456').then(console.log)
-// db.fishing.queryGames('789').then(console.log)

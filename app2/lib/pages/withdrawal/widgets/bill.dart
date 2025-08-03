@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../theme/index.dart';
-import '../../../widgets/base_input.dart';
+import '../../../ui/fields/base_field.dart';
 import '../../../widgets/service_calling.dart';
 import '../controller.dart';
 
@@ -55,17 +55,9 @@ class WithdrawaltBill extends GetView<WithdrawalController> {
                   height: 32,
                   color: AppColors.warn,
                   elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadiusGeometry.circular(28),
-                  ),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(28)),
                   onPressed: () {},
-                  child: Text(
-                    "全部",
-                    style: AppText.mini.copyWith(
-                      color: Colors.white,
-                      height: 1,
-                    ),
-                  ),
+                  child: Text("全部", style: AppText.mini.copyWith(color: Colors.white, height: 1)),
                 ),
                 const SizedBox(width: 4),
               ],
@@ -77,13 +69,7 @@ class WithdrawaltBill extends GetView<WithdrawalController> {
             },
           ),
           const Spacer(),
-          CupertinoButton.filled(
-            borderRadius: BorderRadius.circular(4),
-            sizeStyle: CupertinoButtonSize.medium,
-            color: AppColors.danger,
-            child: const Text("下一步"),
-            onPressed: () {},
-          ),
+          CupertinoButton.filled(borderRadius: BorderRadius.circular(4), sizeStyle: CupertinoButtonSize.medium, color: AppColors.danger, child: const Text("下一步"), onPressed: () {}),
         ],
       ),
     );

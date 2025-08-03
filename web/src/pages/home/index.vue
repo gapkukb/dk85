@@ -4,26 +4,36 @@ import type { SwipeInstance } from 'vant'
 import HomeHeader from './HomeHeader.vue'
 import { navs } from './navs'
 import Announcement from '@/pages/announcement/index.vue'
+import { useQuery } from '@tanstack/vue-query'
+import db from '@/utils/db'
+import { useApp } from '@/stores/app.store'
 
+const app = useApp();
 const swiper = ref<SwipeInstance>()
 const active = ref(0)
+const { isLoading, data: games } = useQuery({
+    queryKey: ['allGame'],
+    queryFn: () => db.all.queryGames(app.appInfo.version)
+})
+
+
 
 function onchange(index: number) {
     active.value = index
 }
 
-function a(index: number) {
+function change(index: number) {
     onchange(index)
     swiper.value!.swipeTo(index)
 }
 </script>
 
 <template>
-    <HomeHeader :active="active" @change="a" />
+    <HomeHeader :active="active" @change="change" />
     <van-swipe key="1" ref="swiper" id="home-page-swipe" lazy-render :loop="false" @change="onchange"
         :show-indicators="false">
         <van-swipe-item v-for="item in navs">
-            <component :is="item.component" />
+            <component :is="item.component" :loading="isLoading" :games="games" />
         </van-swipe-item>
     </van-swipe>
     <!-- 公告弹窗 -->

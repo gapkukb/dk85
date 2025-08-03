@@ -103,7 +103,7 @@ export default defineConfig(function configure() {
                 clientFiles: ['./index.html', './src/{pages,components,composables,api}/*'],
             },
             proxy: {
-                '/api': {
+                '/app': {
                     target: 'http://47.243.251.96:9001',
                     rewrite(path) {
                         return path.replace('/api', '')

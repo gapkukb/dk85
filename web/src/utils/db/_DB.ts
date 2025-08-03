@@ -1,17 +1,19 @@
-import type { GAME_PLATFORM } from '@/constants/game.config'
+import { queryAllGame } from '@/api/game.api'
+import { GAME_TYPE } from '@/constants/game.const'
 
 const dbName = 'dk85'
 const dbVersion = 1
 const tableName = 'game'
-const log = (msg: string) => console.log('db', msg)
+const log = (...msg: string[]) => console.log('db', ...msg)
 
-let table: IDBObjectStore
+let db: IDBDatabase
+let table: IDBDatabase
 let promise: Promise<any> | null = null
 let _failed = false
 
-function connect(): Promise<IDBObjectStore> {
+function connect(): Promise<IDBDatabase> {
     if (promise) return promise
-    if (table) return Promise.resolve(table)
+    if (db) return Promise.resolve(db)
     if (_failed) Promise.reject('open db failed!')
 
     promise = new Promise((resolve, reject) => {
@@ -23,40 +25,39 @@ function connect(): Promise<IDBObjectStore> {
         }
 
         request.onsuccess = function (event) {
-            const db = request.result
-            table = db.transaction([tableName], 'readwrite').objectStore(tableName)
+            db = request.result
+            // const table = db.transaction([tableName], 'readwrite').objectStore(tableName)
 
             log('数据库打开成功')
-            resolve(table)
+            resolve(db)
             promise = null
         }
         request.onupgradeneeded = function (event) {
             const db = request.result
-            if (db.objectStoreNames.contains(tableName)) {
-                table = db.transaction([tableName], 'readwrite').objectStore(tableName)
-            } else {
-                table = db.createObjectStore(tableName, { keyPath: 'id' })
+            if (!db.objectStoreNames.contains(tableName)) {
+                const table = db.createObjectStore(tableName, { keyPath: 'id' })
                 table.createIndex('version', 'version', { unique: false })
                 table.createIndex('json', 'json', { unique: true })
             }
 
-            log('数据库版本升级成功')
+            log('数据库版本变化')
         }
     })
     return promise
 }
 
 export default class DB {
-    constructor(public platform: GAME_PLATFORM) {}
+    constructor(public gameType: string | number) {}
 
-    async queryGames(version: string) {
-        return connect()
-            .then(() => this.#loadViaLocal(version))
-            .catch(() => this.#loadViaRemote())
+    async queryGames(version: string = '-1') {
+        return connect().then(
+            () => this.#loadViaLocal(version),
+            () => this.#loadViaRemote()
+        )
     }
 
     #loadViaLocal(version: string) {
-        const request = table.get(this.platform)
+        const request = this.#openTable().get(this.gameType.toString())
         const promiser = Promise.withResolvers<any>()
 
         request.onsuccess = (e) => {
@@ -69,12 +70,12 @@ export default class DB {
                     this.#loadAndSet(version, promiser)
                 }
             } else {
-                log('未获得数据记录')
+                log('未获得数据记录,从远端获取')
                 this.#loadAndSet(version, promiser)
             }
         }
         request.onerror = (e) => {
-            log('事务失败')
+            log('事务失败,从远端获取')
             this.#loadAndSet(version, promiser)
         }
         return promiser.promise
@@ -82,15 +83,19 @@ export default class DB {
 
     async #loadViaRemote() {
         log('从远端获取')
-        return { a: 1, b: 2 }
+        return queryAllGame({ game_id: this.gameType })
     }
 
     #loadAndSet(version: string, promiser: PromiseWithResolvers<any>) {
         this.#loadViaRemote()
             .then((data) => {
-                table.put({ id: this.platform, version, json: data })
+                this.#openTable().put({ id: this.gameType, version, json: data })
                 promiser.resolve(data)
             })
             .catch(() => promiser.reject())
+    }
+
+    #openTable() {
+        return db.transaction([tableName], 'readwrite').objectStore(tableName)
     }
 }

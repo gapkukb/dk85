@@ -8,9 +8,10 @@ import { showSuccessToast, showToast } from 'vant'
 const user = useUser()
 const account = ref(ls.get(ls.keys.currentUser, ''))
 const rememberMe = ref(false)
+const key = ref(1)
 
 async function doLogin(form: any) {
-    await login(form)
+    await login(form).catch(() => key.value++)
     showSuccessToast({
         message: "登录成功",
         forbidClick: true,
@@ -30,7 +31,7 @@ async function doLogin(form: any) {
 
         <PasswordInput />
 
-        <GraphicInput />
+        <GraphicInput :key="key"/>
 
         <div class="flex items-center justify-between py-16">
             <van-checkbox v-model="rememberMe" icon-size="16" checked-color="#ff5800" class="text-12">

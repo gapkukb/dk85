@@ -1,6 +1,4 @@
 import type { MockConfig, MockMethod } from 'vite-plugin-mock'
-import casual from 'casual'
-import { User } from './user'
 
 let token = ''
 const f = () => {

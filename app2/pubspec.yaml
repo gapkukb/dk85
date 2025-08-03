@@ -47,7 +47,7 @@ dependencies:
   get_storage: ^2.1.1
   material_symbols_icons: ^4.2815.1
   audioplayers: ^6.5.0
-
+  flutter_animate: ^4.5.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -74,7 +74,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/empty-state/
-    - translations/
+    # - translations/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

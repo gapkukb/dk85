@@ -1,6 +1,5 @@
 import { ServerResponse } from 'http'
 import type { MockConfig, MockMethod } from 'vite-plugin-mock'
-import { User } from './user'
 import dayjs from 'dayjs'
 import casual from 'casual'
 
@@ -43,7 +42,6 @@ export default function (config: MockConfig): MockMethod[] {
             timeout: 1000,
             response: {
                 code: 200,
-                data: new User(),
                 msg: '',
             },
         },

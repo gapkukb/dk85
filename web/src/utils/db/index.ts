@@ -1,10 +1,11 @@
-import { GAME_PLATFORM } from '@/constants/game.config'
+import { GAME_TYPE } from '@/constants/game.const'
 import DB from './_DB'
 
 export default {
-    slots: new DB(GAME_PLATFORM.SLOTS),
-    fishing: new DB(GAME_PLATFORM.FISHING),
-    poker: new DB(GAME_PLATFORM.POKER),
-    casino: new DB(GAME_PLATFORM.CASINO),
-    lottery: new DB(GAME_PLATFORM.LOTTERY),
+    slots: new DB(GAME_TYPE.SLOTS),
+    fishing: new DB(GAME_TYPE.FISHING),
+    poker: new DB(GAME_TYPE.POKER),
+    all: new DB('17'),
+    // casino: new DB(GAME_TYPE.CASINO),
+    // lottery: new DB(GAME_TYPE.LOTTERY),
 }

@@ -2,7 +2,7 @@ import 'app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:scaled_app/scaled_app.dart';
-import 'helper/package_info.dart';
+import 'shared/package_info/index.dart';
 import 'i18n/index.dart';
 import 'services/index.dart';
 import 'storage/index.dart';
@@ -17,11 +17,12 @@ void main() async {
 
   await Future.wait([
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]),
-    initializeStorages(),
-    initializePackageInfo(),
+    setupPackageInfo(),
+    storage.setup(),
   ]);
-  await Future.wait([i18n.initializeTranslation()]);
-  initializeServices();
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(statusBarColor: Colors.white, statusBarIconBrightness: Brightness.light));
+  i18n.setup();
+  setupServices();
 
   runApp(const Application());
 }

@@ -1,5 +1,6 @@
 import '../fishing/index.dart';
 import '../foru/view.dart';
+import 'widgets/home_account.dart';
 import 'widgets/home_tab_bar.dart';
 import '../poker/index.dart';
 import '../slots/index.dart';
@@ -21,19 +22,9 @@ class HomePage extends GetView<HomeController> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           centerTitle: false,
-          titleSpacing: 8,
-          title: SizedBox(
-            height: 32,
-            child: FilledButton.tonal(
-              style: FilledButton.styleFrom(backgroundColor: const Color(0xffff5800)),
-              onPressed: () {},
-              child: Text(
-                "language".tr,
-                style: const TextStyle(fontSize: 12, color: Colors.white, fontWeight: FontWeight.w600),
-              ),
-            ),
-          ),
-
+          leadingWidth: 150,
+          titleSpacing: 0,
+          title: const SizedBox(height: 32, child: HomeAccount()),
           actionsPadding: const EdgeInsets.symmetric(horizontal: 8),
           actions: [
             Row(

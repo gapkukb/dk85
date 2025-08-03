@@ -14,7 +14,7 @@ class _HomeTabBar {
 class HomeTabBar extends StatelessWidget implements PreferredSizeWidget {
   static const tabs = <_HomeTabBar>[
     _HomeTabBar(IconFont.hotfill, '热门', Color(0xfffe0002)),
-    _HomeTabBar(IconFont.slots1, '老虎机', Color(0xff00cfa7)),
+    _HomeTabBar(IconFont.slots, '老虎机', Color(0xff00cfa7)),
     _HomeTabBar(IconFont.buyu, '捕鱼', Color(0xfffe8e02)),
     _HomeTabBar(IconFont.qipai, '棋牌', Color(0xff9300ff)),
     _HomeTabBar(IconFont.chouma, '真人', Color(0xfffb01ff)),
@@ -26,10 +26,7 @@ class HomeTabBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return TabBar(
       labelStyle: const TextStyle(fontSize: 12),
-      indicator: UnderlineArrowTabIndicator(
-        color: const Color(0xffff5800),
-        radius: 10,
-      ),
+      indicator: UnderlineArrowTabIndicator(color: const Color(0xffff5800), radius: 10),
       dividerHeight: 0,
       tabs: tabs.map((tab) {
         return Column(

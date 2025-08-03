@@ -18,10 +18,10 @@ const delegate = useDelegate('data-day', (value, el) => {
 export default function useDelegate<T extends string | string[]>({ attrs, hanlder }: { attrs: T; hanlder: R<T> }) {
     attrs = (Array.isArray(attrs) ? attrs : [attrs]) as any
     return function handle(e: MouseEvent) {
-        console.log(e.currentTarget);
+        const result = find(e.currentTarget as HTMLElement, e.target, attrs as any)
+        console.log(result);
         
-        // const result = find(e.currentTarget as HTMLElement, e.target, attrs as any)
-        // result && hanlder(result[0], result[1] as any, result[2], e)
+        result && hanlder(result[0], result[1] as any, result[2], e)
     }
 }
 

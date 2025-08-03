@@ -19,4 +19,8 @@ abstract class Routes {
   static const RECEIPT = '/receipt';
   static const MORE = '/more';
   static const FAVORITES = '/favorites';
+  static const INBOX = '/inbox';
+  static const SETTINGS = '/settings';
+  static const UPDATE_PASSWROD = '/update-password';
+  static const COMPELETE_PROFILE = '/compelete-profile';
 }

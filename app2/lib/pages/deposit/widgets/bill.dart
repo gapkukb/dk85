@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../theme/index.dart';
-import '../../../widgets/base_input.dart';
+import '../../../ui/fields/base_field.dart';
 import '../../../widgets/network_picture.dart';
 import '../../../widgets/service_calling.dart';
 import '../controller.dart';
@@ -49,13 +49,7 @@ class DepositBill extends GetView<DepositController> {
             },
           ),
           const Spacer(),
-          CupertinoButton.filled(
-            borderRadius: BorderRadius.circular(4),
-            sizeStyle: CupertinoButtonSize.medium,
-            color: AppColors.danger,
-            child: const Text("下一步"),
-            onPressed: () {},
-          ),
+          CupertinoButton.filled(borderRadius: BorderRadius.circular(4), sizeStyle: CupertinoButtonSize.medium, color: AppColors.danger, child: const Text("下一步"), onPressed: () {}),
         ],
       ),
     );
@@ -65,12 +59,7 @@ class DepositBill extends GetView<DepositController> {
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        mainAxisExtent: 44,
-        crossAxisSpacing: 8,
-        mainAxisSpacing: 8,
-      ),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, mainAxisExtent: 44, crossAxisSpacing: 8, mainAxisSpacing: 8),
       itemCount: controller.presets.length,
       itemBuilder: (BuildContext context, int index) {
         final n = controller.presets[index].toString();
@@ -90,31 +79,17 @@ class DepositBill extends GetView<DepositController> {
   Container buildMethod() {
     return Container(
       padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: AppColors.background,
-        borderRadius: BorderRadius.circular(4),
-      ),
+      decoration: BoxDecoration(color: AppColors.background, borderRadius: BorderRadius.circular(4)),
       child: Row(
         spacing: 8,
         children: [
-          NetworkPicture(
-            imageUrl:
-                'https://imgcdn.knryywqf.com/upload/images/202501/34989806-89dd-4b1f-9609-ee0e7541614e.jpg',
-            width: 32,
-            height: 32,
-          ),
+          NetworkPicture(imageUrl: 'https://imgcdn.knryywqf.com/upload/images/202501/34989806-89dd-4b1f-9609-ee0e7541614e.jpg', width: 32, height: 32),
           const Text("KBZpay", style: AppText.normal),
           DecoratedBox(
-            decoration: BoxDecoration(
-              color: AppColors.warn,
-              borderRadius: BorderRadius.circular(4),
-            ),
+            decoration: BoxDecoration(color: AppColors.warn, borderRadius: BorderRadius.circular(4)),
             child: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-              child: Text(
-                "အများဆုံးလက်ဆောင်2500",
-                style: TextStyle(height: 1, color: Colors.white, fontSize: 9),
-              ),
+              child: Text("အများဆုံးလက်ဆောင်2500", style: TextStyle(height: 1, color: Colors.white, fontSize: 9)),
             ),
           ),
         ],
@@ -130,15 +105,9 @@ class _Button extends OutlinedButton {
     : super(
         style: OutlinedButton.styleFrom(
           backgroundColor: selected ? AppColors.danger : null,
-          side: BorderSide(
-            color: selected ? AppColors.danger : AppColors.border,
-            width: 1,
-          ),
+          side: BorderSide(color: selected ? AppColors.danger : AppColors.border, width: 1),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         ),
-        child: Text(
-          text,
-          style: AppText.title.copyWith(color: selected ? Colors.white : null),
-        ),
+        child: Text(text, style: AppText.title.copyWith(color: selected ? Colors.white : null)),
       );
 }

@@ -9,12 +9,18 @@ class AkTile extends StatelessWidget {
   static const arrowIcon = Icon(Symbols.arrow_forward_ios, size: 16, color: AppColors.description);
   static const padding = EdgeInsets.only(left: 16, top: 0, bottom: 0, right: 8);
 
-  final TextStyle? valueStyle;
+  final String? title;
+  final Widget? titleWidget;
   final TextStyle? titleStyle;
-  final String? titleText;
-  final Widget? title;
-  final String? valueText;
-  final Widget? value;
+  final int? titleMaxLines;
+  final String? subtitle;
+  final Widget? subtitleWidget;
+  final TextStyle? subtitleStyle;
+  final int? subtitleMaxLines;
+  final String? value;
+  final TextStyle? valueStyle;
+  final Widget? valueWidget;
+  final IconData? icon;
   final Widget? leading;
   final bool? isLink;
   final VoidCallback? onTap;
@@ -24,10 +30,10 @@ class AkTile extends StatelessWidget {
 
   const AkTile({
     super.key,
-    this.titleText,
     this.title,
-    this.valueText,
+    this.titleWidget,
     this.value,
+    this.valueWidget,
     this.leading,
     this.isLink,
     this.onTap,
@@ -36,6 +42,12 @@ class AkTile extends StatelessWidget {
     this.arrowMargin = 4.0,
     this.titleStyle,
     this.valueStyle,
+    this.icon,
+    this.subtitle,
+    this.subtitleMaxLines,
+    this.subtitleStyle,
+    this.subtitleWidget,
+    this.titleMaxLines,
   });
 
   @override
@@ -43,11 +55,18 @@ class AkTile extends StatelessWidget {
     return ListTile(
       leading: leading,
       leadingAndTrailingTextStyle: valueStyle,
-      title: title ?? (titleText == null ? null : Text(titleText!, style: titleStyle)),
+      title: buildText(titleWidget, title, titleMaxLines),
+      subtitle: buildText(subtitleWidget, subtitle, subtitleMaxLines),
       trailing: buildTrailing(),
       onTap: computeHandle(context),
       contentPadding: padding,
     );
+  }
+
+  buildText(Widget? widget, String? text, int? maxLines) {
+    if (widget != null) return widget;
+    if (text == null) return;
+    return Text(title!, style: titleStyle, maxLines: titleMaxLines, overflow: TextOverflow.ellipsis);
   }
 
   buildArrow() {
@@ -55,13 +74,12 @@ class AkTile extends StatelessWidget {
   }
 
   buildAddition() {
-    if (value == null && valueText == null) return;
-
-    return value ??
-        Padding(
-          padding: const EdgeInsets.only(right: 4),
-          child: Text(valueText!, style: valueStyle),
-        );
+    if (valueWidget != null) return valueWidget;
+    if (value == null) return;
+    return Padding(
+      padding: const EdgeInsets.only(right: 4),
+      child: Text(value!, style: valueStyle),
+    );
   }
 
   buildTrailing() {

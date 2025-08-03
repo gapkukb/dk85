@@ -1,66 +1,52 @@
 <script setup lang="ts">
+import { queryGameUrl } from '@/api/game.api';
 import useDelegate from '@/composables/useDelegate'
-import useLoadMore from '@/composables/useLoadMore'
+import useLoadMore, { usePagination } from '@/composables/useLoadMore'
 import { showDialog } from 'vant'
 
-defineProps<{ listClass?: any; titleClass?: any; title?: string; games?: any[]; gameClass?: any; cols?: number | string; paginable?: boolean }>()
+const props = defineProps<{ listClass?: any; titleClass?: any; title?: string; games?: model.game.Game[]; gameClass?: any; cols?: number | string; paginable?: boolean }>()
 const todo = useDelegate({
-    attrs: ['data-game-index', 'data-fav-index'] as const,
+    // attrs: ['data-game-index', 'data-fav-index'] as const,
+    attrs: ['data-game-index'] as const,
     async hanlder(value, attr) {
-        if (attr === 'data-fav-index') {
-            alert('收藏' + value)
-        } else {
-            await showDialog({
-                message: '即将进入游戏!',
-                showCancelButton: true,
-            })
-            alert('进入游戏' + value)
-        }
+        await showDialog({
+            title: '即将进入游戏!',
+            showCancelButton: true,
+        })
+        const game = props.games![value as any];
+        const { url } = await queryGameUrl({
+            game_id: 17,
+            key: game.code,
+            game_platform: game.platform,
+            mobile: 1,
+        })
+        const gameUrl = window.encodeURIComponent(window.encodeURIComponent(url))
+        window.open('/gaming.html?gameUrl='+gameUrl, 'gaming')
     },
 })
-const { done, loading, vIntersect, loadMore } = useLoadMore(async () => {
-    await Promise.delay(3000).then(() => {
-        done.value = true
-    })
-})
+
+const { add, hasMore, showList, vIntersect } = usePagination(() => props.games || [])
+
+
 </script>
 
 <template>
-    <div
-        class="game-list"
-        :style="{ '--cols': cols ?? 3 }"
-    >
-        <h4
-            v-if="title"
-            class="game-list-title"
-            :class="titleClass"
-        >
+    <div class="game-list" :style="{ '--cols': cols ?? 3 }">
+        <h4 v-if="title" class="game-list-title" :class="titleClass">
             {{ title }}
         </h4>
-        <div
-            class="game-list-body grid"
-            :class="listClass"
-            @click="todo"
-        >
-            <Game
-                v-for="i in 26"
-                :class="gameClass"
-                :is-fav="true"
-            />
+        <div class="game-list-body grid" :class="listClass" @click="todo">
+            <Game v-for="(game, index) in showList" :key="game.code" :index="index" :class="gameClass" :is-fav="true"
+                :poster="game.img" :name="game.name" :platform-name="game.platform" />
         </div>
 
-        <template v-if="paginable">
-            <van-divider
-                v-if="loading || done"
-                style="margin-bottom: 0; font-size: 12px"
-            >
+        <!-- <template v-if="paginable">
+            <van-divider v-if="loading || done" style="margin-bottom: 0; font-size: 12px">
                 {{ loading ? $t('app.loadingMore') : $t('app.noMore') }}
             </van-divider>
-            <div
-                v-intersect="loadMore"
-                class="h-1"
-            ></div>
-        </template>
+            <div v-intersect="loadMore" class="h-1"></div>
+        </template> -->
+        <div v-if="hasMore" v-intersect="add" class="h-1"></div>
     </div>
 </template>
 

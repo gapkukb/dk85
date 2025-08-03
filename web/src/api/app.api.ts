@@ -10,5 +10,4 @@ export const queryCaptcha = get('/captcha', {
     normalizer: { enable: false },
 })
 
-export const testProtected = get('/protected')
-export const testRefresh = post('/refresh')
+export const queryAppInfo =  get<model.app.AppInfo>('/basic-setting')

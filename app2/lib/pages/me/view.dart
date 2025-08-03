@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,23 +12,21 @@ class MePage extends GetView<MeController> {
   Widget build(BuildContext context) {
     return GetBuilder<MeController>(
       builder: (_) {
-        return SafeArea(
-          child: Scaffold(
-            body: ListView(
-              children: [
-                AkTileGroup(
-                  children: const [
-                    AkTile(isLink: true, titleText: "账户设置", to: Routes.DASHBOARD + Routes.PROMOS),
-                    AkTile(isLink: true, titleText: "会员权益", to: Routes.CASINO),
-                    AkTile(isLink: true, titleText: "我收藏的游戏", to: Routes.FAVORITES),
-                    AkTile(isLink: true, titleText: "邀请好友", to: Routes.CASINO),
-                    AkTile(isLink: true, titleText: "客户服务", to: Routes.CASINO),
-                    AkTile(isLink: true, titleText: "消息中心", to: Routes.CASINO),
-                    AkTile(isLink: true, titleText: "更多设置", to: Routes.MORE),
-                  ],
-                ),
-              ],
-            ),
+        return Scaffold(
+          body: ListView(
+            children: [
+              AkTileGroup(
+                children: const [
+                  AkTile(isLink: true, title: "账户设置", to: Routes.SETTINGS),
+                  AkTile(isLink: true, title: "会员权益", to: Routes.CASINO),
+                  AkTile(isLink: true, title: "我收藏的游戏", to: Routes.FAVORITES),
+                  AkTile(isLink: true, title: "邀请好友", to: Routes.CASINO),
+                  AkTile(isLink: true, title: "客户服务", to: Routes.CUSTOMER_SERVICE),
+                  AkTile(isLink: true, title: "消息中心", to: Routes.INBOX),
+                  AkTile(isLink: true, title: "更多设置", to: Routes.MORE),
+                ],
+              ),
+            ],
           ),
         );
       },

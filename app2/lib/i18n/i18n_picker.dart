@@ -1,14 +1,14 @@
 part of 'index.dart';
 
 void showLocalePicker() async {
-  final code = await Get.bottomSheet(_Picker(Storage.locale.value));
+  final code = await Get.bottomSheet(_Picker(storage.locale.value));
   if (code == null) return;
   i18n.updateLocale(code);
 }
 
 class _Picker extends StatefulWidget {
   final String initValue;
-  const _Picker(this.initValue, {super.key});
+  const _Picker(this.initValue);
 
   @override
   State<_Picker> createState() => __PickerState();

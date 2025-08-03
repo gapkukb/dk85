@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scaled_app/scaled_app.dart';
 import '/theme/index.dart';
-import '/helper/reload.dart';
+import 'shared/reload/reload.dart';
 import '/i18n/index.dart';
 import '/routes/app_pages.dart';
 import '/shared/logger/logger_utils.dart';
