@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import '/pages/spalash/index.dart';
 import '/pages/complete_profile/index.dart';
 import '/pages/deposit-receipt/view.dart';
 import '/pages/favorites/view.dart';
@@ -13,15 +14,18 @@ import '/pages/funds/index.dart';
 import '/pages/home/index.dart';
 import '/pages/me/index.dart';
 import '/pages/promos/index.dart';
+import '/pages/announcement/index.dart';
 import '/pages/withdrawal/index.dart';
 
 part 'app_routes.dart';
 
 // ignore: avoid_classes_with_only_static_members
 class AppPages {
-  static const INITIAL = Routes.DASHBOARD;
+  static const INITIAL = Routes.SPALASH;
 
   static final routes = [
+    GetPage(name: Routes.SPALASH, page: () => const SpalashView()),
+    GetPage(name: Routes.ANNOUNCEMENT, page: () => const AnnouncementView()),
     GetPage(
       name: Routes.DASHBOARD,
       page: () => const DashboardPage(),

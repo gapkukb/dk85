@@ -5,7 +5,9 @@ import 'package:get/get.dart';
 
 class ServiceCalling extends StatelessWidget {
   final Widget? child;
-  const ServiceCalling({super.key, this.child});
+  final double? size;
+  final Color? color;
+  const ServiceCalling({super.key, this.child, this.color, this.size});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,7 @@ class ServiceCalling extends StatelessWidget {
       onTap: () {
         Get.toNamed(Routes.CUSTOMER_SERVICE);
       },
-      child: child ?? const Icon(IconFont.kefu),
+      child: child ?? Icon(IconFont.kefu, size: size, color: color),
     );
   }
 }

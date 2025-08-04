@@ -1,3 +1,4 @@
+import '../../widgets/service_calling.dart';
 import '../fishing/index.dart';
 import '../foru/view.dart';
 import 'widgets/home_account.dart';
@@ -31,10 +32,7 @@ class HomePage extends GetView<HomeController> {
               mainAxisSize: MainAxisSize.min,
               spacing: 4,
               children: [
-                SizedBox.square(
-                  dimension: 32,
-                  child: IconButton(padding: const EdgeInsets.all(0.0), icon: const Icon(Icons.support_agent), onPressed: () {}),
-                ),
+                const SizedBox.square(dimension: 32, child: ServiceCalling(size: 22)),
 
                 SizedBox.square(
                   dimension: 32,

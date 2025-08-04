@@ -1,6 +1,7 @@
 part of 'app_pages.dart';
 
 abstract class Routes {
+  static const SPALASH = '/spalash';
   static const DASHBOARD = '/dashboard';
   static const HOME = '/home';
   static const COUNTRY = '/country';
@@ -23,4 +24,5 @@ abstract class Routes {
   static const SETTINGS = '/settings';
   static const UPDATE_PASSWROD = '/update-password';
   static const COMPELETE_PROFILE = '/compelete-profile';
+  static const ANNOUNCEMENT = '/announcement';
 }
