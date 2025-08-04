@@ -1,34 +1,33 @@
-part of 'index.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 
 class DepositController extends GetxController {
   DepositController();
 
-  // tap
-  void handleTap(int index) {
-    Get.snackbar("标题", "消息");
+  final amount = "".obs;
+  final presets = [2000, 3000, 5000, 10000, 20000];
+
+  final inputController = TextEditingController();
+
+  void setAmount(String value) {
+    amount.value = value;
+    inputController.text = value;
   }
 
-  /// 在 widget 内存中分配后立即调用。
+  void _onInput() {
+    amount.value = inputController.value.text;
+  }
+
   @override
   void onInit() {
     super.onInit();
+    inputController.addListener(_onInput);
   }
 
-  /// 在 onInit() 之后调用 1 帧。这是进入的理想场所
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  /// 在 [onDelete] 方法之前调用。
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  /// dispose 释放内存
   @override
   void dispose() {
     super.dispose();
+    inputController.removeListener(_onInput);
+    inputController.dispose();
   }
 }

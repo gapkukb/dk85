@@ -3,29 +3,18 @@ import { register } from '@/api/user.api'
 import { Modals, ModalsName } from '@/modals'
 import { useUser } from '@/stores/user.store'
 import { showLoadingToast, showSuccessToast, showToast } from 'vant'
+import { useAccountAction } from './useAccountAction'
 
 
-const user = useUser()
 const password = ref('')
-const time = ref(Date.now())
-const key = ref(1000)
-const router = useRouter()
 
-function signup(form: any) {
-    form.time = document.getElementById('timestamp')?.dataset.timestamp;
-    register(form).then(async (rs) => {
-        user.updateToken(rs.token)
-        await user.updateUser();
-        showSuccessToast('注册成功')
-        router.replace('/')
-        Modals.close(ModalsName.login);
-    }).catch(() => key.value++)
-}
+const { handler, key, timestamp } = useAccountAction(register, '注册成功')
+
 
 </script>
 
 <template>
-    <van-form class="px-24 grid gap-16" @submit="signup">
+    <van-form class="px-24 grid gap-16" @submit="handler">
         <AccountInput />
 
         <PasswordInput v-model="password" />
@@ -34,7 +23,7 @@ function signup(form: any) {
 
         <PhoneNumberInput />
 
-        <GraphicInput :key="key" v-model:time="time" />
+        <GraphicInput :key="key" v-model:timestamp="timestamp" />
         <div class="h-16"></div>
         <van-button type="danger" class="uppercase" native-type="submit">
             {{ $t("me.signup") }}

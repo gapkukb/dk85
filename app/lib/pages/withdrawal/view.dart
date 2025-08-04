@@ -1,4 +1,8 @@
-part of 'index.dart';
+import '/pages/funds/widgets/wallet_channels.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'index.dart';
+import 'widgets/bill.dart';
 
 class WithdrawalView extends GetView<WithdrawalController> {
   const WithdrawalView({super.key});
@@ -6,10 +10,14 @@ class WithdrawalView extends GetView<WithdrawalController> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<WithdrawalController>(
-      init: WithdrawalController(),
-      id: "withdrawal",
+      init: Get.put(WithdrawalController()),
       builder: (_) {
-        return WalletChannels(false);
+        return WalletChannels(
+          true,
+          onTap: (index) {
+            Get.bottomSheet(const WithdrawaltBill(), isScrollControlled: true);
+          },
+        );
       },
     );
   }

@@ -1,34 +1,47 @@
-part of 'index.dart';
+import '../../iconfont/index.dart';
+import '../announcement/index.dart';
+import '../funds/index.dart';
+import '../home/bindings.dart';
+import '../home/view.dart';
+import '../me/index.dart';
+import '../promos/bindings.dart';
+import '../promos/view.dart';
+import '../../routes/app_pages.dart';
+import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+
+class Tab {
+  final IconData icon;
+  final String label;
+  final String routeName;
+  final Widget Function()? page;
+  final Bindings binding;
+
+  const Tab({required this.icon, required this.label, required this.routeName, required this.page, required this.binding});
+}
 
 class DashboardController extends GetxController {
   DashboardController();
+  final currentIndex = 0.obs;
+  final tabs = [
+    Tab(icon: IconFont.qipaishi, label: "首页", routeName: Routes.HOME, page: () => const HomeView(), binding: HomeBinding()),
+    Tab(icon: IconFont.liwu, label: "福利", routeName: Routes.PROMOS, page: () => const PromosPage(), binding: PromosBinding()),
+    Tab(icon: IconFont.qianbao, label: "钱包", routeName: Routes.FUNDS, page: () => const FundsPage(), binding: FundsBinding()),
+    Tab(icon: IconFont.yonghu, label: "我的", routeName: Routes.ME, page: () => const MePage(), binding: MeBinding()),
+  ];
 
-  // tap
-  void handleTap(int index) {
-    Get.snackbar("标题", "消息");
+  void changePage(int index) {
+    Get.offAndToNamed(tabs[index].routeName, id: 1);
+    currentIndex.value = index;
   }
 
-  /// 在 widget 内存中分配后立即调用。
-  @override
-  void onInit() {
-    super.onInit();
-  }
+  Route? onGenerateRoute(RouteSettings settings) {
+    final tab = tabs.firstWhereOrNull((item) => item.routeName == settings.name);
 
-  /// 在 onInit() 之后调用 1 帧。这是进入的理想场所
-  @override
-  void onReady() {
-    super.onReady();
-  }
+    if (tab == null) {
+      return GetPageRoute(settings: settings, page: () => const Text(""));
+    }
 
-  /// 在 [onDelete] 方法之前调用。
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  /// dispose 释放内存
-  @override
-  void dispose() {
-    super.dispose();
+    return GetPageRoute(settings: settings, page: tab.page, binding: tab.binding, transition: Transition.cupertino);
   }
 }

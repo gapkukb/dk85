@@ -1,111 +1,58 @@
-part of 'index.dart';
+import '../../iconfont/index.dart';
+import '../../routes/app_pages.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class DashboardView extends GetView<DashboardController> {
-  const DashboardView({super.key});
+import 'index.dart';
+
+class DashboardPage extends GetView<DashboardController> {
+  const DashboardPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DashboardController>(
-      init: DashboardController(),
-      id: "dashboard",
       builder: (_) {
-        const items = [
-          ForuView(),
-          SlotsView(),
-          SlotsView(),
-          SlotsView(),
-          SlotsView(),
-        ];
-
-        return DefaultTabController(
-          length: items.length,
-          child: Scaffold(
-            backgroundColor: Color(0xfff5f5f5),
-            appBar: AppBar(
-              titleSpacing: 8,
-              title: SizedBox(
-                height: 32,
-                child: FilledButton.tonal(
-                  style: FilledButton.styleFrom(backgroundColor: AppColor.main),
-                  onPressed: () {},
-                  child: Text(
-                    "登录 | 注册",
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
+        return Scaffold(
+          extendBody:
+              true, // This is crucial to extend the body behind the nav bar
+          body: Navigator(
+            key: Get.nestedKey(1),
+            initialRoute: Routes.HOME,
+            onGenerateRoute: controller.onGenerateRoute,
+          ),
+          bottomNavigationBar: Theme(
+            data: ThemeData(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+            ),
+            child: Container(
+              height: 48,
+              decoration: const BoxDecoration(
+                border: Border(
+                  top: BorderSide(color: Colors.black12, width: 0.5),
                 ),
               ),
-
-              actionsPadding: EdgeInsets.symmetric(horizontal: 8),
-              actions: [
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  spacing: 4,
-                  children: [
-                    SizedBox.square(
-                      dimension: 32,
-                      child: IconButton(
-                        padding: EdgeInsets.all(0.0),
-                        icon: Icon(Icons.support_agent),
-                        onPressed: () {},
-                      ),
-                    ),
-
-                    SizedBox.square(
-                      dimension: 32,
-                      child: IconButton(
-                        padding: EdgeInsets.all(0.0),
-                        icon: Icon(Icons.search),
-                        onPressed: () {},
-                      ),
-                    ),
-                    SizedBox(
-                      height: 24,
-                      child: FilledButton.tonal(
-                        style: FilledButton.styleFrom(
-                          backgroundColor: AppColor.main,
-                          padding: EdgeInsets.all(0),
-                        ),
-                        onPressed: () {},
-                        child: Text(
-                          "充值",
-                          style: TextStyle(
-                            fontSize: 10,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 24,
-                      child: FilledButton.tonal(
-                        style: FilledButton.styleFrom(
-                          backgroundColor: Color(0xffff976a),
-                        ),
-                        onPressed: () {},
-                        child: Text(
-                          "提款",
-                          style: TextStyle(
-                            fontSize: 10,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+              child: Obx(
+                () => BottomNavigationBar(
+                  elevation: 0.0,
+                  backgroundColor: Colors.white.withAlpha(240),
+                  selectedItemColor: Colors.red,
+                  unselectedItemColor: Colors.black,
+                  showUnselectedLabels: true,
+                  iconSize: 16,
+                  currentIndex: controller.currentIndex.value,
+                  selectedFontSize: 10,
+                  unselectedFontSize: 10,
+                  type: BottomNavigationBarType.fixed,
+                  items: controller.tabs.map((tab) {
+                    return BottomNavigationBarItem(
+                      icon: Icon(tab.icon),
+                      label: tab.label,
+                    );
+                  }).toList(),
+                  onTap: controller.changePage,
                 ),
-              ],
-              bottom: HomeTabBar(),
-            ),
-            body: TabBarView(
-              children: items
-                  .map((item) => KeepAliveWrapper(child: item))
-                  .toList(),
+              ),
             ),
           ),
         );

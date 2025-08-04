@@ -4,24 +4,18 @@ import { useUser } from '@/stores/user.store'
 import login, { LoginType } from '@/utils/login'
 import { ls } from '@/utils/storage'
 import { showSuccessToast, showToast } from 'vant'
+import { useAccountAction } from './useAccountAction'
 
-const user = useUser()
 const account = ref(ls.get(ls.keys.currentUser, ''))
 const rememberMe = ref(false)
-const key = ref(1)
+const { handler, key, timestamp } = useAccountAction(login,'登录成功')
 
-async function doLogin(form: any) {
-    await login(form).catch(() => key.value++)
-    showSuccessToast({
-        message: "登录成功",
-        forbidClick: true,
-        onClose() {
-            Modals.close(ModalsName.login)
-        },
+function doLogin(values: any) {
+    handler(values).then(() => {
+        if (rememberMe.value) {
+            ls.set(ls.keys.currentUser, account.value)
+        }
     })
-    if (rememberMe.value) {
-        ls.set(ls.keys.currentUser, account.value)
-    }
 }
 </script>
 
@@ -31,7 +25,7 @@ async function doLogin(form: any) {
 
         <PasswordInput />
 
-        <GraphicInput :key="key"/>
+        <GraphicInput :key="key" v-model:timestamp="timestamp" />
 
         <div class="flex items-center justify-between py-16">
             <van-checkbox v-model="rememberMe" icon-size="16" checked-color="#ff5800" class="text-12">

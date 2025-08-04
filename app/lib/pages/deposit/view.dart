@@ -1,20 +1,24 @@
-part of 'index.dart';
+import '/pages/funds/widgets/wallet_channels.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'index.dart';
+import 'widgets/bill.dart';
 
 class DepositView extends GetView<DepositController> {
   const DepositView({super.key});
 
-  // 主视图
-  Widget _buildView() {
-    return const Center(child: Text("DepositPage"));
-  }
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DepositController>(
-      init: DepositController(),
-      id: "deposit",
+      init: Get.put(DepositController()),
       builder: (_) {
-        return WalletChannels(true);
+        return WalletChannels(
+          false,
+          onTap: (index) {
+            Get.bottomSheet(const DepositBill(), isScrollControlled: true);
+          },
+        );
       },
     );
   }

@@ -1,4 +1,6 @@
-part of 'index.dart';
+import 'package:get/get.dart';
+
+import 'index.dart';
 
 class PromosController extends GetxController {
   PromosController();

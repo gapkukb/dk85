@@ -1,34 +1,33 @@
-part of 'index.dart';
+import '../deposit/index.dart';
+import '/routes/app_pages.dart';
+import 'package:flutter/material.dart';
+import '/pages/deposit/view.dart';
+import '/pages/withdrawal/view.dart';
+import 'package:get/get.dart';
 
 class FundsController extends GetxController {
   FundsController();
+  final isWithdrawal = false.obs;
 
-  // tap
-  void handleTap(int index) {
-    Get.snackbar("标题", "消息");
+  changeView(bool viewType) {
+    isWithdrawal.value = viewType;
   }
 
-  /// 在 widget 内存中分配后立即调用。
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  /// 在 onInit() 之后调用 1 帧。这是进入的理想场所
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  /// 在 [onDelete] 方法之前调用。
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  /// dispose 释放内存
-  @override
-  void dispose() {
-    super.dispose();
+  Route? onGenerateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case Routes.DASHBOARD + Routes.FUNDS + Routes.WITHDRAWAL:
+        return GetPageRoute(
+          settings: settings,
+          page: () => const WithdrawalView(),
+          // binding: WithdrawalBinding(),
+          transition: Transition.leftToRightWithFade,
+        );
+    }
+    return GetPageRoute(
+      settings: settings,
+      page: () => const DepositView(),
+      // binding: DepositBinding(),
+      transition: Transition.leftToRightWithFade,
+    );
   }
 }

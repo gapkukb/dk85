@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+library;
 
-part './controller.dart';
-part './binding.dart';
-part './view.dart';
+export './controller.dart';
+export './bindings.dart';
+export './view.dart';

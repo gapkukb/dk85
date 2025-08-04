@@ -1,62 +1,69 @@
-part of 'index.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../ui/gutter/index.dart';
+import '/ui/tile/index.dart';
+import '/shared/package_info/index.dart';
+import '/i18n/index.dart';
+import '/services/index.dart';
+import '/storage/index.dart';
+import '/widgets/Button.dart';
 
 class MoreView extends StatelessWidget {
   const MoreView({super.key});
 
-  MoreViewController get controller => Get.put(MoreViewController());
-
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      // appBar: AppBar(title: Text("更多设置"), automaticallyImplyLeading: true),
-      navigationBar: const CupertinoNavigationBar(
-        middle: Text('更多设置'),
-        // automaticallyImplyMiddle: false,
-        automaticallyImplyLeading: true,
-        brightness: Brightness.dark,
-        previousPageTitle: "返回",
-      ),
-      child: ListView(
-        children: ListTile.divideTiles(
-          context: context,
-          tiles: [
-            CupertinoListTile(
-              title: Text("背景音乐"),
-              additionalInfo: buildItem(false, "未设置"),
-              trailing: CupertinoListTileChevron(),
-              onTap: () {
-                showLanguagesPicker();
-              },
-            ),
+    final appService = Get.find<AppService>();
 
-            // Cell(title: "语言", value: "中文简体", isLink: true),
-            // Cell(title: "当前版本", value: "V1.0.0"),
-            Cell(
-              title: "背景音乐",
-              valueWidget: CupertinoSwitch(value: true, onChanged: (value) {}),
-            ),
-            CupertinoListTile(
-              title: Text("背景音乐"),
-              additionalInfo: buildItem(false, "未设置"),
-              trailing: CupertinoListTileChevron(),
-            ),
-          ],
-        ).toList(),
+    return Scaffold(
+      appBar: AppBar(title: Text("language".tr), centerTitle: true),
+      body: ListView(
+        children: [
+          AkTileGroup(
+            children: [
+              AkTile(title: "语言", valueWidget: Obx(() => Text(I18n.getLocaleName(storage.locale.value))), isLink: true, onTap: showLocalePicker),
+              AkTile(title: "当前版本", value: "V${packageInfo.version}", onTap: () {}),
+              AkTile(
+                title: "背景音乐",
+                valueWidget: Transform.scale(
+                  alignment: Alignment.centerRight,
+                  scale: 0.8,
+                  child: Obx(() => CupertinoSwitch(value: appService.audioManager.enable, onChanged: appService.audioManager.toggle)),
+                ),
+              ),
+            ],
+          ),
+
+          // Gutter.large,
+          Button.large(text: "退出登录", color: Button.danger, filled: false, radius: 0, elevation: 1, onPressed: logout),
+        ],
       ),
     );
   }
 
-  buildItem(bool selected, String? text) {
-    return Container(
-      // height: 18,
-      decoration: BoxDecoration(
-        color: selected ? Colors.green : Colors.amber,
-        borderRadius: BorderRadius.circular(4),
-      ),
-      padding: EdgeInsets.symmetric(horizontal: 4, vertical: 4),
-      child: Text(
-        text ?? "未设置",
-        style: TextStyle(fontSize: 12, color: Colors.white, height: 1),
+  logout() {
+    Get.dialog(
+      CupertinoAlertDialog(
+        content: const Text("确认退出"),
+        // content: Text("退出后，您将无法进行游戏、领取优惠、参加活动等，是否继续退出？"),
+        actions: [
+          CupertinoDialogAction(
+            isDestructiveAction: true,
+            isDefaultAction: true,
+            onPressed: () {
+              Get.back();
+            },
+            child: const Text("Cancel"),
+          ),
+          CupertinoDialogAction(
+            // textStyle: TextStyle(color: Theme.of(context).primaryColor),
+            onPressed: () {
+              Get.back();
+            },
+            child: const Text("Confirm"),
+          ),
+        ],
       ),
     );
   }

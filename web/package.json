@@ -29,7 +29,7 @@
     "pinia-plugin-persistedstate": "^4.4.1",
     "redaxios": "^0.5.1",
     "vant": "^4.9.20",
-    "vue": "^3.5.17",
+    "vue": "^3.5.18",
     "vue-countup-v3": "^1.4.2",
     "vue-i18n": "^11.1.9",
     "vue-router": "^4.5.1",

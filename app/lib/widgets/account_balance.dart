@@ -1,4 +1,4 @@
-import 'package:app/widgets/monetary.dart';
+import '/widgets/monetary.dart';
 import 'package:flutter/material.dart';
 
 class AccountBalance extends StatelessWidget {
@@ -7,17 +7,17 @@ class AccountBalance extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(16),
-      padding: EdgeInsets.all(16),
+      // margin: EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        boxShadow: [BoxShadow(blurRadius: 4, color: Colors.black26)],
+        // boxShadow: [BoxShadow(blurRadius: 4, color: Colors.black26)],
         borderRadius: BorderRadius.circular(4),
-        image: DecorationImage(
+        image: const DecorationImage(
           image: AssetImage("assets/images/balancebg.webp"),
           fit: BoxFit.fill,
         ),
       ),
-      child: DefaultTextStyle(
+      child: const DefaultTextStyle(
         style: TextStyle(color: Colors.white),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

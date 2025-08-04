@@ -1,38 +1,47 @@
-part of 'index.dart';
+import 'package:flutter/material.dart';
 
-class CompleteProfileView extends GetView<CompleteProfileController> {
-  const CompleteProfileView({super.key});
+import '../../hooks/useForm.dart';
+import '../../theme/index.dart';
+import '../../ui/button/index.dart';
+import '../../ui/email_input/index.dart';
+import '../../ui/gutter/index.dart';
+import '../../ui/mobile_input/index.dart';
+
+class CompeleteProfileView extends StatefulWidget {
+  const CompeleteProfileView({super.key});
 
   @override
+  _CompeleteProfileViewState createState() => _CompeleteProfileViewState();
+}
+
+class _CompeleteProfileViewState extends State<CompeleteProfileView> {
+  final form = Useform((values) {});
+  @override
   Widget build(BuildContext context) {
-    return GetBuilder<CompleteProfileController>(
-      init: CompleteProfileController(),
-      id: "complete_profile",
-      builder: (_) {
-        return Scaffold(
-          appBar: AppBar(title: const Text("CompleteProfile")),
-          body: SafeArea(
-            child: ListView(
+    return Form(
+      key: form.key,
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text("完善资料获好礼"),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [const Text("手机号码")],
+                const Text(
+                  "完善资料",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
-                BaseInput(
-                  placeholder: "手机号码",
-                  onSaved: (value) {},
-                  validator: (value) {
-                    return null;
-                  },
-                ),
+                Gutter.large,
+                MobileInput(onSaved: form.saveAs("mobile")),
+                EmailInput(onSaved: form.saveAs("email")),
+                Gutter.xlarge,
+                Button(onPressed: () {}, text: "完成并获得58MMK好礼", color: AppColors.danger),
               ],
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

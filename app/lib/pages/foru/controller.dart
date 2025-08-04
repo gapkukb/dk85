@@ -1,8 +1,9 @@
-part of 'index.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class ForuController extends GetxController {
   ForuController();
-
   final refreshController = RefreshController(initialRefresh: false);
 
   void onRefresh() {}
@@ -11,32 +12,9 @@ class ForuController extends GetxController {
     refreshController.loadNoData();
   }
 
-  // tap
-  void handleTap(int index) {
-    Get.snackbar("标题", "消息");
-  }
-
-  /// 在 widget 内存中分配后立即调用。
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  /// 在 onInit() 之后调用 1 帧。这是进入的理想场所
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  /// 在 [onDelete] 方法之前调用。
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  /// dispose 释放内存
   @override
   void dispose() {
     super.dispose();
+    refreshController.dispose();
   }
 }

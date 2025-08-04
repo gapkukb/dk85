@@ -1,7 +1,7 @@
 part of 'index.dart';
 
-class SlotsView extends GetView<SlotsController> {
-  const SlotsView({super.key});
+class SlotsPage extends GetView<SlotsController> {
+  const SlotsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class SlotsView extends GetView<SlotsController> {
                 options: CarouselOptions(
                   height: 90.0,
                   autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 3),
+                  autoPlayInterval: const Duration(seconds: 3),
                   pauseAutoPlayOnTouch: true,
                   // enableInfiniteScroll: false,
                 ),
@@ -25,7 +25,7 @@ class SlotsView extends GetView<SlotsController> {
                     builder: (BuildContext context) {
                       return Container(
                         width: MediaQuery.of(context).size.width,
-                        margin: EdgeInsets.symmetric(horizontal: 5.0),
+                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
                         child: CachedNetworkImage(
                           imageUrl:
                               "https://c66hkp.s3.ap-east-1.amazonaws.com/57e4d3ea-9655-41b1-8c9f-31f187fd880f",
@@ -39,31 +39,36 @@ class SlotsView extends GetView<SlotsController> {
             SliverToBoxAdapter(
               child: Container(
                 height: 20,
-                padding: EdgeInsets.only(left: 8),
-                margin: EdgeInsets.only(left: 8, right: 0, top: 16, bottom: 8),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.only(left: 8),
+                margin: const EdgeInsets.only(
+                  left: 8,
+                  right: 0,
+                  top: 16,
+                  bottom: 8,
+                ),
+                decoration: const BoxDecoration(
                   border: Border(
-                    left: BorderSide(color: AppColor.main, width: 4),
+                    left: BorderSide(color: Color(0xffff5800), width: 4),
                   ),
                 ),
-                child: Text(
+                child: const Text(
                   "Most Popular",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
             ),
             SliverPadding(
-              padding: EdgeInsetsGeometry.all(8),
+              padding: const EdgeInsetsGeometry.all(16),
               sliver: SliverGrid.builder(
                 itemCount: 100,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
                   childAspectRatio: 70 / 100,
                   crossAxisSpacing: 8,
                   mainAxisSpacing: 8,
                 ),
                 itemBuilder: (context, index) {
-                  return Game();
+                  return const GameCard();
                 },
               ),
             ),
