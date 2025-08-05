@@ -29,11 +29,14 @@ const menus: { title: any, to?: string, handler: (...args: any) => any, classNam
     </van-cell>
     <div class="h-8"></div>
     <account-balance>
+        <template #header>
+            <!-- <img src="/logo2.webp" alt=""> -->
+        </template>
         <div class="flex gap-16 pt-8">
-            <button class="me-wallet-button filled" @click="$router.push('/wallet/deposit')">
+            <button class="me-funds-button filled" @click="$router.push('/funds/deposit')">
                 {{ $t('app.deposit') }}
             </button>
-            <button class="me-wallet-button plain" @click="$router.push('/wallet/withdrawal')">
+            <button class="me-funds-button plain" @click="$router.push('/funds/withdrawal')">
                 {{ $t('app.withdrawal') }}
             </button>
         </div>
@@ -65,7 +68,7 @@ const menus: { title: any, to?: string, handler: (...args: any) => any, classNam
 
 
 
-.me-wallet-button {
+.me-funds-button {
     @apply h-32 rd-full lh-1 flex-1 color-#ff5800;
 
     &.filled {

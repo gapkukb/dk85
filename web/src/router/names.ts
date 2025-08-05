@@ -43,8 +43,8 @@ const casino = home.child('casino')
 const bonus = new Page('bonus')
 
 
-const wallet = new Page('wallet')
-const deposit = wallet.child('deposit')
+const funds = new Page('funds')
+const deposit = funds.child('deposit')
 
 const pages = {
     home,

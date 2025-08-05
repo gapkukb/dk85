@@ -1,70 +1,12 @@
-import autobind from '@/helper/autobind'
 import useModal from './_helper'
 
-// class Modal {
-//     view!: Component
-//     ctrl!: WritableComputedRef<boolean>
-//     constructor({
-//         loader,
-//         priority,
-//         name,
-//         ...props
-//     }: {
-//         loader: AsyncComponentLoader<Component>
-//         name: string
-//         priority?: number
-//         parallel?: boolean
-//         initial?: boolean
-//     }) {
-//         this.ctrl = useModal(name, priority, props)
-//         const View = defineAsyncComponent(loader) as DefineComponent<Component>
-
-//         this.view = () => (
-//             <Popup
-//                 destroyOnClose={true}
-//                 show={this.ctrl.value}
-//                 onUpdate:show={(v) => (this.ctrl.value = v)}
-//             >
-//                 <View />
-//             </Popup>
-//         )
-//     }
-//     show() {
-//         this.ctrl.value = true
-//     }
-//     hide() {
-//         this.ctrl.value = false
-//     }
-//     toggle(show: boolean = !this.ctrl.value) {
-//         this.ctrl.value = show
-//     }
-// }
-
-// export default {
-//     initialDepositBonus: new Modal({
-//         loader: () => import('@/views/initial-deposit-bonus/index.vue'),
-//         name: 'initial-deposit-bonus',
-//     }),
-//     newbieGuide: new Modal({
-//         loader: () => import('@/views/newbie-guide/index.vue'),
-//         name: 'new-player-guide',
-//     }),
-//     playTrial: new Modal({
-//         loader: () => import('@/views/play-trial/index.vue'),
-//         name: 'new-player-guide',
-//     }),
-//     completeProfile: new Modal({
-//         loader: () => import('@/views/complete-profile/index.vue'),
-//         name: 'complete-profile',
-//     }),
-// } as const
-
-//@ts-ignore
-@autobind
 class ModalCtrl {
     #ctrl!: ReturnType<typeof useModal>
     constructor(name: string) {
         this.#ctrl = useModal(name)
+        this.open = this.open.bind(this)
+        this.close = this.close.bind(this)
+        this.toggle = this.toggle.bind(this)
     }
 
     get value() {

@@ -10,7 +10,7 @@ const signup = ref(false)
 </script>
 
 <template>
-    <header class="sticky top-0 flex p-12 gap-8 bg-white z-1">
+    <header class="sticky top-0 flex p-24 gap-16 bg-white z-1">
         <button
             class="page-account-button"
             @click="modals.authentication.open"
@@ -30,10 +30,10 @@ const signup = ref(false)
 
     <img
         src="/pwa-512x512.png"
-        class="size-76 block mx-auto"
+        class="size-152 block mx-auto"
     />
 
-    <div class="flex gap-24 justify-center h-40 text-16 my-24 text-#999">
+    <div class="flex gap-48 justify-center h-80 text-32 my-48 text-#999">
         <button
             class="uppercase"
             :class="{ 'text-primary font-semibold': !signup }"
@@ -62,7 +62,7 @@ const signup = ref(false)
     background: url('@/assets/images/account-bg.webp') no-repeat 0 0/100% auto;
 }
 .page-account-button {
-    @apply inline-flex gap-4 items-center h-32 text-12 bg-#ffebe7 text-primary rd-full px-8;
+    @apply inline-flex gap-16 items-center h-64 text-24 bg-#ffebe7 text-primary rd-full px-16;
 
     &.icon {
         @apply aspect-ratio-square;

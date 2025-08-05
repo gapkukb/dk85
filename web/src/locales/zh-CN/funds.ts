@@ -1,0 +1,27 @@
+export default {
+    banks: '银行卡管理',
+    records: '充值/提现记录',
+    history: '交易记录',
+    deposit: '充值',
+    withdrawal: '提款',
+    rechargeDetail: '充值详情',
+    withdrawDetail: '提款详情',
+    rechargeAmount: '充值金额',
+    withdrawAmount: '提款金额',
+    paymentMethod: '充值方式',
+    receivingAccount: '充值账号',
+    amount: '充值金额',
+    transactionId: '交易凭证号码',
+    recGuide: '如何查看交易凭证',
+    transferHere: '交易对象',
+    confirmation: '充值确认',
+    submitted: '充值提交成功',
+
+    withdraw: {
+        account: '你的收款账号',
+        amount: '取款金额',
+        minimum: '单笔最小取款金额',
+        all: '全部金额',
+        balance: '可用余额',
+    },
+}

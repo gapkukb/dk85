@@ -33,7 +33,7 @@ export class UserModel {
   mayaFlag!: boolean;
   mobileNo!: string;
   nationality!: string;
-  newWalletFlag!: number;
+  newfundsFlag!: number;
   nickName!: string;
   oddsType!: number;
   onlineBet!: boolean;

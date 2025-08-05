@@ -14,14 +14,14 @@ const { handler, key, timestamp } = useAccountAction(register, '注册成功')
 </script>
 
 <template>
-    <van-form class="px-24 grid gap-16" @submit="handler">
+    <van-form class="px-48 grid gap-32" @submit="handler">
         <AccountInput />
 
         <PasswordInput v-model="password" />
 
         <PasswordInput :password="password" is-repeat />
 
-        <PhoneNumberInput />
+        <MobileNumberInput />
 
         <GraphicInput :key="key" v-model:timestamp="timestamp" />
         <div class="h-16"></div>

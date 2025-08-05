@@ -14,13 +14,13 @@
         position: absolute;
         left: 2em;
         bottom: -2em;
-        font-size: 10px;
+        font-size: 20px;
     }
 }
 
 .van-field__left-icon {
-    min-width: 22px;
-    height: 24px;
+    min-width: 44px;
+    height: 48px;
 }
 
 .van-overflow-hidden {

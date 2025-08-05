@@ -16,6 +16,7 @@ import mock from './mock/plugin'
 import { VitePWA } from 'vite-plugin-pwa'
 import svgLoader from 'vite-svg-loader'
 import swc from 'vite-plugin-swc-transform'
+import { imagetools } from 'vite-imagetools'
 
 export default defineConfig(function configure() {
     return {
@@ -28,22 +29,15 @@ export default defineConfig(function configure() {
             },
         },
         plugins: [
-            swc({
-                swcOptions: {
-                    jsc: {
-                        target: 'esnext',
-                        transform: {
-                            legacyDecorator: false,
-                            decoratorMetadata: true,
-                            useDefineForClassFields: false,
-                            decoratorVersion:'2022-03',
-                        },
-                        keepClassNames: true,
-                        parser: {
-                            decorators: true,
-                            syntax: 'typescript',
-                        },
-                    },
+            // basicSsl(),
+            vue(),
+            jsx(),
+            imagetools({
+                defaultDirectives: (url) => {
+                    if (!url.searchParams.has('format')) {
+                        url.searchParams.set('format', 'webp')
+                    }
+                    return url.searchParams
                 },
             }),
             VitePWA(),
@@ -75,9 +69,7 @@ export default defineConfig(function configure() {
                     ],
                 },
             }),
-            // basicSsl(),
-            vue(),
-            jsx(),
+
             Components({
                 dirs: ['./src/composables', './src/components', './src/utils', './src/locales'],
                 dts: 'typings/components.d.ts',
@@ -124,9 +116,9 @@ export default defineConfig(function configure() {
             proxy: {
                 '/app': {
                     target: 'http://47.243.251.96:9001',
-                    rewrite(path) {
-                        return path.replace('/api', '')
-                    },
+                },
+                '/payment': {
+                    target: 'http://47.243.251.96:9003',
                 },
             },
         },

@@ -47,11 +47,11 @@ onBeforeUnmount(revoke)
     <van-field v-model="value" :name="name" class="van-field-solid" autocomplete="off" autocorrect="off" :border="false"
         :placeholder="$t('form.placeholder.code')" maxlength="4" :rules="rules">
         <template #left-icon>
-            <van-icon class-prefix="iconfont" name="tuxingma1" class="opacity-50 text-19" />
+            <van-icon class-prefix="iconfont" name="tuxingma1" class="opacity-50 fs-32" />
         </template>
         <template #extra>
             <!-- @vue-ignore -->
-            <img :src="data" class="w-100 h-full absolute inset-0 left-auto rd-e-full" @click="refetch" />
+            <img :src="data" class="w-200 h-full absolute inset-0 left-auto rd-e-full" @click="refetch" />
         </template>
     </van-field>
 </template>

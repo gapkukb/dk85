@@ -36,7 +36,7 @@ const { doing, todo } = useAsyncFunction(function () {
     </div>
 
     <van-form class="px-16 grid gap-16" @submit="todo">
-        <PhoneNumberInput v-if="byPhone" v-model="phone" />
+        <MobileNumberInput v-if="byPhone" v-model="phone" />
 
         <EmailInput v-else v-model="email" />
 

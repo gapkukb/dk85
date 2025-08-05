@@ -22,7 +22,7 @@ const { todo, doing } = useAsyncFunction((values: any) => {
 
         <CodeInput v-model="otp" name="otp" type="phone" />
 
-        <PhoneNumberInput v-model="phone" :placeholder="$t('form.placeholder.new_phone')" />
+        <MobileNumberInput v-model="phone" :placeholder="$t('form.placeholder.new_phone')" />
         <div class="h-32"></div>
         <van-button :disabled="doing" type="primary" block native-type="submit">
             {{ $t('app.change') }}

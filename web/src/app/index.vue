@@ -40,16 +40,16 @@ const pageName = computed(() => {
 
 <style lang="scss">
 #app {
-    --app-height-topbar: 40px;
-    --app-height-navbar: 44px;
-    --app-height-footer: 44px;
+    --app-height-topbar: 80px;
+    --app-height-navbar: 88px;
+    --app-height-footer: 88px;
     --app-height-header: calc(var(--app-height-topbar) + var(--app-height-navbar));
-    --app-padding-top: calc(var(--app-height-header) + 8px);
-    --app-padding-bottom: calc(var(--app-height-footer) + 8px);
+    --app-padding-top: calc(var(--app-height-header) + 24px);
+    --app-padding-bottom: calc(var(--app-height-footer) + 24px);
 }
 
 :where(.page-view) {
-    padding: 8px;
+    padding: 24px;
 }
 
 :where(.page-footer) {

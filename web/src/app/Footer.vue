@@ -2,7 +2,7 @@
 import MdiLightGift from '~icons/mdi-light/gift'
 // import ArcticonsPoker from '~icons/arcticons/poker'
 import ArcticonsPoker from '@/assets/icons/bottom-nav-home.svg?component'
-import IconoirWallet from '~icons/iconoir/wallet'
+import Iconoirfunds from '~icons/iconoir/wallet'
 import HugeiconsFire from '~icons/hugeicons/fire'
 import GuidanceUser1 from '~icons/guidance/user-1'
 import { useI18n } from 'vue-i18n'
@@ -10,7 +10,7 @@ const { t } = useI18n()
 const navs = [
     { name: t('app.home'), icon: ArcticonsPoker, id: 1, routePath: '/' },
     { name: t('app.promos'), icon: MdiLightGift, id: 2, routePath: '/promos' },
-    { name: t('app.wallet'), icon: IconoirWallet, id: 3, routePath: '/wallet' },
+    { name: t('app.funds'), icon: Iconoirfunds, id: 3, routePath: '/funds' },
     // { name: t('hot'), icon: HugeiconsFire, id: 4, routePath: '/hot' },
     { name: t('app.me'), icon: GuidanceUser1, id: 4, routePath: '/me' },
 ]
@@ -27,9 +27,9 @@ const navs = [
         >
             <component
                 :is="nav.icon"
-                :class="{ 'text-20': nav.id === 1 }"
+                :class="{ 'text-40': nav.id === 1 }"
             />
-            <span class="text-10">{{ nav.name }}</span>
+            <span class="text-20">{{ nav.name }}</span>
         </router-link>
     </footer>
 </template>
@@ -42,7 +42,7 @@ const navs = [
 }
 
 .footer-nav {
-    @apply inline-grid place-items-center place-content-center flex-1 gap-4;
+    @apply inline-grid place-items-center place-content-center flex-1 gap-8;
     &.router-link-active {
         color: #ff5800;
     }

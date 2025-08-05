@@ -8,7 +8,7 @@ import { Modals, ModalsName } from '@/modals'
         <button @click="$router.push('/trends')" class="size-32 text-18 lh-1 mr-4"><i-ri:search-line /></button>
         <!-- <van-button class="" size="mini" round  @click="Modals.open(ModalsName.cs)"><i-icon-park:customer /></van-button> -->
         <!-- <van-button class="" size="mini" round  icon="search" to="/search"></van-button> -->
-        <van-button class="min-w-64" size="mini" round type="danger" to="/wallet/deposit">{{ $t('app.deposit') }}</van-button>
-        <van-button class="min-w-64" size="mini" round type="warning" to="/wallet/withdrawal">{{ $t('app.withdrawal') }}</van-button>
+        <van-button class="min-w-64" size="mini" round type="danger" to="/funds/deposit">{{ $t('app.deposit') }}</van-button>
+        <van-button class="min-w-64" size="mini" round type="warning" to="/funds/withdrawal">{{ $t('app.withdrawal') }}</van-button>
     </div>
 </template>

@@ -1,5 +1,5 @@
 // const UnoCSS = require('@unocss/postcss')
-const designWidth = 375
+const designWidth = 750
 /**
  * @type {import('postcss').PluginCreator}
  * opts 参数是插件的配置项
@@ -7,20 +7,20 @@ const designWidth = 375
  */
 module.exports = (ctx) => ({
     plugins: {
-        '@unocss/postcss':{},
+        '@unocss/postcss': {},
         'postcss-easysprites': {
             imagePath: './public/images',
             spritePath: './public/sprites',
         },
         'postcss-px-to-viewport-8-plugin': {
             // unitToConvert: "px", // 需要转换的单位，默认为 "px"
-            viewportWidth: designWidth,
-            //   viewportWidth(file: string) {
-            //     if (file.includes("node_modules") && file.includes("vant")) {
-            //       return designWidth / 2;
-            //     }
-            //     return designWidth;
-            //   }, // 设计稿的视口宽度
+            // viewportWidth: designWidth,
+            viewportWidth(file: string) {
+                if (file.includes('node_modules') && file.includes('vant')) {
+                    return designWidth / 2
+                }
+                return designWidth
+            }, // 设计稿的视口宽度
             unitPrecision: 2, // 单位转换后保留的精度
             // propList: ["*"], // 能转化为 vw 的属性列表
             // viewportUnit: "vw", // 希望使用的视口单位

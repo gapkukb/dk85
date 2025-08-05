@@ -5,7 +5,7 @@ import home from './home'
 import me from './me'
 import promos from './promos'
 import form from './form'
-import wallet from './wallet'
+import funds from './funds'
 import error from './error'
 
 export default {
@@ -16,6 +16,6 @@ export default {
     me,
     promos,
     form,
-    wallet,
+    funds,
     error,
 }

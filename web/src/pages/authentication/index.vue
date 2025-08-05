@@ -27,6 +27,6 @@ const recover = ref(false)
 }
 
 .page-account-button {
-    @apply inline-flex gap-4 items-center h-32 justify-center text-12 bg-#ffebe7 text-primary rd-full px-8;
+    // @apply inline-flex gap-4 items-center h-32 justify-center text-12 bg-#ffebe7 text-primary rd-full px-8;
 }
 </style>

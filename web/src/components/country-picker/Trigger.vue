@@ -11,7 +11,7 @@ const showPicker = ref(false)
         @click="showPicker = changeable ?? false"
     >
         <slot></slot>
-        <span>+95</span>
+        <span class="fs-24">+95</span>
         <van-icon
             v-if="changeable"
             name="arrow-down"
@@ -21,4 +21,4 @@ const showPicker = ref(false)
     <Picker v-if="showPicker" />
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" ></style>

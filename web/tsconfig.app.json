@@ -12,7 +12,7 @@
         "noUncheckedSideEffectImports": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "types": ["unplugin-icons/types/vue","vite-plugin-pwa/client"],
+        "types": ["unplugin-icons/types/vue", "vite-plugin-pwa/client"],
         "baseUrl": ".",
         "paths": {
             "@/*": ["src/*"]

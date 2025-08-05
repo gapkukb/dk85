@@ -18,10 +18,10 @@ function plugin(opts = {}) {
                 if (typeof decl.value === 'string' && reg.test(decl.value)) {
                     decl.value = decl.value.replace(reg, (g, n, v) => {
                         if (decl.value.endsWith('max')) {
-                            return `max(${n * 6}px,${n}vw)`
+                            return `max(${n * 12}px,${n}vw)`
                         }
 
-                        return `min(${n * 6}px,${g})`
+                        return `min(${n * 12}px,${g})`
                     })
 
                     // if (regexp.test(decl.value)) {

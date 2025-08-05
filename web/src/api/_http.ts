@@ -44,4 +44,4 @@ export const post = http.post.bind(http)
 export const put = http.put.bind(http)
 export const del = http.delete.bind(http)
 
-// export const front = glaxy.copyWith({ baseURL: '/_front_api_' })
+export const payment = http.copyWith({ baseURL: '/payment' })

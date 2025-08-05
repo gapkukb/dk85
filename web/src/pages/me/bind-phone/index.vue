@@ -18,7 +18,7 @@ const { todo, doing } = useAsyncFunction((values: any) => {
 
     <van-form class="bg-white p-16 grid gap-16" @submit="todo">
         
-        <PhoneNumberInput v-model="phone" autofocus/>
+        <MobileNumberInput v-model="phone" autofocus/>
 
         <CodeInput v-model="otp" :target="phone" name="otp" type="phone" />
 

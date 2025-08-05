@@ -21,7 +21,7 @@ export default {
     like: '收藏',
     home: '首页',
     promos: '优惠',
-    wallet: '钱包',
+    funds: '钱包',
     me: '我的',
     required: '必填',
     continue: '继续',
