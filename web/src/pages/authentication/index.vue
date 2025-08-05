@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { callCenter } from '@/components/call-center'
 import Access from './Access.vue'
 import Recover from './Recover.vue'
 
@@ -6,10 +7,18 @@ const recover = ref(false)
 </script>
 
 <template>
-    <ModalPage position="right" :closeable="false">
-        <Recover v-if="recover" :key="recover.toString()" @back="recover = false" />
-        <Access v-else @forgot="recover = true" />
-    </ModalPage>
+    <!-- 
+    <Recover
+        v-if="recover"
+        :key="recover.toString()"
+        @back="recover = false"
+    />
+    <Access
+        v-else
+        @forgot="recover = true"
+    />
+     -->
+    <Access @forgot="callCenter" />
 </template>
 
 <style lang="scss">

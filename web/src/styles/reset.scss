@@ -73,13 +73,12 @@ p {
     overflow-wrap: break-word;
 }
 
-input::-webkit-autofill {
-    box-shadow: 0 0 0 1000px transparent inset !important;
-}
-
-input:-internal-autofill-previewed,
-input:-internal-autofill-selected {
-    transition: background-color 5000s ease-in-out 0s !important;
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-transition-delay: 99999s;
+    -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
 }
 
 html {
@@ -137,6 +136,7 @@ body {
         }
     }
 }
+
 
 // html,
 // body,

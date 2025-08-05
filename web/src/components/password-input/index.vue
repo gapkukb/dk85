@@ -37,7 +37,7 @@ const rules = computed<FieldRule[]>(() => {
         </template>
 
         <template #extra>
-            <button class="m-auto lh-1 pl-6" @click="visible = !visible">
+            <button class="m-auto lh-1 pl-6" @click="visible = !visible" type="button">
                 <van-icon :name="visible ? 'eye-o' : 'closed-eye'" size="20" color="#999" />
             </button>
         </template>

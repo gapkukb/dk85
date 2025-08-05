@@ -31,7 +31,7 @@ function doLogin(values: any) {
             <van-checkbox v-model="rememberMe" icon-size="16" checked-color="#ff5800" class="text-12">
                 {{ $t('form.placeholder.remember') }}
             </van-checkbox>
-            <button class="text-12 text-primary" @click="$emit('forgot')">
+            <button class="text-12 text-primary" @click="$emit('forgot')" type="button">
                 {{ $t('form.placeholder.forgot') }}
             </button>
         </div>

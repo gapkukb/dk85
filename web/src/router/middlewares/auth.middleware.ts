@@ -1,4 +1,4 @@
-import { Modals, ModalsName } from '@/modals'
+import { modals } from '@/modals'
 import { useUser } from '@/stores/user.store'
 import type { Router } from 'vue-router'
 
@@ -9,7 +9,7 @@ export default function (router: Router): Router {
     router.beforeResolve((to, from) => {
         const user = useUser()
         if (to.matched.some((route) => route.meta.requiredAuth) && !user.authenticated) {
-            Modals.open(ModalsName.login)
+            modals.authentication.open()
             return from
         }
     })

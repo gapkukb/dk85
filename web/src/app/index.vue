@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import Modal from '@/modals/Modal'
+import ModalsView from '@/modals/views.vue'
 import { useApp } from '@/stores/app.store'
 import { useUser } from '@/stores/user.store'
+import Splash from '../pages/splash/index.vue'
 
 import { rpx } from '@/utils/rpx'
 import AppFooter from './Footer.vue'
@@ -11,27 +12,31 @@ const user = useUser()
 const pageName = computed(() => {
     const classes = route.matched.filter((i) => i.name && typeof i.name === 'string').map((i) => `page-${(i.name as string).toLowerCase()}`)
     if (route.meta.footer) {
-        classes.push("page-footer")
+        classes.push('page-footer')
     }
     return classes
 })
 </script>
 
 <template>
-    <div :key="`${user.authenticated}`" class="page-view" :class="pageName">
-        <router-view class="page-view" :class="pageName" />
+    <div
+        :key="`${user.authenticated}`"
+        class="page-view"
+        :class="pageName"
+    >
+        <router-view
+            class="page-view"
+            :class="pageName"
+        />
     </div>
     <AppFooter v-if="$route.meta.footer" />
 
-   
     <!-- 各类弹窗页面 -->
-    <Modal />
+    <ModalsView />
     <!-- 背景音乐 -->
     <!-- <BGM /> -->
-
-
+    <Splash />
 </template>
-
 
 <style lang="scss">
 #app {

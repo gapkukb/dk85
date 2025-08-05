@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import { useLocale } from '@/locales'
-import { Modals, ModalsName } from '@/modals'
 import Login from './Login.vue'
 import Signup from './Signup.vue'
 import Recover from './Recover.vue'
+import { modals } from '@/modals'
 
 const { localeName } = useLocale()
 const signup = ref(false)
 </script>
 
 <template>
-    <header class="sticky top-0 flex p-12 gap-8">
+    <header class="sticky top-0 flex p-12 gap-8 bg-white z-1">
         <button
             class="page-account-button"
-            @click="Modals.open(ModalsName.locale)"
+            @click="modals.authentication.open"
         >
             <i-icon-park-outline:international />
             <span>{{ localeName }}</span>
@@ -23,7 +23,7 @@ const signup = ref(false)
 
         <CallCenter class="page-account-button" icon-class="scale-140"/>
 
-        <button class="page-account-button icon" @click="Modals.close(ModalsName.login)">
+        <button class="page-account-button icon" @click="modals.authentication.close">
             <van-icon name="cross" />
         </button>
     </header>

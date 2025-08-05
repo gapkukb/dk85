@@ -9,9 +9,7 @@ window.addEventListener(
     true
 )
 
-// import 'virtual:uno.css'
 import './styles'
-import './http/index'
 import { createApp } from 'vue'
 import { VueQueryPlugin } from '@tanstack/vue-query'
 import { MotionPlugin } from '@vueuse/motion'
@@ -28,5 +26,5 @@ import db from './utils/db'
 await bootstrap()
 const app = createApp(App)
 app.use(stores).use(VueQueryPlugin).use(i18n).use(router).use(diretives).use(MotionPlugin).use(Lazyload)
-await startup()
+// await startup()
 app.mount('#app')

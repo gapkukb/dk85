@@ -1,4 +1,4 @@
-import { Modals, ModalsName } from '@/modals'
+import { modals } from '@/modals'
 import { useUser } from '@/stores/user.store'
 import { showSuccessToast, showToast } from 'vant'
 
@@ -16,7 +16,7 @@ export function useAccountAction(action: any,message:string) {
                 await user.updateUser()
                 showSuccessToast(message)
                 router.replace('/')
-                Modals.close(ModalsName.login)
+                modals.authentication.open()
             })
             .catch(() => {
                 key.value++

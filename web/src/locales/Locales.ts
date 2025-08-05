@@ -10,8 +10,8 @@ class Locale {
         this.code = lang + '-' + country
     }
 
-    looseEquals(code:string){
-        return this.code === code||this.lang===code||this.country === code;
+    looseEquals(code: string) {
+        return this.code === code || this.lang === code || this.country === code
     }
 }
 
@@ -62,7 +62,7 @@ export default abstract class Locales {
         ls.set(ls.keys.locale, current.code)
         this.#setVantLocale(current)
         this.#current = current
-        
+
         return current
     }
 
@@ -79,5 +79,9 @@ export default abstract class Locales {
         return this.zh.code
         // window.navigator.languages  --->  ['en-US', 'en', 'zh-CN']
         return window.navigator.languages.find((i) => this.supported.find((j) => j.code === i || j.lang === i))
+    }
+
+    static loadTranslation(code: string){
+        return import(/* webpackChunkName: "locale-[request]" */ `./${code}/index.ts`)
     }
 }

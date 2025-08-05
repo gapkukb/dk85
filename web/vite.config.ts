@@ -15,6 +15,7 @@ import { version } from './package.json'
 import mock from './mock/plugin'
 import { VitePWA } from 'vite-plugin-pwa'
 import svgLoader from 'vite-svg-loader'
+import swc from 'vite-plugin-swc-transform'
 
 export default defineConfig(function configure() {
     return {
@@ -27,6 +28,24 @@ export default defineConfig(function configure() {
             },
         },
         plugins: [
+            swc({
+                swcOptions: {
+                    jsc: {
+                        target: 'esnext',
+                        transform: {
+                            legacyDecorator: false,
+                            decoratorMetadata: true,
+                            useDefineForClassFields: false,
+                            decoratorVersion:'2022-03',
+                        },
+                        keepClassNames: true,
+                        parser: {
+                            decorators: true,
+                            syntax: 'typescript',
+                        },
+                    },
+                },
+            }),
             VitePWA(),
             svgLoader({
                 svgoConfig: {

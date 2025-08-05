@@ -10,6 +10,8 @@
         "erasableSyntaxOnly": false,
         "noFallthroughCasesInSwitch": true,
         "noUncheckedSideEffectImports": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
         "types": ["unplugin-icons/types/vue","vite-plugin-pwa/client"],
         "baseUrl": ".",
         "paths": {

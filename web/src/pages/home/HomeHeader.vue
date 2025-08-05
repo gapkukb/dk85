@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { Modals, ModalsName } from '@/modals'
-import DashboardActions from './HomeHeaderActions.vue'
-import { navs } from './navs'
 import { useUser } from '@/stores/user.store'
+import { modals } from '@/modals'
+import DashboardActions from './HomeHeaderActions.vue'
 import HomeHeaderAccount from './HomeHeaderAccount.vue'
+import { navs } from './navs'
 
 defineProps<{ active: number }>()
 defineEmits<{ change: [number] }>()
@@ -20,7 +20,7 @@ const user = useUser()
                 type="danger"
                 size="small"
                 class="min-w-100"
-                @click="Modals.open(ModalsName.login)"
+                @click="modals.authentication.open"
             >
                 {{ $t('me.login') }} | {{ $t('me.signup') }}
             </van-button>

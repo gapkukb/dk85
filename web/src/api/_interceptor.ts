@@ -2,7 +2,7 @@ import type { Http } from '@/http'
 import { useUser } from '@/stores/user.store'
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { refreshToken } from './user.api'
-import { Modals, ModalsName } from '@/modals'
+import { modals } from '@/modals'
 import axios, { isAxiosError } from 'axios'
 
 const prop = '__refresh__'
@@ -42,7 +42,7 @@ export function interceptor() {
             // 如果连刷新token的接口都过期了直接放行，唤起登录
             if (!user.authenticated || _isRefresh(cfg)) {
                 user.clearUser()
-                Modals.open(ModalsName.login)
+                modals.authentication.open()
                 return response
             }
 
