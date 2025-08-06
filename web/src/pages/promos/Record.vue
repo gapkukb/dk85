@@ -12,21 +12,21 @@ const { isLoading, data } = useQuery({
 </script>
 
 <template>
-    <button class="absolute right--4 top-12 text-white bg-primary text-12 font-bold px-16 py-4 rd-l-full"
+    <button class="absolute right--8 top-24 text-white bg-primary text-24 font-bold px-32 py-8 rd-l-full"
         @click="show = true">
         {{ $t("promos.record") }}
     </button>
-    <van-popup v-model:show="show" teleport="body" position="bottom" closeable class="py-16">
-        <h6 class="flex justify-between items-center pr-56 text-16 font-semibold px-16">
+    <van-popup v-model:show="show" teleport="body" position="bottom" closeable class="py-32">
+        <h6 class="flex justify-between items-center pr-112 text-32 font-semibold px-32">
             <span class=""> {{ $t("promos.record") }}</span>
             <CustomerService @called="show = false" />
         </h6>
-        <p class="text-12 text-#999 px-16">{{ $t("promos.desc") }}</p>
-        <div class="h-16"></div>
+        <p class="text-24 text-#999 px-32">{{ $t("promos.desc") }}</p>
+        <div class="h-32"></div>
         <div class="h-60vh overflow-auto">
             <van-cell-group v-if="data?.length" :border="true">
                 <van-cell v-for="item in data" :title="item.title" :label="item.dateTime" center><span
-                        class="text-24 text-primary font-bold">{{ item.amount }}</span></van-cell>
+                        class="text-48 text-primary font-bold">{{ item.amount }}</span></van-cell>
 
             </van-cell-group>
             <van-empty v-else-if="!isLoading" image="error" :description="$t('promos.empty')" />

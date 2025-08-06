@@ -5,6 +5,10 @@ const designWidth = 750
  * opts 参数是插件的配置项
  * 该函数的返回值最终会被 postcss.plugin() 注册为一个插件
  */
+let extenal = false
+let isVant = false
+let isDriver = false
+
 module.exports = (ctx) => ({
     plugins: {
         '@unocss/postcss': {},
@@ -16,7 +20,11 @@ module.exports = (ctx) => ({
             // unitToConvert: "px", // 需要转换的单位，默认为 "px"
             // viewportWidth: designWidth,
             viewportWidth(file: string) {
-                if (file.includes('node_modules') && file.includes('vant')) {
+                extenal = file.includes('node_modules')
+                isVant = file.includes('vant')
+                isDriver = file.includes('driver.js')
+
+                if (extenal && (isVant || isDriver)) {
                     return designWidth / 2
                 }
                 return designWidth

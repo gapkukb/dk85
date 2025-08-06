@@ -1,33 +1,48 @@
 <script setup lang="ts">
-import Message from './Message.vue';
-import Notification from './Notification.vue';
-
+import { pagesName } from '@/router'
+import Message from './Message.vue'
+import Notification from './Notification.vue'
+defineOptions({ name: pagesName.message })
 const tab = ref(0)
-
 </script>
 
 <template>
-    <nav-bar :title="$t('page.messages')" class="messages">
+    <nav-bar
+        :title="$t('page.messages')"
+        class="messages"
+    >
         <template #right>
             <van-badge dot>
-                <button class="van-haptics-feedback text-20" :class="{ 'text-#aaa': tab === 1 }" @click="tab = 0">
+                <button
+                    class="van-haptics-feedback fs-40"
+                    :class="{ 'text-#aaa': tab === 1 }"
+                    @click="tab = 0"
+                >
                     <van-icon name="volume-o" />
                 </button>
             </van-badge>
-            <div class="w-16"></div>
-            <van-badge dot @click.stop="">
+            <div class="w-32"></div>
+            <van-badge
+                dot
+                @click.stop=""
+            >
                 <!-- Notification -->
-                <button class=" van-haptics-feedback text-20" :class="{ 'text-#aaa': tab === 0 }" @click="tab = 1">
+                <button
+                    class="van-haptics-feedback fs-40"
+                    :class="{ 'text-#aaa': tab === 0 }"
+                    @click="tab = 1"
+                >
                     <van-icon name="envelop-o" />
                 </button>
             </van-badge>
         </template>
     </nav-bar>
 
-    <Message v-if="tab === 0" />
+    <KeepAlive>
+        <Message v-if="tab === 0" />
 
-    <Notification v-else />
-
+        <Notification v-else />
+    </KeepAlive>
 </template>
 
 <style lang="scss">

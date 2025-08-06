@@ -14,7 +14,6 @@ export default class Provider<K extends StorageKeys = StorageKeys> {
     constructor(public storage: Storage) {}
 
     protected getKey(key: string, prefix: Prefix) {
-        key = key.replace(Provider.regexp, '_').toUpperCase()
         if (prefix) return this.#prefix + key
         return key
     }

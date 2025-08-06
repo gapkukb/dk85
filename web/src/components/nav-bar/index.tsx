@@ -7,7 +7,7 @@ import { useBack } from '@/composables/useBack'
 export default function (props: Partial<NavBarProps & { backPath: string }>, ctx: SetupContext) {
     const back = useBack({ web: props.backPath })
     return (
-        <div class="h-46">
+        <div class="h-92">
             <NavBar
                 fixed
                 left-arrow

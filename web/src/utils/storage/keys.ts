@@ -1,4 +1,6 @@
 const _keys = {
+    completeProfile: 'complete_profile',
+    newbieGuide: 'newbie_guide',
     app: 'app',
     locale: 'locale',
     search: 'search',

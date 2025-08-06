@@ -2,8 +2,15 @@ import useModal from './_helper'
 
 class ModalCtrl {
     #ctrl!: ReturnType<typeof useModal>
-    constructor(name: string) {
-        this.#ctrl = useModal(name)
+    constructor(
+        name: string,
+        options?: {
+            priority?: number
+            parallel?: boolean
+            initial?: boolean
+        }
+    ) {
+        this.#ctrl = useModal(name, options?.priority, options)
         this.open = this.open.bind(this)
         this.close = this.close.bind(this)
         this.toggle = this.toggle.bind(this)
@@ -32,7 +39,7 @@ class ModalCtrl {
 
 export default {
     /** 登录注册 */
-    authentication: new ModalCtrl('authentication'),
+    authentication: new ModalCtrl('authentication', { parallel: true }),
     /** 首充优惠 */
     initialTopupBonus: new ModalCtrl('initial-deposit-bonus'),
     /** 新手引导 */

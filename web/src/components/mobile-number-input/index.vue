@@ -14,10 +14,10 @@ const rules: FieldRule[] = [
 
 <template>
     <van-field v-model.trim="value" :name="name" type="tel" class="van-field-solid van-field-phone" :border="false"
-        maxlength="11" :placeholder="$t('form.placeholder.phone')" :rules="rules">
+        maxlength="9" :placeholder="$t('form.placeholder.phone')" :rules="rules">
         <template #left-icon>
             <CountryPicker>
-                <van-icon class-prefix="iconfont" name="mobile" class="c-#111 text-32" />
+                <van-icon class-prefix="iconfont" name="mobile" class="c-#111 !text-40" />
             </CountryPicker>
         </template>
     </van-field>

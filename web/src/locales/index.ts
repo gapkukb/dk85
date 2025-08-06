@@ -1,30 +1,45 @@
-import { createI18n, type I18n } from 'vue-i18n'
-import Locales, { type Locale } from './Locales'
+import { createI18n } from 'vue-i18n'
+import Locales from './Locales'
+import { useLs } from '@/composables'
+import { ls } from '@/utils/storage'
+//当前语言，优先从缓存里取
+const _locale = useLs(ls.keys.locale, Locales.prefer)
 
-export const i18n = createI18n({
-    locale: Locales.current.code,
-    fallbackLocale: Locales.en.code,
-})
+const localeName = computed(() => Locales.getLocale(_locale.value)!.localeName)
 
-export const locale = ref(Locales.current.code)
-
-export async function setLocale(current: Locale | string) {
-    const code = Locales.setLocale(current).code
-    const messages = await Locales.loadTranslation(code)
-    locale.value = code
+async function setLocale(code: string) {
+    await Locales.setLocale(code, i18n.global.setLocaleMessage)
+    _locale.value = code
     i18n.global.locale = code
-    i18n.global.setLocaleMessage(code, messages.default)
     document.documentElement.setAttribute('lang', code)
 }
+
+export const i18n = createI18n({
+    locale: _locale.value,
+    fallbackLocale: Locales.prefer,
+})
+
+export const locale = computed({
+    get() {
+        return _locale.value
+    },
+    async set(code: string) {
+        if (code === _locale.value) return
+        setLocale(code)
+    },
+})
+
 export function useLocale() {
     return {
         locale,
-        setLocale,
         supported: Locales.supported,
-        localeName: Locales.current.localeName,
+        localeName: localeName,
+        setLocale,
     }
 }
 
 export const t = i18n.global.t.bind(i18n.global)
-/** 初始化一次 */
-setLocale(locale.value)
+
+export function setupLocale() {
+    return setLocale(_locale.value)
+}

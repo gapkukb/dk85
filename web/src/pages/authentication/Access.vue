@@ -11,19 +11,23 @@ const signup = ref(false)
 
 <template>
     <header class="sticky top-0 flex p-24 gap-16 bg-white z-1">
-        <button
-            class="page-account-button"
-            @click="modals.authentication.open"
-        >
+        <LanguagePicker class="page-account-button">
             <i-icon-park-outline:international />
             <span>{{ localeName }}</span>
             <i-iconamoon:arrow-down-2-fill />
-        </button>
+        </LanguagePicker>
+        <!-- <button></button> -->
         <div class="flex-1"></div>
 
-        <CallCenter class="page-account-button" icon-class="scale-140"/>
+        <CallCenter
+            class="page-account-button"
+            icon-class="scale-140"
+        />
 
-        <button class="page-account-button icon" @click="modals.authentication.close">
+        <button
+            class="page-account-button icon"
+            @click="modals.authentication.close"
+        >
             <van-icon name="cross" />
         </button>
     </header>

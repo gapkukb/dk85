@@ -1,21 +1,23 @@
-import { useApp } from "@/stores/app.store";
-import type { RouteMeta, Router, RouteRecordNormalized } from "vue-router";
+import { useApp } from '@/stores/app.store'
+import type { RouteLocationNormalizedGeneric, RouteLocationNormalizedLoadedGeneric, RouteMeta, Router, RouteRecordNormalized } from 'vue-router'
 
 export default function (router: Router): Router {
-  function find({ meta }: RouteRecordNormalized) {
-    return meta.description || meta.description || meta.description;
-  }
-
-  router.beforeResolve((to, from) => {
-    const { keepAlives } = useApp();
-    const isToChild = from.matched.some((route) => route.path === from.path);
-
-    if (isToChild) {
-      keepAlives.add(from.name as string);
-    } else {
-      keepAlives.delete(from.name as string);
+    function include(to: RouteLocationNormalizedGeneric, from: RouteLocationNormalizedGeneric) {
+        if (to.fullPath.includes(from.fullPath)) return true
+        return from.matched.at(-1)?.children?.some((i) => i.name === to.name || i.path === to.path)
     }
-  });
 
-  return router;
+    router.beforeResolve((to, from) => {
+        const app = useApp()
+        if (from.name && include(to, from)) {
+            app.keepAlives.push(from.name as string)
+        } else {
+            setTimeout(() => {
+                app.keepAlives = app.keepAlives.filter(i=>i!==to.name)
+                console.log(app.keepAlives)
+            }, 0)
+        }
+    })
+
+    return router
 }

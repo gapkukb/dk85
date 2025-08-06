@@ -3,7 +3,6 @@ import query from './query-game-url';
 const route = useRoute()
 const url = ref('')
 Promise.all([query(route.query), Promise.delay(3000)]).then(([_, gameUrl]) => {
-    alert(3)
     url.value = gameUrl
 })
 </script>

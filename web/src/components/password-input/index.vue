@@ -33,7 +33,7 @@ const rules = computed<FieldRule[]>(() => {
     <van-field v-model="value" :name="name" class="van-field-solid" autocomplete="off" autocorrect="off" clearable
         maxlength="20" :border="false" :type="visible ? 'text' : 'password'" :placeholder="placeholder" :rules="rules">
         <template #left-icon>
-            <van-icon class-prefix="iconfont" name="mima" class="opacity-50 fs-32" />
+            <van-icon class-prefix="iconfont" name="mima" class="opacity-50 !fs-40" />
         </template>
 
         <template #extra>

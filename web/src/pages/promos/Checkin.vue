@@ -40,10 +40,10 @@ function scrollIntoView() {
 </script>
 
 <template>
-    <div class="bg-white p-12 rd-8 bg-op-95 shadow-2xl">
+    <div class="bg-white p-24 rd-16 bg-op-95 shadow-2xl">
         <h5 class="flex justify-between">
-            <span class="font-semibold text-16">{{ $t('promos.name') }}</span>
-            <button class="text-primary block expand-8" @click="showRules = true"><van-icon name="info-o" /></button>
+            <span class="font-semibold text-32">{{ $t('promos.name') }}</span>
+            <button class="text-primary block expand-16" @click="showRules = true"><van-icon name="info-o" /></button>
         </h5>
 
         <!-- <Skeleton2 class="h-96 w-100" width="100" repeatable height="96" item-height="96" item-width="48">
@@ -53,28 +53,26 @@ function scrollIntoView() {
         </skeleton2> -->
 
 
-        <div class="h-96 flex gap-8 overflow-scroll py-16 scroll-none" ref="track">
+        <div class="h-192 flex gap-16 overflow-scroll py-32 scroll-none" ref="track">
             <figure v-for="item in data" :key="item" class="checkin-item" :class="{ on: item.status === 1 }"
                 :data-day="item.date">
-                <img :src="item.status === 0 ? img1 : item.status === 1 ? img2 : img3" class="size-24" />
-                <figcaption class="text-12">{{ dayjs(item.date).format('DD MMM') }}</figcaption>
+                <img :src="item.status === 0 ? img1 : item.status === 1 ? img2 : img3" class="size-48" />
+                <figcaption class="text-24">{{ dayjs(item.date).format('DD MMM') }}</figcaption>
             </figure>
         </div>
         <van-button type="danger" block :disabled="doing || isPlaceholderData" @click="todo">
             {{ $t('promos.confirm') }}
         </van-button>
     </div>
-    <van-popup teleport="body" v-model:show="showRules" closeable position="bottom" class="p-16">
-        <h6 class="font-semibold text-16">{{ $t("promos.checkin.title") }}</h6>
-        <div class="mt-16 h-60vh overflow-auto whitespace-pre-line">{{ $t('promos.checkin.rules') }}</div>
+    <van-popup teleport="body" v-model:show="showRules" closeable position="bottom" class="p-32">
+        <h6 class="font-semibold text-32">{{ $t("promos.checkin.title") }}</h6>
+        <div class="mt-32 h-60vh overflow-auto whitespace-pre-line">{{ $t('promos.checkin.rules') }}</div>
     </van-popup>
 </template>
 
 <style lang="scss">
 .checkin-item {
-    @apply flex-shrink-0 w-40 h-64 bg-#eee rd-4 text-center py-6;
-    width: 40px;
-    height: 64px;
+    @apply flex-shrink-0 w-80 h-128 bg-#eee rd-8 text-center py-12;
 
     &.on {
         background-color: #ff5800;

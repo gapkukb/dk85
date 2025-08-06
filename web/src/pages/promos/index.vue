@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import useBalance from '@/composables/useBalance'
 import Checkin from './Checkin.vue'
-// import Promos from './Promos.vue'
+import Promos from './Promos.vue'
 import Record from './Record.vue'
 </script>
 
 <template>
     <AccountBalance>
-        <Record />
+        <!-- <Record /> -->
     </AccountBalance>
     <Checkin />
 
-    <div class="h-16"></div>
+    <div class="h-32"></div>
 
     <Promos />
 
@@ -25,16 +25,5 @@ import Record from './Record.vue'
 </template>
 
 <style lang="scss">
-.page-promos  {
-    // background: url(./assets/bg.png) no-repeat 0 -16px/100% auto;
-    padding: 8px;
-    padding-bottom: var(--h-footer);
-    --image: url('@/assets/icons/accout-balance-bg.svg');
-    --transparent: url(data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==);
-    background-image: var(--image);
-    background-image: cross-fade(var(--transparent), var(--image), 80%);
-    background-image: -webkit-cross-fade(var(--transparent), var(--image), 90%);
-    background-size: 100% 220px;
-    background-repeat: no-repeat;
-}
+
 </style>

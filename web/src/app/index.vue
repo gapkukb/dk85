@@ -3,12 +3,14 @@ import ModalsView from '@/modals/views.vue'
 import { useApp } from '@/stores/app.store'
 import { useUser } from '@/stores/user.store'
 import Splash from '../pages/splash/index.vue'
-
-import { rpx } from '@/utils/rpx'
 import AppFooter from './Footer.vue'
+import { ls } from '@/utils/storage'
+import { useNewbieGuide } from '@/views/newbie-guide/useNewbieGuide'
 
+const { NewbieGuide, onClosed } = useNewbieGuide()
 const route = useRoute()
 const user = useUser()
+const app = useApp()
 const pageName = computed(() => {
     const classes = route.matched.filter((i) => i.name && typeof i.name === 'string').map((i) => `page-${(i.name as string).toLowerCase()}`)
     if (route.meta.footer) {
@@ -24,10 +26,15 @@ const pageName = computed(() => {
         class="page-view"
         :class="pageName"
     >
-        <router-view
-            class="page-view"
-            :class="pageName"
-        />
+        <router-view v-slot="{ Component }">
+            <keep-alive :include="[...app.keepAlives]">
+                <component
+                    :is="Component"
+                    class="page-view"
+                    :class="pageName"
+                />
+            </keep-alive>
+        </router-view>
     </div>
     <AppFooter v-if="$route.meta.footer" />
 
@@ -35,7 +42,8 @@ const pageName = computed(() => {
     <ModalsView />
     <!-- 背景音乐 -->
     <!-- <BGM /> -->
-    <Splash />
+    <!-- <Splash /> -->
+    <!-- <NewbieGuide @closed="onClosed" /> -->
 </template>
 
 <style lang="scss">

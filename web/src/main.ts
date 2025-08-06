@@ -18,13 +18,16 @@ import bootstrap from './bootstrap'
 import App from './app/index.vue'
 import { i18n } from './locales'
 import { router } from './router'
-import startup from './setup'
+import setup from './setup'
 import diretives from './diretives'
 import { Lazyload } from 'vant'
 import db from './utils/db'
 
 await bootstrap()
 const app = createApp(App)
-app.use(stores).use(VueQueryPlugin).use(i18n).use(router).use(diretives).use(MotionPlugin).use(Lazyload)
-// await startup()
+app.use(stores).use(VueQueryPlugin).use(i18n).use(router).use(diretives).use(MotionPlugin).use(Lazyload, {
+    loading: '',
+    error: '1',
+})
+await setup()
 app.mount('#app')

@@ -32,14 +32,14 @@ export default defineConfig(function configure() {
             // basicSsl(),
             vue(),
             jsx(),
-            imagetools({
-                defaultDirectives: (url) => {
-                    if (!url.searchParams.has('format')) {
-                        url.searchParams.set('format', 'webp')
-                    }
-                    return url.searchParams
-                },
-            }),
+            // imagetools({
+            //     defaultDirectives: (url) => {
+            //         if (!url.searchParams.has('format')) {
+            //             url.searchParams.set('format', 'webp')
+            //         }
+            //         return url.searchParams
+            //     },
+            // }),
             VitePWA(),
             svgLoader({
                 svgoConfig: {

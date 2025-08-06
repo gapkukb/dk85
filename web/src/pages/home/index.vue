@@ -70,7 +70,7 @@ function change(index: number) {
     right: 0;
     bottom: 0;
     overflow-y: hidden;
-    --safe: 8px;
+    --safe: 16px;
     padding-top: var(--app-padding-top);
     padding-bottom: var(--app-padding-bottom);
     padding-left: var(--safe);

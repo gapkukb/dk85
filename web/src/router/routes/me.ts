@@ -1,5 +1,6 @@
 import View from '@/app/View.vue'
 import type { RouteRecordRaw } from 'vue-router'
+import { pagesName } from '..'
 
 export default <RouteRecordRaw>{
     path: '/me',
@@ -88,13 +89,13 @@ export default <RouteRecordRaw>{
             component: () => import('@/pages/me/favorites/index.vue'),
         },
         {
-            path: '/messages',
-            name: 'messages',
+            path: '/message',
+            name: pagesName.message,
             component: () => import('@/pages/messages/index.vue'),
         },
         {
             path: '/message/:id',
-            name: 'message',
+            name: pagesName.messageDetail,
             component: () => import('@/pages/messages/Detail.vue'),
         },
     ],

@@ -24,12 +24,22 @@ const navs = [
             :to="nav.routePath"
             tag="button"
             class="footer-nav"
+            :id="`guide-${nav.id}`"
         >
-            <component
-                :is="nav.icon"
-                :class="{ 'text-40': nav.id === 1 }"
+            <img
+                v-if="nav.id === 1"
+                src="/logo.webp"
+                class="size-64"
             />
-            <span class="text-20">{{ nav.name }}</span>
+            <template v-else>
+                <component
+                    :is="nav.icon"
+                    class="fs-32"
+                />
+                <span class="text-20">
+                    {{ nav.name }}
+                </span>
+            </template>
         </router-link>
     </footer>
 </template>
@@ -42,7 +52,7 @@ const navs = [
 }
 
 .footer-nav {
-    @apply inline-grid place-items-center place-content-center flex-1 gap-8;
+    @apply inline-grid place-items-center place-content-center flex-1 gap-4;
     &.router-link-active {
         color: #ff5800;
     }

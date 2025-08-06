@@ -3,8 +3,17 @@ import { REGEXP_EMAIL } from '@/constants/regexp'
 import type { FieldRule } from 'vant'
 
 const value = defineModel<string>()
+const props = defineProps({
+    required: {
+        default: true
+    },
+    name: {
+        default: 'email'
+    }
+})
 const rules: FieldRule[] = [
     {
+        validateEmpty: props.required,
         pattern: REGEXP_EMAIL,
         message: t('form.error.email'),
     },
@@ -12,24 +21,14 @@ const rules: FieldRule[] = [
 </script>
 
 <template>
-    <van-field
-        v-model.trim="value"
-        type="email"
-        autocomplete="off"
-        autocorrect="off"
-        class="van-field-solid van-field-email"
-        :border="false"
-        maxlength="30"
-        :placeholder="$t('form.placeholder.email')"
-        :rules="rules"
-    >
+    <van-field v-model.trim="value" type="email" autocomplete="off" autocorrect="off"
+        class="van-field-solid van-field-email" :border="false" maxlength="30" :name="name"
+        :placeholder="$t('form.placeholder.email')" :rules="rules">
         <template #left-icon>
-            <van-icon
-                name="envelop-o"
-                class="opacity-50"
-            />
+            <van-icon name="envelop-o" class="opacity-50 !fs-40" />
         </template>
     </van-field>
+    
 </template>
 
 <style lang="scss">

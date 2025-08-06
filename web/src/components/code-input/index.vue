@@ -62,7 +62,7 @@ props.autoSendOnMount && enable.value && send()
         <van-field v-model="value" type="digit" class="van-field-solid" autocomplete="off" autocorrect="off"
             :border="false" :placeholder="$t('form.placeholder.otp')" :maxlength="length" :rules="rules">
             <template #left-icon>
-                <van-icon class-prefix="iconfont" name="duanxinyanzhengma" class="opacity-50 text-20" />
+                <van-icon class-prefix="iconfont" name="duanxinyanzhengma" class="opacity-50 !text-40" />
             </template>
             <template #extra>
                 <van-button :disabled="!enable || isActive || doing" type="primary" size="mini" round class="min-w-60"

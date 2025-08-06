@@ -19,7 +19,7 @@ const user = useUser()
                 round
                 type="danger"
                 size="small"
-                class="min-w-100"
+                class="min-w-1=200"
                 @click="modals.authentication.open"
             >
                 {{ $t('me.login') }} | {{ $t('me.signup') }}
@@ -38,9 +38,9 @@ const user = useUser()
             >
                 <img
                     :src="item.icon"
-                    class="size-20"
+                    class="size-40"
                 />
-                <span class="text-12 lh-12">{{ item.name }}</span>
+                <span class="text-24 lh-24">{{ item.name }}</span>
             </div>
         </nav>
     </header>
@@ -55,30 +55,30 @@ const user = useUser()
 }
 
 .home-topbar {
-    @apply flex justify-between items-center h-40 px-12 py-4;
+    @apply flex justify-between items-center h-80 px-24 py-16;
     height: var(--h-topbar);
 }
 
 .home-nav-bar {
-    @apply flex justify-between items-center px-12 pb-8 gap-8;
+    @apply flex justify-between items-center px-24 pb-16 gap-16;
     height: var(--h-navbar);
 }
 
 .home-nav-item {
-    @apply flex-1 inline-grid place-items-center gap-4 relative;
+    @apply flex-1 inline-grid place-items-center gap-8 relative;
 
     &.on {
         --color: #ff5800;
         text-decoration: 1px underline var(--color);
-        text-underline-offset: 8px;
+        text-underline-offset: 16px;
         font-weight: 500;
 
         &::after {
             content: '';
-            border: 3px solid transparent;
+            border: 6px solid transparent;
             border-bottom-color: var(--color);
             position: absolute;
-            bottom: -4px;
+            bottom: -8px;
             left: 50%;
             translate: -50%;
         }
