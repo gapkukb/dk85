@@ -35,14 +35,11 @@ defineProps<{ balanceClass?: any; buttonClass?: string; iconClass?: string }>()
                     :balance="balance"
                     :loading="loading"
                 >
-                    <i-eva:refresh-outline
-                        :class="[iconClass, { spin: loading }]"
-                        @click="refresh"
-                    />
+                   <i class="iconfont iconfont-refresh block" :class="iconClass"></i>
                 </slot>
             </button>
         </slot>
     </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss"></style>

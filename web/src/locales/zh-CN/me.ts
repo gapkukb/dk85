@@ -12,7 +12,7 @@ export default {
     unsettled: '未设置',
     login: '登录',
     logout: '退出登录',
-    logout_tip: '确认继续退出登录？',
+    logout_tip: '确认退出登录？',
     logout_done: '退出成功',
     signup: '注册',
 

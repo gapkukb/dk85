@@ -11,7 +11,7 @@ const tab = ref(0)
         :title="$t('page.messages')"
         class="messages"
     >
-        <template #right>
+        <template #actions>
             <van-badge dot>
                 <button
                     class="van-haptics-feedback fs-40"

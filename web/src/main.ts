@@ -1,4 +1,3 @@
-// import 'virtual:vite-svg-2-webfont.css';
 window.addEventListener(
     'error',
     function (event) {
@@ -8,8 +7,8 @@ window.addEventListener(
     },
     true
 )
-
 import './styles'
+import '@/api/_http'
 import { createApp } from 'vue'
 import { VueQueryPlugin } from '@tanstack/vue-query'
 import { MotionPlugin } from '@vueuse/motion'
@@ -22,12 +21,18 @@ import setup from './setup'
 import diretives from './diretives'
 import { Lazyload } from 'vant'
 import db from './utils/db'
-
 await bootstrap()
 const app = createApp(App)
 app.use(stores).use(VueQueryPlugin).use(i18n).use(router).use(diretives).use(MotionPlugin).use(Lazyload, {
     loading: '',
     error: '1',
 })
-await setup()
+setup()
+// await setup()
 app.mount('#app')
+
+if (window.location.search.includes('debug=1')) {
+    import('vconsole').then((vConsole) => {
+        new vConsole.default({ theme: 'dark' })
+    })
+}

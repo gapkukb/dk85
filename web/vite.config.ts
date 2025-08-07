@@ -74,7 +74,7 @@ export default defineConfig(function configure() {
                 dirs: ['./src/composables', './src/components', './src/utils', './src/locales'],
                 dts: 'typings/components.d.ts',
                 deep: true,
-                globs: ['**/index.{vue,ts,tsx}'],
+                // globs: ['**/index.{vue,ts,tsx}'],
                 resolvers: [IconsResovler({}), VantResolver()],
             }),
             AutoImport({

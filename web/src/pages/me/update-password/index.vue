@@ -15,7 +15,7 @@ const { todo, doing, successful } = useAsyncFunction((values: any) => {
 
 <template>
     <nav-bar title="修改密码"></nav-bar>
-    <van-form @submit="todo" class="bg-white grid gap-16 p-16">
+    <van-form @submit="todo" class="bg-white grid gap-48 p-24 mt-24">
 
         <PasswordInput name="old_password" :placeholder="$t('form.placeholder.password')" />
 
@@ -23,15 +23,19 @@ const { todo, doing, successful } = useAsyncFunction((values: any) => {
 
         <PasswordInput is-repeat :password="password" :placeholder="$t('form.placeholder.newRepassword')" />
 
-        <CallCenter2 class="!mt--6" />
+        <!-- <CallCenter2 class="!mt--12" /> -->
 
-        <div class="h-32"></div>
+        <!-- <div class="h-32"></div> -->
 
-        <van-button :disabled="doing" type="primary" block native-type="submit">
+        <van-button :disabled="doing" type="danger" block native-type="submit">
             {{ $t('app.change') }}
         </van-button>
     </van-form>
 
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+.page-updatepassword{
+    padding: 0;
+}
+</style>

@@ -1,4 +1,4 @@
-import { ls } from '@/utils/storage'
+import { ls } from '@/storage'
 import { showLoadingToast, Locale as VantLocale } from 'vant'
 import type { ToastWrapperInstance } from 'vant/es'
 import enUS from 'vant/es/locale/lang/en-US'
@@ -8,7 +8,7 @@ import filPH from 'vant/es/locale/lang/zh-CN'
 class Locale {
     declare code: string
 
-    constructor(public lang: string, public country: string, public localeName: string) {
+    constructor(public lang: string, public country: string, public localeName: string, public areaCode: string) {
         this.code = lang + '-' + country
     }
 
@@ -20,13 +20,13 @@ class Locale {
 export type { Locale }
 
 export default abstract class Locales {
-    static readonly my = new Locale('my', 'MM', 'မြန်မာစာ')
+    static readonly my = new Locale('my', 'MM', 'မြန်မာစာ', '+85')
     // 高棉语 - 柬埔寨
-    static readonly km = new Locale('km', 'KH', 'ខេមរភាសា')
-    static readonly zh = new Locale('zh', 'CN', '简体中文')
-    static readonly en = new Locale('en', 'US', 'English')
+    static readonly km = new Locale('km', 'KH', 'ខេមរភាសា', '+95')
+    static readonly zh = new Locale('zh', 'CN', '简体中文', '+86')
+    static readonly en = new Locale('en', 'US', 'English', '+1')
     // 他加祿語 - 菲律
-    static readonly tl = new Locale('fil', 'PH', 'Filipino')
+    static readonly tl = new Locale('fil', 'PH', 'Filipino', '+63')
 
     static readonly supported: Locale[] = [this.my, this.km, this.en, this.zh, this.tl]
     // 默认偏好

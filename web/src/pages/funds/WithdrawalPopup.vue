@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { queryActivities } from '@/api/promos.api';
 import useStatefulFunc from '@/composables/use-stateful-func';
 import useBalance from '@/composables/useBalance';
 import { router } from '@/router';

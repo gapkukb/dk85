@@ -5,7 +5,7 @@ import { pagesName } from '..'
 export default <RouteRecordRaw>{
     path: '/me',
     meta: {
-        // requiredAuth:true,
+        protected: true,
     },
     component: View,
     children: [

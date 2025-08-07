@@ -1,9 +1,9 @@
-import type { Http } from '@/http'
+import axios, { isAxiosError } from 'axios'
+import { type Http } from '@/http'
 import { useUser } from '@/stores/user.store'
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
-import { refreshToken } from './user.api'
 import { modals } from '@/modals'
-import axios, { isAxiosError } from 'axios'
+import { refreshToken } from './user.api'
 
 const prop = '__refresh__'
 let promise: Promise<any> | null = null
@@ -14,7 +14,7 @@ function _isRefresh(config: AxiosRequestConfig) {
 
 export const refreshOption = { [prop]: true }
 
-export function interceptor() {
+export default function interceptor() {
     return function biz(http: Http) {
         let cfg: AxiosResponse['config']
         let user: ReturnType<typeof useUser>

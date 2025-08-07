@@ -9,7 +9,8 @@ const games = computed(() => props.loading ? [] : props.games.FISH)
 
 <template>
     <div class="home-view">
-        <!-- <GameTable paginable title="ALL GAMES" /> -->
+         <HomeBanner :position="3" />
+        <div class="h-36"></div>
         <GameTable title="ALL GAMES" :games="games"/>
     </div>
 </template>

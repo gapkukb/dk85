@@ -25,8 +25,8 @@ const isFav = ref(false)
 <style lang="scss">
 .game {
     overflow: hidden;
-    border-radius: 4px;
-    padding-bottom: 4px;
+    border-radius: 8px;
+    padding-bottom: 8px;
     background-color: #fff;
     transition: transform 300ms, box-shadow 300ms;
     @apply inline-grid relative;
@@ -50,7 +50,7 @@ const isFav = ref(false)
     }
 
     &__stat {
-        @apply flex justify-between items-center px-0.28em min-w-0 h-28;
+        @apply flex justify-between items-center px-0.28em min-w-0 h-56;
     }
 
     &__likes {

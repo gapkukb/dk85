@@ -1,4 +1,4 @@
-const _keys = {
+export default {
     completeProfile: 'complete_profile',
     newbieGuide: 'newbie_guide',
     app: 'app',
@@ -6,8 +6,4 @@ const _keys = {
     search: 'search',
     bgm: 'bgm',
     currentUser: 'current_user',
-} as const
-
-export type StorageKeys = EnumLike<typeof _keys>
-
-export default _keys
+}

@@ -1,6 +1,14 @@
 :root:root {
     --van-button-danger-border-color: #ff5800;
     --van-button-danger-background: #ff5800;
+    --van-nav-bar-text-color: inherit;
+    --van-nav-bar-icon-color: inherit;
+    /* --van-cell-font-size:32px; */
+    /* --van-cell-vertical-padding:32px; */
+    /* --van-cell-line-height:56px; */
+
+    /* --van-button-primary-background: #ff5800; */
+    /* --van-button-primary-border-color: #ff5800; */
 }
 
 .van-field-solid {
@@ -27,4 +35,8 @@
     .page-view {
         filter: blur(2px);
     }
+}
+
+.selector .van-tabs__wrap {
+    display: none;
 }

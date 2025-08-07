@@ -2,16 +2,14 @@
 import { useQuery } from '@tanstack/vue-query'
 
 const { isLoading, data } = useQuery({
-    queryKey: ['Notification'],
+    queryKey: ['notification'],
+    placeholderData: [],
     queryFn: () => Promise.delay(3000),
 })
 </script>
 
 <template>
-    <div
-        v-if="!isLoading"
-        class="grid gap-32 pb-24"
-    >
+    <div class="grid gap-32 pb-24">
         <div
             v-for="i in 10"
             class="grid gap-16 bg-white px-24 py-16 rd-8"
@@ -32,42 +30,6 @@ const { isLoading, data } = useQuery({
             </div>
         </div>
     </div>
-
-    <skeleton
-        v-else
-        repeatable
-        fixed
-        item-height="252"
-        fill="#bbb"
-        class="mt-12"
-    >
-        <rect
-            x="24"
-            width="702"
-            rx="8"
-            ry="8"
-            height="220"
-            fill="#ddd"
-        />
-        <rect
-            x="56"
-            y="16"
-            width="70%"
-            height="40"
-        />
-        <rect
-            x="56"
-            y="70"
-            width="85.5%"
-            height="80"
-        />
-        <rect
-            x="496"
-            y="164"
-            width="200"
-            height="36"
-        />
-    </skeleton>
 </template>
 
 <style lang="scss"></style>

@@ -180,6 +180,9 @@ importers:
       unplugin-vue-components:
         specifier: ^28.8.0
         version: 28.8.0(@babel/parser@7.28.0)(@nuxt/kit@3.17.7)(vue@3.5.18(typescript@5.8.3))
+      vconsole:
+        specifier: ^3.15.1
+        version: 3.15.1
       vite:
         specifier: ^7.0.0
         version: 7.0.3(@types/node@24.0.12)(jiti@2.4.2)(sass-embedded@1.89.2)(stylus@0.64.0)(terser@5.43.1)(yaml@2.8.0)
@@ -2199,6 +2202,10 @@ packages:
     resolution: {integrity: sha512-yCEafptTtb4bk7GLEQoM8KVJpxAfdBJYaXyzQEgQQQgYrZiDp8SJmGKlYza6CYjEDNstAdNdKA3UuoULlEbS6w==}
     engines: {node: '>=12.13'}
 
+  copy-text-to-clipboard@3.2.0:
+    resolution: {integrity: sha512-RnJFp1XR/LOBDckxTib5Qjr/PMfkatD0MUCQgdpqS8MdKiNUzBjAQBEN6oUy+jW7LI93BBG3DtMB2KOOKpGs2Q==}
+    engines: {node: '>=12'}
+
   core-js-compat@3.44.0:
     resolution: {integrity: sha512-JepmAj2zfl6ogy34qfWtcE7nHKAJnKsQFRn++scjVS2bZFllwptzw61BZcZFYBPpUznLfAvh0LGhxKppk04ClA==}
 
@@ -3503,6 +3510,9 @@ packages:
   mustache@4.2.0:
     resolution: {integrity: sha512-71ippSywq5Yb7/tVYyGbkBggbU8H3u5Rz56fH60jGFgr8uHwxs+aSKeqmluIVzM0m0kB7xQjKS6qPfd0b2ZoqQ==}
     hasBin: true
+
+  mutation-observer@1.0.3:
+    resolution: {integrity: sha512-M/O/4rF2h776hV7qGMZUH3utZLO/jK7p8rnNgGkjKUw8zCGjRQPxB8z6+5l8+VjRUQ3dNYu4vjqXYLr+U8ZVNA==}
 
   mz@2.7.0:
     resolution: {integrity: sha512-z81GNO7nnYMEhrGh9LeymoE4+Yr0Wn5McHIZMK5cfQCl+NDX08sCZgUc9/6MHni9IWuFLm1Z3HTCXu2z9fN62Q==}
@@ -4908,6 +4918,9 @@ packages:
     resolution: {integrity: sha512-OpR3Usr9dGZZbDttlTxdviGdxiURI0prX68+DuaN/JfIDbK9ZOmREKM6PgmelsejMnhgjXmEEEgf+E4NbsSqMg==}
     engines: {node: '>=0.10.*'}
     hasBin: true
+
+  vconsole@3.15.1:
+    resolution: {integrity: sha512-KH8XLdrq9T5YHJO/ixrjivHfmF2PC2CdVoK6RWZB4yftMykYIaXY1mxZYAic70vADM54kpMQF+dYmvl5NRNy1g==}
 
   verror@1.10.0:
     resolution: {integrity: sha512-ZZKSmDAEFOijERBLkmYfJ+vmk3w+7hOLYDNkRCuRuMJGEmqYNCNLyBBFwWKVMhfwaEF3WOd0Zlw86U/WC/+nYw==}
@@ -7521,6 +7534,8 @@ snapshots:
     dependencies:
       is-what: 4.1.16
 
+  copy-text-to-clipboard@3.2.0: {}
+
   core-js-compat@3.44.0:
     dependencies:
       browserslist: 4.25.1
@@ -8948,6 +8963,8 @@ snapshots:
   muggle-string@0.4.1: {}
 
   mustache@4.2.0: {}
+
+  mutation-observer@1.0.3: {}
 
   mz@2.7.0:
     dependencies:
@@ -10601,6 +10618,13 @@ snapshots:
   varstream@0.3.2:
     dependencies:
       readable-stream: 1.1.14
+
+  vconsole@3.15.1:
+    dependencies:
+      '@babel/runtime': 7.27.6
+      copy-text-to-clipboard: 3.2.0
+      core-js: 3.44.0
+      mutation-observer: 1.0.3
 
   verror@1.10.0:
     dependencies:

@@ -1,14 +1,13 @@
-<script setup lang="ts">
-import { Modals, ModalsName } from '@/modals'
-</script>
+<script setup lang="ts"></script>
 
 <template>
-    <div class="flex items-center flex-gap-0">
-        <customer-service class="size-64 text-40 lh-1"/>
-        <button @click="$router.push('/trends')" class="size-64 text-36 lh-1 mr-8"><i-ri:search-line /></button>
-        <!-- <van-button class="" size="mini" round  @click="Modals.open(ModalsName.cs)"><i-icon-park:customer /></van-button> -->
-        <!-- <van-button class="" size="mini" round  icon="search" to="/search"></van-button> -->
-        <van-button class="min-w-127" size="mini" round type="danger" to="/funds/deposit">{{ $t('app.deposit') }}</van-button>
-        <van-button class="min-w-128" size="mini" round type="warning" to="/funds/withdrawal">{{ $t('app.withdrawal') }}</van-button>
+    <div class="flex items-center flex-gap-24">
+        <button
+            @click="$router.push('/search')"
+            class="size-64 c-primary fs-36 bg-white rd-full"
+        >
+            <i class="iconfont iconfont-sousuo"></i>
+        </button>
+        <CallCenter class="size-64 c-#6b7984 fs-36 bg-white rd-full" />
     </div>
 </template>

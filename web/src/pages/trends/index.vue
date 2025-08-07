@@ -1,16 +1,15 @@
 <script setup lang="ts">
 import { showToast } from 'vant';
 import History from '../search/History.vue';
-import { ls } from '@/utils/storage';
-import { useLs } from '@/composables';
 import TrendPanel from './Panel.vue';
 import { useBack } from '@/composables/useBack';
+import { useLs } from '@/storage';
 
 
 const fill = '#d5d5d5'
 const router = useRouter()
 const keywords = ref('')
-const history = useLs<string[]>(ls.keys.search, [])
+const history = useLs<string[]>(useLs.keys.search, [])
 
 function searchByInput() {
     const k = keywords.value

@@ -23,7 +23,8 @@ export default defineConfig({
         },
     },
     rules: [
-        [/^expand-(\d+)$/, ([, d]) => ({ margin: `-${d}pxmax`, padding: `${d}px` })],
+        // [/^expand-(\d+)$/, ([, d]) => ({ margin: `-${d}pxmax`, padding: `${d}px` })],
+        [/^expand-(\d+)$/, ([, d]) => ({ margin: `-${d}px`, padding: `${d}px` })],
         [/^fs-(\d+)$/, ([, d]) => ({ 'font-size': `${d}px` })],
     ],
 })

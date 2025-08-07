@@ -1,0 +1,157 @@
+[
+    {
+        "date": "2025-08-01",
+        "amount": 28,
+        "state": 2
+    },
+    {
+        "date": "2025-08-02",
+        "amount": 8,
+        "state": 2
+    },
+    {
+        "date": "2025-08-03",
+        "amount": 18,
+        "state": 2
+    },
+    {
+        "date": "2025-08-04",
+        "amount": 8,
+        "state": 2
+    },
+    {
+        "date": "2025-08-05",
+        "amount": 108,
+        "state": 2
+    },
+    {
+        "date": "2025-08-06",
+        "amount": 18,
+        "state": 2
+    },
+    {
+        "date": "2025-08-07",
+        "amount": 88,
+        "state": 3
+    },
+    {
+        "date": "2025-08-08",
+        "amount": 8,
+        "state": 4
+    },
+    {
+        "date": "2025-08-09",
+        "amount": 18,
+        "state": 4
+    },
+    {
+        "date": "2025-08-10",
+        "amount": 588,
+        "state": 4
+    },
+    {
+        "date": "2025-08-11",
+        "amount": 88,
+        "state": 4
+    },
+    {
+        "date": "2025-08-12",
+        "amount": 8,
+        "state": 4
+    },
+    {
+        "date": "2025-08-13",
+        "amount": 18,
+        "state": 4
+    },
+    {
+        "date": "2025-08-14",
+        "amount": 8,
+        "state": 4
+    },
+    {
+        "date": "2025-08-15",
+        "amount": 18,
+        "state": 4
+    },
+    {
+        "date": "2025-08-16",
+        "amount": 28,
+        "state": 4
+    },
+    {
+        "date": "2025-08-17",
+        "amount": 8,
+        "state": 4
+    },
+    {
+        "date": "2025-08-18",
+        "amount": 388,
+        "state": 4
+    },
+    {
+        "date": "2025-08-19",
+        "amount": 8,
+        "state": 4
+    },
+    {
+        "date": "2025-08-20",
+        "amount": 38,
+        "state": 4
+    },
+    {
+        "date": "2025-08-21",
+        "amount": 88,
+        "state": 4
+    },
+    {
+        "date": "2025-08-22",
+        "amount": 888,
+        "state": 4
+    },
+    {
+        "date": "2025-08-23",
+        "amount": 18,
+        "state": 4
+    },
+    {
+        "date": "2025-08-24",
+        "amount": 8,
+        "state": 4
+    },
+    {
+        "date": "2025-08-25",
+        "amount": 28,
+        "state": 4
+    },
+    {
+        "date": "2025-08-26",
+        "amount": 388,
+        "state": 4
+    },
+    {
+        "date": "2025-08-27",
+        "amount": 8,
+        "state": 4
+    },
+    {
+        "date": "2025-08-28",
+        "amount": 28,
+        "state": 4
+    },
+    {
+        "date": "2025-08-29",
+        "amount": 58,
+        "state": 4
+    },
+    {
+        "date": "2025-08-30",
+        "amount": 288,
+        "state": 4
+    },
+    {
+        "date": "2025-08-31",
+        "amount": 388,
+        "state": 4
+    }
+]

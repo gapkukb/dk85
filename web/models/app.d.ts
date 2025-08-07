@@ -19,4 +19,21 @@ declare namespace model.app {
         balance_reset: string
         version: string
     }
+
+    export interface Notice {
+        title: string
+        url: string
+        content: string
+        created_at: string
+    }
+
+    export interface Adversite {
+        name: string
+        image: string
+        url: string
+        type: number
+        before_login: number
+        position: number
+        sort: number
+    }
 }

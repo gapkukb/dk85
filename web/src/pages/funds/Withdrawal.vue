@@ -1,17 +1,16 @@
 <script setup lang="ts">
-import { queryActivities } from '@/api/promos.api';
 import { useQuery } from '@tanstack/vue-query';
 import WithdrawalPopup from './WithdrawalPopup.vue';
 
-const { isLoading, data } = useQuery({
+const { isLoading, data } = useQuery<any>({
     queryKey: ['withdraw'],
-    queryFn: queryActivities
+    queryFn: ()=>{}
 })
 const showChannel = ref(false)
 const channel = ref<any>()
 
 function withdraw(index: number) {
-    channel.value = data.value[index]
+    // channel.value = data.value[index]
     showChannel.value = true
 }
 </script>

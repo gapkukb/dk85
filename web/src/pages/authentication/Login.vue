@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import login, { LoginType } from '@/utils/login'
-import { ls } from '@/utils/storage'
 import { useAccountAction } from './useAccountAction'
+import { ls } from '@/storage'
 
 const account = ref(ls.get(ls.keys.currentUser, ''))
 const rememberMe = ref(false)

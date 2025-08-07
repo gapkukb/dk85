@@ -3,6 +3,9 @@ import type { RouteRecordRaw } from 'vue-router'
 
 export default <RouteRecordRaw>{
     path: '/funds',
+    meta: {
+        protected: true,
+    },
     component: View,
     children: [
         {

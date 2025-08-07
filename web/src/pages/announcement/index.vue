@@ -1,46 +1,46 @@
 <script setup lang="ts">
-import { useAsyncVisible } from '@/composables/useAsyncVisible'
+import { queryNotices } from '@/api'
 
-const show = useAsyncVisible()
-const announcements = ref(Array.from<string>({ length: 6 }).fill('🎁လော့အင်အတွက်ဆုကြီးရယူပါ🎁🎁လော့အင်အတွက်ဆုကြီးရယူပါ🎁'))
+const show = ref(false)
+const notices = shallowRef<model.app.Notice[]>([])
+const activeNames = ref([])
+queryNotices().then((data = []) => {
+    if (data.length !== 0) {
+        show.value = true;
+    }
+    notices.value = data
+})
 </script>
 
 <template>
-    <van-popup
-        v-model:show="show"
-        style="background: none"
-        teleport="#app"
-    >
-        <div class="promo-modal">
-            <h1 class="lh-60 text-22 text-center text-white font-semibold">{{ $t('page.announcement') }}</h1>
-            <van-cell-group
-                inset
-                class="min-h-264"
-            >
-                <van-cell
-                    v-for="announcement in announcements"
-                    :key="announcement"
-                    :title="announcement"
-                    title-class="truncate"
-                    is-link
-                ></van-cell>
-            </van-cell-group>
-        </div>
-        <div class="h-32"></div>
-        <button
-            class="bg-white bg-op-40 lh-1 block mx-auto rd-full text-18 p-6 text-white"
-            @click="show = false"
-        >
-            <van-icon name="cross" />
-        </button>
-    </van-popup>
+    <ModalPage v-model:show="show" class="announcement" :title="$t('page.announcement')">
+        <van-collapse v-model="activeNames" class="w-652 h-796 bg-white rd-24 overflow-auto">
+            <van-collapse-item v-for="(notice, index) in notices" :key="notice.created_at" :name="notice.created_at"
+                :title="notice.title" center title-class="fs-32 font-medium c-#111 truncate" icon-prefix="iconfont"
+                icon="iconfont-arrow-down-filled">
+                {{ notice.content }}
+            </van-collapse-item>
+        </van-collapse>
+    </ModalPage>
 </template>
 
 <style lang="scss">
-.promo-modal {
-    width: 310px;
-    padding-bottom: 12px;
-    border-radius: 16px;
-    background: #f8d0c7 url('@/assets/images/promo-modal-bg.png') no-repeat 0 0 / cover;
+.announcement {
+    .van-collapse-item__title {
+        height: 108px;
+    }
+
+    .van-collapse-item__content {
+        color: #666;
+    }
+
+    .van-cell__right-icon {
+        font-family: 'iconfont';
+
+        &:before {
+            content: '\effc';
+            color: #ff5800;
+        }
+    }
 }
 </style>

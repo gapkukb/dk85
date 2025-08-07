@@ -16,19 +16,37 @@ const { todo, doing } = useAsyncFunction((values: any) => {
 <template>
     <nav-bar :title="$t('page.bindPhone')"></nav-bar>
 
-    <van-form class="bg-white p-16 grid gap-16" @submit="todo">
-        
-        <MobileNumberInput v-model="phone" autofocus/>
+    <van-form
+        class="bg-white grid gap-48 p-24 mt-24"
+        @submit="todo"
+    >
+        <MobileNumberInput
+            v-model="phone"
+            autofocus
+        />
+        <!-- 
+        <CodeInput
+            v-model="otp"
+            :target="phone"
+            name="otp"
+            type="phone"
+        />
 
-        <CodeInput v-model="otp" :target="phone" name="otp" type="phone" />
+        <div class="h-32"></div> -->
 
-        <div class="h-32"></div>
-
-        <van-button :disabled="doing" type="primary" block native-type="submit">
+        <van-button
+            :disabled="doing"
+            type="danger"
+            block
+            native-type="submit"
+        >
             {{ $t('app.bind') }}
         </van-button>
     </van-form>
-
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+.page-bindphone {
+    padding: 0;
+}
+</style>

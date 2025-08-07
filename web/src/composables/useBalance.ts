@@ -7,10 +7,9 @@ const loading = ref(false)
 
 async function refresh() {
     const user = useUser()
-    if (!user.authenticated) return
-    if (loading.value) return
+    if (!user.authenticated || loading.value) return
     loading.value = true
-    return Promise.all([queryBalance(), Promise.delay(500)])
+    return Promise.all([queryBalance(), Promise.delay(5000)])
         .then(([n]) => {
             balance.value = n.balance
             return n

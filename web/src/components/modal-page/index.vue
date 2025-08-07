@@ -1,17 +1,36 @@
 <script setup lang="ts">
-import { useAsyncVisible } from '@/composables/useAsyncVisible'
-const visible = useAsyncVisible()
+import { popupProps } from 'vant'
+import type { PropType } from 'vue'
 
-defineOptions({
-    inheritAttrs: false
+const props = defineProps({
+    ...popupProps,
+    title: { type: String as PropType<string> },
 })
 </script>
 
 <template>
-    <van-popup v-model:show="visible" close-icon="close" style="width: 100%;height: 100%;" :overlay="false" closeable
-        close-on-popstate v-on="$attrs" v-bind="$attrs">
+    <van-popup
+        v-bind="{ ...props, ...$attrs }"
+        style="background: none"
+        teleport="body"
+        destroy-on-close
+        :close-on-click-overlay="false"
+        close-icon="close"
+        closeable
+        class="pop-page"
+    >
+        <h1 class="lh-100 text-36 rd-t-24 mx-24 text-center text-white font-semibold bg-primary">{{ title }}</h1>
         <slot />
     </van-popup>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+.pop-page {
+    padding-top: 112px;
+    .van-popup__close-icon {
+        font-size: 72px;
+        top: 0;
+        color: white;
+    }
+}
+</style>

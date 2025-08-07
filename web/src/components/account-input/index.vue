@@ -17,7 +17,7 @@ const rules: FieldRule[] = [
     <van-field v-model.trim="value" :name="name" class="van-field-solid" :border="false"
         :placeholder="$t('form.placeholder.account')" :rules="rules">
         <template #left-icon>
-            <van-icon class-prefix="iconfont" name="zhanghao" class="opacity-50 !fs-40" />
+            <van-icon class-prefix="iconfont" name="zhanghao" class="opacity-50 !fs-32" />
         </template>
     </van-field>
 </template>

@@ -1,17 +1,31 @@
 <script setup lang="ts">
-import { useAsyncVisible } from '@/composables/useAsyncVisible'
+import Locales from '@/locales/Locales'
 
-const show = useAsyncVisible()
+const show = ref(true)
+const areaCode = ref('')
 </script>
 
 <template>
     <van-popup
+        destroy-on-close
         v-model:show="show"
-        position="right"
-        class="size-full"
+        round
+        position="bottom"
+        teleport="body"
     >
-        Piceker
+        <van-cascader
+            v-model="areaCode"
+            :field-names="{ text: 'localeName', value: 'areaCode' }"
+            title="请选择语言"
+            :options="Locales.supported"
+            @close="show = false"
+            active-color="#ff5800"
+            @finish="show = false"
+            class="selector"
+        ></van-cascader>
     </van-popup>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+
+</style>

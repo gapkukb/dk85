@@ -8,7 +8,7 @@ const tabs = [
 </script>
 
 <template>
-    <div class="px-24 bg-white">
+    <div class="px-24 pt-24 bg-white">
         <h1 class="fs-64 mb-40 font-semibold pl-24">{{ $t("app.funds") }}</h1>
 
         <AccountBalance />

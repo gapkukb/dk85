@@ -3,11 +3,9 @@ import ModalsView from '@/modals/views.vue'
 import { useApp } from '@/stores/app.store'
 import { useUser } from '@/stores/user.store'
 import Splash from '../pages/splash/index.vue'
+import Announcement from '../pages/announcement/index.vue'
 import AppFooter from './Footer.vue'
-import { ls } from '@/utils/storage'
-import { useNewbieGuide } from '@/views/newbie-guide/useNewbieGuide'
 
-const { NewbieGuide, onClosed } = useNewbieGuide()
 const route = useRoute()
 const user = useUser()
 const app = useApp()
@@ -27,7 +25,7 @@ const pageName = computed(() => {
         :class="pageName"
     >
         <router-view v-slot="{ Component }">
-            <keep-alive :include="[...app.keepAlives]">
+            <keep-alive>
                 <component
                     :is="Component"
                     class="page-view"
@@ -37,7 +35,8 @@ const pageName = computed(() => {
         </router-view>
     </div>
     <AppFooter v-if="$route.meta.footer" />
-
+    <!-- 公告弹窗 -->
+    <Announcement />
     <!-- 各类弹窗页面 -->
     <ModalsView />
     <!-- 背景音乐 -->
@@ -48,16 +47,17 @@ const pageName = computed(() => {
 
 <style lang="scss">
 #app {
-    --app-height-topbar: 80px;
-    --app-height-navbar: 88px;
+    // --app-height-topbar: 104px;
+    // --app-height-navbar: 100px;
     --app-height-footer: 88px;
-    --app-height-header: calc(var(--app-height-topbar) + var(--app-height-navbar));
-    --app-padding-top: calc(var(--app-height-header) + 24px);
+    // --app-height-header: calc(var(--app-height-topbar) + var(--app-height-navbar));
+    // --app-padding-top: calc(var(--app-height-header) + 24px);
     --app-padding-bottom: calc(var(--app-height-footer) + 24px);
 }
 
 :where(.page-view) {
-    padding: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
 }
 
 :where(.page-footer) {

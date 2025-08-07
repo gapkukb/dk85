@@ -1,14 +1,20 @@
 import { createWebHistory, createRouter, type Router, type RouteLocationAsRelativeGeneric } from 'vue-router'
 import type { App } from 'vue'
 import routes from './routes'
-console.log(routes);
+console.log(routes)
 
 import installMiddleware from './middlewares'
 
 const router = createRouter({
     history: createWebHistory('/'),
     routes,
-    scrollBehavior(to, from, savedPosition) {},
+    async scrollBehavior(to, from, savedPosition) {
+        
+        await Promise.delay(1000)
+        console.log(savedPosition);
+        if (savedPosition) return savedPosition
+        return { left: 0, top: 0 }
+    },
 })
 
 installMiddleware(router)

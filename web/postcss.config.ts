@@ -44,6 +44,6 @@ module.exports = (ctx) => ({
             //   landscapeWidth: 667 * 2, // 横屏时的视口宽度
         },
         // 'postcss-dvh-vh-fallback':{},
-        './build/viewport-unit': {},
+        // './build/viewport-unit': {},
     },
 })

@@ -9,7 +9,7 @@ type Leaves<T, D extends number = 10> = [D] extends [never] ? never : T extends 
 type Named = (this: Router, to: string | RouteLocationAsRelativeGeneric) => Promise<NavigationFailure | void | undefined>
 declare module 'vue-router' {
     interface RouteMeta {
-        requiredAuth?: boolean
+        protected?: boolean
         title?: Leaves<typeof zh>
         keywords?: string
         description?: string

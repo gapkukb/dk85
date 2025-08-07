@@ -8,7 +8,7 @@ import { t } from '@/locales'
 window.t = t
 
 export default async function bootstrap() {
-    return Promise.all([emulator()])
+    return Promise.all([emulator(),])
 }
 
 async function emulator() {

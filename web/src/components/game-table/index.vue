@@ -52,19 +52,19 @@ const { add, hasMore, showList, vIntersect } = usePagination(() => props.games |
 
 <style lang="scss">
 .game-list {
-    @apply bg-white rd-4;
+    // @apply bg-white rd-8;
     touch-action: pan-y;
 
     &-title {
-        @apply font-12 font-semibold lh-[1] indent-0.5em mb-12;
-        border-left: 2px solid red;
+        @apply fs-28 font-bold lh-[1] indent-0.5em mb-24;
+        border-left: 4px solid red;
     }
 
     &-body {
         display: grid;
         grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
-        gap: 8px;
-        border-radius: 4px;
+        gap: 16px;
+        border-radius: 8px;
     }
 }
 </style>

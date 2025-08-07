@@ -7,12 +7,12 @@ const props = defineProps<{
 </script>
 
 <template>
-    <div class="inline-grid grid-cols-[auto_1fr] grid-auto-rows-12 p-4 gap-4">
+    <div class="inline-grid grid-cols-[auto_1fr] grid-auto-rows-12 p-8 gap-8">
         <div class="grid-row-span-2 op-50">
-            <i class="iconfont fs-24 c-#fc884a" :class="view.icon"></i>
+            <i class="iconfont fs-48 c-#fc884a" :class="view.icon"></i>
         </div>
         <h6 class="op-30">{{ view.title }}</h6>
-        <h5 class="font-medium">
+        <h5 class="font-medium mt-12">
             <span class="">0.00</span>
             <span class="">MMK</span>
         </h5>

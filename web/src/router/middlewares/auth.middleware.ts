@@ -8,7 +8,7 @@ import type { Router } from 'vue-router'
 export default function (router: Router): Router {
     router.beforeResolve((to, from) => {
         const user = useUser()
-        if (to.matched.some((route) => route.meta.requiredAuth) && !user.authenticated) {
+        if (to.matched.some((route) => route.meta.protected) && !user.authenticated) {
             modals.authentication.open()
             return from
         }

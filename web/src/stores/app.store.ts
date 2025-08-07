@@ -1,4 +1,3 @@
-import { queryAppInfo } from '@/api/app.api'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 

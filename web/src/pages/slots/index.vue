@@ -9,22 +9,9 @@ const games = computed(() => props.loading ? [] : props.games.SLOTS)
 
 <template>
     <div class="home-view grid gap-8">
-        <!-- 
-        <div class="grid gap-8 grid-cols-2 grid-rows-[115_80]">
-            <div class="grid-col-span-2">
-                <img src="../home/assets/images/9.png" class="size-full object-cover rd-8" />
-            </div>
-            <div>
-                <img src="../home/assets/images/9.png" class="size-full object-cover rd-8" />
-            </div>
-            <div>
-                <img src="../home/assets/images/9.png" class="size-full object-cover rd-8" />
-            </div>
-        </div> 
-        -->
-        
-        <div class="h-16"></div>
-           <GameTable title="ALL GAMES" :games="games"/>
+        <HomeBanner :position="2" />
+       <div class="h-36"></div>
+        <GameTable title="ALL GAMES" :games="games" />
         <!-- <div v-if="isLoading" class="">loading...</div>
         <template v-else>
             <GameTable title="Most Popular" />

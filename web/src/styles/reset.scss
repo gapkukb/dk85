@@ -63,7 +63,7 @@ button {
 }
 
 p {
-    text-wrap: pretty;
+    // text-wrap: pretty;
 }
 
 :where(h1, h2, h3, h4, h5, h6, i, em, b, strong) {
@@ -120,21 +120,21 @@ body {
     }
 }
 
-@media screen and (min-width: 600px) {
-    html {
-        background-color: #000;
-        max-width: 600px;
-        margin: auto;
-        contain: paint;
-    }
-    body {
-        height: 100dvh;
-        overflow: auto;
-        &::-webkit-scrollbar {
-            display: none;
-        }
-    }
-}
+// @media screen and (min-width: 600px) {
+//     html {
+//         background-color: #000;
+//         max-width: 600px;
+//         margin: auto;
+//         contain: paint;
+//     }
+//     body {
+//         height: 100dvh;
+//         overflow: auto;
+//         &::-webkit-scrollbar {
+//             display: none;
+//         }
+//     }
+// }
 
 .iconfont {
     font-size: inherit !important;
@@ -142,18 +142,3 @@ body {
         font-size: inherit !important;
     }
 }
-
-// html,
-// body,
-// #app {
-//     height: 100dvh;
-//     width: 100%;
-// }
-
-// #app {
-//     position: relative;
-//     overflow: hidden;
-//     max-width: 600px !important;
-//     margin-left: auto !important;
-//     margin-right: auto !important;
-// }

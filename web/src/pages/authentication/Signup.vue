@@ -1,8 +1,5 @@
 <script setup lang="ts">
 import { register } from '@/api/user.api'
-import { Modals, ModalsName } from '@/modals'
-import { useUser } from '@/stores/user.store'
-import { showLoadingToast, showSuccessToast, showToast } from 'vant'
 import { useAccountAction } from './useAccountAction'
 
 

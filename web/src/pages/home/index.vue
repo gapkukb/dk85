@@ -3,11 +3,11 @@
 import type { SwipeInstance } from 'vant'
 import HomeHeader from './HomeHeader.vue'
 import { navs } from './navs'
-import Announcement from '@/pages/announcement/index.vue'
 import { useQuery } from '@tanstack/vue-query'
 import db from '@/utils/db'
 import { useApp } from '@/stores/app.store'
 
+let savedPosition = 0;
 const app = useApp()
 const swiper = ref<SwipeInstance>()
 const active = ref(0)
@@ -24,35 +24,31 @@ function change(index: number) {
     onchange(index)
     swiper.value!.swipeTo(index)
 }
+
+function getScroller() {
+    return document.querySelector('.home-view.active');
+}
+onActivated(() => {
+    getScroller()?.scrollTo({ top: savedPosition })
+})
+
+onBeforeRouteLeave(() => {
+    savedPosition = getScroller()?.scrollTop ?? 0
+})
+
 </script>
 
 <template>
-    <HomeHeader
-        :active="active"
-        @change="change"
-    />
-    <van-swipe
-        key="1"
-        ref="swiper"
-        id="home-page-swipe"
-        lazy-render
-        :loop="false"
-        @change="onchange"
-        :show-indicators="false"
-    >
+    <HomeHeader :active="active" @change="change" />
+    <van-swipe key="1" ref="swiper" id="home-page-swipe" lazy-render :loop="false" @change="onchange"
+        :show-indicators="false">
         <van-swipe-item v-for="(item, index) in navs">
-            <component
-                :is="item.component"
-                :loading="isLoading"
-                :games="games"
-                :class="{ active: active === index }"
-            />
+            <component :is="item.component" :loading="isLoading" :games="games" :class="{ active: active === index }" />
         </van-swipe-item>
     </van-swipe>
-    <!-- 公告弹窗 -->
-    <!-- <Announcement /> -->
+
     <!-- 下载app -->
-    <DownloadApp />
+    <AppDownloader />
 </template>
 
 <style lang="scss">
@@ -70,12 +66,14 @@ function change(index: number) {
     right: 0;
     bottom: 0;
     overflow-y: hidden;
-    --safe: 16px;
-    padding-top: var(--app-padding-top);
+    --safe: 24px;
+    padding-top: 204px;
+    // padding-top: var(--app-padding-top);
     padding-bottom: var(--app-padding-bottom);
     padding-left: var(--safe);
     padding-right: var(--safe);
     align-content: flex-start;
+    touch-action: pan-y;
 
     &.active {
         overflow-y: auto;

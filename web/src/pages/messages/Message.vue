@@ -3,14 +3,13 @@ import { useQuery } from '@tanstack/vue-query'
 
 const { isLoading, data } = useQuery({
     queryKey: ['message'],
+    placeholderData:[],
     queryFn: () => Promise.delay(3000),
 })
-
 </script>
 
 <template>
     <div
-        v-if="!isLoading"
         class="grid gap-32 pb-24"
         @click="$router.push('/message/123')"
     >
@@ -33,42 +32,6 @@ const { isLoading, data } = useQuery({
             </div>
         </div>
     </div>
-
-    <skeleton
-        v-else
-        repeatable
-        fixed
-        item-height="252"
-        fill="#bbb"
-        class="mt-24"
-    >
-        <rect
-            x="24"
-            width="702"
-            rx="8"
-            ry="8"
-            height="220"
-            fill="#ddd"
-        />
-        <rect
-            x="56"
-            y="16"
-            width="70%"
-            height="40"
-        />
-        <rect
-            x="56"
-            y="70"
-            width="85.5%"
-            height="80"
-        />
-        <rect
-            x="496"
-            y="164"
-            width="200"
-            height="36"
-        />
-    </skeleton>
 </template>
 
 <style lang="scss"></style>

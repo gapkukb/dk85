@@ -7,8 +7,9 @@ import VipDetailsRight from './VipDetailsRight.vue';
 </script>
 
 <template>
+    <NavBar :title="$t('page.vip')"/>
     <VipCard />
-    <div class="grid gap-8 pt-16 fs-12">
+    <div class="grid gap-24 pt-32 fs-24">
         <VipDetailsRight v-for="(level, index) in levels" :key="level.level" :index="index" />
     </div>
 </template>

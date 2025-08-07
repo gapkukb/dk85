@@ -1,4 +1,4 @@
-export default function openUrl(url: string, name: string) {
+export default function openUrl(url: string, name?: string) {
     const newWindow = window.open('', name)
 
     if (newWindow) {
@@ -9,3 +9,4 @@ export default function openUrl(url: string, name: string) {
         console.log('Popup window blocked or failed to open.')
     }
 }
+

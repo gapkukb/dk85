@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { asyncConfirmDeposit } from '@/api/funds.api';
-import { queryActivities } from '@/api/promos.api';
 import useAsyncFunction from '@/composables/useAsyncFunction';
 import { useBack } from '@/composables/useBack';
 import { URLHelper } from '@/helper/url';
@@ -13,11 +12,6 @@ const order = URLHelper.decode(q) as model.funds.PaymentResult & model.funds.Pay
 console.log(order);
 
 const back = useBack()
-const { isLoading, data } = useQuery({
-    queryKey: ['diposit'],
-    queryFn: queryActivities
-})
-
 const id = ref('')
 const field = useTemplateRef<FieldInstance>("digits")
 

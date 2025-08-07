@@ -1,6 +1,7 @@
-import { get, post } from './_http'
+export * from './app.api'
+export * from './user.api'
+export * from './funds.api'
+export * from './game.api'
+export * from './promos.api'
 
-export const queryOtp = post('/otp')
-
-export const queryCheckin = get('/check-in')
-export const doCheckIn = post('/check-in')
+import './_interceptors'
