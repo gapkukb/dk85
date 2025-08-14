@@ -1,15 +1,18 @@
 <script setup lang="ts">
-const details = [
+import { useUser } from '@/stores/user.store'
+
+const user = useUser()
+const details = computed(() => [
     {
         id: 1,
         name: t('account.password'),
-        settled: false,
+        settled: true,
         to: '/me/update-password',
     },
     {
         id: 2,
         name: t('account.phone'),
-        settled: false,
+        settled: !!user.info?.mobile,
         value: '',
         get to() {
             if (this.settled) return '/me/update-phone'
@@ -19,7 +22,7 @@ const details = [
     {
         id: 3,
         name: t('account.email'),
-        settled: false,
+        settled: !!user.info?.email,
         value: '',
         get to() {
             if (this.settled) return '/me/update-email'
@@ -36,29 +39,18 @@ const details = [
             return '/me/real-name'
         },
     },
-]
+])
 </script>
 
 <template>
     <nav-bar :title="$t('page.account')" />
-    <van-cell-group class="rd-24 overflow-clip">
-        <van-cell
-            v-for="detail in details"
-            :is-link="detail.id == 4 ? !detail.settled : true"
-            :title="detail.name"
-            :to="detail.to"
-            :clickable="false"
-        >
-            <van-tag
-                v-if="detail.settled"
-                type="success"
-            >
+    <van-cell-group>
+        <van-cell v-for="detail in details" :is-link="detail.id == 4 ? !detail.settled : true" :title="detail.name"
+            :to="detail.to" :clickable="false">
+            <van-tag v-if="detail.settled" type="success">
                 {{ detail.value }}
             </van-tag>
-            <van-tag
-                v-else
-                type="warning"
-            >
+            <van-tag v-else type="warning">
                 {{ $t('me.unsettled') }}
             </van-tag>
         </van-cell>

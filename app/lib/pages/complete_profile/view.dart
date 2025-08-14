@@ -36,7 +36,7 @@ class _CompeleteProfileViewState extends State<CompeleteProfileView> {
                 MobileInput(onSaved: form.saveAs("mobile")),
                 EmailInput(onSaved: form.saveAs("email")),
                 Gutter.xlarge,
-                Button(onPressed: () {}, text: "完成并获得58MMK好礼", color: AppColors.danger),
+                Button(onPressed: () {}, text: "完成并获得58MMK好礼", color: AppColors.primary),
               ],
             ),
           ),

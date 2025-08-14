@@ -1,9 +1,9 @@
-import { ls } from '@/storage'
+import { ls, useLs } from '@/storage'
 import { showLoadingToast, Locale as VantLocale } from 'vant'
 import type { ToastWrapperInstance } from 'vant/es'
 import enUS from 'vant/es/locale/lang/en-US'
 import kmKH from 'vant/es/locale/lang/km-KH'
-import myMM from 'vant/es/locale/lang/mm-MN'
+import myMM from './vant.my'
 import filPH from 'vant/es/locale/lang/zh-CN'
 class Locale {
     declare code: string
@@ -30,7 +30,8 @@ export default abstract class Locales {
 
     static readonly supported: Locale[] = [this.my, this.km, this.en, this.zh, this.tl]
     // 默认偏好
-    static readonly prefer: string = import.meta.env.DEV ? this.zh.code : this.km.code
+    static readonly prefer: string = this.my.code
+    // static readonly prefer: string = import.meta.env.DEV ? this.zh.code : this.km.code
 
     static getLocale(code: string) {
         return this.supported.find((i) => i.looseEquals(code))
@@ -70,5 +71,16 @@ export default abstract class Locales {
         }[code]
 
         VantLocale.use(code, translation)
+    }
+
+    static validate(code?: string) {
+        if (!code) return false
+        return this.supported.some((i) => i.code === code)
+    }
+
+    static get current() {
+        const locale = ls.get<string>(ls.keys.locale)
+        if (this.validate(locale)) return locale
+        return this.prefer
     }
 }

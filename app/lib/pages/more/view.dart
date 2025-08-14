@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../ui/gutter/index.dart';
+import '../../theme/index.dart';
 import '/ui/tile/index.dart';
 import '/shared/package_info/index.dart';
 import '/i18n/index.dart';
@@ -17,28 +17,30 @@ class MoreView extends StatelessWidget {
     final appService = Get.find<AppService>();
 
     return Scaffold(
-      appBar: AppBar(title: Text("language".tr), centerTitle: true),
+      appBar: AppBar(
+        leading: const BackButton(
+          // color: Colors.amber,
+          style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.white)),
+        ),
+      ),
       body: ListView(
         children: [
           AkTileGroup(
+            inset: true,
             children: [
-              AkTile(title: "语言", valueWidget: Obx(() => Text(I18n.getLocaleName(storage.locale.value))), isLink: true, onTap: showLocalePicker),
-              AkTile(title: "当前版本", value: "V${packageInfo.version}", onTap: () {}),
+              AkTile(titleText: "app.language".tr, trailing: Obx(() => Text(I18n.getLocaleName(storage.locale.value))), showArrow: true, onTap: showLocalePicker),
+              AkTile(titleText: "app.version".tr, trailingText: "V${packageInfo.version}", onTap: () {}),
               AkTile(
-                title: "背景音乐",
-                valueWidget: Transform.scale(
-                  alignment: Alignment.centerRight,
-                  scale: 0.8,
+                titleText: "app.bgm".tr,
+                trailing: SizedBox(
                   child: Obx(() => CupertinoSwitch(value: appService.audioManager.enable, onChanged: appService.audioManager.toggle)),
                 ),
               ),
             ],
           ),
-
-          // Gutter.large,
-          Button.large(text: "退出登录", color: Button.danger, filled: false, radius: 0, elevation: 1, onPressed: logout),
         ],
       ),
+      bottomNavigationBar: Button.large(text: "app.logout".tr, color: Button.danger, filled: true, radius: 0, elevation: 1, onPressed: logout),
     );
   }
 

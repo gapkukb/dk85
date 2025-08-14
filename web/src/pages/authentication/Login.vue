@@ -2,6 +2,7 @@
 import login, { LoginType } from '@/utils/login'
 import { useAccountAction } from './useAccountAction'
 import { ls } from '@/storage'
+import { modals } from '@/modals'
 
 const account = ref(ls.get(ls.keys.currentUser, ''))
 const rememberMe = ref(false)
@@ -12,6 +13,7 @@ function doLogin(values: any) {
         if (rememberMe.value) {
             ls.set(ls.keys.currentUser, account.value)
         }
+        modals.authentication.close()
     })
 }
 </script>

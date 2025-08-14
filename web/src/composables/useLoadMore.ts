@@ -1,4 +1,4 @@
-import { throttle,debounce } from 'lodash-es'
+import { throttle, debounce } from 'lodash-es'
 import { vIntersectionObserver } from '@vueuse/components'
 import type { ComputedGetter } from 'vue'
 
@@ -20,16 +20,13 @@ export default function useLoadMore(callback: Function) {
     return { loading, done, loadMore, vIntersect: vIntersectionObserver }
 }
 
-export function usePagination(getter: ComputedGetter<model.game.Game[]>) {
-    const rawList = computed(getter)
+export function usePagination<T extends any>(getter: any, size = 21) {
+    const rawList = computed<T[]>(() => getter.value || [])
     const current = ref(0)
-    const size = 21
     const hasMore = computed(() => current.value * size < rawList.value.length)
-    const showList = computed(() => rawList.value.slice(0, current.value * size))
+    const showList = computed<T[]>(() => rawList.value.slice(0, current.value * size))
 
     const add = throttle(function add([entry]: IntersectionObserverEntry[]) {
-        console.log(rawList.value.length);
-        
         if (!hasMore.value) return
         current.value++
     }, 300)

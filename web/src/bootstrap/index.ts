@@ -8,7 +8,7 @@ import { t } from '@/locales'
 window.t = t
 
 export default async function bootstrap() {
-    return Promise.all([emulator(),])
+    return Promise.all([emulator()])
 }
 
 async function emulator() {
@@ -16,3 +16,13 @@ async function emulator() {
     //@ts-expect-error
     return import('@vant/touch-emulator')
 }
+
+window.addEventListener(
+    'error',
+    function (event) {
+        if (event.target instanceof HTMLImageElement) {
+            event.target.classList.add('_img_error')
+        }
+    },
+    true
+)

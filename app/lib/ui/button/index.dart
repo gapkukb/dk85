@@ -9,7 +9,7 @@ class Button extends MaterialButton {
   static const SMALL = 32.0;
   static const MINI = 24.0;
 
-  static const danger = AppColors.danger;
+  static const danger = AppColors.primary;
   static const warn = AppColors.warn;
 
   final String? text;
@@ -139,7 +139,6 @@ class Button extends MaterialButton {
     super.splashColor,
     super.focusElevation,
     super.hoverElevation,
-    super.highlightElevation,
     super.padding,
     super.visualDensity,
     super.shape,
@@ -266,7 +265,7 @@ class Button extends MaterialButton {
       splashColor: splashColor,
       focusElevation: focusElevation,
       hoverElevation: hoverElevation,
-      highlightElevation: highlightElevation,
+      highlightElevation: 0,
       padding: padding,
       visualDensity: visualDensity,
       focusNode: focusNode,
@@ -296,7 +295,7 @@ class Button extends MaterialButton {
   }
 
   Color computeColor() {
-    if (color == null || color == Colors.white || color == Colors.transparent) return textColor ?? AppColors.primary;
+    if (color == null || color == Colors.white || color == Colors.transparent) return textColor ?? AppColors.title;
 
     return textColor ?? Colors.white;
   }

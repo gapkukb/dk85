@@ -1,4 +1,8 @@
 import 'package:get/get.dart';
+import '../pages/confirmation/index.dart';
+import '../pages/records/index.dart';
+import '../pages/records_funds_detail/index.dart';
+import '../pages/withdrawal_account/index.dart';
 import '/pages/spalash/index.dart';
 import '/pages/complete_profile/index.dart';
 import '/pages/deposit-receipt/view.dart';
@@ -14,7 +18,6 @@ import '/pages/funds/index.dart';
 import '/pages/home/index.dart';
 import '/pages/me/index.dart';
 import '/pages/promos/index.dart';
-import '/pages/announcement/index.dart';
 import '/pages/withdrawal/index.dart';
 
 part 'app_routes.dart';
@@ -22,10 +25,11 @@ part 'app_routes.dart';
 // ignore: avoid_classes_with_only_static_members
 class AppPages {
   static const INITIAL = Routes.DASHBOARD;
+  // static const INITIAL = Routes.DASHBOARD + Routes.ME;
 
   static final routes = [
     GetPage(name: Routes.SPALASH, page: () => const SpalashView()),
-    GetPage(name: Routes.ANNOUNCEMENT, page: () => const AnnouncementView(), opaque: true),
+    // GetPage(name: Routes.ANNOUNCEMENT, page: () => const AnnouncementView(), opaque: true),
     GetPage(
       name: Routes.DASHBOARD,
       page: () => const DashboardPage(),
@@ -46,6 +50,9 @@ class AppPages {
         GetPage(name: Routes.ME, page: () => const MePage(), binding: MeBinding()),
       ],
     ),
+    GetPage(name: Routes.CONFIRMATION, page: () => const ConfirmationView()),
+    GetPage(name: Routes.WITHDRAWAL_ACCOUNT, page: () => const WithdrawalAccountView(), binding: WithdrawalAccountBinding()),
+    GetPage(name: Routes.RECORDS, page: () => const RecordsView(), binding: RecordsBinding()),
     GetPage(name: Routes.CUSTOMER_SERVICE, page: () => const CustomerServiceView(), fullscreenDialog: true),
     GetPage(name: Routes.RECEIPT, page: () => const DepositReceiptView(), fullscreenDialog: true),
     GetPage(name: Routes.MORE, page: () => const MoreView()),
@@ -54,5 +61,6 @@ class AppPages {
     GetPage(name: Routes.SETTINGS, page: () => const SettingsView()),
     GetPage(name: Routes.UPDATE_PASSWROD, page: () => const UpdatePasswordView()),
     GetPage(name: Routes.COMPELETE_PROFILE, page: () => const CompeleteProfileView(), fullscreenDialog: true, opaque: true),
+    GetPage(name: Routes.RECORDS_FUNDS_DETAIL, page: () => const RecordsFundsDetailView()),
   ];
 }

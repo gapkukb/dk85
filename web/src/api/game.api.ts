@@ -1,4 +1,4 @@
-import { get, post } from './_http'
+import { get, post } from './http'
 
 /** 收藏游戏 */
 export const favoriteGame = post('/favorite')
@@ -10,3 +10,5 @@ export const queryGameUrl = post('/redirect-to-game')
 export const queryAllGame = get('/get-game-list')
 /** 热门游戏 */
 export const queryHotGames = post('/hot')
+/** 热门游戏 */
+export const queryGameRecord = get<{list:model.game.Record[]}>('/game-record')

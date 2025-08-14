@@ -6,4 +6,6 @@ export default {
     search: 'search',
     bgm: 'bgm',
     currentUser: 'current_user',
+    accessToken:'access_token',
+    refreshToken:'refresh_token',
 }

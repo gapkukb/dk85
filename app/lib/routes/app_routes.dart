@@ -25,4 +25,12 @@ abstract class Routes {
   static const UPDATE_PASSWROD = '/update-password';
   static const COMPELETE_PROFILE = '/compelete-profile';
   static const ANNOUNCEMENT = '/announcement';
+  static const CONFIRMATION = '/confirmation';
+  static const WITHDRAWAL_ACCOUNT = '/withdrawal-account';
+  static const RECORDS = '/records';
+  static const RECORDS_FUNDS = '/funds';
+  static const RECORDS_FUNDS_DETAIL = '/funds-detail';
+  static const RECORDS_GAMES = '/games';
+  static const RECORDS_DEPOSIT = '/deposit';
+  static const RECORDS_WITHDRAWAL = '/withdrawal';
 }

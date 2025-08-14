@@ -1,4 +1,5 @@
-import { get, post } from './_http'
+import { get, post } from './http'
 
-/** 查询优惠活动列表 */
-export const queryClainmedList = get('/clainmed/list')
+/** 每日签到列表 */
+export const queryDailyBouns = get<model.promo.DailyBounsRecord[]>('/get-sign')
+export const doDailyBouns = post('/user-sign')

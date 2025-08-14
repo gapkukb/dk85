@@ -16,11 +16,11 @@ const menus = computed<{ title: any; to?: string; handler: (...args: any) => any
     ]
 })
 
-const meta = document.head.querySelector('meta[name="theme-color"]') as HTMLMetaElement
-meta.content = '#000'
-onUnmounted(() => {
-    meta.content = '#fff'
-})
+// const meta = document.head.querySelector('meta[name="theme-color"]') as HTMLMetaElement
+// meta.content = '#000'
+// onUnmounted(() => {
+//     meta.content = '#fff'
+//  })
 </script>
 
 <template>
@@ -46,8 +46,8 @@ onUnmounted(() => {
             </button>
         </div>
     </account-balance>
-    <div class="h-48"></div>
-    <van-cell-group class="rd-16 overflow-clip">
+    <div class="h-24"></div>
+    <van-cell-group>
         <van-cell v-for="menu in menus" :key="menu.title" is-link :title-class="['font-medium', menu.className]"
             :title="menu.title" :to="menu.to" @click="menu.handler" />
     </van-cell-group>
@@ -55,7 +55,7 @@ onUnmounted(() => {
 
 <style lang="scss">
 .page-me {
-    @apply p-24 !pt-72;
+    @apply pt-72;
     // background: linear-gradient(#000 250px, transparent 0);
 }
 

@@ -23,6 +23,7 @@ class _BalanceState extends State<Balance> {
     super.initState();
     trigger =
         GestureDetector(
+              behavior: HitTestBehavior.translucent,
               onTap: () {
                 if (controller.isAnimating) return;
                 controller.repeat();

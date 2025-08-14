@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,33 +22,33 @@ class DepositBill extends GetView<DepositController> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         // mainAxisAlignment: MainAxisAlignment.,
         children: [
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("充值渠道", style: AppText.title),
-              ServiceCalling(),
+              Text("app.transcation.detail".tr, style: AppText.title),
+              const ServiceCalling(),
             ],
           ),
           const SizedBox(),
-          const Text("充值方式", style: AppText.label),
+          Text("payment.method".tr, style: AppText.label),
           buildMethod(),
           const SizedBox(),
-          const Text("充值金额", style: AppText.label),
+          Text("payment.amount".tr, style: AppText.label),
           buildAmount(),
           const SizedBox(),
           BaseInput(
-            controller: controller.inputController,
+            controller: controller.amountCtrl,
             maxLength: 11,
-            placeholder: "Enter amount :2000-10000",
+            placeholder: "payment.limit".tr,
             keyboardType: TextInputType.number,
-            suffix: const Text("MMK", style: TextStyle(height: 3)),
+            suffix: const Text("MMK", style: TextStyle(height: 1)),
             onSaved: (value) {},
             validator: (value) {
               return null;
             },
           ),
           const Spacer(),
-          CupertinoButton.filled(borderRadius: BorderRadius.circular(4), sizeStyle: CupertinoButtonSize.medium, color: AppColors.danger, child: const Text("下一步"), onPressed: () {}),
+          MaterialButton(onPressed: () {}, color: AppColors.primary, height: 48, textColor: Colors.white, child: Text("app.deposit".tr)),
         ],
       ),
     );
@@ -104,8 +103,8 @@ class _Button extends OutlinedButton {
   _Button({required super.onPressed, required this.text, this.selected = false})
     : super(
         style: OutlinedButton.styleFrom(
-          backgroundColor: selected ? AppColors.danger : null,
-          side: BorderSide(color: selected ? AppColors.danger : AppColors.border, width: 1),
+          backgroundColor: selected ? AppColors.primary : null,
+          side: BorderSide(color: selected ? AppColors.primary : AppColors.border, width: 1),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         ),
         child: Text(text, style: AppText.title.copyWith(color: selected ? Colors.white : null)),

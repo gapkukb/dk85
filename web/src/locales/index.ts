@@ -2,7 +2,8 @@ import { createI18n } from 'vue-i18n'
 import Locales from './Locales'
 import { useLs } from '@/storage'
 //当前语言，优先从缓存里取
-const _locale = useLs(useLs.keys.locale, Locales.prefer)
+
+const _locale = ref(Locales.current)
 
 const localeName = computed(() => Locales.getLocale(_locale.value)!.localeName)
 

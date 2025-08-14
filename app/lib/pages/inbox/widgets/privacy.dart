@@ -17,8 +17,8 @@ class PrivacyWidget extends GetView<InboxController> {
           for (var i in List.filled(10, 0))
             const AkTile(
               // valueStyle: TextStyle(fontSize: 12, color: AppColors.label),
-              title: "个人消息个人消息个人消息个人消息个人消息个人消息个人消息个人消息个人消息个人消息个人消息",
-              titleMaxLines: 1,
+              title: Text("个人消息个人消息个人消息个人消息个人消息个人消息个人消息个人消息个人消息个人消息个人消息", maxLines: 1),
+
               // subtitle: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Text("2020-12-12 10:00:00")]),
             ),
         ],

@@ -1,7 +1,5 @@
-import { get, post } from './_http'
-import { refreshOption } from './_customize'
+import { get, post } from './http'
 
-export const refreshToken = get('/refresh-token', { ...refreshOption })
 export const register = post('/register', { loading: true })
 export const login = post('/login', { loading: true })
 export const queryBalance = get<model.user.Balance>('/refresh-balance', { protected: true })

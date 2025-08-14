@@ -1,10 +1,10 @@
 declare namespace model.funds {
     export interface PaymentProvider {
         activity_list: any[]
-        account_list: PaymentChannel[]
+        account_list: Channel[]
     }
 
-    export interface PaymentChannel {
+    export interface Channel {
         id: number
         gateway: number
         each_min: string

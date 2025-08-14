@@ -31,7 +31,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               onPressed: () {
                 route!.navigator!.maybePop();
               },
-              child: Icon(icon, color: AppColors.primary),
+              child: Icon(icon, color: AppColors.title),
             ),
     );
   }

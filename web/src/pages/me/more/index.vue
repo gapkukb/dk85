@@ -32,11 +32,7 @@ async function doLogout() {
     <van-cell-group>
         <language-picker>
             <template #default="{ localeName, show }">
-                <van-cell
-                    :title="$t('app.lang')"
-                    is-link
-                    @click="show"
-                >
+                <van-cell :title="$t('app.lang')" is-link @click="show">
                     {{ localeName }}
                 </van-cell>
             </template>
@@ -45,26 +41,19 @@ async function doLogout() {
         <van-cell :title="$t('app.version')">V {{ version }}</van-cell>
 
         <van-cell :title="$t('app.bgm')">
-            <van-switch
-                v-model="app.unmuted"
-                size="18"
-            />
+            <van-switch v-model="app.unmuted" size="18" />
+        </van-cell>
+        <van-cell>
+            <van-button type="danger" block @click="doLogout">
+                <span class="uppercase text-32 font-medium">{{ $t('me.logout') }}</span>
+            </van-button>
         </van-cell>
     </van-cell-group>
 
-    <div class="bg-white px-24 pt-64 pb-24">
-        <van-button
-            type="danger"
-            block
-            @click="doLogout"
-        >
-            <span class="uppercase text-32 font-medium">{{ $t('me.logout') }}</span>
-        </van-button>
-    </div>
 </template>
 
 <style lang="scss">
 .page-more {
-    padding: 0;
+    // padding: 0;
 }
 </style>

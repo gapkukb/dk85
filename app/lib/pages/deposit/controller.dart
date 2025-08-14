@@ -7,27 +7,27 @@ class DepositController extends GetxController {
   final amount = "".obs;
   final presets = [2000, 3000, 5000, 10000, 20000];
 
-  final inputController = TextEditingController();
+  final amountCtrl = TextEditingController();
 
   void setAmount(String value) {
     amount.value = value;
-    inputController.text = value;
+    amountCtrl.text = value;
   }
 
   void _onInput() {
-    amount.value = inputController.value.text;
+    amount.value = amountCtrl.value.text;
   }
 
   @override
   void onInit() {
     super.onInit();
-    inputController.addListener(_onInput);
+    amountCtrl.addListener(_onInput);
   }
 
   @override
   void dispose() {
     super.dispose();
-    inputController.removeListener(_onInput);
-    inputController.dispose();
+    amountCtrl.removeListener(_onInput);
+    amountCtrl.dispose();
   }
 }

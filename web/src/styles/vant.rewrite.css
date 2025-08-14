@@ -1,10 +1,16 @@
 :root:root {
     --van-button-danger-border-color: #ff5800;
-    --van-button-danger-background: #ff5800;
+    --van-button-danger-background: linear-gradient(0deg, #ff5800, #ff5800),
+        radial-gradient(710.82% 50% at 13.62% 0%, rgba(255, 255, 255, 0.301) 0%, rgba(255, 230, 215, 0.0001) 100%);
     --van-nav-bar-text-color: inherit;
     --van-nav-bar-icon-color: inherit;
+    --van-empty-image-size: auto;
+    --van-empty-image-size: auto;
+    --van-skeleton-paragraph-background: red;
+    --van-cascader-active-color:#ff5800;
+
     /* --van-cell-font-size:32px; */
-    /* --van-cell-vertical-padding:32px; */
+    --van-cell-vertical-padding: 32px;
     /* --van-cell-line-height:56px; */
 
     /* --van-button-primary-background: #ff5800; */
@@ -31,12 +37,27 @@
     height: 48px;
 }
 
-.van-overflow-hidden {
+/* .van-overflow-hidden {
     .page-view {
         filter: blur(2px);
     }
-}
+} */
 
 .selector .van-tabs__wrap {
     display: none;
 }
+
+.van-cell__right-icon:before {
+    font-family: iconfont;
+    content: '\e610' !important;
+    color: #ff5800;
+}
+.van-cell__title {
+    font-size: 32px;
+}
+
+.van-cell-group {
+    border-radius: 16px;
+    overflow: clip;
+}
+

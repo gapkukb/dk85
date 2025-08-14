@@ -26,14 +26,7 @@ abstract class AppText {
   static const small = TextStyle(fontSize: 12);
   static const mini = TextStyle(fontSize: 10);
 
-  static const title = TextStyle(
-    fontSize: 14,
-    color: AppColors.primary,
-    fontWeight: FontWeight.bold,
-  );
+  static const title = TextStyle(fontSize: 14, color: AppColors.title, fontWeight: FontWeight.bold);
   static const label = TextStyle(fontSize: 12, color: AppColors.label);
-  static const description = TextStyle(
-    fontSize: 10,
-    color: AppColors.description,
-  );
+  static const description = TextStyle(fontSize: 10, color: AppColors.description);
 }

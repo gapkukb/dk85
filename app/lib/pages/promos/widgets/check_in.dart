@@ -3,19 +3,34 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../theme/index.dart';
+import '../../../ui/button/index.dart';
 import '../index.dart';
+import 'rules.dart';
 
 class CheckInWidget extends GetView<PromosController> {
   const CheckInWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // 已过期
+    const AssetImage expiredIcon = AssetImage("assets/images/coin-0.webp");
+    // 已签到，可签到
+    const AssetImage checkableIcon = AssetImage("assets/images/coin-1.webp");
+    // 不可签到
+    const AssetImage uncheckableIcon = AssetImage("assets/images/coin-2.webp");
+
+    final Map<num, _Configuration> iconMaper = {
+      0: const _Configuration(icon: checkableIcon, bgcolor: AppColors.primary, color: Colors.white),
+      1: _Configuration(icon: checkableIcon, bgcolor: const Color(0xffffbd99), color: AppColors.primary.withAlpha(200)),
+      2: const _Configuration(icon: expiredIcon, bgcolor: Color(0xffffdecc), color: Color(0xffCC8864)),
+      3: _Configuration(icon: uncheckableIcon, bgcolor: AppColors.primary.withAlpha(26), color: AppColors.primary),
+    };
+
     return Container(
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: const Color(0xffff5800).withAlpha(100),
-        borderRadius: BorderRadius.circular(8),
-      ),
+      padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
+      margin: const EdgeInsets.symmetric(horizontal: 12),
+      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(8)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -23,69 +38,35 @@ class CheckInWidget extends GetView<PromosController> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text("每日签到", style: TextStyle(fontWeight: FontWeight.bold)),
-              IconButton(
-                onPressed: () {
-                  Get.bottomSheet(
-                    Container(
-                      padding: const EdgeInsets.all(16),
-                      width: double.infinity,
-                      height: 400,
-                      decoration: const BoxDecoration(color: Colors.white),
-                      child: const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            width: double.infinity,
-                            child: Text(
-                              "规则",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 16),
-                          Text("🎁登录即享丰厚奖励🎁"),
-                          Text("每日登录，随机奖励"),
-                          Text("每日登录，即享"),
-                          Text("加入即有机会获得9999999金币奖励"),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-                icon: const Icon(IconFont.gantanhao1, color: Colors.red),
+              Text("checkin.title".tr, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+              Transform.translate(
+                offset: const Offset(12, 0),
+                child: IconButton(
+                  icon: const Icon(IconFont.gantanhao1, color: Colors.red),
+                  onPressed: () {
+                    Get.bottomSheet(const Rules());
+                  },
+                ),
               ),
             ],
           ),
           SizedBox(
             height: 60,
-            child: ListView.separated(
-              separatorBuilder: (context, index) {
-                return const SizedBox(width: 4);
-              },
+            child: SingleChildScrollView(
+              controller: controller.listCtrl,
               scrollDirection: Axis.horizontal,
-              itemCount: 31,
-              itemBuilder: (context, index) {
-                return const _CheckInItem(
-                  date: "31",
-                  status: 1,
-                  selected: true,
-                );
-              },
+              child: Row(
+                spacing: 4,
+                children: controller.dates.value.map((item) {
+                  return _CheckInItem(key: item.status == 0 ? controller.todayKey : null, date: item.date, status: item.status, config: iconMaper[item.status]!);
+                }).toList(),
+              ),
             ),
           ),
           const SizedBox(height: 24),
           SizedBox(
             height: 40,
-            child: CupertinoButton.filled(
-              sizeStyle: CupertinoButtonSize.small,
-
-              child: const Text("签到"),
-              onPressed: () {},
-            ),
+            child: Button(text: "checkin.do".tr, color: AppColors.primary, onPressed: controller.checkin),
           ),
         ],
       ),
@@ -96,38 +77,32 @@ class CheckInWidget extends GetView<PromosController> {
 class _CheckInItem extends StatelessWidget {
   final String date;
   final int status;
-  final bool selected;
+  final _Configuration config;
 
-  const _CheckInItem({
-    super.key,
-    required this.date,
-    required this.status,
-    this.selected = false,
-  });
+  const _CheckInItem({super.key, required this.date, required this.status, required this.config});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 40,
+      width: 43,
       height: 60,
-      decoration: BoxDecoration(
-        color: selected ? const Color(0xffff5800) : const Color(0xfff5f5f5),
-        borderRadius: BorderRadius.circular(4),
-      ),
+      decoration: BoxDecoration(color: config.bgcolor, borderRadius: BorderRadius.circular(4)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         spacing: 4,
         children: [
-          Image.asset("assets/images/1.webp", height: 24, width: 24),
-          Text(
-            "31 Jul",
-            style: TextStyle(
-              fontSize: 11,
-              color: selected ? Colors.white : const Color(0xff666666),
-            ),
-          ),
+          Image(image: config.icon, height: 32, width: 32),
+          Text(date.substring(4), softWrap: false, style: TextStyle(fontSize: 10, color: config.color)),
         ],
       ),
     );
   }
+}
+
+class _Configuration {
+  final AssetImage icon;
+  final Color bgcolor;
+  final Color color;
+
+  const _Configuration({required this.icon, required this.bgcolor, required this.color});
 }

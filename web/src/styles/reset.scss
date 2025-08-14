@@ -97,7 +97,7 @@ body {
     line-height: 1.5;
     font-size: 28px;
     text-size-adjust: 100%;
-    size-adjust: 100%;
+    // size-adjust: 200%;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -141,4 +141,11 @@ body {
     &::before {
         font-size: inherit !important;
     }
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
 }

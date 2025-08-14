@@ -145,7 +145,7 @@ class _BaseInputState extends State<BaseInput> {
           prefixIcon: widget.prefixIcon ?? buildIcon(widget.prefixIconName),
           prefixIconColor: widget.prefixIconColor,
           prefixIconConstraints: widget.prefixIconConstraints,
-          suffix: buildSuffix(),
+          // suffix: buildSuffix(),
           suffixIcon: widget.suffixIcon ?? buildIcon(widget.suffixIconName),
           suffixIconColor: widget.suffixIconColor,
           suffixIconConstraints: widget.suffixIconConstraints,
@@ -177,13 +177,7 @@ class _BaseInputState extends State<BaseInput> {
             onTap: controller.clear,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Transform.scale(
-                scale: 1.2,
-                child: Transform.translate(
-                  offset: const Offset(0, 2),
-                  child: const Icon(Icons.cancel, size: 16, color: AppColors.description),
-                ),
-              ),
+              child: Transform.scale(scale: 1.2, child: const Icon(Icons.cancel, size: 16, color: AppColors.description)),
             ),
           ),
         );

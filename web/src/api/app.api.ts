@@ -1,4 +1,4 @@
-import { get, post } from './_http'
+import { get, post } from './http'
 
 /** 收藏游戏 */
 export const queryCaptcha = get('/captcha', {

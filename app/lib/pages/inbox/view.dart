@@ -27,8 +27,8 @@ class InboxView extends GetView<InboxController> {
                 bottom: TabBar(
                   indicatorSize: TabBarIndicatorSize.label,
                   tabAlignment: TabAlignment.fill,
-                  labelColor: AppColors.primary,
-                  indicatorColor: AppColors.danger,
+                  labelColor: AppColors.title,
+                  indicatorColor: AppColors.primary,
                   labelPadding: const EdgeInsets.all(0),
 
                   tabs: [buildTab(IconFont.lingdang, "通知"), buildTab(IconFont.zhanneixinguanli, "消息")],

@@ -2,8 +2,9 @@
 import { queryPaymentList } from '@/api/funds.api';
 import { useQuery } from '@tanstack/vue-query';
 import DepositForm from './DepositForm.vue';
+import Channel from './Channel.vue';
 
-const { isLoading, data } = useQuery({
+const { isLoading, data: channels } = useQuery({
     queryKey: ['diposit'],
     queryFn: () => queryPaymentList(),
     select(data) {
@@ -12,28 +13,27 @@ const { isLoading, data } = useQuery({
 })
 
 const next = ref(false)
-const channel = ref<model.funds.PaymentChannel>()
+const channel = ref<model.funds.Channel>()
 
 
 
 function deposit(index: number) {
-    channel.value = data.value![index]
+    channel.value = channels.value![index]
     next.value = true
 }
 </script>
 
 <template>
     <div class="" v-if="isLoading">Loading</div>
-    <div class="" v-else-if="!data || data.length === 0">empty</div>
-    <div v-else class="bg-#eef2f5 grid gap-24 pt-40 px-24">
-        <van-cell v-for="(channel, index) in data" :title="channel.name" is-link center title-class="pl-16 font-semibold"
-            class="h-112 rd-16" @click="deposit(index)">
+    <div class="" v-else-if="!channels || channels.length === 0">empty</div>
+    <van-cell-group v-else class="m-24">
+        <Channel v-for="(channel, index) in channels" :channel="channel" @click="deposit(index)">
             <template #icon>
-                <img :src="channel.logo" class="size-72 object-cover rd-full">
+                <img :src="channel.logo" class="size-48 scale-120 object-cover rd-full">
             </template>
 
-        </van-cell>
-    </div>
+        </channel>
+    </van-cell-group>
 
     <VanPopup teleport="body" v-model:show="next" position="bottom" title="Recharge Details" closeable
         class="pt-28 px-24">

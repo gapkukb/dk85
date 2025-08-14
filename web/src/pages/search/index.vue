@@ -1,64 +1,90 @@
 <script setup lang="ts">
-import { showToast } from 'vant';
-import Fitler from "./Filter.vue"
-import { useBack } from '@/composables/useBack';
 
+import { useQuery } from '@tanstack/vue-query'
+import GameSkeleton from '@/components/game/Skeleton.vue'
+import KindFilter from './KindFilter.vue'
+import PlatformFilter from './PlatformFilter.vue'
+import mock from './mock.json'
+import useLoadMore, { usePagination } from '@/composables/useLoadMore'
+import { GamesHelper } from '@/shared/game-helper'
 
-const value = ref('')
-const active = ref(0)
-const onSearch = (val: string) => showToast(val);
-const onClickButton = () => showToast(value.value);
-const tabs = [
-    { name: 'All', value: "all" },
-    { name: 'Slot', value: "slot" },
-    { name: 'Fishing', value: "fishing" },
-    { name: 'Poker', value: "poker" },
-    { name: 'Casino', value: "casino" },
+const kinds = [
+    {
+        name: '全部',
+        value: '',
+    },
+    {
+        name: '电子游戏',
+        value: 'SLOTS',
+    },
+    {
+        name: '捕鱼',
+        value: 'FISH',
+    },
+    {
+        name: '棋牌',
+        value: 'POKER',
+    },
 ]
-const platform = ref(tabs[0].value)
-const back = useBack()
+const backupKeyword = ref('')
+const keyword = ref('')
+const selectedKind = ref('')
+const selectedPlatforms = shallowRef<string[]>([''])
 
-function filter(value: string) {
-    platform.value = value;
+const { isLoading, data: filteredList } = useQuery({
+    gcTime: 0,
+    queryKey: ['search-games', keyword, selectedKind, selectedPlatforms] as const,
+    queryFn({ queryKey: [_, x, y, z] }) {
+        return GamesHelper.queryBy(x, y, z)
+    },
+})
+
+const { vIntersect, showList, add, hasMore } = usePagination<model.game.Game>(filteredList)
+
+async function filter(value: string) {
+    if (value === keyword.value) return
+    keyword.value = value
+    selectedKind.value = ''
+    selectedPlatforms.value = ['']
 }
-const fill = '#d5d5d5'
 </script>
 
 <template>
-    <header class="sticky top-0 bg-white z-1">
-        <van-search v-model="value" placeholder="请输入搜索关键词" shape="round" background="#fff" right-icon="search"
-            left-icon="" show-action autocomplete="off" clearable autofocus @search="onSearch"
-            @click-right-icon="onSearch(value)">
-            <template #action>
-                <!-- <div @click="onClickButton">All games</div> -->
-                <Fitler />
-            </template>
-            <template #left>
-                <button class="block w-42 ml--12 text-18" @click="back">
-                    <van-icon name="arrow-left" />
-                </button>
-            </template>
-        </van-search>
-        <div class="flex h-40 px-12 py-8">
-            <button v-for="tab in tabs" class="px-8" :class="{ 'search-tab-active': tab.value === platform }"
-                @click="filter(tab.value)">{{ tab.name
-                }}</button>
-        </div>
-    </header>
-    <Skeleton repeatable fixed item-height="300" item-width="250" width="96.8%">
-        <rect x="24" width="234" height="264" />
-        <rect x="24" width="234" height="156" :fill="fill" />
-        <rect x="32" y="172" width="200" height="28" :fill="fill" />
-        <rect x="32" y="220" width="100" height="28" :fill="fill" />
-        <circle cx="220" cy="232" r="16" :fill="fill" />
-    </Skeleton>
-    <!-- <main class="grid grid-cols-3 gap-8 px-12 isolate">
-        <GameCard v-for="i in 30" class="aspect-ratio-70/100 bg-#eee rd-4" />
-    </main> -->
+    <nav-bar>
+        <van-field v-model.trim="backupKeyword" type="search" class="search-field" placeholder="请输入搜索关键词"
+            background="#fff" right-icon="search" autocomplete="off" clearable @search="filter"
+            @click-right-icon="filter(backupKeyword)" />
+
+        <template #actions>
+            <PlatformFilter v-model="selectedPlatforms" />
+        </template>
+    </nav-bar>
+
+    <KindFilter v-model="selectedKind" :kinds="kinds" class="" />
+
+    <div class="h-72"></div>
+
+    <div v-if="isLoading" class="fixed grid grid-cols-3 left-24 right-24 gap-16">
+        <GameSkeleton v-for="i in 21" />
+    </div>
+
+    <empty v-else-if="!filteredList?.length" description="" />
+
+    <main v-else class="grid grid-cols-3 gap-16">
+        <Game v-for="(item, index) in showList" :poster="item.img" :name="item.name" :platform-name="item.platform"
+            :count="item.like_num" :index="index" />
+    </main>
+    <div v-if="hasMore" class="size-1" v-intersect="add"></div>
 </template>
 
 <style lang="scss">
 .search-tab-active {
     @apply bg-#ff5800 text-#fff font-bold rd-2;
+}
+
+.search-field {
+    @apply flex-1 rd-full px-24 py-12;
+    // --van-search-input-height: 72px;
+    // --van-cell-line-height: 36px;
 }
 </style>

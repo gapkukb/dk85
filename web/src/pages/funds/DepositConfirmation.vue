@@ -3,12 +3,13 @@ import { asyncConfirmDeposit } from '@/api/funds.api';
 import useAsyncFunction from '@/composables/useAsyncFunction';
 import { useBack } from '@/composables/useBack';
 import { URLHelper } from '@/helper/url';
+import { router } from '@/router';
 import { formatter } from '@/utils/number';
 import { useQuery } from '@tanstack/vue-query';
-import { showToast, type FieldInstance } from 'vant';
+import { showSuccessToast, showToast, type FieldInstance } from 'vant';
 
 const q = useRoute().query.q as any
-const order = URLHelper.decode(q) as model.funds.PaymentResult & model.funds.PaymentChannel & { amount: string }
+const order = URLHelper.decode(q) as model.funds.PaymentResult & model.funds.Channel & { amount: string }
 console.log(order);
 
 const back = useBack()
@@ -21,8 +22,14 @@ const { doing, successful, todo } = useAsyncFunction(async () => {
         bank_serial: id.value,
         account_id: order.id,
     })
-    showToast(t("funds.submitted"))
-    back();
+    showSuccessToast({
+        message: t("funds.submitted"),
+        closeOnClick: false,
+        closeOnClickOverlay: false,
+        onClose() {
+            router.replace('/funds/deposit')
+        },
+    })
 })
 
 function confirm() {

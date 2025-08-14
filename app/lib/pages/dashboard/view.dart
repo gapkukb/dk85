@@ -13,24 +13,14 @@ class DashboardPage extends GetView<DashboardController> {
     return GetBuilder<DashboardController>(
       builder: (_) {
         return Scaffold(
-          extendBody:
-              true, // This is crucial to extend the body behind the nav bar
-          body: Navigator(
-            key: Get.nestedKey(1),
-            initialRoute: Routes.HOME,
-            onGenerateRoute: controller.onGenerateRoute,
-          ),
+          extendBody: true, // This is crucial to extend the body behind the nav bar
+          body: Navigator(key: Get.nestedKey(1), initialRoute: Routes.HOME, onGenerateRoute: controller.onGenerateRoute),
           bottomNavigationBar: Theme(
-            data: ThemeData(
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-            ),
+            data: ThemeData(splashColor: Colors.transparent, highlightColor: Colors.transparent),
             child: Container(
               height: 48,
               decoration: const BoxDecoration(
-                border: Border(
-                  top: BorderSide(color: Colors.black12, width: 0.5),
-                ),
+                border: Border(top: BorderSide(color: Colors.black12, width: 0.5)),
               ),
               child: Obx(
                 () => BottomNavigationBar(
@@ -45,10 +35,7 @@ class DashboardPage extends GetView<DashboardController> {
                   unselectedFontSize: 10,
                   type: BottomNavigationBarType.fixed,
                   items: controller.tabs.map((tab) {
-                    return BottomNavigationBarItem(
-                      icon: Icon(tab.icon),
-                      label: tab.label,
-                    );
+                    return BottomNavigationBarItem(icon: Icon(tab.icon), label: tab.label);
                   }).toList(),
                   onTap: controller.changePage,
                 ),

@@ -19,16 +19,16 @@ class SettingsView extends StatelessWidget {
             AkTileGroup(
               children: [
                 AkTile(
-                  isLink: true,
-                  title: "登录密码",
-                  valueWidget: buildValue("3123213123123"),
+                  showArrow: true,
+                  titleText: "登录密码",
+                  trailingText: buildValue("3123213123123"),
                   onTap: () {
                     Get.toNamed(Routes.UPDATE_PASSWROD);
                   },
                 ),
-                const AkTile(title: "手机号码"),
-                const AkTile(title: "邮箱"),
-                AkTile(title: "真实姓名", valueWidget: buildValue("AK47")),
+                const AkTile(titleText: "手机号码"),
+                const AkTile(titleText: "邮箱"),
+                AkTile(titleText: "真实姓名", trailingText: buildValue("AK47")),
               ],
             ),
           ],

@@ -22,7 +22,7 @@ class I18n extends Translations {
 
   static final supported = [km_KH, my_MM, en_US, fil_PH, zh_CN];
 
-  static final defaultLocale = km_KH;
+  static final defaultLocale = my_MM;
 
   static _Locale getLocale(String key) => supported.firstWhere((x) => x.code == key || x.languageCode == key || x.countryCode == key || x.areaCode == key, orElse: () => defaultLocale);
 
@@ -30,7 +30,7 @@ class I18n extends Translations {
 
   static Locale? get locale => Locale(storage.locale.value);
 
-  static const fallbackLocale = Locale('km');
+  static const fallbackLocale = Locale('my');
 
   final Map<String, Map<String, String>> _keys = {'en': en, 'zh': zh, 'km': km, 'my': my, 'fil': fil};
 
@@ -65,7 +65,8 @@ class I18n extends Translations {
   }
 
   setup() {
-    Get.updateLocale(Locale(storage.locale.value));
+    // Get.updateLocale(Locale(storage.locale.value));
+    Get.updateLocale(const Locale("my"));
   }
 }
 

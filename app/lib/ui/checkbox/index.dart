@@ -24,7 +24,7 @@ class AkCheckbox<T> extends StatelessWidget {
     required this.onChanged,
     this.activeIcon = Symbols.task_alt,
     this.inactiveIcon = Symbols.circle,
-    this.activeColor = AppColors.danger,
+    this.activeColor = AppColors.primary,
     this.inactiveColor = AppColors.description,
     this.readonly = false,
     this.size = 20.0,

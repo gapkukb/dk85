@@ -1,14 +1,18 @@
 <script setup lang="ts">
 import { queryGameUrl } from '@/api/game.api';
 import useDelegate from '@/composables/useDelegate'
+import useIsNotAuthenticated from '@/composables/useIsAuthenticated';
 import useLoadMore, { usePagination } from '@/composables/useLoadMore'
+import { useUser } from '@/stores/user.store';
 import { showDialog } from 'vant'
 
 const props = defineProps<{ listClass?: any; titleClass?: any; title?: string; games?: model.game.Game[]; gameClass?: any; cols?: number | string; paginable?: boolean }>()
+const user = useUser()
 const todo = useDelegate({
     // attrs: ['data-game-index', 'data-fav-index'] as const,
     attrs: ['data-game-index'] as const,
     async hanlder(value, attr) {
+        if (useIsNotAuthenticated()) return;
         await showDialog({
             title: '即将进入游戏!',
             showCancelButton: true,
@@ -21,11 +25,11 @@ const todo = useDelegate({
             mobile: 1,
         })
         const gameUrl = window.encodeURIComponent(window.encodeURIComponent(url))
-        window.open('/gaming.html?gameUrl='+gameUrl, 'gaming')
+        window.open('/gaming.html?gameUrl=' + gameUrl, 'gaming')
     },
 })
 
-const { add, hasMore, showList, vIntersect } = usePagination(() => props.games || [])
+const { add, hasMore, showList, vIntersect } = usePagination(computed(() => props.games || []))
 
 
 </script>

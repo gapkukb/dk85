@@ -1,4 +1,4 @@
-import { queryBalance } from '@/api/user.api'
+import { queryBalance } from '@/api'
 import { useUser } from '@/stores/user.store'
 import { formatter } from '@/utils/number'
 
@@ -9,7 +9,7 @@ async function refresh() {
     const user = useUser()
     if (!user.authenticated || loading.value) return
     loading.value = true
-    return Promise.all([queryBalance(), Promise.delay(5000)])
+    return Promise.all([queryBalance(), Promise.delay(300)])
         .then(([n]) => {
             balance.value = n.balance
             return n
@@ -21,5 +21,6 @@ async function refresh() {
 
 export default function useBalance() {
     refresh()
-    return { balance, refresh, loading }
+    const formattedBalance = computed(() => formatter.commatize(balance.value, 2))
+    return { balance, refresh, loading, formattedBalance }
 }

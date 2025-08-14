@@ -1,9 +1,9 @@
+import 'package:easy_refresh/easy_refresh.dart';
 import '../../widgets/game_card.dart';
 import '../../widgets/network_picture.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import 'index.dart';
 
@@ -16,11 +16,7 @@ class ForuPage extends GetView<ForuController> {
       init: ForuController(),
       id: "foru",
       builder: (_) {
-        return SmartRefresher(
-          controller: controller.refreshController,
-          enablePullDown: true,
-          enablePullUp: true,
-          onLoading: controller.onLoadMore,
+        return EasyRefresh(
           onRefresh: controller.onRefresh,
           child: CustomScrollView(
             slivers: [
@@ -42,10 +38,7 @@ class ForuPage extends GetView<ForuController> {
                       color: Colors.transparent,
                       borderRadius: const BorderRadius.all(Radius.circular(4)),
                       clipBehavior: Clip.hardEdge,
-                      child: NetworkPicture(
-                        imageUrl:
-                            "https://c66hkp.s3.ap-east-1.amazonaws.com/57e4d3ea-9655-41b1-8c9f-31f187fd880f1",
-                      ),
+                      child: NetworkPicture(imageUrl: "https://c66hkp.s3.ap-east-1.amazonaws.com/57e4d3ea-9655-41b1-8c9f-31f187fd880f1"),
                     );
                   }).toList(),
                 ),
@@ -54,33 +47,18 @@ class ForuPage extends GetView<ForuController> {
                 child: Container(
                   height: 20,
                   padding: const EdgeInsets.only(left: 8),
-                  margin: const EdgeInsets.only(
-                    left: 8,
-                    right: 0,
-                    top: 16,
-                    bottom: 8,
-                  ),
+                  margin: const EdgeInsets.only(left: 8, right: 0, top: 16, bottom: 8),
                   decoration: const BoxDecoration(
-                    border: Border(
-                      left: BorderSide(color: Color(0xffff5800), width: 4),
-                    ),
+                    border: Border(left: BorderSide(color: Color(0xffff5800), width: 4)),
                   ),
-                  child: const Text(
-                    "Most Popular",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
+                  child: const Text("Most Popular", style: TextStyle(fontWeight: FontWeight.bold)),
                 ),
               ),
               SliverPadding(
                 padding: const EdgeInsetsGeometry.all(8),
                 sliver: SliverGrid.builder(
                   itemCount: 100,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    childAspectRatio: 70 / 100,
-                    crossAxisSpacing: 8,
-                    mainAxisSpacing: 8,
-                  ),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, childAspectRatio: 70 / 100, crossAxisSpacing: 8, mainAxisSpacing: 8),
                   itemBuilder: (context, index) {
                     return const GameCard();
                   },

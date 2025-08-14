@@ -1,14 +1,5 @@
-window.addEventListener(
-    'error',
-    function (event) {
-        if (event.target instanceof HTMLImageElement) {
-            event.target.classList.add('_img_error')
-        }
-    },
-    true
-)
+
 import './styles'
-import '@/api/_http'
 import { createApp } from 'vue'
 import { VueQueryPlugin } from '@tanstack/vue-query'
 import { MotionPlugin } from '@vueuse/motion'
@@ -20,13 +11,27 @@ import { router } from './router'
 import setup from './setup'
 import diretives from './diretives'
 import { Lazyload } from 'vant'
-import db from './utils/db'
 await bootstrap()
 const app = createApp(App)
-app.use(stores).use(VueQueryPlugin).use(i18n).use(router).use(diretives).use(MotionPlugin).use(Lazyload, {
-    loading: '',
-    error: '1',
-})
+app.use(stores)
+    .use(VueQueryPlugin, {
+        queryClientConfig: {
+            defaultOptions: {
+                queries: {
+                    retry: 0,
+                    networkMode:'online'
+                },
+            },
+        },
+    })
+    .use(i18n)
+    .use(router)
+    .use(diretives)
+    .use(MotionPlugin)
+    .use(Lazyload, {
+        loading: '1',
+        error: '1',
+    })
 setup()
 // await setup()
 app.mount('#app')

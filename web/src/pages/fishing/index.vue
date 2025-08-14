@@ -1,17 +1,20 @@
 <script setup lang="ts">
-import useLoadMore from '@/composables/useLoadMore'
-import useQueryGameList from '@/composables/useQueryGameList';
-import { GAME_TYPE } from '@/constants/game.const';
+import { GamesHelper } from '@/shared/game-helper';
+import { useQuery } from '@tanstack/vue-query';
 
-const props = defineProps<{ loading: boolean, games: model.game.GamesObject }>()
-const games = computed(() => props.loading ? [] : props.games.FISH)
+
+const { isLoading, data: games } = useQuery({
+    queryKey: ['FISH'],
+    queryFn: () => GamesHelper.queryByKind('FISH')
+})
+
 </script>
 
 <template>
     <div class="home-view">
-         <HomeBanner :position="3" />
+        <HomeBanner :position="3" />
         <div class="h-36"></div>
-        <GameTable title="ALL GAMES" :games="games"/>
+        <GameTable title="ALL GAMES" :games="games" />
     </div>
 </template>
 

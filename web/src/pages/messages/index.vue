@@ -7,31 +7,17 @@ const tab = ref(0)
 </script>
 
 <template>
-    <nav-bar
-        :title="$t('page.messages')"
-        class="messages"
-    >
+    <nav-bar :title="$t('page.messages')" class="messages">
         <template #actions>
             <van-badge dot>
-                <button
-                    class="van-haptics-feedback fs-40"
-                    :class="{ 'text-#aaa': tab === 1 }"
-                    @click="tab = 0"
-                >
+                <button class="van-haptics-feedback fs-40" :class="{ 'text-#aaa': tab === 1 }" @click="tab = 0">
                     <van-icon name="volume-o" />
                 </button>
             </van-badge>
-            <div class="w-32"></div>
-            <van-badge
-                dot
-                @click.stop=""
-            >
+            <!-- <div class="w-16"></div> -->
+            <van-badge dot @click.stop="">
                 <!-- Notification -->
-                <button
-                    class="van-haptics-feedback fs-40"
-                    :class="{ 'text-#aaa': tab === 0 }"
-                    @click="tab = 1"
-                >
+                <button class="van-haptics-feedback fs-40" :class="{ 'text-#aaa': tab === 0 }" @click="tab = 1">
                     <van-icon name="envelop-o" />
                 </button>
             </van-badge>

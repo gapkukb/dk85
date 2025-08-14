@@ -36,7 +36,7 @@ const pageName = computed(() => {
     </div>
     <AppFooter v-if="$route.meta.footer" />
     <!-- 公告弹窗 -->
-    <Announcement />
+    <!-- <Announcement /> -->
     <!-- 各类弹窗页面 -->
     <ModalsView />
     <!-- 背景音乐 -->

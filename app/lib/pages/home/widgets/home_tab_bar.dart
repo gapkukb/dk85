@@ -1,3 +1,4 @@
+import '../../../theme/index.dart';
 import 'home_tab_bar_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -5,19 +6,19 @@ import '/iconfont/index.dart';
 import 'package:flutter/material.dart';
 
 class _HomeTabBar {
-  final IconData icon;
+  final AssetImage icon;
   final String label;
-  final Color color;
-  const _HomeTabBar(this.icon, this.label, this.color);
+  // final Color color;
+  const _HomeTabBar(this.icon, this.label);
 }
 
 class HomeTabBar extends StatelessWidget implements PreferredSizeWidget {
-  static const tabs = <_HomeTabBar>[
-    _HomeTabBar(IconFont.hotfill, '热门', Color(0xfffe0002)),
-    _HomeTabBar(IconFont.slots, '老虎机', Color(0xff00cfa7)),
-    _HomeTabBar(IconFont.buyu, '捕鱼', Color(0xfffe8e02)),
-    _HomeTabBar(IconFont.qipai, '棋牌', Color(0xff9300ff)),
-    _HomeTabBar(IconFont.chouma, '真人', Color(0xfffb01ff)),
+  static final tabs = <_HomeTabBar>[
+    const _HomeTabBar(AssetImage("assets/images/hot.webp"), 'app.foru'),
+    const _HomeTabBar(AssetImage("assets/images/slots.webp"), 'app.slots'),
+    const _HomeTabBar(AssetImage("assets/images/fishing.webp"), 'app.fishing'),
+    const _HomeTabBar(AssetImage("assets/images/poker.webp"), 'app.poker'),
+    // _HomeTabBar(const AssetImage("assets/images/casino.webp"), '真人'.tr),
   ];
 
   const HomeTabBar({super.key});
@@ -26,20 +27,52 @@ class HomeTabBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return TabBar(
       labelStyle: const TextStyle(fontSize: 12),
-      indicator: UnderlineArrowTabIndicator(color: const Color(0xffff5800), radius: 10),
       dividerHeight: 0,
+      indicatorWeight: 0,
+      labelColor: Colors.white,
+      indicator: RoundedTabIndicator(height: 20, color: AppColors.primary),
       tabs: tabs.map((tab) {
-        return Column(
-          children: [
-            Icon(tab.icon, color: tab.color, size: 20),
-            Text(tab.label, style: const TextStyle(color: Color(0xff111111))),
-            const SizedBox(height: 4),
-          ],
+        return Tab(
+          height: 56,
+          icon: Image(image: tab.icon, width: 28, height: 28),
+          text: tab.label.tr,
         );
       }).toList(),
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(40);
+  Size get preferredSize => const Size.fromHeight(56);
+}
+
+class RoundedTabIndicator extends Decoration {
+  RoundedTabIndicator({Color color = Colors.white, double radius = 2.0, double height = 4.0, double bottomMargin = 10.0}) : _painter = _RoundedRectanglePainter(color, height, radius, bottomMargin);
+
+  final BoxPainter _painter;
+
+  @override
+  BoxPainter createBoxPainter([VoidCallback? onChanged]) {
+    return _painter;
+  }
+}
+
+class _RoundedRectanglePainter extends BoxPainter {
+  _RoundedRectanglePainter(Color color, this.height, this.radius, this.bottomMargin)
+    : _paint = Paint()
+        ..color = color
+        ..isAntiAlias = true;
+
+  final Paint _paint;
+  final double radius;
+  final double height;
+  final double bottomMargin;
+
+  @override
+  void paint(Canvas canvas, Offset offset, ImageConfiguration cfg) {
+    final centerX = (cfg.size?.width ?? 0) / 2 + offset.dx;
+    final bottom = (cfg.size?.height) ?? 0 - bottomMargin;
+    final halfWidth = cfg.size?.width ?? 0 / 2;
+    final Rect rect = (offset - const Offset(0, 4)) & cfg.size!;
+    canvas.drawRRect(RRect.fromLTRBR(rect.left - 4, rect.bottom - height, rect.right + 4, rect.bottom, Radius.circular(radius)), _paint);
+  }
 }

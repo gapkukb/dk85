@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { asyncDeposit } from '@/api/funds.api';
+import { deposit } from '@/api';
 import useAsyncFunction from '@/composables/useAsyncFunction';
 import { URLHelper } from '@/helper/url';
 import { router } from '@/router';
 import { showToast } from 'vant';
 
-const props = defineProps<{ channel: model.funds.PaymentChannel }>()
+const props = defineProps<{ channel: model.funds.Channel }>()
 
 const amount = ref('')
 const { doing, successful, todo } = useAsyncFunction(async () => {
     const c = props.channel
-    const result = await asyncDeposit({
+    const result = await deposit({
         // 	string	支付接口ID
         account_id: c.id,
         //是	string	金额

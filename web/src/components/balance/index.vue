@@ -2,7 +2,7 @@
 import useBalance from '@/composables/useBalance'
 import { formatter } from '@/utils/number'
 
-const { balance, loading, refresh } = useBalance()
+const { balance, loading, refresh, formattedBalance } = useBalance()
 
 defineSlots<{
     default(props: { balance: number; loading: boolean }): any
@@ -15,27 +15,13 @@ defineProps<{ balanceClass?: any; buttonClass?: string; iconClass?: string }>()
 
 <template>
     <div class="inline-flex items-center gap-[0.2em]">
-        <slot
-            :balance="balance"
-            :loading="loading"
-        >
-            <h6 :class="balanceClass">{{ formatter.commatize(balance, 2) }}</h6>
+        <slot :balance="balance" :loading="loading">
+            <h6 :class="balanceClass">{{ formattedBalance }}</h6>
         </slot>
-        <slot
-            name="button"
-            :balance="balance"
-            :loading="loading"
-        >
-            <button
-                :class="[buttonClass, { spin: loading }]"
-                @click="refresh"
-            >
-                <slot
-                    name="icon"
-                    :balance="balance"
-                    :loading="loading"
-                >
-                   <i class="iconfont iconfont-refresh block" :class="iconClass"></i>
+        <slot name="button" :balance="balance" :loading="loading">
+            <button :class="[buttonClass, { spin: loading }]" @click="refresh">
+                <slot name="icon" :balance="balance" :loading="loading">
+                    <i class="iconfont iconfont-refresh block" :class="iconClass"></i>
                 </slot>
             </button>
         </slot>

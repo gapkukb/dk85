@@ -2,6 +2,7 @@ import { useUser } from '@/stores/user.store'
 import loginViaAccount from './loginViaAccount'
 import loginViaOauth from './loginViaOauth'
 import loginViaTicket from './loginViaTicket'
+import TokenManager from '@/shared/token-manager'
 
 export enum LoginType {
     Account,
@@ -17,12 +18,12 @@ function _login(payload: any, type?: LoginType) {
     return loginViaAccount(payload)
 }
 
-export default function login(payload: any, type?: LoginType): Promise<model.user.vo.Login> {
+export default async function login(payload: any, type?: LoginType): Promise<model.user.vo.Login> {
     const user = useUser()
-    return _login(payload, type).then((vo) => {
-        user.setUser(vo)
-        return vo
-    })
+    const vo = await _login(payload, type)
+    TokenManager.set(vo.token)
+    await user.updateUser()
+    return vo
 }
 
 export { login }

@@ -24,7 +24,7 @@ class _ViewState extends State<SpalashView> {
             child: Material(
               borderRadius: BorderRadius.circular(100),
               textStyle: const TextStyle(fontSize: 12, color: Colors.white),
-              color: AppColors.danger,
+              color: AppColors.primary,
               child: const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 child: Row(

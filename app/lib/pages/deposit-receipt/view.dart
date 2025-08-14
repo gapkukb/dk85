@@ -11,28 +11,17 @@ class DepositReceiptView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CupertinoNavigationBar(
-        automaticallyImplyLeading: true,
-        middle: Text("Recharge Details"),
-        trailing: ServiceCalling(),
-      ),
+      appBar: const CupertinoNavigationBar(automaticallyImplyLeading: true, middle: Text("Recharge Details"), trailing: ServiceCalling()),
       body: ListView(
         children: [
-          const Row(
-            children: [Text("Receiving Account", style: AppText.title)],
-          ),
+          const Row(children: [Text("Receiving Account", style: AppText.title)]),
           buildItem(
             title: "Receiving Account",
             child: Row(
               mainAxisSize: MainAxisSize.min,
               spacing: 4,
               children: [
-                NetworkPicture(
-                  imageUrl:
-                      "https://imgcdn.knryywqf.com/upload/images/202501/34989806-89dd-4b1f-9609-ee0e7541614e.jpg",
-                  width: 28,
-                  height: 28,
-                ),
+                NetworkPicture(imageUrl: "https://imgcdn.knryywqf.com/upload/images/202501/34989806-89dd-4b1f-9609-ee0e7541614e.jpg", width: 28, height: 28),
                 const Text("KBZpay", style: AppText.title),
               ],
             ),
@@ -49,15 +38,12 @@ class DepositReceiptView extends StatelessWidget {
             title: "Amount Due",
             child: RichText(
               text: const TextSpan(
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.danger,
-                ),
+                style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.primary),
                 text: "20000.00",
                 children: [
                   TextSpan(
                     text: " MMK",
-                    style: TextStyle(color: AppColors.primary),
+                    style: TextStyle(color: AppColors.title),
                   ),
                 ],
               ),
@@ -70,7 +56,7 @@ class DepositReceiptView extends StatelessWidget {
               children: [
                 TextSpan(
                   text: "(Required)",
-                  style: TextStyle(color: AppColors.danger),
+                  style: TextStyle(color: AppColors.primary),
                 ),
               ],
             ),

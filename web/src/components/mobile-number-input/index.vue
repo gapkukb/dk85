@@ -31,6 +31,7 @@ watchEffect(() => {
         maxlength="9"
         :placeholder="$t('form.placeholder.phone')"
         :rules="rules"
+        size="large"
     >
         <template #left-icon>
             <CountryPicker

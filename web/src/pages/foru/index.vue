@@ -1,7 +1,11 @@
 <script setup lang="ts">
-const props = defineProps<{ loading: boolean, games: model.game.GamesObject }>()
-const games = computed(() => props.loading ? [] : props.games.SLOTS)
+import { GamesHelper } from '@/shared/game-helper';
+import { useQuery } from '@tanstack/vue-query';
 
+const { isLoading, data: games } = useQuery({
+    queryKey: ['foru'],
+    queryFn: () => GamesHelper.queryByKind('SLOTS1')
+})
 </script>
 
 <template>

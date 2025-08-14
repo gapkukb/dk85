@@ -48,4 +48,5 @@ export default {
     auto:"自动发放",
     details:"详情",
     waiting:"请稍后...",
+    requridAuth:"请先登录",
 }

@@ -14,21 +14,12 @@ const { balance, refresh, loading } = useBalance()
         <slot name="header"></slot>
         <div class="text-28 flex items-center justify-between gap-16">
             <span>{{ $t('app.balance') }}</span>
-            <button
-                class="lh-1 expand-16 fs-32"
-                :class="{ spin: loading }"
-                @click="refresh"
-            >
+            <button class="lh-1 expand-16 fs-32" :class="{ spin: loading }" @click="refresh">
                 <i class="iconfont iconfont-refresh"></i>
             </button>
         </div>
         <h1 class="flex items-baseline">
-            <count-up
-                :end-val="balance"
-                :duration="1"
-                :decimal-places="2"
-                class="text-80 font-bold"
-            />
+            <count-up :key="balance" :end-val="balance" :duration="1" :decimal-places="2" class="text-80 font-bold" />
             <span class="text-48 pl-8">MMK</span>
         </h1>
 

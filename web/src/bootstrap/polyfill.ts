@@ -7,8 +7,21 @@ Object.defineProperty(Promise, 'delay', {
 
 Object.defineProperty(Array.prototype, 'has', {
     value(this: Array<any>, item: any) {
-        if(this.length===0) return false;
+        if (this.length === 0) return false
         return new Set(this).has(item)
+    },
+})
+
+Object.defineProperties(EventTarget.prototype, {
+    on: {
+        get(this: EventTarget) {
+            return this.addEventListener
+        },
+    },
+    off: {
+        get(this: EventTarget) {
+            return this.removeEventListener
+        },
     },
 })
 
@@ -18,5 +31,9 @@ declare global {
     }
     interface Array<T> {
         has(item: T): boolean
+    }
+    interface EventTarget {
+        on: this['addEventListener']
+        off: this['removeEventListener']
     }
 }
