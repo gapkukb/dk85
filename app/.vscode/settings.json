@@ -3,7 +3,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": "always"
   },
-  "java.configuration.updateBuildConfiguration": "interactive",
+  "java.configuration.updateBuildConfiguration": "automatic",
   // "code-runner.executorMap": {
   //   "dart": "dart --enable-experiment=macros"
   // },

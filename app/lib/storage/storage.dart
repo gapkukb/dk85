@@ -9,6 +9,7 @@ class _Storage {
   final music = _StoreageItem<bool>(_global, "music", true);
   final token = _StoreageItem<String>(_global, "token", '');
   final user = _StoreageItem<Object>(_user, "user", '');
+  final allGame = _StoreageItem<Object>(_user, "all-game", '');
 }
 
 final storage = _Storage();

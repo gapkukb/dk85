@@ -17,7 +17,7 @@ class _Picker extends StatefulWidget {
 class __PickerState extends State<_Picker> {
   @override
   Widget build(BuildContext context) {
-    return AkActionsheet(
+    return AKActionsheet(
       AkCheckboxList(
         initialValue: widget.initValue,
         actions: I18n.supported.map((item) {

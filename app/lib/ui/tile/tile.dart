@@ -138,6 +138,6 @@ class AkTile extends ListTile {
 
   Widget? buildArrow() {
     if (!showArrow) return null;
-    return const Icon(IconFont.a_jiantoushoubingjiantou, size: 20, color: AppColors.primary);
+    return const Icon(IconFont.arrow_right, size: 20, color: AppColors.primary);
   }
 }

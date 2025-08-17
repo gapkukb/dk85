@@ -10,8 +10,8 @@ import 'package:get/get.dart';
 
 import 'index.dart';
 
-class PromosPage extends GetView<PromosController> {
-  const PromosPage({super.key});
+class PromosView extends GetView<PromosController> {
+  const PromosView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,6 @@ class PromosPage extends GetView<PromosController> {
             body: CustomScrollView(
               slivers: [
                 const SliverToBoxAdapter(child: CheckInWidget()),
-
                 SliverPadding(
                   padding: const EdgeInsetsGeometry.all(12),
                   sliver: SliverList.separated(

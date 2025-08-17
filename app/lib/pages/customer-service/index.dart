@@ -1,3 +1,4 @@
+import '../../iconfont/index.dart';
 import '../../widgets/webview.dart';
 import 'package:flutter/material.dart';
 
@@ -6,8 +7,13 @@ class CustomerServiceView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const WebviewView(
-      "https://www.chatfun666.com/chat/serverLogin?initializeType=server&serverNo=sc770014224833410902844454240023&companyId=mg888&memberId=&memberName=&language=km",
+    return Scaffold(
+      floatingActionButton: FloatingActionButton.small(
+        onPressed: () {},
+        child: const BackButton(color: Colors.white),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
+      body: const WebviewView("https://www.chatfun666.com/chat/serverLogin?initializeType=server&serverNo=sc770014224833410902844454240023&companyId=mg888&memberId=&memberName=&language=my"),
     );
   }
 }

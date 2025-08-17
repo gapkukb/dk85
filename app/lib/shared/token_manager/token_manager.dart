@@ -1,17 +1,19 @@
-abstract class TokenManager {
-  static String? accessToken;
-  static String? refreshToken;
+class TokenManager {
+  String? accessToken;
+  String? refreshToken;
 
-  static set(String? accessToken, [String? refreshToken]) {
+  bool get hasToken => accessToken?.isNotEmpty ?? false;
+
+  set(String? accessToken, [String? refreshToken]) {
     if (accessToken == null) {
-      TokenManager.accessToken = 'Bearer $accessToken';
+      accessToken = 'Bearer $accessToken';
     } else {
-      TokenManager.accessToken = accessToken;
+      accessToken = accessToken;
     }
-    TokenManager.refreshToken = refreshToken;
+    refreshToken = refreshToken;
   }
 
-  static clear() {
+  clear() {
     accessToken = null;
     refreshToken = null;
   }

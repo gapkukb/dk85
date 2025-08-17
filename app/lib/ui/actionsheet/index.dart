@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 
 import '../button/index.dart';
 
-class AkActionsheet extends StatelessWidget {
+class AKActionsheet extends StatelessWidget {
   final Widget child;
-  const AkActionsheet(this.child, {super.key});
+  const AKActionsheet(this.child, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +22,11 @@ class AkActionsheet extends StatelessWidget {
               child: Material(type: MaterialType.transparency, child: child),
             ),
             const SizedBox(height: 8),
-            Button(
+            AKButton(
               onPressed: () {
                 Get.back();
               },
-              text: "取消",
+              text: "app.close".tr,
               color: Colors.white,
               minWidth: 1000,
               radius: 8,

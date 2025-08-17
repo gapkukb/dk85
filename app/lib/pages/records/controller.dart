@@ -14,7 +14,7 @@ class RecordsController extends GetxController {
   }
 
   Route onGenerateRoute(RouteSettings settings) {
-    if (settings.name == Routes.DASHBOARD + Routes.RECORDS + Routes.RECORDS_FUNDS) {
+    if (settings.name == Routes.recordsFunds) {
       return GetPageRoute(settings: settings, page: () => const RecordsFundsView(), binding: RecordsFundsBinding());
     }
     return GetPageRoute(settings: settings, page: () => const SizedBox());

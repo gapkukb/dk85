@@ -1,4 +1,8 @@
+import 'package:nil/nil.dart';
+
 import '../../iconfont/index.dart';
+import '../../routes/middlewares/ensure_auth_middleware.dart';
+import '../../services/index.dart';
 import '../announcement/index.dart';
 import '../funds/index.dart';
 import '../home/bindings.dart';
@@ -16,32 +20,36 @@ class Tab {
   final String routeName;
   final Widget Function()? page;
   final Bindings binding;
+  final List<GetMiddleware>? middlewares;
 
-  const Tab({required this.icon, required this.label, required this.routeName, required this.page, required this.binding});
+  const Tab({required this.icon, required this.label, required this.routeName, required this.page, required this.binding, this.middlewares});
 }
 
 class DashboardController extends GetxController {
   DashboardController();
   final currentIndex = 0.obs;
   final tabs = [
-    Tab(icon: IconFont.qipaishi, label: "首页", routeName: Routes.HOME, page: () => const HomeView(), binding: HomeBinding()),
-    Tab(icon: IconFont.liwu, label: "福利", routeName: Routes.PROMOS, page: () => const PromosPage(), binding: PromosBinding()),
-    Tab(icon: IconFont.qianbao, label: "钱包", routeName: Routes.FUNDS, page: () => const FundsPage(), binding: FundsBinding()),
-    Tab(icon: IconFont.yonghu, label: "我的", routeName: Routes.ME, page: () => const MePage(), binding: MeBinding()),
+    Tab(icon: IconFont.qipaishi, label: "首页", routeName: Routes.home, page: () => const HomeView(), binding: HomeBinding()),
+    Tab(icon: IconFont.liwu, label: "福利", routeName: Routes.promos, page: () => const PromosView(), binding: PromosBinding()),
+    Tab(icon: IconFont.qianbao, label: "钱包", routeName: Routes.funds, page: () => const FundsView(), binding: FundsBinding(), middlewares: [EnsureAuthMiddleware()]),
+    Tab(icon: IconFont.yonghu, label: "我的", routeName: Routes.me, page: () => const MeView(), binding: MeBinding(), middlewares: [EnsureAuthMiddleware()]),
   ];
 
   void changePage(int index) {
-    Get.offAndToNamed(tabs[index].routeName, id: 1);
-    currentIndex.value = index;
+    if (index > 1 && !AuthService.to.authenticated) {
+      Get.toNamed(Routes.auth);
+    } else {
+      Get.toNamed(tabs[index].routeName, id: 1);
+      currentIndex.value = index;
+    }
   }
 
   Route? onGenerateRoute(RouteSettings settings) {
     final tab = tabs.firstWhereOrNull((item) => item.routeName == settings.name);
 
     if (tab == null) {
-      return GetPageRoute(settings: settings, page: () => const Text(""));
+      return GetPageRoute(settings: settings, page: () => const SizedBox());
     }
-
-    return GetPageRoute(settings: settings, page: tab.page, binding: tab.binding, transition: Transition.cupertino);
+    return GetPageRoute(settings: settings, page: tab.page, binding: tab.binding, transition: Transition.cupertino, middlewares: tab.middlewares);
   }
 }

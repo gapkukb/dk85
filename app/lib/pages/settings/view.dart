@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +22,7 @@ class SettingsView extends StatelessWidget {
                   titleText: "登录密码",
                   trailingText: buildValue("3123213123123"),
                   onTap: () {
-                    Get.toNamed(Routes.UPDATE_PASSWROD);
+                    Get.toNamed(Routes.updatePasswrod);
                   },
                 ),
                 const AkTile(titleText: "手机号码"),

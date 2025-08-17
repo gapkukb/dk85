@@ -1,0 +1,3 @@
+class GameManager {
+  final all = [];
+}

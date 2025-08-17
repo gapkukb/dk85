@@ -10,4 +10,5 @@ abstract class AppColors {
   static const description = Color(0xff999999);
   static const border = Color(0xffeeeeee);
   static const background = Color(0xffeef2f5);
+  static const secondaryBackground = Color(0xffdddddd);
 }

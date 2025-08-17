@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../theme/index.dart';
-import '../../../ui/fields/base_field.dart';
+import '../../../ui/input_base/input_base.dart';
 import '../../../widgets/network_picture.dart';
 import '../../../widgets/service_calling.dart';
 import '../controller.dart';
@@ -36,7 +36,7 @@ class DepositBill extends GetView<DepositController> {
           Text("payment.amount".tr, style: AppText.label),
           buildAmount(),
           const SizedBox(),
-          BaseInput(
+          AKBaseInput(
             controller: controller.amountCtrl,
             maxLength: 11,
             placeholder: "payment.limit".tr,

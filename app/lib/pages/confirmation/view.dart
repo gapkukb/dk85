@@ -114,7 +114,7 @@ class ConfirmationView extends GetView<ConfirmationController> {
             ),
           ),
         ),
-        BaseInput(placeholder: "payment.receiver.placeholder".tr),
+        AKBaseInput(placeholder: "payment.receiver.placeholder".tr),
       ],
     );
   }

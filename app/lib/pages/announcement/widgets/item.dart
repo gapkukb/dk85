@@ -32,7 +32,7 @@ class _AnnoucementitemState extends State<Annoucementitem> {
       iconColor: AppColors.title,
       onExpansionChanged: onchange,
       collapsedIconColor: AppColors.title,
-      trailing: Icon(expanded ? IconFont.arrow_top_filled : IconFont.arrow_down_filled, color: AppColors.primary, size: 18),
+      trailing: Icon(expanded ? IconFont.arrow_up_circle : IconFont.arrow_down_circle, color: AppColors.primary, size: 18),
       children: const <Widget>[
         Divider(color: Color(0xfff1f1f1), thickness: 0, height: 1),
         Padding(

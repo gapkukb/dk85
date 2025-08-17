@@ -23,34 +23,34 @@ class Gutter extends SizedBox {
   static const xlarge = SizedBox.square(dimension: _xlarge);
 
   /// ---> 4.0 <----
-  static const x_mini = SizedBox(width: _mini);
+  static const mini_x = SizedBox(width: _mini);
 
   /// ---> 8.0 <----
-  static const x_small = SizedBox(width: _small);
+  static const small_x = SizedBox(width: _small);
 
   /// ---> 16.0 <----
-  static const x_normal = SizedBox(width: _normal);
+  static const normal_x = SizedBox(width: _normal);
 
   /// ---> 32.0 <----
-  static const x_large = SizedBox(width: _large);
+  static const large_x = SizedBox(width: _large);
 
   /// ---> 40.0 <----
-  static const x_xlarge = SizedBox(width: _xlarge);
+  static const xlarge_x = SizedBox(width: _xlarge);
 
   /// ---> 4.0 <----
-  static const y_mini = SizedBox(height: _mini);
+  static const mini_y = SizedBox(height: _mini);
 
   /// ---> 8.0 <----
-  static const y_small = SizedBox(height: _small);
+  static const small_y = SizedBox(height: _small);
 
   /// ---> 16.0 <----
-  static const y_normal = SizedBox(height: _normal);
+  static const normal_y = SizedBox(height: _normal);
 
   /// ---> 32.0 <----
-  static const y_large = SizedBox(height: _large);
+  static const large_y = SizedBox(height: _large);
 
   /// ---> 40.0 <----
-  static const y_xlarge = SizedBox(height: _xlarge);
+  static const xlarge_y = SizedBox(height: _xlarge);
 
   const Gutter(double size, {super.key}) : super(width: size, height: size);
 }

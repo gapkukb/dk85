@@ -40,7 +40,7 @@ class WalletChannels extends StatelessWidget {
         isWidthrawal ? "Mrs. Akeem Kshlerin" : "Ms. Piper Wyman",
         style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
       ),
-      trailing: const Icon(IconFont.a_jiantoushoubingjiantou, size: 22, color: AppColors.primary),
+      trailing: const Icon(IconFont.arrow_right, size: 22, color: AppColors.primary),
     );
   }
 }

@@ -66,7 +66,7 @@ class CheckInWidget extends GetView<PromosController> {
           const SizedBox(height: 24),
           SizedBox(
             height: 40,
-            child: Button(text: "checkin.do".tr, color: AppColors.primary, onPressed: controller.checkin),
+            child: AKButton(text: "checkin.do".tr, color: AppColors.primary, onPressed: controller.checkin),
           ),
         ],
       ),

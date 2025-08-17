@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../../hooks/useForm.dart';
 import '../../theme/index.dart';
 import '../../ui/button/index.dart';
-import '../../ui/email_input/index.dart';
+import '../../ui/input_email/input_email.dart';
 import '../../ui/gutter/index.dart';
-import '../../ui/mobile_input/index.dart';
+import '../../ui/input_mobile/input_mobile.dart';
 
 class CompeleteProfileView extends StatefulWidget {
   const CompeleteProfileView({super.key});
@@ -33,10 +33,10 @@ class _CompeleteProfileViewState extends State<CompeleteProfileView> {
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 Gutter.large,
-                MobileInput(onSaved: form.saveAs("mobile")),
+                AKMobileInput(onSaved: form.saveAs("mobile")),
                 EmailInput(onSaved: form.saveAs("email")),
                 Gutter.xlarge,
-                Button(onPressed: () {}, text: "完成并获得58MMK好礼", color: AppColors.primary),
+                AKButton(onPressed: () {}, text: "完成并获得58MMK好礼", color: AppColors.primary),
               ],
             ),
           ),

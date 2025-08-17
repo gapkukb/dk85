@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../theme/index.dart';
 import '../../../ui/button/index.dart';
-import '../../../ui/fields/base_field.dart';
+import '../../../ui/input_base/input_base.dart';
 import '../../../widgets/service_calling.dart';
 import '../controller.dart';
 
@@ -32,7 +32,7 @@ class WithdrawaltBill extends GetView<WithdrawalController> {
           ),
           const SizedBox(),
           Text("withdraw.account".tr, style: AppText.label),
-          BaseInput(
+          AKBaseInput(
             placeholder: "withdraw.account.add".tr,
             keyboardType: TextInputType.number,
             onSaved: (value) {},
@@ -42,7 +42,7 @@ class WithdrawaltBill extends GetView<WithdrawalController> {
           ),
           Text("withdraw.amount".tr, style: AppText.label.copyWith(height: 1)),
           Text("withdraw.amount.mark".tr, style: const TextStyle(color: AppColors.primary, fontSize: 12, height: 1)),
-          BaseInput(
+          AKBaseInput(
             maxLength: 11,
             placeholder: "withdraw.amount.placeholder".tr,
             keyboardType: TextInputType.number,
@@ -80,7 +80,7 @@ class WithdrawaltBill extends GetView<WithdrawalController> {
           const SizedBox(),
           buildRichText("withdraw.amount.min".tr, 3000),
           const Spacer(),
-          Button(onPressed: () {}, height: 48, color: AppColors.primary, textColor: Colors.white, text: "withdraw.button".tr),
+          AKButton(onPressed: () {}, height: 48, color: AppColors.primary, textColor: Colors.white, text: "withdraw.button".tr),
         ],
       ),
     );

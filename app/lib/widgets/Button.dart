@@ -205,8 +205,8 @@ class Button extends MaterialButton {
 
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = filled == false ? Colors.white : color;
-    final foregroundColor = filled == false ? color : computeColor();
+    final backgroundColor = filled == false ? Colors.white : color ?? AppColors.primary;
+    final foregroundColor = filled == false ? color : computeColor(backgroundColor);
 
     final button = MaterialButton(
       onPressed: onPressed,
@@ -219,8 +219,8 @@ class Button extends MaterialButton {
       autofocus: autofocus,
       clipBehavior: clipBehavior,
       colorBrightness: colorBrightness,
-      disabledColor: backgroundColor?.withAlpha(128),
-      disabledElevation: disabledElevation,
+      disabledColor: backgroundColor.withAlpha(128),
+      disabledElevation: disabledElevation ?? 0,
       disabledTextColor: foregroundColor?.withBlue(50),
       elevation: elevation,
       enableFeedback: enableFeedback,
@@ -231,9 +231,9 @@ class Button extends MaterialButton {
       hoverColor: hoverColor,
       highlightColor: highlightColor,
       splashColor: splashColor,
-      focusElevation: focusElevation,
-      hoverElevation: hoverElevation,
-      highlightElevation: highlightElevation,
+      focusElevation: focusElevation ?? 0,
+      hoverElevation: hoverElevation ?? 0,
+      highlightElevation: highlightElevation ?? 0,
       padding: padding,
       visualDensity: visualDensity,
       focusNode: focusNode,
@@ -262,8 +262,8 @@ class Button extends MaterialButton {
     );
   }
 
-  Color computeColor() {
-    if (color == null || color == Colors.white || color == Colors.transparent) return textColor ?? AppColors.title;
+  Color computeColor(Color bgcolor) {
+    if (bgcolor == Colors.white || bgcolor == Colors.transparent) return textColor ?? AppColors.title;
 
     return textColor ?? Colors.white;
   }

@@ -10,8 +10,8 @@ import 'package:get/get.dart';
 
 import 'index.dart';
 
-class FundsPage extends GetView<FundsController> {
-  const FundsPage({super.key});
+class FundsView extends GetView<FundsController> {
+  const FundsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class FundsPage extends GetView<FundsController> {
                 buildMenus(),
                 const SizedBox(height: 24),
                 Obx(() => buildTabs(controller.isWithdrawal.value)),
-                Navigator(key: Get.nestedKey(2), initialRoute: Routes.DASHBOARD + Routes.FUNDS + Routes.DEPOSIT, onGenerateRoute: controller.onGenerateRoute),
+                Navigator(key: Get.nestedKey(2), initialRoute: Routes.deposit, onGenerateRoute: controller.onGenerateRoute),
               ],
             ),
           ),
@@ -96,11 +96,11 @@ class FundsPage extends GetView<FundsController> {
             children: [
               buildButton("app.deposit".tr, !isWithdrawal, () {
                 controller.changeView(false);
-                Get.offAndToNamed(Routes.DASHBOARD + Routes.FUNDS + Routes.DEPOSIT, id: 2);
+                Get.offAndToNamed(Routes.deposit, id: 2);
               }),
               buildButton("app.withdraw".tr, isWithdrawal, () {
                 controller.changeView(true);
-                Get.offAndToNamed(Routes.DASHBOARD + Routes.FUNDS + Routes.WITHDRAWAL, id: 2);
+                Get.offAndToNamed(Routes.withdrawal, id: 2);
               }),
             ],
           ),
@@ -119,10 +119,10 @@ class FundsPage extends GetView<FundsController> {
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4, childAspectRatio: 1 / 2),
           children: [
-            WalletMenu(IconFont.zidongqukuanji, "funds.account".tr, to: Routes.CUSTOMER_SERVICE),
-            WalletMenu(IconFont.yuyuejilu, "game.history".tr, to: Routes.CUSTOMER_SERVICE),
-            WalletMenu(IconFont.genzongjilu, "funds.history".tr, to: Routes.CUSTOMER_SERVICE),
-            WalletMenu(IconFont.kefu, "page.service".tr, to: Routes.CUSTOMER_SERVICE),
+            WalletMenu(IconFont.zidongqukuanji, "funds.account".tr, to: Routes.customerService),
+            WalletMenu(IconFont.yuyuejilu, "game.history".tr, to: Routes.customerService),
+            WalletMenu(IconFont.genzongjilu, "funds.history".tr, to: Routes.customerService),
+            WalletMenu(IconFont.kefu, "page.service".tr, to: Routes.customerService),
           ],
         ),
       ),

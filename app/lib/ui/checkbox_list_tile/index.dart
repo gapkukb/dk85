@@ -16,7 +16,7 @@ class AkCheckboxListTile<T> extends StatelessWidget {
     return ListTile(
       minTileHeight: 48,
       title: title ?? (titleText == null ? null : Text(titleText!)),
-      trailing: AkCheckbox(value: value, groupValue: groupValue, onChanged: null),
+      trailing: AKCheckbox(value: value, groupValue: groupValue, onChanged: null),
       onTap: () {
         onChanged?.call(value);
       },

@@ -15,7 +15,7 @@ class FundsController extends GetxController {
 
   Route? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case Routes.DASHBOARD + Routes.FUNDS + Routes.WITHDRAWAL:
+      case Routes.withdrawal:
         return GetPageRoute(
           settings: settings,
           page: () => const WithdrawalView(),

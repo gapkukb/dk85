@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import '/theme/index.dart';
 
-class AkCheckbox<T> extends StatelessWidget {
+class AKCheckbox<T> extends StatelessWidget {
   final T value;
   final T? groupValue;
   final ValueChanged<T>? onChanged;
@@ -17,7 +17,7 @@ class AkCheckbox<T> extends StatelessWidget {
   final bool labelOnRight;
   final bool readonly;
 
-  const AkCheckbox({
+  const AKCheckbox({
     super.key,
     required this.value,
     required this.groupValue,

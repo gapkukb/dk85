@@ -7,8 +7,8 @@ final lightTheme = ThemeData.light().copyWith(
     brightness: Brightness.light,
     primary: AppColors.primary,
     onPrimary: AppColors.primary,
-    secondary: AppColors.warn,
-    onSecondary: AppColors.warn,
+    secondary: AppColors.primary,
+    onSecondary: AppColors.primary,
     error: Colors.red,
     onError: Colors.red,
     surface: AppColors.background,
@@ -35,10 +35,21 @@ final lightTheme = ThemeData.light().copyWith(
   listTileTheme: const ListTileThemeData(
     titleTextStyle: TextStyle(fontSize: 14, color: AppColors.title),
     minTileHeight: 56,
+    selectedColor: AppColors.primary,
+    selectedTileColor: Colors.white,
     tileColor: Colors.white,
     contentPadding: EdgeInsets.only(left: 12, right: 12),
     subtitleTextStyle: TextStyle(fontSize: 12, color: AppColors.label),
     leadingAndTrailingTextStyle: TextStyle(fontSize: 14, color: AppColors.label),
+  ),
+  checkboxTheme: CheckboxThemeData(
+    shape: const CircleBorder(),
+    checkColor: WidgetStateColor.resolveWith((states) {
+      if (states.contains(WidgetState.selected)) {
+        return Colors.white;
+      }
+      return AppColors.primary;
+    }),
   ),
   appBarTheme: const AppBarTheme().copyWith(
     backgroundColor: AppColors.background,
@@ -74,14 +85,17 @@ final lightTheme = ThemeData.light().copyWith(
     floatingLabelStyle: _style,
     outlineBorder: BorderSide.none,
     filled: true,
+    fillColor: Colors.white,
+    focusColor: Colors.white,
+    hoverColor: Colors.white,
+    isDense: true,
     prefixIconColor: AppColors.description,
     suffixIconColor: AppColors.description,
-    fillColor: Color(0xfff5f5f5),
     prefixIconConstraints: BoxConstraints.tightFor(width: 34, height: 56),
     suffixIconConstraints: BoxConstraints.tightFor(width: 34, height: 56),
-    contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+    contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 18),
     border: OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(4)),
+      borderRadius: BorderRadius.all(Radius.circular(100)),
       borderSide: BorderSide(width: 0, style: BorderStyle.none),
     ),
 

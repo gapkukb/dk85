@@ -1,8 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scaled_app/scaled_app.dart';
 import '/theme/index.dart';
+import 'observers/route_observer.dart';
+import 'setup/easyloading.dart';
 import 'shared/reload/reload.dart';
 import '/i18n/index.dart';
 import '/routes/app_pages.dart';
@@ -16,6 +17,8 @@ class Application extends StatelessWidget {
     return MediaQuery(
       data: MediaQuery.of(context).scale(),
       child: GetMaterialApp(
+        builder: setupBotToast(),
+        navigatorObservers: [AppRouteObserver()],
         key: appKey,
         initialRoute: AppPages.INITIAL,
         // debugShowCheckedModeBanner: false,

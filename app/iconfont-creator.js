@@ -1,13 +1,10 @@
 const path = require("path");
 const fs = require("fs");
 const http = require("http");
-
-download("//at.alicdn.com/t/c/font_4981191_nul9oxo95s8.css");
-
+const version = "//at.alicdn.com/t/c/font_4981191_4p4jipbbsf2.css"
 
 
-
-
+download(version);
 
 
 

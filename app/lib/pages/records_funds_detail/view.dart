@@ -29,7 +29,7 @@ class RecordsFundsDetailView extends GetView<RecordsFundsDetailController> {
                         "2025081313004030076114",
                         style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: AppColors.primary),
                       ),
-                      Copy(text: "xxxxxxxxxxxx"),
+                      AKClipboard(text: "xxxxxxxxxxxx"),
                     ],
                   ),
                 ),

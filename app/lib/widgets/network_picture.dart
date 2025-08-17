@@ -12,11 +12,7 @@ final placeHolderImage = Container(
     builder: (context, constraints) {
       var small = min(constraints.maxHeight, constraints.maxWidth);
 
-      return Icon(
-        IconFont.yule,
-        color: Colors.black.withAlpha(15),
-        size: small / 2,
-      );
+      return Icon(IconFont.yule, color: Colors.black.withAlpha(15), size: small / 1.5);
     },
   ),
 );
@@ -31,7 +27,7 @@ class NetworkPicture extends CachedNetworkImage {
     required super.imageUrl,
     super.width,
     super.height,
-    super.fit,
+    super.fit = BoxFit.cover,
     super.alignment,
     super.cacheKey,
     super.cacheManager,

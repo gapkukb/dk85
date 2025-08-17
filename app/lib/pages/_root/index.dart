@@ -7,6 +7,8 @@ class RootView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetRouterOutlet(initialRoute: Routes.DASHBOARD, anchorRoute: '/');
+    return Scaffold(
+      body: GetRouterOutlet(initialRoute: Routes.dashboard, anchorRoute: '/'),
+    );
   }
 }

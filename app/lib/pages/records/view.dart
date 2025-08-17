@@ -17,13 +17,13 @@ class RecordsView extends GetView<RecordsController> {
             spacing: 8,
             children: [
               Obx(() => Text(controller.currentName)),
-              const Icon(IconFont.arrow_down_filled, size: 18, color: AppColors.primary),
+              const Icon(IconFont.arrow_down_circle, size: 18, color: AppColors.primary),
             ],
           ),
         ),
         titleTextStyle: const TextStyle(fontSize: 16, color: AppColors.title),
       ),
-      body: Navigator(key: Get.nestedKey(2), initialRoute: Routes.DASHBOARD + Routes.RECORDS + Routes.RECORDS_FUNDS, onGenerateRoute: controller.onGenerateRoute),
+      body: Navigator(key: Get.nestedKey(2), initialRoute: Routes.recordsFunds, onGenerateRoute: controller.onGenerateRoute),
     );
   }
 }

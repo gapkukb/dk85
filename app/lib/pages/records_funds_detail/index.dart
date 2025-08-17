@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../../iconfont/index.dart';
 import '../../theme/index.dart';
-import '../../ui/copy/index.dart';
+import '../../ui/clipboard/clipboard.dart';
 
 part './controller.dart';
 part './view.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../hooks/useForm.dart';
-import '../../ui/fields/password_field.dart';
+import '../../ui/input_password/input_password.dart';
 import '../../ui/gutter/index.dart';
 import '../../widgets/Button.dart';
 
@@ -26,9 +26,9 @@ class _UpdatePasswordViewState extends State<UpdatePasswordView> {
           child: ListView(
             padding: const EdgeInsets.all(8),
             children: [
-              PasswordField(placeholder: "请输入旧密码", onSaved: form.saveAs('oldpassword')),
-              PasswordField(placeholder: "请输入新密码", onSaved: form.saveAs('newpassword'), controller: controller),
-              PasswordField(placeholder: "请确认新密码", onSaved: form.saveAs('renewpassword'), reference: controller),
+              AKPwdInput(placeholder: "请输入旧密码", onSaved: form.saveAs('oldpassword')),
+              AKPwdInput(placeholder: "请输入新密码", onSaved: form.saveAs('newpassword'), controller: controller),
+              AKPwdInput(placeholder: "请确认新密码", onSaved: form.saveAs('renewpassword'), reference: controller),
               const Gutter(56),
               Button(onPressed: () => form.submit(), color: Button.danger, text: "修改密码"),
             ],

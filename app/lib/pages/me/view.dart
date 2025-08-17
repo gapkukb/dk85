@@ -8,8 +8,8 @@ import '../../ui/tile/index.dart';
 import '/routes/app_pages.dart';
 import 'index.dart';
 
-class MePage extends GetView<MeController> {
-  const MePage({super.key});
+class MeView extends GetView<MeController> {
+  const MeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +26,14 @@ class MePage extends GetView<MeController> {
                 AkTileGroup(
                   margin: const EdgeInsets.symmetric(vertical: 12),
                   children: [
-                    AkTile(showArrow: true, titleText: "page.account".tr, to: Routes.SETTINGS),
-                    AkTile(showArrow: true, titleText: "page.account".tr, to: Routes.SETTINGS),
-                    AkTile(showArrow: true, titleText: "page.vip".tr, to: Routes.CASINO),
-                    AkTile(showArrow: true, titleText: "page.favorites".tr, to: Routes.FAVORITES),
-                    AkTile(showArrow: true, titleText: "page.invitation".tr, to: Routes.CASINO),
-                    AkTile(showArrow: true, titleText: "page.service".tr, to: Routes.CUSTOMER_SERVICE),
-                    AkTile(showArrow: true, titleText: "page.messages".tr, to: Routes.INBOX),
-                    AkTile(showArrow: true, titleText: "page.more".tr, to: Routes.MORE),
+                    AkTile(showArrow: true, titleText: "page.account".tr, to: Routes.settings),
+                    AkTile(showArrow: true, titleText: "page.account".tr, to: Routes.settings),
+                    AkTile(showArrow: true, titleText: "page.vip".tr, to: Routes.casino),
+                    AkTile(showArrow: true, titleText: "page.favorites".tr, to: Routes.favorites),
+                    AkTile(showArrow: true, titleText: "page.invitation".tr, to: Routes.casino),
+                    AkTile(showArrow: true, titleText: "page.service".tr, to: Routes.customerService),
+                    AkTile(showArrow: true, titleText: "page.messages".tr, to: Routes.inbox),
+                    AkTile(showArrow: true, titleText: "page.more".tr, to: Routes.more),
                   ],
                 ),
               ],
