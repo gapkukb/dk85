@@ -14,6 +14,8 @@ import '../../routes/app_pages.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
+import '../tutorial/tutorial.dart';
+
 class Tab {
   final IconData icon;
   final String label;
@@ -21,8 +23,9 @@ class Tab {
   final Widget Function()? page;
   final Bindings binding;
   final List<GetMiddleware>? middlewares;
+  final Key? tutorialKey;
 
-  const Tab({required this.icon, required this.label, required this.routeName, required this.page, required this.binding, this.middlewares});
+  const Tab({this.tutorialKey, required this.icon, required this.label, required this.routeName, required this.page, required this.binding, this.middlewares});
 }
 
 class DashboardController extends GetxController {
@@ -30,8 +33,8 @@ class DashboardController extends GetxController {
   final currentIndex = 0.obs;
   final tabs = [
     Tab(icon: IconFont.qipaishi, label: "首页", routeName: Routes.home, page: () => const HomeView(), binding: HomeBinding()),
-    Tab(icon: IconFont.liwu, label: "福利", routeName: Routes.promos, page: () => const PromosView(), binding: PromosBinding()),
-    Tab(icon: IconFont.qianbao, label: "钱包", routeName: Routes.funds, page: () => const FundsView(), binding: FundsBinding(), middlewares: [EnsureAuthMiddleware()]),
+    Tab(icon: IconFont.liwu, label: "福利", tutorialKey: promosGuideKey, routeName: Routes.promos, page: () => const PromosView(), binding: PromosBinding()),
+    Tab(icon: IconFont.qianbao, label: "钱包", tutorialKey: fundsGuideKey, routeName: Routes.funds, page: () => const FundsView(), binding: FundsBinding(), middlewares: [EnsureAuthMiddleware()]),
     Tab(icon: IconFont.yonghu, label: "我的", routeName: Routes.me, page: () => const MeView(), binding: MeBinding(), middlewares: [EnsureAuthMiddleware()]),
   ];
 
@@ -51,5 +54,16 @@ class DashboardController extends GetxController {
       return GetPageRoute(settings: settings, page: () => const SizedBox());
     }
     return GetPageRoute(settings: settings, page: tab.page, binding: tab.binding, transition: Transition.cupertino, middlewares: tab.middlewares);
+  }
+
+  @override
+  void onReady() {
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   print("-----------------");
+    //   debugPrint(Get.overlayContext.toString());
+    //   showTutorial(Get.context!);
+    // });
+
+    super.onReady();
   }
 }

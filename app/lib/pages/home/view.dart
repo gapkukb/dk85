@@ -1,4 +1,5 @@
 import '../../iconfont/index.dart';
+import '../../routes/app_pages.dart';
 import '../../theme/index.dart';
 import '../../widgets/service_calling.dart';
 import '../fishing/index.dart';
@@ -44,7 +45,9 @@ class HomeView extends GetView<HomeController> {
                         style: IconButton.styleFrom(backgroundColor: Colors.white),
                         padding: const EdgeInsets.all(0.0),
                         icon: const Icon(IconFont.sousuo, size: 22, color: AppColors.primary),
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.toNamed(Routes.search);
+                        },
                       ),
                       IconButton(
                         style: IconButton.styleFrom(backgroundColor: Colors.white),

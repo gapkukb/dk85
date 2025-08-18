@@ -32,6 +32,7 @@ const Map<String, String> my = {
   "app.filter": "ဇကာ",
   "app.required": "လိုအပ်သည်",
   "app.exit": "ထွက်ရန် ထပ်မံနှိပ်ပါ။",
+  "app.gotIt": "သိပြီ /သိတယ်",
   "announcement": "ကြေငြာချက်",
 
   /// 页面名称

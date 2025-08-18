@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../shared/android_back/android_back.dart';
+import '../tutorial/tutorial.dart';
 import 'index.dart';
 
 class DashboardView extends GetView<DashboardController> {
@@ -57,7 +58,10 @@ class DashboardView extends GetView<DashboardController> {
       unselectedFontSize: 10,
       type: BottomNavigationBarType.fixed,
       items: controller.tabs.map((tab) {
-        return BottomNavigationBarItem(icon: Icon(tab.icon), label: tab.label);
+        return BottomNavigationBarItem(
+          icon: Icon(key: tab.tutorialKey, tab.icon),
+          label: tab.label,
+        );
       }).toList(),
       onTap: controller.changePage,
     );

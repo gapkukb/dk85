@@ -3,7 +3,10 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": "always"
   },
-  "java.configuration.updateBuildConfiguration": "automatic",
+  "code-runner.executorMap": {
+    "typescript": "tsx $fullFileName"
+  },
+  "java.configuration.updateBuildConfiguration": "automatic"
   // "code-runner.executorMap": {
   //   "dart": "dart --enable-experiment=macros"
   // },

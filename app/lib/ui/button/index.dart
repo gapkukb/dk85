@@ -27,7 +27,7 @@ class AKButton extends MaterialButton {
     this.radius,
     this.filled,
     super.height = AKButton.NORMAL,
-    super.color,
+    super.color = AKButton.danger,
     super.textColor,
     this.text,
     this.outlined,
