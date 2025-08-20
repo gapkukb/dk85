@@ -1,0 +1,94 @@
+{
+    "gameApiItems": [
+        {
+            "gameApi": 60001,
+            "gameApiName": "JILI"
+        },
+        {
+            "gameApi": 60003,
+            "gameApiName": "FC"
+        },
+        {
+            "gameApi": 60005,
+            "gameApiName": "CQ9"
+        },
+        {
+            "gameApi": 60010,
+            "gameApiName": "PP"
+        },
+        {
+            "gameApi": 60011,
+            "gameApiName": "S7"
+        },
+        {
+            "gameApi": 60007,
+            "gameApiName": "FG"
+        },
+        {
+            "gameApi": 60004,
+            "gameApiName": "KA"
+        },
+        {
+            "gameApi": 60006,
+            "gameApiName": "VA"
+        },
+        {
+            "gameApi": 60008,
+            "gameApiName": "JDB"
+        },
+        {
+            "gameApi": 60002,
+            "gameApiName": "TP"
+        },
+        {
+            "gameApi": 60013,
+            "gameApiName": "V8"
+        },
+        {
+            "gameApi": 60014,
+            "gameApiName": "RSG"
+        },
+        {
+            "gameApi": 60016,
+            "gameApiName": "YB"
+        },
+        {
+            "gameApi": 60017,
+            "gameApiName": "PS"
+        },
+        {
+            "gameApi": 60018,
+            "gameApiName": "ACEWIN"
+        },
+        {
+            "gameApi": 60019,
+            "gameApiName": "YGG"
+        },
+        {
+            "gameApi": 60024,
+            "gameApiName": "JP"
+        },
+        {
+            "gameApi": 60025,
+            "gameApiName": "PG"
+        }
+    ],
+    "gameTypeItems": [
+        {
+            "gameType": 1,
+            "gameTypeName": "စလော့"
+        },
+        {
+            "gameType": 4,
+            "gameTypeName": "ငါးပစ်"
+        },
+        {
+            "gameType": 3,
+            "gameTypeName": "ပိုကာ"
+        },
+        {
+            "gameType": 2,
+            "gameTypeName": "ဗီဒီယို"
+        }
+    ]
+}

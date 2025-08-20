@@ -1,0 +1,72 @@
+flavors:
+  dev:
+    ide: "vscode"
+    app:
+      name: "JJJ2 DEV"
+    android:
+      applicationId: "com.jjj.dev"
+      icon: "assets/ic_launcher.png"
+      buildConfigFields:
+        field_one:
+          type: "String"
+          value: "example field one"
+        field_two:
+          type: "char"
+          value: "y"
+        field_three:
+          type: "double"
+          value: "20.0"
+
+  fat:
+    app:
+      name: "JJJ2 FAT"
+
+    android:
+      applicationId: "com.jjj.fat"
+      icon: "assets/ic_launcher.png"
+      buildConfigFields:
+        field_one:
+          type: "String"
+          value: "example field one"
+        field_two:
+          type: "char"
+          value: "y"
+        field_three:
+          type: "double"
+          value: "20.0"
+
+  uat:
+    app:
+      name: "JJJ2 UAT"
+
+    android:
+      applicationId: "com.jjj.jjj2"
+      icon: "assets/ic_launcher.png"
+      buildConfigFields:
+        field_one:
+          type: "String"
+          value: "example field one"
+        field_two:
+          type: "char"
+          value: "y"
+        field_three:
+          type: "double"
+          value: "20.0"
+
+  prod:
+    app:
+      name: "JJJ2"
+
+    android:
+      applicationId: "com.jjj.jjj2"
+      icon: "assets/ic_launcher.png"
+      buildConfigFields:
+        field_one:
+          type: "String"
+          value: "example field one"
+        field_two:
+          type: "char"
+          value: "y"
+        field_three:
+          type: "double"
+          value: "20.0"
