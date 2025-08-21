@@ -1,12 +1,13 @@
 import 'package:app/flavors.dart';
+import 'package:app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:app/shared/refresh/refresh_header.dart';
-import 'package:app/shared/reload/reload.dart';
-import 'package:app/theme/light.theme.dart';
+import 'package:app/theme/index.dart';
 import 'package:app/views/home/home_view.dart';
 import 'package:get/get.dart';
 import 'package:app/views/login/login_view.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:scaled_app/scaled_app.dart';
 
 class Application extends StatelessWidget {
   const Application({super.key});
@@ -17,14 +18,18 @@ class Application extends StatelessWidget {
     return RefreshConfiguration(
       headerBuilder: () => BingoRefreshHead(),
       maxOverScrollExtent: 0,
-      maxUnderScrollExtent: 0,
-      child: GetMaterialApp(
-        title: Flavor.title,
-        scrollBehavior: AppScrollBehavior(),
-        theme: lightTheme,
-        defaultTransition: Transition.cupertino,
-        getPages: [GetPage(name: '/login', page: () => LoginView())],
-        home: const HomeView(),
+      // maxUnderScrollExtent: 0,
+      child: MediaQuery(
+        data: MediaQuery.of(context).scale(),
+        child: GetMaterialApp(
+          title: Flavor.title,
+          scrollBehavior: AppScrollBehavior(),
+          theme: lightTheme,
+          defaultTransition: Transition.cupertino,
+          initialRoute: AppPages.INITIAL,
+          getPages: AppPages.routes,
+          home: const HomeView(),
+        ),
       ),
     );
   }

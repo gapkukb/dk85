@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of 'index.dart';
 
 abstract class AppColors {
   static const background = Color(0xffeef2f5);
@@ -10,6 +10,7 @@ abstract class AppColors {
   static const ff8240 = Color(0xffFF8240);
   static const ffeee5 = Color(0xffffeee5);
   static const description = Color(0xff999999);
+  static const loading = Color(0xffe5e5e5);
   static const buttonGradient = RadialGradient(
     colors: [
       Color.fromRGBO(255, 255, 255, 0.3),

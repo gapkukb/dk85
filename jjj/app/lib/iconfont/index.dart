@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 class IconFont{
 	static const String _family = 'iconfont';
 	IconFont._();
+		static const IconData unselected = IconData(0xe60f, fontFamily: _family);
 		static const IconData gift_fill = IconData(0xe8b5, fontFamily: _family);
 		static const IconData wallet = IconData(0xe63d, fontFamily: _family);
 		static const IconData profile = IconData(0xe67b, fontFamily: _family);
@@ -20,7 +21,7 @@ class IconFont{
 		static const IconData guanbi = IconData(0xe619, fontFamily: _family);
 		static const IconData close = IconData(0xe61a, fontFamily: _family);
 		static const IconData fail = IconData(0xe6b3, fontFamily: _family);
-		static const IconData chenggong = IconData(0xe617, fontFamily: _family);
+		static const IconData selected = IconData(0xe617, fontFamily: _family);
 		static const IconData pending = IconData(0xe616, fontFamily: _family);
 		static const IconData guolvqi = IconData(0xe627, fontFamily: _family);
 		static const IconData arrow_down_circle = IconData(0xeffb, fontFamily: _family);

@@ -3,12 +3,15 @@ import 'dart:async';
 import 'package:app/services/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:scaled_app/scaled_app.dart';
 
 import 'application.dart';
 import 'flavors.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
+  ScaledWidgetsFlutterBinding.ensureInitialized(
+    scaleFactor: (device) => device.width / 375,
+  );
   // runApp(const SplashView());
   // await Future.delayed(Duration(seconds: 3));
   setupServices();

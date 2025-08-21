@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-part 'text.theme.dart';
+part of 'index.dart';
 
 final lightTheme = ThemeData(
   brightness: Brightness.light, //深色还是浅色
@@ -9,7 +7,8 @@ final lightTheme = ThemeData(
   cardColor: Colors.white, //卡片颜色
   dividerColor: Colors.white, //分割线颜色
   canvasColor: Colors.white, //这是整个屏幕或应用程序窗口的背景色。它定义了所有其他 UI 元素的基色。
-  scaffoldBackgroundColor: Colors.red, //脚手架本身的背景颜色，包括应用栏、正文内容区域和底部导航栏（如果存在）。
+  scaffoldBackgroundColor:
+      AppColors.background, //脚手架本身的背景颜色，包括应用栏、正文内容区域和底部导航栏（如果存在）。
   highlightColor:
       Colors.transparent, //用户点击并按住 Widget 时短暂显示的颜色。它为用户提供了交互已注册的视觉反馈。
   focusColor:
@@ -33,9 +32,7 @@ final lightTheme = ThemeData(
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     type: BottomNavigationBarType.fixed,
-    unselectedItemColor: Color(0xff111111),
-    selectedItemColor: Colors.red,
-    unselectedLabelStyle: TextStyle(fontSize: 12, color: Colors.black),
-    selectedLabelStyle: TextStyle(fontSize: 12, color: Colors.red),
+    unselectedItemColor: AppColors.label,
+    selectedItemColor: AppColors.primary,
   ),
 );

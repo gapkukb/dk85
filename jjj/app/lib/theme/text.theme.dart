@@ -1,4 +1,4 @@
-part of 'light.theme.dart';
+part of 'index.dart';
 
 const _style = TextStyle(fontSize: 14, color: Color(0xff111111));
 const textTeme = TextTheme(

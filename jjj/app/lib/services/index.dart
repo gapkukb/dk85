@@ -3,10 +3,13 @@ library;
 import 'package:app/iconfont/index.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:app/services/app_service.dart';
+import '/storage/index.dart';
 
-part 'tabs_service.dart';
-part 'auth_service.dart';
+part 'app.service.dart';
+part 'main.service.dart';
+part 'game.service.dart';
+part 'user.service.dart';
+part 'auth.service.dart';
 
 void setupServices() {
   Get.put(TabsService());
