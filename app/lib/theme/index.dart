@@ -1,7 +1,5 @@
-library;
-
 import 'package:flutter/material.dart';
 
-part 'color.dart';
-part 'light_theme.dart';
-part 'text_theme.dart';
+part 'app_color.dart';
+part 'text.theme.dart';
+part 'light.theme.dart';

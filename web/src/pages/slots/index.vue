@@ -9,8 +9,8 @@ const { isLoading, data: games } = useQuery({
 </script>
 
 <template>
-    <div class="home-view grid gap-8">
-        <HomeBanner :position="2" />
+    <div class="home-view">
+        <HomeBanner key="slots" :type="3" :position="2" />
         <div class="h-36"></div>
         <GameTable title="ALL GAMES" :games="games" />
         <!-- <div v-if="isLoading" class="">loading...</div>

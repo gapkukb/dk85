@@ -1,12 +1,28 @@
-import 'package:get/get.dart';
-import '../shared/audio_manager/index.dart';
+part of 'index.dart';
 
 class AppService extends GetxService {
-  final audioManager = AudioManager();
+  static AppService get to => Get.find();
 
   @override
-  void onClose() {
-    super.onClose();
-    print("${runtimeType.toString()} closed");
+  void onInit() {
+    AppLifecycleListener(
+      onShow: _onAppShow,
+      // onHide: _onAppShow,
+      // onDetach: _onAppShow,
+      // binding: _onAppShow,
+      // onRestart: _onAppShow,
+      // onPause: _onAppShow,
+      // onResume: _onAppShow,
+      // onExitRequested: _onAppShow,
+      // onInactive: _onAppShow,
+      onStateChange: _onAppStateChange,
+    );
+    super.onInit();
+  }
+
+  void _onAppShow() {}
+
+  void _onAppStateChange(AppLifecycleState state) {
+    debugPrint('AppStateChange$state');
   }
 }

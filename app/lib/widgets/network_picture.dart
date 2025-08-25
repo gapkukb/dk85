@@ -1,19 +1,19 @@
-import 'dart:math';
-
-import '/iconfont/index.dart';
+import 'package:app/theme/index.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
-final placeHolderImage = Container(
-  width: double.infinity,
-  height: double.infinity,
-  color: Colors.black12,
-  child: LayoutBuilder(
-    builder: (context, constraints) {
-      var small = min(constraints.maxHeight, constraints.maxWidth);
-
-      return Icon(IconFont.yule, color: Colors.black.withAlpha(15), size: small / 1.5);
-    },
+final placeHolderImage = Skeletonizer(
+  effect: const ShimmerEffect(
+    begin: AlignmentDirectional(-1.3, -0.3),
+    end: AlignmentDirectional(1.3, 0.3),
+    baseColor: AppColors.skeleton,
+    highlightColor: Color(0xffeeeeee),
+  ),
+  child: SizedBox(
+    width: double.infinity,
+    height: double.infinity,
+    child: DecoratedBox(decoration: BoxDecoration(color: AppColors.title)),
   ),
 );
 

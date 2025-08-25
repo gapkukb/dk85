@@ -6,9 +6,9 @@ import { router } from '@/router';
 import { rpx } from '@/utils/rpx';
 import { useQuery } from '@tanstack/vue-query';
 
-const props = defineProps<{ position: number }>()
+const props = defineProps<{ type: number, position: number }>()
 const height = rpx(240)
-const { navigate, result: banners } = useAdversite(2, props.position)
+const { navigate, result: banners } = useAdversite(props.type, props.position)
 
 
 

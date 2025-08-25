@@ -1,5 +1,5 @@
 export default {
-    banks: '银行卡管理',
+    banks: '提款账户',
     records: '充值/提现记录',
     history: '交易记录',
     deposit: '充值',

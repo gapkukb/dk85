@@ -5,24 +5,31 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "telegram",
+      "name": "dev",
       "request": "launch",
       "type": "dart",
-      // "args": ["--enable-experiment=macros"]
+      "args": ["--flavor", "dev"]
     },
     {
-      "name": "telegram (profile mode)",
+      "name": "fat",
       "request": "launch",
       "type": "dart",
-      "flutterMode": "profile",
-      // "args": ["--enable-experiment=macros"]
+       "args": ["--flavor", "fat"],
+      "flutterMode": "profile"
     },
     {
-      "name": "telegram (release mode)",
+      "name": "uat",
       "request": "launch",
       "type": "dart",
-      "flutterMode": "release",
-      // "args": ["--enable-experiment=macros"]
+       "args": ["--flavor", "uat"],
+      "flutterMode": "release"
+    },
+    {
+      "name": "prod",
+      "request": "launch",
+      "type": "dart",
+       "args": ["--flavor", "prod"],
+      "flutterMode": "release"
     }
   ]
 }

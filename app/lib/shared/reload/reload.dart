@@ -1,7 +1,30 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-var appKey = UniqueKey();
+class Reloadable extends StatefulWidget {
+  Reloadable({required this.child});
 
-void reloadApp() {
-  appKey = UniqueKey();
+  final Widget child;
+
+  static void restartApp(BuildContext context) {
+    context.findAncestorStateOfType<_ReloadableState>()!.restartApp();
+  }
+
+  @override
+  _ReloadableState createState() => _ReloadableState();
+}
+
+class _ReloadableState extends State<Reloadable> {
+  Key key = UniqueKey();
+
+  void restartApp() {
+    setState(() {
+      key = UniqueKey();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return KeyedSubtree(key: key, child: widget.child);
+  }
 }

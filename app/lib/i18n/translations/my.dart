@@ -32,7 +32,8 @@ const Map<String, String> my = {
   "app.filter": "ဇကာ",
   "app.required": "လိုအပ်သည်",
   "app.exit": "ထွက်ရန် ထပ်မံနှိပ်ပါ။",
-  "app.gotIt": "သိပြီ /သိတယ်",
+  "app.exit.game": "ဂိမ်းမှထွက်မလား။",
+  "app.change": "ပြန်လည်ပြင်ဆင်ပါ။",
   "announcement": "ကြေငြာချက်",
 
   /// 页面名称
@@ -42,7 +43,8 @@ const Map<String, String> my = {
   "page.favorites": "ကျွန်ုပ်၏စုစည်းမှု",
   "page.invitation": "သူငယ်ချင်းများကို ဖိတ်ခေါ်ပါ။",
   "page.service": "ဝန်ဆောင်မှုများ",
-  "page.messages": "အချက်အလက်",
+  "page.inbox": "အချက်အလက်",
+  "page.inbox.detail": "အသေးစိတ်",
   "page.more": "နောက်ထပ်",
   "page.promo": "ဘောနပ်",
   "page.funds": "ပိုက်ဆံအိပ်",
@@ -61,9 +63,12 @@ const Map<String, String> my = {
   "payment.receiver.No.": "အကောင့်လက်ခံခြင်း။",
   "payment.receiver.amount": "ပေးဆောင်ရန်ပမာဏ",
   "payment.receiver.bill.No.": "လုပ်ငန်းနံပါတ်",
-  "payment.receiver.placeholder": "အမှာစာနံပါတ်၏နောက်ဆုံးဂဏန်း 6 လုံးကိုထည့်ပါ။",
+  "payment.receiver.placeholder":
+      "အမှာစာနံပါတ်၏နောက်ဆုံးဂဏန်း 6 လုံးကိုထည့်ပါ။",
   "payment.receiver.guide": "ငွေသွင်းနည်းကိုညွန်ပြ",
   "payment.receiver.submit": "တင်ပြခြင်း",
+  "payment.receiver.acc": "လက်ခံ အကောင့်",
+  "payment.receiver.target": "ဤအကောင့်သို့ လွှဲပေးပါ။",
 
   /// 提款相关
   "withdraw.account": "သင့်လက်ခံအကောင့်:",
@@ -143,6 +148,7 @@ const Map<String, String> my = {
   "form.acc.placed": "သင့်အကောင့်နံပါတ်ကို ထည့်ပါ။",
   "form.acc.error": "သင့်အကောင့်နံပါတ်ကို ထည့်ပါ။",
 
+  "form.pwd.old": "သင့်စကားဝှက်ဟောင်းကို ထည့်ပါ။",
   "form.pwd.placed": "စကားဝှက်ကို ထည့်ပါ။",
   "form.pwd.error": "စကားဝှက်သည် 6-20 လုံးရှိရမည်။",
 
@@ -163,4 +169,13 @@ const Map<String, String> my = {
   "login.guide.title": "လော့ဂ်အင်အညွှန်း",
   "login.guide.desc":
       "သင်မှတ်ပုံတင်သည့်အမည်ကိုထည့်ပါ၊ 6-12 လက္ခဏာရှိရမည်၊ အင်္ဂလိပ်စာလုံးနှင့်နံပါတ်များသာ၊ စတင်မည့်အရာသည်စာလုံးဖြစ်ရမည်။ အကူအညီလိုအပ်ပါက ကျေးဇူးပြု၍ကျွန်ုပ်တို့၏ဖောက်သည်ဝန်ဆောင်မှုကိုဆက်သွယ်ပါ။**",
+
+  "user.change.mobile": "မိုဘိုင်းဖုန်းနံပါတ်ပြောင်းပါ။",
+  "user.change.password": "စကားဝှက်ကိုပြောင်းရန်",
+  "user.change.email": "အီးမေးလ်ကို ပြင်ဆင်ပါ။",
+
+  "pwd.set": "စကားဝှက်တစ်ခု သတ်မှတ်ပါ။",
+  "pwd.change": "စကားဝှက်ကိုပြောင်းရန်",
+
+  "logout.title": "သင်ထွက်လိုသည်မှာ သေချာပါသလား။",
 };

@@ -1,32 +1,32 @@
-import 'package:easy_refresh/easy_refresh.dart';
-import 'package:get/get.dart';
+import 'dart:async';
 
-import 'app.dart';
+import 'package:app/i18n/index.dart';
+import 'package:app/services/index.dart';
+import 'package:app/shared/package_info/index.dart';
+import 'package:app/storage/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:scaled_app/scaled_app.dart';
-import 'shared/package_info/index.dart';
-import 'i18n/index.dart';
-import 'services/index.dart';
-import 'shared/pull_up_indicator/index.dart';
-import 'storage/index.dart';
+
+import 'application.dart';
+import 'flavors.dart';
 
 void main() async {
   ScaledWidgetsFlutterBinding.ensureInitialized(
-    scaleFactor: (deviceSize) {
-      const double designWidth = 375.0;
-      return deviceSize.width / designWidth;
-    },
+    scaleFactor: (device) => device.width / 375,
   );
-
+  // runApp(const SplashView());
+  // await Future.delayed(Duration(seconds: 3));
   await Future.wait([
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]),
     setupPackageInfo(),
     storage.setup(),
   ]);
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(statusBarIconBrightness: Brightness.light));
   i18n.setup();
   setupServices();
-  EasyRefresh.defaultFooterBuilder = () => pullUpIndicator;
+  Flavor.appFlavor = AppFlavor.values.firstWhere(
+    (element) => element.name == appFlavor,
+  );
+
   runApp(const Application());
 }

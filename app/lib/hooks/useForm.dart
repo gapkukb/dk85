@@ -13,7 +13,7 @@ class Useform {
     };
   }
 
-  submit() {
+  submit([String? value]) {
     if (key.currentState == null) return;
     if (key.currentState!.validate()) {
       key.currentState!.save();

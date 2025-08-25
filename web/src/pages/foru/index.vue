@@ -10,7 +10,7 @@ const { isLoading, data: games } = useQuery({
 
 <template>
     <div class="home-view">
-        <HomeBanner :position="1" />
+        <HomeBanner :type="3" :position="1" />
         <div class="h-36"></div>
         <GameTable title="ALL GAMES" :games="games" />
     </div>

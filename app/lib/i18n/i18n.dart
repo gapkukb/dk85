@@ -20,11 +20,18 @@ class I18n extends Translations {
   /// 缅甸语
   static final my_MM = _Locale("my", "MM", "+95", "မြန်မာဘာသာ", RegExp(r"123"));
 
-  static final supported = [km_KH, my_MM, en_US, fil_PH, zh_CN];
+  static final supported = [my_MM, en_US, km_KH, fil_PH, zh_CN];
 
   static final defaultLocale = my_MM;
 
-  static _Locale getLocale(String key) => supported.firstWhere((x) => x.code == key || x.languageCode == key || x.countryCode == key || x.areaCode == key, orElse: () => defaultLocale);
+  static _Locale getLocale(String key) => supported.firstWhere(
+    (x) =>
+        x.code == key ||
+        x.languageCode == key ||
+        x.countryCode == key ||
+        x.areaCode == key,
+    orElse: () => defaultLocale,
+  );
 
   static String getLocaleName(String key) => getLocale(key).localeName;
 
@@ -32,7 +39,13 @@ class I18n extends Translations {
 
   static const fallbackLocale = Locale('my');
 
-  final Map<String, Map<String, String>> _keys = {'en': en, 'zh': zh, 'km': km, 'my': my, 'fil': fil};
+  final Map<String, Map<String, String>> _keys = {
+    'en': en,
+    'zh': zh,
+    'km': km,
+    'my': my,
+    'fil': fil,
+  };
 
   @override
   Map<String, Map<String, String>> get keys => _keys;
@@ -61,6 +74,8 @@ class I18n extends Translations {
     final locale = getLocale(code);
     // await loadTranslation(locale.code);
     storage.locale.value = code;
+    // 等待选择框收起动画完成
+    await Future.delayed(Durations.medium1);
     Get.updateLocale(locale);
   }
 
@@ -75,7 +90,13 @@ class _Locale extends Locale {
   final RegExp regExp;
   final String localeName;
 
-  const _Locale(super.languageCode, String super.countryCode, this.areaCode, this.localeName, this.regExp);
+  const _Locale(
+    super.languageCode,
+    String super.countryCode,
+    this.areaCode,
+    this.localeName,
+    this.regExp,
+  );
 
   String get code => "$languageCode-$countryCode";
 }

@@ -1,75 +1,73 @@
+import 'package:app/shared/customer_service/customer_service.dart';
+import 'package:app/views/auth/auth_view.dart';
+import 'package:app/views/email/email.dart';
+import 'package:app/views/favorites/bindings.dart';
+import 'package:app/views/favorites/view.dart';
+import 'package:app/views/funds_mng/index.dart';
+import 'package:app/views/gaming/gaming.dart';
+import 'package:app/views/history_page_1/history_page_1.dart';
+import 'package:app/views/history_page_2/history_page_2.dart';
+import 'package:app/views/inbox/index.dart';
+import 'package:app/views/inbox_detail/bindings.dart';
+import 'package:app/views/mobile/mobile.dart';
+import 'package:app/views/more/more_view.dart';
+import 'package:app/views/payee/payee.dart';
+import 'package:app/views/profile/profile_view.dart';
+import 'package:app/views/pwd_manager/pwd_manager.dart';
+import 'package:app/views/searching/bindings.dart';
+import 'package:app/views/searching/view.dart';
+import 'package:app/views/vip/detail_view.dart';
+import 'package:app/views/vip/view.dart';
 import 'package:get/get.dart';
-import '../pages/_root/index.dart';
-import '../pages/demo/demo.dart';
-import '/pages/searching/index.dart';
-import '../pages/auth/auth.dart';
-import '/pages/confirmation/index.dart';
-import '/pages/records/index.dart';
-import '/pages/records_funds_detail/index.dart';
-import '/pages/withdrawal_account/index.dart';
-import '/pages/spalash/index.dart';
-import '/pages/complete_profile/index.dart';
-import '/pages/deposit-receipt/view.dart';
-import '/pages/favorites/view.dart';
-import '/pages/inbox/index.dart';
-import '/pages/settings/index.dart';
-import '/pages/update-password/index.dart';
-import '/pages/more/view.dart';
-import '/pages/customer-service/index.dart';
-import '/pages/dashboard/index.dart';
-import '/pages/deposit/index.dart';
-import '/pages/funds/index.dart';
-import '/pages/home/index.dart';
-import '/pages/me/index.dart';
-import '/pages/promos/index.dart';
-import '/pages/withdrawal/index.dart';
-import 'middlewares/ensure_auth_middleware.dart';
 
 part 'app_routes.dart';
 
 // ignore: avoid_classes_with_only_static_members
 class AppPages {
-  static const INITIAL = Routes.dashboard;
+  static const INITIAL = Routes.history1;
+  // static const INITIAL = null;
 
   static final routes = [
-    GetPage(name: Routes.spalash, page: () => const SpalashView()),
+    GetPage(name: Routes.auth, page: () => const AuthView()),
     GetPage(
-      name: Routes.dashboard,
-      page: () => const DashboardView(),
-      binding: DashboardBinding(),
-      preventDuplicates: true,
-      children: [
-        GetPage(name: Routes.demo, page: () => const DemoView()),
-        GetPage(name: Routes.home, page: () => const HomeView(), binding: HomeBinding()),
-        GetPage(name: Routes.promos, page: () => const PromosView(), binding: PromosBinding(), middlewares: [EnsureAuthMiddleware()]),
-        GetPage(
-          name: Routes.funds,
-          page: () => const FundsView(),
-          binding: FundsBinding(),
-          preventDuplicates: true,
-          middlewares: [EnsureAuthMiddleware()],
-          children: [
-            GetPage(name: Routes.deposit, page: () => const DepositView(), binding: DepositBinding()),
-            GetPage(name: Routes.withdrawal, page: () => const WithdrawalView(), binding: WithdrawalBinding()),
-          ],
-        ),
-        GetPage(name: Routes.me, page: () => const MeView(), binding: MeBinding()),
-      ],
+      name: Routes.customerService,
+      page: () => const CustomerServiceView(),
     ),
-    GetPage(name: Routes.confirmation, page: () => const ConfirmationView()),
-    GetPage(name: Routes.withdrawalAccount, page: () => const WithdrawalAccountView(), binding: WithdrawalAccountBinding()),
-    GetPage(name: Routes.records, page: () => const RecordsView(), binding: RecordsBinding()),
-    GetPage(name: Routes.customerService, page: () => const CustomerServiceView(), fullscreenDialog: true, transition: Transition.cupertino),
-    GetPage(name: Routes.receipt, page: () => const DepositReceiptView(), fullscreenDialog: true),
+    GetPage(name: Routes.receiption, page: () => const PayeeView()),
+    GetPage(name: Routes.profile, page: () => const ProfileView()),
+    GetPage(name: Routes.mobile, page: () => const MobileView()),
+    GetPage(name: Routes.email, page: () => const EmailView()),
+    GetPage(name: Routes.pwd, page: () => const PwdManagerView()),
     GetPage(name: Routes.more, page: () => const MoreView()),
-    GetPage(name: Routes.favorites, page: () => const FavoritesView()),
-    GetPage(name: Routes.inbox, page: () => const InboxView(), binding: InboxBinding()),
-    GetPage(name: Routes.settings, page: () => const SettingsView()),
-    GetPage(name: Routes.updatePasswrod, page: () => const UpdatePasswordView()),
-    GetPage(name: Routes.compeleteProfile, page: () => const CompeleteProfileView(), fullscreenDialog: true, opaque: true),
-    GetPage(name: Routes.recordsFundsDetail, page: () => const RecordsFundsDetailView()),
-    GetPage(name: Routes.auth, page: () => const AccountView(), fullscreenDialog: true, transition: Transition.cupertino),
-    GetPage(name: Routes.search, page: () => const SearchingView(), binding: SearchingBinding()),
-    GetPage(name: Routes.search, page: () => const SearchingView(), binding: SearchingBinding()),
+    GetPage(
+      name: Routes.favorites,
+      page: () => const FavoritesView(),
+      binding: FavoritesBinding(),
+    ),
+    GetPage(
+      name: Routes.inboxDetail,
+      page: () => const InboxView(),
+      binding: InboxDetailBinding(),
+    ),
+    GetPage(
+      name: Routes.inbox,
+      page: () => const InboxView(),
+      binding: InboxBinding(),
+    ),
+    GetPage(name: Routes.gaming, page: () => const GamingView()),
+    GetPage(
+      name: Routes.fundsManager,
+      page: () => const FundsMngView(),
+      binding: FundsMngBinding(),
+    ),
+    GetPage(name: Routes.vip, page: () => const VipView()),
+    GetPage(name: Routes.vipDetail, page: () => const VipDetailView()),
+    GetPage(name: Routes.history1, page: () => const HistoryPage1View()),
+    GetPage(name: Routes.history2, page: () => const HistoryPage2View()),
+    GetPage(
+      name: Routes.search,
+      page: () => const SearchingPage(),
+      binding: SearchingBinding(),
+    ),
   ];
 }

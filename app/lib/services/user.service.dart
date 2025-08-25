@@ -1,6 +1,4 @@
-import 'package:get/get.dart';
-
-import '../storage/index.dart';
+part of 'index.dart';
 
 class UserService extends GetxService {
   static UserService get to => Get.find();

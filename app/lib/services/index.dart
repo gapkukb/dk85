@@ -1,20 +1,19 @@
 library;
 
+import 'package:app/iconfont/index.dart';
+import 'package:app/views/funds/funds_controller.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '/storage/index.dart';
 
-import 'app.service.dart';
-import 'game.service.dart';
-import 'user.service.dart';
-import 'auth.service.dart';
-
-export 'app.service.dart';
-export 'user.service.dart';
-export 'game.service.dart';
-export 'auth.service.dart';
+part 'app.service.dart';
+part 'main.service.dart';
+part 'game.service.dart';
+part 'user.service.dart';
+part 'auth.service.dart';
 
 void setupServices() {
-  Get.put(AppService());
+  Get.put(TabsService());
   Get.put(AuthService());
-  Get.put(GameService());
-  Get.put(UserService());
+  Get.put(AppService());
 }

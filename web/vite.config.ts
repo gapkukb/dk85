@@ -115,10 +115,14 @@ export default defineConfig(function configure() {
             },
             proxy: {
                 '/app': {
-                    target: 'http://47.243.251.96:9001',
+                    target: 'https://jjj2.com',
+                    secure:false,
+                    changeOrigin:true
                 },
                 '/payment': {
-                    target: 'http://47.243.251.96:9003',
+                    target: 'https://jjj2.com',
+                    secure:false,
+                    changeOrigin:true
                 },
             },
         },

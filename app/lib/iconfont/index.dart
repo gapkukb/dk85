@@ -3,6 +3,10 @@ import 'package:flutter/widgets.dart';
 class IconFont{
 	static const String _family = 'iconfont';
 	IconFont._();
+		static const IconData unselected = IconData(0xe60f, fontFamily: _family);
+		static const IconData gift_fill = IconData(0xe8b5, fontFamily: _family);
+		static const IconData wallet = IconData(0xe63d, fontFamily: _family);
+		static const IconData profile = IconData(0xe67b, fontFamily: _family);
 		static const IconData i18n = IconData(0xe621, fontFamily: _family);
 		static const IconData placeholder = IconData(0xe634, fontFamily: _family);
 		static const IconData user = IconData(0xe605, fontFamily: _family);
@@ -17,7 +21,7 @@ class IconFont{
 		static const IconData guanbi = IconData(0xe619, fontFamily: _family);
 		static const IconData close = IconData(0xe61a, fontFamily: _family);
 		static const IconData fail = IconData(0xe6b3, fontFamily: _family);
-		static const IconData chenggong = IconData(0xe617, fontFamily: _family);
+		static const IconData selected = IconData(0xe617, fontFamily: _family);
 		static const IconData pending = IconData(0xe616, fontFamily: _family);
 		static const IconData guolvqi = IconData(0xe627, fontFamily: _family);
 		static const IconData arrow_down_circle = IconData(0xeffb, fontFamily: _family);
@@ -84,9 +88,9 @@ class IconFont{
 		static const IconData n_casino_e = IconData(0xe631, fontFamily: _family);
 		static const IconData qipaishi = IconData(0xe654, fontFamily: _family);
 		static const IconData money = IconData(0xe602, fontFamily: _family);
-		static const IconData jinbi = IconData(0xe60e, fontFamily: _family);
-		static const IconData jinbi1 = IconData(0xe6b1, fontFamily: _family);
-		static const IconData a_1 = IconData(0xe6ea, fontFamily: _family);
+		static const IconData coin = IconData(0xe60e, fontFamily: _family);
+		static const IconData coin2 = IconData(0xe6b1, fontFamily: _family);
+		static const IconData coin3 = IconData(0xe6ea, fontFamily: _family);
 		static const IconData youxiangyanzhengma = IconData(0xe66a, fontFamily: _family);
 		static const IconData tuxingma1 = IconData(0xe629, fontFamily: _family);
 		static const IconData duanxinyanzhengma = IconData(0xe61b, fontFamily: _family);

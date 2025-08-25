@@ -1,6 +1,4 @@
-import 'package:get/get.dart';
-
-import '/storage/index.dart';
+part of 'index.dart';
 
 class GameService extends GetConnect {
   final game = [];

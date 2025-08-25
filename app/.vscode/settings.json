@@ -1,13 +1,6 @@
 {
-  "dart.cliAdditionalArgs": ["--enable-experiment=macros"],
+  "java.configuration.updateBuildConfiguration": "automatic",
   "editor.codeActionsOnSave": {
     "source.fixAll": "always"
-  },
-  "code-runner.executorMap": {
-    "typescript": "tsx $fullFileName"
-  },
-  "java.configuration.updateBuildConfiguration": "automatic"
-  // "code-runner.executorMap": {
-  //   "dart": "dart --enable-experiment=macros"
-  // },
+  }
 }

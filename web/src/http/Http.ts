@@ -8,14 +8,13 @@ export interface RequestConfig extends AxiosRequestConfig {
 }
 export default class Http {
     inst!: AxiosInstance
-    declare get: HttpMethdFunc
-    declare post: HttpMethdFunc
-    declare put: HttpMethdFunc
-    declare del: HttpMethdFunc
+    // declare get: HttpMethdFunc
+    // declare post: HttpMethdFunc
+    // declare put: HttpMethdFunc
+    // declare del: HttpMethdFunc
 
     constructor(option: CreateAxiosDefaults) {
         this.inst = axios.create(option)
-        this.createsIfNeed()
     }
 
     use(plugin: (http: this) => any) {
@@ -43,17 +42,10 @@ export default class Http {
         return newer
     }
 
-    private createsIfNeed() {
-        const proto = this.constructor.prototype
-        if (proto.get) return
-
-        Object.assign(proto, {
-            get: this.create('get'),
-            post: this.create('post'),
-            put: this.create('put'),
-            del: this.create('delete'),
-        })
-    }
+    get = this.create('get')
+    post = this.create('post')
+    put = this.create('put')
+    delete = this.create('delete')
 
     private create(method: HttpMethd): HttpMethdFunc {
         const key: keyof AxiosRequestConfig = method === 'get' ? 'params' : 'data'

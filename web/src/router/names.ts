@@ -13,4 +13,13 @@ export default {
     account: 'account',
     turnover: 'turnover',
     turnoverHistory: 'turnover-history',
+    records: 'records',
+    /** 账变记录 */
+    fundRecords: 'funds-records',
+    /** 游戏记录 */
+    gameRecords: 'game-records',
+    /** 充值记录 */
+    topupHistory: 'topupHistory',
+    /** 提款记录 */
+    withdrawHistory: 'withdrawHistory',
 } as const

@@ -49,14 +49,15 @@ declare namespace model.game {
         bet_amount: string
         winAmount: string
         win: string
+        name: string
         valid_amount: string
         jackpotAmount: number
         bet_status: number
-        bet_time: Date
+        bet_time: string
         vendorSettleTime: number
         isFreeSpin: number
         vendorBetId: string
-        created_at: Date
-        updated_at: Date
+        created_at: string
+        updated_at: string
     }
 }

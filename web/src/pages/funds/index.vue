@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { callCenter } from '@/components/call-center';
+import names from '@/router/names';
+
 
 
 const tabs = [
@@ -13,25 +16,25 @@ const tabs = [
 
         <AccountBalance />
         <div class="flex mt-48">
-            <button class="funds-menu van-haptics-feedback">
+            <button class="funds-menu van-haptics-feedback" @click="$router.push({name:names.account})">
                 <div class="funds-menu-icon">
                     <i class="iconfont iconfont-zidongqukuanji"></i>
                 </div>
                 <p class="funds-menu-title">{{ $t("funds.banks") }}</p>
             </button>
-            <button class="funds-menu van-haptics-feedback">
+            <button class="funds-menu van-haptics-feedback" @click="$router.push({ name: names.topupHistory })">
                 <div class="funds-menu-icon">
                     <i class="iconfont iconfont-yuyuejilu"></i>
                 </div>
                 <p class="funds-menu-title">{{ $t("funds.history") }}</p>
             </button>
-            <button class="funds-menu van-haptics-feedback">
+            <button class="funds-menu van-haptics-feedback" @click="$router.push({ name: names.fundRecords })">
                 <div class="funds-menu-icon">
                     <i class="iconfont iconfont-genzongjilu"></i>
                 </div>
                 <p class="funds-menu-title">{{ $t("funds.records") }}</p>
             </button>
-            <button class="funds-menu van-haptics-feedback">
+            <button class="funds-menu van-haptics-feedback" @click="callCenter">
                 <div class="funds-menu-icon">
                     <i class="iconfont iconfont-kefu"></i>
                 </div>
