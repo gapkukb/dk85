@@ -14,7 +14,7 @@ class Auth extends StatelessWidget {
       shape: StadiumBorder(),
       child: Text("SIGN UP | LOG IN", style: TextStyle(color: Colors.white)),
       onPressed: () {
-        _auth.authed.value = true;
+        Get.toNamed(Routes.auth);
       },
     );
   }

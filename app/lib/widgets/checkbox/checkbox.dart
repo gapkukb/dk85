@@ -1,6 +1,7 @@
 import 'package:app/iconfont/index.dart';
 import 'package:app/theme/index.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AKCheckbox extends StatelessWidget {
   final ValueChanged<bool?>? onChanged;
@@ -24,7 +25,7 @@ class AKCheckbox extends StatelessWidget {
             color: value ? AppColors.primary : AppColors.label,
           ),
           Text(
-            "Remember Me",
+            "login.remember".tr,
             style: TextStyle(fontSize: 12, color: AppColors.title),
           ),
         ],

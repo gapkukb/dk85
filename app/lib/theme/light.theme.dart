@@ -1,7 +1,6 @@
 part of 'index.dart';
 
 final lightTheme = ThemeData(
-  fontFamily: 'padauk-book',
   brightness: Brightness.light, //深色还是浅色
   // primarySwatch: MaterialColor(primary, swatch), //主题颜色样本
   primaryColor: Colors.white, //主色，决定导航栏颜色
@@ -15,9 +14,6 @@ final lightTheme = ThemeData(
   focusColor:
       Colors.transparent, //有焦点的颜色，这意味着该元素将接收键盘输入。这对于突出显示当前活动元素，吸引用户注意非常有用。
   // primaryColor: Colors.white,
-  tabBarTheme: TabBarThemeData(
-    labelStyle: TextStyle(fontFamily: 'padauk-book'),
-  ),
   colorScheme: ColorScheme(
     brightness: Brightness.light,
     primary: Color(0xffff5800),
@@ -33,11 +29,7 @@ final lightTheme = ThemeData(
   appBarTheme: AppBarTheme(
     backgroundColor: AppColors.background,
     scrolledUnderElevation: 0,
-    titleTextStyle: _style.copyWith(
-      fontSize: 16,
-      fontWeight: FontWeight.bold,
-      fontFamily: 'padauk-book',
-    ),
+    titleTextStyle: _style.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
   ),
   bottomNavigationBarTheme: BottomNavigationBarThemeData(
     type: BottomNavigationBarType.fixed,
@@ -64,7 +56,7 @@ final lightTheme = ThemeData(
     floatingLabelStyle: _style,
     outlineBorder: BorderSide.none,
     filled: true,
-    fillColor: AppColors.white,
+    fillColor: AppColors.background,
     focusColor: AppColors.white,
     hoverColor: AppColors.white,
     isDense: true,

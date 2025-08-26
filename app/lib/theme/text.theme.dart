@@ -1,10 +1,6 @@
 part of 'index.dart';
 
-const _style = TextStyle(
-  fontSize: 14,
-  color: Color(0xff111111),
-  fontFamily: 'padauk-book',
-);
+const _style = TextStyle(fontSize: 14, color: Color(0xff111111));
 const textTeme = TextTheme(
   bodyLarge: _style,
   bodyMedium: _style,

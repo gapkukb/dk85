@@ -54,7 +54,7 @@ class Balance extends StatefulWidget {
 }
 
 class _BalanceState extends State<Balance> {
-  var amount = 0.0;
+  var amount = 1000;
 
   late final AnimationController controller;
 
@@ -75,8 +75,7 @@ class _BalanceState extends State<Balance> {
     return Row(
       spacing: widget.spacing ?? 0,
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment:
-          widget.crossAxisAlignment ?? CrossAxisAlignment.center,
+      crossAxisAlignment: widget.crossAxisAlignment ?? CrossAxisAlignment.start,
       children: [amount, refresher],
     );
   }
@@ -89,7 +88,7 @@ class _BalanceState extends State<Balance> {
             controller.repeat();
             Future.delayed(3000.ms).whenComplete(() {
               setState(() {
-                amount = Random().nextDouble();
+                amount = Random().nextInt(1000000);
                 controller.stop();
               });
             });
@@ -112,13 +111,14 @@ class _BalanceState extends State<Balance> {
   Widget buildAmount() {
     final style = TextStyle(
       color: widget.color,
+      // fontSize: 14,
       fontWeight: FontWeight.bold,
       height: 1,
     ).merge(widget.amountStyle);
 
     final counter = AnimatedFlipCounter(
       value: amount,
-      fractionDigits: widget.fractionDigits ?? 2,
+      fractionDigits: widget.fractionDigits ?? (amount < 99999 ? 2 : 0),
       suffix: widget.suffix,
       prefix: widget.prefix,
       padding: widget.amountPadding ?? EdgeInsets.zero,

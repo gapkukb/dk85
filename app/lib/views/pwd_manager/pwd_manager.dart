@@ -5,6 +5,7 @@ import 'package:app/widgets/back_button/back_button.dart';
 import 'package:app/widgets/button/index.dart';
 import 'package:app/widgets/input_mobile/input_mobile.dart';
 import 'package:app/widgets/input_password/input_password.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
@@ -36,14 +37,26 @@ class _PwdManagerState extends State<PwdManagerView> {
           child: ListView(
             padding: EdgeInsets.all(12),
             children: [
-              if (!settled)
+              if (settled)
                 AKPwdInput(
                   onSaved: form.saveAs('c'),
                   placeholder: 'form.pwd.old'.tr,
+                  backgroundColor: AppColors.white,
                 ),
-              AKPwdInput(controller: ctrl, onSaved: form.saveAs('a')),
-              AKPwdInput(reference: ctrl, onSaved: form.saveAs('b')),
-              SizedBox(height: 24),
+
+              AKPwdInput(
+                controller: ctrl,
+                onSaved: form.saveAs('a'),
+                backgroundColor: AppColors.white,
+              ),
+
+              AKPwdInput(
+                reference: ctrl,
+                onSaved: form.saveAs('b'),
+                backgroundColor: AppColors.white,
+              ),
+
+              SizedBox(height: 8),
 
               AKButton(
                 onPressed: CustomerService.call,

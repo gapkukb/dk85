@@ -46,6 +46,7 @@ class AKBaseInput extends StatefulWidget {
   final BoxConstraints? suffixIconConstraints;
   final EdgeInsets? contentPadding;
   final double marginBottom;
+  final Color? backgroundColor;
 
   const AKBaseInput({
     super.key,
@@ -84,6 +85,7 @@ class AKBaseInput extends StatefulWidget {
     this.contentPadding,
     this.marginBottom = 8.0,
     this.obscureText = false,
+    this.backgroundColor,
   });
   @override
   State<AKBaseInput> createState() => _AKBaseInputState();
@@ -136,6 +138,7 @@ class _AKBaseInputState extends State<AKBaseInput> {
         obscuringCharacter: '*',
         // cursorWidth: 1,
         decoration: widget.decoration.copyWith(
+          fillColor: widget.backgroundColor,
           floatingLabelBehavior: FloatingLabelBehavior.always,
           helperText: ' ',
           counterText: ' ',

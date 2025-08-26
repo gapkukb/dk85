@@ -26,15 +26,15 @@ class MainViewHeader extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      toolbarHeight: 36,
+      // toolbarHeight: 36,
       backgroundColor: Colors.transparent,
       titleSpacing: 12,
-      // title: Obx(
-      //   () => _auth.authed.value
-      //       ? SimpleBalance(depositable: true, key: guideOne)
-      //       : Auth(),
-      // ),
-      title: SimpleBalance(depositable: true, key: guideOne),
+      title: Obx(
+        () => _auth.authed.value
+            ? SimpleBalance(depositable: true, key: guideOne)
+            : Auth(),
+      ),
+      // title: SimpleBalance(depositable: true, key: guideOne),
       bottom: buildTabbar(),
       actionsPadding: const EdgeInsets.only(right: 12),
       actions: [

@@ -1,10 +1,6 @@
 import 'package:app/hooks/useForm.dart';
-import 'package:app/shared/customer_service/customer_service.dart';
-import 'package:app/storage/index.dart';
-import 'package:app/theme/index.dart';
 import 'package:app/views/auth/controller.dart';
 import 'package:app/widgets/button/index.dart';
-import 'package:app/widgets/checkbox/checkbox.dart';
 import 'package:app/widgets/input_account/input_account.dart';
 import 'package:app/widgets/input_graphic/input_graphic.dart';
 import 'package:app/widgets/input_mobile/input_mobile.dart';
@@ -35,7 +31,7 @@ class SignUpView extends GetView<AuthCotroller> {
             AKPwdInput(reference: controller.pwd),
             AKMobileInput(onSaved: form.saveAs('mobile')),
             AKGraphicInput(onSaved: form.saveAs('code')),
-            AKButton(onPressed: form.submit, text: 'fsdaf'),
+            AKButton(onPressed: form.submit, text: 'app.register'.tr),
           ],
         ),
       ),

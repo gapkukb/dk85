@@ -23,13 +23,15 @@ void showGuide() {
         TargetContent(
           align: ContentAlign.custom,
           customPosition: CustomTargetContentPosition(
-            top: -40,
+            top: (guideOne.currentContext?.findRenderObject() as RenderBox)
+                .localToGlobal(Offset.zero)
+                .dy,
             left: 0,
             right: 0,
           ),
           padding: EdgeInsets.all(0),
           child: Container(
-            height: 250,
+            height: 208,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/images/guide1.webp'),

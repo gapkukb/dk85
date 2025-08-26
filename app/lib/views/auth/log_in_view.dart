@@ -1,6 +1,5 @@
 import 'package:app/hooks/useForm.dart';
 import 'package:app/shared/customer_service/customer_service.dart';
-import 'package:app/storage/index.dart';
 import 'package:app/theme/index.dart';
 import 'package:app/views/auth/controller.dart';
 import 'package:app/widgets/button/index.dart';
@@ -9,7 +8,7 @@ import 'package:app/widgets/input_account/input_account.dart';
 import 'package:app/widgets/input_graphic/input_graphic.dart';
 import 'package:app/widgets/input_password/input_password.dart';
 import 'package:flutter/material.dart';
-import 'package:get/state_manager.dart';
+import 'package:get/get.dart';
 
 class LoginView extends GetView<AuthCotroller> {
   const LoginView({super.key});
@@ -31,7 +30,7 @@ class LoginView extends GetView<AuthCotroller> {
               onSaved: form.saveAs('code'),
               onFieldSubmitted: form.submit,
             ),
-            AKButton(onPressed: form.submit, text: 'fsdaf'),
+            AKButton(onPressed: form.submit, text: 'app.login'.tr),
             buildTool(),
             ...buildInstructions(),
           ],
@@ -42,11 +41,14 @@ class LoginView extends GetView<AuthCotroller> {
 
   List<Widget> buildInstructions() {
     return [
-      SizedBox(height: 16),
-      Text("Login instructions", style: TextStyle(fontWeight: FontWeight.bold)),
-      SizedBox(height: 16),
+      SizedBox(height: 8),
       Text(
-        "Enter the username you used to register",
+        "login.guide.title".tr,
+        style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.label),
+      ),
+      SizedBox(height: 8),
+      Text(
+        "login.guide.desc".tr,
         style: TextStyle(fontSize: 12, color: AppColors.description),
       ),
     ];
@@ -67,7 +69,7 @@ class LoginView extends GetView<AuthCotroller> {
           TextButton(
             onPressed: CustomerService.call,
             child: Text(
-              "Forgot Password?",
+              "login.forgot".tr,
               style: TextStyle(fontSize: 12, color: AppColors.primary),
             ),
           ),

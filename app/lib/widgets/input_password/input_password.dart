@@ -12,12 +12,14 @@ class AKPwdInput extends StatefulWidget {
     this.onSaved,
     this.placeholder,
     this.controller,
+    this.backgroundColor,
   });
 
   final TextEditingController? controller;
   final TextEditingController? reference;
   final FormFieldSetter<String>? onSaved;
   final String? placeholder;
+  final Color? backgroundColor;
 
   @override
   State<AKPwdInput> createState() => _AKPwdInputState();
@@ -29,6 +31,7 @@ class _AKPwdInputState extends State<AKPwdInput> {
   @override
   Widget build(BuildContext context) {
     return AKBaseInput(
+      backgroundColor: widget.backgroundColor,
       obscureText: obscureText,
       placeholder:
           widget.placeholder ??

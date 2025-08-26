@@ -48,10 +48,4 @@ class TabsService extends GetxService {
   toMeView() {
     toView(3);
   }
-
-  @override
-  void onReady() {
-    guide.showGuide();
-    super.onReady();
-  }
 }

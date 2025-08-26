@@ -102,14 +102,7 @@ class AuthView extends StatelessWidget {
 
   List<Widget> buildActions() {
     return [
-      CustomerService(
-        size: 28,
-        iconSize: 20,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(100),
-        ),
-      ),
+      CustomerService(size: 28, iconSize: 20),
       const SizedBox(width: 8),
       buildCloseButton(icon: IconFont.close, onTap: Get.back),
     ];

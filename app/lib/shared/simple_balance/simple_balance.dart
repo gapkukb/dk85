@@ -33,7 +33,7 @@ class SimpleBalance extends StatelessWidget {
 
   buildUser() {
     return Column(
-      spacing: 4,
+      // spacing: 4,
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -50,7 +50,7 @@ class SimpleBalance extends StatelessWidget {
             ),
             Container(
               alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(horizontal: 2),
+              padding: const EdgeInsets.symmetric(horizontal: 4),
               decoration: BoxDecoration(
                 color: const Color(0xfffffac4),
                 borderRadius: BorderRadius.circular(16),
@@ -60,7 +60,7 @@ class SimpleBalance extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 8,
                   color: AppColors.primary,
-                  height: 1.2,
+                  // height: 1.2,
                   fontStyle: FontStyle.italic,
                   fontWeight: FontWeight.bold,
                 ),

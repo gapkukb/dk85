@@ -1,3 +1,7 @@
+import 'package:app/modal_views/announcement/announcement.dart';
+import 'package:app/modal_views/daily_check_in/view.dart';
+import 'package:app/modal_views/deposit_bonus/deposit_bonus.dart';
+import 'package:app/modal_views/try_game/try_game.dart';
 import 'package:app/shared/customer_service/customer_service.dart';
 import 'package:app/views/auth/auth_view.dart';
 import 'package:app/views/email/email.dart';
@@ -25,10 +29,11 @@ part 'app_routes.dart';
 
 // ignore: avoid_classes_with_only_static_members
 class AppPages {
-  // static const INITIAL = Routes.historyDetial;
-  static const INITIAL = null;
+  static const INITIAL = Routes.demo;
+  // static const INITIAL = null;
 
   static final routes = [
+    GetPage(name: Routes.demo, page: () => const AnnouncementModal()),
     GetPage(name: Routes.auth, page: () => const AuthView()),
     GetPage(
       name: Routes.customerService,
