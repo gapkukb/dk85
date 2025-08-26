@@ -10,7 +10,7 @@ class AuthCotroller extends GetxController {
   }
 
   @override
-  void dispose() {
+  void onClose() {
     pwd.dispose();
     super.dispose();
   }

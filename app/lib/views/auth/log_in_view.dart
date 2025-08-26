@@ -65,7 +65,7 @@ class LoginView extends GetView<AuthCotroller> {
             ),
           ),
           TextButton(
-            onPressed: CustomerServiceTrigger.call,
+            onPressed: CustomerService.call,
             child: Text(
               "Forgot Password?",
               style: TextStyle(fontSize: 12, color: AppColors.primary),

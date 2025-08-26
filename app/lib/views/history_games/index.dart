@@ -1,4 +1,5 @@
-library history_games;
+library;
 
+export './widgets/widgets.dart';
 export './controller.dart';
 export './view.dart';

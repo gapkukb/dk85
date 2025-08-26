@@ -1,4 +1,4 @@
-import 'package:app/shared/keep_alive_wrapper/keep_alive_wrapper.dart';
+import 'package:app/modal_views/guide/guide.dart';
 import 'package:app/theme/index.dart';
 import 'package:app/views/hot/index.dart';
 import 'package:app/widgets/rounded_tab_indicator.dart';
@@ -17,7 +17,7 @@ class _MainViewState extends State<MainView>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-
+    guideContext = context;
     return DefaultTabController(
       length: tabs.length,
       child: DecoratedBox(

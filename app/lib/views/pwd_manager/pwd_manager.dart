@@ -30,7 +30,7 @@ class _PwdManagerState extends State<PwdManagerView> {
           leading: AKBackButton(),
           title: Text(settled ? "Change Password" : "Set Password"),
           actionsPadding: EdgeInsets.only(right: 12),
-          actions: [CustomerServiceTrigger()],
+          actions: [CustomerService()],
         ),
         body: SafeArea(
           child: ListView(
@@ -46,7 +46,7 @@ class _PwdManagerState extends State<PwdManagerView> {
               SizedBox(height: 24),
 
               AKButton(
-                onPressed: CustomerServiceTrigger.call,
+                onPressed: CustomerService.call,
                 text: settled ? 'pwd.change'.tr : 'pwd.change'.tr,
               ),
             ],

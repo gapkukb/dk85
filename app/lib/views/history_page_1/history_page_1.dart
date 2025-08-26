@@ -39,7 +39,7 @@ class _HistoryPage1ViewState extends State<HistoryPage1View>
             ],
           ),
         ),
-        actions: [CustomerServiceTrigger()],
+        actions: [CustomerService()],
       ),
       body: SafeArea(
         child: TabBarView(

@@ -44,6 +44,8 @@ class AKTile extends StatelessWidget {
   final bool internalAddSemanticForOnTap;
   final bool isLink;
   final String? to;
+  final Widget? additionalInfo;
+  final double spacing;
 
   const AKTile({
     super.key,
@@ -86,6 +88,8 @@ class AKTile extends StatelessWidget {
     this.titleText,
     this.isLink = true,
     this.to,
+    this.additionalInfo,
+    this.spacing = 8.0,
   });
 
   @override
@@ -132,18 +136,32 @@ class AKTile extends StatelessWidget {
   }
 
   Widget? buildTail() {
-    if (!isLink) return trailing;
-    final arrow = Icon(
-      IconFont.arrow_right,
-      color: AppColors.primary,
-      size: 20,
-    );
+    final List<Widget> children = [];
+    if (additionalInfo != null) {
+      children.add(additionalInfo!);
+    }
 
-    if (trailing == null) return arrow;
+    if (trailing != null) {
+      children.add(trailing!);
+    }
+
+    if (isLink) {
+      final arrow = Icon(
+        IconFont.arrow_right,
+        color: AppColors.primary,
+        size: 20,
+      );
+      children.add(arrow);
+    }
+
+    if (children.isEmpty) return null;
+    if (children.length == 1) return children.first;
+
     return Row(
+      spacing: spacing,
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: [trailing!, SizedBox(width: 8), arrow],
+      children: children,
     );
   }
 

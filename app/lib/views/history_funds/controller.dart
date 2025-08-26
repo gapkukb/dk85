@@ -1,24 +1,12 @@
-import 'package:app/shared/chooser/index.dart';
-import 'package:app/shared/formatter/formatter.dart';
-import 'package:get/get.dart';
+import 'package:app/mixins/mixin_date_picker.dart';
+import 'package:app/shared/view_model/view_model.dart';
+import 'package:flutter/material.dart';
 
-class HistoryFundsController extends GetxController {
+class HistoryFundsController extends ViewModel with MixinDatePicker {
   HistoryFundsController();
 
-  final dateOptions = [
-    Choose(title: 'Today', value: 0),
-    Choose(title: 'Yesterday', value: 1),
-    Choose(title: 'Last 3 days', value: 3),
-    Choose(title: 'Last 7 days', value: 7),
-    Choose(title: 'Last 30 days', value: 30),
-  ];
-
-  final date = 0.obs;
-
-  final end = Formatter.dateTime.end(DateTime.now());
-
-  get start {
-    final d = DateTime.now().subtract(Duration(days: date.value));
-    return Formatter.dateTime.start(d);
+  @override
+  Future loader() {
+    return Future.delayed(Durations.medium1);
   }
 }

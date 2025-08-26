@@ -5,6 +5,7 @@ import 'package:app/iconfont/index.dart';
 import 'package:app/routes/app_pages.dart';
 import 'package:app/services/index.dart';
 import 'package:app/shared/customer_service/customer_service.dart';
+import 'package:app/widgets/button/index.dart';
 import 'package:app/widgets/tile/tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,6 @@ import 'package:app/shared/account_balance/account_balance.dart';
 import 'package:app/theme/index.dart';
 import 'package:app/views/promos/promos_controller.dart';
 import 'package:get/get.dart';
-import 'package:getwidget/getwidget.dart';
 
 class MeView extends StatefulWidget {
   const MeView({super.key});
@@ -94,10 +94,7 @@ class _MeView extends StatelessWidget {
               children: [
                 Flexible(
                   fit: FlexFit.tight,
-                  child: GFButton(
-                    shape: GFButtonShape.pills,
-                    type: GFButtonType.solid,
-                    size: GFSize.LARGE,
+                  child: AKButton(
                     onPressed: () {
                       TabsService.to.toFundsView(0);
                     },
@@ -108,10 +105,7 @@ class _MeView extends StatelessWidget {
                 ),
                 Flexible(
                   fit: FlexFit.tight,
-                  child: GFButton(
-                    shape: GFButtonShape.pills,
-                    type: GFButtonType.outline2x,
-                    size: GFSize.LARGE,
+                  child: AKButton(
                     onPressed: () {
                       TabsService.to.toFundsView(1);
                     },
@@ -152,10 +146,7 @@ class _MeView extends StatelessWidget {
           ),
           AKTile(titleText: "page.favorites".tr, to: Routes.favorites),
           // AKTile(titleText: "page.invitation".tr, to: Routes.invitation),
-          AKTile(
-            titleText: "page.service".tr,
-            onTap: CustomerServiceTrigger.call,
-          ),
+          AKTile(titleText: "page.service".tr, onTap: CustomerService.call),
           AKTile(titleText: "page.inbox".tr, to: Routes.inbox),
           AKTile(titleText: "page.more".tr, to: Routes.more),
         ],

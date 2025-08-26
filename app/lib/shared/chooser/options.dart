@@ -27,6 +27,11 @@ class ChooserOptions<T> extends _BodyOptions<T> {
   final String? prefixText;
   final String? titleKey;
   final String? valueKey;
+  final Decoration? decoration;
+  final double? width;
+  final double? height;
+  final EdgeInsets? padding;
+  final TextStyle? style;
 
   ChooserOptions({
     super.cancelText,
@@ -35,6 +40,11 @@ class ChooserOptions<T> extends _BodyOptions<T> {
     super.showCancel,
     super.cancelTextStyle,
     super.conformTextStyle,
+    this.decoration,
+    this.width,
+    this.height,
+    this.padding,
+    this.style,
     this.items,
     this.options,
     super.title,

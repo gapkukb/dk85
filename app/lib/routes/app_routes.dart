@@ -12,6 +12,7 @@ abstract class Routes {
   static const inboxDetail = '/inboxDetail';
   static const history1 = '/historyFunds';
   static const history2 = '/historyWallet';
+  static const historyDetial = '/historyDetial';
   static const search = '/search';
   static const profile = '/profile';
   static const vip = '/vip';

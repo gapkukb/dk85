@@ -78,7 +78,7 @@ class FundsFillWithdraw extends GetView<FundsController> {
             color: AppColors.title,
           ),
         ),
-        CustomerServiceTrigger(),
+        CustomerService(),
       ],
     );
   }

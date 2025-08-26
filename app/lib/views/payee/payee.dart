@@ -1,3 +1,4 @@
+import 'package:app/helper/copy.dart';
 import 'package:app/iconfont/index.dart';
 import 'package:app/shared/clipboard/clipboard.dart';
 import 'package:app/shared/customer_service/customer_service.dart';
@@ -26,13 +27,15 @@ class _PayeeViewState extends State<PayeeView> {
         leading: AKBackButton(),
         title: Text("payment.receiver.title".tr),
         actionsPadding: EdgeInsets.only(right: 12),
-        actions: [CustomerServiceTrigger(size: 36, iconSize: 22)],
+        actions: [CustomerService(size: 36, iconSize: 22)],
       ),
       body: buildView(),
-      bottomNavigationBar: AKButton(
-        onPressed: submit,
-        text: 'payment.receiver.submit'.tr,
-        radius: 0,
+      bottomNavigationBar: SafeArea(
+        child: AKButton(
+          onPressed: submit,
+          text: 'payment.receiver.submit'.tr,
+          radius: 0,
+        ),
       ),
     );
   }
@@ -110,9 +113,7 @@ class _PayeeViewState extends State<PayeeView> {
             mainAxisSize: MainAxisSize.min,
             children: [Text("0908123451321"), Icon(IconFont.copy, size: 16)],
           ),
-          onTap: () {
-            AKClipboard.copy('content');
-          },
+          onTap: copier('content'),
         ),
         ListTile(
           title: Text('payment.receiver.amount'.tr),
@@ -160,7 +161,6 @@ class _PayeeViewState extends State<PayeeView> {
         Padding(
           padding: const EdgeInsets.all(12.0),
           child: TextField(
-            autofocus: true,
             maxLength: 6,
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],

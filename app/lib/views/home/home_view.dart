@@ -37,22 +37,19 @@ class _HomeViewState extends State<HomeView> {
             children: [MainView(), PromosView(), FundsView(), MeView()],
           ),
         ),
-        bottomNavigationBar: SizedBox(
-          height: 48,
-          child: Obx(
-            () => BottomNavigationBar(
-              selectedItemColor: AppColors.primary,
-              backgroundColor: Colors.white.withAlpha(240),
-              iconSize: 22,
-              elevation: 0,
-              type: BottomNavigationBarType.fixed,
-              currentIndex: tabLogic.currentIndex.value,
-              onTap: tabLogic.toView,
-              items: tabLogic.tabs,
-              unselectedFontSize: 10,
-              selectedFontSize: 10,
-              unselectedItemColor: AppColors.label,
-            ),
+        bottomNavigationBar: Obx(
+          () => BottomNavigationBar(
+            selectedItemColor: AppColors.primary,
+            backgroundColor: Colors.white.withAlpha(240),
+            iconSize: 22,
+            elevation: 0,
+            type: BottomNavigationBarType.fixed,
+            currentIndex: tabLogic.currentIndex.value,
+            onTap: tabLogic.toView,
+            items: tabLogic.tabs,
+            unselectedFontSize: 10,
+            selectedFontSize: 10,
+            unselectedItemColor: AppColors.label,
           ),
         ),
         floatingActionButton: FloatingActionButton(

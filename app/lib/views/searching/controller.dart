@@ -41,9 +41,8 @@ class SearchingController extends GetxController
     super.onInit();
   }
 
-  /// dispose 释放内存
   @override
-  void dispose() {
+  void onClose() {
     tab.dispose();
     input.dispose();
     super.dispose();

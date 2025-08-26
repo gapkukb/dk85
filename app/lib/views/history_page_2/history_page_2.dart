@@ -1,4 +1,9 @@
+import 'package:app/shared/customer_service/customer_service.dart';
+import 'package:app/views/history_top_up/index.dart';
+import 'package:app/views/history_withdraw/index.dart';
+import 'package:app/widgets/back_button/back_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HistoryPage2View extends StatefulWidget {
   const HistoryPage2View({super.key});
@@ -7,12 +12,41 @@ class HistoryPage2View extends StatefulWidget {
   _HistoryPage2ViewState createState() => _HistoryPage2ViewState();
 }
 
-class _HistoryPage2ViewState extends State<HistoryPage2View> {
+class _HistoryPage2ViewState extends State<HistoryPage2View>
+    with SingleTickerProviderStateMixin {
+  late final TabController controller;
+
+  @override
+  void initState() {
+    controller = TabController(length: 2, vsync: this);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('')),
-      body: Container(),
+      appBar: AppBar(
+        leading: AKBackButton(),
+        title: PreferredSize(
+          preferredSize: Size.fromHeight(24),
+          child: TabBar(
+            indicatorColor: Colors.transparent,
+            controller: controller,
+            dividerHeight: 0,
+            tabs: [
+              Tab(text: "records.funds".tr),
+              Tab(text: "records.funds".tr),
+            ],
+          ),
+        ),
+        actions: [CustomerService()],
+      ),
+      body: SafeArea(
+        child: TabBarView(
+          controller: controller,
+          children: [HistoryTopUpView(), HistoryWithdrawView()],
+        ),
+      ),
     );
   }
 }

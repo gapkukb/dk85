@@ -22,12 +22,14 @@ class FundsFillDeposit extends GetView<FundsController> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           buildContent(),
-          AKButton(
-            height: AKButton.LARGE,
-            // gradient: null,
-            text: 'app.deposit'.tr,
-            radius: 0,
-            onPressed: controller.deposit,
+          SafeArea(
+            child: AKButton(
+              height: AKButton.LARGE,
+              // gradient: null,
+              text: 'app.deposit'.tr,
+              radius: 0,
+              onPressed: controller.deposit,
+            ),
           ),
         ],
       ),
@@ -51,7 +53,7 @@ class FundsFillDeposit extends GetView<FundsController> {
                   "payment.receiver.title".tr,
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                 ),
-                CustomerServiceTrigger(),
+                CustomerService(),
               ],
             ),
             Text(

@@ -1,6 +1,6 @@
 part of 'customer_service.dart';
 
-class CustomerServiceTrigger extends StatelessWidget {
+class CustomerService extends StatelessWidget {
   final BoxDecoration decoration;
   final Widget? child;
   final double size;
@@ -9,7 +9,7 @@ class CustomerServiceTrigger extends StatelessWidget {
   final bool rounded;
 
   final Function(BuildContext context, Widget child)? builder;
-  const CustomerServiceTrigger({
+  const CustomerService({
     super.key,
     this.child,
     this.color,

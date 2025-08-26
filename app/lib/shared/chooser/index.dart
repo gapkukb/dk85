@@ -3,7 +3,6 @@ library;
 import 'package:app/iconfont/index.dart';
 import 'package:app/theme/index.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 
 part 'options.dart';

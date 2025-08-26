@@ -5,6 +5,7 @@ import 'package:app/views/favorites/bindings.dart';
 import 'package:app/views/favorites/view.dart';
 import 'package:app/views/funds_mng/index.dart';
 import 'package:app/views/gaming/gaming.dart';
+import 'package:app/views/history_detail/history_detail.dart';
 import 'package:app/views/history_page_1/history_page_1.dart';
 import 'package:app/views/history_page_2/history_page_2.dart';
 import 'package:app/views/inbox/index.dart';
@@ -24,8 +25,8 @@ part 'app_routes.dart';
 
 // ignore: avoid_classes_with_only_static_members
 class AppPages {
-  static const INITIAL = Routes.history1;
-  // static const INITIAL = null;
+  // static const INITIAL = Routes.historyDetial;
+  static const INITIAL = null;
 
   static final routes = [
     GetPage(name: Routes.auth, page: () => const AuthView()),
@@ -64,6 +65,8 @@ class AppPages {
     GetPage(name: Routes.vipDetail, page: () => const VipDetailView()),
     GetPage(name: Routes.history1, page: () => const HistoryPage1View()),
     GetPage(name: Routes.history2, page: () => const HistoryPage2View()),
+    GetPage(name: Routes.history2, page: () => const HistoryPage2View()),
+    GetPage(name: Routes.historyDetial, page: () => const HistoryDetailView()),
     GetPage(
       name: Routes.search,
       page: () => const SearchingPage(),

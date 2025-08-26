@@ -59,7 +59,7 @@ class _PromosView extends StatelessWidget {
       automaticallyImplyLeading: false,
       title: SimpleBalance(depositable: false),
       actionsPadding: EdgeInsets.only(right: 12),
-      actions: [CustomerServiceTrigger()],
+      actions: [CustomerService()],
     );
   }
 }

@@ -56,7 +56,7 @@ class _EmaileState extends State<EmailView> {
 
         SizedBox(height: 24),
 
-        AKButton(onPressed: CustomerServiceTrigger.call, text: 'app.change'.tr),
+        AKButton(onPressed: CustomerService.call, text: 'app.change'.tr),
       ],
     );
   }

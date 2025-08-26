@@ -5,7 +5,8 @@ class ChooserBody<T> extends StatefulWidget {
   final List<Choose<T>> items;
   final _BodyOptions<T> options;
   final bool multiple;
-  final void Function(List<T> values, T? current, bool changed) onTap;
+  final void Function(List<T> values, T value, Choose<T> current, bool changed)
+  onTap;
 
   const ChooserBody({
     super.key,
@@ -48,14 +49,16 @@ class _ChooserBodyState<T> extends State<ChooserBody<T>> {
           if (header != null) header,
           buildBody(header == null),
           SizedBox(height: 4),
-          MaterialButton(
-            height: 48,
-            color: Colors.white,
-            shape: shape,
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text('app.cancel'.tr),
+          SafeArea(
+            child: MaterialButton(
+              height: 48,
+              color: Colors.white,
+              shape: shape,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('app.cancel'.tr),
+            ),
           ),
         ],
       ),
@@ -152,7 +155,7 @@ class _ChooserBodyState<T> extends State<ChooserBody<T>> {
 
     setState(() {});
     final length = value.toSet().difference(widget.initValue.toSet()).length;
-    widget.onTap(value, e.value, length > 0);
+    widget.onTap(value, e.value, e, length > 0);
   }
 
   void onConfirm() {

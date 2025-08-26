@@ -4,7 +4,7 @@ class TabsService extends GetxService {
   static TabsService get to => Get.find();
   static FundsController get funds => Get.find<FundsController>();
 
-  final currentIndex = 2.obs;
+  final currentIndex = 0.obs;
   final tabs = [
     BottomNavigationBarItem(
       icon: Transform.scale(
@@ -14,7 +14,11 @@ class TabsService extends GetxService {
       ),
       label: '',
     ),
-    BottomNavigationBarItem(icon: Icon(IconFont.gift_fill), label: 'Bonus'),
+    BottomNavigationBarItem(
+      icon: Icon(IconFont.gift_fill),
+      label: 'Bonus',
+      key: guide.guideTwo,
+    ),
     BottomNavigationBarItem(icon: Icon(IconFont.wallet), label: 'Wallet'),
     BottomNavigationBarItem(icon: Icon(IconFont.profile), label: 'Account'),
   ];
@@ -46,8 +50,8 @@ class TabsService extends GetxService {
   }
 
   @override
-  void onInit() {
-    print("onInit");
-    super.onInit();
+  void onReady() {
+    guide.showGuide();
+    super.onReady();
   }
 }

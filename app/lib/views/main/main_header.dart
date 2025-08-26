@@ -1,3 +1,4 @@
+import 'package:app/modal_views/guide/guide.dart';
 import 'package:app/routes/app_pages.dart';
 import 'package:app/services/index.dart';
 import 'package:app/shared/simple_balance/simple_balance.dart';
@@ -28,9 +29,12 @@ class MainViewHeader extends StatelessWidget implements PreferredSizeWidget {
       toolbarHeight: 36,
       backgroundColor: Colors.transparent,
       titleSpacing: 12,
-      title: Obx(
-        () => _auth.authed.value ? SimpleBalance(depositable: true) : Auth(),
-      ),
+      // title: Obx(
+      //   () => _auth.authed.value
+      //       ? SimpleBalance(depositable: true, key: guideOne)
+      //       : Auth(),
+      // ),
+      title: SimpleBalance(depositable: true, key: guideOne),
       bottom: buildTabbar(),
       actionsPadding: const EdgeInsets.only(right: 12),
       actions: [
@@ -56,7 +60,7 @@ class MainViewHeader extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
         SizedBox(width: 8),
-        CustomerServiceTrigger(),
+        CustomerService(),
       ],
     );
   }

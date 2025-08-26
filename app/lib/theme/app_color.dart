@@ -18,6 +18,9 @@ abstract class AppColors {
   static const loading = Color(0xffe5e5e5);
   static const danger = Color(0xffff0000);
   static const success = Colors.green;
+  static const warn = Colors.orange;
+  static const info = Colors.blue;
+
   static const buttonGradient = RadialGradient(
     colors: [
       Color.fromRGBO(255, 255, 255, 0.3),

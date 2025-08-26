@@ -30,7 +30,7 @@ class FundsMenuGroup extends GetView<FundsController> {
           FundsMenu(
             IconFont.genzongjilu,
             "funds.history".tr,
-            to: Routes.customerService,
+            to: Routes.history2,
           ),
           FundsMenu(
             IconFont.kefu,

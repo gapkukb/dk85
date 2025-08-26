@@ -102,7 +102,7 @@ class AuthView extends StatelessWidget {
 
   List<Widget> buildActions() {
     return [
-      CustomerServiceTrigger(
+      CustomerService(
         size: 28,
         iconSize: 20,
         decoration: BoxDecoration(

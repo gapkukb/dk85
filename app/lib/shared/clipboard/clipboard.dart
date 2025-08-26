@@ -1,6 +1,5 @@
-import 'package:bot_toast/bot_toast.dart';
+import 'package:app/helper/copy.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import '../../iconfont/index.dart';
 
 class AKClipboard extends StatelessWidget {
@@ -29,10 +28,5 @@ class AKClipboard extends StatelessWidget {
             },
       child: child ?? Icon(IconFont.copy, color: color, size: size),
     );
-  }
-
-  static Future<void> copy(String content) async {
-    await Clipboard.setData(ClipboardData(text: content));
-    BotToast.showText(text: 'copy successful!');
   }
 }

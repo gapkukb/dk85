@@ -1,27 +1,15 @@
-import 'package:get/get.dart';
+import 'package:app/mixins/mixin_date_picker.dart';
+import 'package:app/mixins/mixin_game_kind_picker.dart';
+import 'package:app/shared/view_model/view_model.dart';
+import 'package:flutter/material.dart';
 
-class HistoryGamesController extends GetxController {
+class HistoryGamesController extends ViewModel
+    with MixinDatePicker, MixinGameKindPicker {
   HistoryGamesController();
 
-  _initData() {
-    update(["history_games"]);
-  }
-
-  void onTap() {}
-
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  // }
-
   @override
-  void onReady() {
-    super.onReady();
-    _initData();
+  Future loader() {
+    debugPrint('开始请求');
+    return Future.delayed(Durations.medium1);
   }
-
-  // @override
-  // void onClose() {
-  //   super.onClose();
-  // }
 }

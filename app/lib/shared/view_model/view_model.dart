@@ -1,9 +1,12 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 abstract class ViewModel extends GetxController {
+  int page = 1;
+  final int size = 50;
   final refresher = RefreshController();
   final loading = false.obs;
   final loadFailed = false.obs;
@@ -19,6 +22,18 @@ abstract class ViewModel extends GetxController {
         .whenComplete(() => loading.value = false);
   }
 
+  void onRefresh() async {
+    debugPrint('onRefresh');
+    await Future.delayed(Durations.medium1);
+    refresher.refreshCompleted(resetFooterState: true);
+  }
+
+  void onLoading() async {
+    debugPrint('onLoading');
+    await Future.delayed(Durations.medium1);
+    refresher.loadNoData();
+  }
+
   @override
   void onInit() {
     load();
@@ -26,7 +41,7 @@ abstract class ViewModel extends GetxController {
   }
 
   @override
-  void dispose() {
+  void onClose() {
     refresher.dispose();
     super.dispose();
   }
