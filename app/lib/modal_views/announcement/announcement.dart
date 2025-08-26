@@ -37,7 +37,7 @@ class _AnnouncementModalState extends State<AnnouncementModal> {
             buildTitle(),
             ConstrainedBox(
               constraints: BoxConstraints(
-                maxHeight: MediaQuery.of(context).size.height * 0.5,
+                maxHeight: MediaQuery.of(context).size.height * 0.7,
               ),
               child: Material(
                 clipBehavior: Clip.hardEdge,
@@ -45,7 +45,7 @@ class _AnnouncementModalState extends State<AnnouncementModal> {
                 borderRadius: BorderRadius.circular(8),
                 child: ListView.builder(
                   shrinkWrap: true,
-                  itemCount: 10,
+                  itemCount: 6,
                   itemBuilder: buildItem,
                 ),
               ),
