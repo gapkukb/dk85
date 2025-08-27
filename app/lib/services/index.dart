@@ -14,7 +14,6 @@ part 'user.service.dart';
 part 'auth.service.dart';
 
 void setupServices() {
-  Get.put(TabsService());
   Get.put(AuthService());
   Get.put(AppService());
 }

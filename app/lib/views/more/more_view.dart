@@ -40,7 +40,7 @@ class _MoreViewState extends State<MoreView> {
               ),
               AKTile(
                 titleText: 'app.version'.tr,
-                trailing: Text(packageInfo.version),
+                trailing: Text(packageInfo.info.version),
                 isLink: false,
               ),
               AKTile(

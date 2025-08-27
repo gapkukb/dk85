@@ -1,7 +1,6 @@
 part of 'index.dart';
 
-class TabsService extends GetxService {
-  static TabsService get to => Get.find();
+mixin class MainService {
   static FundsController get funds => Get.find<FundsController>();
 
   final currentIndex = 0.obs;

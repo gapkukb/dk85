@@ -96,7 +96,7 @@ class _MeView extends StatelessWidget {
                   fit: FlexFit.tight,
                   child: AKButton(
                     onPressed: () {
-                      TabsService.to.toFundsView(0);
+                      AppService.to.toFundsView(0);
                     },
                     text: 'app.withdraw'.tr,
                     color: AppColors.white,
@@ -107,7 +107,7 @@ class _MeView extends StatelessWidget {
                   fit: FlexFit.tight,
                   child: AKButton(
                     onPressed: () {
-                      TabsService.to.toFundsView(1);
+                      AppService.to.toFundsView(1);
                     },
                     text: 'app.withdraw'.tr,
                     color: Colors.white,

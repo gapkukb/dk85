@@ -1,8 +1,11 @@
 import 'package:package_info_plus/package_info_plus.dart';
 
-late final PackageInfo packageInfo;
+class _PackageInfo {
+  late final PackageInfo info;
 
-Future setupPackageInfo() async {
-  packageInfo = await PackageInfo.fromPlatform();
-  return packageInfo;
+  Future setup() async {
+    info = await PackageInfo.fromPlatform();
+  }
 }
+
+final packageInfo = _PackageInfo();

@@ -1,7 +1,4 @@
 import 'package:app/modal_views/announcement/announcement.dart';
-import 'package:app/modal_views/daily_check_in/view.dart';
-import 'package:app/modal_views/deposit_bonus/deposit_bonus.dart';
-import 'package:app/modal_views/try_game/try_game.dart';
 import 'package:app/shared/customer_service/customer_service.dart';
 import 'package:app/views/auth/auth_view.dart';
 import 'package:app/views/email/email.dart';

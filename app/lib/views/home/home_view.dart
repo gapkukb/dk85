@@ -18,24 +18,23 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  final tabLogic = TabsService.to;
-  final appLogic = AppService.to;
+  final appService = AppService.to;
 
   @override
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
-        if (tabLogic.currentIndex.value == 0) {
+        if (appService.currentIndex.value == 0) {
           MoveToBack.execute();
         } else {
-          tabLogic.toHomeView();
+          appService.toHomeView();
         }
       },
       child: Scaffold(
         body: Obx(
           () => IndexedStack(
-            index: tabLogic.currentIndex.value,
+            index: appService.currentIndex.value,
             children: [MainView(), PromosView(), FundsView(), MeView()],
           ),
         ),
@@ -46,9 +45,9 @@ class _HomeViewState extends State<HomeView> {
             iconSize: 22,
             elevation: 0,
             type: BottomNavigationBarType.fixed,
-            currentIndex: tabLogic.currentIndex.value,
-            onTap: tabLogic.toView,
-            items: tabLogic.tabs,
+            currentIndex: appService.currentIndex.value,
+            onTap: appService.toView,
+            items: appService.tabs,
             unselectedFontSize: 10,
             selectedFontSize: 10,
             unselectedItemColor: AppColors.label,

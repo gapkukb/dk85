@@ -1,24 +1,26 @@
 part of 'index.dart';
 
-class _Storage {
-  Future setup() {
+late final Storage storage;
+
+class Storage {
+  static Future setup() {
     return Future.wait([
-      _global.initStorage,
-      _game.initStorage,
-      _user.initStorage,
-    ]);
+      GetStorage.init(_appName),
+      GetStorage.init(_gameName),
+      GetStorage.init(_userName),
+    ]).then((_) {
+      storage = Storage();
+    });
   }
 
-  final locale = _StoreageItem<String>(
-    _global,
-    "locale",
-    I18n.defaultLocale.code,
-  );
-  final music = _StoreageItem<bool>(_global, "music", true);
-  final token = _StoreageItem<String>(_global, "token", '');
-  final user = _StoreageItem<Object>(_user, "user", '');
-  final allGame = _StoreageItem<Object>(_user, "all-game", '');
-  final showGuide = _StoreageItem<bool>(_user, "show-guide", true);
-}
+  final locale = _StorageItem<String>(app, "locale", I18n.defaultLocale.code);
 
-final storage = _Storage();
+  /// 设备的唯一识别符
+  final deviceId = _StorageStaticItem<String>(app, "device_id", '');
+  // final deviceInfo = _StorageStaticItem<String>(_global, "device_info", null);
+  final music = _StorageItem<bool>(app, "music", true);
+  final token = _StorageItem<String>(app, "token", '');
+  final showGuide = _StorageItem<bool>(app, "show_guide", true);
+  final user = _StorageItem<Object>(_user, "user", '');
+  final allGame = _StorageItem<Object>(_user, "all_game", '');
+}

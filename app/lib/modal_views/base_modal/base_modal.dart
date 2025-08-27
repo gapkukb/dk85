@@ -52,7 +52,7 @@ class BaseModal extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                fontSize: 28,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
                 height: 1,
@@ -65,7 +65,7 @@ class BaseModal extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             AKButton(
-              minWidth: Get.width / 1.7,
+              minWidth: Get.width / 1.2,
               radius: 100,
               color: AppColors.ff8240,
               height: 36,

@@ -172,14 +172,15 @@ class AKButton extends MaterialButton {
   }
 
   Color computeColor() {
-    if (color == null || color == Colors.white || color == Colors.transparent)
+    if (color == null || color == Colors.white || color == Colors.transparent) {
       return textColor ?? AppColors.title;
+    }
 
     return textColor ?? Colors.white;
   }
 
   computeBorder(Color? color) {
-    if (outlined != true) return null;
+    // if (outlined != true) return null;
 
     final side = (filled == false || outlined == true)
         ? BorderSide(color: color ?? danger, width: 2)
