@@ -1,5 +1,6 @@
 library;
 
+import 'package:app/apis/index.dart';
 import 'package:app/iconfont/index.dart';
 import 'package:app/views/funds/funds_controller.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,8 @@ part 'user.service.dart';
 part 'auth.service.dart';
 
 void setupServices() {
-  Get.put(AuthService());
   Get.put(AppService());
+  Get.put(AuthService());
+  Get.put(UserService());
+  Get.put(GameService());
 }

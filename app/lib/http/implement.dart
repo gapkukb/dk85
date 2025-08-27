@@ -6,13 +6,26 @@ class _HttpExcutor<R, Q extends Map<String, dynamic>> {
   CancelToken? cancelToken;
   final Dio dio;
   final String path;
+  final String method;
   final Options methodOptions;
   final R Function(Map<String, dynamic> json)? decoder;
-  _HttpExcutor(this.path, this.dio, this.decoder, this.methodOptions);
+  _HttpExcutor(
+    this.path,
+    this.method,
+    this.dio,
+    this.decoder,
+    this.methodOptions,
+  );
 
-  Future<R> call([Q? payload, HttpOptions? httpOptions, Options? options, final void Function(int, int)? onSendProgress, final void Function(int, int)? onReceiveProgress]) {
+  Future<R> call([
+    Q? payload,
+    HttpOptions? httpOptions,
+    Options? options,
+    final void Function(int, int)? onSendProgress,
+    final void Function(int, int)? onReceiveProgress,
+  ]) {
     options = methodOptions.copyWith(
-      method: options?.method,
+      method: options?.method ?? method,
       sendTimeout: options?.sendTimeout,
       receiveTimeout: options?.receiveTimeout,
       headers: options?.headers,
@@ -29,7 +42,9 @@ class _HttpExcutor<R, Q extends Map<String, dynamic>> {
       listFormat: options?.listFormat,
     );
 
-    options.extra![K] = (methodOptions.extra![K] as HttpOptions).merge(httpOptions);
+    options.extra![K] = (methodOptions.extra![K] as HttpOptions).merge(
+      httpOptions,
+    );
 
     if ((options.extra![K] as HttpOptions).cancellable ?? true) {
       abort();
@@ -49,7 +64,8 @@ class _HttpExcutor<R, Q extends Map<String, dynamic>> {
           queryParameters: options.method == 'get' ? payload : null,
         )
         .then((x) {
-          if (x.data is Map<String, dynamic>) return decoder?.call(x.data) ?? x as R;
+          if (x.data is Map<String, dynamic>)
+            return decoder?.call(x.data) ?? x as R;
           return x.data;
         });
   }
@@ -65,11 +81,16 @@ class _HttpMethod {
 
   const _HttpMethod(this.method, this.dio);
 
-  _HttpExcutor<R, Q> call<R, Q extends Map<String, dynamic>>(String path, [R Function(Map<String, dynamic> json)? decoder, HttpOptions? httpOptions, Options? options]) {
+  _HttpExcutor<R, Q> call<R, Q extends Map<String, dynamic>>(
+    String path, [
+    R Function(Map<String, dynamic> json)? decoder,
+    HttpOptions? httpOptions,
+    Options? options,
+  ]) {
     options ??= Options();
     options.extra ??= <String, dynamic>{};
     options.extra![K] = httpOptions ?? const HttpOptions();
-    return _HttpExcutor<R, Q>(path, dio, decoder, options);
+    return _HttpExcutor<R, Q>(path, method, dio, decoder, options);
   }
 }
 
@@ -100,8 +121,18 @@ class Http {
     return before != _length;
   }
 
-  Http clone({BaseOptions? options, Interceptors? interceptors, HttpClientAdapter? httpClientAdapter, Transformer? transformer}) {
-    final cloned = _dio.clone(options: options, interceptors: interceptors, httpClientAdapter: httpClientAdapter, transformer: transformer);
+  Http clone({
+    BaseOptions? options,
+    Interceptors? interceptors,
+    HttpClientAdapter? httpClientAdapter,
+    Transformer? transformer,
+  }) {
+    final cloned = _dio.clone(
+      options: options,
+      interceptors: interceptors,
+      httpClientAdapter: httpClientAdapter,
+      transformer: transformer,
+    );
 
     return Http(null, cloned);
   }

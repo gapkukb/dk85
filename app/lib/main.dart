@@ -30,6 +30,7 @@ void main() async {
 
   i18n.setup();
   setupServices();
+  await UserService.to.initlizeUser();
   Flavor.appFlavor = AppFlavor.values.firstWhere(
     (element) => element.name == appFlavor,
   );

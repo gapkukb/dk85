@@ -13,7 +13,7 @@ import { include, exclude } from './build/optimize'
 import autoimportLocale from './build/autoimport-locale'
 import { version } from './package.json'
 import mock from './mock/plugin'
-import { VitePWA } from 'vite-plugin-pwa'
+// import { VitePWA } from 'vite-plugin-pwa'
 import svgLoader from 'vite-svg-loader'
 import swc from 'vite-plugin-swc-transform'
 import { imagetools } from 'vite-imagetools'
@@ -40,7 +40,7 @@ export default defineConfig(function configure() {
             //         return url.searchParams
             //     },
             // }),
-            VitePWA(),
+            // VitePWA(),
             svgLoader({
                 svgoConfig: {
                     multipass: true,

@@ -16,9 +16,24 @@ public final class GeneratedPluginRegistrant {
   private static final String TAG = "GeneratedPluginRegistrant";
   public static void registerWith(@NonNull FlutterEngine flutterEngine) {
     try {
+      flutterEngine.getPlugins().add(new com.os.operando.advertisingid.AdvertisingIdPlugin());
+    } catch (Exception e) {
+      Log.e(TAG, "Error registering plugin advertising_id, com.os.operando.advertisingid.AdvertisingIdPlugin", e);
+    }
+    try {
+      flutterEngine.getPlugins().add(new dev.fluttercommunity.plus.device_info.DeviceInfoPlusPlugin());
+    } catch (Exception e) {
+      Log.e(TAG, "Error registering plugin device_info_plus, dev.fluttercommunity.plus.device_info.DeviceInfoPlusPlugin", e);
+    }
+    try {
       flutterEngine.getPlugins().add(new com.pichillilorenzo.flutter_inappwebview_android.InAppWebViewFlutterPlugin());
     } catch (Exception e) {
       Log.e(TAG, "Error registering plugin flutter_inappwebview_android, com.pichillilorenzo.flutter_inappwebview_android.InAppWebViewFlutterPlugin", e);
+    }
+    try {
+      flutterEngine.getPlugins().add(new com.alfanthariq.mobile_device_identifier.MobileDeviceIdentifierPlugin());
+    } catch (Exception e) {
+      Log.e(TAG, "Error registering plugin mobile_device_identifier, com.alfanthariq.mobile_device_identifier.MobileDeviceIdentifierPlugin", e);
     }
     try {
       flutterEngine.getPlugins().add(new com.example.move_to_back.MoveToBackPlugin());

@@ -19,16 +19,7 @@ class UserService extends GetxService {
     userInfo.value = {};
   }
 
-  @override
-  void onInit() {
-    super.onInit();
-    if (authenticated) return;
-    // 快速注册
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-    print("${runtimeType.toString()} closed");
+  Future initlizeUser() async {
+    quickRegister();
   }
 }

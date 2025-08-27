@@ -1,16 +1,25 @@
 part of 'index.dart';
 
+Widget createHomeIcon(String assetPath) {
+  return Transform.scale(
+    alignment: Alignment(0, -0.6),
+    scale: 2.5,
+    child: ClipRRect(
+      clipBehavior: Clip.hardEdge,
+      borderRadius: BorderRadius.circular(2),
+      child: Image.asset(assetPath, width: 16, height: 16),
+    ),
+  );
+}
+
 mixin class MainService {
   static FundsController get funds => Get.find<FundsController>();
 
   final currentIndex = 0.obs;
   final tabs = [
     BottomNavigationBarItem(
-      icon: Transform.scale(
-        alignment: Alignment(0, -0.6),
-        scale: 2.5,
-        child: Image.asset("assets/icons/logo.webp", width: 16, height: 16),
-      ),
+      icon: createHomeIcon("assets/icons/logo.webp"),
+      activeIcon: createHomeIcon("assets/icons/logo-2.webp"),
       label: '',
     ),
     BottomNavigationBarItem(

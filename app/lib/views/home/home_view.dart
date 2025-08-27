@@ -1,5 +1,3 @@
-import 'package:app/modal_manager/modal_manager.dart';
-import 'package:app/modal_manager/test.dart';
 import 'package:app/theme/index.dart';
 import 'package:app/views/funds/funds_view.dart';
 import 'package:app/views/me/me_view.dart';
@@ -64,9 +62,9 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      modalTest();
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   modalTest();
+    // });
     super.initState();
   }
 
