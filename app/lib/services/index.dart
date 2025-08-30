@@ -1,7 +1,11 @@
 library;
 
 import 'package:app/apis/index.dart';
+import 'package:app/http/http.dart';
 import 'package:app/iconfont/index.dart';
+import 'package:app/models/game.model.dart';
+import 'package:app/models/user_info.model.dart';
+import 'package:app/routes/app_pages.dart';
 import 'package:app/views/funds/funds_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

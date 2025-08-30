@@ -2,6 +2,7 @@ import 'package:app/flavors.dart';
 import 'package:app/i18n/index.dart';
 import 'package:app/routes/app_pages.dart';
 import 'package:app/setup/easyloading.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:app/shared/refresh/refresh_header.dart';
 import 'package:app/theme/index.dart';
@@ -26,6 +27,7 @@ class Application extends StatelessWidget {
         ).copyWith(textScaler: TextScaler.linear(1.0)).scale(),
         child: GetMaterialApp(
           builder: setupBotToast(),
+          navigatorObservers: [BotToastNavigatorObserver()],
           title: Flavor.title,
           scrollBehavior: AppScrollBehavior(),
           theme: lightTheme,

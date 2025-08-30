@@ -1,10 +1,7 @@
-import 'package:app/routes/app_pages.dart';
-import 'package:app/services/index.dart';
 import 'package:app/shared/confirmation/confirmation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import 'package:get/get.dart';
 
 class Webview extends StatefulWidget {
@@ -16,30 +13,34 @@ class Webview extends StatefulWidget {
 }
 
 class _WebviewState extends State<Webview> {
-  late final InAppWebViewController controller;
-  late final AppLifecycleListener listener;
-
-  InAppWebViewSettings settings = InAppWebViewSettings(
-    isInspectable: kDebugMode,
-    mediaPlaybackRequiresUserGesture: false,
-    allowsInlineMediaPlayback: true,
-    iframeAllow: "camera; microphone",
-    iframeAllowFullscreen: true,
-  );
+  final controller = WebViewController()
+    ..enableZoom(false)
+    ..setJavaScriptMode(JavaScriptMode.unrestricted)
+    ..setHorizontalScrollBarEnabled(false)
+    ..setVerticalScrollBarEnabled(false)
+    ..clearLocalStorage()
+    ..clearCache()
+    ..setNavigationDelegate(
+      NavigationDelegate(
+        onProgress: (int progress) {
+          // Update loading bar.
+        },
+        onPageStarted: (String url) {},
+        onPageFinished: (String url) {},
+        onHttpError: (HttpResponseError error) {},
+        onWebResourceError: (WebResourceError error) {},
+        // onNavigationRequest: (NavigationRequest request) {
+        //   if (request.url.startsWith('https://www.youtube.com/')) {
+        //     return NavigationDecision.prevent;
+        //   }
+        //   return NavigationDecision.navigate;
+        // },
+      ),
+    );
 
   @override
   void initState() {
-    // 监听app进入后台，暂停/恢复 webview
-    // listener = AppLifecycleListener(
-    //   onShow: () {
-    //     print('AppLifecycleListener show');
-    //     controller.resume();
-    //   },
-    //   onHide: () {
-    //     print('AppLifecycleListener hide');
-    //     controller.pause();
-    //   },
-    // );
+    controller.loadRequest(Uri.parse(widget.url));
     super.initState();
   }
 
@@ -47,49 +48,27 @@ class _WebviewState extends State<Webview> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvokedWithResult: (didPop, result) => exit(),
+      onPopInvokedWithResult: (didPop, result) async {
+        confirmExit();
+      },
       child: Scaffold(
         floatingActionButton: Transform.translate(
           offset: Offset(0, 12),
           child: FloatingActionButton.small(
             heroTag: 'gaming',
-            onPressed: exit,
+            onPressed: confirmExit,
             backgroundColor: Colors.transparent,
             child: Image.asset('assets/icons/back-icon.webp'),
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
-        body: SafeArea(
-          child: InAppWebView(
-            initialUrlRequest: URLRequest(url: WebUri(widget.url)),
-            initialSettings: settings,
-            onWebViewCreated: (controller) {
-              print('object');
-              this.controller = controller;
-            },
-            onLoadStart: (controller, url) {},
-            onPermissionRequest: (controller, request) async {
-              return PermissionResponse(
-                resources: request.resources,
-                action: PermissionResponseAction.GRANT,
-              );
-            },
-          ),
-        ),
+        body: Scaffold(body: WebViewWidget(controller: controller)),
       ),
     );
   }
 
-  exit() async {
+  confirmExit() async {
     final guaranteed = await Get.confirm(title: 'app.exit.game'.tr) == true;
     if (guaranteed) Get.back();
-  }
-
-  @override
-  void dispose() {
-    //ignore:invalid_null_aware_operator
-    controller?.dispose();
-    listener.dispose();
-    super.dispose();
   }
 }

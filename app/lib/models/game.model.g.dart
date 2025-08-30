@@ -42,7 +42,7 @@ Game _$GameFromJson(Map<String, dynamic> json) => Game(
   hot: (json['hot'] as num).toInt(),
   recommend: (json['recommend'] as num).toInt(),
   likeNum: (json['like_num'] as num).toInt(),
-  fishNew: (json['new'] as num).toInt(),
+  is_new: (json['new'] as num).toInt(),
   createdAt: json['created_at'] as String,
   updatedAt: json['updated_at'] as String,
 );
@@ -61,7 +61,7 @@ Map<String, dynamic> _$GameToJson(Game instance) => <String, dynamic>{
   'hot': instance.hot,
   'recommend': instance.recommend,
   'like_num': instance.likeNum,
-  'new': instance.fishNew,
+  'new': instance.is_new,
   'created_at': instance.createdAt,
   'updated_at': instance.updatedAt,
 };

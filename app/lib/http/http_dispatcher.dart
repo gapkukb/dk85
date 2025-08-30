@@ -11,7 +11,15 @@ class HttpMethod {
     HttpOptions? httpOptions,
     Options? options,
   ]) {
-    return Dispatcher<R, Q>(path, dio, decode, null, httpOptions, options);
+    return Dispatcher<R, Q>(
+      path,
+      method,
+      dio,
+      decode,
+      null,
+      httpOptions,
+      options,
+    );
   }
 
   Dispatcher<List<R>, Q> list<R, Q>(
@@ -22,6 +30,7 @@ class HttpMethod {
   ]) {
     return Dispatcher<List<R>, Q>(
       path,
+      method,
       dio,
       null,
       decode == null
@@ -37,6 +46,7 @@ class Dispatcher<R, Q> {
   final HttpOptions? httpOptions;
   final Options? options;
   final String path;
+  final String method;
   final Dio dio;
   final R Function(Map<String, dynamic>)? decodeMap;
   final R Function(List<Map<String, dynamic>>)? decodeList;
@@ -44,6 +54,7 @@ class Dispatcher<R, Q> {
 
   Dispatcher(
     this.path,
+    this.method,
     this.dio,
     this.decodeMap,
     this.decodeList,
@@ -61,6 +72,7 @@ class Dispatcher<R, Q> {
     Map<String, dynamic>? queryParameters,
   }) {
     final finalOptions = combineOptions(this.options, options);
+    finalOptions.method ??= method;
     final finalHttpOptions = combineHttpOptions(this.httpOptions, httpOptions);
 
     finalOptions.extra = {
@@ -76,8 +88,10 @@ class Dispatcher<R, Q> {
     return dio
         .request(
           path,
-          data: data ?? payload,
-          queryParameters: queryParameters ?? payload,
+          data: data ?? (finalOptions.method == 'get' ? null : payload),
+          queryParameters:
+              queryParameters ??
+              (finalOptions.method == 'get' ? payload : null),
           options: finalOptions,
           onReceiveProgress: onReceiveProgress,
           onSendProgress: onSendProgress,

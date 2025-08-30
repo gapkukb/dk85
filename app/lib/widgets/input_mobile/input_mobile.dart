@@ -16,7 +16,7 @@ class AKMobileInput extends StatefulWidget {
 }
 
 class _AKMobileInputState extends State<AKMobileInput> {
-  final areaCode = Rx<String?>('+95');
+  final areaCode = Rx<String?>('95');
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +27,10 @@ class _AKMobileInputState extends State<AKMobileInput> {
         onTap: widget.changeable ? showPicker : null,
         child: buildAreaCode(widget.changeable),
       ),
-      onSaved: widget.onSaved,
-      maxLength: 11,
+      onSaved: (newValue) {
+        widget.onSaved?.call("${areaCode.value}$newValue");
+      },
+      maxLength: 10,
       keyboardType: TextInputType.phone,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       validator: (value) {
@@ -49,7 +51,7 @@ class _AKMobileInputState extends State<AKMobileInput> {
       children: [
         Obx(
           () => Text(
-            areaCode.value ?? '',
+            '+${areaCode.value}',
             style: const TextStyle(color: AppColors.title),
           ),
         ),

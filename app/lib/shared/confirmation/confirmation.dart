@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/theme/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -8,7 +10,7 @@ const _kConfirmStyle = TextStyle(fontSize: 12, color: AppColors.highlight);
 const _kCancelStyle = TextStyle(fontSize: 12, color: AppColors.label);
 
 extension Confirmation on GetInterface {
-  Future<bool?> confirm({
+  Future<bool> confirm({
     bool? barrierDismissible,
     String? title,
     String? content,
@@ -18,8 +20,8 @@ extension Confirmation on GetInterface {
     TextStyle? contentStyle,
     TextStyle? cancelStyle,
     TextStyle? confirmStyle,
-  }) {
-    return Get.dialog<bool>(
+  }) async {
+    final ok = await Get.dialog<bool>(
       barrierDismissible: barrierDismissible ?? true,
       CupertinoAlertDialog(
         title: Text(
@@ -51,5 +53,6 @@ extension Confirmation on GetInterface {
         ],
       ),
     );
+    return ok == true ? Future.value(true) : Future.error(false);
   }
 }

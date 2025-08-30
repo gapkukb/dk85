@@ -14,13 +14,16 @@ class SliverGameSection extends StatelessWidget {
       return SliverToBoxAdapter();
     }
 
-    return SliverMainAxisGroup(
-      slivers: [
-        SliverPadding(padding: Gutter.top.normal),
-        SliverToBoxAdapter(child: buildTitle(title)),
-        SliverPadding(padding: Gutter.top.small),
-        GameGridView.sliver(games: games),
-      ],
+    return SliverPadding(
+      padding: Gutter.all.normal,
+      sliver: SliverMainAxisGroup(
+        slivers: [
+          SliverPadding(padding: Gutter.top.normal),
+          SliverToBoxAdapter(child: buildTitle(title)),
+          SliverPadding(padding: Gutter.top.small),
+          GameGridView.sliver(gameList: games),
+        ],
+      ),
     );
   }
 

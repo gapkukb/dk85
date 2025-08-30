@@ -13,7 +13,7 @@ class GroupGames {
         hotGames.add(game);
       } else if (game.recommend == 1) {
         recommendeds.add(game);
-      } else if (game.fishNew == 1) {
+      } else if (game.is_new == 1) {
         newGames.add(game);
       } else {
         others.add(game);

@@ -14,7 +14,7 @@ class TryGameModal extends StatelessWidget {
       buttonText: 'Try game',
       imageHeight: 290,
       onPressed: () {
-        GamingView.play();
+        // GamingView.play();
       },
     );
   }

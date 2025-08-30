@@ -9,7 +9,7 @@ import '/shared/customer_service/customer_service.dart';
 import '/shared/locale_selector/locale_selector.dart';
 import '/theme/index.dart';
 import '/widgets/rounded_tab_indicator.dart';
-part './main_auth.dart';
+part 'main_auth_button.dart';
 
 final tabs = <_Tab>[
   _Tab('assets/icons/hot.webp', 'app.foru'.tr),
@@ -30,9 +30,9 @@ class MainViewHeader extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.transparent,
       titleSpacing: 12,
       title: Obx(
-        () => _auth.authed.value
+        () => _auth.authorized
             ? SimpleBalance(depositable: true, key: guideOne)
-            : Auth(),
+            : AuthButton(),
       ),
       // title: SimpleBalance(depositable: true, key: guideOne),
       bottom: buildTabbar(),

@@ -1,3 +1,4 @@
+import 'package:app/services/index.dart';
 import 'package:get/get.dart';
 import 'package:app/shared/balance/balance.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:app/theme/index.dart';
 class SimpleBalance extends StatelessWidget {
   final bool depositable;
   const SimpleBalance({super.key, this.depositable = false});
+  static final userService = UserService.to;
 
   @override
   Widget build(BuildContext context) {
@@ -55,14 +57,16 @@ class SimpleBalance extends StatelessWidget {
                 color: const Color(0xfffffac4),
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: const Text(
-                "VIP1",
-                style: TextStyle(
-                  fontSize: 8,
-                  color: AppColors.primary,
-                  // height: 1.2,
-                  fontStyle: FontStyle.italic,
-                  fontWeight: FontWeight.bold,
+              child: Obx(
+                () => Text(
+                  "${userService.userInfo.value?.gradeName}",
+                  style: TextStyle(
+                    fontSize: 8,
+                    color: AppColors.primary,
+                    // height: 1.2,
+                    fontStyle: FontStyle.italic,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),

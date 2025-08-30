@@ -1,6 +1,6 @@
 import { get, post, http } from './http'
 
-const fundsApi = http.copyWith({ baseURL: '/payment' })
+const fundsApi = http.copyWith({ baseURL: '/pay/payment' })
 /** 查询所有银行卡 */
 export const queryPaymentList = get<Record<string, model.funds.PaymentProvider>>('/payment-list')
 /** 提现渠道列表 */

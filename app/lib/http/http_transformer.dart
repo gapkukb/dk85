@@ -9,19 +9,29 @@ class HTTPBackgroundTransformer extends BackgroundTransformer {
     RequestOptions options,
     ResponseBody responseBody,
   ) async {
-    return super.transformResponse(options, responseBody);
-    // print('999999999999');
-    // return body;
-    // if (options.normalizable == false) return body;
-    // if (body is Map && body['code'] != 200) {
-    //   throw DioException(
-    //     requestOptions: options,
-    //     response: Response(requestOptions: options, data: body),
-    //     error: body['message'],
-    //     message: body['message'],
-    //     type: DioExceptionType.badResponse,
-    //   );
-    // }
-    // return body['data'];
+    final body = await super.transformResponse(options, responseBody);
+    if (options.normalizable == false) return body;
+    if (body is Map && body['code'] != 200) {
+      throw DioException(
+        requestOptions: options,
+        response: Response(
+          requestOptions: options,
+          data: body,
+          headers: Headers.fromMap(
+            responseBody.headers,
+            preserveHeaderCase: options.preserveHeaderCase,
+          ),
+          statusCode: responseBody.statusCode,
+          statusMessage: responseBody.statusMessage,
+          extra: responseBody.extra,
+          isRedirect: responseBody.isRedirect,
+          redirects: responseBody.redirects ?? [],
+        ),
+        error: body['message'],
+        message: body['message'],
+        type: DioExceptionType.badResponse,
+      );
+    }
+    return body['data'];
   }
 }

@@ -1,4 +1,4 @@
-import 'dart:math';
+import 'package:app/models/game.model.dart';
 import 'package:app/views/gaming/gaming.dart';
 
 import '/iconfont/index.dart';

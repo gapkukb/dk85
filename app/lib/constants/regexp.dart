@@ -2,5 +2,12 @@
 
 final REGEXP_PASSWORD = RegExp(r'\w{6,20}');
 final REGEXP_email = RegExp(r"^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$");
-final REGEXP_ACCOUNT = RegExp(r'^[a-zA-Z][a-zA-Z0-9]{5,19}$', caseSensitive: false);
-final REGEXP_MOBILE_NUMBER = RegExp(r"^0?95\\d{8}$");
+final REGEXP_ACCOUNT = RegExp(
+  r'^[a-zA-Z][a-zA-Z0-9]{5,19}$',
+  caseSensitive: false,
+);
+final REGEXP_MOBILE_NUMBER = RegExp(r"^[1-9]\d{7,10}$");
+
+void main() {
+  print(REGEXP_MOBILE_NUMBER.hasMatch("95123456789"));
+}

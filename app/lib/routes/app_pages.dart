@@ -1,6 +1,6 @@
-import 'package:app/modal_views/announcement/announcement.dart';
 import 'package:app/shared/customer_service/customer_service.dart';
 import 'package:app/views/auth/auth_view.dart';
+import 'package:app/views/demo/demo.dart';
 import 'package:app/views/email/email.dart';
 import 'package:app/views/favorites/bindings.dart';
 import 'package:app/views/favorites/view.dart';
@@ -30,7 +30,7 @@ class AppPages {
   static const INITIAL = null;
 
   static final routes = [
-    GetPage(name: Routes.demo, page: () => const AnnouncementModal()),
+    GetPage(name: Routes.demo, page: () => const DemoView()),
     GetPage(name: Routes.auth, page: () => const AuthView()),
     GetPage(
       name: Routes.customerService,

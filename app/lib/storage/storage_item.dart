@@ -31,6 +31,10 @@ class _StorageItem<T> {
     storage.write(name, val);
   }
 
+  refresh() {
+    _rx.refresh();
+  }
+
   remove() {
     storage.remove(name);
   }

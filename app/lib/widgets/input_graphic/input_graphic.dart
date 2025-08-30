@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:app/apis/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -8,25 +9,41 @@ import '../../iconfont/index.dart';
 import '../../theme/index.dart';
 import '../input_base/input_base.dart';
 
-class AKGraphicInput extends StatelessWidget {
+class AKGraphicInput extends StatefulWidget {
+  final ValueChanged<String> onImageChange;
   final FormFieldSetter<String>? onSaved;
   final ValueChanged<String>? onFieldSubmitted;
-  const AKGraphicInput({super.key, this.onSaved, this.onFieldSubmitted});
+  final Key? imageKey;
 
+  const AKGraphicInput({
+    super.key,
+    this.onSaved,
+    this.onFieldSubmitted,
+    this.imageKey,
+    required this.onImageChange,
+  });
+
+  @override
+  State<AKGraphicInput> createState() => _AKGraphicInputState();
+}
+
+class _AKGraphicInputState extends State<AKGraphicInput> {
+  final logic = TextEditingController();
   @override
   Widget build(BuildContext context) {
     const maxLength = 4;
     return Stack(
       children: [
         AKBaseInput(
+          controller: logic,
           placeholder: "form.graphic.placed".tr,
           prefixIconName: IconFont.tuxingma1,
           suffixIconName: IconFont.VIP2,
           suffixIconConstraints: BoxConstraints.loose(const Size(108, 48)),
-          onSaved: onSaved,
+          onSaved: widget.onSaved,
           maxLength: maxLength,
           textInputAction: TextInputAction.done,
-          onFieldSubmitted: onFieldSubmitted,
+          onFieldSubmitted: widget.onFieldSubmitted,
           validator: (value) {
             if (value == null || value.isEmpty) return "form.graphic.placed".tr;
             if (value.length != maxLength) return "form.graphic.error".tr;
@@ -34,14 +51,22 @@ class AKGraphicInput extends StatelessWidget {
           },
         ),
 
-        const Positioned(
+        Positioned(
           right: 0,
           top: 0,
           width: 100,
           height: 48,
           child: ClipRRect(
-            borderRadius: BorderRadius.horizontal(right: Radius.circular(8)),
-            child: _CodeImage(),
+            borderRadius: const BorderRadius.horizontal(
+              right: Radius.circular(8),
+            ),
+            child: _CodeImage(
+              key: widget.imageKey,
+              onChanged: (value) {
+                logic.clear();
+                widget.onImageChange(value);
+              },
+            ),
           ),
         ),
       ],
@@ -50,19 +75,26 @@ class AKGraphicInput extends StatelessWidget {
 }
 
 class _CodeImage extends StatefulWidget {
-  const _CodeImage();
+  final ValueChanged<String> onChanged;
+  const _CodeImage({super.key, required this.onChanged});
 
   @override
-  _CodeImageState createState() => _CodeImageState();
+  CodeImageState createState() => CodeImageState();
 }
 
-class _CodeImageState extends State<_CodeImage> {
+class CodeImageState extends State<_CodeImage> {
   final icon = const DecoratedBox(
     decoration: BoxDecoration(color: AppColors.loading),
     child: Icon(IconFont.yule, size: 36, color: AppColors.description),
   );
   bool loading = false;
   Image? image;
+
+  @override
+  void initState() {
+    queryImage();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,40 +105,26 @@ class _CodeImageState extends State<_CodeImage> {
   queryImage() {
     loading = true;
     setState(() {});
-    Future.delayed(Durations.extralong1)
+    final t = DateTime.now().millisecondsSinceEpoch;
+    widget.onChanged(t.toString());
+    queryCaptcha(payload: {'time': t})
         .then((value) {
-          return isImageValid(Uint8List(10));
-        })
-        .then((value) {
-          image = Image.memory(value, fit: BoxFit.fill);
+          if (mounted) {
+            image = Image.memory(Uint8List.fromList(value), fit: BoxFit.fill);
+          }
         })
         .whenComplete(() {
-          loading = false;
-          setState(() {});
+          if (mounted) {
+            loading = false;
+            setState(() {});
+          }
         });
   }
+}
 
-  Future<Uint8List> isImageValid(List<int>? rawList) async {
-    final error = Future<Uint8List>.error('Invalid Image Bytes');
-
-    if (rawList == null) return error;
-    final uInt8List = rawList is Uint8List
-        ? rawList
-        : Uint8List.fromList(rawList);
-
-    try {
-      final codec = await instantiateImageCodec(uInt8List, targetWidth: 1);
-      final frameInfo = await codec.getNextFrame();
-      if (frameInfo.image.width > 0) return uInt8List;
-      return error;
-    } catch (e) {
-      return error;
-    }
-  }
-
-  @override
-  void dispose() {
-    image = null;
-    super.dispose();
+mixin class AKGraphicInputController {
+  final imageKey = GlobalKey<CodeImageState>();
+  void refreshImage() {
+    imageKey.currentState?.queryImage();
   }
 }

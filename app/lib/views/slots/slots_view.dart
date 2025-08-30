@@ -1,8 +1,11 @@
+import 'package:app/services/index.dart';
+import 'package:app/widgets/game/game_page.dart';
+import 'package:app/widgets/game/game_section.dart';
 import 'package:app/widgets/game/index.dart';
 import 'package:flutter/material.dart';
 
 class SlotsView extends StatefulWidget {
-  const SlotsView({Key? key}) : super(key: key);
+  const SlotsView({super.key});
 
   @override
   _SlotsViewState createState() => _SlotsViewState();
@@ -11,23 +14,6 @@ class SlotsView extends StatefulWidget {
 class _SlotsViewState extends State<SlotsView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverPadding(
-            padding: EdgeInsets.all(8),
-            sliver: GameGridView.sliver(
-              gameList: List.generate(100, (_) => {}),
-            ),
-          ),
-          SliverPadding(
-            padding: EdgeInsets.all(8),
-            sliver: GameGridView.sliver(
-              gameList: List.generate(100, (_) => {}),
-            ),
-          ),
-        ],
-      ),
-    );
+    return GamePageView(dataBuilder: () => GameService.to.slots, adPosition: 2);
   }
 }

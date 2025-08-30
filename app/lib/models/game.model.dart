@@ -67,7 +67,7 @@ class Game {
   @JsonKey(name: "like_num")
   final int likeNum;
   @JsonKey(name: "new")
-  final int fishNew;
+  final int is_new;
   @JsonKey(name: "created_at")
   final String createdAt;
   @JsonKey(name: "updated_at")
@@ -87,7 +87,7 @@ class Game {
     required this.hot,
     required this.recommend,
     required this.likeNum,
-    required this.fishNew,
+    required this.is_new,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -123,7 +123,7 @@ class Game {
     hot: hot ?? this.hot,
     recommend: recommend ?? this.recommend,
     likeNum: likeNum ?? this.likeNum,
-    fishNew: fishNew ?? this.fishNew,
+    is_new: fishNew ?? is_new,
     createdAt: createdAt ?? this.createdAt,
     updatedAt: updatedAt ?? this.updatedAt,
   );

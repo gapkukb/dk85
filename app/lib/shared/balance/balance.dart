@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:app/iconfont/index.dart';
+import 'package:app/services/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -24,9 +25,11 @@ class Balance extends StatefulWidget {
   final Color? refresherColor;
   final CrossAxisAlignment? crossAxisAlignment;
   final bool trailing;
+  final bool showFraction;
 
   final Widget Function(BuildContext context, Widget amount, Widget refresher)?
   builder;
+
   const Balance({
     super.key,
     this.color = Colors.white,
@@ -47,6 +50,7 @@ class Balance extends StatefulWidget {
     this.crossAxisAlignment,
     this.trailing = true,
     this.trailingStyle,
+    this.showFraction = true,
   });
 
   @override
@@ -54,7 +58,7 @@ class Balance extends StatefulWidget {
 }
 
 class _BalanceState extends State<Balance> {
-  var amount = 1000;
+  get _balance => UserService.to.balance.value;
 
   late final AnimationController controller;
 
@@ -83,15 +87,10 @@ class _BalanceState extends State<Balance> {
   Widget buildRefresher() {
     return GestureDetector(
           behavior: HitTestBehavior.translucent,
-          onTap: () {
+          onTap: () async {
             if (controller.isAnimating) return;
             controller.repeat();
-            Future.delayed(3000.ms).whenComplete(() {
-              setState(() {
-                amount = Random().nextInt(1000000);
-                controller.stop();
-              });
-            });
+            await UserService.to.queryBalance().whenComplete(controller.stop);
           },
           child: Icon(
             IconFont.refresh,
@@ -117,8 +116,8 @@ class _BalanceState extends State<Balance> {
     ).merge(widget.amountStyle);
 
     final counter = AnimatedFlipCounter(
-      value: amount,
-      fractionDigits: widget.fractionDigits ?? (amount < 99999 ? 2 : 0),
+      value: _balance,
+      fractionDigits: widget.showFraction ? 2 : 0,
       suffix: widget.suffix,
       prefix: widget.prefix,
       padding: widget.amountPadding ?? EdgeInsets.zero,

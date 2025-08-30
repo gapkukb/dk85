@@ -25,7 +25,7 @@ class GamePageView extends StatefulWidget {
 
 class _GamePageViewState extends State<GamePageView>
     with AutomaticKeepAliveClientMixin {
-  GroupGames get games => GroupGames(widget.dataBuilder());
+  List<Game> get games => widget.dataBuilder();
 
   final refresher = RefreshController();
 
@@ -33,19 +33,16 @@ class _GamePageViewState extends State<GamePageView>
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(12),
-        child: SmartRefresher(
-          controller: refresher,
-          onRefresh: GameService.to.onRefresh,
-          child: CustomScrollView(
-            slivers: [
-              SliverGameSwiper(position: widget.adPosition),
-              Obx(() => SliverGameSection("Hot Games", games.hotGames)),
-              Obx(() => SliverGameSection("New Games", games.newGames)),
-              Obx(() => SliverGameSection("All Games", games.others)),
-            ],
-          ),
+      body: SmartRefresher(
+        controller: refresher,
+        onRefresh: GameService.to.onRefresh,
+        child: CustomScrollView(
+          slivers: [
+            SliverGameSwiper(position: widget.adPosition),
+            // Obx(() => SliverGameSection("Hot Games", games.hotGames)),
+            // Obx(() => SliverGameSection("New Games", games.newGames)),
+            Obx(() => SliverGameSection("All Games", games)),
+          ],
         ),
       ),
     );

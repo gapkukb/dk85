@@ -42,6 +42,7 @@ class _AKPwdInputState extends State<AKPwdInput> {
       prefixIconName: IconFont.mima,
       maxLength: 20,
       suffixIconConstraints: const BoxConstraints(minWidth: 56),
+      controller: widget.controller,
       suffixIcon: GestureDetector(
         onTap: () {
           setState(() {

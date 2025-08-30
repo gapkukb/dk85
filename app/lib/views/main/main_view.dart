@@ -1,6 +1,9 @@
 import 'package:app/modal_views/guide/guide.dart';
 import 'package:app/theme/index.dart';
+import 'package:app/views/fishing/fishing_view.dart';
 import 'package:app/views/hot/index.dart';
+import 'package:app/views/poker/poker_view.dart';
+import 'package:app/views/slots/slots_view.dart';
 import 'package:app/widgets/rounded_tab_indicator.dart';
 import 'package:flutter/material.dart';
 import './main_header.dart';
@@ -35,7 +38,7 @@ class _MainViewState extends State<MainView>
           backgroundColor: Colors.transparent,
           appBar: MainViewHeader(),
           body: TabBarView(
-            children: [HotView(), SizedBox(), SizedBox(), SizedBox()],
+            children: [HotView(), SlotsView(), FishingView(), PokerView()],
           ),
         ),
       ),

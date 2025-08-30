@@ -21,6 +21,6 @@ class Storage {
   final music = _StorageItem<bool>(app, "music", true);
   final token = _StorageItem<String>(app, "token", '');
   final showGuide = _StorageItem<bool>(app, "show_guide", true);
-  final user = _StorageItem<Object>(_user, "user", '');
+  final user = _StorageItem<Map<String, dynamic>?>(_user, "user", null);
   final allGame = _StorageItem<Object>(_user, "all_game", '');
 }

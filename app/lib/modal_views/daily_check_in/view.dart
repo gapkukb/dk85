@@ -1,12 +1,8 @@
-import 'dart:async';
-
 import 'package:app/iconfont/index.dart';
 import 'package:app/modal_views/daily_check_in/widgets/card.dart';
 import 'package:app/modal_views/daily_check_in/widgets/rules.dart';
-import 'package:app/shared/lottie_player/lottie_player.dart';
 import 'package:app/theme/index.dart';
 import 'package:app/widgets/button/index.dart';
-import 'package:dotlottie_loader/dotlottie_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -82,11 +78,5 @@ class DailyCheckInView extends GetView<DailyCheckInController> {
     Get.bottomSheet(DailyCheckInRules(), isScrollControlled: true);
   }
 
-  void claim() {
-    final player = lottiePlayer(assetPath: 'assets/lottie/slights-spin.lottie');
-    Get.showOverlay(
-      loadingWidget: player.loader,
-      asyncFunction: () => player.completer,
-    );
-  }
+  void claim() {}
 }

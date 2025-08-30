@@ -1,4 +1,5 @@
 import 'package:app/hooks/useForm.dart';
+import 'package:app/services/index.dart';
 import 'package:app/shared/customer_service/customer_service.dart';
 import 'package:app/theme/index.dart';
 import 'package:app/views/auth/controller.dart';
@@ -15,7 +16,14 @@ class LoginView extends GetView<AuthCotroller> {
 
   @override
   Widget build(BuildContext context) {
-    final form = Useform((values) {});
+    final form = Useform((values) {
+      return controller.action(
+        text: 'Logged in',
+        todo: () {
+          return AuthService.to.login(values);
+        },
+      );
+    });
 
     return Form(
       key: form.key,
@@ -24,11 +32,13 @@ class LoginView extends GetView<AuthCotroller> {
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: 12),
           children: [
-            AKAccInput(onSaved: form.saveAs('account')),
+            AKAccInput(onSaved: form.saveAs('username')),
             AKPwdInput(onSaved: form.saveAs('password')),
             AKGraphicInput(
+              imageKey: controller.imageKey,
               onSaved: form.saveAs('code'),
               onFieldSubmitted: form.submit,
+              onImageChange: form.saveAs('time'),
             ),
             AKButton(onPressed: form.submit, text: 'app.login'.tr),
             buildTool(),

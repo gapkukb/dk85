@@ -57,7 +57,7 @@ class _SliverGameSwiperState extends State<SliverGameSwiper> {
             borderRadius: const BorderRadius.all(Radius.circular(4)),
             clipBehavior: Clip.hardEdge,
             child: NetworkPicture(
-              fit: BoxFit.contain,
+              fit: BoxFit.fill,
               imageUrl: i.image,
               colorBlendMode: BlendMode.src,
             ),

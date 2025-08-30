@@ -15,14 +15,16 @@ class SearchingPage extends GetView<SearchingController> {
         return Scaffold(
           appBar: SearchingBar(),
           body: SafeArea(
-            child: GridView.builder(
-              padding: EdgeInsets.only(left: 12, right: 12, bottom: 12),
-              itemCount: 100,
-              gridDelegate: GameGridView.delegate,
-              itemBuilder: (context, index) {
-                return GameItemView();
-              },
-            ),
+            child: Obx(() {
+              return GridView.builder(
+                padding: EdgeInsets.only(left: 12, right: 12, bottom: 12),
+                itemCount: controller.filteredGames.length,
+                gridDelegate: GameGridView.delegate,
+                itemBuilder: (context, index) {
+                  return GameItemView(game: controller.filteredGames[index]);
+                },
+              );
+            }),
           ),
         );
       },

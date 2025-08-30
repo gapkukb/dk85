@@ -43,6 +43,6 @@ abstract class ViewModel extends GetxController {
   @override
   void onClose() {
     refresher.dispose();
-    super.dispose();
+    super.onClose();
   }
 }

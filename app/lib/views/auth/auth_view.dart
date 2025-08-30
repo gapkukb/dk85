@@ -32,16 +32,6 @@ class AuthView extends StatelessWidget {
             child: Scaffold(
               backgroundColor: Colors.transparent,
               appBar: buildAppBar(),
-              // body: CustomScrollView(
-              //   slivers: [
-              //     buildAppBar(),
-              //     SliverList.list(
-              //       children: [
-              //         ...List.generate(100, (_) => ListTile(title: Text("data"))),
-              //       ],
-              //     ),
-              //   ],
-              // ),
               body: TabBarView(children: [LoginView(), SignUpView()]),
             ),
           ),

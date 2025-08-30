@@ -1,11 +1,12 @@
+import 'package:app/constants/game.dart';
+import 'package:app/models/game.model.dart';
+import 'package:app/services/index.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'index.dart';
-
 class _Tab {
   final String name;
-  final String value;
+  final int value;
 
   _Tab({required this.name, required this.value});
 }
@@ -16,22 +17,57 @@ class SearchingController extends GetxController
 
   late final TabController tab;
   final input = TextEditingController();
+  final gameService = GameService.to;
+  final keywords = ''.obs;
+  final kind = GameKind.all.id.obs;
+  final platforms = ['all'].obs;
 
   final List<_Tab> tabs = [
-    _Tab(name: 'All', value: 'all'),
-    _Tab(name: 'app.slots', value: 'slots'),
-    _Tab(name: 'app.fishing', value: 'fishing'),
-    _Tab(name: 'app.poker', value: 'poker'),
+    _Tab(name: GameKind.all.displayName, value: GameKind.all.id),
+    _Tab(name: GameKind.slots.displayName, value: GameKind.slots.id),
+    _Tab(name: GameKind.fishing.displayName, value: GameKind.fishing.id),
+    _Tab(name: GameKind.poker.displayName, value: GameKind.poker.id),
   ];
 
-  final List<Map<String, String>> platforms = [];
+  List<Game> get filteredGames {
+    if (keywords.isEmpty) return _filterWithoutKeywords(kind.value);
+    return _filterWithKeywords(kind.value, keywords.value);
+  }
+
+  List<Game> _filterWithoutKeywords(int kind) {
+    if (kind == GameKind.all.id) return gameService.all;
+    if (kind == GameKind.slots.id) return gameService.slots;
+    if (kind == GameKind.fishing.id) return gameService.fish;
+    if (kind == GameKind.poker.id) return gameService.poker;
+    return [];
+  }
+
+  List<Game> _filterWithKeywords(int kind, String keywords) {
+    bool predicate(Game game) =>
+        game.name.contains(keywords) || game.platform.contains(keywords);
+
+    List<Game> filter(Iterable<Game> games) => games.where(predicate).toList();
+
+    if (kind == GameKind.all.id) {
+      return filter(gameService.all);
+    }
+    if (kind == GameKind.slots.id) {
+      return filter(gameService.slots);
+    }
+    if (kind == GameKind.fishing.id) {
+      return filter(gameService.fish);
+    }
+    if (kind == GameKind.poker.id) {
+      return filter(gameService.poker);
+    }
+    return [];
+  }
+
   // tap
   void search([dynamic _]) {
-    final keywords = input.text.trim();
-    final kind = tabs[tab.index].value;
-    final platform = '';
-
-    Get.snackbar("标题", "keywords:$keywords,kind:$kind");
+    keywords.value = input.text.trim();
+    kind.value = tabs[tab.index].value;
+    platforms.value = <String>['all'];
   }
 
   /// 在 widget 内存中分配后立即调用。
@@ -45,6 +81,6 @@ class SearchingController extends GetxController
   void onClose() {
     tab.dispose();
     input.dispose();
-    super.dispose();
+    super.onClose();
   }
 }

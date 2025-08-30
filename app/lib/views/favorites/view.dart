@@ -20,24 +20,7 @@ class FavoritesView extends GetView<FavoritesController> {
             leading: AKBackButton(),
             title: Text("page.favorites".tr),
           ),
-          body: SafeArea(
-            child: SmartRefresher(
-              controller: controller.refresher,
-              child: GridView.builder(
-                itemCount: 4,
-                padding: EdgeInsets.symmetric(horizontal: 12),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  mainAxisSpacing: 8,
-                  crossAxisSpacing: 8,
-                  childAspectRatio: 67 / 100,
-                  crossAxisCount: 3,
-                ),
-                itemBuilder: (context, index) {
-                  return GameItemView();
-                },
-              ),
-            ),
-          ),
+          body: SafeArea(child: GameGridView(gameList: [])),
         );
       },
     );

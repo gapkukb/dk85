@@ -51,7 +51,7 @@ class FundsController extends GetxController
 
   @override
   void onClose() {
-    super.dispose();
+    super.onClose();
     ctrl.removeListener(_onInput);
     tab.dispose();
     ctrl.dispose();

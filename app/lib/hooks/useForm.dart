@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class Useform {
   final _values = {};
@@ -7,13 +7,14 @@ class Useform {
 
   Useform(this._submit);
 
-  saveAs(String name) {
+  void Function(dynamic value) saveAs(String name) {
     return (dynamic value) {
       _values[name] = value;
     };
   }
 
   submit([String? value]) {
+    FocusManager.instance.primaryFocus?.unfocus();
     if (key.currentState == null) return;
     if (key.currentState!.validate()) {
       key.currentState!.save();
