@@ -23,11 +23,7 @@ class _HistoryDetailViewState extends State<HistoryDetailView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: AKBackButton(),
-        actionsPadding: Gutter.right.normal,
-        actions: [CustomerService()],
-      ),
+      appBar: AppBar(leading: AKBackButton(), actionsPadding: Gutter.right.normal, actions: [CustomerService()]),
       body: ListView(
         padding: Gutter.horizontal.normal,
         children: [
@@ -49,10 +45,7 @@ class _HistoryDetailViewState extends State<HistoryDetailView> {
             children: [
               AKTile(
                 titleText: 'Order Number',
-                additionalInfo: Text(
-                  '0995555555555555',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
+                additionalInfo: Text('0995555555555555', style: TextStyle(fontWeight: FontWeight.bold)),
                 isLink: false,
                 trailing: Icon(IconFont.copy, color: AppColors.label, size: 16),
                 onTap: copier('0995555555555555'),
@@ -62,22 +55,11 @@ class _HistoryDetailViewState extends State<HistoryDetailView> {
                 titleText: 'Order Amount',
                 trailing: Text(
                   '5,000.00',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.danger,
-                  ),
+                  style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.danger),
                 ),
               ),
-              AKTile(
-                isLink: false,
-                titleText: 'Recharge Method',
-                trailing: Text('KBZPay'),
-              ),
-              AKTile(
-                isLink: false,
-                titleText: 'Recharge time',
-                trailing: Text('2020-02-02 00:00:00'),
-              ),
+              AKTile(isLink: false, titleText: 'Recharge Method', trailing: Text('KBZPay')),
+              AKTile(isLink: false, titleText: 'Recharge time', trailing: Text('2020-02-02 00:00:00')),
             ],
           ),
 
@@ -85,14 +67,7 @@ class _HistoryDetailViewState extends State<HistoryDetailView> {
             alignment: Alignment(1, 0),
             child: TextButton(
               onPressed: CustomerService.call,
-              child: MutipleText(
-                fontSize: 12,
-                spaing: 4,
-                color: AppColors.title,
-                subColor: AppColors.primary,
-                text: 'Any question?',
-                subText: 'contact us!',
-              ),
+              child: MutipleText(fontSize: 12, spaing: 4, color: AppColors.title, subColor: AppColors.primary, text: 'Any question?', subText: 'contact us!'),
             ),
           ),
         ],
@@ -103,7 +78,7 @@ class _HistoryDetailViewState extends State<HistoryDetailView> {
         maintainBottomViewPadding: true,
         child: AKButton(
           onPressed: () {
-            Get.toNamed(Routes.receiption);
+            Get.toNamed(Routes.payee);
           },
           radius: 0,
           text: 'Pay',

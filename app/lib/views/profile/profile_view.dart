@@ -1,3 +1,4 @@
+import 'package:app/models/user_info.model.dart';
 import 'package:app/routes/app_pages.dart';
 import 'package:app/services/index.dart';
 import 'package:app/theme/index.dart';
@@ -15,8 +16,8 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
+  UserModel get user => UserService.to.userInfo.value!;
   final bindStyle = TextStyle(backgroundColor: AppColors.primary);
-  final user = UserService.to.userInfo.value!;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,8 +30,8 @@ class _ProfileViewState extends State<ProfileView> {
               margin: EdgeInsets.only(left: 12, right: 12),
               children: [
                 AKTile(titleText: 'account.password'.tr, trailing: buildTail(true), to: Routes.pwd),
-                AKTile(titleText: 'account.mobile'.tr, trailing: Obx(() => buildTail(user.mobile != null && user.mobile!.isNotEmpty)), to: Routes.mobile),
-                AKTile(titleText: 'account.email'.tr, trailing: buildTail(false), to: Routes.email),
+                Obx(() => AKTile(titleText: 'account.mobile'.tr, trailing: buildTail(user.mobile != null && user.mobile!.isNotEmpty), to: Routes.mobile)),
+                Obx(() => AKTile(titleText: 'account.email'.tr, trailing: buildTail(user.email != null && user.email!.isNotEmpty), to: Routes.email)),
               ],
             ),
           ],

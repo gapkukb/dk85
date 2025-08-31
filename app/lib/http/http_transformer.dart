@@ -5,10 +5,7 @@ part of 'http.dart';
 
 class HTTPBackgroundTransformer extends BackgroundTransformer {
   @override
-  Future transformResponse(
-    RequestOptions options,
-    ResponseBody responseBody,
-  ) async {
+  Future transformResponse(RequestOptions options, ResponseBody responseBody) async {
     dynamic body = await super.transformResponse(options, responseBody);
     if (options.normalizable == false) return body;
     if (body is String && options.responseType == ResponseType.json) {
@@ -17,9 +14,7 @@ class HTTPBackgroundTransformer extends BackgroundTransformer {
         // ignore: empty_catches
       } catch (d) {}
     }
-    if (body is! Map<String, dynamic> ||
-        body['code'] != 200 ||
-        body['data'] == null) {
+    if (body is! Map<String, dynamic> || body['code'] != 200) {
       final errorMessage = body is Map
           ? body['message']
           : body is String
@@ -31,10 +26,7 @@ class HTTPBackgroundTransformer extends BackgroundTransformer {
         response: Response(
           requestOptions: options,
           data: body,
-          headers: Headers.fromMap(
-            responseBody.headers,
-            preserveHeaderCase: options.preserveHeaderCase,
-          ),
+          headers: Headers.fromMap(responseBody.headers, preserveHeaderCase: options.preserveHeaderCase),
           statusCode: responseBody.statusCode,
           statusMessage: responseBody.statusMessage,
           extra: responseBody.extra,

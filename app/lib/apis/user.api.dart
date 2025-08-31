@@ -21,7 +21,7 @@ final readMessageApi = post('/app/read-message');
 final queryMessagesApi = get('/app/message-list');
 
 ///绑定邮箱
-final bindEmailApi = post('/app/email');
+final bindEmailApi = post('/app/bind-email');
 
 ///绑定手机号
 final bindMobileApi = post('/app/bind-mobile');

@@ -23,7 +23,7 @@ class FundsController extends GetxController with GetSingleTickerProviderStateMi
   }
 
   deposit() {
-    Get.toNamed(Routes.receiption);
+    Get.toNamed(Routes.payee);
   }
 
   openWithdrawChannel(WithdrawlModel channel) {

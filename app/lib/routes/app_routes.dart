@@ -5,7 +5,7 @@ abstract class Routes {
   static const spalash = '/spalash';
   static const auth = '/auth';
   static const customerService = '/customerService';
-  static const receiption = '/receiption';
+  static const payee = '/receiption';
   static const more = '/more';
   static const favorites = '/favorites';
   static const inbox = '/inbox';

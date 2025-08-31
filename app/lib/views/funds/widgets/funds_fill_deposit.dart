@@ -25,7 +25,6 @@ class FundsFillDeposit extends GetView<FundsController> {
   @override
   Widget build(BuildContext context) {
     final form = Useform((values) async {
-      print('values${values['amount']}');
       final order = await createTopUpOrder(
         data: {
           // 	string	支付接口ID
@@ -48,8 +47,19 @@ class FundsFillDeposit extends GetView<FundsController> {
           'nonce': Uuid().v1(),
         },
       );
-      inspect(order);
-      Get.offAndToNamed(Routes.receiption, parameters: {'id': channel.id.toString(), 'name': channel.name, 'logo': channel.logo, 'amount': values['amount']});
+
+      Get.offAndToNamed(
+        Routes.payee,
+        parameters: {
+          'id': channel.id.toString(),
+          'refrence': order.data.orderSn,
+          'name': channel.name,
+          'logo': channel.logo,
+          'amount': values['amount'],
+          'image_url': order.data.imageUrl,
+          'sysTradeNo': order.data.sysTradeNo,
+        },
+      );
     });
     return Form(
       key: form.key,

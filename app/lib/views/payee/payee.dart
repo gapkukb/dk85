@@ -1,3 +1,5 @@
+import 'package:app/apis/index.dart';
+import 'package:app/extensions/bot_toast.dart';
 import 'package:app/helper/copy.dart';
 import 'package:app/iconfont/index.dart';
 import 'package:app/shared/clipboard/clipboard.dart';
@@ -6,6 +8,7 @@ import 'package:app/theme/index.dart';
 import 'package:app/widgets/back_button/back_button.dart';
 import 'package:app/widgets/button/index.dart';
 import 'package:app/widgets/network_picture.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,6 +22,8 @@ class PayeeView extends StatefulWidget {
 }
 
 class _PayeeViewState extends State<PayeeView> {
+  final controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,11 +36,7 @@ class _PayeeViewState extends State<PayeeView> {
       ),
       body: buildView(),
       bottomNavigationBar: SafeArea(
-        child: AKButton(
-          onPressed: submit,
-          text: 'payment.receiver.submit'.tr,
-          radius: 0,
-        ),
+        child: AKButton(onPressed: submit, text: 'payment.receiver.submit'.tr, radius: 0),
       ),
     );
   }
@@ -46,19 +47,9 @@ class _PayeeViewState extends State<PayeeView> {
       data: ListTileThemeData(
         minTileHeight: 48,
         titleTextStyle: TextStyle(color: AppColors.description),
-        leadingAndTrailingTextStyle: TextStyle(
-          color: AppColors.title,
-          fontSize: 14,
-          fontWeight: FontWeight.bold,
-        ),
+        leadingAndTrailingTextStyle: TextStyle(color: AppColors.title, fontSize: 14, fontWeight: FontWeight.bold),
       ),
-      child: ListView(
-        children: [
-          buildPayee(context),
-          buildPayor(context),
-          buildPayGuide(context),
-        ],
-      ),
+      child: ListView(children: [buildPayee(context), buildPayor(context), buildPayGuide(context)]),
     );
   }
 
@@ -70,21 +61,12 @@ class _PayeeViewState extends State<PayeeView> {
         children: [
           Text(
             'payment.receiver.acc'.tr,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: AppColors.title,
-            ),
+            style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.title),
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 8),
-            decoration: BoxDecoration(
-              color: AppColors.ffeee5,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Text(
-              'payment.receiver.target'.tr,
-              style: TextStyle(color: AppColors.primary, fontSize: 12),
-            ),
+            decoration: BoxDecoration(color: AppColors.ffeee5, borderRadius: BorderRadius.circular(10)),
+            child: Text('payment.receiver.target'.tr, style: TextStyle(color: AppColors.primary, fontSize: 12)),
           ),
         ],
       ),
@@ -95,36 +77,22 @@ class _PayeeViewState extends State<PayeeView> {
             spacing: 4,
             mainAxisSize: MainAxisSize.min,
             children: [
-              NetworkPicture(
-                width: 28,
-                height: 28,
-                imageUrl:
-                    "https://imgcdn.knryywqf.com/upload/images/202501/34989806-89dd-4b1f-9609-ee0e7541614e.jpg",
-                fit: BoxFit.cover,
-              ),
-              Text("KBZ Pay"),
+              NetworkPicture(width: 28, height: 28, imageUrl: Get.parameters['logo']!, fit: BoxFit.cover),
+              Text("${Get.parameters['name']}"),
             ],
           ),
         ),
         ListTile(
           title: Text('payment.receiver.method'.tr),
-          trailing: Row(
-            spacing: 4,
-            mainAxisSize: MainAxisSize.min,
-            children: [Text("0908123451321"), Icon(IconFont.copy, size: 16)],
-          ),
-          onTap: copier('content'),
+          trailing: Row(spacing: 4, mainAxisSize: MainAxisSize.min, children: [Text("${Get.parameters['refrence']}"), Icon(IconFont.copy, size: 16)]),
+          onTap: copier(Get.parameters['refrence']!),
         ),
         ListTile(
           title: Text('payment.receiver.amount'.tr),
           trailing: RichText(
             text: TextSpan(
-              style: TextStyle(
-                color: AppColors.primary,
-                fontWeight: FontWeight.bold,
-                fontSize: 14,
-              ),
-              text: '20000.00',
+              style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.bold, fontSize: 14),
+              text: '${Get.parameters['amount']}',
               children: [
                 TextSpan(
                   text: ' MMK',
@@ -146,30 +114,22 @@ class _PayeeViewState extends State<PayeeView> {
         children: [
           Text(
             'payment.receiver.bill.No.'.tr,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: AppColors.title,
-            ),
+            style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.title),
           ),
-          Text(
-            "(${'app.required'.tr})",
-            style: TextStyle(color: AppColors.primary),
-          ),
+          Text("(${'app.required'.tr})", style: TextStyle(color: AppColors.primary)),
         ],
       ),
       children: [
         Padding(
           padding: const EdgeInsets.all(12.0),
           child: TextField(
+            controller: controller,
             maxLength: 6,
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             decoration: InputDecoration(
               counterText: '',
-              hint: Text(
-                'payment.receiver.placeholder'.tr,
-                style: TextStyle(fontSize: 12, color: AppColors.description),
-              ),
+              hint: Text('payment.receiver.placeholder'.tr, style: TextStyle(fontSize: 12, color: AppColors.description)),
             ),
           ),
         ),
@@ -187,11 +147,32 @@ class _PayeeViewState extends State<PayeeView> {
       children: [
         Padding(
           padding: EdgeInsets.all(12),
-          child: NetworkPicture(imageUrl: '', height: 1000),
+          child: NetworkPicture(imageUrl: Get.parameters['image_url']!, height: 1000),
         ),
       ],
     );
   }
 
-  submit() {}
+  submit() async {
+    final value = controller.text;
+    if (value.isEmpty) {
+      BotToast.showText(text: '请填写回执号');
+      return;
+    }
+    try {
+      BotToast.showLoading();
+      await matchTopupApi(data: {'sys_trade_no': Get.parameters['sysTradeNo'], 'bank_serial': value, 'account_id': Get.parameters['id']});
+      BotToast.closeAllLoading();
+      await showSuccess(text: '提交成功!');
+      Get.back();
+    } catch (e) {
+      BotToast.closeAllLoading();
+    }
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 }
