@@ -1,8 +1,9 @@
 import 'package:app/shared/account_balance/account_balance.dart';
 import 'package:app/theme/index.dart';
 import 'package:app/views/funds/funds_controller.dart';
-import 'package:app/views/funds/widgets/funds_channels.dart';
+import 'package:app/views/funds/widgets/withdrawal_view.dart';
 import 'package:app/views/funds/widgets/funds_menu_group.dart';
+import 'package:app/views/funds/widgets/top_up_view.dart';
 import 'package:app/widgets/button/index.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -37,12 +38,7 @@ class _FundsView extends GetView<FundsController> {
             preferredSize: Size.fromHeight(300 + tabbarHeight),
             child: AppBar(
               title: Text("page.funds".tr),
-              titleTextStyle: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: AppColors.title,
-                fontFamily: 'myanmarcensus',
-              ),
+              titleTextStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.title, fontFamily: 'myanmarcensus'),
               flexibleSpace: FlexibleSpaceBar(
                 titlePadding: EdgeInsets.all(0),
                 title: Column(
@@ -57,10 +53,7 @@ class _FundsView extends GetView<FundsController> {
               bottom: buildTabbar(),
             ),
           ),
-          body: TabBarView(
-            controller: controller.tab,
-            children: [FundsChannels(false), FundsChannels(true)],
-          ),
+          body: TabBarView(controller: controller.tab, children: [TopUpView(), FundsChannels()]),
         );
       },
     );
@@ -92,9 +85,7 @@ class _FundsView extends GetView<FundsController> {
       labelStyle: TextStyle(fontWeight: FontWeight.bold),
       unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
       indicator: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(width: 2, color: AppColors.highlight),
-        ),
+        border: Border(bottom: BorderSide(width: 2, color: AppColors.highlight)),
       ),
       // indicatorPadding: EdgeInsets.symmetric(horizontal: 16),
       // indicatorSize: TabBarIndicatorSize.tab,

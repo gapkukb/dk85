@@ -1,10 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '/constants/regexp.dart';
 import '../input_base/input_base.dart';
 
-class EmailInput extends AKBaseInput {
+class AKEmailInput extends AKBaseInput {
   final bool optional;
-  EmailInput({super.key, super.onSaved, this.optional = false})
+
+  AKEmailInput({super.key, super.onSaved, this.optional = false, super.backgroundColor})
     : super(
         placeholder: "Your email address".tr,
         validator: (value) {

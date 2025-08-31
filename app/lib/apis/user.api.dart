@@ -1,9 +1,9 @@
 part of 'index.dart';
 
-final loginApi = post('/app/login', AuthModel.fromJson);
-final registerApi = post('/app/register', AuthModel.fromJson);
-final fastRegisterApi = post('/app/quickRegister', AuthModel.fromJson);
-final queryUserInfoApi = post('/app/user-info', UserInfoModel.fromJson);
+final loginApi = post('/app/login', AuthModelWrapper.fromJson);
+final registerApi = post('/app/register', AuthModelWrapper.fromJson);
+final fastRegisterApi = post('/app/quickRegister', AuthModelWrapper.fromJson);
+final queryUserInfoApi = get('/app/user-info', UserModelWrapper.fromJson);
 final logoutApi = post('/app/logout');
 
 final refreshTokenApi = get('/app/refresh-token');
@@ -30,4 +30,4 @@ final bindMobileApi = post('/app/bind-mobile');
 final changePwdApi = post('/app/change-login-password');
 
 ///刷新余额
-final queryBalanceApi = get('/app/refresh-balance', BalanceModel.fromJson);
+final queryBalanceApi = get('/app/refresh-balance', BalanceModelWrapper.fromJson);

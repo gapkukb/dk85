@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class GamePageView extends StatefulWidget {
-  final List<Game> Function() dataBuilder;
+  final List<GameModel> Function() dataBuilder;
   final int adPosition;
 
   const GamePageView({
@@ -25,7 +25,7 @@ class GamePageView extends StatefulWidget {
 
 class _GamePageViewState extends State<GamePageView>
     with AutomaticKeepAliveClientMixin {
-  List<Game> get games => widget.dataBuilder();
+  List<GameModel> get games => widget.dataBuilder();
 
   final refresher = RefreshController();
 

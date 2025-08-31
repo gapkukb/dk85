@@ -22,6 +22,7 @@ abstract class Routes {
   static const pwd = '/pwd';
   static const gaming = '/gaming';
   static const fundsManager = '/fundsManager';
+  static const activityDetail = '/activityDetail';
 
   // 登陆后重定向到参数
   static String loginThen(String to) {

@@ -73,7 +73,7 @@ class I18n extends Translations {
   Future updateLocale(String code) async {
     final locale = getLocale(code);
     // await loadTranslation(locale.code);
-    storage.locale.value = code;
+    storage.locale.update(code);
     // 等待选择框收起动画完成
     await Future.delayed(Durations.medium1);
     Get.updateLocale(locale);

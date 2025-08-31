@@ -2,5 +2,9 @@
   "java.configuration.updateBuildConfiguration": "automatic",
   "editor.codeActionsOnSave": {
     "source.fixAll": "always"
+  },
+  "dart.lineLength": 220,
+  "[dart]": {
+    "editor.rulers": [220]
   }
 }

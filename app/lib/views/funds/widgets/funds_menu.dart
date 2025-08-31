@@ -43,7 +43,7 @@ class FundsMenu extends StatelessWidget {
             softWrap: false,
             textAlign: TextAlign.center,
             style: const TextStyle(
-              fontSize: 16,
+              fontSize: 14,
               height: 1,
               fontWeight: FontWeight.w100,
               color: AppColors.label,

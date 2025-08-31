@@ -1,14 +1,43 @@
-import 'package:json_annotation/json_annotation.dart';
-part 'balance.model.g.dart';
+import 'dart:convert';
 
-@JsonSerializable()
+class BalanceModelWrapper {
+  final int code;
+  final int status;
+  final String message;
+  final BalanceModel data;
+
+  BalanceModelWrapper({
+    required this.code,
+    required this.status,
+    required this.message,
+    required this.data,
+  });
+
+  factory BalanceModelWrapper.fromRawJson(String str) =>
+      BalanceModelWrapper.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory BalanceModelWrapper.fromJson(Map<String, dynamic> json) =>
+      BalanceModelWrapper(
+        code: json["code"],
+        status: json["status"],
+        message: json["message"],
+        data: BalanceModel.fromJson(json["data"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+    "code": code,
+    "status": status,
+    "message": message,
+    "data": data.toJson(),
+  };
+}
+
 class BalanceModel {
-  @JsonKey(name: "balance")
-  final double balance;
-  @JsonKey(name: "balance_frozen")
-  final double balanceFrozen;
-  @JsonKey(name: "points")
-  final double points;
+  final num balance;
+  final num balanceFrozen;
+  final int points;
 
   BalanceModel({
     required this.balance,
@@ -16,18 +45,20 @@ class BalanceModel {
     required this.points,
   });
 
-  BalanceModel copyWith({
-    double? balance,
-    double? balanceFrozen,
-    double? points,
-  }) => BalanceModel(
-    balance: balance ?? this.balance,
-    balanceFrozen: balanceFrozen ?? this.balanceFrozen,
-    points: points ?? this.points,
+  factory BalanceModel.fromRawJson(String str) =>
+      BalanceModel.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory BalanceModel.fromJson(Map<String, dynamic> json) => BalanceModel(
+    balance: json["balance"],
+    balanceFrozen: json["balance_frozen"],
+    points: json["points"],
   );
 
-  factory BalanceModel.fromJson(Map<String, dynamic> json) =>
-      _$BalanceModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$BalanceModelToJson(this);
+  Map<String, dynamic> toJson() => {
+    "balance": balance,
+    "balance_frozen": balanceFrozen,
+    "points": points,
+  };
 }

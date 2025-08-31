@@ -1,8 +1,11 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 part 'http_options.dart';
@@ -20,7 +23,7 @@ final _dio = Dio(
     receiveTimeout: duration,
     // sendTimeout: duration,
     responseType: ResponseType.json,
-    contentType: ContentType.json.mimeType,
+    contentType: 'application/json; charset=utf-8',
   ),
 );
 final tokenMangerInterceptor = HttpTokenManagerInterceptor(

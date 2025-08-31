@@ -3,26 +3,25 @@ part of 'index.dart';
 class UserService extends GetxService {
   static UserService get to => Get.find();
 
-  final balance = 0.0.obs;
-  final userInfo = Rxn<UserInfoModel>();
+  final balance = RxNum(0);
+  final userInfo = Rxn<UserModel>();
   final token = storage.token;
 
-  bool get authenticated => token.value.isNotEmpty;
-
   Future queryUserInfo() async {
-    // userInfo.value = await queryUserInfoApi();
-    // userInfo.refresh();
+    final r = await queryUserInfoApi();
+    userInfo.value = r.data;
+    userInfo.refresh();
   }
 
   Future queryBalance() async {
     final b = await queryBalanceApi();
-    balance.value = b.balance;
+    balance.value = b.data.balance;
   }
 
   @override
   void onInit() {
     if (AuthService.to.authorized) {
-      userInfo.value = UserInfoModel.fromJson(storage.user.value ?? {});
+      queryUserInfo();
     }
     super.onInit();
   }

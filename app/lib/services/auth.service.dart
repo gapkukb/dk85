@@ -5,11 +5,15 @@ class AuthService extends GetxService {
   final _tokenManager = tokenManager.obs;
 
   bool get authorized => _tokenManager.value.accessToken != null;
+  bool get unauthorized => !authorized;
+
   bool get ensureAuthorized {
     if (authorized) return true;
     Get.toNamed(Routes.auth);
     return false;
   }
+
+  bool get ensureUnauthorize => !ensureAuthorized;
 
   Future<bool> get ensureAuthorizedAsync async {
     if (authorized) return Future.value(true);
@@ -21,6 +25,7 @@ class AuthService extends GetxService {
     // 更新token
     _tokenManager.value.set(accessToken: token, refreshToken: token);
     _tokenManager.refresh();
+    storage.token.update(token);
     // 获取用户信息
     await UserService.to.queryUserInfo();
     UserService.to.queryBalance();
@@ -30,12 +35,12 @@ class AuthService extends GetxService {
 
   Future login(Object values) async {
     final t = await loginApi(payload: values);
-    await _next(t.token);
+    await _next(t.data.token);
   }
 
   Future register(Object values) async {
     final t = await registerApi(payload: values);
-    await _next(t.token);
+    await _next(t.data.token);
   }
 
   Future logout() async {
@@ -48,5 +53,14 @@ class AuthService extends GetxService {
     Get.reset();
     AppService.to.toHomeView();
     Get.reset();
+  }
+
+  @override
+  void onInit() {
+    final token = storage.token.value;
+    if (token.isNotEmpty) {
+      tokenManager.set(accessToken: token, refreshToken: token);
+    }
+    super.onInit();
   }
 }

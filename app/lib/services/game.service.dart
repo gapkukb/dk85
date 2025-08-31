@@ -3,21 +3,21 @@ part of 'index.dart';
 class GameService extends GetConnect {
   static GameService get to => Get.find();
 
-  final Rx<GameModel?> _all = Rx<GameModel?>(null);
+  final Rx<GameGroupModel?> _all = Rx<GameGroupModel?>(null);
   final loading = false.obs;
 
-  List<Game> get slots => _all.value?.slots ?? [];
-  List<Game> get fish => _all.value?.fish ?? [];
-  List<Game> get poker => _all.value?.poker ?? [];
-  List<Game> get all => [...slots, ...fish, ...poker];
+  List<GameModel> get slots => _all.value?.slots ?? [];
+  List<GameModel> get fish => _all.value?.fish ?? [];
+  List<GameModel> get poker => _all.value?.poker ?? [];
+  List<GameModel> get all => [...slots, ...fish, ...poker];
 
   queryAll() async {
     loading.value = true;
-    _all.value = await queryAllGames(payload: {"game_id": "17"}).whenComplete(
-      () {
-        loading.value = false;
-      },
-    );
+    final r = await queryAllGames(queryParameters: {"game_id": "17"})
+        .whenComplete(() {
+          loading.value = false;
+        });
+    _all.value = r.data;
   }
 
   void onRefresh() {}

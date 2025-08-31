@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
 
 class FundsPresetAmount extends GetView<FundsController> {
-  const FundsPresetAmount({super.key});
+  final List<String> presets;
+  const FundsPresetAmount(this.presets, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +18,9 @@ class FundsPresetAmount extends GetView<FundsController> {
         crossAxisSpacing: 8,
         mainAxisSpacing: 8,
       ),
-      itemCount: controller.presets.length,
+      itemCount: presets.length,
       itemBuilder: (BuildContext context, int index) {
-        final n = controller.presets[index].toString();
+        final n = presets[index];
         return Obx(
           () => _Button(
             onPressed: () {

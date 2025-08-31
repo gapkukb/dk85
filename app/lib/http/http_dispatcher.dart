@@ -11,34 +11,7 @@ class HttpMethod {
     HttpOptions? httpOptions,
     Options? options,
   ]) {
-    return Dispatcher<R, Q>(
-      path,
-      method,
-      dio,
-      decode,
-      null,
-      httpOptions,
-      options,
-    );
-  }
-
-  Dispatcher<List<R>, Q> list<R, Q>(
-    final String path, [
-    final R Function(Map<String, dynamic>)? decode,
-    HttpOptions? httpOptions,
-    Options? options,
-  ]) {
-    return Dispatcher<List<R>, Q>(
-      path,
-      method,
-      dio,
-      null,
-      decode == null
-          ? null
-          : (List<Map<String, dynamic>> json) => json.map(decode).toList(),
-      httpOptions,
-      options,
-    );
+    return Dispatcher<R, Q>(path, method, dio, decode, httpOptions, options);
   }
 }
 
@@ -48,16 +21,14 @@ class Dispatcher<R, Q> {
   final String path;
   final String method;
   final Dio dio;
-  final R Function(Map<String, dynamic>)? decodeMap;
-  final R Function(List<Map<String, dynamic>>)? decodeList;
+  final R Function(Map<String, dynamic>)? serializer;
   CancelToken? _cancellation;
 
   Dispatcher(
     this.path,
     this.method,
     this.dio,
-    this.decodeMap,
-    this.decodeList,
+    this.serializer,
     this.httpOptions,
     this.options,
   );
@@ -88,26 +59,17 @@ class Dispatcher<R, Q> {
     return dio
         .request(
           path,
-          data: data ?? (finalOptions.method == 'get' ? null : payload),
-          queryParameters:
-              queryParameters ??
-              (finalOptions.method == 'get' ? payload : null),
+          data: data,
+          queryParameters: queryParameters,
           options: finalOptions,
           onReceiveProgress: onReceiveProgress,
           onSendProgress: onSendProgress,
           cancelToken: _cancellation,
         )
         .then((resp) {
-          final data = resp.data;
-
-          if (data is List && decodeList != null) {
-            return decodeList!(data.cast<Map<String, dynamic>>());
+          if (serializer != null) {
+            return serializer!(resp.data);
           }
-
-          if (data is Map && decodeMap != null) {
-            return decodeMap!(resp.data);
-          }
-
           return resp.data;
         });
   }

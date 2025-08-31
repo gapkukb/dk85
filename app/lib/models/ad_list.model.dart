@@ -1,21 +1,47 @@
-import 'package:json_annotation/json_annotation.dart';
-part 'ad_list.model.g.dart';
+import 'dart:convert';
 
-@JsonSerializable()
+class AdModelWrapper {
+  final int code;
+  final int status;
+  final String message;
+  final List<AdModel> data;
+
+  AdModelWrapper({
+    required this.code,
+    required this.status,
+    required this.message,
+    required this.data,
+  });
+
+  factory AdModelWrapper.fromRawJson(String str) =>
+      AdModelWrapper.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory AdModelWrapper.fromJson(Map<String, dynamic> json) => AdModelWrapper(
+    code: json["code"],
+    status: json["status"],
+    message: json["message"],
+    data: List<AdModel>.from(
+      (json["data"] ?? []).map((x) => AdModel.fromJson(x)),
+    ),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "code": code,
+    "status": status,
+    "message": message,
+    "data": List<dynamic>.from(data.map((x) => x.toJson())),
+  };
+}
+
 class AdModel {
-  @JsonKey(name: "name")
   final String name;
-  @JsonKey(name: "image")
   final String image;
-  @JsonKey(name: "url")
   final String url;
-  @JsonKey(name: "type")
   final int type;
-  @JsonKey(name: "before_login")
   final int beforeLogin;
-  @JsonKey(name: "position")
   final int position;
-  @JsonKey(name: "sort")
   final int sort;
 
   AdModel({
@@ -28,26 +54,27 @@ class AdModel {
     required this.sort,
   });
 
-  AdModel copyWith({
-    String? name,
-    String? image,
-    String? url,
-    int? type,
-    int? beforeLogin,
-    int? position,
-    int? sort,
-  }) => AdModel(
-    name: name ?? this.name,
-    image: image ?? this.image,
-    url: url ?? this.url,
-    type: type ?? this.type,
-    beforeLogin: beforeLogin ?? this.beforeLogin,
-    position: position ?? this.position,
-    sort: sort ?? this.sort,
+  factory AdModel.fromRawJson(String str) => AdModel.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory AdModel.fromJson(Map<String, dynamic> json) => AdModel(
+    name: json["name"],
+    image: json["image"],
+    url: json["url"],
+    type: json["type"],
+    beforeLogin: json["before_login"],
+    position: json["position"],
+    sort: json["sort"],
   );
 
-  factory AdModel.fromJson(Map<String, dynamic> json) =>
-      _$AdModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$AdModelToJson(this);
+  Map<String, dynamic> toJson() => {
+    "name": name,
+    "image": image,
+    "url": url,
+    "type": type,
+    "before_login": beforeLogin,
+    "position": position,
+    "sort": sort,
+  };
 }

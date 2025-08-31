@@ -3,7 +3,7 @@ import 'package:app/services/index.dart';
 import 'package:app/shared/confirmation/confirmation.dart';
 import 'package:app/shared/locale_selector/locale_selector.dart';
 import 'package:app/shared/package_info/index.dart';
-import 'package:app/storage/index.dart';
+import 'package:app/storage/storage.dart';
 import 'package:app/theme/index.dart';
 import 'package:app/widgets/back_button/back_button.dart';
 import 'package:app/widgets/button/index.dart';
@@ -52,7 +52,7 @@ class _MoreViewState extends State<MoreView> {
                     () => CupertinoSwitch(
                       value: storage.music.value,
                       onChanged: (value) {
-                        storage.music.value = value;
+                        storage.music.update(value);
                       },
                     ),
                   ),

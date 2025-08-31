@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:advertising_id/advertising_id.dart';
-import 'package:app/storage/index.dart';
+import 'package:app/storage/storage.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -52,11 +52,11 @@ class _DeviceInfo {
   }
 
   Future setup() async {
-    if (storage.deviceId.value.isEmpty) {
-      final id = await _getId();
-      storage.deviceId.value = id;
-    }
-    deviceId = storage.deviceId.value;
+    // if (storage.deviceId.value.isEmpty) {
+    //   final id = await _getId();
+    //   storage.deviceId.value = id;
+    // }
+    // deviceId = storage.deviceId.value;
   }
 }
 

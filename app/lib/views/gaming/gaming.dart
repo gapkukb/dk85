@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class GamingView extends StatelessWidget {
-  static void play(Game game) async {
+  static void play(GameModel game) async {
     await AuthService.to.ensureAuthorizedAsync;
     await Get.confirm(title: 'You will enter the Game');
     final Map<String, dynamic> r = await queryGameUrl(

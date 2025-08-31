@@ -1,5 +1,6 @@
 import 'package:app/apis/index.dart';
 import 'package:app/models/ad_list.model.dart';
+import 'package:app/routes/app_pages.dart';
 import 'package:app/theme/index.dart';
 import 'package:app/widgets/network_picture.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -25,10 +26,8 @@ class _SliverGameSwiperState extends State<SliverGameSwiper> {
   }
 
   void _queryAdList() async {
-    final value = await queryAdList(
-      payload: {"type": "3", "position": widget.position},
-    );
-    banners.addAll(value ?? []);
+    final value = await queryAdList(queryParameters: {"type": "3", "position": widget.position});
+    banners.addAll(value.data);
     setState(() {});
   }
 
@@ -38,32 +37,34 @@ class _SliverGameSwiperState extends State<SliverGameSwiper> {
   }
 
   Widget buildBanner() {
-    return CarouselSlider(
-      options: CarouselOptions(
-        height: 90.0,
-        autoPlay: true,
-        autoPlayInterval: const Duration(seconds: 3),
-        pauseAutoPlayOnTouch: true,
-        viewportFraction: 0.8,
-        enlargeFactor: 0.2,
-        enlargeCenterPage: true,
-        // enableInfiniteScroll: false,
-      ),
+    final single = banners.length == 1;
+    const height = 120.0;
 
-      items: banners.map((i) {
-        return SizedBox.expand(
-          child: Material(
-            color: AppColors.skeleton,
-            borderRadius: const BorderRadius.all(Radius.circular(4)),
-            clipBehavior: Clip.hardEdge,
-            child: NetworkPicture(
-              fit: BoxFit.fill,
-              imageUrl: i.image,
-              colorBlendMode: BlendMode.src,
-            ),
-          ),
-        );
-      }).toList(),
+    if (single) {
+      return Padding(
+        padding: Gutter.horizontal.normal,
+        child: SizedBox(height: height, width: double.infinity, child: buildItem(banners.first)),
+      );
+    }
+
+    return CarouselSlider(
+      options: CarouselOptions(height: height, autoPlay: true, autoPlayInterval: const Duration(seconds: 3), pauseAutoPlayOnTouch: true, viewportFraction: 0.8, enlargeFactor: 0.2, enlargeCenterPage: true),
+
+      items: banners.map(buildItem).toList(),
+    );
+  }
+
+  Widget buildItem(AdModel ad) {
+    return GestureDetector(
+      onTap: () => Get.toNamed(Routes.activityDetail, parameters: {'id': ad.name}),
+      child: SizedBox.expand(
+        child: Material(
+          color: AppColors.skeleton,
+          borderRadius: const BorderRadius.all(Radius.circular(4)),
+          clipBehavior: Clip.hardEdge,
+          child: NetworkPicture(fit: BoxFit.fill, imageUrl: ad.image, colorBlendMode: BlendMode.src),
+        ),
+      ),
     );
   }
 }

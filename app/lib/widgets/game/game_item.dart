@@ -3,7 +3,7 @@ part of 'index.dart';
 class GameItemView extends StatelessWidget {
   final num likes;
   final bool isLike;
-  final Game game;
+  final GameModel game;
 
   const GameItemView({
     super.key,

@@ -1,79 +1,100 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
+import 'dart:convert';
 
-part 'game.model.g.dart';
+class GameModelWrapper {
+  final int code;
+  final int status;
+  final String message;
+  final GameGroupModel data;
 
-@JsonSerializable()
-class GameModel {
-  @JsonKey(name: "FISH")
-  final List<Game> fish;
-  @JsonKey(name: "SLOTS")
-  final List<Game> slots;
-  @JsonKey(name: "POKER")
-  final List<Game> poker;
-  @JsonKey(name: "MINI")
-  final List<Game> mini;
+  GameModelWrapper({
+    required this.code,
+    required this.status,
+    required this.message,
+    required this.data,
+  });
 
-  GameModel({
+  factory GameModelWrapper.fromRawJson(String str) =>
+      GameModelWrapper.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory GameModelWrapper.fromJson(Map<String, dynamic> json) =>
+      GameModelWrapper(
+        code: json["code"],
+        status: json["status"],
+        message: json["message"],
+        data: GameGroupModel.fromJson(json["data"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+    "code": code,
+    "status": status,
+    "message": message,
+    "data": data.toJson(),
+  };
+}
+
+class GameGroupModel {
+  final List<GameModel> fish;
+  final List<GameModel> slots;
+  final List<GameModel> poker;
+  final List<GameModel> mini;
+
+  GameGroupModel({
     required this.fish,
     required this.slots,
     required this.poker,
     required this.mini,
   });
 
-  GameModel copyWith({
-    List<Game>? fish,
-    List<Game>? slots,
-    List<Game>? poker,
-    List<Game>? mini,
-  }) => GameModel(
-    fish: fish ?? this.fish,
-    slots: slots ?? this.slots,
-    poker: poker ?? this.poker,
-    mini: mini ?? this.mini,
+  factory GameGroupModel.fromRawJson(String str) =>
+      GameGroupModel.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory GameGroupModel.fromJson(Map<String, dynamic> json) => GameGroupModel(
+    fish: List<GameModel>.from(
+      (json["FISH"] ?? []).map((x) => GameModel.fromJson(x)),
+    ),
+    slots: List<GameModel>.from(
+      (json["SLOTS"] ?? []).map((x) => GameModel.fromJson(x)),
+    ),
+    poker: List<GameModel>.from(
+      (json["POKER"] ?? []).map((x) => GameModel.fromJson(x)),
+    ),
+    mini: List<GameModel>.from(
+      (json["MINI"] ?? []).map((x) => GameModel.fromJson(x)),
+    ),
   );
 
-  factory GameModel.fromJson(Map<String, dynamic> json) =>
-      _$GameModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$GameModelToJson(this);
+  Map<String, dynamic> toJson() => {
+    "FISH": List<dynamic>.from(fish.map((x) => x.toJson())),
+    "SLOTS": List<dynamic>.from(slots.map((x) => x.toJson())),
+    "POKER": List<dynamic>.from(poker.map((x) => x.toJson())),
+    "MINI": List<dynamic>.from(mini.map((x) => x.toJson())),
+  };
 }
 
-@JsonSerializable()
-class Game {
-  @JsonKey(name: "platform")
+class GameModel {
   final String platform;
-  @JsonKey(name: "name")
   final String name;
-  @JsonKey(name: "style")
   final String style;
-  @JsonKey(name: "img")
   final String img;
-  @JsonKey(name: "img1")
   final String img1;
-  @JsonKey(name: "device")
   final String device;
-  @JsonKey(name: "vendor")
   final String vendor;
-  @JsonKey(name: "code")
   final String code;
-  @JsonKey(name: "language")
   final String language;
-  @JsonKey(name: "currency")
   final String currency;
-  @JsonKey(name: "hot")
   final int hot;
-  @JsonKey(name: "recommend")
   final int recommend;
-  @JsonKey(name: "like_num")
   final int likeNum;
-  @JsonKey(name: "new")
-  final int is_new;
-  @JsonKey(name: "created_at")
+  final int isNew;
   final String createdAt;
-  @JsonKey(name: "updated_at")
   final String updatedAt;
 
-  Game({
+  GameModel({
     required this.platform,
     required this.name,
     required this.style,
@@ -87,48 +108,51 @@ class Game {
     required this.hot,
     required this.recommend,
     required this.likeNum,
-    required this.is_new,
+    required this.isNew,
     required this.createdAt,
     required this.updatedAt,
   });
 
-  Game copyWith({
-    String? platform,
-    String? name,
-    String? style,
-    String? img,
-    String? img1,
-    String? device,
-    String? vendor,
-    String? code,
-    String? language,
-    String? currency,
-    int? hot,
-    int? recommend,
-    int? likeNum,
-    int? fishNew,
-    String? createdAt,
-    String? updatedAt,
-  }) => Game(
-    platform: platform ?? this.platform,
-    name: name ?? this.name,
-    style: style ?? this.style,
-    img: img ?? this.img,
-    img1: img1 ?? this.img1,
-    device: device ?? this.device,
-    vendor: vendor ?? this.vendor,
-    code: code ?? this.code,
-    language: language ?? this.language,
-    currency: currency ?? this.currency,
-    hot: hot ?? this.hot,
-    recommend: recommend ?? this.recommend,
-    likeNum: likeNum ?? this.likeNum,
-    is_new: fishNew ?? is_new,
-    createdAt: createdAt ?? this.createdAt,
-    updatedAt: updatedAt ?? this.updatedAt,
+  factory GameModel.fromRawJson(String str) =>
+      GameModel.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory GameModel.fromJson(Map<String, dynamic> json) => GameModel(
+    platform: json["platform"],
+    name: json["name"],
+    style: json["style"],
+    img: json["img"],
+    img1: json["img1"],
+    device: json["device"],
+    vendor: json["vendor"],
+    code: json["code"],
+    language: json["language"],
+    currency: json["currency"],
+    hot: json["hot"],
+    recommend: json["recommend"],
+    likeNum: json["like_num"],
+    isNew: json["new"],
+    createdAt: json["created_at"],
+    updatedAt: json["updated_at"],
   );
 
-  factory Game.fromJson(Map<String, dynamic> json) => _$GameFromJson(json);
-
-  Map<String, dynamic> toJson() => _$GameToJson(this);
+  Map<String, dynamic> toJson() => {
+    "platform": platform,
+    "name": name,
+    "style": style,
+    "img": img,
+    "img1": img1,
+    "device": device,
+    "vendor": vendor,
+    "code": code,
+    "language": language,
+    "currency": currency,
+    "hot": hot,
+    "recommend": recommend,
+    "like_num": likeNum,
+    "new": isNew,
+    "created_at": createdAt,
+    "updated_at": updatedAt,
+  };
 }

@@ -63,8 +63,10 @@ class _AKGraphicInputState extends State<AKGraphicInput> {
             child: _CodeImage(
               key: widget.imageKey,
               onChanged: (value) {
-                logic.clear();
-                widget.onImageChange(value);
+                if (mounted) {
+                  logic.clear();
+                  widget.onImageChange(value);
+                }
               },
             ),
           ),

@@ -1,4 +1,4 @@
-import 'package:app/storage/index.dart';
+import 'package:app/storage/storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
@@ -109,7 +109,7 @@ void showGuide() {
     // clickOverlay: (TargetFocus) {},
     // disableBackButton: false // If true disable native back button.
     onFinish: () {
-      storage.showGuide.value = false;
+      storage.showGuide.update(false);
     },
   )..show(context: Get.overlayContext!);
 }

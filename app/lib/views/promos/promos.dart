@@ -30,23 +30,22 @@ class _PromosView extends StatelessWidget {
       builder: (controller) {
         return Scaffold(
           appBar: buildAppBar(),
-          body: ListView.separated(
-            padding: EdgeInsets.all(12),
-            itemCount: 5,
-            separatorBuilder: (context, index) => SizedBox(height: 12),
-            itemBuilder: (context, index) {
-              return PhysicalModel(
-                color: Colors.transparent,
-                clipBehavior: Clip.antiAlias,
-                borderRadius: BorderRadius.circular(8),
-                child: NetworkPicture(
-                  imageUrl: 'imageUrl',
-                  height: 128,
-                  fit: BoxFit.cover,
-                ),
-              );
-            },
-          ),
+          body: Obx(() {
+            return ListView.separated(
+              padding: EdgeInsets.all(12),
+              itemCount: controller.promos.length,
+              separatorBuilder: (context, index) => SizedBox(height: 12),
+              itemBuilder: (context, index) {
+                final promo = controller.promos[index];
+                return PhysicalModel(
+                  color: Colors.transparent,
+                  clipBehavior: Clip.antiAlias,
+                  borderRadius: BorderRadius.circular(8),
+                  child: NetworkPicture(imageUrl: promo.image, height: 128, fit: BoxFit.cover),
+                );
+              },
+            );
+          }),
         );
       },
     );

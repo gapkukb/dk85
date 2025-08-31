@@ -29,12 +29,12 @@ class SearchingController extends GetxController
     _Tab(name: GameKind.poker.displayName, value: GameKind.poker.id),
   ];
 
-  List<Game> get filteredGames {
+  List<GameModel> get filteredGames {
     if (keywords.isEmpty) return _filterWithoutKeywords(kind.value);
     return _filterWithKeywords(kind.value, keywords.value);
   }
 
-  List<Game> _filterWithoutKeywords(int kind) {
+  List<GameModel> _filterWithoutKeywords(int kind) {
     if (kind == GameKind.all.id) return gameService.all;
     if (kind == GameKind.slots.id) return gameService.slots;
     if (kind == GameKind.fishing.id) return gameService.fish;
@@ -42,11 +42,12 @@ class SearchingController extends GetxController
     return [];
   }
 
-  List<Game> _filterWithKeywords(int kind, String keywords) {
-    bool predicate(Game game) =>
+  List<GameModel> _filterWithKeywords(int kind, String keywords) {
+    bool predicate(GameModel game) =>
         game.name.contains(keywords) || game.platform.contains(keywords);
 
-    List<Game> filter(Iterable<Game> games) => games.where(predicate).toList();
+    List<GameModel> filter(Iterable<GameModel> games) =>
+        games.where(predicate).toList();
 
     if (kind == GameKind.all.id) {
       return filter(gameService.all);

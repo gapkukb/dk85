@@ -1,4 +1,5 @@
 import 'package:app/shared/customer_service/customer_service.dart';
+import 'package:app/views/activity_detail/activity_detail.dart';
 import 'package:app/views/auth/auth_view.dart';
 import 'package:app/views/demo/demo.dart';
 import 'package:app/views/email/email.dart';
@@ -42,6 +43,10 @@ class AppPages {
     GetPage(name: Routes.email, page: () => const EmailView()),
     GetPage(name: Routes.pwd, page: () => const PwdManagerView()),
     GetPage(name: Routes.more, page: () => const MoreView()),
+    GetPage(
+      name: Routes.activityDetail,
+      page: () => const ActivityDetailView(),
+    ),
     GetPage(
       name: Routes.favorites,
       page: () => const FavoritesView(),

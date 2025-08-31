@@ -1,0 +1,123 @@
+import 'package:meta/meta.dart';
+import 'dart:convert';
+
+class WithdrawalModelWrapper {
+  final int code;
+  final int status;
+  final String message;
+  final List<WithdrawlModel> data;
+
+  WithdrawalModelWrapper({
+    required this.code,
+    required this.status,
+    required this.message,
+    required this.data,
+  });
+
+  factory WithdrawalModelWrapper.fromRawJson(String str) =>
+      WithdrawalModelWrapper.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory WithdrawalModelWrapper.fromJson(Map<String, dynamic> json) =>
+      WithdrawalModelWrapper(
+        code: json["code"],
+        status: json["status"],
+        message: json["message"],
+        data: List<WithdrawlModel>.from(
+          json["data"].map((x) => WithdrawlModel.fromJson(x)),
+        ),
+      );
+
+  Map<String, dynamic> toJson() => {
+    "code": code,
+    "status": status,
+    "message": message,
+    "data": List<dynamic>.from(data.map((x) => x.toJson())),
+  };
+}
+
+class WithdrawlModel {
+  final int id;
+  final int withdrawId;
+  final int gateway;
+  final String name;
+  final String eachMin;
+  final String eachMax;
+  final String dailyMax;
+  final int todayCount;
+  final String todayAmount;
+  final int status;
+  final int sort;
+  final int isDecimal;
+  final int isInt;
+  final String moneyList;
+  final int isInput;
+  final String remark;
+  final String logo;
+
+  WithdrawlModel({
+    required this.id,
+    required this.withdrawId,
+    required this.gateway,
+    required this.name,
+    required this.eachMin,
+    required this.eachMax,
+    required this.dailyMax,
+    required this.todayCount,
+    required this.todayAmount,
+    required this.status,
+    required this.sort,
+    required this.isDecimal,
+    required this.isInt,
+    required this.moneyList,
+    required this.isInput,
+    required this.remark,
+    required this.logo,
+  });
+
+  factory WithdrawlModel.fromRawJson(String str) =>
+      WithdrawlModel.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory WithdrawlModel.fromJson(Map<String, dynamic> json) => WithdrawlModel(
+    id: json["id"],
+    withdrawId: json["withdraw_id"],
+    gateway: json["gateway"],
+    name: json["name"],
+    eachMin: json["each_min"],
+    eachMax: json["each_max"],
+    dailyMax: json["daily_max"],
+    todayCount: json["today_count"],
+    todayAmount: json["today_amount"],
+    status: json["status"],
+    sort: json["sort"],
+    isDecimal: json["is_decimal"],
+    isInt: json["is_int"],
+    moneyList: json["moneyList"],
+    isInput: json["is_input"],
+    remark: json["remark"],
+    logo: json["logo"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "withdraw_id": withdrawId,
+    "gateway": gateway,
+    "name": name,
+    "each_min": eachMin,
+    "each_max": eachMax,
+    "daily_max": dailyMax,
+    "today_count": todayCount,
+    "today_amount": todayAmount,
+    "status": status,
+    "sort": sort,
+    "is_decimal": isDecimal,
+    "is_int": isInt,
+    "moneyList": moneyList,
+    "is_input": isInput,
+    "remark": remark,
+    "logo": logo,
+  };
+}

@@ -4,10 +4,9 @@ import 'package:app/helper/device_info.dart';
 import 'package:app/i18n/index.dart';
 import 'package:app/services/index.dart';
 import 'package:app/shared/package_info/index.dart';
-import 'package:app/storage/index.dart';
+import 'package:app/storage/storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:scaled_app/scaled_app.dart';
 
 import 'application.dart';
