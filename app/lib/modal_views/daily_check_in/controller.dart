@@ -1,27 +1,19 @@
+import 'package:app/apis/apis.dart';
+import 'package:app/models/daily_check_in.model.dart';
 import 'package:get/get.dart';
 
 class DailyCheckInController extends GetxController {
   DailyCheckInController();
 
-  _initData() {
-    update(["daily_check_in"]);
-  }
+  final list = <DailyCheckInModel>[].obs;
 
   void onTap() {}
 
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  // }
-
   @override
-  void onReady() {
-    super.onReady();
-    _initData();
+  void onInit() {
+    super.onInit();
+    appApi.checkInList().then((resp) {
+      list.value = resp.data;
+    });
   }
-
-  // @override
-  // void onClose() {
-  //   super.onClose();
-  // }
 }

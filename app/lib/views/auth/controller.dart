@@ -19,6 +19,7 @@ class AuthCotroller extends GetxController with AKGraphicInputController {
       BotToast.closeAllLoading();
       showSuccess(text: text, onClose: Get.back);
     } catch (e) {
+      rethrow;
       refreshImage();
       BotToast.closeAllLoading();
     } finally {}

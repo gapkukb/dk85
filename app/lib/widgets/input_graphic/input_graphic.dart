@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'dart:ui';
 
-import 'package:app/apis/index.dart';
+import 'package:app/apis/apis.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -15,13 +16,7 @@ class AKGraphicInput extends StatefulWidget {
   final ValueChanged<String>? onFieldSubmitted;
   final Key? imageKey;
 
-  const AKGraphicInput({
-    super.key,
-    this.onSaved,
-    this.onFieldSubmitted,
-    this.imageKey,
-    required this.onImageChange,
-  });
+  const AKGraphicInput({super.key, this.onSaved, this.onFieldSubmitted, this.imageKey, required this.onImageChange});
 
   @override
   State<AKGraphicInput> createState() => _AKGraphicInputState();
@@ -57,14 +52,14 @@ class _AKGraphicInputState extends State<AKGraphicInput> {
           width: 100,
           height: 48,
           child: ClipRRect(
-            borderRadius: const BorderRadius.horizontal(
-              right: Radius.circular(8),
-            ),
+            borderRadius: const BorderRadius.horizontal(right: Radius.circular(8)),
             child: _CodeImage(
               key: widget.imageKey,
               onChanged: (value) {
                 if (mounted) {
-                  logic.clear();
+                  if (logic.text.isNotEmpty) {
+                    logic.clear();
+                  }
                   widget.onImageChange(value);
                 }
               },
@@ -109,10 +104,14 @@ class CodeImageState extends State<_CodeImage> {
     setState(() {});
     final t = DateTime.now().millisecondsSinceEpoch;
     widget.onChanged(t.toString());
-    queryCaptcha(payload: {'time': t})
+    appApi
+        .queryCaptcha(
+          queryParameters: {'time': t},
+          options: Options(responseType: ResponseType.bytes),
+        )
         .then((value) {
           if (mounted) {
-            image = Image.memory(Uint8List.fromList(value), fit: BoxFit.fill);
+            image = Image.memory(value, fit: BoxFit.fill);
           }
         })
         .whenComplete(() {

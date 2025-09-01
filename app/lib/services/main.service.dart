@@ -4,25 +4,13 @@ Widget createHomeIcon(String assetPath) {
   return Transform.scale(
     alignment: Alignment(0, -0.6),
     scale: 2.5,
-    child: ClipRRect(
-      clipBehavior: Clip.hardEdge,
-      borderRadius: BorderRadius.circular(2),
-      child: Image.asset(assetPath, width: 16, height: 16),
-    ),
+    child: ClipRRect(clipBehavior: Clip.hardEdge, borderRadius: BorderRadius.circular(2), child: Image.asset(assetPath, width: 16, height: 16)),
   );
 }
 
 class _Tab extends BottomNavigationBarItem {
   final bool protected;
-  _Tab({
-    super.key,
-    super.activeIcon,
-    super.backgroundColor,
-    super.label,
-    super.tooltip,
-    required super.icon,
-    this.protected = false,
-  });
+  _Tab({super.key, super.activeIcon, super.backgroundColor, super.label, super.tooltip, required super.icon, this.protected = false});
 }
 
 mixin class MainService {
@@ -30,11 +18,7 @@ mixin class MainService {
 
   final currentIndex = 0.obs;
   final List<_Tab> tabs = [
-    _Tab(
-      icon: createHomeIcon("assets/icons/logo.webp"),
-      activeIcon: createHomeIcon("assets/icons/logo-2.webp"),
-      label: '',
-    ),
+    _Tab(icon: createHomeIcon("assets/icons/logo.webp"), activeIcon: createHomeIcon("assets/icons/logo-2.webp"), label: ''),
     _Tab(icon: Icon(IconFont.gift_fill), label: 'Bonus', key: guide.guideTwo),
     _Tab(icon: Icon(IconFont.wallet), label: 'Wallet', protected: true),
     _Tab(icon: Icon(IconFont.profile), label: 'Account', protected: true),
@@ -42,7 +26,10 @@ mixin class MainService {
 
   /// 跳转页面
   toView(int index) {
-    print('toview:${tabs[index].protected}');
+    // 清空路由栈
+    while (Get.currentRoute != '/') {
+      Get.back();
+    }
     if (tabs[index].protected && AuthService.to.ensureUnauthorize) return;
     currentIndex.value = index;
   }

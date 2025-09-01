@@ -2,40 +2,70 @@ import express from "express";
 
 const app = express();
 
-app.get("/test", (req, res) => {
+const deley = () =>
+  new Promise((res) => setTimeout(res, Math.random() * 10000));
+
+const token = "11111111111ssssss";
+app.get("/refresh-token", async (req, res) => {
   res.json({
+    access_token: token,
     code: 200,
     status: 1,
     message: "成功生成订单请支付",
-    data: {
-      channel_card_no: "09694578477",
-      channel_name: "MG888 KBZ 卡2",
+    data: { token },
+  });
+
+  // res.status(401).end();
+});
+
+app.get("/a1", async (req, res) => {
+  console.log(
+    req.headers.authorization,
+    token,
+    req.headers.authorization == token
+  );
+  await deley();
+  if (req.headers.authorization != token) {
+    res.status(401).end();
+  } else {
+    res.json({
       code: 200,
-      order_sn: "ZF083115150798269C5",
-      result: "ok",
-      sys_trade_no: "sys_374b71c0-6d09-4c33-a71c-dc8c639ba63f",
-      image_url:
-        "https://img.okszckoo.com/upload/images/202502/c18cd50f-1025-48dd-af55-c5d49a819cc5.jpg",
+      status: 1,
+      message: "成功生成订单请支付",
+      data: "成功生成订单请支付",
+    });
+  }
+});
+
+app.get("/a2", async (req, res) => {
+  await deley();
+  if (req.headers.authorization != token) {
+    res.status(401).end();
+  } else {
+    res.json({
+      code: 200,
+      status: 1,
+      message: "成功生成订单请支付",
+      data: "成功生成订单请支付",
+    });
+  }
+});
+
+app.get("/a3", async (req, res) => {
+  res.json({
+    code: 200,
+  });
+});
+
+app.get("/a4", async (req, res) => {
+  res.json([
+    {
+      code: 200,
     },
-  });
-});
-
-app.get("/tests", (req, res) => {
-  res.json({
-    code: 200,
-    status: 1,
-    message: "成功生成订单请支付",
-    data: [{
-      channel_card_no: "09694578477",
-      channel_name: "MG888 KBZ 卡2",
+    {
       code: 200,
-      order_sn: "ZF083115150798269C5",
-      result: "ok",
-      sys_trade_no: "sys_374b71c0-6d09-4c33-a71c-dc8c639ba63f",
-      image_url:
-        "https://img.okszckoo.com/upload/images/202502/c18cd50f-1025-48dd-af55-c5d49a819cc5.jpg",
-    }],
-  });
+    },
+  ]);
 });
 
-app.listen(10010)
+app.listen(10010);

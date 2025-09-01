@@ -13,10 +13,9 @@ class GameService extends GetConnect {
 
   queryAll() async {
     loading.value = true;
-    final r = await queryAllGames(queryParameters: {"game_id": "17"})
-        .whenComplete(() {
-          loading.value = false;
-        });
+    final r = await gameApi.queryAllGames(queryParameters: {"game_id": "17"}).whenComplete(() {
+      loading.value = false;
+    });
     _all.value = r.data;
   }
 

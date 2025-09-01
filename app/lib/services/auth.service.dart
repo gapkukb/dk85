@@ -2,10 +2,12 @@ part of 'index.dart';
 
 class AuthService extends GetxService {
   static AuthService get to => Get.find();
-  final _tokenManager = tokenManager.obs;
+
+  final _tokenManager = authManager.obs;
 
   bool get authorized => _tokenManager.value.accessToken != null;
   bool get unauthorized => !authorized;
+  bool get ensureUnauthorize => !ensureAuthorized;
 
   bool get ensureAuthorized {
     if (authorized) return true;
@@ -13,53 +15,56 @@ class AuthService extends GetxService {
     return false;
   }
 
-  bool get ensureUnauthorize => !ensureAuthorized;
-
   Future<bool> get ensureAuthorizedAsync async {
     if (authorized) return Future.value(true);
     await Get.toNamed(Routes.auth);
     return authorized;
   }
 
-  Future _next(String token) async {
+  Future _nextAction(String token) async {
     // 更新token
-    _tokenManager.value.set(accessToken: token, refreshToken: token);
-    _tokenManager.refresh();
-    storage.token.update(token);
-    // 获取用户信息
-    await UserService.to.queryUserInfo();
-    UserService.to.queryBalance();
-    // 修改认证状态
-    // authorized.value = true;
+    try {
+      _tokenManager.value.set(accessToken: token, refreshToken: token);
+      _tokenManager.refresh();
+      storage.token.update(token);
+      // 获取用户信息
+      await UserService.to.queryUserInfo();
+      UserService.to.queryBalance();
+      // 修改认证状态
+      // authorized.value = true;
+    } catch (e) {
+      rethrow;
+    }
   }
 
   Future login(Object values) async {
-    final t = await loginApi(payload: values);
-    await _next(t.data.token);
+    final t = await userApi.login(data: values);
+    await _nextAction(t.data.token);
   }
 
   Future register(Object values) async {
-    final t = await registerApi(payload: values);
-    await _next(t.data.token);
+    final t = await userApi.register(data: values);
+    await _nextAction(t.data.token);
+  }
+
+  clear() {
+    // 清空token和登录态
+    _tokenManager.value.clear();
+    _tokenManager.refresh();
+    AppService.to.toHomeView();
   }
 
   Future logout() async {
     // 调用退出接口，无需等待
-    logoutApi();
-    // 清空token和登录态
-    _tokenManager.value.clear();
-    _tokenManager.refresh();
-    // 清空路由栈并返回主页
-    Get.reset();
-    AppService.to.toHomeView();
-    Get.reset();
+    userApi.logout();
+    clear();
   }
 
   @override
   void onInit() {
     final token = storage.token.value;
     if (token.isNotEmpty) {
-      tokenManager.set(accessToken: token, refreshToken: token);
+      // authManager.set(accessToken: token, refreshToken: token);
     }
     super.onInit();
   }

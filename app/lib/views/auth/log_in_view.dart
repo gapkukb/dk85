@@ -34,12 +34,7 @@ class LoginView extends GetView<AuthCotroller> {
           children: [
             AKAccInput(onSaved: form.saveAs('username')),
             AKPwdInput(onSaved: form.saveAs('password')),
-            AKGraphicInput(
-              imageKey: controller.imageKey,
-              onSaved: form.saveAs('code'),
-              onFieldSubmitted: form.submit,
-              onImageChange: form.saveAs('time'),
-            ),
+            AKGraphicInput(imageKey: controller.imageKey, onSaved: form.saveAs('code'), onFieldSubmitted: form.submit, onImageChange: form.saveAs('time')),
             AKButton(onPressed: form.submit, text: 'app.login'.tr),
             buildTool(),
             ...buildInstructions(),
@@ -57,10 +52,7 @@ class LoginView extends GetView<AuthCotroller> {
         style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.label),
       ),
       SizedBox(height: 8),
-      Text(
-        "login.guide.desc".tr,
-        style: TextStyle(fontSize: 12, color: AppColors.description),
-      ),
+      Text("login.guide.desc".tr, style: TextStyle(fontSize: 12, color: AppColors.description)),
     ];
   }
 
@@ -70,18 +62,10 @@ class LoginView extends GetView<AuthCotroller> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Obx(
-            () => AKCheckbox(
-              value: controller.rememberMe.value,
-              onChanged: controller.remember,
-            ),
-          ),
+          Obx(() => AKCheckbox(value: controller.rememberMe.value, onChanged: controller.remember)),
           TextButton(
             onPressed: CustomerService.call,
-            child: Text(
-              "login.forgot".tr,
-              style: TextStyle(fontSize: 12, color: AppColors.primary),
-            ),
+            child: Text("login.forgot".tr, style: TextStyle(fontSize: 12, color: AppColors.primary)),
           ),
         ],
       ),

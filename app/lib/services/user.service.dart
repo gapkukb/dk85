@@ -8,13 +8,13 @@ class UserService extends GetxService {
   final token = storage.token;
 
   Future queryUserInfo() async {
-    final r = await queryUserInfoApi();
+    final r = await userApi.queryUserInfo();
     userInfo.value = r.data;
     userInfo.refresh();
   }
 
   Future queryBalance() async {
-    final b = await queryBalanceApi();
+    final b = await userApi.queryBalance();
     balance.value = b.data.balance;
   }
 

@@ -10,9 +10,7 @@ final app = _Container(name: 'app');
 final user = _Container(name: 'user');
 final game = _Container(name: 'game');
 
-List<T> Function(List) serialize<T>(
-  T Function(Map<String, dynamic> json) decode,
-) {
+List<T> Function(List) serialize<T>(T Function(Map<String, dynamic> json) decode) {
   return (json) {
     final a = json.map((i) => decode(i));
     return List<T>.from(a);
@@ -20,12 +18,8 @@ List<T> Function(List) serialize<T>(
 }
 
 class Storage {
-  static Future setup() {
-    return Future.wait([
-      app.storage.initStorage,
-      user.storage.initStorage,
-      game.storage.initStorage,
-    ]).then((_) {
+  static Future initialize() {
+    return Future.wait([app.storage.initStorage, user.storage.initStorage, game.storage.initStorage]).then((_) {
       storage = Storage();
     });
   }

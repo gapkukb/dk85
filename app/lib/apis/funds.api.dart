@@ -1,7 +1,9 @@
-part of 'index.dart';
+part of 'apis.dart';
 
-final queryTopUpChannelsApi = get('/app/payment-list', TopUpModelWrapper.fromJson);
-final createTopUpOrder = post('/pay/payment/order', TopUpOrderModelWrapper.fromJson);
-final queryWithdrawChannelsApi = get('/app/withdraw-channel-list', WithdrawalModelWrapper.fromJson);
-final withdrawApi = post('/app/withdraw-new');
-final matchTopupApi = post('/pay/payment/match');
+class _FundApi {
+  final queryTopUpList = http.get('/app/payment-list', decoder: TopUpModelWrapper.fromJson);
+  final createTopUpOrder = http.post('/pay/payment/order', decoder: TopUpOrderModelWrapper.fromJson);
+  final queryWithdrawList = http.get('/app/withdraw-channel-list', decoder: WithdrawalModelWrapper.fromJson);
+  final withdraw = http.post('/app/withdraw-new', loading: true);
+  final matchTopup = http.post('/pay/payment/match');
+}

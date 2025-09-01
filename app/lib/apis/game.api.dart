@@ -1,4 +1,6 @@
-part of 'index.dart';
+part of 'apis.dart';
 
-final queryAllGames = get('/app/get-game-list', GameModelWrapper.fromJson);
-final queryGameUrl = post('/app/redirect-to-game');
+class _GameApi {
+  final queryAllGames = http.get('/app/get-game-list', decoder: GameModelWrapper.fromJson);
+  final queryGameUrl = http.post('/app/redirect-to-game');
+}

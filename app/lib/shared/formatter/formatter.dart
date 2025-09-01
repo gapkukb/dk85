@@ -6,6 +6,7 @@ class _DateTime {
   static final _time = DateFormat('HH:mm:ss');
   static final _start = DateFormat('yyyy-MM-dd 00:00:00');
   static final _end = DateFormat('yyyy-MM-dd 23:59:59');
+  static final _dmmm = DateFormat('d-MMM');
 
   DateTime? _parse(dynamic value) {
     if (value is DateTime) return value;
@@ -43,6 +44,10 @@ class _DateTime {
 
   String date(dynamic value) {
     return _format(value, _date);
+  }
+
+  String dmmm(dynamic value) {
+    return _format(value, _dmmm);
   }
 
   String custom(dynamic value, String template) {

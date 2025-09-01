@@ -1,4 +1,4 @@
-import 'package:app/apis/index.dart';
+import 'package:app/apis/apis.dart';
 import 'package:app/extensions/bot_toast.dart';
 import 'package:app/hooks/useForm.dart';
 import 'package:app/models/user_info.model.dart';
@@ -23,16 +23,10 @@ class EmailView extends StatefulWidget {
 class _EmaileState extends State<EmailView> {
   UserModel get user => UserService.to.userInfo.value!;
   final form = Useform((values) async {
-    try {
-      BotToast.showLoading();
-      await bindEmailApi(data: values);
-      BotToast.closeAllLoading();
-      UserService.to.queryUserInfo();
-      await showSuccess(text: '绑定邮箱成功');
-      Get.back();
-    } catch (e) {
-      BotToast.closeAllLoading();
-    }
+    await userApi.bindEmail(data: values);
+    UserService.to.queryUserInfo();
+    await showSuccess(text: '绑定邮箱成功');
+    Get.back();
   });
 
   @override

@@ -1,4 +1,4 @@
-import 'package:app/apis/index.dart';
+import 'package:app/apis/apis.dart';
 import 'package:app/models/ad_list.model.dart';
 import 'package:get/get.dart';
 
@@ -8,7 +8,7 @@ class PromosController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    queryAdList(queryParameters: {'type': '3', 'position': '5'}).then((value) {
+    appApi.queryAdList(queryParameters: {'type': '3', 'position': '5'}).then((value) {
       promos.value = value.data;
     });
   }

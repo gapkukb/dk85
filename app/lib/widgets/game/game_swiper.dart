@@ -1,4 +1,4 @@
-import 'package:app/apis/index.dart';
+import 'package:app/apis/apis.dart';
 import 'package:app/models/ad_list.model.dart';
 import 'package:app/routes/app_pages.dart';
 import 'package:app/theme/index.dart';
@@ -26,7 +26,7 @@ class _SliverGameSwiperState extends State<SliverGameSwiper> {
   }
 
   void _queryAdList() async {
-    final value = await queryAdList(queryParameters: {"type": "3", "position": widget.position});
+    final value = await appApi.queryAdList(queryParameters: {"type": "3", "position": widget.position});
     banners.addAll(value.data);
     setState(() {});
   }
@@ -38,7 +38,7 @@ class _SliverGameSwiperState extends State<SliverGameSwiper> {
 
   Widget buildBanner() {
     final single = banners.length == 1;
-    const height = 120.0;
+    const height = 90.0;
 
     if (single) {
       return Padding(

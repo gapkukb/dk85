@@ -1,11 +1,8 @@
-import 'dart:developer';
-
-import 'package:app/apis/index.dart';
+import 'package:app/apis/apis.dart';
 import 'package:app/hooks/useForm.dart';
 import 'package:app/iconfont/index.dart';
 import 'package:app/models/top_up.model.dart';
 import 'package:app/routes/app_pages.dart';
-import 'package:app/services/index.dart';
 import 'package:app/shared/customer_service/customer_service.dart';
 import 'package:app/theme/index.dart';
 import 'package:app/views/funds/funds_controller.dart';
@@ -25,7 +22,7 @@ class FundsFillDeposit extends GetView<FundsController> {
   @override
   Widget build(BuildContext context) {
     final form = Useform((values) async {
-      final order = await createTopUpOrder(
+      final order = await fundApi.createTopUpOrder(
         data: {
           // 	string	支付接口ID
           'account_id': channel.id,

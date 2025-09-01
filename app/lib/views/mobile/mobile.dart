@@ -1,4 +1,4 @@
-import 'package:app/apis/index.dart';
+import 'package:app/apis/apis.dart';
 import 'package:app/extensions/bot_toast.dart';
 import 'package:app/hooks/useForm.dart';
 import 'package:app/models/user_info.model.dart';
@@ -22,16 +22,10 @@ class MobileView extends StatefulWidget {
 class _MobileState extends State<MobileView> {
   UserModel get user => UserService.to.userInfo.value!;
   final form = Useform((values) async {
-    try {
-      BotToast.showLoading();
-      await bindMobileApi(data: values);
-      BotToast.closeAllLoading();
-      UserService.to.queryUserInfo();
-      await showSuccess(text: '绑定手机号成功');
-      Get.back();
-    } catch (e) {
-      BotToast.closeAllLoading();
-    }
+    await userApi.bindMobile(data: values);
+    UserService.to.queryUserInfo();
+    await showSuccess(text: '绑定手机号成功');
+    Get.back();
   });
 
   @override

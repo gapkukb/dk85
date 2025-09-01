@@ -1,8 +1,12 @@
+import 'package:app/apis/apis.dart';
+import 'package:app/extensions/bot_toast.dart';
 import 'package:app/iconfont/index.dart';
 import 'package:app/modal_views/daily_check_in/widgets/card.dart';
 import 'package:app/modal_views/daily_check_in/widgets/rules.dart';
+import 'package:app/services/index.dart';
 import 'package:app/theme/index.dart';
 import 'package:app/widgets/button/index.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -21,9 +25,7 @@ class DailyCheckInView extends GetView<DailyCheckInController> {
         return Dialog(
           clipBehavior: Clip.antiAlias,
           insetPadding: EdgeInsets.symmetric(horizontal: 24),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           child: Container(
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 0),
@@ -34,34 +36,25 @@ class DailyCheckInView extends GetView<DailyCheckInController> {
               children: [
                 Row(
                   children: [
-                    Text(
-                      'Check-in activity',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
+                    Text('Check-in activity', style: TextStyle(fontWeight: FontWeight.bold)),
                     const Spacer(),
                     IconButton(
-                      icon: Icon(
-                        IconFont.gantanhao,
-                        size: 18,
-                        color: AppColors.label,
-                      ),
+                      icon: Icon(IconFont.gantanhao, size: 18, color: AppColors.label),
                       onPressed: showRules,
                     ),
                   ],
                 ),
-                GridView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: 31,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 7,
-                    mainAxisSpacing: 4,
-                    crossAxisSpacing: 4,
-                    childAspectRatio: 80 / 128,
+                Obx(
+                  () => GridView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: controller.list.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 7, mainAxisSpacing: 4, crossAxisSpacing: 4, childAspectRatio: 80 / 128),
+                    itemBuilder: (context, index) {
+                      final item = controller.list[index];
+                      return DailyCheckInCard(item);
+                    },
                   ),
-                  itemBuilder: (context, index) {
-                    return DailyCheckInCard(index: index);
-                  },
                 ),
                 SizedBox(height: 8),
                 AKButton(height: 40, onPressed: claim, text: 'Check-in'),
@@ -78,5 +71,10 @@ class DailyCheckInView extends GetView<DailyCheckInController> {
     Get.bottomSheet(DailyCheckInRules(), isScrollControlled: true);
   }
 
-  void claim() {}
+  void claim() async {
+    await appApi.checkIn();
+    UserService.to.queryBalance();
+    await showSuccess();
+    Get.back();
+  }
 }

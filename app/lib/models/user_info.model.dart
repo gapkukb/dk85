@@ -20,9 +20,9 @@ class UserModelWrapper {
 
 class UserModel {
   final String username;
-  final String? realname;
-  final String? email;
-  final String? mobile;
+  final String realname;
+  final String email;
+  final String mobile;
   final String qq;
   final int sex;
   final dynamic birthday;
@@ -30,7 +30,8 @@ class UserModel {
   final String lastLoginAddress;
   final int showBeginnerGuide;
   final int payTimes;
-  final int balance;
+  final int hasPass;
+  final double balance;
   final int balanceFrozen;
   final int points;
   final int gradeId;
@@ -45,9 +46,9 @@ class UserModel {
   final String totalBet;
   final String totalBonus;
   final String totalRebate;
-  final UserRecentlyFunds lastRecharge;
-  final UserRecentlyFunds lastWithdraw;
-  final UserLastMessageModel lastMessage;
+  final Last lastRecharge;
+  final Last lastWithdraw;
+  final LastMessage lastMessage;
 
   UserModel({
     required this.username,
@@ -61,6 +62,7 @@ class UserModel {
     required this.lastLoginAddress,
     required this.showBeginnerGuide,
     required this.payTimes,
+    required this.hasPass,
     required this.balance,
     required this.balanceFrozen,
     required this.points,
@@ -97,7 +99,8 @@ class UserModel {
     lastLoginAddress: json["last_login_address"],
     showBeginnerGuide: json["show_beginner_guide"],
     payTimes: json["pay_times"],
-    balance: json["balance"],
+    hasPass: json["has_pass"],
+    balance: json["balance"]?.toDouble(),
     balanceFrozen: json["balance_frozen"],
     points: json["points"],
     gradeId: json["grade_id"],
@@ -112,9 +115,9 @@ class UserModel {
     totalBet: json["total_bet"],
     totalBonus: json["total_bonus"],
     totalRebate: json["total_rebate"],
-    lastRecharge: UserRecentlyFunds.fromJson(json["last_recharge"]),
-    lastWithdraw: UserRecentlyFunds.fromJson(json["last_withdraw"]),
-    lastMessage: UserLastMessageModel.fromJson(json["last_message"]),
+    lastRecharge: Last.fromJson(json["last_recharge"]),
+    lastWithdraw: Last.fromJson(json["last_withdraw"]),
+    lastMessage: LastMessage.fromJson(json["last_message"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -129,6 +132,7 @@ class UserModel {
     "last_login_address": lastLoginAddress,
     "show_beginner_guide": showBeginnerGuide,
     "pay_times": payTimes,
+    "has_pass": hasPass,
     "balance": balance,
     "balance_frozen": balanceFrozen,
     "points": points,
@@ -150,41 +154,41 @@ class UserModel {
   };
 }
 
-class UserLastMessageModel {
+class LastMessage {
   final List<dynamic> list;
   final int count;
 
-  UserLastMessageModel({required this.list, required this.count});
+  LastMessage({required this.list, required this.count});
 
-  factory UserLastMessageModel.fromRawJson(String str) => UserLastMessageModel.fromJson(json.decode(str));
+  factory LastMessage.fromRawJson(String str) => LastMessage.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory UserLastMessageModel.fromJson(Map<String, dynamic> json) => UserLastMessageModel(list: List<dynamic>.from(json["list"].map((x) => x)), count: json["count"]);
+  factory LastMessage.fromJson(Map<String, dynamic> json) => LastMessage(list: List<dynamic>.from(json["list"].map((x) => x)), count: json["count"]);
 
   Map<String, dynamic> toJson() => {"list": List<dynamic>.from(list.map((x) => x)), "count": count};
 }
 
-class UserRecentlyFunds {
-  final int totalRecharge;
+class Last {
+  final String totalRecharge;
   final int totalWithdraw;
-  final int totalBonus;
+  final String totalBonus;
   final int totalRebate;
-  final List<UserRecentlyFundsItem> list;
+  final List<ListElement> list;
   final int count;
 
-  UserRecentlyFunds({required this.totalRecharge, required this.totalWithdraw, required this.totalBonus, required this.totalRebate, required this.list, required this.count});
+  Last({required this.totalRecharge, required this.totalWithdraw, required this.totalBonus, required this.totalRebate, required this.list, required this.count});
 
-  factory UserRecentlyFunds.fromRawJson(String str) => UserRecentlyFunds.fromJson(json.decode(str));
+  factory Last.fromRawJson(String str) => Last.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory UserRecentlyFunds.fromJson(Map<String, dynamic> json) => UserRecentlyFunds(
+  factory Last.fromJson(Map<String, dynamic> json) => Last(
     totalRecharge: json["total_recharge"],
     totalWithdraw: json["total_withdraw"],
     totalBonus: json["total_bonus"],
     totalRebate: json["total_rebate"],
-    list: List<UserRecentlyFundsItem>.from((json["list"] ?? []).map((x) => UserRecentlyFundsItem.fromJson(x))),
+    list: List<ListElement>.from(json["list"].map((x) => ListElement.fromJson(x))),
     count: json["count"],
   );
 
@@ -198,7 +202,7 @@ class UserRecentlyFunds {
   };
 }
 
-class UserRecentlyFundsItem {
+class ListElement {
   final String tradeNo;
   final String money;
   final String remark;
@@ -207,14 +211,14 @@ class UserRecentlyFundsItem {
   final int status;
   final String time;
 
-  UserRecentlyFundsItem({required this.tradeNo, required this.money, required this.remark, required this.type, required this.symbol, required this.status, required this.time});
+  ListElement({required this.tradeNo, required this.money, required this.remark, required this.type, required this.symbol, required this.status, required this.time});
 
-  factory UserRecentlyFundsItem.fromRawJson(String str) => UserRecentlyFundsItem.fromJson(json.decode(str));
+  factory ListElement.fromRawJson(String str) => ListElement.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory UserRecentlyFundsItem.fromJson(Map<String, dynamic> json) =>
-      UserRecentlyFundsItem(tradeNo: json["trade_no"], money: json["money"], remark: json["remark"], type: json["type"], symbol: json["symbol"], status: json["status"], time: json["time"]);
+  factory ListElement.fromJson(Map<String, dynamic> json) =>
+      ListElement(tradeNo: json["trade_no"], money: json["money"], remark: json["remark"], type: json["type"], symbol: json["symbol"], status: json["status"], time: json["time"]);
 
   Map<String, dynamic> toJson() => {"trade_no": tradeNo, "money": money, "remark": remark, "type": type, "symbol": symbol, "status": status, "time": time};
 }

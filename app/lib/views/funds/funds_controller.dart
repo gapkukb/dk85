@@ -1,4 +1,4 @@
-import 'package:app/apis/index.dart';
+import 'package:app/apis/apis.dart';
 import 'package:app/models/top_up.model.dart';
 import 'package:app/models/withdrawal.model.dart';
 import 'package:app/routes/app_pages.dart';
@@ -45,12 +45,12 @@ class FundsController extends GetxController with GetSingleTickerProviderStateMi
   }
 
   void queryTopUpChannels() async {
-    final channles = await queryTopUpChannelsApi();
+    final channles = await fundApi.queryTopUpList();
     topUpChannels.value = channles.data.the2.accountList;
   }
 
   void queryWithdrawChannels() async {
-    final channles = await queryWithdrawChannelsApi();
+    final channles = await fundApi.queryWithdrawList();
     withdrawChannels.value = channles.data;
   }
 

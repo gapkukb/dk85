@@ -1,3 +1,4 @@
+import 'package:app/modal_views/daily_check_in/view.dart';
 import 'package:app/shared/customer_service/customer_service.dart';
 import 'package:app/views/activity_detail/activity_detail.dart';
 import 'package:app/views/auth/auth_view.dart';
@@ -31,7 +32,7 @@ class AppPages {
   static const INITIAL = null;
 
   static final routes = [
-    GetPage(name: Routes.demo, page: () => const DemoView()),
+    GetPage(name: Routes.demo, page: () => const DailyCheckInView()),
     GetPage(name: Routes.auth, page: () => const AuthView()),
     GetPage(name: Routes.customerService, page: () => const CustomerServiceView()),
     GetPage(name: Routes.payee, page: () => const PayeeView()),

@@ -1,4 +1,4 @@
-import 'package:app/apis/index.dart';
+import 'package:app/apis/apis.dart';
 import 'package:app/extensions/bot_toast.dart';
 import 'package:app/helper/copy.dart';
 import 'package:app/iconfont/index.dart';
@@ -161,7 +161,7 @@ class _PayeeViewState extends State<PayeeView> {
     }
     try {
       BotToast.showLoading();
-      await matchTopupApi(data: {'sys_trade_no': Get.parameters['sysTradeNo'], 'bank_serial': value, 'account_id': Get.parameters['id']});
+      await fundApi.matchTopup(data: {'sys_trade_no': Get.parameters['sysTradeNo'], 'bank_serial': value, 'account_id': Get.parameters['id']});
       BotToast.closeAllLoading();
       await showSuccess(text: '提交成功!');
       Get.back();

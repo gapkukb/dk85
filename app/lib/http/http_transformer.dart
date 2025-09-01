@@ -1,11 +1,13 @@
 part of 'http.dart';
 
-/// 简化后端的返回值，将{code:200,message:'',data:'’} 格式在成功时直接返回data
-/// 后面的拦截器onresponse返回值也会发生变化
+/// 这一层主要处理数据转换，分流业务层的成功和失败
 
 class HTTPBackgroundTransformer extends BackgroundTransformer {
   @override
-  Future transformResponse(RequestOptions options, ResponseBody responseBody) async {
+  Future transformResponse(
+    RequestOptions options,
+    ResponseBody responseBody,
+  ) async {
     dynamic body = await super.transformResponse(options, responseBody);
     if (options.normalizable == false) return body;
     if (body is String && options.responseType == ResponseType.json) {
@@ -16,17 +18,20 @@ class HTTPBackgroundTransformer extends BackgroundTransformer {
     }
     if (body is! Map<String, dynamic> || body['code'] != 200) {
       final errorMessage = body is Map
-          ? body['message']
+          ? body['message'] ?? responseBody.statusMessage
           : body is String
           ? body
-          : responseBody.statusMessage ?? responseBody;
+          : responseBody.statusMessage;
 
       throw DioException(
         requestOptions: options,
         response: Response(
           requestOptions: options,
           data: body,
-          headers: Headers.fromMap(responseBody.headers, preserveHeaderCase: options.preserveHeaderCase),
+          headers: Headers.fromMap(
+            responseBody.headers,
+            preserveHeaderCase: options.preserveHeaderCase,
+          ),
           statusCode: responseBody.statusCode,
           statusMessage: responseBody.statusMessage,
           extra: responseBody.extra,

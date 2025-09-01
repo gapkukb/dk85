@@ -1,4 +1,4 @@
-import 'package:app/apis/index.dart';
+import 'package:app/apis/apis.dart';
 import 'package:app/extensions/bot_toast.dart';
 import 'package:app/hooks/useForm.dart';
 import 'package:app/services/index.dart';
@@ -6,14 +6,10 @@ import 'package:app/shared/customer_service/customer_service.dart';
 import 'package:app/theme/index.dart';
 import 'package:app/widgets/back_button/back_button.dart';
 import 'package:app/widgets/button/index.dart';
-import 'package:app/widgets/input_mobile/input_mobile.dart';
 import 'package:app/widgets/input_password/input_password.dart';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/get_core.dart';
-import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 class PwdManagerView extends StatefulWidget {
   const PwdManagerView({super.key});
@@ -27,7 +23,7 @@ class _PwdManagerState extends State<PwdManagerView> {
   final form = Useform((values) async {
     try {
       BotToast.showLoading();
-      await changePwdApi(data: values);
+      await userApi.changePwd(data: values);
       BotToast.closeAllLoading();
       await showSuccess(text: '修改密码成功');
       Get.back();

@@ -1,9 +1,7 @@
-import 'package:app/apis/index.dart';
+import 'package:app/apis/apis.dart';
 import 'package:app/extensions/bot_toast.dart';
 import 'package:app/hooks/useForm.dart';
-import 'package:app/iconfont/index.dart';
 import 'package:app/models/withdrawal.model.dart';
-import 'package:app/routes/app_pages.dart';
 import 'package:app/services/index.dart';
 import 'package:app/shared/amount/amount.dart';
 import 'package:app/shared/customer_service/customer_service.dart';
@@ -11,8 +9,6 @@ import 'package:app/theme/index.dart';
 import 'package:app/views/funds/funds_controller.dart';
 import 'package:app/widgets/button/index.dart';
 import 'package:app/widgets/input_base/input_base.dart';
-import 'package:app/widgets/network_picture.dart';
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -22,15 +18,9 @@ class FundsFillWithdraw extends GetView<FundsController> {
   final WithdrawlModel channel;
   FundsFillWithdraw(this.channel, {super.key}) {
     form = Useform((values) async {
-      try {
-        BotToast.showLoading();
-        await withdrawApi(data: {...values, 'withdraw_id': channel.id});
-        BotToast.closeAllLoading();
-        await showSuccess(text: '提款申请成功');
-        Get.back();
-      } catch (e) {
-        BotToast.closeAllLoading();
-      }
+      await fundApi.withdraw(data: {...values, 'withdraw_id': channel.id});
+      await showSuccess(text: '提款申请成功');
+      Get.back();
     });
   }
 

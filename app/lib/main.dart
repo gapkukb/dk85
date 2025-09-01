@@ -13,25 +13,21 @@ import 'application.dart';
 import 'flavors.dart';
 
 void main() async {
-  ScaledWidgetsFlutterBinding.ensureInitialized(
-    scaleFactor: (device) => device.width / 375,
-  );
+  ScaledWidgetsFlutterBinding.ensureInitialized(scaleFactor: (device) => device.width / 375);
   // runApp(const SplashView());
   // await Future.delayed(Duration(seconds: 3));
 
   await Future.wait([
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]),
-    Storage.setup(),
-    packageInfo.setup(),
+    Storage.initialize(),
+    packageInfo.initialize(),
   ]);
 
   await Future.wait([deviceInfo.setup()]);
 
   i18n.setup();
-  setupServices();
-  Flavor.appFlavor = AppFlavor.values.firstWhere(
-    (element) => element.name == appFlavor,
-  );
+  initializeServices();
+  Flavor.appFlavor = AppFlavor.values.firstWhere((element) => element.name == appFlavor);
 
   runApp(const Application());
 }
