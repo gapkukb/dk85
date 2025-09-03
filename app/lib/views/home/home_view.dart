@@ -17,6 +17,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   final appService = AppService.to;
+  get authorized => AuthService.to.authorized;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class _HomeViewState extends State<HomeView> {
         body: Obx(
           () => IndexedStack(
             index: appService.currentIndex.value,
-            children: [MainView(), PromosView(), FundsView(), MeView()],
+            children: [MainView(), PromosView(), authorized ? FundsView() : SizedBox.shrink(), authorized ? MeView() : SizedBox.shrink()],
           ),
         ),
         bottomNavigationBar: Obx(

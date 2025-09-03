@@ -5,12 +5,7 @@ class GameItemView extends StatelessWidget {
   final bool isLike;
   final GameModel game;
 
-  const GameItemView({
-    super.key,
-    this.likes = 0,
-    this.isLike = false,
-    required this.game,
-  });
+  const GameItemView({super.key, this.likes = 0, this.isLike = false, required this.game});
 
   @override
   Widget build(BuildContext context) {
@@ -18,19 +13,13 @@ class GameItemView extends StatelessWidget {
       onTap: () => GamingView.play(game),
       child: Container(
         clipBehavior: Clip.hardEdge,
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(4)),
-        ),
+        decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(4))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Stack(
               children: [
-                AspectRatio(
-                  aspectRatio: 1,
-                  child: NetworkPicture(imageUrl: game.img),
-                ),
+                AspectRatio(aspectRatio: 1, child: NetworkPicture(imageUrl: game.img)),
                 Positioned(
                   right: 0,
                   top: 0,
@@ -40,11 +29,7 @@ class GameItemView extends StatelessWidget {
                       padding: EdgeInsetsGeometry.only(left: 4, right: 4),
                       child: Text(
                         game.platform,
-                        style: TextStyle(
-                          fontSize: 10,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: TextStyle(fontSize: 10, color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -57,13 +42,7 @@ class GameItemView extends StatelessWidget {
               child: Row(
                 children: [
                   Expanded(
-                    child: Text(
-                      game.name,
-                      maxLines: 1,
-                      softWrap: false,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(fontSize: 12),
-                    ),
+                    child: Text(game.name, maxLines: 1, softWrap: false, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 12)),
                   ),
                   Align(alignment: Alignment.centerRight, child: FavButton()),
                 ],
@@ -91,11 +70,7 @@ class _FavButtonState extends State<FavButton> {
       dimension: 28,
       child: IconButton(
         padding: EdgeInsets.zero,
-        icon: Icon(
-          widget.liked ? IconFont.heart_fill : IconFont.heart,
-          color: widget.liked ? Color(0xffff5800) : Colors.black,
-          size: 16,
-        ),
+        icon: Icon(widget.liked ? IconFont.heart_fill : IconFont.heart, color: widget.liked ? Color(0xffff5800) : Colors.black, size: 16),
         onPressed: () {
           widget.liked = !widget.liked;
           setState(() {});

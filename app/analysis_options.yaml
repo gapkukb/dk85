@@ -28,4 +28,4 @@ linter:
 # https://dart.dev/guides/language/analysis-options
 
   formatter:
-    page_width: 220 # Example: Setting line length to 120 characters
+    page_width: 180 # Example: Setting line length to 120 characters

@@ -62,7 +62,8 @@ class LoginView extends GetView<AuthCotroller> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Obx(() => AKCheckbox(value: controller.rememberMe.value, onChanged: controller.remember)),
+          // Obx(() => AKCheckbox(value: controller.rememberMe.value, onChanged: controller.remember)),
+          SizedBox(),
           TextButton(
             onPressed: CustomerService.call,
             child: Text("login.forgot".tr, style: TextStyle(fontSize: 12, color: AppColors.primary)),

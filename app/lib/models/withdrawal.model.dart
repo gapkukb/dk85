@@ -2,57 +2,39 @@ import 'package:meta/meta.dart';
 import 'dart:convert';
 
 class WithdrawalModelWrapper {
-  final int code;
-  final int status;
+  final num code;
+  final num status;
   final String message;
   final List<WithdrawlModel> data;
 
-  WithdrawalModelWrapper({
-    required this.code,
-    required this.status,
-    required this.message,
-    required this.data,
-  });
+  WithdrawalModelWrapper({required this.code, required this.status, required this.message, required this.data});
 
-  factory WithdrawalModelWrapper.fromRawJson(String str) =>
-      WithdrawalModelWrapper.fromJson(json.decode(str));
+  factory WithdrawalModelWrapper.fromRawJson(String str) => WithdrawalModelWrapper.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
   factory WithdrawalModelWrapper.fromJson(Map<String, dynamic> json) =>
-      WithdrawalModelWrapper(
-        code: json["code"],
-        status: json["status"],
-        message: json["message"],
-        data: List<WithdrawlModel>.from(
-          json["data"].map((x) => WithdrawlModel.fromJson(x)),
-        ),
-      );
+      WithdrawalModelWrapper(code: json["code"], status: json["status"], message: json["message"], data: List<WithdrawlModel>.from(json["data"].map((x) => WithdrawlModel.fromJson(x))));
 
-  Map<String, dynamic> toJson() => {
-    "code": code,
-    "status": status,
-    "message": message,
-    "data": List<dynamic>.from(data.map((x) => x.toJson())),
-  };
+  Map<String, dynamic> toJson() => {"code": code, "status": status, "message": message, "data": List<dynamic>.from(data.map((x) => x.toJson()))};
 }
 
 class WithdrawlModel {
-  final int id;
-  final int withdrawId;
-  final int gateway;
+  final num id;
+  final num withdrawId;
+  final num gateway;
   final String name;
   final String eachMin;
   final String eachMax;
   final String dailyMax;
-  final int todayCount;
+  final num todayCount;
   final String todayAmount;
-  final int status;
-  final int sort;
-  final int isDecimal;
-  final int isInt;
+  final num status;
+  final num sort;
+  final num isDecimal;
+  final num isnum;
   final String moneyList;
-  final int isInput;
+  final num isInput;
   final String remark;
   final String logo;
 
@@ -69,15 +51,14 @@ class WithdrawlModel {
     required this.status,
     required this.sort,
     required this.isDecimal,
-    required this.isInt,
+    required this.isnum,
     required this.moneyList,
     required this.isInput,
     required this.remark,
     required this.logo,
   });
 
-  factory WithdrawlModel.fromRawJson(String str) =>
-      WithdrawlModel.fromJson(json.decode(str));
+  factory WithdrawlModel.fromRawJson(String str) => WithdrawlModel.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
@@ -94,7 +75,7 @@ class WithdrawlModel {
     status: json["status"],
     sort: json["sort"],
     isDecimal: json["is_decimal"],
-    isInt: json["is_int"],
+    isnum: json["is_num"],
     moneyList: json["moneyList"],
     isInput: json["is_input"],
     remark: json["remark"],
@@ -114,7 +95,7 @@ class WithdrawlModel {
     "status": status,
     "sort": sort,
     "is_decimal": isDecimal,
-    "is_int": isInt,
+    "is_num": isnum,
     "moneyList": moneyList,
     "is_input": isInput,
     "remark": remark,

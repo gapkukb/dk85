@@ -2,8 +2,8 @@ import 'package:meta/meta.dart';
 import 'dart:convert';
 
 class UserModelWrapper {
-  final int code;
-  final int status;
+  final num code;
+  final num status;
   final String message;
   final UserModel data;
 
@@ -19,36 +19,36 @@ class UserModelWrapper {
 }
 
 class UserModel {
-  final String username;
-  final String realname;
-  final String email;
-  final String mobile;
-  final String qq;
-  final int sex;
-  final dynamic birthday;
-  final String lastLoginTime;
-  final String lastLoginAddress;
-  final int showBeginnerGuide;
-  final int payTimes;
-  final int hasPass;
-  final double balance;
-  final int balanceFrozen;
-  final int points;
-  final int gradeId;
-  final String gradeName;
-  final int bindSafeQuestion;
-  final int bindPayPassword;
-  final int unreadMessageCount;
-  final String switchSign;
-  final int bindBank;
-  final int applyBirthdayBonus;
-  final int autoBindGameBalance;
-  final String totalBet;
-  final String totalBonus;
-  final String totalRebate;
-  final Last lastRecharge;
-  final Last lastWithdraw;
-  final LastMessage lastMessage;
+  final String? username;
+  final String? realname;
+  final String? email;
+  final String? mobile;
+  final String? qq;
+  final num? sex;
+  final String? birthday;
+  final String? lastLognumime;
+  final String? lastLoginAddress;
+  final num? showBeginnerGuide;
+  final num? payTimes;
+  final num? hasPass;
+  final num? balance;
+  final num? balanceFrozen;
+  final num? ponums;
+  final num? gradeId;
+  final String? gradeName;
+  final num? bindSafeQuestion;
+  final num? bindPayPassword;
+  final num? unreadMessageCount;
+  final num? switchSign;
+  final num? bindBank;
+  final num? applyBirthdayBonus;
+  final num? autoBindGameBalance;
+  final num? totalBet;
+  final num? totalBonus;
+  final num? totalRebate;
+  final Last? lastRecharge;
+  final Last? lastWithdraw;
+  final LastMessage? lastMessage;
 
   UserModel({
     required this.username,
@@ -58,14 +58,14 @@ class UserModel {
     required this.qq,
     required this.sex,
     required this.birthday,
-    required this.lastLoginTime,
+    required this.lastLognumime,
     required this.lastLoginAddress,
     required this.showBeginnerGuide,
     required this.payTimes,
     required this.hasPass,
     required this.balance,
     required this.balanceFrozen,
-    required this.points,
+    required this.ponums,
     required this.gradeId,
     required this.gradeName,
     required this.bindSafeQuestion,
@@ -88,21 +88,21 @@ class UserModel {
   String toRawJson() => json.encode(toJson());
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-    username: json["username"],
-    realname: json["realname"],
-    email: json["email"],
-    mobile: json["mobile"],
-    qq: json["qq"],
-    sex: json["sex"],
-    birthday: json["birthday"],
-    lastLoginTime: json["last_login_time"],
-    lastLoginAddress: json["last_login_address"],
-    showBeginnerGuide: json["show_beginner_guide"],
-    payTimes: json["pay_times"],
-    hasPass: json["has_pass"],
-    balance: json["balance"]?.toDouble(),
-    balanceFrozen: json["balance_frozen"],
-    points: json["points"],
+    username: json["username"] ?? '',
+    realname: json["realname"] ?? '',
+    email: json["email"] ?? '',
+    mobile: json["mobile"] ?? '',
+    qq: json["qq"] ?? '',
+    sex: json["sex"] ?? '',
+    birthday: json["birthday"] ?? '',
+    lastLognumime: json["last_login_time"] ?? '',
+    lastLoginAddress: json["last_login_address"] ?? '',
+    showBeginnerGuide: json["show_beginner_guide"] ?? '',
+    payTimes: json["pay_times"] ?? '',
+    hasPass: json["has_pass"] ?? '',
+    balance: json["balance"] ?? '',
+    balanceFrozen: json["balance_frozen"] ?? '',
+    ponums: json["ponums"] ?? 0,
     gradeId: json["grade_id"],
     gradeName: json["grade_name"],
     bindSafeQuestion: json["bind_safe_question"],
@@ -128,14 +128,14 @@ class UserModel {
     "qq": qq,
     "sex": sex,
     "birthday": birthday,
-    "last_login_time": lastLoginTime,
+    "last_login_time": lastLognumime,
     "last_login_address": lastLoginAddress,
     "show_beginner_guide": showBeginnerGuide,
     "pay_times": payTimes,
     "has_pass": hasPass,
     "balance": balance,
     "balance_frozen": balanceFrozen,
-    "points": points,
+    "ponums": ponums,
     "grade_id": gradeId,
     "grade_name": gradeName,
     "bind_safe_question": bindSafeQuestion,
@@ -148,15 +148,15 @@ class UserModel {
     "total_bet": totalBet,
     "total_bonus": totalBonus,
     "total_rebate": totalRebate,
-    "last_recharge": lastRecharge.toJson(),
-    "last_withdraw": lastWithdraw.toJson(),
-    "last_message": lastMessage.toJson(),
+    "last_recharge": lastRecharge?.toJson(),
+    "last_withdraw": lastWithdraw?.toJson(),
+    "last_message": lastMessage?.toJson(),
   };
 }
 
 class LastMessage {
-  final List<dynamic> list;
-  final int count;
+  final List<dynamic>? list;
+  final num? count;
 
   LastMessage({required this.list, required this.count});
 
@@ -166,16 +166,16 @@ class LastMessage {
 
   factory LastMessage.fromJson(Map<String, dynamic> json) => LastMessage(list: List<dynamic>.from(json["list"].map((x) => x)), count: json["count"]);
 
-  Map<String, dynamic> toJson() => {"list": List<dynamic>.from(list.map((x) => x)), "count": count};
+  Map<String, dynamic> toJson() => {"list": List<dynamic>.from((list ?? []).map((x) => x)), "count": count};
 }
 
 class Last {
-  final String totalRecharge;
-  final int totalWithdraw;
-  final String totalBonus;
-  final int totalRebate;
-  final List<ListElement> list;
-  final int count;
+  final num? totalRecharge;
+  final num? totalWithdraw;
+  final num? totalBonus;
+  final num? totalRebate;
+  final List<ListElement>? list;
+  final num? count;
 
   Last({required this.totalRecharge, required this.totalWithdraw, required this.totalBonus, required this.totalRebate, required this.list, required this.count});
 
@@ -197,19 +197,19 @@ class Last {
     "total_withdraw": totalWithdraw,
     "total_bonus": totalBonus,
     "total_rebate": totalRebate,
-    "list": List<dynamic>.from(list.map((x) => x.toJson())),
+    "list": List<dynamic>.from((list ?? []).map((x) => x.toJson())),
     "count": count,
   };
 }
 
 class ListElement {
-  final String tradeNo;
-  final String money;
-  final String remark;
-  final int type;
-  final int symbol;
-  final int status;
-  final String time;
+  final num? tradeNo;
+  final num? money;
+  final String? remark;
+  final num? type;
+  final num? symbol;
+  final num? status;
+  final String? time;
 
   ListElement({required this.tradeNo, required this.money, required this.remark, required this.type, required this.symbol, required this.status, required this.time});
 

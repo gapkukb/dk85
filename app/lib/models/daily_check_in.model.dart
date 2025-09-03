@@ -2,8 +2,8 @@ import 'package:meta/meta.dart';
 import 'dart:convert';
 
 class DailyCheckInModelWrapper {
-  final int code;
-  final int status;
+  final num code;
+  final num status;
   final String message;
   final List<DailyCheckInModel> data;
 
@@ -21,7 +21,7 @@ class DailyCheckInModelWrapper {
 
 class DailyCheckInModel {
   final DateTime date;
-  final int status;
+  final num status;
   final dynamic amount;
 
   DailyCheckInModel({required this.date, required this.status, required this.amount});

@@ -10,9 +10,6 @@ class CustomerServiceView extends StatefulWidget {
 class _CustomerServiceViewState extends State<CustomerServiceView> {
   @override
   Widget build(BuildContext context) {
-    return Webview(
-      url:
-          "https://www.chatfun666.com/chat/serverLogin?initializeType=server&serverNo=sc770014224833410902844454240023&companyId=mg888&memberId=&memberName=&language=my",
-    );
+    return Webview(url: 'file:///android_asset/flutter_assets/assets/html/live-chat.html');
   }
 }

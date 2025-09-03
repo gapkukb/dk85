@@ -5,6 +5,7 @@ import 'package:app/i18n/index.dart';
 import 'package:app/services/index.dart';
 import 'package:app/shared/package_info/index.dart';
 import 'package:app/storage/storage.dart';
+import 'package:app_links/app_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:scaled_app/scaled_app.dart';
@@ -28,6 +29,16 @@ void main() async {
   i18n.setup();
   initializeServices();
   Flavor.appFlavor = AppFlavor.values.firstWhere((element) => element.name == appFlavor);
-
+  final appLinks = AppLinks();
+  appLinks
+    ..getInitialLink().then((link) {
+      // 如果有值，处理启动时接收到的链接
+      if (link != null) {
+        print("Initial link: $link");
+      }
+    })
+    ..uriLinkStream.listen((uri) {
+      print("Received deep link: $uri");
+    });
   runApp(const Application());
 }

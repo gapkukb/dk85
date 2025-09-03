@@ -2,37 +2,21 @@ import 'package:meta/meta.dart';
 import 'dart:convert';
 
 class GameModelWrapper {
-  final int code;
-  final int status;
-  final String message;
+  final int? code;
+  final int? status;
+  final String? message;
   final GameGroupModel data;
 
-  GameModelWrapper({
-    required this.code,
-    required this.status,
-    required this.message,
-    required this.data,
-  });
+  GameModelWrapper({this.code, this.status, this.message, required this.data});
 
-  factory GameModelWrapper.fromRawJson(String str) =>
-      GameModelWrapper.fromJson(json.decode(str));
+  factory GameModelWrapper.fromRawJson(String str) => GameModelWrapper.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
   factory GameModelWrapper.fromJson(Map<String, dynamic> json) =>
-      GameModelWrapper(
-        code: json["code"],
-        status: json["status"],
-        message: json["message"],
-        data: GameGroupModel.fromJson(json["data"]),
-      );
+      GameModelWrapper(code: json["code"], status: json["status"], message: json["message"], data: GameGroupModel.fromJson(json["data"] ?? {}));
 
-  Map<String, dynamic> toJson() => {
-    "code": code,
-    "status": status,
-    "message": message,
-    "data": data.toJson(),
-  };
+  Map<String, dynamic> toJson() => {"code": code, "status": status, "message": message, "data": data.toJson()};
 }
 
 class GameGroupModel {
@@ -41,31 +25,17 @@ class GameGroupModel {
   final List<GameModel> poker;
   final List<GameModel> mini;
 
-  GameGroupModel({
-    required this.fish,
-    required this.slots,
-    required this.poker,
-    required this.mini,
-  });
+  GameGroupModel({required this.fish, required this.slots, required this.poker, required this.mini});
 
-  factory GameGroupModel.fromRawJson(String str) =>
-      GameGroupModel.fromJson(json.decode(str));
+  factory GameGroupModel.fromRawJson(String str) => GameGroupModel.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
   factory GameGroupModel.fromJson(Map<String, dynamic> json) => GameGroupModel(
-    fish: List<GameModel>.from(
-      (json["FISH"] ?? []).map((x) => GameModel.fromJson(x)),
-    ),
-    slots: List<GameModel>.from(
-      (json["SLOTS"] ?? []).map((x) => GameModel.fromJson(x)),
-    ),
-    poker: List<GameModel>.from(
-      (json["POKER"] ?? []).map((x) => GameModel.fromJson(x)),
-    ),
-    mini: List<GameModel>.from(
-      (json["MINI"] ?? []).map((x) => GameModel.fromJson(x)),
-    ),
+    fish: List<GameModel>.from((json["FISH"] ?? []).map((x) => GameModel.fromJson(x))),
+    slots: List<GameModel>.from((json["SLOTS"] ?? []).map((x) => GameModel.fromJson(x))),
+    poker: List<GameModel>.from((json["POKER"] ?? []).map((x) => GameModel.fromJson(x))),
+    mini: List<GameModel>.from((json["MINI"] ?? []).map((x) => GameModel.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -77,6 +47,7 @@ class GameGroupModel {
 }
 
 class GameModel {
+  final int id;
   final String platform;
   final String name;
   final String style;
@@ -91,10 +62,13 @@ class GameModel {
   final int recommend;
   final int likeNum;
   final int isNew;
+  final int status;
+  final int sort;
   final String createdAt;
   final String updatedAt;
 
   GameModel({
+    required this.id,
     required this.platform,
     required this.name,
     required this.style,
@@ -109,35 +83,40 @@ class GameModel {
     required this.recommend,
     required this.likeNum,
     required this.isNew,
+    required this.status,
+    required this.sort,
     required this.createdAt,
     required this.updatedAt,
   });
 
-  factory GameModel.fromRawJson(String str) =>
-      GameModel.fromJson(json.decode(str));
+  factory GameModel.fromRawJson(String str) => GameModel.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
   factory GameModel.fromJson(Map<String, dynamic> json) => GameModel(
-    platform: json["platform"],
-    name: json["name"],
-    style: json["style"],
-    img: json["img"],
-    img1: json["img1"],
-    device: json["device"],
-    vendor: json["vendor"],
-    code: json["code"],
-    language: json["language"],
-    currency: json["currency"],
-    hot: json["hot"],
-    recommend: json["recommend"],
-    likeNum: json["like_num"],
-    isNew: json["new"],
-    createdAt: json["created_at"],
-    updatedAt: json["updated_at"],
+    id: json["id"] ?? -1,
+    platform: json["platform"] ?? '',
+    name: json["name"] ?? '',
+    style: json["style"] ?? '',
+    img: json["img"] ?? '',
+    img1: json["img1"] ?? '',
+    device: json["device"] ?? '',
+    vendor: json["vendor"] ?? '',
+    code: json["code"] ?? '',
+    language: json["language"] ?? '',
+    currency: json["currency"] ?? '',
+    hot: json["hot"] ?? 0,
+    recommend: json["recommend"] ?? 0,
+    likeNum: json["like_num"] ?? 0,
+    isNew: json["is_new"] ?? 0,
+    status: json["status"] ?? 0,
+    sort: json["sort"] ?? 0,
+    createdAt: json["created_at"] ?? '',
+    updatedAt: json["updated_at"] ?? '',
   );
 
   Map<String, dynamic> toJson() => {
+    "id": id,
     "platform": platform,
     "name": name,
     "style": style,
@@ -151,7 +130,9 @@ class GameModel {
     "hot": hot,
     "recommend": recommend,
     "like_num": likeNum,
-    "new": isNew,
+    "is_new": isNew,
+    "status": status,
+    "sort": sort,
     "created_at": createdAt,
     "updated_at": updatedAt,
   };

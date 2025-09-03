@@ -11,8 +11,7 @@ class _Tab {
   _Tab({required this.name, required this.value});
 }
 
-class SearchingController extends GetxController
-    with GetSingleTickerProviderStateMixin {
+class SearchingController extends GetxController with GetSingleTickerProviderStateMixin {
   SearchingController();
 
   late final TabController tab;
@@ -43,11 +42,9 @@ class SearchingController extends GetxController
   }
 
   List<GameModel> _filterWithKeywords(int kind, String keywords) {
-    bool predicate(GameModel game) =>
-        game.name.contains(keywords) || game.platform.contains(keywords);
+    bool predicate(GameModel game) => game.name.contains(keywords) || game.platform.contains(keywords);
 
-    List<GameModel> filter(Iterable<GameModel> games) =>
-        games.where(predicate).toList();
+    List<GameModel> filter(Iterable<GameModel> games) => games.where(predicate).toList();
 
     if (kind == GameKind.all.id) {
       return filter(gameService.all);

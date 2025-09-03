@@ -3,8 +3,8 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": "always"
   },
-  "dart.lineLength": 220,
+  "dart.lineLength": 180,
   "[dart]": {
-    "editor.rulers": [220]
+    "editor.rulers": [180]
   }
 }
