@@ -104,7 +104,7 @@ class CodeImageState extends State<_CodeImage> {
     setState(() {});
     final t = DateTime.now().millisecondsSinceEpoch;
     widget.onChanged(t.toString());
-    appApi
+    apis.app
         .queryCaptcha(
           queryParameters: {'time': t},
           options: Options(responseType: ResponseType.bytes),

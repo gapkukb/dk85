@@ -22,7 +22,7 @@ class _PwdManagerState extends State<PwdManagerView> {
   final form = Useform((values) async {
     try {
       BotToast.showLoading();
-      await userApi.changePwd(data: values);
+      await apis.user.changePwd(data: values);
       BotToast.closeAllLoading();
       await showSuccess(text: '修改密码成功');
       Get.back();

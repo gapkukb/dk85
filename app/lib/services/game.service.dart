@@ -13,7 +13,7 @@ class _GameService extends GetConnect {
 
   queryAll() async {
     loading.value = true;
-    final r = await gameApi.queryAllGames(queryParameters: {"game_id": "17"}).whenComplete(() {
+    final r = await apis.game.queryAllGames(queryParameters: {"game_id": "17"}).whenComplete(() {
       loading.value = false;
     });
     _all.value = r.data;

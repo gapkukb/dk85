@@ -8,7 +8,7 @@ class PromosController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    appApi.queryAdList(queryParameters: {'type': '3', 'position': '5'}).then((value) {
+    apis.app.queryAdList(queryParameters: {'type': '3', 'position': '5'}).then((value) {
       promos.value = value.data;
     });
   }

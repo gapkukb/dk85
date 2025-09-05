@@ -161,7 +161,7 @@ class _PayeeViewState extends State<PayeeView> {
     }
     try {
       BotToast.showLoading();
-      await fundApi.matchTopup(data: {'sys_trade_no': Get.parameters['sysTradeNo'], 'bank_serial': value, 'account_id': Get.parameters['id']});
+      await apis.funds.matchTopup(data: {'sys_trade_no': Get.parameters['sysTradeNo'], 'bank_serial': value, 'account_id': Get.parameters['id']});
       BotToast.closeAllLoading();
       await showSuccess(text: '提交成功!');
       Get.back();

@@ -18,7 +18,7 @@ class FundsFillWithdraw extends GetView<FundsController> {
   final WithdrawlModel channel;
   FundsFillWithdraw(this.channel, {super.key}) {
     form = Useform((values) async {
-      await fundApi.withdraw(data: {...values, 'withdraw_id': channel.id});
+      await apis.funds.withdraw(data: {...values, 'withdraw_id': channel.id});
       await showSuccess(text: '提款申请成功');
       Get.back();
     });

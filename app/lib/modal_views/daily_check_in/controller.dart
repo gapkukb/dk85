@@ -12,7 +12,7 @@ class DailyCheckInController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    appApi.checkInList().then((resp) {
+    apis.app.checkInList().then((resp) {
       list.value = resp.data;
     });
   }

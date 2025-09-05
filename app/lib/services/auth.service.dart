@@ -38,12 +38,12 @@ class _AuthService extends GetxService {
   }
 
   Future login(Object values) async {
-    final t = await userApi.login(data: values);
+    final t = await apis.user.login(data: values);
     await _nextAction(t.data.token);
   }
 
   Future register(Object values) async {
-    final t = await userApi.register(data: values);
+    final t = await apis.user.register(data: values);
     await _nextAction(t.data.token);
   }
 
@@ -56,7 +56,7 @@ class _AuthService extends GetxService {
 
   void logout() {
     // 调用退出接口，无需等待
-    userApi.logout();
+    apis.user.logout();
     Timer(Duration(milliseconds: 1), clear);
   }
 

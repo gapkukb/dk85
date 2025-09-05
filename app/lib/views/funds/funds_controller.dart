@@ -45,12 +45,12 @@ class FundsController extends GetxController with GetSingleTickerProviderStateMi
   }
 
   void queryTopUpChannels() async {
-    final channles = await fundApi.queryTopUpList();
+    final channles = await apis.funds.queryTopUpList();
     topUpChannels.value = channles.data.the2.accountList;
   }
 
   void queryWithdrawChannels() async {
-    final channles = await fundApi.queryWithdrawList();
+    final channles = await apis.funds.queryWithdrawList();
     withdrawChannels.value = channles.data;
   }
 

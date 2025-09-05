@@ -26,7 +26,7 @@ class _SliverGameSwiperState extends State<SliverGameSwiper> {
   }
 
   void _queryAdList() async {
-    final value = await appApi.queryAdList(queryParameters: {"type": "3", "position": widget.position});
+    final value = await apis.app.queryAdList(queryParameters: {"type": "3", "position": widget.position});
     banners.addAll(value.data);
     setState(() {});
   }
@@ -48,7 +48,15 @@ class _SliverGameSwiperState extends State<SliverGameSwiper> {
     }
 
     return CarouselSlider(
-      options: CarouselOptions(height: height, autoPlay: true, autoPlayInterval: const Duration(seconds: 3), pauseAutoPlayOnTouch: true, viewportFraction: 0.8, enlargeFactor: 0.2, enlargeCenterPage: true),
+      options: CarouselOptions(
+        height: height,
+        autoPlay: true,
+        autoPlayInterval: const Duration(seconds: 3),
+        pauseAutoPlayOnTouch: true,
+        viewportFraction: 0.8,
+        enlargeFactor: 0.2,
+        enlargeCenterPage: true,
+      ),
 
       items: banners.map(buildItem).toList(),
     );

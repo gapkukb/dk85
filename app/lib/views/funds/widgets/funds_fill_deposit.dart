@@ -22,7 +22,7 @@ class FundsFillDeposit extends GetView<FundsController> {
   @override
   Widget build(BuildContext context) {
     final form = Useform((values) async {
-      final order = await fundApi.createTopUpOrder(
+      final order = await apis.funds.createTopUpOrder(
         data: {
           // 	string	支付接口ID
           'account_id': channel.id,

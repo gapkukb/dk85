@@ -16,7 +16,11 @@ part './game.api.dart';
 part './user.api.dart';
 part './funds.api.dart';
 
-final appApi = _AppApi();
-final gameApi = _GameApi();
-final fundApi = _FundApi();
-final userApi = _UserApi();
+class _Apis {
+  final app = _AppApi();
+  final game = _GameApi();
+  final funds = _FundApi();
+  final user = _UserApi();
+}
+
+final apis = _Apis();
