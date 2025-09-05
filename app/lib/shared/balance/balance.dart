@@ -57,7 +57,7 @@ class Balance extends StatefulWidget {
 }
 
 class _BalanceState extends State<Balance> {
-  get _balance => UserService.to.balance.value;
+  get _balance => services.user.balance.value;
 
   late final AnimationController controller;
 
@@ -89,7 +89,7 @@ class _BalanceState extends State<Balance> {
           onTap: () async {
             if (controller.isAnimating) return;
             controller.repeat();
-            await UserService.to.queryBalance().whenComplete(controller.stop);
+            await services.user.queryBalance().whenComplete(controller.stop);
           },
           child: Icon(IconFont.refresh, size: widget.refresherSize ?? 14, color: widget.refresherColor ?? widget.color),
         )

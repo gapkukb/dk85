@@ -58,24 +58,13 @@ class _MeView extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          CircleAvatar(
-            radius: 30,
-            backgroundImage: AssetImage("assets/icons/logo-3.webp"),
-          ),
+          CircleAvatar(radius: 30, backgroundImage: AssetImage("assets/icons/logo-3.webp")),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 8),
-            decoration: BoxDecoration(
-              color: Color(0xfffffac4),
-              borderRadius: BorderRadius.circular(100),
-            ),
+            decoration: BoxDecoration(color: Color(0xfffffac4), borderRadius: BorderRadius.circular(100)),
             child: Text(
               'VIP1',
-              style: TextStyle(
-                fontSize: 12,
-                fontStyle: FontStyle.italic,
-                color: AppColors.primary,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 12, fontStyle: FontStyle.italic, color: AppColors.primary, fontWeight: FontWeight.bold),
             ),
           ),
         ],
@@ -96,7 +85,7 @@ class _MeView extends StatelessWidget {
                   fit: FlexFit.tight,
                   child: AKButton(
                     onPressed: () {
-                      AppService.to.toFundsView(0);
+                      services.app.toFundsView(0);
                     },
                     text: 'app.withdraw'.tr,
                     color: AppColors.white,
@@ -107,7 +96,7 @@ class _MeView extends StatelessWidget {
                   fit: FlexFit.tight,
                   child: AKButton(
                     onPressed: () {
-                      AppService.to.toFundsView(1);
+                      services.app.toFundsView(1);
                     },
                     text: 'app.withdraw'.tr,
                     color: Colors.white,

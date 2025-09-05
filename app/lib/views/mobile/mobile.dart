@@ -20,10 +20,10 @@ class MobileView extends StatefulWidget {
 }
 
 class _MobileState extends State<MobileView> {
-  UserModel get user => UserService.to.userInfo.value!;
+  UserModel get user => services.user.userInfo.value!;
   final form = Useform((values) async {
     await userApi.bindMobile(data: values);
-    UserService.to.queryUserInfo();
+    services.user.queryUserInfo();
     await showSuccess(text: '绑定手机号成功');
     Get.back();
   });

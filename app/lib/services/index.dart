@@ -21,11 +21,17 @@ part 'game.service.dart';
 part 'user.service.dart';
 part 'auth.service.dart';
 
-abstract class Services {
-  static void initialize() {
-    Get.put(AuthService());
-    Get.put(AppService());
-    Get.put(UserService());
-    Get.put(GameService());
+class _Services {
+  final auth = _AuthService();
+  final app = _AppService();
+  final user = _UserService();
+  final game = _GameService();
+  void initialize() {
+    Get.put(auth);
+    Get.put(app);
+    Get.put(user);
+    Get.put(game);
   }
 }
+
+final services = _Services();

@@ -32,7 +32,7 @@ class FundsController extends GetxController with GetSingleTickerProviderStateMi
 
   withdraw() {}
   withdrawAll() {
-    withdrawAmountCtrl.text = UserService.to.balance.toString();
+    withdrawAmountCtrl.text = services.user.balance.toString();
   }
 
   void setAmount(String n) {

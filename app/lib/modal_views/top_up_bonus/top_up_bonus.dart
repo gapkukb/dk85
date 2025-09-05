@@ -13,7 +13,7 @@ class TopUpBonusModal extends StatelessWidget {
       subtitle: 'Experience the pinnacle of the game',
       buttonText: 'Deposit',
       onPressed: () {
-        AppService.to.toFundsView(0);
+        services.app.toFundsView(0);
       },
       imageHeight: 290,
     );

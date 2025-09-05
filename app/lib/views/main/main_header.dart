@@ -21,7 +21,7 @@ final tabs = <_Tab>[
 class MainViewHeader extends StatelessWidget implements PreferredSizeWidget {
   const MainViewHeader({super.key});
 
-  static final _auth = AuthService.to;
+  static final _auth = services.auth;
 
   @override
   Widget build(BuildContext context) {

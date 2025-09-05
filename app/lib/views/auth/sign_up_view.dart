@@ -19,7 +19,7 @@ class SignUpView extends GetView<AuthCotroller> {
       return controller.action(
         text: 'Register successful',
         todo: () {
-          return AuthService.to.register(values);
+          return services.auth.register(values);
         },
       );
     });

@@ -21,10 +21,10 @@ class EmailView extends StatefulWidget {
 }
 
 class _EmaileState extends State<EmailView> {
-  UserModel get user => UserService.to.userInfo.value!;
+  UserModel get user => services.user.userInfo.value!;
   final form = Useform((values) async {
     await userApi.bindEmail(data: values);
-    UserService.to.queryUserInfo();
+    services.user.queryUserInfo();
     await showSuccess(text: '绑定邮箱成功');
     Get.back();
   });

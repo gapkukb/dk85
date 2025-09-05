@@ -9,12 +9,11 @@ class PokerView extends StatefulWidget {
   _PokerViewState createState() => _PokerViewState();
 }
 
-class _PokerViewState extends State<PokerView>
-    with AutomaticKeepAliveClientMixin {
+class _PokerViewState extends State<PokerView> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return GamePageView(dataBuilder: () => GameService.to.poker, adPosition: 4);
+    return GamePageView(dataBuilder: () => services.game.poker, adPosition: 4);
   }
 
   @override

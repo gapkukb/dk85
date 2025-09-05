@@ -1,7 +1,7 @@
 part of 'index.dart';
 
-class AppService extends GetxService with MainService {
-  static AppService get to => Get.find();
+class _AppService extends GetxService with MainService {
+  static _AppService get to => Get.find();
 
   @override
   void onInit() {

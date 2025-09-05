@@ -1,7 +1,7 @@
 part of 'index.dart';
 
-class AuthService extends GetxService {
-  static AuthService get to => Get.find();
+class _AuthService extends GetxService {
+  static _AuthService get to => Get.find();
 
   final _tokenManager = authManager.obs;
 
@@ -28,8 +28,8 @@ class AuthService extends GetxService {
       _tokenManager.refresh();
       storage.token.update(token);
       // 获取用户信息
-      await UserService.to.queryUserInfo();
-      UserService.to.queryBalance();
+      await services.user.queryUserInfo();
+      services.user.queryBalance();
       // 修改认证状态
       // authorized.value = true;
     } catch (e) {
@@ -51,7 +51,7 @@ class AuthService extends GetxService {
     // 清空token和登录态
     _tokenManager.value.clear();
     _tokenManager.refresh();
-    AppService.to.toHomeView();
+    services.app.toHomeView();
   }
 
   void logout() {

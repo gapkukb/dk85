@@ -17,7 +17,7 @@ class FundsView extends StatefulWidget {
 }
 
 class _FundsViewState extends State<FundsView> {
-  bool get authorized => AuthService.to.authorized;
+  bool get authorized => services.auth.authorized;
   @override
   Widget build(BuildContext context) {
     if (!authorized) return SizedBox.shrink();

@@ -20,7 +20,7 @@ class LoginView extends GetView<AuthCotroller> {
       return controller.action(
         text: 'Logged in',
         todo: () {
-          return AuthService.to.login(values);
+          return services.auth.login(values);
         },
       );
     });

@@ -30,7 +30,7 @@ mixin class MainService {
     while (Get.currentRoute != '/') {
       Get.back();
     }
-    if (tabs[index].protected && AuthService.to.ensureUnauthorize) return;
+    if (tabs[index].protected && services.auth.ensureUnauthorize) return;
     currentIndex.value = index;
   }
 

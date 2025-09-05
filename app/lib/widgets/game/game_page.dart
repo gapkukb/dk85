@@ -30,7 +30,7 @@ class _GamePageViewState extends State<GamePageView> with AutomaticKeepAliveClie
     return Scaffold(
       body: SmartRefresher(
         controller: refresher,
-        onRefresh: GameService.to.onRefresh,
+        onRefresh: services.game.onRefresh,
         child: CustomScrollView(
           slivers: [
             SliverGameSwiper(position: widget.adPosition),

@@ -73,7 +73,7 @@ class DailyCheckInView extends GetView<DailyCheckInController> {
 
   void claim() async {
     await appApi.checkIn();
-    UserService.to.queryBalance();
+    services.user.queryBalance();
     await showSuccess();
     Get.back();
   }

@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 
 class GamingView extends StatelessWidget {
   static void play(GameModel game) async {
-    await AuthService.to.ensureAuthorizedAsync;
+    await services.auth.ensureAuthorizedAsync;
     await Get.confirm(title: 'You will enter the Game');
     final Map<String, dynamic> r = await gameApi.queryGameUrl(queryParameters: {'game_id': 17, 'key': game.code, 'game_platform': game.platform, 'mobile': 1});
     Get.toNamed(Routes.gaming, parameters: r.cast());

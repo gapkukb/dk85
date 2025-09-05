@@ -16,8 +16,8 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  final appService = AppService.to;
-  get authorized => AuthService.to.authorized;
+  final appService = services.app;
+  get authorized => services.auth.authorized;
 
   @override
   Widget build(BuildContext context) {

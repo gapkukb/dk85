@@ -1,7 +1,7 @@
 part of 'index.dart';
 
-class GameService extends GetConnect {
-  static GameService get to => Get.find();
+class _GameService extends GetConnect {
+  static _GameService get to => Get.find();
 
   final Rx<GameGroupModel?> _all = Rx<GameGroupModel?>(null);
   final loading = false.obs;

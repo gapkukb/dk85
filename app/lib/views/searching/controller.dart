@@ -16,7 +16,7 @@ class SearchingController extends GetxController with GetSingleTickerProviderSta
 
   late final TabController tab;
   final input = TextEditingController();
-  final gameService = GameService.to;
+  final gameService = services.game;
   final keywords = ''.obs;
   final kind = GameKind.all.id.obs;
   final platforms = ['all'].obs;

@@ -19,7 +19,6 @@ class PwdManagerView extends StatefulWidget {
 }
 
 class _PwdManagerState extends State<PwdManagerView> {
-  final UserService userService = UserService.to;
   final form = Useform((values) async {
     try {
       BotToast.showLoading();
@@ -40,7 +39,12 @@ class _PwdManagerState extends State<PwdManagerView> {
     return Form(
       key: form.key,
       child: Scaffold(
-        appBar: AppBar(leading: AKBackButton(), title: Text(settled ? "Change Password" : "Set Password"), actionsPadding: EdgeInsets.only(right: 12), actions: [CustomerService()]),
+        appBar: AppBar(
+          leading: AKBackButton(),
+          title: Text(settled ? "Change Password" : "Set Password"),
+          actionsPadding: EdgeInsets.only(right: 12),
+          actions: [CustomerService()],
+        ),
         body: SafeArea(
           child: ListView(
             padding: EdgeInsets.all(12),

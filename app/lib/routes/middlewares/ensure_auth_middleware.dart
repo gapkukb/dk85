@@ -13,7 +13,7 @@ class EnsureAuthMiddleware extends GetMiddleware {
     print("EnsureAuthMiddleware");
 
     // 未登录则跳转登录
-    if (!AuthService.to.authorized) {
+    if (!services.auth.authorized) {
       final newRoute = Routes.loginThen(route.locationString);
       return GetNavConfig.fromRoute(newRoute);
     }
@@ -24,7 +24,7 @@ class EnsureAuthMiddleware extends GetMiddleware {
 class EnsureNotAuthedMiddleware extends GetMiddleware {
   @override
   Future<GetNavConfig?> redirectDelegate(GetNavConfig route) async {
-    if (AuthService.to.authorized) {
+    if (services.auth.authorized) {
       //NEVER navigate to auth screen, when user is already authed
       return null;
 

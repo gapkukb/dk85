@@ -1,7 +1,7 @@
 part of 'index.dart';
 
-class UserService extends GetxService {
-  static UserService get to => Get.find();
+class _UserService extends GetxService {
+  static _UserService get to => Get.find();
 
   final balance = RxNum(0);
   final userInfo = Rxn<UserModel>();
@@ -20,7 +20,7 @@ class UserService extends GetxService {
 
   @override
   void onInit() {
-    if (AuthService.to.authorized) {
+    if (services.auth.authorized) {
       queryUserInfo();
     }
     super.onInit();

@@ -31,18 +31,8 @@ class _MoreViewState extends State<MoreView> {
             additionalDividerMargin: 0,
             margin: EdgeInsets.all(0),
             children: [
-              AKTile(
-                titleText: 'app.language'.tr,
-                trailing: Obx(
-                  () => Text(I18n.getLocaleName(storage.locale.value)),
-                ),
-                onTap: LocaleSelector.showPicker,
-              ),
-              AKTile(
-                titleText: 'app.version'.tr,
-                trailing: Text(packageInfo.info.version),
-                isLink: false,
-              ),
+              AKTile(titleText: 'app.language'.tr, trailing: Obx(() => Text(I18n.getLocaleName(storage.locale.value))), onTap: LocaleSelector.showPicker),
+              AKTile(titleText: 'app.version'.tr, trailing: Text(packageInfo.info.version), isLink: false),
               AKTile(
                 titleText: 'app.bgm'.tr,
                 trailing: Transform.scale(
@@ -72,7 +62,7 @@ class _MoreViewState extends State<MoreView> {
                 confirmStyle: TextStyle(color: AppColors.highlight),
               );
               if (guaranteed == true) {
-                AuthService.to.logout();
+                services.auth.logout();
               }
             },
             text: 'app.logout'.tr,

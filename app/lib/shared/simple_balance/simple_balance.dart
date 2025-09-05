@@ -7,7 +7,7 @@ import 'package:app/theme/index.dart';
 class SimpleBalance extends StatelessWidget {
   final bool depositable;
   const SimpleBalance({super.key, this.depositable = false});
-  static final userService = UserService.to;
+  static final userService = services.user;
 
   @override
   Widget build(BuildContext context) {

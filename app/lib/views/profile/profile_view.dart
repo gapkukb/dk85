@@ -16,7 +16,7 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
-  UserModel get user => UserService.to.userInfo.value!;
+  UserModel get user => services.user.userInfo.value!;
   final bindStyle = TextStyle(backgroundColor: AppColors.primary);
   @override
   Widget build(BuildContext context) {

@@ -122,7 +122,7 @@ class FundsFillWithdraw extends GetView<FundsController> {
         final max = channel.eachMax;
         final min = channel.eachMin;
         if (amount < min) return '最小提现金额:$min';
-        if (amount > UserService.to.balance.value) return '您的余额不足';
+        if (amount > services.user.balance.value) return '您的余额不足';
         if (amount > max) return '最大提现金额:$max';
         return null;
       },
@@ -135,7 +135,7 @@ class FundsFillWithdraw extends GetView<FundsController> {
       style: TextStyle(fontSize: 12, color: AppColors.title),
       amountstyle: TextStyle(color: AppColors.primary),
       before: "withdraw.amount.able".tr,
-      amount: ' ${UserService.to.balance}',
+      amount: ' ${services.user.balance}',
     );
   }
 

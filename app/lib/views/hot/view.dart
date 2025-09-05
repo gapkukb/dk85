@@ -21,7 +21,7 @@ class HotView extends StatefulWidget {
 class _HotViewState extends State<HotView> with AutomaticKeepAliveClientMixin {
   final controller = HotController();
 
-  GroupGames get games => GroupGames(GameService.to.all);
+  GroupGames get games => GroupGames(services.game.all);
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +31,7 @@ class _HotViewState extends State<HotView> with AutomaticKeepAliveClientMixin {
         child: SmartRefresher(
           controller: controller.refresher,
           child: CustomScrollView(
-            slivers: [
-              SliverGameSwiper(position: 1),
-              Obx(() => SliverGameSection("Hot Games", games.hotGames)),
-              Obx(() => SliverGameSection("New Games", games.newGames)),
-            ],
+            slivers: [SliverGameSwiper(position: 1), Obx(() => SliverGameSection("Hot Games", games.hotGames)), Obx(() => SliverGameSection("New Games", games.newGames))],
           ),
         ),
       ),

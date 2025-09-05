@@ -14,6 +14,6 @@ class SlotsView extends StatefulWidget {
 class _SlotsViewState extends State<SlotsView> {
   @override
   Widget build(BuildContext context) {
-    return GamePageView(dataBuilder: () => GameService.to.slots, adPosition: 2);
+    return GamePageView(dataBuilder: () => services.game.slots, adPosition: 2);
   }
 }

@@ -10,12 +10,11 @@ class FishingView extends StatefulWidget {
   _FishingViewState createState() => _FishingViewState();
 }
 
-class _FishingViewState extends State<FishingView>
-    with AutomaticKeepAliveClientMixin {
+class _FishingViewState extends State<FishingView> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return GamePageView(dataBuilder: () => GameService.to.fish, adPosition: 3);
+    return GamePageView(dataBuilder: () => services.game.fish, adPosition: 3);
   }
 
   @override
