@@ -5,11 +5,9 @@ import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 final guideOne = GlobalKey();
 final guideTwo = GlobalKey();
-BuildContext? guideContext;
-
-List<TargetFocus> targets = [];
 
 void showGuide() {
+  List<TargetFocus> targets = [];
   // if (storage.showGuide.value) return;
 
   late final TutorialCoachMark tutorial;
@@ -22,29 +20,17 @@ void showGuide() {
       contents: [
         TargetContent(
           align: ContentAlign.custom,
-          customPosition: CustomTargetContentPosition(
-            top: (guideOne.currentContext?.findRenderObject() as RenderBox)
-                .localToGlobal(Offset.zero)
-                .dy,
-            left: 0,
-            right: 0,
-          ),
+          customPosition: CustomTargetContentPosition(top: (guideOne.currentContext?.findRenderObject() as RenderBox).localToGlobal(Offset.zero).dy, left: 0, right: 0),
           padding: EdgeInsets.all(0),
           child: Container(
             height: 208,
             decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/guide1.webp'),
-                fit: BoxFit.fitHeight,
-              ),
+              image: DecorationImage(image: AssetImage('assets/images/guide1.webp'), fit: BoxFit.fitHeight),
             ),
             child: GestureDetector(
               behavior: HitTestBehavior.translucent,
               onTap: () => tutorial.next(),
-              child: Align(
-                alignment: Alignment(0, 1),
-                child: SizedBox(height: 48),
-              ),
+              child: Align(alignment: Alignment(0, 1), child: SizedBox(height: 48)),
             ),
           ),
         ),
@@ -65,18 +51,12 @@ void showGuide() {
           child: Container(
             height: 133,
             decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/guide2.webp'),
-                fit: BoxFit.fitHeight,
-              ),
+              image: DecorationImage(image: AssetImage('assets/images/guide2.webp'), fit: BoxFit.fitHeight),
             ),
             child: GestureDetector(
               behavior: HitTestBehavior.translucent,
               onTap: () => tutorial.next(),
-              child: Align(
-                alignment: Alignment(0, -1),
-                child: SizedBox(height: 48),
-              ),
+              child: Align(alignment: Alignment(0, -1), child: SizedBox(height: 48)),
             ),
           ),
         ),

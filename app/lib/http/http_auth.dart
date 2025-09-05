@@ -24,10 +24,9 @@ class HttpAuthInterceptor extends QueuedInterceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     if (manager.accessToken != null) {
-      options.headers[HttpHeaders.authorizationHeader] = _getAuth(
-        manager.accessToken!,
-      );
+      options.headers[HttpHeaders.authorizationHeader] = _getAuth(manager.accessToken!);
     }
+    print("request:path:${options.path},${options.headers}");
     return handler.next(options);
   }
 
@@ -56,16 +55,10 @@ class HttpAuthInterceptor extends QueuedInterceptor {
         return handler.reject(err);
       }
 
-      manager.set(
-        accessToken: d['data']['token'] as String,
-        refreshToken: d['data']['token'] as String,
-      );
+      manager.set(accessToken: d['data']['token'] as String, refreshToken: d['data']['token'] as String);
     }
 
-    final retried = await replayer.fetch(
-      err.requestOptions
-        ..headers = {'Authorization': _getAuth(manager.accessToken as String)},
-    );
+    final retried = await replayer.fetch(err.requestOptions..headers = {'Authorization': _getAuth(manager.accessToken as String)});
 
     if (isFailed(retried)) {
       return handler.reject(err);
@@ -76,12 +69,7 @@ class HttpAuthInterceptor extends QueuedInterceptor {
 
   bool isFailed(Response r) {
     final d = r.data;
-    return r.statusCode == null ||
-        r.statusCode! > 299 ||
-        d == null ||
-        d is! Map ||
-        d['code'] == 666 ||
-        d['data'] is! Map;
+    return r.statusCode == null || r.statusCode! > 299 || d == null || d is! Map || d['code'] == 666 || d['data'] is! Map;
   }
 
   String _getAuth(String token) {

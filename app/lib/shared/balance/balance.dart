@@ -27,8 +27,7 @@ class Balance extends StatefulWidget {
   final bool trailing;
   final bool showFraction;
 
-  final Widget Function(BuildContext context, Widget amount, Widget refresher)?
-  builder;
+  final Widget Function(BuildContext context, Widget amount, Widget refresher)? builder;
 
   const Balance({
     super.key,
@@ -92,11 +91,7 @@ class _BalanceState extends State<Balance> {
             controller.repeat();
             await UserService.to.queryBalance().whenComplete(controller.stop);
           },
-          child: Icon(
-            IconFont.refresh,
-            size: widget.refresherSize ?? 14,
-            color: widget.refresherColor ?? widget.color,
-          ),
+          child: Icon(IconFont.refresh, size: widget.refresherSize ?? 14, color: widget.refresherColor ?? widget.color),
         )
         .animate(
           autoPlay: true,
@@ -141,7 +136,6 @@ class _BalanceState extends State<Balance> {
 
   @override
   void dispose() {
-    controller.dispose();
     super.dispose();
   }
 }

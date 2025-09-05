@@ -31,12 +31,7 @@ class _HomeViewState extends State<HomeView> {
         }
       },
       child: Scaffold(
-        body: Obx(
-          () => IndexedStack(
-            index: appService.currentIndex.value,
-            children: [MainView(), PromosView(), authorized ? FundsView() : SizedBox.shrink(), authorized ? MeView() : SizedBox.shrink()],
-          ),
-        ),
+        body: Obx(() => IndexedStack(index: appService.currentIndex.value, children: [MainView(), PromosView(), FundsView(), authorized ? MeView() : SizedBox.shrink()])),
         bottomNavigationBar: Obx(
           () => BottomNavigationBar(
             selectedItemColor: AppColors.primary,

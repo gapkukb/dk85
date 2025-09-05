@@ -15,31 +15,23 @@ class MainView extends StatefulWidget {
   _MainViewState createState() => _MainViewState();
 }
 
-class _MainViewState extends State<MainView>
-    with AutomaticKeepAliveClientMixin {
+class _MainViewState extends State<MainView> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    guideContext = context;
     return DefaultTabController(
       length: tabs.length,
       child: DecoratedBox(
         decoration: BoxDecoration(
           // color: Colors.amber,
-          image: DecorationImage(
-            alignment: Alignment.topCenter,
-            image: AssetImage("assets/images/main-bg.webp"),
-            fit: BoxFit.fitWidth,
-          ),
+          image: DecorationImage(alignment: Alignment.topCenter, image: AssetImage("assets/images/main-bg.webp"), fit: BoxFit.fitWidth),
         ),
         child: Scaffold(
           // extendBody: true,
           // extendBodyBehindAppBar: true,
           backgroundColor: Colors.transparent,
           appBar: MainViewHeader(),
-          body: TabBarView(
-            children: [HotView(), SlotsView(), FishingView(), PokerView()],
-          ),
+          body: TabBarView(children: [HotView(), SlotsView(), FishingView(), PokerView()]),
         ),
       ),
     );
@@ -55,20 +47,8 @@ class _MainViewState extends State<MainView>
       dividerHeight: 0,
       indicatorWeight: 0,
       labelColor: Colors.white,
-      indicator: RoundedTabIndicator(
-        height: 20,
-        color: AppColors.primary,
-        bottom: 3,
-      ),
-      tabs: [
-        ...tabs.map(
-          (tab) => Tab(
-            height: 56,
-            icon: Image.asset(tab.iconPath, width: 32, height: 32),
-            text: tab.name,
-          ),
-        ),
-      ],
+      indicator: RoundedTabIndicator(height: 20, color: AppColors.primary, bottom: 3),
+      tabs: [...tabs.map((tab) => Tab(height: 56, icon: Image.asset(tab.iconPath, width: 32, height: 32), text: tab.name))],
     );
   }
 }

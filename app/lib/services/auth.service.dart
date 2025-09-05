@@ -54,10 +54,10 @@ class AuthService extends GetxService {
     AppService.to.toHomeView();
   }
 
-  Future logout() async {
+  void logout() {
     // 调用退出接口，无需等待
     userApi.logout();
-    clear();
+    Timer(Duration(milliseconds: 1), clear);
   }
 
   @override

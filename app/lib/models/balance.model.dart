@@ -12,7 +12,8 @@ class BalanceModelWrapper {
 
   String toRawJson() => json.encode(toJson());
 
-  factory BalanceModelWrapper.fromJson(Map<String, dynamic> json) => BalanceModelWrapper(code: json["code"], status: json["status"], message: json["message"], data: BalanceModel.fromJson(json["data"]));
+  factory BalanceModelWrapper.fromJson(Map<String, dynamic> json) =>
+      BalanceModelWrapper(code: json["code"], status: json["status"], message: json["message"], data: BalanceModel.fromJson(json["data"] ?? {}));
 
   Map<String, dynamic> toJson() => {"code": code, "status": status, "message": message, "data": data.toJson()};
 }
@@ -28,7 +29,7 @@ class BalanceModel {
 
   String toRawJson() => json.encode(toJson());
 
-  factory BalanceModel.fromJson(Map<String, dynamic> json) => BalanceModel(balance: json["balance"], balanceFrozen: json["balance_frozen"], ponums: json["ponums"]);
+  factory BalanceModel.fromJson(Map<String, dynamic> json) => BalanceModel(balance: json["balance"] ?? 0, balanceFrozen: json["balance_frozen"] ?? 0, ponums: json["ponums"] ?? 0);
 
   Map<String, dynamic> toJson() => {"balance": balance, "balance_frozen": balanceFrozen, "ponums": ponums};
 }

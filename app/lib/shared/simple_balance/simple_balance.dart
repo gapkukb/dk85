@@ -14,18 +14,12 @@ class SimpleBalance extends StatelessWidget {
     return Container(
       height: 36,
       padding: const EdgeInsets.all(2),
-      decoration: const BoxDecoration(
-        color: AppColors.primary,
-        borderRadius: BorderRadius.all(Radius.circular(100)),
-      ),
+      decoration: const BoxDecoration(color: AppColors.primary, borderRadius: BorderRadius.all(Radius.circular(100))),
       child: Row(
         spacing: 8,
         mainAxisSize: MainAxisSize.min,
         children: [
-          const CircleAvatar(
-            radius: 16,
-            foregroundImage: AssetImage("assets/icons/logo-3.webp"),
-          ),
+          const CircleAvatar(radius: 16, foregroundImage: AssetImage("assets/icons/logo-3.webp")),
           buildUser(),
           depositable ? buildButton() : SizedBox(width: 2),
         ],
@@ -44,22 +38,15 @@ class SimpleBalance extends StatelessWidget {
           children: [
             const Text(
               "ID:123456",
-              style: TextStyle(
-                fontSize: 10,
-                color: Colors.white,
-                fontWeight: FontWeight.normal,
-              ),
+              style: TextStyle(fontSize: 10, color: Colors.white, fontWeight: FontWeight.normal),
             ),
             Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.symmetric(horizontal: 4),
-              decoration: BoxDecoration(
-                color: const Color(0xfffffac4),
-                borderRadius: BorderRadius.circular(16),
-              ),
+              decoration: BoxDecoration(color: const Color(0xfffffac4), borderRadius: BorderRadius.circular(16)),
               child: Obx(
                 () => Text(
-                  "${userService.userInfo.value?.gradeName}",
+                  "VIP${userService.userInfo.value?.gradeId}",
                   style: TextStyle(
                     fontSize: 8,
                     color: AppColors.primary,
@@ -88,11 +75,7 @@ class SimpleBalance extends StatelessWidget {
       color: const Color(0xffffeddd),
       child: Text(
         "app.deposit".tr,
-        style: const TextStyle(
-          fontSize: 12,
-          color: AppColors.primary,
-          fontWeight: FontWeight.bold,
-        ),
+        style: const TextStyle(fontSize: 12, color: AppColors.primary, fontWeight: FontWeight.bold),
       ),
     );
   }

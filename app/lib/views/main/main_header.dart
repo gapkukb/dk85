@@ -29,21 +29,13 @@ class MainViewHeader extends StatelessWidget implements PreferredSizeWidget {
       // toolbarHeight: 36,
       backgroundColor: Colors.transparent,
       titleSpacing: 12,
-      title: Obx(
-        () => _auth.authorized
-            ? SimpleBalance(depositable: true, key: guideOne)
-            : AuthButton(),
-      ),
-      // title: SimpleBalance(depositable: true, key: guideOne),
+      title: SizedBox(key: guideOne, child: Obx(() => _auth.authorized ? SimpleBalance(depositable: true) : AuthButton())),
       bottom: buildTabbar(),
       actionsPadding: const EdgeInsets.only(right: 12),
       actions: [
         IconButton(
           constraints: const BoxConstraints(minHeight: 36, minWidth: 36),
-          style: IconButton.styleFrom(
-            backgroundColor: Colors.white,
-            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          ),
+          style: IconButton.styleFrom(backgroundColor: Colors.white, tapTargetSize: MaterialTapTargetSize.shrinkWrap),
           padding: const EdgeInsets.all(0.0),
           icon: Icon(IconFont.sousuo, size: 22, color: AppColors.primary),
           onPressed: () {
@@ -54,10 +46,7 @@ class MainViewHeader extends StatelessWidget implements PreferredSizeWidget {
         LocaleSelector(
           size: 36,
           iconSize: 24,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(100),
-          ),
+          decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(100)),
         ),
         SizedBox(width: 8),
         CustomerService(),
@@ -72,20 +61,8 @@ class MainViewHeader extends StatelessWidget implements PreferredSizeWidget {
       dividerHeight: 0,
       indicatorWeight: 0,
       labelColor: Colors.white,
-      indicator: RoundedTabIndicator(
-        height: 24,
-        color: AppColors.primary,
-        bottom: 5,
-      ),
-      tabs: [
-        ...tabs.map(
-          (tab) => Tab(
-            height: 64,
-            icon: Image.asset(tab.iconPath, width: 32, height: 32),
-            text: tab.name,
-          ),
-        ),
-      ],
+      indicator: RoundedTabIndicator(height: 24, color: AppColors.primary, bottom: 5),
+      tabs: [...tabs.map((tab) => Tab(height: 64, icon: Image.asset(tab.iconPath, width: 32, height: 32), text: tab.name))],
     );
   }
 

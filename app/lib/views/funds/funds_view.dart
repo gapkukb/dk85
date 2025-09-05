@@ -1,3 +1,4 @@
+import 'package:app/services/index.dart';
 import 'package:app/shared/account_balance/account_balance.dart';
 import 'package:app/theme/index.dart';
 import 'package:app/views/funds/funds_controller.dart';
@@ -16,8 +17,10 @@ class FundsView extends StatefulWidget {
 }
 
 class _FundsViewState extends State<FundsView> {
+  bool get authorized => AuthService.to.authorized;
   @override
   Widget build(BuildContext context) {
+    if (!authorized) return SizedBox.shrink();
     return _FundsView();
   }
 }
@@ -28,34 +31,29 @@ class _FundsView extends GetView<FundsController> {
   @override
   Widget build(BuildContext context) {
     const tabbarHeight = 48.0;
-    return GetBuilder<FundsController>(
-      init: FundsController(),
-      id: "funds",
-      builder: (_) {
-        return Scaffold(
-          backgroundColor: AppColors.white,
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(300 + tabbarHeight),
-            child: AppBar(
-              title: Text("page.funds".tr),
-              titleTextStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.title, fontFamily: 'myanmarcensus'),
-              flexibleSpace: FlexibleSpaceBar(
-                titlePadding: EdgeInsets.all(0),
-                title: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    AccountBalance(),
-                    FundsMenuGroup(),
-                    SizedBox(height: tabbarHeight),
-                  ],
-                ),
-              ),
-              bottom: buildTabbar(),
+    final controller = Get.put(FundsController(), permanent: true);
+    return Scaffold(
+      backgroundColor: AppColors.white,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(300 + tabbarHeight),
+        child: AppBar(
+          title: Text("page.funds".tr),
+          titleTextStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.title, fontFamily: 'myanmarcensus'),
+          flexibleSpace: FlexibleSpaceBar(
+            titlePadding: EdgeInsets.all(0),
+            title: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                AccountBalance(),
+                FundsMenuGroup(),
+                SizedBox(height: tabbarHeight),
+              ],
             ),
           ),
-          body: TabBarView(controller: controller.tab, children: [TopUpView(), FundsChannels()]),
-        );
-      },
+          bottom: buildTabbar(),
+        ),
+      ),
+      body: TabBarView(controller: controller.tab, children: [TopUpView(), FundsChannels()]),
     );
   }
 

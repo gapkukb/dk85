@@ -32,17 +32,10 @@ class SignUpView extends GetView<AuthCotroller> {
           padding: EdgeInsets.symmetric(horizontal: 12),
           children: [
             AKAccInput(onSaved: form.saveAs('username')),
-            AKPwdInput(
-              controller: controller.pwd,
-              onSaved: form.saveAs('password'),
-            ),
+            AKPwdInput(controller: controller.pwd, onSaved: form.saveAs('password')),
             AKPwdInput(reference: controller.pwd),
             AKMobileInput(onSaved: form.saveAs('mobile')),
-            AKGraphicInput(
-              onSaved: form.saveAs('code'),
-              onFieldSubmitted: form.submit,
-              onImageChange: form.saveAs('time'),
-            ),
+            AKGraphicInput(onSaved: form.saveAs('code'), onFieldSubmitted: form.submit, onImageChange: form.saveAs('time')),
             AKButton(onPressed: form.submit, text: 'app.register'.tr),
           ],
         ),

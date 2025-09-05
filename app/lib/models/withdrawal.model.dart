@@ -1,3 +1,4 @@
+import 'package:app/helper/string_to_num.dart';
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
@@ -13,8 +14,12 @@ class WithdrawalModelWrapper {
 
   String toRawJson() => json.encode(toJson());
 
-  factory WithdrawalModelWrapper.fromJson(Map<String, dynamic> json) =>
-      WithdrawalModelWrapper(code: json["code"], status: json["status"], message: json["message"], data: List<WithdrawlModel>.from(json["data"].map((x) => WithdrawlModel.fromJson(x))));
+  factory WithdrawalModelWrapper.fromJson(Map<String, dynamic> json) => WithdrawalModelWrapper(
+    code: json["code"],
+    status: json["status"],
+    message: json["message"],
+    data: List<WithdrawlModel>.from((json["data"] ?? []).map((x) => WithdrawlModel.fromJson(x))),
+  );
 
   Map<String, dynamic> toJson() => {"code": code, "status": status, "message": message, "data": List<dynamic>.from(data.map((x) => x.toJson()))};
 }
@@ -24,11 +29,11 @@ class WithdrawlModel {
   final num withdrawId;
   final num gateway;
   final String name;
-  final String eachMin;
-  final String eachMax;
-  final String dailyMax;
+  final num eachMin;
+  final num eachMax;
+  final num dailyMax;
   final num todayCount;
-  final String todayAmount;
+  final num todayAmount;
   final num status;
   final num sort;
   final num isDecimal;
@@ -64,22 +69,22 @@ class WithdrawlModel {
 
   factory WithdrawlModel.fromJson(Map<String, dynamic> json) => WithdrawlModel(
     id: json["id"],
-    withdrawId: json["withdraw_id"],
-    gateway: json["gateway"],
-    name: json["name"],
-    eachMin: json["each_min"],
-    eachMax: json["each_max"],
-    dailyMax: json["daily_max"],
-    todayCount: json["today_count"],
-    todayAmount: json["today_amount"],
-    status: json["status"],
-    sort: json["sort"],
-    isDecimal: json["is_decimal"],
-    isnum: json["is_num"],
-    moneyList: json["moneyList"],
-    isInput: json["is_input"],
-    remark: json["remark"],
-    logo: json["logo"],
+    withdrawId: json["withdraw_id"] ?? 0,
+    gateway: json["gateway"] ?? 0,
+    name: json["name"] ?? '',
+    eachMin: stringToNum(json["each_min"], defaultValue: double.infinity),
+    eachMax: stringToNum(json["each_max"], defaultValue: double.negativeInfinity),
+    dailyMax: stringToNum(json["daily_max"], defaultValue: double.infinity),
+    todayCount: json["today_count"] ?? 0,
+    todayAmount: stringToNum(json["today_amount"]),
+    status: json["status"] ?? 0,
+    sort: json["sort"] ?? 0,
+    isDecimal: json["is_decimal"] ?? 0,
+    isnum: json["is_num"] ?? 0,
+    moneyList: json["moneyList"] ?? [],
+    isInput: json["is_input"] ?? 0,
+    remark: json["remark"] ?? '',
+    logo: json["logo"] ?? '',
   );
 
   Map<String, dynamic> toJson() => {

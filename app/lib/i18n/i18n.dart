@@ -24,14 +24,8 @@ class I18n extends Translations {
 
   static final defaultLocale = my_MM;
 
-  static _Locale getLocale(String key) => supported.firstWhere(
-    (x) =>
-        x.code == key ||
-        x.languageCode == key ||
-        x.countryCode == key ||
-        x.areaCode == key,
-    orElse: () => defaultLocale,
-  );
+  static _Locale getLocale(String key) =>
+      supported.firstWhere((x) => x.code == key || x.languageCode == key || x.countryCode == key || x.areaCode == key, orElse: () => defaultLocale);
 
   static String getLocaleName(String key) => getLocale(key).localeName;
 
@@ -39,13 +33,7 @@ class I18n extends Translations {
 
   static const fallbackLocale = Locale('my');
 
-  final Map<String, Map<String, String>> _keys = {
-    'en': en,
-    'zh': zh,
-    'km': km,
-    'my': my,
-    'fil': fil,
-  };
+  final Map<String, Map<String, String>> _keys = {'en': en, 'zh': zh, 'km': km, 'my': my, 'fil': fil};
 
   @override
   Map<String, Map<String, String>> get keys => _keys;
@@ -79,7 +67,7 @@ class I18n extends Translations {
     Get.updateLocale(locale);
   }
 
-  setup() {
+  initialize() {
     // Get.updateLocale(Locale(storage.locale.value));
     Get.updateLocale(const Locale("my"));
   }
@@ -90,13 +78,7 @@ class _Locale extends Locale {
   final RegExp regExp;
   final String localeName;
 
-  const _Locale(
-    super.languageCode,
-    String super.countryCode,
-    this.areaCode,
-    this.localeName,
-    this.regExp,
-  );
+  const _Locale(super.languageCode, String super.countryCode, this.areaCode, this.localeName, this.regExp);
 
   String get code => "$languageCode-$countryCode";
 }

@@ -123,8 +123,8 @@ class FundsFillDeposit extends GetView<FundsController> {
               validator: (value) {
                 if (value == null || value.isEmpty) return 'app.required'.tr;
                 final amount = num.tryParse(value) ?? 0;
-                final max = num.tryParse(channel.eachMax) ?? double.infinity;
-                final min = num.tryParse(channel.eachMin) ?? double.negativeInfinity;
+                final max = channel.eachMax;
+                final min = channel.eachMin;
                 if (amount < min) return '最小充值金额:$min';
                 if (amount > max) return '最大充值金额:$max';
                 return null;

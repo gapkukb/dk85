@@ -168,10 +168,7 @@ class _AKBaseInputState extends State<AKBaseInput> {
 
   Widget buildSuffix() {
     if (widget.suffix == null) return buildClearButton();
-    return Wrap(
-      crossAxisAlignment: WrapCrossAlignment.center,
-      children: [buildClearButton(), widget.suffix!],
-    );
+    return Wrap(crossAxisAlignment: WrapCrossAlignment.center, children: [buildClearButton(), widget.suffix!]);
   }
 
   StreamBuilder<bool> buildClearButton() {
@@ -186,14 +183,7 @@ class _AKBaseInputState extends State<AKBaseInput> {
             onTap: controller.clear,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Transform.scale(
-                scale: 2,
-                child: const Icon(
-                  Icons.cancel,
-                  size: 10,
-                  color: AppColors.description,
-                ),
-              ),
+              child: Transform.scale(scale: 2, child: const Icon(Icons.cancel, size: 10, color: AppColors.description)),
             ),
           ),
         );

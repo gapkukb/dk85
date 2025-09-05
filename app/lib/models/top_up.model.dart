@@ -1,3 +1,4 @@
+import 'package:app/helper/string_to_num.dart';
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
@@ -13,7 +14,8 @@ class TopUpModelWrapper {
 
   String toRawJson() => json.encode(toJson());
 
-  factory TopUpModelWrapper.fromJson(Map<String, dynamic> json) => TopUpModelWrapper(code: json["code"], status: json["status"], message: json["message"], data: TopUpGroupModel.fromJson(json["data"]));
+  factory TopUpModelWrapper.fromJson(Map<String, dynamic> json) =>
+      TopUpModelWrapper(code: json["code"], status: json["status"], message: json["message"], data: TopUpGroupModel.fromJson(json["data"]));
 
   Map<String, dynamic> toJson() => {"code": code, "status": status, "message": message, "data": data.toJson()};
 }
@@ -42,8 +44,10 @@ class The2 {
 
   String toRawJson() => json.encode(toJson());
 
-  factory The2.fromJson(Map<String, dynamic> json) =>
-      The2(activityList: List<dynamic>.from((json["activity_list"] ?? []).map((x) => x)), accountList: List<TopUpModel>.from((json["account_list"] ?? []).map((x) => TopUpModel.fromJson(x))));
+  factory The2.fromJson(Map<String, dynamic> json) => The2(
+    activityList: List<dynamic>.from((json["activity_list"] ?? []).map((x) => x)),
+    accountList: List<TopUpModel>.from((json["account_list"] ?? []).map((x) => TopUpModel.fromJson(x))),
+  );
 
   Map<String, dynamic> toJson() => {"activity_list": List<dynamic>.from((activityList).map((x) => x)), "account_list": List<dynamic>.from(accountList.map((x) => x.toJson()))};
 }
@@ -55,8 +59,8 @@ class TopUpModel {
   final String remark;
   final String logo;
   final num gateway;
-  final String eachMin;
-  final String eachMax;
+  final num eachMin;
+  final num eachMax;
   final String domain;
   final num isSelectBank;
   final num isDecimal;
@@ -90,18 +94,18 @@ class TopUpModel {
   factory TopUpModel.fromJson(Map<String, dynamic> json) => TopUpModel(
     id: json["id"],
     name: json["name"],
-    isInput: json["is_input"],
-    remark: json["remark"],
-    logo: json["logo"],
-    gateway: json["gateway"],
-    eachMin: json["each_min"],
-    eachMax: json["each_max"],
+    isInput: json["is_input"] ?? 1,
+    remark: json["remark"] ?? '',
+    logo: json["logo"] ?? '',
+    gateway: json["gateway"] ?? '',
+    eachMin: stringToNum(json["each_min"], defaultValue: double.infinity),
+    eachMax: stringToNum(json["each_max"], defaultValue: double.negativeInfinity),
     domain: json["domain"],
-    isSelectBank: json["is_select_bank"],
-    isDecimal: json["is_decimal"],
-    isnum: json["is_num"],
-    moneyList: List<String>.from(json["moneyList"].map((x) => x)),
-    sort: json["sort"],
+    isSelectBank: json["is_select_bank"] ?? 0,
+    isDecimal: json["is_decimal"] ?? 0,
+    isnum: json["is_num"] ?? 0,
+    moneyList: List<String>.from((json["moneyList"] ?? []).map((x) => x)),
+    sort: json["sort"] ?? 0,
     key: json["key"],
   );
 

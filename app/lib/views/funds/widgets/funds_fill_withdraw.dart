@@ -119,8 +119,8 @@ class FundsFillWithdraw extends GetView<FundsController> {
       validator: (value) {
         if (value == null || value.isEmpty) return 'app.required'.tr;
         final amount = num.tryParse(value) ?? 0;
-        final max = num.tryParse(channel.eachMax) ?? double.infinity;
-        final min = num.tryParse(channel.eachMin) ?? double.negativeInfinity;
+        final max = channel.eachMax;
+        final min = channel.eachMin;
         if (amount < min) return '最小提现金额:$min';
         if (amount > UserService.to.balance.value) return '您的余额不足';
         if (amount > max) return '最大提现金额:$max';
@@ -145,7 +145,7 @@ class FundsFillWithdraw extends GetView<FundsController> {
       style: TextStyle(fontSize: 12, color: AppColors.description),
       amountstyle: TextStyle(color: AppColors.primary),
       before: "withdraw.amount.min".tr,
-      amount: ' ${num.parse(channel.eachMin)}',
+      amount: ' ${channel.eachMin}',
     );
   }
 }
