@@ -1,3 +1,4 @@
+import 'package:app/routes/app_pages.dart';
 import 'package:app/shared/balance/balance.dart';
 import 'package:app/shared/customer_service/customer_service.dart';
 import 'package:app/shared/simple_balance/simple_balance.dart';
@@ -37,11 +38,14 @@ class _PromosView extends StatelessWidget {
               separatorBuilder: (context, index) => SizedBox(height: 12),
               itemBuilder: (context, index) {
                 final promo = controller.promos[index];
-                return PhysicalModel(
-                  color: Colors.transparent,
-                  clipBehavior: Clip.antiAlias,
-                  borderRadius: BorderRadius.circular(8),
-                  child: NetworkPicture(imageUrl: promo.image, height: 128, fit: BoxFit.cover),
+                return GestureDetector(
+                  onTap: () => Get.toNamed(Routes.activityDetail, arguments: 81),
+                  child: PhysicalModel(
+                    color: Colors.transparent,
+                    clipBehavior: Clip.antiAlias,
+                    borderRadius: BorderRadius.circular(8),
+                    child: NetworkPicture(imageUrl: promo.image, height: 128, fit: BoxFit.cover),
+                  ),
                 );
               },
             );

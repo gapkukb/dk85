@@ -1,7 +1,5 @@
 import 'package:app/services/index.dart';
 import 'package:app/widgets/game/game_page.dart';
-import 'package:app/widgets/game/game_section.dart';
-import 'package:app/widgets/game/index.dart';
 import 'package:flutter/material.dart';
 
 class SlotsView extends StatefulWidget {

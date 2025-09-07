@@ -14,42 +14,43 @@ class UserModelWrapper {
   String toRawJson() => json.encode(toJson());
 
   factory UserModelWrapper.fromJson(Map<String, dynamic> json) =>
-      UserModelWrapper(code: json["code"], status: json["status"], message: json["message"], data: UserModel.fromJson(json["data"]));
+      UserModelWrapper(code: json["code"], status: json["status"], message: json["message"], data: UserModel.fromJson(json["data"] ?? {}));
 
   Map<String, dynamic> toJson() => {"code": code, "status": status, "message": message, "data": data.toJson()};
 }
 
 class UserModel {
-  final String? username;
-  final String? realname;
-  final String? email;
-  final String? mobile;
-  final String? qq;
-  final num? sex;
-  final String? birthday;
-  final String? lastLognumime;
-  final String? lastLoginAddress;
-  final num? showBeginnerGuide;
-  final num? payTimes;
-  final num? hasPass;
-  final num? balance;
-  final num? balanceFrozen;
-  final num? ponums;
-  final num? gradeId;
-  final String? gradeName;
-  final num? bindSafeQuestion;
-  final num? bindPayPassword;
-  final num? unreadMessageCount;
-  final num? switchSign;
-  final num? bindBank;
-  final num? applyBirthdayBonus;
-  final num? autoBindGameBalance;
-  final num? totalBet;
-  final num? totalBonus;
-  final num? totalRebate;
-  final Last? lastRecharge;
-  final Last? lastWithdraw;
-  final LastMessage? lastMessage;
+  final num id;
+  final String username;
+  final String realname;
+  final String email;
+  final String mobile;
+  final String qq;
+  final num sex;
+  final String birthday;
+  final String lastLognumime;
+  final String lastLoginAddress;
+  final num showBeginnerGuide;
+  final num payTimes;
+  final num hasPass;
+  final num balance;
+  final num balanceFrozen;
+  final num ponums;
+  final num gradeId;
+  final String gradeName;
+  final num bindSafeQuestion;
+  final num bindPayPassword;
+  final num unreadMessageCount;
+  final num switchSign;
+  final num bindBank;
+  final num applyBirthdayBonus;
+  final num autoBindGameBalance;
+  final num totalBet;
+  final num totalBonus;
+  final num totalRebate;
+  final UserLast lastRecharge;
+  final UserLast lastWithdraw;
+  final UserLastMessage lastMessage;
 
   UserModel({
     required this.username,
@@ -82,6 +83,7 @@ class UserModel {
     required this.lastRecharge,
     required this.lastWithdraw,
     required this.lastMessage,
+    required this.id,
   });
 
   factory UserModel.fromRawJson(String str) => UserModel.fromJson(json.decode(str));
@@ -89,6 +91,7 @@ class UserModel {
   String toRawJson() => json.encode(toJson());
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+    id: json["id"] ?? 0,
     username: json["username"] ?? '',
     realname: json["realname"] ?? '',
     email: json["email"] ?? '',
@@ -116,9 +119,9 @@ class UserModel {
     totalBet: json["total_bet"],
     totalBonus: json["total_bonus"],
     totalRebate: json["total_rebate"],
-    lastRecharge: Last.fromJson(json["last_recharge"]),
-    lastWithdraw: Last.fromJson(json["last_withdraw"]),
-    lastMessage: LastMessage.fromJson(json["last_message"]),
+    lastRecharge: UserLast.fromJson(json["last_recharge"] ?? []),
+    lastWithdraw: UserLast.fromJson(json["last_withdraw"] ?? []),
+    lastMessage: UserLastMessage.fromJson(json["last_message"] ?? []),
   );
 
   Map<String, dynamic> toJson() => {
@@ -149,48 +152,48 @@ class UserModel {
     "total_bet": totalBet,
     "total_bonus": totalBonus,
     "total_rebate": totalRebate,
-    "last_recharge": lastRecharge?.toJson(),
-    "last_withdraw": lastWithdraw?.toJson(),
-    "last_message": lastMessage?.toJson(),
+    "last_recharge": lastRecharge.toJson(),
+    "last_withdraw": lastWithdraw.toJson(),
+    "last_message": lastMessage.toJson(),
   };
 }
 
-class LastMessage {
+class UserLastMessage {
   final List<dynamic>? list;
   final num? count;
 
-  LastMessage({required this.list, required this.count});
+  UserLastMessage({required this.list, required this.count});
 
-  factory LastMessage.fromRawJson(String str) => LastMessage.fromJson(json.decode(str));
+  factory UserLastMessage.fromRawJson(String str) => UserLastMessage.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory LastMessage.fromJson(Map<String, dynamic> json) => LastMessage(list: List<dynamic>.from(json["list"].map((x) => x)), count: json["count"]);
+  factory UserLastMessage.fromJson(Map<String, dynamic> json) => UserLastMessage(list: List<dynamic>.from((json["list"] ?? []).map((x) => x)), count: json["count"] ?? 0);
 
   Map<String, dynamic> toJson() => {"list": List<dynamic>.from((list ?? []).map((x) => x)), "count": count};
 }
 
-class Last {
-  final num? totalRecharge;
-  final num? totalWithdraw;
-  final num? totalBonus;
-  final num? totalRebate;
-  final List<ListElement>? list;
-  final num? count;
+class UserLast {
+  final num totalRecharge;
+  final num totalWithdraw;
+  final num totalBonus;
+  final num totalRebate;
+  final List<ListElement> list;
+  final num count;
 
-  Last({required this.totalRecharge, required this.totalWithdraw, required this.totalBonus, required this.totalRebate, required this.list, required this.count});
+  UserLast({required this.totalRecharge, required this.totalWithdraw, required this.totalBonus, required this.totalRebate, required this.list, required this.count});
 
-  factory Last.fromRawJson(String str) => Last.fromJson(json.decode(str));
+  factory UserLast.fromRawJson(String str) => UserLast.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory Last.fromJson(Map<String, dynamic> json) => Last(
-    totalRecharge: json["total_recharge"],
-    totalWithdraw: json["total_withdraw"],
-    totalBonus: json["total_bonus"],
-    totalRebate: json["total_rebate"],
-    list: List<ListElement>.from(json["list"].map((x) => ListElement.fromJson(x))),
-    count: json["count"],
+  factory UserLast.fromJson(Map<String, dynamic> json) => UserLast(
+    totalRecharge: json["total_recharge"] ?? 0,
+    totalWithdraw: json["total_withdraw"] ?? 0,
+    totalBonus: json["total_bonus"] ?? 0,
+    totalRebate: json["total_rebate"] ?? 0,
+    list: List<ListElement>.from((json["list"] ?? []).map((x) => ListElement.fromJson(x))),
+    count: json["count"] ?? 0,
   );
 
   Map<String, dynamic> toJson() => {
@@ -198,19 +201,19 @@ class Last {
     "total_withdraw": totalWithdraw,
     "total_bonus": totalBonus,
     "total_rebate": totalRebate,
-    "list": List<dynamic>.from((list ?? []).map((x) => x.toJson())),
+    "list": List<dynamic>.from(list.map((x) => x.toJson())),
     "count": count,
   };
 }
 
 class ListElement {
-  final String? tradeNo;
-  final num? money;
-  final String? remark;
-  final num? type;
-  final num? symbol;
-  final num? status;
-  final String? time;
+  final String tradeNo;
+  final num money;
+  final String remark;
+  final num type;
+  final num symbol;
+  final num status;
+  final String time;
 
   ListElement({required this.tradeNo, required this.money, required this.remark, required this.type, required this.symbol, required this.status, required this.time});
 

@@ -8,6 +8,12 @@ class SimpleBalance extends StatelessWidget {
   final bool depositable;
   const SimpleBalance({super.key, this.depositable = false});
 
+  String get username {
+    final u = services.user.userInfo.value?.username ?? '';
+    if (u.length < 8) return u;
+    return '${u.substring(0, 4)}***${u.substring(u.length - 3)}';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,7 +21,7 @@ class SimpleBalance extends StatelessWidget {
       padding: const EdgeInsets.all(2),
       decoration: const BoxDecoration(color: AppColors.primary, borderRadius: BorderRadius.all(Radius.circular(100))),
       child: Row(
-        spacing: 8,
+        spacing: 4,
         mainAxisSize: MainAxisSize.min,
         children: [
           const CircleAvatar(radius: 16, foregroundImage: AssetImage("assets/icons/logo-3.webp")),
@@ -33,11 +39,11 @@ class SimpleBalance extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Row(
-          spacing: 4,
+          spacing: 2,
           children: [
-            const Text(
-              "ID:123456",
-              style: TextStyle(fontSize: 10, color: Colors.white, fontWeight: FontWeight.normal),
+            Text(
+              username,
+              style: const TextStyle(fontSize: 10, color: Colors.white, fontWeight: FontWeight.normal),
             ),
             Container(
               alignment: Alignment.center,

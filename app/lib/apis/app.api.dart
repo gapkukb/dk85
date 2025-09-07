@@ -10,4 +10,7 @@ class _AppApi {
   ///获取每日签到列表
   final checkInList = http.get('/app/get-sign', decoder: DailyCheckInModelWrapper.fromJson);
   final checkIn = http.post('/app/user-sign', loading: true);
+
+  /// 查询活动详情
+  final queryActivityDetail = http.get('/app/activity-details', decoder: ModelWrapper.fromJson);
 }

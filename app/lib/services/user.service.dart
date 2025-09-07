@@ -5,9 +5,13 @@ class _UserService extends GetxService {
   final userInfo = Rxn<UserModel>();
 
   Future queryUserInfo() async {
-    final r = await apis.user.queryUserInfo();
-    userInfo.value = r.data;
-    userInfo.refresh();
+    try {
+      final r = await apis.user.queryUserInfo();
+      userInfo.value = r.data;
+      userInfo.refresh();
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future queryBalance() async {

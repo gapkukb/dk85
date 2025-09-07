@@ -3,6 +3,7 @@ import 'package:app/iconfont/index.dart';
 import 'package:app/models/fund_record.model.dart';
 import 'package:app/routes/app_pages.dart';
 import 'package:app/shared/customer_service/customer_service.dart';
+import 'package:app/shared/fund_state.dart';
 import 'package:app/theme/index.dart';
 import 'package:app/widgets/back_button/back_button.dart';
 import 'package:app/widgets/button/index.dart';
@@ -21,19 +22,21 @@ class HistoryDetailView extends StatefulWidget {
 
 class _HistoryDetailViewState extends State<HistoryDetailView> {
   final record = FundRecord.fromRawJson(Get.parameters['all'] as String);
+
+  FundState get state => FundState(state: record.status);
+
   @override
   Widget build(BuildContext context) {
-    print('xxx:${Get.parameters['all']}');
     return Scaffold(
       appBar: AppBar(leading: AKBackButton(), actionsPadding: Gutter.right.normal, actions: [CustomerService()]),
       body: ListView(
         padding: Gutter.horizontal.normal,
         children: [
-          Icon(IconFont.pending, size: 96, color: AppColors.warn),
+          Icon(state.icon, size: 96, color: state.color),
           Padding(
             padding: Gutter.vertical.normal,
             child: Text(
-              'Pending Payment',
+              state.text,
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
             ),
@@ -76,16 +79,18 @@ class _HistoryDetailViewState extends State<HistoryDetailView> {
       ),
 
       /// 充值成功不显示此按钮，其他情况显示
-      bottomNavigationBar: SafeArea(
-        maintainBottomViewPadding: true,
-        child: AKButton(
-          onPressed: () {
-            Get.toNamed(Routes.payee);
-          },
-          radius: 0,
-          text: 'Pay',
-        ),
-      ),
+      bottomNavigationBar: record.status != 1
+          ? null
+          : SafeArea(
+              maintainBottomViewPadding: true,
+              child: AKButton(
+                onPressed: () {
+                  Get.toNamed(Routes.payee);
+                },
+                radius: 0,
+                text: 'Pay',
+              ),
+            ),
     );
   }
 }

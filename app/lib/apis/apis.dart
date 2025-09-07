@@ -11,6 +11,7 @@ import 'package:app/models/top_up.model.dart';
 import 'package:app/models/top_up_order.model.dart';
 import 'package:app/models/user_info.model.dart';
 import 'package:app/models/withdrawal.model.dart';
+import 'package:app/models/wrapper.model.dart';
 import '../http/index.dart';
 
 part './app.api.dart';
