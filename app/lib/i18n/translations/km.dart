@@ -28,6 +28,7 @@ const Map<String, String> km = {
   "app.nodata": "မှတ်တမ်းတွေ မရှိသေးပါ",
   "app.version": "လက်ရှိဗားရှင်း",
   "app.bgm": "နောက်ခံဂီတ",
+  "app.state.empty": "ဒီမှာ ဘာမှမရှိဘူး။",
   "announcement": "ကြေငြာချက်",
 
   /// 页面名称

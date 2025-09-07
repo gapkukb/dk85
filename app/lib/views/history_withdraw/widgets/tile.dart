@@ -1,79 +1,66 @@
+import 'package:app/models/fund_record.model.dart';
+import 'package:app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:app/theme/index.dart';
+import 'package:get/get.dart';
 import 'package:nil/nil.dart';
 
-const Map<int, Color> colorMap = {
-  0: AppColors.danger,
-  1: AppColors.success,
-  2: AppColors.warn,
-  3: AppColors.info,
-};
+const Map<int, Color> _colorMap = {1: AppColors.warn, 2: AppColors.success, 3: AppColors.warn};
+const Map<int, String> _titleMap = {1: 'Pending Withdraw', 2: 'Withdraw Successful', 3: 'Withdraw Failed'};
 
 Color stateColor(int state) {
-  return colorMap[state] ?? colorMap[0]!;
+  return _colorMap[state] ?? _colorMap[0]!;
 }
 
 class HistoryWithdrawTile extends StatelessWidget {
-  const HistoryWithdrawTile({super.key});
+  final FundRecord record;
+  const HistoryWithdrawTile(this.record, {super.key});
 
   @override
   Widget build(BuildContext context) {
     const style = TextStyle(fontSize: 12, color: AppColors.description);
-    const amount = '+500';
+    final amount = '+${record.money}';
 
-    return Container(
-      height: 86,
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.start,
-        spacing: 6,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              buildTitle(true),
-              Text(
-                amount,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: stateColor(3),
+    return GestureDetector(
+      onTap: () => Get.toNamed(Routes.historyDetial),
+      child: Container(
+        height: 86,
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        decoration: BoxDecoration(color: AppColors.white, borderRadius: BorderRadius.circular(8)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.start,
+          spacing: 6,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                buildTitle(),
+                Text(
+                  amount,
+                  style: TextStyle(fontWeight: FontWeight.bold, color: stateColor(record.status)),
                 ),
-              ),
-            ],
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('订单号:\n14564112315465456464s4fd65asd4f', style: style),
-              Text('2025-08-01 00:00:00', style: style),
-            ],
-          ),
-        ],
+              ],
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Order Number:\n${record.tradeNo}', style: style),
+                Text(record.time, style: style),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  Widget buildTitle(bool showBadge) {
-    final text = Text(
-      'Withdraw',
-      style: TextStyle(fontWeight: FontWeight.bold),
-    );
+  Widget buildTitle() {
+    final text = Text('${_titleMap[record.status]}', style: TextStyle(fontWeight: FontWeight.bold));
 
-    if (!showBadge) return text;
+    if (record.status != 1) return text;
 
-    return Badge(
-      label: nil,
-      padding: EdgeInsets.all(4),
-      smallSize: 1,
-      largeSize: 1,
-      offset: Offset(4, -4),
-      child: text,
-    );
+    return Badge(label: nil, padding: EdgeInsets.all(4), smallSize: 1, largeSize: 1, offset: Offset(4, -4), child: text);
   }
 }

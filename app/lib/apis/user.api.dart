@@ -10,7 +10,7 @@ class _UserApi {
   final refreshToken = http.get('/app/refresh-token');
 
   ///获取会员投注记录
-  final queryGameRecords = http.get('/app/game-record');
+  final queryGameRecords = http.get('/app/game-record', decoder: GameRecordWrapper.fromJson);
 
   ///消息未读数量
   final unreadMessageCount = http.get('/app/unread-message');
@@ -32,4 +32,7 @@ class _UserApi {
 
   ///刷新余额
   final queryBalance = http.get('/app/refresh-balance', decoder: BalanceModelWrapper.fromJson);
+
+  ///查询账变，充值，提现记录
+  final queryRecords = http.get('/app/balance-log', decoder: FundRecordsWrapper.fromJson);
 }

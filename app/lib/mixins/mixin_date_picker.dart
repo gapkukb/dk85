@@ -15,7 +15,7 @@ mixin MixinDatePicker {
 
   final end = Formatter.dateTime.end(DateTime.now());
 
-  get start {
+  String get start {
     final d = DateTime.now().subtract(Duration(days: date.value));
     return Formatter.dateTime.start(d);
   }

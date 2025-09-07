@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 
 mixin MixinGameKindPicker {
   final kindsOptions = [
-    Choose(title: 'All', value: 'all'),
-    Choose(title: 'slots', value: 'slots'),
-    Choose(title: 'fishing', value: 'fishing'),
-    Choose(title: 'poker', value: 'poker'),
+    Choose(title: 'All', value: 'ALL'),
+    Choose(title: 'slots', value: 'SLOTS'),
+    Choose(title: 'fishing', value: 'FISH'),
+    Choose(title: 'poker', value: 'POKER'),
   ];
 
-  final kind = 'all'.obs;
+  final kind = 'ALL'.obs;
 }

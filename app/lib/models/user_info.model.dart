@@ -13,7 +13,8 @@ class UserModelWrapper {
 
   String toRawJson() => json.encode(toJson());
 
-  factory UserModelWrapper.fromJson(Map<String, dynamic> json) => UserModelWrapper(code: json["code"], status: json["status"], message: json["message"], data: UserModel.fromJson(json["data"]));
+  factory UserModelWrapper.fromJson(Map<String, dynamic> json) =>
+      UserModelWrapper(code: json["code"], status: json["status"], message: json["message"], data: UserModel.fromJson(json["data"]));
 
   Map<String, dynamic> toJson() => {"code": code, "status": status, "message": message, "data": data.toJson()};
 }
@@ -203,7 +204,7 @@ class Last {
 }
 
 class ListElement {
-  final num? tradeNo;
+  final String? tradeNo;
   final num? money;
   final String? remark;
   final num? type;
@@ -217,8 +218,15 @@ class ListElement {
 
   String toRawJson() => json.encode(toJson());
 
-  factory ListElement.fromJson(Map<String, dynamic> json) =>
-      ListElement(tradeNo: json["trade_no"], money: json["money"], remark: json["remark"], type: json["type"], symbol: json["symbol"], status: json["status"], time: json["time"]);
+  factory ListElement.fromJson(Map<String, dynamic> json) => ListElement(
+    tradeNo: json["trade_no"] ?? '',
+    money: json["money"] ?? 0,
+    remark: json["remark"] ?? '',
+    type: json["type"] ?? 0,
+    symbol: json["symbol"] ?? 0,
+    status: json["status"] ?? 0,
+    time: json["time"] ?? '',
+  );
 
   Map<String, dynamic> toJson() => {"trade_no": tradeNo, "money": money, "remark": remark, "type": type, "symbol": symbol, "status": status, "time": time};
 }

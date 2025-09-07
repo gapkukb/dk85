@@ -1,13 +1,35 @@
+import 'package:app/logics/pagination.logic.dart';
+import 'package:get/get.dart';
+import 'package:app/apis/apis.dart';
 import 'package:app/mixins/mixin_date_picker.dart';
-import 'package:app/shared/view_model/view_model.dart';
-import 'package:flutter/material.dart';
+import 'package:app/models/fund_record.model.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
-class HistoryWithdrawController extends ViewModel with MixinDatePicker {
-  HistoryWithdrawController();
+class WithdrawHisotryLogic extends GetxController with MixinDatePicker, PaginationLogic<FundRecord> {
+  WithdrawHisotryLogic();
 
   @override
-  Future loader() {
-    debugPrint('开始请求');
-    return Future.delayed(Durations.medium1);
+  FundRecord get fakerItem => FundRecord.fromJson({'trade_no': 'ZF09012106009820898', 'time': BoneMock.date, 'status': 2, 'money': 1000});
+
+  @override
+  fetch() async {
+    final resp = await apis.user.queryRecords(
+      payload: {
+        'start': start,
+        'end': end,
+        'type': '2',
+        // 'status':'',
+        'page': page,
+        'size': size,
+      },
+    );
+
+    return (data: resp.data.list, count: resp.data.count as int);
+  }
+
+  @override
+  void onInit() {
+    reset();
+    super.onInit();
   }
 }

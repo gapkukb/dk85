@@ -4,7 +4,6 @@ import 'package:app/routes/app_pages.dart';
 import 'package:app/setup/easyloading.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
-import 'package:app/shared/refresh/refresh_header.dart';
 import 'package:app/theme/index.dart';
 import 'package:app/views/home/home_view.dart';
 import 'package:get/get.dart';
@@ -18,15 +17,17 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshConfiguration(
-      headerBuilder: () => BingoRefreshHead(),
+      headerBuilder: () => WaterDropMaterialHeader(backgroundColor: AppColors.primary, distance: 40),
+      footerBuilder: () => ClassicFooter(),
+      // headerTriggerDistance: 70,
       maxOverScrollExtent: 0,
-      // maxUnderScrollExtent: 0,
+      maxUnderScrollExtent: 0,
       child: MediaQuery(
-        data: MediaQuery.of(
-          context,
-        ).copyWith(textScaler: TextScaler.linear(1.0)).scale(),
+        data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.0)).scale(),
         child: GetMaterialApp(
-          builder: setupBotToast(),
+          builder: (context, child) {
+            return setupBotToast(context, child!);
+          },
           navigatorObservers: [BotToastNavigatorObserver()],
           title: Flavor.title,
           scrollBehavior: AppScrollBehavior(),
@@ -55,14 +56,7 @@ class AppScrollBehavior extends MaterialScrollBehavior {
 
   // 统一 Overscroll 指示器：使用 StretchingOverscrollIndicator
   @override
-  Widget buildOverscrollIndicator(
-    BuildContext context,
-    Widget child,
-    ScrollableDetails details,
-  ) {
-    return StretchingOverscrollIndicator(
-      axisDirection: details.direction,
-      child: child,
-    );
+  Widget buildOverscrollIndicator(BuildContext context, Widget child, ScrollableDetails details) {
+    return StretchingOverscrollIndicator(axisDirection: details.direction, child: child);
   }
 }

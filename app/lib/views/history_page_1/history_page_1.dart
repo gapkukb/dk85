@@ -1,4 +1,5 @@
 import 'package:app/shared/customer_service/customer_service.dart';
+import 'package:app/shared/keep_alive_wrapper/keep_alive_wrapper.dart';
 import 'package:app/views/history_funds/view.dart';
 import 'package:app/views/history_games/index.dart';
 import 'package:app/widgets/back_button/back_button.dart';
@@ -12,8 +13,7 @@ class HistoryPage1View extends StatefulWidget {
   _HistoryPage1ViewState createState() => _HistoryPage1ViewState();
 }
 
-class _HistoryPage1ViewState extends State<HistoryPage1View>
-    with SingleTickerProviderStateMixin {
+class _HistoryPage1ViewState extends State<HistoryPage1View> with SingleTickerProviderStateMixin {
   late final TabController controller;
 
   @override
@@ -44,7 +44,10 @@ class _HistoryPage1ViewState extends State<HistoryPage1View>
       body: SafeArea(
         child: TabBarView(
           controller: controller,
-          children: [HistoryFundsView(), HistoryGamesView()],
+          children: [
+            KeepAliveWrapper(child: HistoryFundsView()),
+            KeepAliveWrapper(child: HistoryGamesView()),
+          ],
         ),
       ),
     );

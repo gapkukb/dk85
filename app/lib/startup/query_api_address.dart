@@ -8,21 +8,26 @@ Future<String> queryApiAddress() async {
   return 'https://www.jjj2.com';
 
   Never reject() {
+    debugPrint('未查询到接口地址列表');
     throw 'server error!';
   }
 
+  final List<String> presets = ['https://www.google.com', 'https://www.github.com'];
   final dio = Dio();
+  final o = Options(responseType: ResponseType.plain);
+  final preset = await Future.any<Response<String>>(presets.map((item) => dio.get(item, options: o)));
+  if (preset.data == null || preset.data!.isEmpty) {
+    reject();
+  }
   // 获取接口地址列表
-  final resp = await dio.get<String>('https://www.google.com', options: Options(responseType: ResponseType.plain));
+  final resp = await dio.get<String>(preset.data!, options: o);
   if (resp.data == null || resp.data!.isEmpty) {
-    debugPrint('未查询到接口地址列表');
     reject();
   }
 
   final List<String> uris = resp.data!.split(";");
 
   if (uris.isEmpty) {
-    debugPrint('未查询到接口地址列表');
     reject();
   }
 
@@ -34,7 +39,6 @@ Future<String> queryApiAddress() async {
     final uri = await Future.any(querys);
     return uri.requestOptions.path;
   } catch (e) {
-    debugPrint('无有效地址');
     reject();
   }
 }

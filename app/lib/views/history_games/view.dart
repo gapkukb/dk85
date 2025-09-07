@@ -2,87 +2,68 @@ import 'package:app/shared/chooser/index.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-
+import 'package:app/widgets/state_block/state_block.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import 'index.dart';
 
-class HistoryGamesView extends StatefulWidget {
+class HistoryGamesView extends GetView<HistoryGamesController> {
   const HistoryGamesView({super.key});
-
-  @override
-  State<HistoryGamesView> createState() => _HistoryGamesViewState();
-}
-
-class _HistoryGamesViewState extends State<HistoryGamesView>
-    with AutomaticKeepAliveClientMixin {
-  @override
-  bool get wantKeepAlive => true;
-
-  @override
-  Widget build(BuildContext context) {
-    super.build(context);
-    return const _HistoryGamesViewGetX();
-  }
-}
-
-class _HistoryGamesViewGetX extends GetView<HistoryGamesController> {
-  const _HistoryGamesViewGetX({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HistoryGamesController>(
       init: HistoryGamesController(),
-      id: "history_funds",
+      id: "history_games",
       builder: (_) {
         return Scaffold(
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            toolbarHeight: 32,
-            title: Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Chooser<int>(
-                    initValue: controller.date.value,
-                    options: ChooserOptions(
-                      items: controller.dateOptions,
-                      prefixText: 'Date:',
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(32),
+            child: Center(
+              child: Padding(
+                padding: EdgeInsets.only(bottom: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Chooser<int>(
+                      initValue: controller.date.value,
+                      options: ChooserOptions(items: controller.dateOptions, prefixText: 'Date:'),
+                      onChanged: (value, current) {
+                        controller.date.value = value;
+                        controller.reset();
+                      },
                     ),
-                    onChanged: (value, current) {
-                      controller.date.value = value;
-                      controller.load();
-                    },
-                  ),
-                  Chooser<String>(
-                    initValue: controller.kind.value,
-                    options: ChooserOptions(
-                      items: controller.kindsOptions,
-                      prefixText: 'Game:',
+                    Chooser<String>(
+                      initValue: controller.kind.value,
+                      options: ChooserOptions(items: controller.kindsOptions, prefixText: 'Game:'),
+                      onChanged: (value, current) {
+                        controller.kind.value = value;
+                        controller.reset();
+                      },
                     ),
-                    onChanged: (value, current) {
-                      controller.kind.value = value;
-                      controller.load();
-                    },
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
           body: SafeArea(
-            child: SmartRefresher(
-              controller: controller.refresher,
-              onRefresh: controller.onRefresh,
-              onLoading: controller.onLoading,
-              enablePullUp: true,
-              child: ListView.separated(
-                padding: EdgeInsets.symmetric(horizontal: 12),
-                itemCount: 10,
+            child: Obx(() {
+              final initialLoading = controller.initialLoading.value;
+              if (controller.list.isEmpty) return StateBlock();
+              final listWidget = ListView.separated(
+                itemCount: controller.list.length,
+                padding: EdgeInsets.only(left: 12, right: 12, bottom: 12),
                 separatorBuilder: (context, index) => SizedBox(height: 8),
                 itemBuilder: (context, index) {
-                  return HistoryGamesTile();
+                  final item = controller.list[index];
+                  return HistoryGamesTile(item);
                 },
-              ),
-            ),
+              );
+              if (initialLoading) {
+                return Skeletonizer(enabled: controller.initialLoading.value, child: listWidget);
+              }
+
+              return SmartRefresher(enablePullUp: true, controller: controller.refresher, onLoading: controller.onLoading, onRefresh: controller.onRefresh, child: listWidget);
+            }),
           ),
         );
       },

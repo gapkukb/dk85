@@ -1,7 +1,7 @@
 import 'package:app/helper/copy.dart';
 import 'package:app/iconfont/index.dart';
+import 'package:app/models/fund_record.model.dart';
 import 'package:app/routes/app_pages.dart';
-import 'package:app/shared/clipboard/clipboard.dart';
 import 'package:app/shared/customer_service/customer_service.dart';
 import 'package:app/theme/index.dart';
 import 'package:app/widgets/back_button/back_button.dart';
@@ -20,8 +20,10 @@ class HistoryDetailView extends StatefulWidget {
 }
 
 class _HistoryDetailViewState extends State<HistoryDetailView> {
+  final record = FundRecord.fromRawJson(Get.parameters['all'] as String);
   @override
   Widget build(BuildContext context) {
+    print('xxx:${Get.parameters['all']}');
     return Scaffold(
       appBar: AppBar(leading: AKBackButton(), actionsPadding: Gutter.right.normal, actions: [CustomerService()]),
       body: ListView(
@@ -45,21 +47,21 @@ class _HistoryDetailViewState extends State<HistoryDetailView> {
             children: [
               AKTile(
                 titleText: 'Order Number',
-                additionalInfo: Text('0995555555555555', style: TextStyle(fontWeight: FontWeight.bold)),
+                additionalInfo: Text(record.tradeNo, style: TextStyle(fontWeight: FontWeight.bold)),
                 isLink: false,
                 trailing: Icon(IconFont.copy, color: AppColors.label, size: 16),
-                onTap: copier('0995555555555555'),
+                onTap: copier(record.tradeNo),
               ),
               AKTile(
                 isLink: false,
                 titleText: 'Order Amount',
                 trailing: Text(
-                  '5,000.00',
+                  '${record.money}',
                   style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.danger),
                 ),
               ),
-              AKTile(isLink: false, titleText: 'Recharge Method', trailing: Text('KBZPay')),
-              AKTile(isLink: false, titleText: 'Recharge time', trailing: Text('2020-02-02 00:00:00')),
+              AKTile(isLink: false, titleText: 'Recharge Method', trailing: Text(record.channel)),
+              AKTile(isLink: false, titleText: 'Recharge time', trailing: Text(record.time)),
             ],
           ),
 

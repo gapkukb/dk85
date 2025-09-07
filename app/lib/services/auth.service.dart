@@ -1,10 +1,7 @@
 part of 'index.dart';
 
 class _AuthService extends GetxService {
-  static _AuthService get to => Get.find();
-
   final _tokenManager = authManager.obs;
-
   bool get authorized => _tokenManager.value.accessToken != null;
   bool get unauthorized => !authorized;
   bool get ensureUnauthorize => !ensureAuthorized;
@@ -64,7 +61,7 @@ class _AuthService extends GetxService {
   void onInit() {
     final token = storage.token.value;
     if (token.isNotEmpty) {
-      // authManager.set(accessToken: token, refreshToken: token);
+      authManager.set(accessToken: token, refreshToken: token);
     }
     super.onInit();
   }

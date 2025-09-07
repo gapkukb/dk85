@@ -1,38 +1,32 @@
+import 'package:app/models/fund_record.model.dart';
 import 'package:app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:app/theme/index.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/get_core.dart';
 import 'package:nil/nil.dart';
 
-const Map<int, Color> colorMap = {
-  0: AppColors.danger,
-  1: AppColors.success,
-  2: AppColors.warn,
-  3: AppColors.info,
-};
+const Map<int, Color> _colorMap = {1: AppColors.warn, 2: AppColors.success, 3: AppColors.warn};
+const Map<int, String> _titleMap = {1: 'Pending Payment', 2: 'Payment Successful', 3: 'Payment Failed'};
 
 Color stateColor(int state) {
-  return colorMap[state] ?? colorMap[0]!;
+  return _colorMap[state] ?? _colorMap[0]!;
 }
 
 class HistoryTopUpTile extends StatelessWidget {
-  const HistoryTopUpTile({super.key});
+  final FundRecord record;
+  const HistoryTopUpTile(this.record, {super.key});
 
   @override
   Widget build(BuildContext context) {
     const style = TextStyle(fontSize: 12, color: AppColors.description);
-    const amount = '+500';
+    final amount = '+${record.money}';
 
     return GestureDetector(
-      onTap: () => Get.toNamed(Routes.historyDetial),
+      onTap: () => Get.toNamed(Routes.historyDetial, parameters: {'all': record.toRawJson()}),
       child: Container(
         height: 86,
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        decoration: BoxDecoration(
-          color: AppColors.white,
-          borderRadius: BorderRadius.circular(8),
-        ),
+        decoration: BoxDecoration(color: AppColors.white, borderRadius: BorderRadius.circular(8)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -41,13 +35,10 @@ class HistoryTopUpTile extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                buildTitle(true),
+                buildTitle(),
                 Text(
                   amount,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: stateColor(3),
-                  ),
+                  style: TextStyle(fontWeight: FontWeight.bold, color: stateColor(record.status)),
                 ),
               ],
             ),
@@ -55,8 +46,8 @@ class HistoryTopUpTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('订单号:\n14564112315465456464s4fd65asd4f', style: style),
-                Text('2025-08-01 00:00:00', style: style),
+                Text('Order Number:\n${record.tradeNo}', style: style),
+                Text(record.time, style: style),
               ],
             ),
           ],
@@ -65,21 +56,11 @@ class HistoryTopUpTile extends StatelessWidget {
     );
   }
 
-  Widget buildTitle(bool showBadge) {
-    final text = Text(
-      'Pending Payment',
-      style: TextStyle(fontWeight: FontWeight.bold),
-    );
+  Widget buildTitle() {
+    final text = Text('${_titleMap[record.status]}', style: TextStyle(fontWeight: FontWeight.bold));
 
-    if (!showBadge) return text;
+    if (record.status != 1) return text;
 
-    return Badge(
-      label: nil,
-      padding: EdgeInsets.all(4),
-      smallSize: 1,
-      largeSize: 1,
-      offset: Offset(4, -4),
-      child: text,
-    );
+    return Badge(label: nil, padding: EdgeInsets.all(4), smallSize: 1, largeSize: 1, offset: Offset(4, -4), child: text);
   }
 }

@@ -2,7 +2,7 @@ import 'package:app/extensions/lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-final _loading = Lottie.asset(
+final loadingWidget = Lottie.asset(
   'assets/lottie/loading.lottie',
   width: 96,
   height: 96,
@@ -30,7 +30,7 @@ class AKLoading extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _loading,
+          loadingWidget,
           if (text != null)
             Transform.translate(
               offset: Offset(0, -12),

@@ -1,7 +1,7 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
-dynamic setupBotToast() {
+dynamic setupBotToast(BuildContext context, Widget child) {
   BotToast.defaultOption.text
     ..contentColor = Colors.black.withAlpha(180)
     ..borderRadius = BorderRadius.circular(4)
@@ -26,5 +26,5 @@ dynamic setupBotToast() {
     // }
     ..textStyle = const TextStyle(fontSize: 14, color: Colors.white);
 
-  return BotToastInit();
+  return BotToastInit()(context, child);
 }

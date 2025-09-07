@@ -23,15 +23,16 @@ abstract class ViewModel extends GetxController {
   }
 
   void onRefresh() async {
-    debugPrint('onRefresh');
-    await Future.delayed(Durations.medium1);
+    page = 1;
+    load();
     refresher.refreshCompleted(resetFooterState: true);
   }
 
   void onLoading() async {
-    debugPrint('onLoading');
-    await Future.delayed(Durations.medium1);
-    refresher.loadNoData();
+    print('onLoading');
+    await Future.delayed(Duration(seconds: 10));
+    page++;
+    loader();
   }
 
   @override

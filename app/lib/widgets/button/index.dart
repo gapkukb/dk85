@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '/theme/index.dart';
@@ -79,13 +81,9 @@ class AKButton extends MaterialButton {
 
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = (filled == false || outlined == true)
-        ? (computeColor() ?? Colors.transparent)
-        : (color ?? Colors.transparent);
+    final backgroundColor = (filled == false || outlined == true) ? (computeColor() ?? Colors.transparent) : (color ?? Colors.transparent);
 
-    final foregroundColor = (filled == false || outlined == true)
-        ? color
-        : computeColor();
+    final foregroundColor = (filled == false || outlined == true) ? color : computeColor();
 
     Widget button = MaterialButton(
       onPressed: onPressed,
@@ -137,10 +135,7 @@ class AKButton extends MaterialButton {
 
     if (disabledColor != null || disabledTextColor != null) return button;
 
-    return Opacity(
-      opacity: onPressed == null && onLongPress == null ? 0.8 : 1,
-      child: button,
-    );
+    return Opacity(opacity: onPressed == null && onLongPress == null ? 0.8 : 1, child: button);
   }
 
   computeChild() {
@@ -153,9 +148,7 @@ class AKButton extends MaterialButton {
     }
 
     if (text != null) {
-      children.add(
-        Text(text!, style: TextStyle(fontSize: (height ?? MEDIUM) / 3.5)),
-      );
+      children.add(Text(text!, style: TextStyle(fontSize: max((height ?? MEDIUM) / 3.5, 12))));
     }
 
     if (rightIcon != null) {
@@ -164,11 +157,7 @@ class AKButton extends MaterialButton {
 
     if (children.length < 2) return children[0];
 
-    return Wrap(
-      spacing: iconMargin,
-      crossAxisAlignment: WrapCrossAlignment.center,
-      children: children,
-    );
+    return Wrap(spacing: iconMargin, crossAxisAlignment: WrapCrossAlignment.center, children: children);
   }
 
   Color computeColor() {
@@ -182,14 +171,9 @@ class AKButton extends MaterialButton {
   computeBorder(Color? color) {
     // if (outlined != true) return null;
 
-    final side = (filled == false || outlined == true)
-        ? BorderSide(color: color ?? danger, width: 2)
-        : BorderSide.none;
+    final side = (filled == false || outlined == true) ? BorderSide(color: color ?? danger, width: 2) : BorderSide.none;
 
     if (rounded == true) return StadiumBorder(side: side);
-    return RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(radius),
-      side: side,
-    );
+    return RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius), side: side);
   }
 }

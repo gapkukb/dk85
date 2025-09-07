@@ -7,7 +7,6 @@ import 'package:app/theme/index.dart';
 class SimpleBalance extends StatelessWidget {
   final bool depositable;
   const SimpleBalance({super.key, this.depositable = false});
-  static final userService = services.user;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +45,7 @@ class SimpleBalance extends StatelessWidget {
               decoration: BoxDecoration(color: const Color(0xfffffac4), borderRadius: BorderRadius.circular(16)),
               child: Obx(
                 () => Text(
-                  "VIP${userService.userInfo.value?.gradeId}",
+                  "VIP${services.user.userInfo.value?.gradeId}",
                   style: TextStyle(
                     fontSize: 8,
                     color: AppColors.primary,
@@ -59,7 +58,7 @@ class SimpleBalance extends StatelessWidget {
             ),
           ],
         ),
-        Balance(spacing: 8, trailing: false),
+        Balance(spacing: 8, trailing: false, showFraction: false, amountStyle: TextStyle(fontSize: 12)),
       ],
     );
   }

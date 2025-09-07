@@ -21,10 +21,9 @@ Future<void> startup() async {
   /// 初始化本地化
   i18n.initialize();
 
-  /// 初始化services
-  services.initialize();
+  /// 初始化services,内部会初始化用户信息（如果需要）
+  await services.initialize();
 
-  /// 初始化用户信息，如果存在
   Flavor.appFlavor = AppFlavor.values.firstWhere((element) => element.name == appFlavor);
   final appLinks = AppLinks();
   appLinks

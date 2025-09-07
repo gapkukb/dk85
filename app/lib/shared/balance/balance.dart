@@ -77,8 +77,8 @@ class _BalanceState extends State<Balance> {
 
     return Row(
       spacing: widget.spacing ?? 0,
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: widget.crossAxisAlignment ?? CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: widget.crossAxisAlignment ?? CrossAxisAlignment.center,
       children: [amount, refresher],
     );
   }
