@@ -2,6 +2,7 @@ const Map<String, String> en = {
   "app.name": "123",
   "page.more": "More",
   "app.language": "English",
+  "app.claim.now": "Claim Now",
 
   //vip
   "vip.need.bet": "Need to Bet ",
@@ -14,4 +15,5 @@ const Map<String, String> en = {
   "vip.monthly": "Monthly Bouns",
   "vip.annual": "Annual income",
   "vip.valid.bet": "Valid Bet:",
+  "vip.details": "VIP Details:",
 };

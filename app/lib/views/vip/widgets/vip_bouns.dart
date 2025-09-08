@@ -49,7 +49,7 @@ class VipBounsWidget extends GetView<VipController> {
               disabledColor: AppColors.ff8240.withAlpha(128),
               onPressed: enable ? onPressed : null,
               textColor: Colors.white,
-              child: Text('ရယူပါ', style: TextStyle(fontSize: 12)),
+              child: Text('app.claim.now'.tr, style: TextStyle(fontSize: 12)),
             ),
         ],
       ),

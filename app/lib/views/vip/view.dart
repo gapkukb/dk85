@@ -30,7 +30,7 @@ class VipView extends GetView<VipController> {
                 onPressed: () {
                   Get.toNamed(Routes.vipDetail);
                 },
-                child: Text('page.detail'.tr),
+                child: Text('vip.details'.tr),
               ),
             ],
           ),
@@ -69,27 +69,23 @@ class VipView extends GetView<VipController> {
                   ),
                 ),
                 SizedBox(height: 8),
-                Container(
-                  decoration: BoxDecoration(color: AppColors.white, borderRadius: BorderRadius.circular(8)),
-                  padding: EdgeInsets.all(8),
-                  child: Obx(() {
-                    return CarouselSlider.builder(
-                      carouselController: controller.carousel,
-                      itemCount: controller.grades.length,
-                      itemBuilder: (context, index, realIndex) {
-                        final grade = controller.grades[realIndex];
-                        return VipLevelWidget(grade);
-                      },
-                      options: CarouselOptions(
-                        height: 344,
-                        initialPage: controller.page.value,
-                        viewportFraction: 1.0,
-                        enableInfiniteScroll: false,
-                        onPageChanged: controller.onCarouselPageChanged,
-                      ),
-                    );
-                  }),
-                ),
+                Obx(() {
+                  return CarouselSlider.builder(
+                    carouselController: controller.carousel,
+                    itemCount: controller.grades.length,
+                    itemBuilder: (context, index, realIndex) {
+                      final grade = controller.grades[realIndex];
+                      return VipLevelWidget(grade);
+                    },
+                    options: CarouselOptions(
+                      height: 360,
+                      initialPage: controller.page.value,
+                      viewportFraction: 1.0,
+                      enableInfiniteScroll: false,
+                      onPageChanged: controller.onCarouselPageChanged,
+                    ),
+                  );
+                }),
               ],
             ),
           ),
