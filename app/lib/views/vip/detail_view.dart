@@ -3,7 +3,6 @@ import 'package:app/views/vip/widgets/widgets.dart';
 import 'package:app/widgets/back_button/back_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'index.dart';
 
 class VipDetailView extends GetView<VipController> {
@@ -16,18 +15,16 @@ class VipDetailView extends GetView<VipController> {
       id: "vip",
       builder: (_) {
         return Scaffold(
-          appBar: AppBar(
-            leading: AKBackButton(),
-            title: Text("VIP ${'page.detail'.tr}"),
-          ),
+          appBar: AppBar(leading: AKBackButton(), title: Text("VIP ${'page.detail'.tr}")),
           body: SafeArea(
             child: ListView.separated(
-              itemCount: 14,
-              padding: EdgeInsets.symmetric(horizontal: 12),
+              itemCount: controller.grades.length + 1,
+              padding: EdgeInsets.all(12),
               separatorBuilder: (context, index) => SizedBox(height: 16),
               itemBuilder: (context, index) {
                 if (index == 0) return VipCardWidget();
-                return VipLevelTileWidget();
+                final grade = controller.grades[index - 1];
+                return VipLevelTileWidget(grade);
               },
             ),
           ),

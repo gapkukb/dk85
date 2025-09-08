@@ -1,7 +1,6 @@
 import 'package:app/modal_views/guide/guide.dart';
 import 'package:app/routes/app_pages.dart';
-import 'package:app/services/index.dart';
-import 'package:app/shared/simple_balance/simple_balance.dart';
+import 'package:app/shared/simple_user/simple_user.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '/iconfont/index.dart';
@@ -9,7 +8,6 @@ import '/shared/customer_service/customer_service.dart';
 import '/shared/locale_selector/locale_selector.dart';
 import '/theme/index.dart';
 import '/widgets/rounded_tab_indicator.dart';
-part 'main_auth_button.dart';
 
 final tabs = <_Tab>[
   _Tab('assets/icons/hot.webp', 'app.foru'.tr),
@@ -21,15 +19,13 @@ final tabs = <_Tab>[
 class MainViewHeader extends StatelessWidget implements PreferredSizeWidget {
   const MainViewHeader({super.key});
 
-  static final _auth = services.auth;
-
   @override
   Widget build(BuildContext context) {
     return AppBar(
       // toolbarHeight: 36,
       backgroundColor: Colors.transparent,
       titleSpacing: 12,
-      title: SizedBox(key: guideOne, child: Obx(() => _auth.authorized ? SimpleBalance(depositable: true) : AuthButton())),
+      title: SimpleUser(key: guideOne),
       bottom: buildTabbar(),
       actionsPadding: const EdgeInsets.only(right: 12),
       actions: [
@@ -67,7 +63,7 @@ class MainViewHeader extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(112);
+  Size get preferredSize => Size.fromHeight(120);
 }
 
 class _Tab {

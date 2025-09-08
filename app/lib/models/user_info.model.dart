@@ -86,6 +86,8 @@ class UserModel {
     required this.id,
   });
 
+  String get shortName => username.length > 8 ? '${username.substring(0, 4)}***${username.substring(username.length - 3)}' : username;
+
   factory UserModel.fromRawJson(String str) => UserModel.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());

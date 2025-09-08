@@ -1,7 +1,10 @@
 import 'package:app/flavors.dart';
 import 'package:app/i18n/index.dart';
+import 'package:app/modal_views/guide/guide.dart';
 import 'package:app/routes/app_pages.dart';
+import 'package:app/services/index.dart';
 import 'package:app/setup/easyloading.dart';
+import 'package:app/storage/storage.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:app/theme/index.dart';
@@ -26,6 +29,12 @@ class Application extends StatelessWidget {
         data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.0)).scale(),
         child: GetMaterialApp(
           builder: (context, child) {
+            WidgetsBinding.instance.addPostFrameCallback((_) async {
+              // 显示引导浮层
+              if (storage.showGuide.value && services.auth.authorized) {
+                await showGuide();
+              }
+            });
             return setupBotToast(context, child!);
           },
           navigatorObservers: [BotToastNavigatorObserver()],

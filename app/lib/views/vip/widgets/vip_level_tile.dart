@@ -1,14 +1,15 @@
 import 'package:app/iconfont/index.dart';
+import 'package:app/models/vip.model.dart';
 import 'package:app/shared/amount/amount.dart';
 import 'package:app/theme/index.dart';
-import 'package:app/views/vip/widgets/vip_bouns.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../index.dart';
 
 class VipLevelTileWidget extends GetView<VipController> {
-  const VipLevelTileWidget({super.key});
+  final VipModel vip;
+  const VipLevelTileWidget(this.vip, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,22 +28,14 @@ class VipLevelTileWidget extends GetView<VipController> {
             child: Row(
               children: [
                 Text(
-                  ' VIP1 အကျိုးအခွင့်',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.primary,
-                  ),
+                  'vip.level.rights'.trParams({'level': vip.name}),
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: AppColors.primary),
                 ),
                 Spacer(),
-                Text('သက်တမ်းရှိသောပုံစံ：', style: TextStyle(fontSize: 12)),
+                Text('vip.valid.bet'.tr, style: TextStyle(fontSize: 12)),
                 Text(
-                  '0.00',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.highlight,
-                  ),
+                  '${vip.betLimit}',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: AppColors.highlight),
                 ),
               ],
             ),
@@ -56,17 +49,12 @@ class VipLevelTileWidget extends GetView<VipController> {
               padding: EdgeInsets.all(8),
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 4,
-                crossAxisSpacing: 4,
-                mainAxisExtent: 56,
-              ),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 4, crossAxisSpacing: 4, mainAxisExtent: 56),
               children: [
-                buildItem(IconFont.money),
-                buildItem(IconFont.coin),
-                buildItem(IconFont.coin2),
-                buildItem(IconFont.coin3),
+                buildItem(IconFont.money, 'vip.advance'.tr, vip.moneyLimit),
+                buildItem(IconFont.coin, 'vip.weekly'.tr, vip.moneyWeek),
+                buildItem(IconFont.coin2, 'vip.monthly'.tr, vip.moneyMonth),
+                buildItem(IconFont.coin3, 'vip.annual'.tr, 0),
               ],
             ),
           ),
@@ -75,29 +63,25 @@ class VipLevelTileWidget extends GetView<VipController> {
     );
   }
 
-  Widget buildItem(IconData icon) {
+  Widget buildItem(IconData icon, String name, num amount) {
     return ListTile(
       minTileHeight: 0,
       contentPadding: EdgeInsets.all(0),
-      minVerticalPadding: 0,
+      // minVerticalPadding: 0,
       leading: CircleAvatar(
         backgroundColor: AppColors.background,
         radius: 18,
         child: Icon(icon, color: AppColors.primary.withAlpha(128)),
       ),
       horizontalTitleGap: 8,
-      title: Text(
-        'ပရိုမိုးရှင်း အပိုဆု',
-        style: TextStyle(fontSize: 12, color: AppColors.label),
+      title: Padding(
+        padding: const EdgeInsets.only(bottom: 4.0),
+        child: Text(name, style: TextStyle(fontSize: 12, color: AppColors.label)),
       ),
       subtitle: Amount(
-        amount: '3000',
+        amount: '$amount',
         spacing: 4,
-        style: TextStyle(
-          fontSize: 14,
-          color: AppColors.subtitle,
-          fontWeight: FontWeight.bold,
-        ),
+        style: TextStyle(fontSize: 14, color: AppColors.subtitle, fontWeight: FontWeight.bold),
       ),
     );
   }

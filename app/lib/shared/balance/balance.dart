@@ -111,6 +111,7 @@ class _BalanceState extends State<Balance> {
     ).merge(widget.amountStyle);
 
     final counter = AnimatedFlipCounter(
+      key: ValueKey(_balance),
       value: _balance,
       fractionDigits: widget.showFraction ? 2 : 0,
       suffix: widget.suffix,

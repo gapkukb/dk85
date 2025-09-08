@@ -1,4 +1,3 @@
-import 'package:app/modal_views/guide/guide.dart';
 import 'package:app/theme/index.dart';
 import 'package:app/views/fishing/fishing_view.dart';
 import 'package:app/views/hot/index.dart';
@@ -39,16 +38,4 @@ class _MainViewState extends State<MainView> with AutomaticKeepAliveClientMixin 
 
   @override
   bool get wantKeepAlive => true;
-
-  buildTabbar() {
-    return TabBar(
-      labelStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-      unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),
-      dividerHeight: 0,
-      indicatorWeight: 0,
-      labelColor: Colors.white,
-      indicator: RoundedTabIndicator(height: 20, color: AppColors.primary, bottom: 3),
-      tabs: [...tabs.map((tab) => Tab(height: 56, icon: Image.asset(tab.iconPath, width: 32, height: 32), text: tab.name))],
-    );
-  }
 }

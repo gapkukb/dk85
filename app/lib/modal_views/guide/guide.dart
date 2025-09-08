@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:app/storage/storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
@@ -6,7 +8,8 @@ import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 final guideOne = GlobalKey();
 final guideTwo = GlobalKey();
 
-void showGuide() {
+Future<void> showGuide() {
+  final completer = Completer();
   List<TargetFocus> targets = [];
   // if (storage.showGuide.value) return;
 
@@ -90,6 +93,9 @@ void showGuide() {
     // disableBackButton: false // If true disable native back button.
     onFinish: () {
       storage.showGuide.update(false);
+      completer.complete();
     },
   )..show(context: Get.overlayContext!);
+
+  return completer.future;
 }

@@ -6,7 +6,6 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile_device_identifier/mobile_device_identifier.dart';
-
 import 'package:uuid/uuid.dart';
 
 class _DeviceInfo {
@@ -51,12 +50,12 @@ class _DeviceInfo {
     return Uuid().v5(Namespace.nil.value, id);
   }
 
-  Future setup() async {
-    // if (storage.deviceId.value.isEmpty) {
-    //   final id = await _getId();
-    //   storage.deviceId.value = id;
-    // }
-    // deviceId = storage.deviceId.value;
+  Future initialize() async {
+    if (storage.deviceId.value.isEmpty) {
+      final id = await _getId();
+      storage.deviceId.update(id);
+    }
+    deviceId = storage.deviceId.value;
   }
 }
 

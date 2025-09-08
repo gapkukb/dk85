@@ -4,7 +4,7 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'http.dart';
 
 final authManager = HttpAuthManager();
-final __dio = Dio(BaseOptions(baseUrl: 'https://jjj2.com'));
+final __dio = Dio(BaseOptions(baseUrl: 'http://mdgametest.xyz'));
 
 final _dio = __dio
   ..httpClientAdapter = HttpCustomAdpater(toggle: (loading) => loading ? BotToast.showLoading() : BotToast.closeAllLoading())

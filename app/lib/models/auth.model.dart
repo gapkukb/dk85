@@ -13,7 +13,8 @@ class AuthModelWrapper {
 
   String toRawJson() => json.encode(toJson());
 
-  factory AuthModelWrapper.fromJson(Map<String, dynamic> json) => AuthModelWrapper(code: json["code"], status: json["status"], message: json["message"], data: AuthModel.fromJson(json["data"]));
+  factory AuthModelWrapper.fromJson(Map<String, dynamic> json) =>
+      AuthModelWrapper(code: json["code"], status: json["status"], message: json["message"], data: AuthModel.fromJson(json["data"] ?? {}));
 
   Map<String, dynamic> toJson() => {"code": code, "status": status, "message": message, "data": data.toJson()};
 }
@@ -28,7 +29,7 @@ class AuthModel {
 
   String toRawJson() => json.encode(toJson());
 
-  factory AuthModel.fromJson(Map<String, dynamic> json) => AuthModel(token: json["token"], expiresIn: json["expires_in"]);
+  factory AuthModel.fromJson(Map<String, dynamic> json) => AuthModel(token: json["token"] ?? '', expiresIn: json["expires_in"] ?? 0);
 
   Map<String, dynamic> toJson() => {"token": token, "expires_in": expiresIn};
 }

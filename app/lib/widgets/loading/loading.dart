@@ -4,8 +4,8 @@ import 'package:lottie/lottie.dart';
 
 final loadingWidget = Lottie.asset(
   'assets/lottie/loading.lottie',
-  width: 96,
-  height: 96,
+  width: 72,
+  height: 72,
   fit: BoxFit.cover,
   decoder: dotLottieDecoder('c1e4ef8f-0b4a-4e63-9a4e-a2e4ba95665a.json'),
   delegates: LottieDelegates(
@@ -25,9 +25,10 @@ class AKLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12),
-      constraints: BoxConstraints(minHeight: 120, minWidth: 120, maxWidth: 240),
-      decoration: BoxDecoration(color: Colors.black.withAlpha(180), borderRadius: BorderRadius.all(Radius.circular(12))),
+      constraints: BoxConstraints(minHeight: 100, minWidth: 100, maxWidth: 240),
+      decoration: BoxDecoration(color: Colors.black.withAlpha(180), borderRadius: BorderRadius.all(Radius.circular(8))),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
           loadingWidget,
@@ -36,7 +37,7 @@ class AKLoading extends StatelessWidget {
               offset: Offset(0, -12),
               child: Text(
                 text!,
-                style: TextStyle(color: Colors.white, fontSize: 14).merge(style),
+                style: TextStyle(color: Colors.white, fontSize: 12).merge(style),
                 textAlign: TextAlign.center,
               ),
             ),

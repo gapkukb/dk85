@@ -35,4 +35,13 @@ class _UserApi {
 
   ///查询账变，充值，提现记录
   final queryRecords = http.get('/app/balance-log', decoder: FundRecordsWrapper.fromJson);
+
+  ///获取会员等级列表
+  final queryGradeList = http.get('/app/grade-list', decoder: VipModelWrapper.fromJson);
+
+  ///周礼金领取资格
+  final queryWeeklyBonus = http.get('/app/week-bonus', decoder: VipBounsWrapper.fromJson);
+
+  ///月礼金领取资格
+  final queryMonthlyBonus = http.get('/app/month-bonus', decoder: VipBounsWrapper.fromJson);
 }

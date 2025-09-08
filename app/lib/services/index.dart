@@ -36,6 +36,8 @@ class _Services {
       user.queryBalance();
       return user.queryUserInfo();
     }
+    // 快速注册
+    return auth.fastRegister();
   }
 }
 

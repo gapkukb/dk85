@@ -28,5 +28,6 @@ class Storage {
   final music = app.$bool("music", true);
   final showGuide = app.$bool("show_guide", true);
   final token = app.$string("token", '');
+  final deviceId = app.$string("device_id", '');
   // final list = app.$type<List<User>>("list", [], serialize(User.formJson));
 }

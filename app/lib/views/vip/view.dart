@@ -24,7 +24,7 @@ class VipView extends GetView<VipController> {
         return Scaffold(
           appBar: AppBar(
             leading: AKBackButton(),
-            title: Text("page.vip".tr),
+            title: Text("VIP"),
             actions: [
               TextButton(
                 onPressed: () {
@@ -46,21 +46,23 @@ class VipView extends GetView<VipController> {
                     children: [
                       AKButton(
                         height: AKButton.MINI,
+                        color: AppColors.ff8240,
+                        rounded: true,
                         minWidth: 60,
-                        onPressed: controller.page.value == 0
-                            ? null
-                            : controller.carousel.previousPage,
-                        text: 'ယခင်အဆင့်',
+                        padding: EdgeInsets.symmetric(horizontal: 8),
+                        onPressed: controller.page.value == 0 ? null : controller.carousel.previousPage,
+                        text: 'vip.prev.level'.tr,
                         icon: IconFont.arrow_left_trangle,
                       ),
-                      Text('VIP${controller.page.value + 1} အကျိုးအခွင့်'),
+                      Text('vip.level.rights'.trParams({'level': (controller.page.value + 1).toString()})),
                       AKButton(
                         height: AKButton.MINI,
+                        color: AppColors.primary,
+                        rounded: true,
+                        padding: EdgeInsets.symmetric(horizontal: 8),
                         minWidth: 60,
-                        onPressed: controller.page.value == 12
-                            ? null
-                            : controller.carousel.nextPage,
-                        text: 'ယခင်အဆင့်',
+                        onPressed: controller.page.value == 12 ? null : controller.carousel.nextPage,
+                        text: 'vip.next.level'.tr,
                         rightIcon: IconFont.arrow_right_trangle,
                       ),
                     ],
@@ -68,25 +70,25 @@ class VipView extends GetView<VipController> {
                 ),
                 SizedBox(height: 8),
                 Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
+                  decoration: BoxDecoration(color: AppColors.white, borderRadius: BorderRadius.circular(8)),
                   padding: EdgeInsets.all(8),
-                  child: CarouselSlider.builder(
-                    carouselController: controller.carousel,
-                    itemCount: 13,
-                    itemBuilder: (context, index, realIndex) {
-                      return VipLevelWidget();
-                    },
-                    options: CarouselOptions(
-                      height: 344,
-                      initialPage: controller.page.value,
-                      viewportFraction: 1.0,
-                      enableInfiniteScroll: false,
-                      onPageChanged: controller.onCarouselPageChanged,
-                    ),
-                  ),
+                  child: Obx(() {
+                    return CarouselSlider.builder(
+                      carouselController: controller.carousel,
+                      itemCount: controller.grades.length,
+                      itemBuilder: (context, index, realIndex) {
+                        final grade = controller.grades[realIndex];
+                        return VipLevelWidget(grade);
+                      },
+                      options: CarouselOptions(
+                        height: 344,
+                        initialPage: controller.page.value,
+                        viewportFraction: 1.0,
+                        enableInfiniteScroll: false,
+                        onPageChanged: controller.onCarouselPageChanged,
+                      ),
+                    );
+                  }),
                 ),
               ],
             ),

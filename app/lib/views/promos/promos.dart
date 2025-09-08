@@ -1,11 +1,9 @@
 import 'package:app/routes/app_pages.dart';
-import 'package:app/shared/balance/balance.dart';
 import 'package:app/shared/customer_service/customer_service.dart';
-import 'package:app/shared/simple_balance/simple_balance.dart';
+import 'package:app/shared/simple_user/simple_user.dart';
 import 'package:app/theme/index.dart';
 import 'package:app/views/promos/promos_controller.dart';
 import 'package:app/widgets/network_picture.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -60,7 +58,7 @@ class _PromosView extends StatelessWidget {
       backgroundColor: AppColors.background,
       titleSpacing: 12,
       automaticallyImplyLeading: false,
-      title: SimpleBalance(depositable: false),
+      title: const SimpleUser(),
       actionsPadding: EdgeInsets.only(right: 12),
       actions: [CustomerService()],
     );

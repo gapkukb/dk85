@@ -25,11 +25,13 @@ class _AuthService extends GetxService {
       _tokenManager.refresh();
       storage.token.update(token);
       // 获取用户信息
+      print('33333333333333333');
       await services.user.queryUserInfo();
       services.user.queryBalance();
       // 修改认证状态
       // authorized.value = true;
     } catch (e) {
+      debugPrint(e.toString());
       rethrow;
     }
   }
@@ -41,6 +43,11 @@ class _AuthService extends GetxService {
 
   Future register(Object values) async {
     final t = await apis.user.register(data: values);
+    await _nextAction(t.data.token);
+  }
+
+  Future fastRegister() async {
+    final t = await apis.user.fastRegister(payload: {'device_code': storage.deviceId.value});
     await _nextAction(t.data.token);
   }
 
