@@ -1,7 +1,5 @@
 const Map<String, String> my = {
   /// 通用
-  "app.name": "123",
-  "app.language": "ဘာသာစကား",
   "app.deposit": "ငွေဖြည့်",
   "app.withdraw": "ငွေထုတ်",
   "app.login": "လော့ဂ်အင်",
@@ -14,9 +12,6 @@ const Map<String, String> my = {
   "app.newGames": "ဂိမ်းအသစ်များ",
   "app.allGames": "ဂိမ်းအားလုံး",
   "app.balance": "လက်ကျန်",
-  "funds.account": "ငွေထုတ်အ\nကောင့်",
-  "game.history": "သမိုင်း",
-  "funds.history": "အပ်ထုတ်မတ.",
   "app.service": "ဧည့်ဝန်ဆောင်မှု",
   "app.transcation.detail": "လဲလှယ်မှုအသေးစိတ်",
   "app.all": "အားလုံး",
@@ -63,8 +58,7 @@ const Map<String, String> my = {
   "payment.receiver.No.": "အကောင့်လက်ခံခြင်း။",
   "payment.receiver.amount": "ပေးဆောင်ရန်ပမာဏ",
   "payment.receiver.bill.No.": "လုပ်ငန်းနံပါတ်",
-  "payment.receiver.placeholder":
-      "အမှာစာနံပါတ်၏နောက်ဆုံးဂဏန်း 6 လုံးကိုထည့်ပါ။",
+  "payment.receiver.placeholder": "အမှာစာနံပါတ်၏နောက်ဆုံးဂဏန်း 6 လုံးကိုထည့်ပါ။",
   "payment.receiver.guide": "ငွေသွင်းနည်းကိုညွန်ပြ",
   "payment.receiver.submit": "တင်ပြခြင်း",
   "payment.receiver.acc": "လက်ခံ အကောင့်",

@@ -1,7 +1,11 @@
+import 'package:app/widgets/loading/loading.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
 dynamic setupBotToast(BuildContext context, Widget child) {
+  BotToast.defaultOption.loading.wrapToastAnimation = (AnimationController controller, CancelFunc cancelFunc, Widget widget) {
+    return AKLoading();
+  };
   BotToast.defaultOption.text
     ..contentColor = Colors.black.withAlpha(180)
     ..borderRadius = BorderRadius.circular(4)

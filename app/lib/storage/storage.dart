@@ -1,33 +1,28 @@
-import 'package:app/models/auth.model.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 part 'dispatcher.dart';
 part 'container.dart';
 
-late final Storage storage;
-final app = _Container(name: 'app');
-final user = _Container(name: 'user');
-final game = _Container(name: 'game');
-
-List<T> Function(List) serialize<T>(T Function(Map<String, dynamic> json) decode) {
-  return (json) {
-    final a = json.map((i) => decode(i));
-    return List<T>.from(a);
-  };
+class _Box {
+  final app = _Container(name: 'app');
+  final user = _Container(name: 'user');
+  final game = _Container(name: 'game');
 }
 
+final _box = _Box();
+late final Storage storage;
+
 class Storage {
-  static Future initialize() {
-    return Future.wait([app.storage.initStorage, user.storage.initStorage, game.storage.initStorage]).then((_) {
-      storage = Storage();
-    });
+  static Future initialize() async {
+    await Future.wait([_box.app.storage.initStorage, _box.user.storage.initStorage, _box.game.storage.initStorage]);
+    storage = Storage();
   }
 
-  final locale = app.$string("locale", 'en');
-  final music = app.$bool("music", true);
-  final showGuide = app.$bool("show_guide", true);
-  final token = app.$string("token", '');
-  final deviceId = app.$string("device_id", '');
-  // final list = app.$type<List<User>>("list", [], serialize(User.formJson));
+  final box = _box;
+  final locale = _box.app.$string("locale", 'en');
+  final audio = _box.app.$bool("music", true);
+  final showGuide = _box.app.$bool("show_guide", true);
+  final token = _box.app.$string("token", '');
+  final deviceId = _box.app.$string("device_id", '');
 }

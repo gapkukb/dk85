@@ -19,16 +19,10 @@ abstract class AppColors {
   static const danger = Color(0xffff0000);
   static const success = Colors.green;
   static const warn = Colors.orange;
+  static const ff9d00 = Color(0xffFF9D00);
   static const info = Colors.blue;
 
-  static const buttonGradient = RadialGradient(
-    colors: [
-      Color.fromRGBO(255, 255, 255, 0.3),
-      Color.fromRGBO(255, 230, 215, 0.0001),
-    ],
-    center: Alignment(-0.8, -0.6),
-    radius: 7,
-  );
+  static const buttonGradient = RadialGradient(colors: [Color.fromRGBO(255, 255, 255, 0.3), Color.fromRGBO(255, 230, 215, 0.0001)], center: Alignment(-0.8, -0.6), radius: 7);
 }
 
 // background: linear-gradient(0deg, #FF8240, #FF8240),

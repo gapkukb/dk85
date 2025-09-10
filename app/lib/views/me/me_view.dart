@@ -1,7 +1,3 @@
-import 'dart:ui';
-
-import 'dart:ui';
-import 'package:app/iconfont/index.dart';
 import 'package:app/routes/app_pages.dart';
 import 'package:app/services/index.dart';
 import 'package:app/shared/customer_service/customer_service.dart';
@@ -128,6 +124,7 @@ class _MeView extends StatelessWidget {
         additionalDividerMargin: 0,
         children: [
           AKTile(titleText: "page.account".tr, to: Routes.profile),
+          AKTile(titleText: "rebate.title".tr, to: Routes.rebate),
           AKTile(
             titleText: "page.vip".tr,
             titleTextStyle: TextStyle(color: AppColors.primary),

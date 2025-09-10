@@ -39,6 +39,11 @@ android {
     }
 }
 
+dependencies {
+    implementation("androidx.appcompat:appcompat:1.7.1")
+    implementation("com.geyifeng.immersionbar:immersionbar:3.2.2")
+}
+
 flutter {
     source = "../.."
 }

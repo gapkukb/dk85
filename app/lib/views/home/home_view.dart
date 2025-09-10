@@ -5,7 +5,7 @@ import 'package:app/views/promos/promos.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:app/services/index.dart';
-import 'package:app/views/main/main_view.dart';
+import 'package:app/views/dashboard/dashboard_view.dart';
 import 'package:move_to_back/move_to_back.dart';
 
 class HomeView extends StatefulWidget {
@@ -27,11 +27,11 @@ class _HomeViewState extends State<HomeView> {
         if (appService.currentIndex.value == 0) {
           MoveToBack.execute();
         } else {
-          appService.toHomeView();
+          appService.toDashboardView();
         }
       },
       child: Scaffold(
-        body: Obx(() => IndexedStack(index: appService.currentIndex.value, children: [MainView(), PromosView(), FundsView(), authorized ? MeView() : SizedBox.shrink()])),
+        body: Obx(() => IndexedStack(index: appService.currentIndex.value, children: [DashboardView(), PromosView(), FundsView(), authorized ? MeView() : SizedBox.shrink()])),
         bottomNavigationBar: Obx(
           () => BottomNavigationBar(
             selectedItemColor: AppColors.primary,
@@ -49,7 +49,7 @@ class _HomeViewState extends State<HomeView> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            // Get.toNamed('/login');
+            services.app.playTopUpAudio();
           },
         ),
       ),

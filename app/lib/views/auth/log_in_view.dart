@@ -4,7 +4,6 @@ import 'package:app/shared/customer_service/customer_service.dart';
 import 'package:app/theme/index.dart';
 import 'package:app/views/auth/controller.dart';
 import 'package:app/widgets/button/index.dart';
-import 'package:app/widgets/checkbox/checkbox.dart';
 import 'package:app/widgets/input_account/input_account.dart';
 import 'package:app/widgets/input_graphic/input_graphic.dart';
 import 'package:app/widgets/input_password/input_password.dart';

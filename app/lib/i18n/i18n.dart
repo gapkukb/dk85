@@ -64,7 +64,7 @@ class I18n extends Translations {
     storage.locale.update(code);
     // 等待选择框收起动画完成
     await Future.delayed(Durations.medium1);
-    Get.updateLocale(locale);
+    await Get.updateLocale(locale);
   }
 
   initialize() {

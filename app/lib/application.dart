@@ -1,6 +1,7 @@
+import 'package:app/dialogs/dialogs.dart';
 import 'package:app/flavors.dart';
 import 'package:app/i18n/index.dart';
-import 'package:app/modal_views/guide/guide.dart';
+import 'package:app/views_modal/guide/guide.dart';
 import 'package:app/routes/app_pages.dart';
 import 'package:app/services/index.dart';
 import 'package:app/setup/easyloading.dart';
@@ -19,6 +20,10 @@ class Application extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    double textScaler = 1.0;
+    if (I18n.locale?.languageCode == I18n.my_MM.languageCode) {
+      textScaler = 0.95;
+    }
     return RefreshConfiguration(
       headerBuilder: () => WaterDropMaterialHeader(backgroundColor: AppColors.primary, distance: 40),
       footerBuilder: () => ClassicFooter(),
@@ -26,14 +31,16 @@ class Application extends StatelessWidget {
       maxOverScrollExtent: 0,
       maxUnderScrollExtent: 0,
       child: MediaQuery(
-        data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.0)).scale(),
+        data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(textScaler)).scale(),
         child: GetMaterialApp(
           builder: (context, child) {
             WidgetsBinding.instance.addPostFrameCallback((_) async {
               // 显示引导浮层
               if (storage.showGuide.value && services.auth.authorized) {
-                await showGuide();
+                // await showGuide();
               }
+              registerDialogs();
+              Dialogs.to.active();
             });
             return setupBotToast(context, child!);
           },
@@ -48,6 +55,7 @@ class Application extends StatelessWidget {
           initialRoute: AppPages.INITIAL,
           getPages: AppPages.routes,
           home: const HomeView(),
+          routingCallback: Dialogs.to.onRouteChanged,
         ),
       ),
     );

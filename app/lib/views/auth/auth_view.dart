@@ -21,11 +21,7 @@ class AuthView extends StatelessWidget {
         return DecoratedBox(
           decoration: const BoxDecoration(
             color: AppColors.background,
-            image: DecorationImage(
-              image: AssetImage("assets/images/auth-bg.webp"),
-              alignment: Alignment.topCenter,
-              fit: BoxFit.fitWidth,
-            ),
+            image: DecorationImage(image: AssetImage("assets/images/auth-bg.webp"), alignment: Alignment.topCenter, fit: BoxFit.fitWidth),
           ),
           child: DefaultTabController(
             length: 2,
@@ -44,19 +40,16 @@ class AuthView extends StatelessWidget {
     return PreferredSize(
       preferredSize: Size.fromHeight(248),
       child: AppBar(
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
-          statusBarIconBrightness: Brightness.light,
-        ),
+        // systemOverlayStyle: const SystemUiOverlayStyle(
+        //   statusBarColor: Colors.transparent,
+        //   statusBarIconBrightness: Brightness.light,
+        // ),
         forceMaterialTransparency: true,
         titleSpacing: 8,
         title: const LocaleSelector(
           size: 28,
           iconSize: 20,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(100)),
-          ),
+          decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(100))),
         ),
         actionsPadding: const EdgeInsets.only(right: 8),
         actions: buildActions(),
@@ -83,19 +76,12 @@ class AuthView extends StatelessWidget {
 
   buildLogo() {
     return UnconstrainedBox(
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(8),
-        child: Image.asset("assets/icons/logo-3.webp", width: 80, height: 80),
-      ),
+      child: ClipRRect(borderRadius: BorderRadius.circular(8), child: Image.asset("assets/icons/logo-3.webp", width: 80, height: 80)),
     );
   }
 
   List<Widget> buildActions() {
-    return [
-      CustomerService(size: 28, iconSize: 20),
-      const SizedBox(width: 8),
-      buildCloseButton(icon: IconFont.close, onTap: Get.back),
-    ];
+    return [CustomerService(size: 28, iconSize: 20), const SizedBox(width: 8), buildCloseButton(icon: IconFont.close, onTap: Get.back)];
   }
 
   PreferredSizeWidget? buildTabs() {
@@ -115,8 +101,8 @@ class AuthView extends StatelessWidget {
           indicatorColor: Colors.transparent,
           // padding: EdgeInsets.symmetric(horizontal: 64),
           tabs: [
-            Tab(text: "ဝင်ရောက်"),
-            Tab(text: "မှတ်ပုံတင်"),
+            Tab(text: "app.login".tr),
+            Tab(text: "app.register".tr),
           ],
         ),
       ),

@@ -13,42 +13,51 @@ class VipLevelWidget extends GetView<VipController> {
   const VipLevelWidget(this.grade, {super.key});
 
   bool get enable => grade.name == services.user.userInfo.value?.gradeId.toString();
+  VipBouns? get current => controller.upgradeBouns.firstWhereOrNull((item) {
+    print('xxxxxxxxx${item.gradeId},${grade.id},${item.gradeId == grade.id}');
+    return item.gradeId == grade.id;
+  });
+  bool get hasBouns => current?.isAvailable ?? false;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(color: AppColors.white, borderRadius: BorderRadius.circular(8)),
-      padding: EdgeInsets.all(8),
-      height: 344,
-      child: GridView(
-        physics: NeverScrollableScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 8, crossAxisSpacing: 8, mainAxisExtent: 168),
-        children: [
-          VipBounsWidget(amount: grade.moneyLimit, icon: IconFont.money, name: 'vip.advance'.tr),
-          Obx(
-            () => VipBounsWidget(
+    return Obx(() {
+      return Container(
+        decoration: BoxDecoration(color: AppColors.white, borderRadius: BorderRadius.circular(8)),
+        padding: EdgeInsets.all(8),
+        height: 344,
+        child: GridView(
+          physics: NeverScrollableScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, mainAxisSpacing: 8, crossAxisSpacing: 8, mainAxisExtent: 168),
+          children: [
+            VipBounsWidget(
+              amount: grade.moneyLimit,
+              icon: IconFont.money,
+              name: 'vip.advance'.tr,
+              enable: hasBouns,
+              onPressed: () {
+                controller.claimVipUpgradeBonus(grade.id);
+              },
+            ),
+            VipBounsWidget(
               amount: grade.moneyWeek,
               icon: IconFont.coin2,
               name: 'vip.weekly'.tr,
               enable: enable && controller.hasWeeklyBouns.value,
-              onPressed: () {
-                print('123');
-              },
+              onPressed: controller.cliamWeeklyBouns,
             ),
-          ),
-          VipBounsWidget(
-            amount: grade.moneyMonth,
-            icon: IconFont.coin,
-            name: 'vip.monthly'.tr,
-            enable: enable && controller.hasMonthlyBouns.value,
-            onPressed: () {
-              print('123');
-            },
-          ),
-          // 年度礼金固定展示0
-          VipBounsWidget(amount: 0, icon: IconFont.coin3, name: 'vip.annual'.tr, showButton: false),
-        ],
-      ),
-    );
+            VipBounsWidget(
+              amount: grade.moneyMonth,
+              icon: IconFont.coin,
+              name: 'vip.monthly'.tr,
+              enable: enable && controller.hasMonthlyBouns.value,
+              onPressed: controller.claimMonthlyBonus,
+            ),
+            // 年度礼金固定展示0
+            VipBounsWidget(amount: 0, icon: IconFont.coin3, name: 'vip.annual'.tr, showButton: false),
+          ],
+        ),
+      );
+    });
   }
 }

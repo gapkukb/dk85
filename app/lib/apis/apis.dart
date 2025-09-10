@@ -1,6 +1,7 @@
 library;
 
 import 'package:app/models/ad_list.model.dart';
+import 'package:app/models/announcement.model.dart';
 import 'package:app/models/auth.model.dart';
 import 'package:app/models/balance.model.dart';
 import 'package:app/models/daily_check_in.model.dart';

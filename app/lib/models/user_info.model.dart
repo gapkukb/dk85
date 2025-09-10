@@ -1,3 +1,4 @@
+import 'package:app/helper/string_to_num.dart';
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
@@ -48,6 +49,9 @@ class UserModel {
   final num totalBet;
   final num totalBonus;
   final num totalRebate;
+  final num totalDepositAmount;
+  final num totalBetAmount;
+  final num totalRebateAmount;
   final UserLast lastRecharge;
   final UserLast lastWithdraw;
   final UserLastMessage lastMessage;
@@ -83,6 +87,9 @@ class UserModel {
     required this.lastRecharge,
     required this.lastWithdraw,
     required this.lastMessage,
+    required this.totalDepositAmount,
+    required this.totalBetAmount,
+    required this.totalRebateAmount,
     required this.id,
   });
 
@@ -121,6 +128,9 @@ class UserModel {
     totalBet: json["total_bet"],
     totalBonus: json["total_bonus"],
     totalRebate: json["total_rebate"],
+    totalDepositAmount: stringToNum(json["total_deposit_amount"]),
+    totalBetAmount: stringToNum(json["total_bet_amount"]),
+    totalRebateAmount: stringToNum(json["total_rebate_amount"]),
     lastRecharge: UserLast.fromJson(json["last_recharge"] ?? []),
     lastWithdraw: UserLast.fromJson(json["last_withdraw"] ?? []),
     lastMessage: UserLastMessage.fromJson(json["last_message"] ?? []),
@@ -154,6 +164,9 @@ class UserModel {
     "total_bet": totalBet,
     "total_bonus": totalBonus,
     "total_rebate": totalRebate,
+    "total_deposit_amount": totalDepositAmount,
+    "total_bet_amount": totalBetAmount,
+    "total_rebate_amount": totalRebateAmount,
     "last_recharge": lastRecharge.toJson(),
     "last_withdraw": lastWithdraw.toJson(),
     "last_message": lastMessage.toJson(),

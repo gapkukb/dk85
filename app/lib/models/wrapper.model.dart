@@ -4,7 +4,7 @@ class ModelWrapper {
   final int? code;
   final int? status;
   final String? message;
-  final Map<String, dynamic> data;
+  final dynamic data;
 
   ModelWrapper({this.code, this.status, this.message, required this.data});
 

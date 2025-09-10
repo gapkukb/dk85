@@ -22,10 +22,10 @@ class _AuthService extends GetxService {
     // 更新token
     try {
       _tokenManager.value.set(accessToken: token, refreshToken: token);
+      authManager.set(accessToken: token, refreshToken: token);
       _tokenManager.refresh();
       storage.token.update(token);
       // 获取用户信息
-      print('33333333333333333');
       await services.user.queryUserInfo();
       services.user.queryBalance();
       // 修改认证状态
@@ -55,7 +55,8 @@ class _AuthService extends GetxService {
     // 清空token和登录态
     _tokenManager.value.clear();
     _tokenManager.refresh();
-    services.app.toHomeView();
+    services.user.balance.value = 0;
+    services.app.toDashboardView();
   }
 
   void logout() {

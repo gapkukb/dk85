@@ -15,11 +15,11 @@ class VipDetailView extends GetView<VipController> {
       id: "vip",
       builder: (_) {
         return Scaffold(
-          appBar: AppBar(leading: AKBackButton(), title: Text("VIP ${'page.detail'.tr}")),
+          appBar: AppBar(leading: AKBackButton(), title: Text('vip.details'.tr)),
           body: SafeArea(
             child: ListView.separated(
               itemCount: controller.grades.length + 1,
-              padding: EdgeInsets.all(12),
+              padding: EdgeInsets.symmetric(horizontal: 12),
               separatorBuilder: (context, index) => SizedBox(height: 16),
               itemBuilder: (context, index) {
                 if (index == 0) return VipCardWidget();

@@ -31,7 +31,7 @@ class _MoreViewState extends State<MoreView> {
             additionalDividerMargin: 0,
             margin: EdgeInsets.all(0),
             children: [
-              AKTile(titleText: 'app.language'.tr, trailing: Obx(() => Text(I18n.getLocaleName(storage.locale.value))), onTap: LocaleSelector.showPicker),
+              // AKTile(titleText: 'app.language'.tr, trailing: Obx(() => Text(I18n.getLocaleName(storage.locale.value))), onTap: LocaleSelector.showPicker),
               AKTile(titleText: 'app.version'.tr, trailing: Text(packageInfo.info.version), isLink: false),
               AKTile(
                 titleText: 'app.bgm'.tr,
@@ -40,15 +40,16 @@ class _MoreViewState extends State<MoreView> {
                   scale: 0.85,
                   child: Obx(
                     () => CupertinoSwitch(
-                      value: storage.music.value,
+                      value: storage.audio.value,
                       onChanged: (value) {
-                        storage.music.update(value);
+                        storage.audio.update(value);
+                        value ? services.app.activeAudio() : services.app.deactiveAudio();
                       },
                     ),
                   ),
                 ),
                 isLink: false,
-                onTap: LocaleSelector.showPicker,
+                // onTap: LocaleSelector.showPicker,
               ),
             ],
           ),

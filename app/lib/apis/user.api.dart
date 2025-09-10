@@ -39,9 +39,24 @@ class _UserApi {
   ///获取会员等级列表
   final queryGradeList = http.get('/app/grade-list', decoder: VipModelWrapper.fromJson);
 
-  ///周礼金领取资格
+  ///查询周礼金领取资格
   final queryWeeklyBonus = http.get('/app/week-bonus', decoder: VipBounsWrapper.fromJson);
 
-  ///月礼金领取资格
+  ///周礼金领取
+  final claimWeeklyBonus = http.post('/app/get-week-bonus', decoder: ModelWrapper.fromJson, loading: true);
+
+  ///查询月礼金领取资格
   final queryMonthlyBonus = http.get('/app/month-bonus', decoder: VipBounsWrapper.fromJson);
+
+  ///月礼金领取
+  final claimMonthlyBonus = http.post('/app/get-month-bonus', decoder: ModelWrapper.fromJson, loading: true);
+
+  ///查询升级礼金领取资格
+  final queryVipUpgradeBonus = http.get('/app/vip-bonus', decoder: VipUpgradeBounsWrapper.fromJson);
+
+  ///升级礼金领取
+  final claimVipUpgradeBonus = http.post('/app/get-vip-bonus', decoder: ModelWrapper.fromJson, loading: true);
+
+  ///一键洗码
+  final rebate = http.post('/app/rebate', decoder: ModelWrapper.fromJson, loading: true);
 }

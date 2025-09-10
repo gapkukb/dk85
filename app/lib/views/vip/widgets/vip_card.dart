@@ -32,12 +32,12 @@ class VipCardWidget extends GetView<VipController> {
             children: [
               Obx(
                 () => Flexible(
-                  child: RequirementWidget(name: 'vip.need.bet'.tr, precent: controller.betProgress, limit: controller.myLevel.betLimit),
+                  child: RequirementWidget(name: 'vip.need.bet'.tr, precent: controller.betProgress, limit: controller.betLimit),
                 ),
               ),
               Obx(
                 () => Flexible(
-                  child: RequirementWidget(name: 'vip.need.charge'.tr, precent: controller.chargeProgress, limit: controller.myLevel.paymentLimit),
+                  child: RequirementWidget(name: 'vip.need.charge'.tr, precent: controller.chargeProgress, limit: controller.paymentLimit),
                 ),
               ),
             ],

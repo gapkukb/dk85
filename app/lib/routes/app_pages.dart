@@ -1,4 +1,3 @@
-import 'package:app/modal_views/daily_check_in/view.dart';
 import 'package:app/shared/customer_service/customer_service.dart';
 import 'package:app/views/activity_detail/activity_detail.dart';
 import 'package:app/views/auth/auth_view.dart';
@@ -22,6 +21,7 @@ import 'package:app/views/searching/bindings.dart';
 import 'package:app/views/searching/view.dart';
 import 'package:app/views/vip/detail_view.dart';
 import 'package:app/views/vip/view.dart';
+import 'package:app/views/rebate/view.dart';
 import 'package:get/get.dart';
 
 part 'app_routes.dart';
@@ -32,7 +32,7 @@ class AppPages {
   static const INITIAL = null;
 
   static final routes = [
-    GetPage(name: Routes.demo, page: () => const DailyCheckInView()),
+    GetPage(name: Routes.demo, page: () => const DemoView()),
     GetPage(name: Routes.auth, page: () => const AuthView()),
     GetPage(name: Routes.customerService, page: () => const CustomerServiceView()),
     GetPage(name: Routes.payee, page: () => const PayeeView()),
@@ -48,6 +48,7 @@ class AppPages {
     GetPage(name: Routes.gaming, page: () => const GamingView()),
     GetPage(name: Routes.fundsManager, page: () => const FundsMngView(), binding: FundsMngBinding()),
     GetPage(name: Routes.vip, page: () => const VipView()),
+    GetPage(name: Routes.rebate, page: () => const RebateView()),
     GetPage(name: Routes.vipDetail, page: () => const VipDetailView()),
     GetPage(name: Routes.history1, page: () => const HistoryPage1View()),
     GetPage(name: Routes.history2, page: () => const HistoryPage2View()),

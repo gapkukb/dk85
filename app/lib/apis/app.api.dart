@@ -13,4 +13,7 @@ class _AppApi {
 
   /// 查询活动详情
   final queryActivityDetail = http.get('/app/activity-details', decoder: ModelWrapper.fromJson);
+
+  /// 查询活动详情
+  final queryAnnouncements = http.get('/app/notice-list', decoder: AnnouncementModelWrapper.fromJson);
 }

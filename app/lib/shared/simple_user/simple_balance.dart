@@ -8,16 +8,12 @@ class SimpleBalance extends StatelessWidget {
   final bool depositable;
   const SimpleBalance({super.key, this.depositable = false});
 
-  String get username {
-    final u = services.user.userInfo.value?.username ?? '';
-    if (u.length < 8) return u;
-    return '${u.substring(0, 4)}***${u.substring(u.length - 3)}';
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 36,
+      width: 208,
+      // constraints: BoxConstraints(maxHeight: 36, minHeight: 36, minWidth: 200, maxWidth: 200),
       padding: const EdgeInsets.all(2),
       decoration: const BoxDecoration(color: AppColors.primary, borderRadius: BorderRadius.all(Radius.circular(100))),
       child: Row(
@@ -26,6 +22,7 @@ class SimpleBalance extends StatelessWidget {
         children: [
           const CircleAvatar(radius: 16, foregroundImage: AssetImage("assets/icons/logo-3.webp")),
           buildUser(),
+          Spacer(),
           depositable ? buildButton() : SizedBox(width: 2),
         ],
       ),
@@ -42,7 +39,7 @@ class SimpleBalance extends StatelessWidget {
           spacing: 2,
           children: [
             Text(
-              username,
+              '${services.user.userInfo.value?.shortName}',
               style: const TextStyle(fontSize: 10, color: Colors.white, fontWeight: FontWeight.normal),
             ),
             Container(
@@ -51,7 +48,7 @@ class SimpleBalance extends StatelessWidget {
               decoration: BoxDecoration(color: const Color(0xfffffac4), borderRadius: BorderRadius.circular(16)),
               child: Obx(
                 () => Text(
-                  "VIP${services.user.userInfo.value?.gradeId}",
+                  "VIP${services.user.userInfo.value?.gradeName}",
                   style: TextStyle(
                     fontSize: 8,
                     color: AppColors.primary,

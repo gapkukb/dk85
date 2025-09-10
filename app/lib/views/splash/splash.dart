@@ -14,18 +14,6 @@ class SplashView extends StatefulWidget {
 
 class _SplashViewState extends State<SplashView> {
   @override
-  void initState() {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(systemNavigationBarContrastEnforced: false, systemNavigationBarColor: Colors.transparent));
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.ltr,
@@ -34,7 +22,7 @@ class _SplashViewState extends State<SplashView> {
           onPressed: () {
             launchUrl(Uri.parse('https://flutter.dev'));
           },
-          child: Text('联系客服', style: TextStyle(color: AppColors.highlight)),
+          child: Text('Customer Service', style: TextStyle(color: AppColors.highlight)),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
         body: Container(
@@ -43,7 +31,7 @@ class _SplashViewState extends State<SplashView> {
           height: double.infinity,
           decoration: BoxDecoration(
             color: Colors.white,
-            image: DecorationImage(image: AssetImage("assets/images/splash.webp"), fit: BoxFit.cover),
+            image: DecorationImage(image: AssetImage("assets/images/splash.webp"), fit: BoxFit.fill),
           ),
           child: AKLoading(
             style: widget.erorr ? TextStyle(color: AppColors.danger) : null,

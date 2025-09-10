@@ -1,4 +1,3 @@
-import 'package:app/modal_views/guide/guide.dart';
 import 'package:app/services/index.dart';
 import 'package:app/shared/simple_user/auth_button.dart';
 import 'package:app/shared/simple_user/simple_balance.dart';

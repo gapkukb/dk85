@@ -19,17 +19,11 @@ class _Container {
     return _Dispatcher(storage, name, defautValue);
   }
 
-  _Dispatcher<Map<String, dynamic>> $map(
-    String name,
-    Map<String, dynamic> defautValue,
-  ) {
+  _Dispatcher<Map<String, dynamic>> $map(String name, Map<String, dynamic> defautValue) {
     return _Dispatcher(storage, name, defautValue);
   }
 
-  _Dispatcher<List<Map<String, dynamic>>> $list(
-    String name,
-    List<Map<String, dynamic>> defautValue,
-  ) {
+  _Dispatcher<List<Map<String, dynamic>>> $list(String name, List<Map<String, dynamic>> defautValue) {
     return _Dispatcher(storage, name, defautValue);
   }
 
@@ -37,17 +31,15 @@ class _Container {
     return _Dispatcher(storage, name, defautValue, decoder);
   }
 
-  _Dispatcher<T> $listType<T>(
-    String name,
-    T defautValue,
-    Function decoder,
-    Function encoder,
-  ) {
+  _Dispatcher<T> $listType<T>(String name, T defautValue, Function decoder, Function encoder) {
     return _Dispatcher(storage, name, defautValue, decoder);
   }
-}
 
-void main(List<String> args) async {
-  final app = _Container(name: 'app');
-  await app.storage.initStorage;
+  T? get<T>(String name, [T? defautValue]) {
+    return storage.read<T>(name) ?? defautValue;
+  }
+
+  Future<void> set<T>(String name, T value) {
+    return storage.write(name, value);
+  }
 }

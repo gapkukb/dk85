@@ -10,6 +10,6 @@ class CustomerServiceView extends StatefulWidget {
 class _CustomerServiceViewState extends State<CustomerServiceView> {
   @override
   Widget build(BuildContext context) {
-    return Webview(url: 'file:///android_asset/flutter_assets/assets/html/live-chat.html');
+    return Webview(url: customerServiceUrl, backButton: true);
   }
 }

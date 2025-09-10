@@ -169,8 +169,8 @@ class VipBouns {
 
   factory VipBouns.fromJson(Map<String, dynamic> json) => VipBouns(
     gradeId: json["grade_id"] ?? 0,
-    totalDepositAmount: json["totalDepositAmount"] ?? 0,
-    totalBetAmount: json["totalBetAmount"] ?? 0,
+    totalDepositAmount: stringToNum(json["totalDepositAmount"]),
+    totalBetAmount: stringToNum(json["totalBetAmount"]),
     isAvailable: json["is_available"] ?? false,
     isAvailableTxt: json["is_available_txt"] ?? '',
   );
@@ -182,4 +182,18 @@ class VipBouns {
     "is_available": isAvailable,
     "is_available_txt": isAvailableTxt,
   };
+}
+
+class VipUpgradeBounsWrapper {
+  final int code;
+  final int status;
+  final String message;
+  final List<VipBouns> data;
+
+  VipUpgradeBounsWrapper({required this.code, required this.status, required this.message, required this.data});
+
+  factory VipUpgradeBounsWrapper.fromRawJson(String str) => VipUpgradeBounsWrapper.fromJson(json.decode(str));
+
+  factory VipUpgradeBounsWrapper.fromJson(Map<String, dynamic> json) =>
+      VipUpgradeBounsWrapper(code: json["code"], status: json["status"], message: json["message"], data: List.from((json["data"] ?? []).map((i) => VipBouns.fromJson(i))));
 }
