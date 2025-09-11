@@ -13,6 +13,7 @@ import 'package:app/views/home/home_view.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:scaled_app/scaled_app.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class Application extends StatelessWidget {
   const Application({super.key});

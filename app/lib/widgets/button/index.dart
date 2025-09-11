@@ -148,7 +148,7 @@ class AKButton extends MaterialButton {
     }
 
     if (text != null) {
-      children.add(Text(text!, style: TextStyle(fontSize: max((height ?? MEDIUM) / 3.5, 12))));
+      children.add(Text(text!, style: TextStyle(fontSize: max((height ?? MEDIUM) / 3, 12))));
     }
 
     if (rightIcon != null) {

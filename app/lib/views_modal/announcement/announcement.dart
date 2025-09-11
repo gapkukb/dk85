@@ -50,7 +50,7 @@ class _AnnouncementModalState extends State<AnnouncementModal> {
       margin: EdgeInsets.symmetric(horizontal: 4),
       alignment: Alignment(0, 0),
       decoration: BoxDecoration(
-        color: AppColors.primary,
+        color: AppColors.highlight,
         borderRadius: BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8)),
       ),
       child: Text(

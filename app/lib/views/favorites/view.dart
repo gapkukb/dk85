@@ -1,8 +1,12 @@
+import 'package:app/services/index.dart';
+import 'package:app/theme/index.dart';
 import 'package:app/widgets/back_button/back_button.dart';
 import 'package:app/widgets/game/index.dart';
+import 'package:app/widgets/state_block/state_block.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import 'index.dart';
 
@@ -16,11 +20,19 @@ class FavoritesView extends GetView<FavoritesController> {
     return GetBuilder<FavoritesController>(
       builder: (_) {
         return Scaffold(
-          appBar: AppBar(
-            leading: AKBackButton(),
-            title: Text("page.favorites".tr),
+          appBar: AppBar(leading: AKBackButton(), title: Text("fav.title".tr)),
+          body: Padding(
+            padding: Gutter.horizontal.normal,
+            child: SafeArea(
+              child: Obx(
+                () => GameGridView(
+                  loading: controller.loading.value,
+                  gameList: controller.favorites.value,
+                  empty: () => StateBlock(buttonText: 'fav.browser'.tr, onPressed: services.app.toDashboardView),
+                ),
+              ),
+            ),
           ),
-          body: SafeArea(child: GameGridView(gameList: [])),
         );
       },
     );

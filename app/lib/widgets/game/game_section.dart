@@ -1,10 +1,11 @@
+import 'package:app/models/game.model.dart';
 import 'package:flutter/material.dart';
 import 'package:app/theme/index.dart';
 import 'package:app/widgets/game/index.dart';
 
 class SliverGameSection extends StatelessWidget {
   final String title;
-  final List<dynamic> games;
+  final List<GameModel> games;
 
   const SliverGameSection(this.title, this.games, {super.key});
 

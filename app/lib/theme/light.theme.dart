@@ -7,12 +7,9 @@ final lightTheme = ThemeData(
   cardColor: Colors.white, //卡片颜色
   dividerColor: Colors.white, //分割线颜色
   canvasColor: Colors.white, //这是整个屏幕或应用程序窗口的背景色。它定义了所有其他 UI 元素的基色。
-  scaffoldBackgroundColor:
-      AppColors.background, //脚手架本身的背景颜色，包括应用栏、正文内容区域和底部导航栏（如果存在）。
-  highlightColor:
-      Colors.transparent, //用户点击并按住 Widget 时短暂显示的颜色。它为用户提供了交互已注册的视觉反馈。
-  focusColor:
-      Colors.transparent, //有焦点的颜色，这意味着该元素将接收键盘输入。这对于突出显示当前活动元素，吸引用户注意非常有用。
+  scaffoldBackgroundColor: AppColors.background, //脚手架本身的背景颜色，包括应用栏、正文内容区域和底部导航栏（如果存在）。
+  highlightColor: Colors.transparent, //用户点击并按住 Widget 时短暂显示的颜色。它为用户提供了交互已注册的视觉反馈。
+  focusColor: Colors.transparent, //有焦点的颜色，这意味着该元素将接收键盘输入。这对于突出显示当前活动元素，吸引用户注意非常有用。
   // primaryColor: Colors.white,
   colorScheme: ColorScheme(
     brightness: Brightness.light,
@@ -31,22 +28,15 @@ final lightTheme = ThemeData(
     scrolledUnderElevation: 0,
     titleTextStyle: _style.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
   ),
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    type: BottomNavigationBarType.fixed,
-    unselectedItemColor: AppColors.label,
-    selectedItemColor: AppColors.primary,
-  ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(type: BottomNavigationBarType.fixed, unselectedItemColor: AppColors.label, selectedItemColor: AppColors.primary),
   listTileTheme: ListTileThemeData(
     tileColor: AppColors.white,
     titleTextStyle: TextStyle(fontSize: 14, color: AppColors.title),
-    leadingAndTrailingTextStyle: TextStyle(
-      fontSize: 14,
-      color: AppColors.label,
-    ),
+    leadingAndTrailingTextStyle: TextStyle(fontSize: 14, color: AppColors.label),
   ),
   inputDecorationTheme: const InputDecorationTheme(
     floatingLabelBehavior: FloatingLabelBehavior.always,
-    hintStyle: TextStyle(fontSize: 12, color: AppColors.description),
+    hintStyle: TextStyle(fontSize: 14, color: AppColors.description),
     // errorStyle: _style,
     labelStyle: _style,
     helperStyle: _style,
@@ -54,17 +44,17 @@ final lightTheme = ThemeData(
     suffixStyle: _style,
     counterStyle: _style,
     floatingLabelStyle: _style,
-    outlineBorder: BorderSide.none,
     filled: true,
-    fillColor: AppColors.background,
-    focusColor: AppColors.white,
-    hoverColor: AppColors.white,
     isDense: true,
+    outlineBorder: BorderSide.none,
+    fillColor: AppColors.background,
+    focusColor: AppColors.background,
+    hoverColor: AppColors.background,
     prefixIconColor: AppColors.description,
     suffixIconColor: AppColors.description,
-    prefixIconConstraints: BoxConstraints.tightFor(width: 34, height: 48),
-    suffixIconConstraints: BoxConstraints.tightFor(width: 34, height: 48),
-    contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+    prefixIconConstraints: BoxConstraints.tightFor(width: 30, height: 48),
+    suffixIconConstraints: BoxConstraints.tightFor(width: 30, height: 48),
+    contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(8)),
       borderSide: BorderSide(width: 0, style: BorderStyle.none),

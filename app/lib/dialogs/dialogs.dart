@@ -1,4 +1,5 @@
 import 'package:app/views_modal/announcement/announcement.dart';
+import 'package:app/views_modal/completion/completion.dart';
 import 'package:app/views_modal/daily_check_in/view.dart';
 import 'package:app/views_modal/force_update/force_update.dart';
 import 'package:app/views_modal/top_up_bonus/top_up_bonus.dart';

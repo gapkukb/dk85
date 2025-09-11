@@ -23,7 +23,7 @@ class _MoreViewState extends State<MoreView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(leading: AKBackButton(), title: Text("page.more".tr)),
+      appBar: AppBar(leading: AKBackButton(), title: Text("more.title".tr)),
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: 12),
         children: [

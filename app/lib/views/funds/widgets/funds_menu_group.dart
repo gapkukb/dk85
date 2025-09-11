@@ -16,27 +16,12 @@ class FundsMenuGroup extends GetView<FundsController> {
       child: GridView(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 24),
         physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4,
-          childAspectRatio: 1 / 2,
-        ),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4, childAspectRatio: 1 / 2),
         children: [
-          FundsMenu(
-            IconFont.zidongqukuanji,
-            "funds.account".tr,
-            to: Routes.fundsManager,
-          ),
-          FundsMenu(IconFont.yuyuejilu, "game.history".tr, to: Routes.history1),
-          FundsMenu(
-            IconFont.genzongjilu,
-            "funds.history".tr,
-            to: Routes.history2,
-          ),
-          FundsMenu(
-            IconFont.kefu,
-            "page.service".tr,
-            to: Routes.customerService,
-          ),
+          FundsMenu(IconFont.zidongqukuanji, "funds.account".tr, to: Routes.fundsManager),
+          FundsMenu(IconFont.yuyuejilu, "funds.gameHistory".tr, to: Routes.history1),
+          FundsMenu(IconFont.genzongjilu, "funds.history".tr, to: Routes.history2),
+          FundsMenu(IconFont.kefu, "app.service".tr, to: Routes.customerService),
         ],
       ),
     );

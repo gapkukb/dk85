@@ -59,4 +59,10 @@ class _UserApi {
 
   ///一键洗码
   final rebate = http.post('/app/rebate', decoder: ModelWrapper.fromJson, loading: true);
+
+  ///收藏游戏
+  final addFavorite = http.post('/app/add-favorite', loading: true);
+
+  ///收藏游戏
+  final removeFavorite = http.post('/app/remove-favorite', loading: true);
 }

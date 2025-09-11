@@ -3,6 +3,9 @@ part of 'dialogs.dart';
 abstract class DialogNames {
   static const home = 'home';
 
+  /// 完善信息
+  static const completion = 'completion';
+
   /// 公告
   static const announcement = 'announcement';
 

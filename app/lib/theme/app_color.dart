@@ -14,7 +14,7 @@ abstract class AppColors {
   static const dddddd = Color(0xffdddddd);
   static const ffeee5 = Color(0xffffeee5);
   static const description = Color(0xff999999);
-  static const skeleton = Color.fromARGB(255, 219, 217, 226);
+  static const skeleton = Color(0xFFE8E6EC);
   static const loading = Color(0xffe5e5e5);
   static const danger = Color(0xffff0000);
   static const success = Colors.green;

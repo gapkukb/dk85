@@ -1,8 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import '/theme/index.dart';
 
 class AKBaseInput extends StatefulWidget {
@@ -104,7 +102,7 @@ class _AKBaseInputState extends State<AKBaseInput> {
 
   @override
   Widget build(BuildContext context) {
-    const style = TextStyle(height: 0.8, fontSize: 10);
+    const style = TextStyle(height: 0.8, fontSize: 12);
     return Padding(
       padding: EdgeInsets.only(bottom: widget.marginBottom),
       child: TextFormField(
@@ -182,7 +180,7 @@ class _AKBaseInputState extends State<AKBaseInput> {
           child: GestureDetector(
             onTap: controller.clear,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: const EdgeInsets.only(left: 8.0),
               child: Transform.scale(scale: 2, child: const Icon(Icons.cancel, size: 10, color: AppColors.description)),
             ),
           ),

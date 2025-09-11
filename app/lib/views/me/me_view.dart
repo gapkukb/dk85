@@ -59,7 +59,7 @@ class _MeView extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 8),
             decoration: BoxDecoration(color: Color(0xfffffac4), borderRadius: BorderRadius.circular(100)),
             child: Text(
-              'VIP1',
+              'VIP${services.user.userInfo.value?.gradeName}',
               style: TextStyle(fontSize: 12, fontStyle: FontStyle.italic, color: AppColors.primary, fontWeight: FontWeight.bold),
             ),
           ),
@@ -83,7 +83,7 @@ class _MeView extends StatelessWidget {
                     onPressed: () {
                       services.app.toFundsView(0);
                     },
-                    text: 'app.withdraw'.tr,
+                    text: 'app.deposit'.tr,
                     color: AppColors.white,
                     textColor: AppColors.primary,
                   ),
@@ -123,18 +123,18 @@ class _MeView extends StatelessWidget {
         margin: EdgeInsets.all(12),
         additionalDividerMargin: 0,
         children: [
-          AKTile(titleText: "page.account".tr, to: Routes.profile),
+          AKTile(titleText: "acc.title".tr, to: Routes.profile),
           AKTile(titleText: "rebate.title".tr, to: Routes.rebate),
           AKTile(
-            titleText: "page.vip".tr,
-            titleTextStyle: TextStyle(color: AppColors.primary),
+            titleText: "vip.title".tr,
+            titleTextStyle: TextStyle(color: AppColors.highlight, fontWeight: FontWeight.bold),
             to: Routes.vip,
           ),
-          AKTile(titleText: "page.favorites".tr, to: Routes.favorites),
+          AKTile(titleText: "fav.title".tr, to: Routes.favorites),
           // AKTile(titleText: "page.invitation".tr, to: Routes.invitation),
-          AKTile(titleText: "page.service".tr, onTap: CustomerService.call),
-          AKTile(titleText: "page.inbox".tr, to: Routes.inbox),
-          AKTile(titleText: "page.more".tr, to: Routes.more),
+          AKTile(titleText: "app.service".tr, onTap: CustomerService.call),
+          AKTile(titleText: "inbox.title".tr, to: Routes.inbox),
+          AKTile(titleText: "app.more".tr, to: Routes.more),
         ],
       ),
     );

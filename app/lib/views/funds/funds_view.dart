@@ -37,7 +37,7 @@ class _FundsView extends GetView<FundsController> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(300 + tabbarHeight),
         child: AppBar(
-          title: Text("page.funds".tr),
+          title: Text("funds.title".tr),
           titleTextStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.title, fontFamily: 'myanmarcensus'),
           flexibleSpace: FlexibleSpaceBar(
             titlePadding: EdgeInsets.all(0),

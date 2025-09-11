@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class Useform {
-  final _values = {};
-  final Function(Map values) _submit;
+  final Map<String, dynamic> _values = {};
+  final Function(Map<String, dynamic> values) _submit;
   final key = GlobalKey<FormState>();
 
   Useform(this._submit);
 
   void Function(dynamic value) saveAs(String name) {
-    return (dynamic value) {
+    return (value) {
       _values[name] = value;
     };
   }

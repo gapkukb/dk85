@@ -19,17 +19,25 @@ class GameItemView extends StatelessWidget {
           children: [
             Stack(
               children: [
-                AspectRatio(aspectRatio: 1, child: NetworkPicture(imageUrl: game.img)),
+                AspectRatio(
+                  aspectRatio: 1,
+                  child: Skeleton.replace(
+                    replacement: Container(color: AppColors.skeleton),
+                    child: NetworkPicture(imageUrl: game.img),
+                  ),
+                ),
                 Positioned(
                   right: 0,
                   top: 0,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(color: Colors.black54),
-                    child: Padding(
-                      padding: EdgeInsetsGeometry.only(left: 4, right: 4),
-                      child: Text(
-                        game.platform,
-                        style: TextStyle(fontSize: 10, color: Colors.white, fontWeight: FontWeight.bold),
+                  child: Skeleton.ignore(
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(color: Colors.black54),
+                      child: Padding(
+                        padding: EdgeInsetsGeometry.only(left: 4, right: 4),
+                        child: Text(
+                          game.platform,
+                          style: TextStyle(fontSize: 10, color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                   ),
@@ -44,37 +52,15 @@ class GameItemView extends StatelessWidget {
                   Expanded(
                     child: Text(game.name, maxLines: 1, softWrap: false, overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 12)),
                   ),
-                  Align(alignment: Alignment.centerRight, child: FavButton()),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: GameFavButton(gameId: game.id, platormId: 17),
+                  ),
                 ],
               ),
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class FavButton extends StatefulWidget {
-  bool liked;
-  FavButton({super.key, this.liked = false});
-
-  @override
-  State<FavButton> createState() => _FavButtonState();
-}
-
-class _FavButtonState extends State<FavButton> {
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox.square(
-      dimension: 28,
-      child: IconButton(
-        padding: EdgeInsets.zero,
-        icon: Icon(widget.liked ? IconFont.heart_fill : IconFont.heart, color: widget.liked ? Color(0xffff5800) : Colors.black, size: 16),
-        onPressed: () {
-          widget.liked = !widget.liked;
-          setState(() {});
-        },
       ),
     );
   }

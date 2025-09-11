@@ -4,12 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 final placeHolderImage = Skeletonizer(
-  effect: const ShimmerEffect(
-    begin: AlignmentDirectional(-1.3, -0.3),
-    end: AlignmentDirectional(1.3, 0.3),
-    baseColor: AppColors.skeleton,
-    highlightColor: Color(0xffeeeeee),
-  ),
+  effect: const ShimmerEffect(begin: AlignmentDirectional(-2, -0.3), end: AlignmentDirectional(2, 0.3), baseColor: AppColors.skeleton, highlightColor: Color(0xffeeeeee)),
   child: SizedBox(
     width: double.infinity,
     height: double.infinity,

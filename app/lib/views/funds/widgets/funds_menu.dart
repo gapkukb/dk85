@@ -20,15 +20,9 @@ class FundsMenu extends StatelessWidget {
             width: 48,
             height: 48,
             decoration: const BoxDecoration(
-              border: Border(
-                bottom: BorderSide(width: 3, color: Color(0xffffae83)),
-              ),
+              border: Border(bottom: BorderSide(width: 3, color: Color(0xffffae83))),
               borderRadius: BorderRadius.all(Radius.circular(8)),
-              gradient: RadialGradient(
-                colors: [Color(0xffFFECE2), Color(0xffFFCBAF)],
-                center: Alignment(0, -1.2),
-                radius: 1,
-              ),
+              gradient: RadialGradient(colors: [Color(0xffFFECE2), Color(0xffFFCBAF)], center: Alignment(0, -1.2), radius: 1),
             ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -42,12 +36,7 @@ class FundsMenu extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             softWrap: false,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 14,
-              height: 1,
-              fontWeight: FontWeight.w100,
-              color: AppColors.label,
-            ),
+            style: const TextStyle(fontSize: 12, height: 1, fontWeight: FontWeight.w500, color: AppColors.label),
           ),
         ],
       ),

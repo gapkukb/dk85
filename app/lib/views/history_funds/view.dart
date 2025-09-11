@@ -67,8 +67,6 @@ class _Tile extends StatelessWidget {
   const _Tile(this.record);
   @override
   Widget build(BuildContext context) {
-    final amount = '+997,800.00';
-
     return ListTile(
       titleAlignment: ListTileTitleAlignment.bottom,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
