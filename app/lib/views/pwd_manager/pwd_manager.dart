@@ -24,41 +24,45 @@ class _PwdManagerState extends State<PwdManagerView> {
       BotToast.showLoading();
       await apis.user.changePwd(data: values);
       BotToast.closeAllLoading();
-      await showSuccess(text: '修改密码成功');
+      await showSuccess();
       Get.back();
     } catch (e) {
       BotToast.closeAllLoading();
+      rethrow;
     }
   });
   final ctrl = TextEditingController();
+  final hasPass = services.user.userInfo.value?.hasPass == 1;
 
   @override
   Widget build(BuildContext context) {
-    final settled = true;
-
     return Form(
       key: form.key,
       child: Scaffold(
         appBar: AppBar(
           leading: AKBackButton(),
-          title: Text(settled ? "Change Password" : "Set Password"),
+          title: Text((hasPass ? "acc.password.change" : "acc.password.set").tr),
           actionsPadding: EdgeInsets.only(right: 12),
           actions: [CustomerService()],
         ),
         body: SafeArea(
-          child: ListView(
-            padding: EdgeInsets.all(12),
-            children: [
-              if (settled) AKPwdInput(onSaved: form.saveAs('old_password'), placeholder: 'form.pwd.old'.tr, backgroundColor: AppColors.white),
+          child: Padding(
+            padding: Gutter.all.normal,
+            child: Column(
+              spacing: 8,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                if (hasPass) AKPwdInput(onSaved: form.saveAs('old_password'), placeholder: 'form.pwd.old'.tr, backgroundColor: AppColors.white),
 
-              AKPwdInput(controller: ctrl, onSaved: form.saveAs('new_password'), backgroundColor: AppColors.white),
+                AKPwdInput(controller: ctrl, onSaved: form.saveAs('new_password'), backgroundColor: AppColors.white),
 
-              AKPwdInput(reference: ctrl, backgroundColor: AppColors.white),
+                AKPwdInput(reference: ctrl, backgroundColor: AppColors.white),
 
-              SizedBox(height: 8),
+                SizedBox(height: 8),
 
-              AKButton(onPressed: form.submit, text: settled ? 'pwd.change'.tr : 'pwd.change'.tr),
-            ],
+                AKButton(onPressed: form.submit, text: hasPass ? 'app.change'.tr : 'app.bind'.tr),
+              ],
+            ),
           ),
         ),
       ),

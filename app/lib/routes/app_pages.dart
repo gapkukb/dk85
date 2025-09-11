@@ -28,7 +28,7 @@ part 'app_routes.dart';
 
 // ignore: avoid_classes_with_only_static_members
 class AppPages {
-  static const INITIAL = Routes.favorites;
+  static const INITIAL = Routes.inbox;
   // static const INITIAL = null;
 
   static final routes = [

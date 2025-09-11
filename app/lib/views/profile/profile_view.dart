@@ -21,19 +21,21 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(leading: AKBackButton(), title: Text("page.account".tr)),
+      appBar: AppBar(leading: AKBackButton(), title: Text("acc.title".tr)),
       body: SafeArea(
-        child: ListView(
+        child: Column(
           children: [
-            CupertinoListSection.insetGrouped(
-              additionalDividerMargin: 0,
-              margin: EdgeInsets.only(left: 12, right: 12),
-              children: [
-                AKTile(titleText: 'account.password'.tr, trailing: buildTail(true), to: Routes.pwd),
-                Obx(() => AKTile(titleText: 'account.mobile'.tr, trailing: buildTail(user.mobile != null && user.mobile!.isNotEmpty), to: Routes.mobile)),
-                Obx(() => AKTile(titleText: 'account.email'.tr, trailing: buildTail(user.email != null && user.email!.isNotEmpty), to: Routes.email)),
-              ],
-            ),
+            Obx(() {
+              return CupertinoListSection.insetGrouped(
+                additionalDividerMargin: 0,
+                margin: Gutter.all.normal,
+                children: [
+                  AKTile(titleText: 'acc.password'.tr, trailing: buildTail(user.hasPass == 1), to: Routes.pwd),
+                  AKTile(titleText: 'acc.mobile'.tr, trailing: buildTail(user.mobile.isNotEmpty), to: Routes.mobile),
+                  AKTile(titleText: 'acc.email'.tr, trailing: buildTail(user.email.isNotEmpty), to: Routes.email),
+                ],
+              );
+            }),
           ],
         ),
       ),

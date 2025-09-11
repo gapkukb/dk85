@@ -23,8 +23,8 @@ class _MobileState extends State<MobileView> {
   UserModel get user => services.user.userInfo.value!;
   final form = Useform((values) async {
     await apis.user.bindMobile(data: values);
+    await showSuccess();
     services.user.queryUserInfo();
-    await showSuccess(text: '绑定手机号成功');
     Get.back();
   });
 
@@ -32,11 +32,9 @@ class _MobileState extends State<MobileView> {
   Widget build(BuildContext context) {
     return Form(
       key: form.key,
-      child: SafeArea(
-        child: Scaffold(
-          appBar: AppBar(leading: AKBackButton(), title: Text("Mobile")),
-          body: user.mobile == null ? buildBindView() : buildUpdateView(),
-        ),
+      child: Scaffold(
+        appBar: AppBar(leading: AKBackButton(), title: Text("acc.mobile".tr)),
+        body: user.mobile.isEmpty ? buildBindView() : buildUpdateView(),
       ),
     );
   }
@@ -45,17 +43,17 @@ class _MobileState extends State<MobileView> {
     return ListView(
       padding: EdgeInsets.all(12),
       children: [
-        Text("Bind You Mobile Number", style: TextStyle(fontSize: 12, color: AppColors.label)),
+        Text("acc.mobile.bind".tr, style: TextStyle(fontSize: 12, color: AppColors.label)),
         SizedBox(height: 16),
 
         Text(
-          "${user.mobile}",
+          user.mobile,
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.title),
         ),
 
         AKMobileInput(onSaved: form.saveAs('mobile')),
         SizedBox(height: 16),
-        AKButton(onPressed: () {}, text: 'Bind'),
+        AKButton(onPressed: () {}, text: 'app.bind'.tr),
       ],
     );
   }
@@ -64,12 +62,12 @@ class _MobileState extends State<MobileView> {
     return ListView(
       padding: EdgeInsets.all(12),
       children: [
-        Text("You Mobile Number Is", style: TextStyle(fontSize: 12, color: AppColors.label)),
+        Text("acc.mobile.is".tr, style: TextStyle(fontSize: 12, color: AppColors.label)),
 
         SizedBox(height: 8),
 
         Text(
-          "${user.mobile}",
+          user.mobile,
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.title),
         ),
 

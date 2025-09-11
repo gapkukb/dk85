@@ -27,6 +27,8 @@ const Map<String, String> en = {
   "app.bgm": "BGM",
   "app.state.empty": "Nothing Here",
   "app.state.network": "Network Error",
+  "app.change": "Change",
+  "app.bind": "Bind",
 
   /// 钱包
   "funds.title": "Wallet",
@@ -45,13 +47,22 @@ const Map<String, String> en = {
 
   // 游戏收藏页面
   "fav.title": "My Favorites",
-  "fav.browser": "Browser All Games",
+  "fav.browser": "View All Games",
 
   // 洗码返利页面
   "rebate.title": "Rebate",
 
   // 账户页面
   "acc.title": "Account",
+  "acc.password": "Login Password",
+  "acc.password.change": "Change Password",
+  "acc.password.set": "Set Password",
+  "acc.mobile": "Mobile Number",
+  "acc.mobile.bind": "Bind your mobile number",
+  "acc.mobile.is": "Your mobile number is",
+  "acc.email": "Email Address",
+  "acc.email.bind": "Bind your email address",
+  "acc.email.is": "Your email address is",
 
   // 消息页面
   "inbox.title": "Message",
@@ -74,15 +85,15 @@ const Map<String, String> en = {
   "more.title": "More",
 
   /// 表单相关
-  "form.acc.placed": "Enter your account",
+  "form.acc.placed": "Enter your account number",
   "form.acc.error": "Your account incorrect",
-  "form.pwd.old": "Enter Your Old Password",
-  "form.pwd.placed": "Enter Your Password",
+  "form.pwd.old": "Enter your old password",
+  "form.pwd.placed": "Enter your password",
   "form.pwd.error": "Password must be 6-20 characters long",
   "form.repwd.placed": "Confirm your password",
   "form.repwd.error": "Password confirmation does not match",
   "form.graphic.placed": "Enter 4-character code",
-  "form.graphic.error": "The verification code must be 4 characters",
+  "form.graphic.error": "The code must be 4 characters",
   "form.email.placed": "Enter your email address",
   "form.email.error": "Your email incorrect",
   "form.tel.placed": "Enter your tel number",

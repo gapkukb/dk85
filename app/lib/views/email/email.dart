@@ -8,8 +8,6 @@ import 'package:app/theme/index.dart';
 import 'package:app/widgets/back_button/back_button.dart';
 import 'package:app/widgets/button/index.dart';
 import 'package:app/widgets/input_email/input_email.dart';
-import 'package:app/widgets/input_mobile/input_mobile.dart';
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,8 +22,8 @@ class _EmaileState extends State<EmailView> {
   UserModel get user => services.user.userInfo.value!;
   final form = Useform((values) async {
     await apis.user.bindEmail(data: values);
+    await showSuccess();
     services.user.queryUserInfo();
-    await showSuccess(text: '绑定邮箱成功');
     Get.back();
   });
 
@@ -33,11 +31,9 @@ class _EmaileState extends State<EmailView> {
   Widget build(BuildContext context) {
     return Form(
       key: form.key,
-      child: SafeArea(
-        child: Scaffold(
-          appBar: AppBar(leading: AKBackButton(), title: Text("Email")),
-          body: user.email == null || user.email!.isEmpty ? buildBindView() : buildUpdateView(),
-        ),
+      child: Scaffold(
+        appBar: AppBar(leading: AKBackButton(), title: Text("acc.email".tr)),
+        body: user.email.isEmpty ? buildBindView() : buildUpdateView(),
       ),
     );
   }
@@ -46,11 +42,11 @@ class _EmaileState extends State<EmailView> {
     return ListView(
       padding: EdgeInsets.all(12),
       children: [
-        Text("Bind You Email Address", style: TextStyle(fontSize: 12, color: AppColors.label)),
+        Text("acc.email.bind".tr, style: TextStyle(fontSize: 12, color: AppColors.label)),
         SizedBox(height: 16),
         AKEmailInput(backgroundColor: Colors.white, onSaved: form.saveAs('email')),
         SizedBox(height: 16),
-        AKButton(onPressed: form.submit, text: 'Bind'),
+        AKButton(onPressed: form.submit, text: 'app.bind'.tr),
       ],
     );
   }
@@ -59,12 +55,12 @@ class _EmaileState extends State<EmailView> {
     return ListView(
       padding: EdgeInsets.all(12),
       children: [
-        Text("You Email Address Is", style: TextStyle(fontSize: 12, color: AppColors.label)),
+        Text("acc.email.is".tr, style: TextStyle(fontSize: 12, color: AppColors.label)),
 
         SizedBox(height: 8),
 
         Text(
-          "test@***.com",
+          user.email,
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.title),
         ),
 

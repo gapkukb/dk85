@@ -8,6 +8,7 @@ import 'package:app/models/daily_check_in.model.dart';
 import 'package:app/models/fund_record.model.dart';
 import 'package:app/models/game.model.dart';
 import 'package:app/models/game_record.model.dart';
+import 'package:app/models/inbox.model.dart';
 import 'package:app/models/top_up.model.dart';
 import 'package:app/models/top_up_order.model.dart';
 import 'package:app/models/user_info.model.dart';

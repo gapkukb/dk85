@@ -137,6 +137,8 @@ class _AKBaseInputState extends State<AKBaseInput> {
         // cursorWidth: 1,
         decoration: widget.decoration.copyWith(
           fillColor: widget.backgroundColor,
+          focusColor: widget.backgroundColor,
+          hoverColor: widget.backgroundColor,
           floatingLabelBehavior: FloatingLabelBehavior.always,
           helperText: ' ',
           counterText: ' ',

@@ -65,4 +65,7 @@ class _UserApi {
 
   ///收藏游戏
   final removeFavorite = http.post('/app/remove-favorite', loading: true);
+
+  ///获取消息列表
+  final queryInbox = http.get('/app/message-list', decoder: InboxModelWrapper.fromJson);
 }
