@@ -1,5 +1,9 @@
 part of 'index.dart';
 
+const inputBorder = OutlineInputBorder(
+  borderRadius: BorderRadius.all(Radius.circular(8)),
+  borderSide: BorderSide(width: 0, style: BorderStyle.none),
+);
 final lightTheme = ThemeData(
   brightness: Brightness.light, //深色还是浅色
   // primarySwatch: MaterialColor(primary, swatch), //主题颜色样本
@@ -52,17 +56,14 @@ final lightTheme = ThemeData(
     hoverColor: AppColors.background,
     prefixIconColor: AppColors.description,
     suffixIconColor: AppColors.description,
-    prefixIconConstraints: BoxConstraints.tightFor(width: 30, height: 48),
-    suffixIconConstraints: BoxConstraints.tightFor(width: 30, height: 48),
+    prefixIconConstraints: BoxConstraints.tightFor(width: 34, height: 48),
+    suffixIconConstraints: BoxConstraints.tightFor(width: 34, height: 48),
     contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(8)),
-      borderSide: BorderSide(width: 0, style: BorderStyle.none),
-    ),
-
-    errorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(100)),
-      borderSide: BorderSide(width: 0, style: BorderStyle.none),
-    ),
+    border: inputBorder,
+    errorBorder: inputBorder,
+    enabledBorder: inputBorder,
+    focusedBorder: inputBorder,
+    disabledBorder: inputBorder,
+    focusedErrorBorder: inputBorder,
   ),
 );

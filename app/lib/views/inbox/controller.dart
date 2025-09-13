@@ -1,31 +1,23 @@
 import 'package:app/apis/apis.dart';
 import 'package:app/models/inbox.model.dart';
-import 'package:app/shared/view_model/view_model.dart';
-import 'package:get/get.dart';
-import 'package:pull_to_refresh/src/smart_refresher.dart';
+import 'package:app/shared/date_view/data_view_logic.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
-import 'index.dart';
-
-class InboxController extends GetxController {
-  // InboxController();
-  final loading = true.obs;
-  final messages = <InboxModel>[].obs;
-  final refresher = RefreshController();
-
+class InboxController extends DataViewLogic<InboxModel> {
   @override
-  void onInit() {
-    queryInbox();
-    super.onInit();
-  }
-
-  Future queryInbox() async {
-    await Future.delayed(Duration(seconds: 3));
-    final r = await apis.user.queryInbox(payload: {'page': 1, 'size': 100}).whenComplete(() {
+  int get size => 20;
+  @override
+  fetch() async {
+    final r = await apis.user.queryInbox(payload: {'page': 1, 'size': size}).whenComplete(() {
       loading.value = false;
     });
-    messages.value = r.data.list ?? [];
+    count = r.data.count;
+    return r.data.list;
   }
 
-  void onRefresh() async {}
-  void onLoading() async {}
+  @override
+  List<InboxModel> provideMock() {
+    final item = InboxModel.fromJson({"title": BoneMock.words(4), "content": BoneMock.words(14), "created_at": BoneMock.words(3)});
+    return List.filled(8, item);
+  }
 }

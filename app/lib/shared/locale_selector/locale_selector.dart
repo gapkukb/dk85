@@ -22,13 +22,14 @@ class LocaleSelector extends StatelessWidget {
     return Chooser<String>(
       initValue: storage.locale.value,
       builder: (context, title, value) {
-        return Container(
-          alignment: Alignment.center,
-          decoration: decoration,
-          width: size,
-          height: size,
-          child: VectorGraphic(loader: AssetBytesLoader("assets/svg/translator.svg"), width: iconSize, height: iconSize),
-        );
+        return child ??
+            Container(
+              alignment: Alignment.center,
+              decoration: decoration,
+              width: size,
+              height: size,
+              child: VectorGraphic(loader: AssetBytesLoader("assets/svg/translator.svg"), width: iconSize, height: iconSize),
+            );
       },
       options: ChooserOptions(items: options),
       onChanged: (value, current) {

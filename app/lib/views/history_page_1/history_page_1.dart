@@ -33,9 +33,10 @@ class _HistoryPage1ViewState extends State<HistoryPage1View> with SingleTickerPr
             indicatorColor: Colors.transparent,
             controller: controller,
             dividerHeight: 0,
+            labelPadding: EdgeInsets.all(0),
             tabs: [
-              Tab(text: "records.funds".tr),
-              Tab(text: "records.funds".tr),
+              Tab(text: "records.change.title".tr),
+              Tab(text: "records.game.title".tr),
             ],
           ),
         ),
@@ -45,7 +46,7 @@ class _HistoryPage1ViewState extends State<HistoryPage1View> with SingleTickerPr
         child: TabBarView(
           controller: controller,
           children: [
-            KeepAliveWrapper(child: HistoryFundsView()),
+            HistoryFundsView(),
             KeepAliveWrapper(child: HistoryGamesView()),
           ],
         ),

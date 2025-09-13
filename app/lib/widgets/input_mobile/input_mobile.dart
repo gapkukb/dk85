@@ -8,8 +8,9 @@ import '../input_base/input_base.dart';
 
 class AKMobileInput extends StatefulWidget {
   final bool changeable;
+  final Color? backgroundColor;
   final FormFieldSetter<String>? onSaved;
-  const AKMobileInput({super.key, this.onSaved, this.changeable = false});
+  const AKMobileInput({super.key, this.onSaved, this.changeable = false, this.backgroundColor});
 
   @override
   _AKMobileInputState createState() => _AKMobileInputState();
@@ -22,11 +23,9 @@ class _AKMobileInputState extends State<AKMobileInput> {
   Widget build(BuildContext context) {
     return AKBaseInput(
       placeholder: "form.tel.placed".tr,
+      backgroundColor: widget.backgroundColor,
       prefixIconName: IconFont.mobile,
-      prefix: GestureDetector(
-        onTap: widget.changeable ? showPicker : null,
-        child: buildAreaCode(widget.changeable),
-      ),
+      prefix: GestureDetector(onTap: widget.changeable ? showPicker : null, child: buildAreaCode(widget.changeable)),
       onSaved: (newValue) {
         widget.onSaved?.call("${areaCode.value}$newValue");
       },
@@ -49,14 +48,8 @@ class _AKMobileInputState extends State<AKMobileInput> {
       spacing: 4,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Obx(
-          () => Text(
-            '+${areaCode.value}',
-            style: const TextStyle(color: AppColors.title),
-          ),
-        ),
-        if (changeable)
-          const Icon(IconFont.arrow_down_ios, size: 10, color: AppColors.label),
+        Obx(() => Text('+${areaCode.value}', style: const TextStyle(color: AppColors.title))),
+        if (changeable) const Icon(IconFont.arrow_down_ios, size: 10, color: AppColors.label),
         const DecoratedBox(
           decoration: BoxDecoration(
             border: Border(right: BorderSide(color: AppColors.label)),

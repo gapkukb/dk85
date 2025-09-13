@@ -11,8 +11,10 @@ import 'package:app/models/balance.model.dart';
 import 'package:app/models/game.model.dart';
 import 'package:app/models/user_info.model.dart';
 import 'package:app/routes/app_pages.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import '/storage/storage.dart';
 
 part 'app.service.dart';

@@ -1,28 +1,25 @@
+import 'package:app/models/inbox.model.dart';
 import 'package:app/shared/single_child_view/single_child_view.dart';
 import 'package:app/views/inbox/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:skeletonizer/skeletonizer.dart';
-import 'index.dart';
 
-class InboxDetailView extends GetView<InboxDetailController> {
+class InboxDetailView extends StatelessWidget {
   const InboxDetailView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<InboxDetailController>(
-      builder: (_) {
-        return AKSingleChildScrollView(
-          title: 'page.inbox.detail'.tr,
-          children: [
-            Text(BoneMock.title, style: messageTitleStyle),
-            SizedBox(height: 8),
-            Text(BoneMock.words(3), style: messageDateStyle),
-            SizedBox(height: 8),
-            Text(BoneMock.longParagraph, style: messageSubtitleStyle),
-          ],
-        );
-      },
+    final InboxModel message = Get.arguments as InboxModel;
+    return AKSingleChildScrollView(
+      loading: false,
+      title: 'inbox.detail'.tr,
+      children: [
+        Text(message.title, style: messageTitleStyle),
+        SizedBox(height: 8),
+        Text(message.content, style: messageDateStyle),
+        SizedBox(height: 8),
+        Text(message.createdAt, style: messageSubtitleStyle),
+      ],
     );
   }
 }

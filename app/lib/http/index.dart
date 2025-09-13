@@ -9,7 +9,7 @@ final __dio = Dio(BaseOptions(baseUrl: 'http://mdgametest.xyz'));
 final _dio = __dio
   ..httpClientAdapter = HttpCustomAdpater(toggle: (loading) => loading ? BotToast.showLoading() : BotToast.closeAllLoading())
   ..transformer = HTTPBackgroundTransformer()
-  ..interceptors.add(PrettyDioLogger(requestHeader: true, requestBody: false))
+  ..interceptors.add(PrettyDioLogger(requestHeader: true, responseBody: false))
   ..interceptors.add(HttpPreprocessInterceptor())
   ..interceptors.add(HttpAuthInterceptor(__dio, authManager))
   ..interceptors.add(HttpErrorsInterceptor((msg) => BotToast.showText(text: msg)));

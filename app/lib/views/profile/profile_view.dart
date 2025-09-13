@@ -48,7 +48,7 @@ class _ProfileViewState extends State<ProfileView> {
       height: 16,
       decoration: BoxDecoration(color: bound ? Colors.green : AppColors.warn, borderRadius: BorderRadius.circular(4)),
       padding: EdgeInsets.symmetric(horizontal: 4),
-      child: Text(bound ? 'settled' : 'unsettled', style: TextStyle(fontSize: 10, color: Colors.white)),
+      child: Text(bound ? 'Settled' : 'Not yet', style: TextStyle(fontSize: 10, color: Colors.white)),
     );
   }
 }

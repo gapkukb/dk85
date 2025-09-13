@@ -1,5 +1,5 @@
-import 'package:app/apis/apis.dart';
 import 'package:app/models/game.model.dart';
+import 'package:app/services/index.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -24,10 +24,9 @@ class FavoritesController extends GetxController {
   }
 
   Future queryFavorites() async {
-    final r = await apis.game.queryFavorites(payload: {'page': 1, 'size': '1000'}).whenComplete(() {
-      loading.value = false;
-    });
-    favorites.value = r.data.fish;
+    // services.game.queryLikes().whenComplete(() {
+    //   loading.value = false;
+    // });
   }
 
   List<GameModel> mock() {

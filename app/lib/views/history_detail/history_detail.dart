@@ -13,20 +13,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HistoryDetailView extends StatefulWidget {
-  const HistoryDetailView({super.key});
-
-  @override
-  _HistoryDetailViewState createState() => _HistoryDetailViewState();
-}
-
-class _HistoryDetailViewState extends State<HistoryDetailView> {
-  final record = FundRecord.fromRawJson(Get.parameters['all'] as String);
-
-  FundState get state => FundState(state: record.status);
+class HistoryDetailView extends StatelessWidget {
+  // 详情页类型：1-充值，2-提现
+  final int type;
+  const HistoryDetailView(this.type, {super.key});
 
   @override
   Widget build(BuildContext context) {
+    final order = Get.arguments as FundRecord;
+    final state = FundState(type, order.status);
+    final typeText = type == 1 ? 'Recharge' : 'Withdraw';
+
     return Scaffold(
       appBar: AppBar(leading: AKBackButton(), actionsPadding: Gutter.right.normal, actions: [CustomerService()]),
       body: ListView(
@@ -50,21 +47,21 @@ class _HistoryDetailViewState extends State<HistoryDetailView> {
             children: [
               AKTile(
                 titleText: 'Order Number',
-                additionalInfo: Text(record.tradeNo, style: TextStyle(fontWeight: FontWeight.bold)),
+                additionalInfo: Text(order.tradeNo, style: TextStyle(fontWeight: FontWeight.bold)),
                 isLink: false,
                 trailing: Icon(IconFont.copy, color: AppColors.label, size: 16),
-                onTap: copier(record.tradeNo),
+                onTap: copier(order.tradeNo),
               ),
               AKTile(
                 isLink: false,
                 titleText: 'Order Amount',
                 trailing: Text(
-                  '${record.money}',
+                  '${order.money}',
                   style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.danger),
                 ),
               ),
-              AKTile(isLink: false, titleText: 'Recharge Method', trailing: Text(record.channel)),
-              AKTile(isLink: false, titleText: 'Recharge time', trailing: Text(record.time)),
+              AKTile(isLink: false, titleText: '$typeText Method', trailing: Text(order.channel)),
+              AKTile(isLink: false, titleText: '$typeText time', trailing: Text(order.time)),
             ],
           ),
 
@@ -79,9 +76,8 @@ class _HistoryDetailViewState extends State<HistoryDetailView> {
       ),
 
       /// 充值成功不显示此按钮，其他情况显示
-      bottomNavigationBar: record.status != 1
-          ? null
-          : SafeArea(
+      bottomNavigationBar: type == 1 && order.status == 1
+          ? SafeArea(
               maintainBottomViewPadding: true,
               child: AKButton(
                 onPressed: () {
@@ -90,7 +86,8 @@ class _HistoryDetailViewState extends State<HistoryDetailView> {
                 radius: 0,
                 text: 'Pay',
               ),
-            ),
+            )
+          : null,
     );
   }
 }

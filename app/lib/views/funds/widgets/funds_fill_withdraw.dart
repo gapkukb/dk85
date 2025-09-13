@@ -19,7 +19,7 @@ class FundsFillWithdraw extends GetView<FundsController> {
   FundsFillWithdraw(this.channel, {super.key}) {
     form = Useform((values) async {
       await apis.funds.withdraw(data: {...values, 'withdraw_id': channel.id});
-      await showSuccess(text: '提款申请成功');
+      await showSuccess();
       Get.back();
     });
   }
@@ -35,13 +35,7 @@ class FundsFillWithdraw extends GetView<FundsController> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             buildContent(),
-            AKButton(
-              height: AKButton.LARGE,
-              // gradient: null,
-              text: 'withdraw.button'.tr,
-              radius: 0,
-              onPressed: form.submit,
-            ),
+            AKButton(text: 'app.withdraw'.tr, radius: 0, onPressed: form.submit),
           ],
         ),
       ),
@@ -58,17 +52,15 @@ class FundsFillWithdraw extends GetView<FundsController> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
+            spacing: 8,
             children: [
               buildHeader(),
-              SizedBox(height: 8),
-              Text("withdraw.account".tr),
+              Text("funds.withdraw.acc".tr),
               buildAccountInput(),
-              SizedBox(height: 8),
-              Text("withdraw.amount".tr, style: TextStyle(height: 1)),
+              Text("funds.withdraw.amount".tr, style: TextStyle(height: 1)),
               // Text("ငွေထုတ်ယူရန် 56.00 MMK လောင်းကြေးလိုအပ်ပါသည်", style: TextStyle(fontSize: 10, color: AppColors.primary)),
               buildAmountInput(),
               buildAvaliableAmount(),
-              SizedBox(height: 8),
               buildLimitMinimum(),
               SizedBox(height: 24),
             ],
@@ -94,10 +86,10 @@ class FundsFillWithdraw extends GetView<FundsController> {
   Widget buildAccountInput() {
     return AKBaseInput(
       maxLength: 11,
-      placeholder: "withdraw.account.add".tr,
+      placeholder: "form.withdraw.acc".tr,
       onSaved: form.saveAs('card_no'),
       validator: (value) {
-        if (value == null || value.isEmpty) return 'app.required'.tr;
+        if (value == null || value.isEmpty) return 'form.required'.tr;
         return null;
       },
     );
@@ -107,7 +99,7 @@ class FundsFillWithdraw extends GetView<FundsController> {
     return AKBaseInput(
       controller: controller.withdrawAmountCtrl,
       maxLength: 11,
-      placeholder: "withdraw.amount.placeholder".tr,
+      placeholder: "form.withdraw.amount".tr,
       keyboardType: TextInputType.number,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       prefix: const Text("MMK  ", style: TextStyle(fontWeight: FontWeight.bold)),
@@ -117,13 +109,13 @@ class FundsFillWithdraw extends GetView<FundsController> {
       ),
       onSaved: form.saveAs('money'),
       validator: (value) {
-        if (value == null || value.isEmpty) return 'app.required'.tr;
+        if (value == null || value.isEmpty) return 'form.required'.tr;
         final amount = num.tryParse(value) ?? 0;
         final max = channel.eachMax;
         final min = channel.eachMin;
-        if (amount < min) return '最小提现金额:$min';
+        if (amount < min) return 'form.min.error'.trParams({'min': min.toString()});
         if (amount > services.user.balance.value) return '您的余额不足';
-        if (amount > max) return '最大提现金额:$max';
+        if (amount > max) return 'form.max.error'.trParams({'max': max.toString()});
         return null;
       },
     );
@@ -132,9 +124,9 @@ class FundsFillWithdraw extends GetView<FundsController> {
   Widget buildAvaliableAmount() {
     return Amount(
       spacing: 4,
-      style: TextStyle(fontSize: 12, color: AppColors.title),
+      style: TextStyle(fontSize: 14, color: AppColors.title),
       amountstyle: TextStyle(color: AppColors.primary),
-      before: "withdraw.amount.able".tr,
+      before: "funds.withdraw.balance".tr,
       amount: ' ${services.user.balance}',
     );
   }
@@ -142,9 +134,9 @@ class FundsFillWithdraw extends GetView<FundsController> {
   Widget buildLimitMinimum() {
     return Amount(
       spacing: 4,
-      style: TextStyle(fontSize: 12, color: AppColors.description),
+      style: TextStyle(fontSize: 14, color: AppColors.description),
       amountstyle: TextStyle(color: AppColors.primary),
-      before: "withdraw.amount.min".tr,
+      before: "funds.withdraw.limit".tr,
       amount: ' ${channel.eachMin}',
     );
   }

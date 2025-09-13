@@ -1,5 +1,6 @@
 const Map<String, String> en = {
   /// 全局
+  "app.language": "Language",
   "app.login": "Log In",
   "app.register": "Sign up",
   "app.claim.now": "Claim Now",
@@ -30,11 +31,34 @@ const Map<String, String> en = {
   "app.change": "Change",
   "app.bind": "Bind",
 
+  /// 认证页面，登录|注册
+  "auth.forgot": "Forgot password?",
+  "auth.guide": "Login Instructions",
+  "auth.guide.text":
+      "Enter the Username you used to register,It should be 6-12 characters, only alphanumeric, begin with alphabet.If you need any help, please contact our customer service.",
+
   /// 钱包
   "funds.title": "Wallet",
   "funds.account": "Withdrawal\nAccount",
   "funds.gameHistory": "Transaction\nRecord",
-  "funds.history": "Dep/With Record",
+  "funds.history": "Cash in/out Record",
+  "funds.topup.title": "Top-up Details",
+  "funds.topup.method": "Payment Method",
+  "funds.topup.amount": "Payment Amount",
+  "funds.topup.limit": "Enter amount: @min-@max",
+  "funds.withdraw.title": "Withdrawal account",
+  "funds.withdraw.acc": "Your receiving account:",
+  "funds.withdraw.amount": "Withdrawal amount",
+  "funds.withdraw.balance": "Withdrawable balance:",
+  "funds.withdraw.limit": "Minimum single withdrawal amount is ",
+  "funds.withdraw.add": "Add Account",
+  "funds.withdraw.list": "Receiving Account",
+
+  /// 记录
+  "records.change.title": "Funding Changes",
+  "records.game.title": "Game Records",
+  "records.topup.title": "Recharge",
+  "records.withdraw.title": "Withdrawal",
 
   /// 公告
   "announcement.title": "Announcement",
@@ -51,6 +75,8 @@ const Map<String, String> en = {
 
   // 洗码返利页面
   "rebate.title": "Rebate",
+  "rebate.level": "Level",
+  "rebate.wagering": "Wagering Volume",
 
   // 账户页面
   "acc.title": "Account",
@@ -66,6 +92,7 @@ const Map<String, String> en = {
 
   // 消息页面
   "inbox.title": "Message",
+  "inbox.detail": "Message Detail",
 
   //vip
   "vip.title": "VIP Club",
@@ -99,4 +126,9 @@ const Map<String, String> en = {
   "form.tel.placed": "Enter your tel number",
   "form.tel.required": "Tel number is required",
   "form.tel.error": "Your tel number incorrect",
+  "form.required": "Please fill this field",
+  "form.min.error": "Minimum amount @min",
+  "form.max.error": "Maximum amount @max",
+  "form.withdraw.acc": "Enter receiving account",
+  "form.withdraw.amount": "Enter the withdrawal amount",
 };

@@ -33,9 +33,10 @@ class _HistoryPage2ViewState extends State<HistoryPage2View> with SingleTickerPr
             indicatorColor: Colors.transparent,
             controller: controller,
             dividerHeight: 0,
+            labelPadding: EdgeInsets.all(0),
             tabs: [
-              Tab(text: "records.funds".tr),
-              Tab(text: "records.funds".tr),
+              Tab(text: "records.topup.title".tr),
+              Tab(text: "records.withdraw.title".tr),
             ],
           ),
         ),

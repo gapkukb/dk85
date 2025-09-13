@@ -31,7 +31,10 @@ class _MoreViewState extends State<MoreView> {
             additionalDividerMargin: 0,
             margin: EdgeInsets.all(0),
             children: [
-              // AKTile(titleText: 'app.language'.tr, trailing: Obx(() => Text(I18n.getLocaleName(storage.locale.value))), onTap: LocaleSelector.showPicker),
+              LocaleSelector(
+                child: AKTile(titleText: 'app.language'.tr, trailing: Obx(() => Text(I18n.getLocaleName(storage.locale.value)))),
+              ),
+
               AKTile(titleText: 'app.version'.tr, trailing: Text(packageInfo.info.version), isLink: false),
               AKTile(
                 titleText: 'app.bgm'.tr,

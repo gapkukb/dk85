@@ -23,7 +23,7 @@ class RebateView extends GetView<RebateController> {
       id: "rebate",
       builder: (_) {
         return Scaffold(
-          appBar: AppBar(leading: AKBackButton(), title: const Text("rebate"), actions: [CustomerService()], actionsPadding: EdgeInsets.only(right: 12)),
+          appBar: AppBar(leading: AKBackButton(), title: Text("rebate.title".tr), actions: [CustomerService()], actionsPadding: EdgeInsets.only(right: 12)),
           body: SafeArea(
             child: ListView(
               padding: EdgeInsets.all(12),
@@ -32,7 +32,7 @@ class RebateView extends GetView<RebateController> {
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                   minTileHeight: 100,
                   leading: Icon(IconFont.chouma, color: const Color.fromRGBO(255, 130, 64, 1)),
-                  title: Padding(padding: const EdgeInsets.symmetric(vertical: 4.0), child: Text("Wagering Volume")),
+                  title: Padding(padding: const EdgeInsets.symmetric(vertical: 4.0), child: Text("rebate.wagering".tr)),
                   titleTextStyle: TextStyle(fontSize: 16, color: AppColors.title),
                   subtitle: Obx(
                     () => Amount(
@@ -109,10 +109,10 @@ class RebateView extends GetView<RebateController> {
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Expanded(child: Center(child: Text('VIP Level'))),
-              Expanded(child: Center(child: Text('Slots'))),
-              Expanded(child: Center(child: Text('Fishing'))),
-              Expanded(child: Center(child: Text('Poker'))),
+              Expanded(child: Center(child: Text('rebate.level'.tr))),
+              Expanded(child: Center(child: Text('app.slots'.tr))),
+              Expanded(child: Center(child: Text('app.fishing'.tr))),
+              Expanded(child: Center(child: Text('app.poker'.tr))),
             ],
           ),
         ),

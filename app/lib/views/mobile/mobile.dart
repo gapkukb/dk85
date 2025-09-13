@@ -51,7 +51,7 @@ class _MobileState extends State<MobileView> {
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.title),
         ),
 
-        AKMobileInput(onSaved: form.saveAs('mobile')),
+        AKMobileInput(onSaved: form.saveAs('mobile'), backgroundColor: Colors.white),
         SizedBox(height: 16),
         AKButton(onPressed: () {}, text: 'app.bind'.tr),
       ],

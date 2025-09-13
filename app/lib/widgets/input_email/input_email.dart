@@ -8,12 +8,11 @@ class AKEmailInput extends AKBaseInput {
 
   AKEmailInput({super.key, super.onSaved, this.optional = false, super.backgroundColor})
     : super(
-        placeholder: "Your email address".tr,
+        placeholder: "form.email.placed".tr,
         validator: (value) {
           if (value == null || value.isEmpty) {
             if (optional) return null;
-
-            return "form.email.placed".tr;
+            return "form.required".tr;
           }
 
           if (!REGEXP_email.hasMatch(value)) return "form.email.error".tr;

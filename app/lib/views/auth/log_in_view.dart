@@ -47,11 +47,11 @@ class LoginView extends GetView<AuthCotroller> {
     return [
       SizedBox(height: 8),
       Text(
-        "login.guide.title".tr,
+        "auth.guide".tr,
         style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.label),
       ),
       SizedBox(height: 8),
-      Text("login.guide.desc".tr, style: TextStyle(fontSize: 12, color: AppColors.description)),
+      Text("auth.guide.text".tr, style: TextStyle(fontSize: 12, color: AppColors.description)),
     ];
   }
 
@@ -65,7 +65,7 @@ class LoginView extends GetView<AuthCotroller> {
           SizedBox(),
           TextButton(
             onPressed: CustomerService.call,
-            child: Text("login.forgot".tr, style: TextStyle(fontSize: 12, color: AppColors.primary)),
+            child: Text("auth.forgot".tr, style: TextStyle(fontSize: 12, color: AppColors.primary)),
           ),
         ],
       ),

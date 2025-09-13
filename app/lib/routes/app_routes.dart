@@ -12,7 +12,7 @@ abstract class Routes {
   static const inboxDetail = '/inboxDetail';
   static const history1 = '/historyFunds';
   static const history2 = '/historyWallet';
-  static const historyDetial = '/historyDetial';
+  static const historyRechargeDetial = '/historyRechargeDetial';
   static const search = '/search';
   static const profile = '/profile';
   static const vip = '/vip';
@@ -24,6 +24,7 @@ abstract class Routes {
   static const fundsManager = '/fundsManager';
   static const activityDetail = '/activityDetail';
   static const rebate = '/rebate';
+  static const historyWithdrawalDetial = '/historyWithdrawalDetial';
 
   // 登陆后重定向到参数
   static String loginThen(String to) {

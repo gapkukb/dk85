@@ -5,6 +5,7 @@ class _GameService extends GetConnect {
 
   final Rx<GameGroupModel?> _all = Rx<GameGroupModel?>(null);
   final loading = false.obs;
+  final likes = <GameModel>[].obs;
 
   List<GameModel> get slots => _all.value?.slots ?? [];
   List<GameModel> get fish => _all.value?.fish ?? [];

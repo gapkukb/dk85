@@ -11,7 +11,7 @@ import 'package:app/views/history_detail/history_detail.dart';
 import 'package:app/views/history_page_1/history_page_1.dart';
 import 'package:app/views/history_page_2/history_page_2.dart';
 import 'package:app/views/inbox/index.dart';
-import 'package:app/views/inbox_detail/bindings.dart';
+import 'package:app/views/inbox_detail/view.dart';
 import 'package:app/views/mobile/mobile.dart';
 import 'package:app/views/more/more_view.dart';
 import 'package:app/views/payee/payee.dart';
@@ -28,7 +28,7 @@ part 'app_routes.dart';
 
 // ignore: avoid_classes_with_only_static_members
 class AppPages {
-  static const INITIAL = Routes.inbox;
+  static const INITIAL = Routes.favorites;
   // static const INITIAL = null;
 
   static final routes = [
@@ -43,8 +43,8 @@ class AppPages {
     GetPage(name: Routes.more, page: () => const MoreView()),
     GetPage(name: Routes.activityDetail, page: () => const ActivityDetailView()),
     GetPage(name: Routes.favorites, page: () => const FavoritesView(), binding: FavoritesBinding()),
-    GetPage(name: Routes.inboxDetail, page: () => const InboxView(), binding: InboxDetailBinding()),
     GetPage(name: Routes.inbox, page: () => const InboxView(), binding: InboxBinding()),
+    GetPage(name: Routes.inboxDetail, page: () => const InboxDetailView()),
     GetPage(name: Routes.gaming, page: () => const GamingView()),
     GetPage(name: Routes.fundsManager, page: () => const FundsMngView(), binding: FundsMngBinding()),
     GetPage(name: Routes.vip, page: () => const VipView()),
@@ -53,7 +53,8 @@ class AppPages {
     GetPage(name: Routes.history1, page: () => const HistoryPage1View()),
     GetPage(name: Routes.history2, page: () => const HistoryPage2View()),
     GetPage(name: Routes.history2, page: () => const HistoryPage2View()),
-    GetPage(name: Routes.historyDetial, page: () => const HistoryDetailView()),
+    GetPage(name: Routes.historyRechargeDetial, page: () => const HistoryDetailView(1)),
+    GetPage(name: Routes.historyWithdrawalDetial, page: () => const HistoryDetailView(2)),
     GetPage(name: Routes.search, page: () => const SearchingPage(), binding: SearchingBinding()),
   ];
 }

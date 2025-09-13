@@ -5,9 +5,6 @@ import 'package:app/widgets/game/index.dart';
 import 'package:app/widgets/state_block/state_block.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:skeletonizer/skeletonizer.dart';
-
 import 'index.dart';
 
 class FavoritesView extends GetView<FavoritesController> {
@@ -27,7 +24,7 @@ class FavoritesView extends GetView<FavoritesController> {
               child: Obx(
                 () => GameGridView(
                   loading: controller.loading.value,
-                  gameList: controller.favorites.value,
+                  gameList: services.game.likes,
                   empty: () => StateBlock(buttonText: 'fav.browser'.tr, onPressed: services.app.toDashboardView),
                 ),
               ),

@@ -6,6 +6,7 @@ import 'package:app/routes/app_pages.dart';
 import 'package:app/services/index.dart';
 import 'package:app/setup/easyloading.dart';
 import 'package:app/storage/storage.dart';
+import 'package:app/widgets/loading/loading.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:app/theme/index.dart';
@@ -26,11 +27,30 @@ class Application extends StatelessWidget {
       textScaler = 0.95;
     }
     return RefreshConfiguration(
-      headerBuilder: () => WaterDropMaterialHeader(backgroundColor: AppColors.primary, distance: 40),
+      headerBuilder: () => WaterDropMaterialHeader(backgroundColor: AppColors.background, color: AppColors.highlight, distance: 40),
+      // footerBuilder: () => CustomFooter(
+      //   builder: (context, mode) {
+      //     final List<Widget> children = [];
+      //     final style = TextStyle(fontSize: 12, color: AppColors.description);
+      //     if (mode == LoadStatus.noMore) {
+      //       final divider = Expanded(child: Divider(color: AppColors.e1e1e1, thickness: 1, indent: 12, endIndent: 12, height: 1));
+      //       children.addAll([divider, Text('No more', style: style), divider]);
+      //     } else {
+      //       children.addAll([SizedBox.square(dimension: 48, child: loadingWidget), Text('loading more...', style: style)]);
+      //     }
+      //     return Center(
+      //       child: Row(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: children),
+      //     );
+      //   },
+      //   height: 36,
+      //   onOffsetChange: (offset) {},
+      //   loadStyle: LoadStyle.ShowWhenLoading,
+      // ),
       footerBuilder: () => ClassicFooter(),
-      // headerTriggerDistance: 70,
+      springDescription: SpringDescription.withDurationAndBounce(bounce: 0),
       maxOverScrollExtent: 0,
       maxUnderScrollExtent: 0,
+      bottomHitBoundary: 0,
       child: MediaQuery(
         data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(textScaler)).scale(),
         child: GetMaterialApp(

@@ -36,7 +36,7 @@ class FundsMenu extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             softWrap: false,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 12, height: 1, fontWeight: FontWeight.w500, color: AppColors.label),
+            style: const TextStyle(fontSize: 13, height: 1, color: AppColors.description),
           ),
         ],
       ),

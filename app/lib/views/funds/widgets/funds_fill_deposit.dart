@@ -1,4 +1,5 @@
 import 'package:app/apis/apis.dart';
+import 'package:app/extensions/num.dart';
 import 'package:app/hooks/useForm.dart';
 import 'package:app/iconfont/index.dart';
 import 'package:app/models/top_up.model.dart';
@@ -69,7 +70,7 @@ class FundsFillDeposit extends GetView<FundsController> {
             buildContent(form),
             SafeArea(
               child: AKButton(
-                height: AKButton.LARGE,
+                // height: AKButton.LARGE,
                 // gradient: null,
                 text: 'app.deposit'.tr,
                 radius: 0,
@@ -95,17 +96,17 @@ class FundsFillDeposit extends GetView<FundsController> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("payment.receiver.title".tr, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                Text("funds.topup.title".tr, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
                 CustomerService(),
               ],
             ),
-            Text("payment.method".tr, style: TextStyle(fontSize: 12, color: AppColors.description)),
+            Text("funds.topup.method".tr, style: TextStyle(fontSize: 12, color: AppColors.description)),
 
             buildChannel(),
 
             SizedBox(height: 8),
 
-            Text("payment.amount".tr, style: TextStyle(fontSize: 12, color: AppColors.description)),
+            Text("funds.topup.amount".tr, style: TextStyle(fontSize: 12, color: AppColors.description)),
 
             // if (channel.isInput == 1) FundsPresetAmount(),
             FundsPresetAmount(channel.moneyList),
@@ -115,18 +116,18 @@ class FundsFillDeposit extends GetView<FundsController> {
             AKBaseInput(
               controller: controller.ctrl,
               maxLength: 11,
-              placeholder: "payment.limit".tr,
+              placeholder: "funds.topup.limit".trParams({'min': channel.eachMin.display(), 'max': channel.eachMax.display()}),
               keyboardType: TextInputType.number,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               suffix: const Text("MMK", style: TextStyle(height: 1)),
               onSaved: form.saveAs('amount'),
               validator: (value) {
-                if (value == null || value.isEmpty) return 'app.required'.tr;
+                if (value == null || value.isEmpty) return 'form.required'.tr;
                 final amount = num.tryParse(value) ?? 0;
                 final max = channel.eachMax;
                 final min = channel.eachMin;
-                if (amount < min) return '最小充值金额:$min';
-                if (amount > max) return '最大充值金额:$max';
+                if (amount < min) return 'form.min.error'.trParams({'min': min.toString()});
+                if (amount > max) return 'form.max.error'.trParams({'max': max.toString()});
                 return null;
               },
             ),

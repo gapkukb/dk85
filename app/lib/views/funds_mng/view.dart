@@ -16,10 +16,7 @@ class FundsMngView extends GetView<FundsMngController> {
     return GetBuilder<FundsMngController>(
       builder: (_) {
         return Scaffold(
-          appBar: AppBar(
-            leading: AKBackButton(),
-            title: Text("withdraw.acc.title".tr),
-          ),
+          appBar: AppBar(leading: AKBackButton(), title: Text("funds.withdraw.title".tr)),
           body: SafeArea(
             child: ListView(
               children: [
@@ -28,12 +25,7 @@ class FundsMngView extends GetView<FundsMngController> {
                   hasLeading: false,
                   header: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "withdraw.acc.add".tr,
-                        style: TextStyle(fontSize: 14),
-                      ),
-                    ],
+                    children: [Text("funds.withdraw.add".tr, style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal))],
                   ),
                   children: [],
                 ),
@@ -44,17 +36,10 @@ class FundsMngView extends GetView<FundsMngController> {
                   header: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "withdraw.acc.list".tr,
-                        style: TextStyle(fontSize: 14),
-                      ),
+                      Text("funds.withdraw.list".tr, style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal)),
                       IconButton(
                         onPressed: () {},
-                        icon: Icon(
-                          IconFont.refresh,
-                          size: 16,
-                          color: AppColors.primary,
-                        ),
+                        icon: Icon(IconFont.refresh, size: 16, color: AppColors.primary),
                       ),
                     ],
                   ),

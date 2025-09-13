@@ -137,3 +137,65 @@ class GameModel {
     "updated_at": updatedAt,
   };
 }
+
+class FavoriteModelWrapper {
+  final int code;
+  final int status;
+  final String message;
+  final FavoriteModelGroup data;
+
+  FavoriteModelWrapper({required this.code, required this.status, required this.message, required this.data});
+
+  factory FavoriteModelWrapper.fromRawJson(String str) => FavoriteModelWrapper.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory FavoriteModelWrapper.fromJson(Map<String, dynamic> json) =>
+      FavoriteModelWrapper(code: json["code"], status: json["status"], message: json["message"], data: FavoriteModelGroup.fromJson(json["data"]));
+
+  Map<String, dynamic> toJson() => {"code": code, "status": status, "message": message, "data": data.toJson()};
+}
+
+class FavoriteModelGroup {
+  final List<FavoriteModel> list;
+  final int count;
+
+  FavoriteModelGroup({required this.list, required this.count});
+
+  factory FavoriteModelGroup.fromRawJson(String str) => FavoriteModelGroup.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory FavoriteModelGroup.fromJson(Map<String, dynamic> json) =>
+      FavoriteModelGroup(list: List<FavoriteModel>.from((json["list"] ?? []).map((x) => FavoriteModel.fromJson(x))), count: json["count"]);
+
+  Map<String, dynamic> toJson() => {"list": List<dynamic>.from(list.map((x) => x.toJson())), "count": count};
+}
+
+class FavoriteModel {
+  final int id;
+  final int siteId;
+  final int gameId;
+  final int userId;
+  final int favoriteId;
+  final String createdAt;
+  final String updatedAt;
+
+  FavoriteModel({required this.id, required this.siteId, required this.gameId, required this.userId, required this.favoriteId, required this.createdAt, required this.updatedAt});
+
+  factory FavoriteModel.fromRawJson(String str) => FavoriteModel.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory FavoriteModel.fromJson(Map<String, dynamic> json) => FavoriteModel(
+    id: json["id"] ?? 0,
+    siteId: json["site_id"] ?? 0,
+    gameId: json["game_id"] ?? 0,
+    userId: json["user_id"] ?? '',
+    favoriteId: json["favorite_id"] ?? '',
+    createdAt: json["created_at"] ?? '',
+    updatedAt: json["updated_at"] ?? '',
+  );
+
+  Map<String, dynamic> toJson() => {"id": id, "site_id": siteId, "game_id": gameId, "user_id": userId, "favorite_id": favoriteId, "created_at": createdAt, "updated_at": updatedAt};
+}

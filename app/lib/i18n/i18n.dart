@@ -20,7 +20,8 @@ class I18n extends Translations {
   /// 缅甸语
   static final my_MM = _Locale("my", "MM", "+95", "မြန်မာဘာသာ", RegExp(r"123"));
 
-  static final supported = [my_MM, en_US, km_KH, fil_PH, zh_CN];
+  // static final supported = [my_MM, en_US, km_KH, fil_PH, zh_CN];
+  static final supported = [my_MM, en_US];
 
   static final defaultLocale = my_MM;
 
@@ -33,7 +34,7 @@ class I18n extends Translations {
 
   static const fallbackLocale = Locale('my');
 
-  final Map<String, Map<String, String>> _keys = {'en': en, 'zh': zh, 'km': km, 'my': my, 'fil': fil};
+  final Map<String, Map<String, String>> _keys = {'en': en, 'my': my};
 
   @override
   Map<String, Map<String, String>> get keys => _keys;
