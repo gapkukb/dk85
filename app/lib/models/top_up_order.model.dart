@@ -13,12 +13,14 @@ class TopUpOrderModelWrapper {
 
   String toRawJson() => json.encode(toJson());
 
-  factory TopUpOrderModelWrapper.fromJson(Map<String, dynamic> json) => TopUpOrderModelWrapper(code: json["code"], status: json["status"], message: json["message"], data: TopUpOrderModel.fromJson(json["data"]));
+  factory TopUpOrderModelWrapper.fromJson(Map<String, dynamic> json) =>
+      TopUpOrderModelWrapper(code: json["code"], status: json["status"], message: json["message"], data: TopUpOrderModel.fromJson(json["data"]));
 
   Map<String, dynamic> toJson() => {"code": code, "status": status, "message": message, "data": data.toJson()};
 }
 
 class TopUpOrderModel {
+  int channelId;
   final String channelCardNo;
   final String channelName;
   final num code;
@@ -26,8 +28,19 @@ class TopUpOrderModel {
   final String result;
   final String sysTradeNo;
   final String imageUrl;
+  int amount;
 
-  TopUpOrderModel({required this.channelCardNo, required this.channelName, required this.code, required this.orderSn, required this.result, required this.sysTradeNo, required this.imageUrl});
+  TopUpOrderModel({
+    this.channelId = 0,
+    required this.channelCardNo,
+    required this.channelName,
+    required this.code,
+    required this.orderSn,
+    required this.result,
+    required this.sysTradeNo,
+    required this.imageUrl,
+    this.amount = 0,
+  });
 
   factory TopUpOrderModel.fromRawJson(String str) => TopUpOrderModel.fromJson(json.decode(str));
 
@@ -41,7 +54,17 @@ class TopUpOrderModel {
     result: json["result"],
     sysTradeNo: json["sys_trade_no"],
     imageUrl: json["image_url"],
+    amount: 0,
+    channelId: 0,
   );
 
-  Map<String, dynamic> toJson() => {"channel_card_no": channelCardNo, "channel_name": channelName, "code": code, "order_sn": orderSn, "result": result, "sys_trade_no": sysTradeNo, "image_url": imageUrl};
+  Map<String, dynamic> toJson() => {
+    "channel_card_no": channelCardNo,
+    "channel_name": channelName,
+    "code": code,
+    "order_sn": orderSn,
+    "result": result,
+    "sys_trade_no": sysTradeNo,
+    "image_url": imageUrl,
+  };
 }

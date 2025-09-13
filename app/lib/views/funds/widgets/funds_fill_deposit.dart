@@ -48,26 +48,9 @@ class FundsFillDeposit extends GetView<FundsController> {
         },
       );
       final order = r.data;
-      Get.offAndToNamed(
-        Routes.payee,
-        arguments: PayeeModel(
-          imageUrl: order.imageUrl,
-          order: FundRecord(
-            accountId: channel.id,
-            channel: channel.name,
-            tradeNo: order.orderSn,
-            cardNo: order.channelCardNo,
-            money: num.tryParse(values['amount']) ?? 0,
-            remark: 'remark',
-            type: 1,
-            symbol: 1,
-            status: 1,
-            time: DateTime.now().toIso8601String(),
-            changeType: -1,
-          ),
-          channel: channel,
-        ),
-      );
+      order.amount = int.tryParse(values['amount']) ?? 0;
+      order.channelId = channel.id.toInt();
+      Get.offAndToNamed(Routes.payee, arguments: order);
     });
     return Form(
       key: form.key,

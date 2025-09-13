@@ -10,6 +10,10 @@ final guideTwo = GlobalKey();
 
 Future<void> showGuide() {
   final completer = Completer();
+  if (!storage.showGuide.value) {
+    completer.complete();
+    return completer.future;
+  }
   List<TargetFocus> targets = [];
   // if (storage.showGuide.value) return;
 

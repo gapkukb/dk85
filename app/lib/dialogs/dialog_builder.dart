@@ -49,8 +49,8 @@ class DialogBuilder {
     required this.builder,
     this.priority = 0,
     this.peroidic = DialogPeriodic.launch,
-    this.requireAuth = false,
-    this.manual = false,
+    this.requireAuth = true,
+    this.manual = true,
     this.barrierDismissible = false,
     this.routes = const [],
   });

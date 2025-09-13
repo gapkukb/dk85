@@ -2,16 +2,12 @@ import 'package:app/apis/apis.dart';
 import 'package:app/extensions/bot_toast.dart';
 import 'package:app/helper/copy.dart';
 import 'package:app/iconfont/index.dart';
-import 'package:app/models/fund_record.model.dart';
-import 'package:app/models/top_up.model.dart';
+import 'package:app/models/top_up_order.model.dart';
 import 'package:app/shared/amount/amount.dart';
-import 'package:app/shared/clipboard/clipboard.dart';
 import 'package:app/shared/customer_service/customer_service.dart';
 import 'package:app/theme/index.dart';
-import 'package:app/views/funds/widgets/withdrawal_view.dart';
 import 'package:app/widgets/back_button/back_button.dart';
 import 'package:app/widgets/button/index.dart';
-import 'package:app/widgets/loading/loading.dart';
 import 'package:app/widgets/network_picture.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
@@ -28,29 +24,7 @@ class PayeeView extends StatefulWidget {
 
 class _PayeeViewState extends State<PayeeView> {
   final controller = TextEditingController();
-  final payee = Get.arguments as PayeeModel;
-  FundRecord get order => payee.order;
-  TopUpModel? channel;
-  bool loading = false;
-
-  @override
-  void initState() {
-    super.initState();
-    if (channel == null) {
-      loading = true;
-      BotToast.showLoading();
-      apis.funds
-          .queryTopUpList()
-          .then((value) {
-            channel = value.data.the2.accountList.firstWhereOrNull((i) => i.id == order.accountId);
-            if (channel != null) {
-              loading = false;
-              setState(() {});
-            }
-          })
-          .whenComplete(BotToast.closeAllLoading);
-    }
-  }
+  final order = Get.arguments as TopUpOrderModel;
 
   @override
   Widget build(BuildContext context) {
@@ -62,12 +36,10 @@ class _PayeeViewState extends State<PayeeView> {
         actionsPadding: EdgeInsets.only(right: 12),
         actions: [CustomerService(size: 36, iconSize: 22)],
       ),
-      body: loading ? null : buildView(),
-      bottomNavigationBar: loading
-          ? null
-          : SafeArea(
-              child: AKButton(onPressed: submit, text: 'app.submit'.tr, radius: 0),
-            ),
+      body: buildView(),
+      bottomNavigationBar: SafeArea(
+        child: AKButton(onPressed: submit, text: 'app.submit'.tr, radius: 0),
+      ),
     );
   }
 
@@ -87,6 +59,7 @@ class _PayeeViewState extends State<PayeeView> {
     return CupertinoListSection.insetGrouped(
       margin: Gutter.horizontal.normal,
       hasLeading: false,
+      dividerMargin: 0,
       header: Row(
         spacing: 8,
         children: [
@@ -109,19 +82,19 @@ class _PayeeViewState extends State<PayeeView> {
             mainAxisSize: MainAxisSize.min,
             children: [
               NetworkPicture(width: 28, height: 28, imageUrl: '', fit: BoxFit.cover),
-              Text(order.channel),
+              Text(order.channelName),
             ],
           ),
         ),
         ListTile(
           title: Text('payee.acc'.tr),
-          trailing: Row(spacing: 4, mainAxisSize: MainAxisSize.min, children: [Text(order.cardNo), Icon(IconFont.copy, size: 16)]),
-          onTap: copier(order.tradeNo),
+          trailing: Row(spacing: 4, mainAxisSize: MainAxisSize.min, children: [Text(order.channelCardNo), Icon(IconFont.copy, size: 16)]),
+          onTap: copier(order.sysTradeNo),
         ),
         ListTile(
           title: Text('funds.topup.amount'.tr),
           trailing: Amount(
-            amount: '${order.money}',
+            amount: '${order.amount}',
             spacing: 4,
             style: TextStyle(color: AppColors.title),
             amountstyle: TextStyle(color: AppColors.primary, fontWeight: FontWeight.bold, fontSize: 14),
@@ -173,7 +146,7 @@ class _PayeeViewState extends State<PayeeView> {
       children: [
         Padding(
           padding: EdgeInsets.all(12),
-          child: NetworkPicture(imageUrl: payee.imageUrl ?? '', height: 1000),
+          child: NetworkPicture(imageUrl: order.imageUrl, height: 1000),
         ),
       ],
     );
@@ -181,19 +154,14 @@ class _PayeeViewState extends State<PayeeView> {
 
   submit() async {
     final value = controller.text;
-    if (value.isEmpty) {
+    if (value.isEmpty || value.length != 6) {
       BotToast.showText(text: 'form.payee.placed'.tr);
       return;
     }
-    try {
-      BotToast.showLoading();
-      await apis.funds.matchTopup(data: {'sys_trade_no': order.tradeNo, 'bank_serial': value, 'account_id': order});
-      BotToast.closeAllLoading();
-      await showSuccess();
-      Get.back();
-    } catch (e) {
-      BotToast.closeAllLoading();
-    }
+    await apis.funds.matchTopup(data: {'sys_trade_no': order.sysTradeNo, 'bank_serial': value, 'account_id': order.channelId});
+    await showSuccess();
+    Get.back();
+    Get.back();
   }
 
   @override
@@ -201,12 +169,4 @@ class _PayeeViewState extends State<PayeeView> {
     controller.dispose();
     super.dispose();
   }
-}
-
-class PayeeModel {
-  final FundRecord order;
-  final String imageUrl;
-  TopUpModel? channel;
-
-  PayeeModel({required this.order, this.channel, required this.imageUrl});
 }

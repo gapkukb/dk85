@@ -11,10 +11,8 @@ import 'package:app/models/balance.model.dart';
 import 'package:app/models/game.model.dart';
 import 'package:app/models/user_info.model.dart';
 import 'package:app/routes/app_pages.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import '/storage/storage.dart';
 
 part 'app.service.dart';
@@ -37,8 +35,7 @@ class _Services {
     Get.put(dialogs);
 
     if (auth.authorized) {
-      user.queryBalance();
-      return user.queryUserInfo();
+      return user.queryUserInfo(initial: true, withBalance: true);
     }
     // 快速注册
     return auth.fastRegister();

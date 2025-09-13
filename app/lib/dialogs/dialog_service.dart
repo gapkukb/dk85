@@ -71,11 +71,11 @@ class Dialogs extends GetxService {
     if (_queue.isEmpty) return;
     final dialog = _queue.firstWhereOrNull((item) {
       // 跳过手动控制的弹窗
-      if (item.manual) return false;
+      // if (item.manual) return false;
       if (item.requireAuth && !_authorized) return false;
-      if (item.routes.isNotEmpty && !item.routes.contains(_curretRoute)) {
-        return false;
-      }
+      // if (item.routes.isNotEmpty && !item.routes.contains(_curretRoute)) {
+      //   return false;
+      // }
       return true;
     });
     if (dialog == null) return;

@@ -71,6 +71,9 @@ class _AuthService extends GetxService {
     if (token.isNotEmpty) {
       authManager.set(accessToken: token, refreshToken: token);
     }
+    Future.delayed(Duration.zero).then((_) {
+      Dialogs.to.onAuthChanged(authorized);
+    });
     super.onInit();
   }
 }

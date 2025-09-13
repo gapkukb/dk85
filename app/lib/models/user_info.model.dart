@@ -22,6 +22,7 @@ class UserModelWrapper {
 
 class UserModel {
   final num id;
+  final bool isSignIn;
   final String username;
   final String realname;
   final String email;
@@ -57,6 +58,7 @@ class UserModel {
   final UserLastMessage lastMessage;
 
   UserModel({
+    required this.isSignIn,
     required this.username,
     required this.realname,
     required this.email,
@@ -100,6 +102,7 @@ class UserModel {
   String toRawJson() => json.encode(toJson());
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+    isSignIn: json["is_sign_in"] ?? true,
     id: json["id"] ?? 0,
     username: json["username"] ?? '',
     realname: json["realname"] ?? '',

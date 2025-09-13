@@ -57,11 +57,12 @@ class Application extends StatelessWidget {
           builder: (context, child) {
             WidgetsBinding.instance.addPostFrameCallback((_) async {
               // 显示引导浮层
-              if (storage.showGuide.value && services.auth.authorized) {
-                // await showGuide();
+              if (services.auth.authorized) {
+                await showGuide();
               }
               registerDialogs();
               Dialogs.to.active();
+              services.user.queryActivity();
             });
             return setupBotToast(context, child!);
           },

@@ -1,3 +1,4 @@
+import 'package:app/services/index.dart';
 import 'package:app/views_modal/announcement/announcement.dart';
 import 'package:app/views_modal/completion/completion.dart';
 import 'package:app/views_modal/daily_check_in/view.dart';

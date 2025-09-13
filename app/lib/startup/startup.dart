@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/dialogs/dialogs.dart';
 import 'package:app/helper/device_info.dart';
 import 'package:app/i18n/index.dart';
 import 'package:app/services/index.dart';

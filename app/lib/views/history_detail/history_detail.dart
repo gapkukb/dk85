@@ -1,6 +1,7 @@
 import 'package:app/helper/copy.dart';
 import 'package:app/iconfont/index.dart';
 import 'package:app/models/fund_record.model.dart';
+import 'package:app/models/top_up_order.model.dart';
 import 'package:app/routes/app_pages.dart';
 import 'package:app/shared/customer_service/customer_service.dart';
 import 'package:app/shared/fund_state.dart';
@@ -84,7 +85,15 @@ class HistoryDetailView extends StatelessWidget {
                 onPressed: () {
                   Get.toNamed(
                     Routes.payee,
-                    arguments: PayeeModel(order: order, imageUrl: ''),
+                    arguments: TopUpOrderModel(
+                      channelCardNo: order.cardNo,
+                      channelName: order.channel,
+                      code: 200,
+                      orderSn: order.tradeNo,
+                      result: 'ok',
+                      sysTradeNo: order.sysTradeNo,
+                      imageUrl: order.imageUrl,
+                    ),
                   );
                 },
                 radius: 0,

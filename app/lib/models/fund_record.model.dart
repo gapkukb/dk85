@@ -54,6 +54,8 @@ class FundRecords {
 }
 
 class FundRecord {
+  final String sysTradeNo;
+  final String imageUrl;
   final String channel;
   final String tradeNo;
   final String cardNo;
@@ -67,6 +69,8 @@ class FundRecord {
   final int changeType;
 
   FundRecord({
+    required this.sysTradeNo,
+    required this.imageUrl,
     required this.channel,
     required this.tradeNo,
     required this.cardNo,
@@ -85,6 +89,8 @@ class FundRecord {
   String toRawJson() => json.encode(toJson());
 
   factory FundRecord.fromJson(Map<String, dynamic> json) => FundRecord(
+    imageUrl: json["image_url"] ?? '',
+    sysTradeNo: json["sys_trade_no"] ?? '',
     channel: json["channel"] ?? '',
     tradeNo: json["trade_no"] ?? '',
     cardNo: json["card_no"] ?? '',
@@ -99,6 +105,8 @@ class FundRecord {
   );
 
   Map<String, dynamic> toJson() => {
+    "image_url": imageUrl,
+    'sys_trade_no': sysTradeNo,
     "trade_no": tradeNo,
     "card_no": cardNo,
     "money": money,
