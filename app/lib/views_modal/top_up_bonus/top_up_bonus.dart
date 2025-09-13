@@ -1,3 +1,4 @@
+import 'package:app/services/index.dart';
 import 'package:app/theme/index.dart';
 import 'package:app/views_modal/base_modal/base_modal.dart';
 import 'package:app/widgets/button/index.dart';
@@ -26,7 +27,10 @@ class TopUpBonusModal extends StatelessWidget {
           Text("Experience the pinnacle of the game", style: TextStyle(fontSize: 16, color: AppColors.white)),
           SizedBox(height: 24),
           AKButton(
-            onPressed: () {},
+            onPressed: () {
+              services.app.toFundsView();
+              Get.back();
+            },
             minWidth: Get.width - 96,
             rounded: true,
             child: Text('GO', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
