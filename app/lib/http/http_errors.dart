@@ -14,6 +14,9 @@ class HttpErrorsInterceptor extends Interceptor {
   }
 
   String? _findErrorMessage(DioException err) {
+    if (err.message != null) {
+      return err.message;
+    }
     final resp = err.response;
     if (resp == null) return err.message;
     final dynamic data = resp.data;
@@ -22,9 +25,9 @@ class HttpErrorsInterceptor extends Interceptor {
       return data[_message];
     }
 
-    if (data is String && data.isNotEmpty) {
-      return data;
-    }
+    // if (data is String && data.isNotEmpty) {
+    //   return data;
+    // }
 
     // 兜底
     return "${err.response!.statusMessage ?? 'Unknown Exception'} - ${err.response!.statusCode}";

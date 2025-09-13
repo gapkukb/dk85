@@ -22,7 +22,6 @@ Future<void> startup() async {
 
   /// 初始化services,内部会初始化用户信息（如果需要）
   await services.initialize();
-  print('xxxxxxxxxxxxxxxxxxxxx${storage.token.value}');
   // services.initialize();
 
   Flavor.appFlavor = AppFlavor.values.firstWhere((element) => element.name == appFlavor);

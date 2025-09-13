@@ -54,7 +54,7 @@ mixin class AudioMixin {
 
   initializeAudio() async {
     if (storage.audio.value) {
-      // activeAudio();
+      activeAudio();
     }
     _downloadAudioIfNeed(backgroundAudioUrl);
     _downloadAudioIfNeed(topUpAudioUrl);

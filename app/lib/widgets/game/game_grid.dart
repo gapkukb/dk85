@@ -40,7 +40,7 @@ class GameGridView extends StatelessWidget {
       itemCount: n.length,
       gridDelegate: delegate,
       itemBuilder: (context, index) {
-        return GameItemView(isLike: false, likes: 0, game: n[index]);
+        return GameItemView(likes: 0, game: n[index]);
       },
     );
   }

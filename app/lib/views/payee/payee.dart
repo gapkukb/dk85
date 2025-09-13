@@ -2,11 +2,16 @@ import 'package:app/apis/apis.dart';
 import 'package:app/extensions/bot_toast.dart';
 import 'package:app/helper/copy.dart';
 import 'package:app/iconfont/index.dart';
+import 'package:app/models/fund_record.model.dart';
+import 'package:app/models/top_up.model.dart';
+import 'package:app/shared/amount/amount.dart';
 import 'package:app/shared/clipboard/clipboard.dart';
 import 'package:app/shared/customer_service/customer_service.dart';
 import 'package:app/theme/index.dart';
+import 'package:app/views/funds/widgets/withdrawal_view.dart';
 import 'package:app/widgets/back_button/back_button.dart';
 import 'package:app/widgets/button/index.dart';
+import 'package:app/widgets/loading/loading.dart';
 import 'package:app/widgets/network_picture.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,6 +28,29 @@ class PayeeView extends StatefulWidget {
 
 class _PayeeViewState extends State<PayeeView> {
   final controller = TextEditingController();
+  final payee = Get.arguments as PayeeModel;
+  FundRecord get order => payee.order;
+  TopUpModel? channel;
+  bool loading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (channel == null) {
+      loading = true;
+      BotToast.showLoading();
+      apis.funds
+          .queryTopUpList()
+          .then((value) {
+            channel = value.data.the2.accountList.firstWhereOrNull((i) => i.id == order.accountId);
+            if (channel != null) {
+              loading = false;
+              setState(() {});
+            }
+          })
+          .whenComplete(BotToast.closeAllLoading);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,76 +58,73 @@ class _PayeeViewState extends State<PayeeView> {
       appBar: AppBar(
         backgroundColor: AppColors.background,
         leading: AKBackButton(),
-        title: Text("payment.receiver.title".tr),
+        title: Text("payee.title".tr),
         actionsPadding: EdgeInsets.only(right: 12),
         actions: [CustomerService(size: 36, iconSize: 22)],
       ),
-      body: buildView(),
-      bottomNavigationBar: SafeArea(
-        child: AKButton(onPressed: submit, text: 'payment.receiver.submit'.tr, radius: 0),
-      ),
+      body: loading ? null : buildView(),
+      bottomNavigationBar: loading
+          ? null
+          : SafeArea(
+              child: AKButton(onPressed: submit, text: 'app.submit'.tr, radius: 0),
+            ),
     );
   }
 
   Widget buildView() {
-    const margin = EdgeInsets.all(12);
     return ListTileTheme(
       data: ListTileThemeData(
         minTileHeight: 48,
-        titleTextStyle: TextStyle(color: AppColors.description),
-        leadingAndTrailingTextStyle: TextStyle(color: AppColors.title, fontSize: 14, fontWeight: FontWeight.bold),
+        contentPadding: EdgeInsets.symmetric(horizontal: 12),
+        titleTextStyle: TextStyle(color: AppColors.description, fontSize: 12),
+        leadingAndTrailingTextStyle: TextStyle(color: AppColors.title, fontSize: 12, fontWeight: FontWeight.bold),
       ),
       child: ListView(children: [buildPayee(context), buildPayor(context), buildPayGuide(context)]),
     );
   }
 
   Widget buildPayee(BuildContext context) {
-    return CupertinoListSection(
+    return CupertinoListSection.insetGrouped(
+      margin: Gutter.horizontal.normal,
       hasLeading: false,
       header: Row(
         spacing: 8,
         children: [
           Text(
-            'payment.receiver.acc'.tr,
-            style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.title),
+            'payee.acc'.tr,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: AppColors.title),
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 8),
             decoration: BoxDecoration(color: AppColors.ffeee5, borderRadius: BorderRadius.circular(10)),
-            child: Text('payment.receiver.target'.tr, style: TextStyle(color: AppColors.primary, fontSize: 12)),
+            child: Text('payee.extra'.tr, style: TextStyle(color: AppColors.primary, fontSize: 12)),
           ),
         ],
       ),
       children: [
         ListTile(
-          title: Text('payment.method'.tr),
+          title: Text('funds.topup.method'.tr),
           trailing: Row(
             spacing: 4,
             mainAxisSize: MainAxisSize.min,
             children: [
-              NetworkPicture(width: 28, height: 28, imageUrl: Get.parameters['logo']!, fit: BoxFit.cover),
-              Text("${Get.parameters['name']}"),
+              NetworkPicture(width: 28, height: 28, imageUrl: '', fit: BoxFit.cover),
+              Text(order.channel),
             ],
           ),
         ),
         ListTile(
-          title: Text('payment.receiver.method'.tr),
-          trailing: Row(spacing: 4, mainAxisSize: MainAxisSize.min, children: [Text("${Get.parameters['refrence']}"), Icon(IconFont.copy, size: 16)]),
-          onTap: copier(Get.parameters['refrence']!),
+          title: Text('payee.acc'.tr),
+          trailing: Row(spacing: 4, mainAxisSize: MainAxisSize.min, children: [Text(order.cardNo), Icon(IconFont.copy, size: 16)]),
+          onTap: copier(order.tradeNo),
         ),
         ListTile(
-          title: Text('payment.receiver.amount'.tr),
-          trailing: RichText(
-            text: TextSpan(
-              style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.bold, fontSize: 14),
-              text: '${Get.parameters['amount']}',
-              children: [
-                TextSpan(
-                  text: ' MMK',
-                  style: TextStyle(color: AppColors.description),
-                ),
-              ],
-            ),
+          title: Text('funds.topup.amount'.tr),
+          trailing: Amount(
+            amount: '${order.money}',
+            spacing: 4,
+            style: TextStyle(color: AppColors.title),
+            amountstyle: TextStyle(color: AppColors.primary, fontWeight: FontWeight.bold, fontSize: 14),
           ),
         ),
       ],
@@ -107,16 +132,17 @@ class _PayeeViewState extends State<PayeeView> {
   }
 
   Widget buildPayor(BuildContext context) {
-    return CupertinoListSection(
+    return CupertinoListSection.insetGrouped(
+      margin: Gutter.horizontal.normal,
       hasLeading: false,
       header: Row(
         spacing: 8,
         children: [
           Text(
-            'payment.receiver.bill.No.'.tr,
-            style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.title),
+            'payee.transId'.tr,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12, color: AppColors.title),
           ),
-          Text("(${'app.required'.tr})", style: TextStyle(color: AppColors.primary)),
+          Text("(${'app.required'.tr})", style: TextStyle(color: AppColors.primary, fontSize: 12)),
         ],
       ),
       children: [
@@ -129,7 +155,7 @@ class _PayeeViewState extends State<PayeeView> {
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             decoration: InputDecoration(
               counterText: '',
-              hint: Text('payment.receiver.placeholder'.tr, style: TextStyle(fontSize: 12, color: AppColors.description)),
+              hint: Text('form.payee.placed'.tr, style: TextStyle(fontSize: 12, color: AppColors.description)),
             ),
           ),
         ),
@@ -141,13 +167,13 @@ class _PayeeViewState extends State<PayeeView> {
     return CupertinoListSection(
       hasLeading: false,
       header: Text(
-        'payment.receiver.guide'.tr,
+        'payee.guide'.tr,
         style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.title),
       ),
       children: [
         Padding(
           padding: EdgeInsets.all(12),
-          child: NetworkPicture(imageUrl: Get.parameters['image_url']!, height: 1000),
+          child: NetworkPicture(imageUrl: payee.imageUrl ?? '', height: 1000),
         ),
       ],
     );
@@ -156,14 +182,14 @@ class _PayeeViewState extends State<PayeeView> {
   submit() async {
     final value = controller.text;
     if (value.isEmpty) {
-      BotToast.showText(text: '请填写回执号');
+      BotToast.showText(text: 'form.payee.placed'.tr);
       return;
     }
     try {
       BotToast.showLoading();
-      await apis.funds.matchTopup(data: {'sys_trade_no': Get.parameters['sysTradeNo'], 'bank_serial': value, 'account_id': Get.parameters['id']});
+      await apis.funds.matchTopup(data: {'sys_trade_no': order.tradeNo, 'bank_serial': value, 'account_id': order});
       BotToast.closeAllLoading();
-      await showSuccess(text: '提交成功!');
+      await showSuccess();
       Get.back();
     } catch (e) {
       BotToast.closeAllLoading();
@@ -175,4 +201,12 @@ class _PayeeViewState extends State<PayeeView> {
     controller.dispose();
     super.dispose();
   }
+}
+
+class PayeeModel {
+  final FundRecord order;
+  final String imageUrl;
+  TopUpModel? channel;
+
+  PayeeModel({required this.order, this.channel, required this.imageUrl});
 }

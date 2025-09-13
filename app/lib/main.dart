@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:app/startup/startup.dart';
 import 'package:app/views/splash/splash.dart';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -27,7 +28,12 @@ void main() async {
   final error = false.obs;
 
   /// 显示开屏页
-  runApp(Obx(() => SplashView(error.value, key: ValueKey(error))));
+  runApp(
+    MaterialApp(
+      builder: BotToastInit(),
+      home: Obx(() => SplashView(error.value, key: ValueKey(error))),
+    ),
+  );
 
   try {
     /// 初始化各类对象并保证开屏页至少显示1秒
@@ -38,6 +44,7 @@ void main() async {
   } catch (e) {
     error.value = true;
     debugPrint(e.toString());
+    BotToast.showText(text: e.toString(), duration: Duration(seconds: 10));
     rethrow;
   }
 }

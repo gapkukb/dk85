@@ -56,10 +56,12 @@ class FundRecords {
 class FundRecord {
   final String channel;
   final String tradeNo;
+  final String cardNo;
   final num money;
   final String remark;
   final num type;
   final num symbol;
+  final num accountId;
   final int status;
   final String time;
   final int changeType;
@@ -67,6 +69,8 @@ class FundRecord {
   FundRecord({
     required this.channel,
     required this.tradeNo,
+    required this.cardNo,
+    required this.accountId,
     required this.money,
     required this.remark,
     required this.type,
@@ -83,6 +87,8 @@ class FundRecord {
   factory FundRecord.fromJson(Map<String, dynamic> json) => FundRecord(
     channel: json["channel"] ?? '',
     tradeNo: json["trade_no"] ?? '',
+    cardNo: json["card_no"] ?? '',
+    accountId: json["account_id"] ?? 0,
     money: stringToNum(json["money"]),
     remark: json["remark"] ?? '',
     type: json["type"] ?? 0,
@@ -94,8 +100,10 @@ class FundRecord {
 
   Map<String, dynamic> toJson() => {
     "trade_no": tradeNo,
+    "card_no": cardNo,
     "money": money,
     "remark": remark,
+    "account_id": accountId,
     "type": type,
     "symbol": symbol,
     "status": status,

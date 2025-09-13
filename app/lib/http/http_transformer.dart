@@ -4,10 +4,7 @@ part of 'http.dart';
 
 class HTTPBackgroundTransformer extends BackgroundTransformer {
   @override
-  Future transformResponse(
-    RequestOptions options,
-    ResponseBody responseBody,
-  ) async {
+  Future transformResponse(RequestOptions options, ResponseBody responseBody) async {
     dynamic body = await super.transformResponse(options, responseBody);
     if (options.normalizable == false) return body;
     if (body is String && options.responseType == ResponseType.json) {
@@ -20,7 +17,7 @@ class HTTPBackgroundTransformer extends BackgroundTransformer {
       final errorMessage = body is Map
           ? body['message'] ?? responseBody.statusMessage
           : body is String
-          ? body
+          ? "${options.path}\n${responseBody.statusCode}-${responseBody.statusMessage}"
           : responseBody.statusMessage;
 
       throw DioException(
@@ -28,10 +25,7 @@ class HTTPBackgroundTransformer extends BackgroundTransformer {
         response: Response(
           requestOptions: options,
           data: body,
-          headers: Headers.fromMap(
-            responseBody.headers,
-            preserveHeaderCase: options.preserveHeaderCase,
-          ),
+          headers: Headers.fromMap(responseBody.headers, preserveHeaderCase: options.preserveHeaderCase),
           statusCode: responseBody.statusCode,
           statusMessage: responseBody.statusMessage,
           extra: responseBody.extra,

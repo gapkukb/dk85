@@ -2,12 +2,14 @@ import 'package:app/apis/apis.dart';
 import 'package:app/extensions/num.dart';
 import 'package:app/hooks/useForm.dart';
 import 'package:app/iconfont/index.dart';
+import 'package:app/models/fund_record.model.dart';
 import 'package:app/models/top_up.model.dart';
 import 'package:app/routes/app_pages.dart';
 import 'package:app/shared/customer_service/customer_service.dart';
 import 'package:app/theme/index.dart';
 import 'package:app/views/funds/funds_controller.dart';
 import 'package:app/views/funds/widgets/funds_preset_amount.dart';
+import 'package:app/views/payee/payee.dart';
 import 'package:app/widgets/button/index.dart';
 import 'package:app/widgets/input_base/input_base.dart';
 import 'package:app/widgets/network_picture.dart';
@@ -23,7 +25,7 @@ class FundsFillDeposit extends GetView<FundsController> {
   @override
   Widget build(BuildContext context) {
     final form = Useform((values) async {
-      final order = await apis.funds.createTopUpOrder(
+      final r = await apis.funds.createTopUpOrder(
         data: {
           // 	string	支付接口ID
           'account_id': channel.id,
@@ -45,18 +47,26 @@ class FundsFillDeposit extends GetView<FundsController> {
           'nonce': Uuid().v1(),
         },
       );
-
+      final order = r.data;
       Get.offAndToNamed(
         Routes.payee,
-        parameters: {
-          'id': channel.id.toString(),
-          'refrence': order.data.orderSn,
-          'name': channel.name,
-          'logo': channel.logo,
-          'amount': values['amount'],
-          'image_url': order.data.imageUrl,
-          'sysTradeNo': order.data.sysTradeNo,
-        },
+        arguments: PayeeModel(
+          imageUrl: order.imageUrl,
+          order: FundRecord(
+            accountId: channel.id,
+            channel: channel.name,
+            tradeNo: order.orderSn,
+            cardNo: order.channelCardNo,
+            money: num.tryParse(values['amount']) ?? 0,
+            remark: 'remark',
+            type: 1,
+            symbol: 1,
+            status: 1,
+            time: DateTime.now().toIso8601String(),
+            changeType: -1,
+          ),
+          channel: channel,
+        ),
       );
     });
     return Form(

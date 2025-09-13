@@ -23,8 +23,8 @@ class FavoritesView extends GetView<FavoritesController> {
             child: SafeArea(
               child: Obx(
                 () => GameGridView(
-                  loading: controller.loading.value,
-                  gameList: services.game.likes,
+                  loading: services.game.likesLoading.value,
+                  gameList: controller.games,
                   empty: () => StateBlock(buttonText: 'fav.browser'.tr, onPressed: services.app.toDashboardView),
                 ),
               ),

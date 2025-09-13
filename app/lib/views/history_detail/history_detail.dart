@@ -5,6 +5,7 @@ import 'package:app/routes/app_pages.dart';
 import 'package:app/shared/customer_service/customer_service.dart';
 import 'package:app/shared/fund_state.dart';
 import 'package:app/theme/index.dart';
+import 'package:app/views/payee/payee.dart';
 import 'package:app/widgets/back_button/back_button.dart';
 import 'package:app/widgets/button/index.dart';
 import 'package:app/widgets/multiple_text/multiple_text.dart';
@@ -81,7 +82,10 @@ class HistoryDetailView extends StatelessWidget {
               maintainBottomViewPadding: true,
               child: AKButton(
                 onPressed: () {
-                  Get.toNamed(Routes.payee);
+                  Get.toNamed(
+                    Routes.payee,
+                    arguments: PayeeModel(order: order, imageUrl: ''),
+                  );
                 },
                 radius: 0,
                 text: 'Pay',

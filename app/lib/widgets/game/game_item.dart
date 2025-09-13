@@ -2,10 +2,9 @@ part of 'index.dart';
 
 class GameItemView extends StatelessWidget {
   final num likes;
-  final bool isLike;
   final GameModel game;
 
-  const GameItemView({super.key, this.likes = 0, this.isLike = false, required this.game});
+  const GameItemView({super.key, this.likes = 0, required this.game});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +53,7 @@ class GameItemView extends StatelessWidget {
                   ),
                   Align(
                     alignment: Alignment.centerRight,
-                    child: GameFavButton(gameId: game.id, platormId: 17),
+                    child: GameFavButton(gameId: game.id, platormId: 17, liked: game.liked),
                   ),
                 ],
               ),

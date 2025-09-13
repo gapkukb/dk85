@@ -30,6 +30,8 @@ const Map<String, String> en = {
   "app.state.network": "Network Error",
   "app.change": "Change",
   "app.bind": "Bind",
+  "app.submit": "Submit",
+  "app.required": "Requried",
 
   /// 认证页面，登录|注册
   "auth.forgot": "Forgot password?",
@@ -53,6 +55,13 @@ const Map<String, String> en = {
   "funds.withdraw.limit": "Minimum single withdrawal amount is ",
   "funds.withdraw.add": "Add Account",
   "funds.withdraw.list": "Receiving Account",
+
+  /// paylee page
+  "payee.title": "Recharge confirmation",
+  "payee.acc": "Receiving Account",
+  "payee.extra": "Transfer here",
+  "payee.transId": "Transaction ID",
+  "payee.guide": "Rec Guide",
 
   /// 记录
   "records.change.title": "Funding Changes",
@@ -131,4 +140,5 @@ const Map<String, String> en = {
   "form.max.error": "Maximum amount @max",
   "form.withdraw.acc": "Enter receiving account",
   "form.withdraw.amount": "Enter the withdrawal amount",
+  "form.payee.placed": "Enter last 6 digits of order",
 };

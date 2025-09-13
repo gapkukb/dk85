@@ -48,6 +48,7 @@ class GameGroupModel {
 
 class GameModel {
   final int id;
+  final int platformId;
   final String platform;
   final String name;
   final String style;
@@ -64,12 +65,14 @@ class GameModel {
   final int isNew;
   final int status;
   final int sort;
+  bool liked;
   final String createdAt;
   final String updatedAt;
 
   GameModel({
     required this.id,
     required this.platform,
+    required this.platformId,
     required this.name,
     required this.style,
     required this.img,
@@ -85,6 +88,7 @@ class GameModel {
     required this.isNew,
     required this.status,
     required this.sort,
+    required this.liked,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -96,6 +100,7 @@ class GameModel {
   factory GameModel.fromJson(Map<String, dynamic> json) => GameModel(
     id: json["id"] ?? -1,
     platform: json["platform"] ?? '',
+    platformId: json["platform_id"] ?? -1,
     name: json["name"] ?? '',
     style: json["style"] ?? '',
     img: json["img"] ?? '',
@@ -111,6 +116,7 @@ class GameModel {
     isNew: json["is_new"] ?? 0,
     status: json["status"] ?? 0,
     sort: json["sort"] ?? 0,
+    liked: false,
     createdAt: json["created_at"] ?? '',
     updatedAt: json["updated_at"] ?? '',
   );
@@ -118,6 +124,7 @@ class GameModel {
   Map<String, dynamic> toJson() => {
     "id": id,
     "platform": platform,
+    "platformId": platformId,
     "name": name,
     "style": style,
     "img": img,
@@ -133,6 +140,7 @@ class GameModel {
     "is_new": isNew,
     "status": status,
     "sort": sort,
+    "liked": liked,
     "created_at": createdAt,
     "updated_at": updatedAt,
   };
@@ -175,13 +183,13 @@ class FavoriteModelGroup {
 class FavoriteModel {
   final int id;
   final int siteId;
+  final int platformId;
   final int gameId;
   final int userId;
-  final int favoriteId;
   final String createdAt;
   final String updatedAt;
 
-  FavoriteModel({required this.id, required this.siteId, required this.gameId, required this.userId, required this.favoriteId, required this.createdAt, required this.updatedAt});
+  FavoriteModel({required this.id, required this.platformId, required this.siteId, required this.gameId, required this.userId, required this.createdAt, required this.updatedAt});
 
   factory FavoriteModel.fromRawJson(String str) => FavoriteModel.fromJson(json.decode(str));
 
@@ -189,13 +197,13 @@ class FavoriteModel {
 
   factory FavoriteModel.fromJson(Map<String, dynamic> json) => FavoriteModel(
     id: json["id"] ?? 0,
+    platformId: json["platform_id"] ?? 0,
     siteId: json["site_id"] ?? 0,
     gameId: json["game_id"] ?? 0,
     userId: json["user_id"] ?? '',
-    favoriteId: json["favorite_id"] ?? '',
     createdAt: json["created_at"] ?? '',
     updatedAt: json["updated_at"] ?? '',
   );
 
-  Map<String, dynamic> toJson() => {"id": id, "site_id": siteId, "game_id": gameId, "user_id": userId, "favorite_id": favoriteId, "created_at": createdAt, "updated_at": updatedAt};
+  Map<String, dynamic> toJson() => {"id": id, "platform_id": platformId, "site_id": siteId, "game_id": gameId, "user_id": userId, "created_at": createdAt, "updated_at": updatedAt};
 }

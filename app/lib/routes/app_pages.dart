@@ -28,8 +28,8 @@ part 'app_routes.dart';
 
 // ignore: avoid_classes_with_only_static_members
 class AppPages {
-  static const INITIAL = Routes.favorites;
-  // static const INITIAL = null;
+  // static const INITIAL = Routes.favorites;
+  static const INITIAL = null;
 
   static final routes = [
     GetPage(name: Routes.demo, page: () => const DemoView()),

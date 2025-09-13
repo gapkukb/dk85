@@ -8,12 +8,11 @@ class FavoritesController extends GetxController {
   FavoritesController();
 
   final refresher = RefreshController();
-  final loading = true.obs;
-  final favorites = <GameModel>[].obs;
+  List<GameModel> get games => services.game.all.where((i) => i.liked).toList();
 
   @override
   void onInit() {
-    queryFavorites();
+    services.game.queryLikes();
     super.onInit();
   }
 
@@ -21,12 +20,6 @@ class FavoritesController extends GetxController {
   onClose() {
     refresher.dispose();
     super.onClose();
-  }
-
-  Future queryFavorites() async {
-    // services.game.queryLikes().whenComplete(() {
-    //   loading.value = false;
-    // });
   }
 
   List<GameModel> mock() {
