@@ -1,6 +1,6 @@
+import 'package:app/theme/index.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:get/state_manager.dart';
+import 'package:get/get.dart';
 
 class DailyCheckInRules extends StatelessWidget {
   const DailyCheckInRules({super.key});
@@ -16,9 +16,9 @@ class DailyCheckInRules extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('အောင်မြင်စွာဝင်ရောက်ပါ။', style: TextStyle()),
+          Text('dci.rules'.tr, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
-          Text('1. You can check in once a day.', style: TextStyle()),
+          Text('dci.rules.desc'.tr, style: TextStyle(color: AppColors.label)),
         ],
       ),
     );

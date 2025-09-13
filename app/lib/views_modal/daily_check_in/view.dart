@@ -11,6 +11,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import 'index.dart';
 
@@ -30,7 +31,7 @@ class DailyCheckInModal extends GetView<DailyCheckInController> {
             children: [
               Row(
                 children: [
-                  Text('Check-in activity', style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text('dci.title'.tr, style: TextStyle(fontWeight: FontWeight.bold)),
                   const Spacer(),
                   IconButton(
                     icon: Icon(IconFont.gantanhao, size: 18, color: AppColors.label),
@@ -38,8 +39,8 @@ class DailyCheckInModal extends GetView<DailyCheckInController> {
                   ),
                 ],
               ),
-              Obx(
-                () => GridView.builder(
+              Obx(() {
+                final view = GridView.builder(
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: controller.list.length,
@@ -48,10 +49,16 @@ class DailyCheckInModal extends GetView<DailyCheckInController> {
                     final item = controller.list[index];
                     return DailyCheckInCard(item);
                   },
-                ),
-              ),
+                );
+
+                if (controller.loading.value) {
+                  return Skeletonizer(ignoreContainers: true, child: view);
+                }
+                return view;
+              }),
               SizedBox(height: 8),
-              AKButton(height: 40, onPressed: claim, text: 'Check-in'),
+              Obx(() => AKButton(height: 40, onPressed: controller.loading.value ? null : claim, text: 'dci.button'.tr)),
+
               SizedBox(height: 12),
             ],
           ),

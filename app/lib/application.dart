@@ -60,9 +60,7 @@ class Application extends StatelessWidget {
               if (services.auth.authorized) {
                 await showGuide();
               }
-              registerDialogs();
-              Dialogs.to.active();
-              services.user.queryActivity();
+              Dialogs.to.initlize();
             });
             return setupBotToast(context, child!);
           },

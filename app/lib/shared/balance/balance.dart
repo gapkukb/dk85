@@ -57,7 +57,7 @@ class Balance extends StatefulWidget {
 }
 
 class _BalanceState extends State<Balance> {
-  get _balance => services.user.balance.value;
+  num get _balance => services.user.balance.value;
 
   late final AnimationController controller;
 
@@ -112,7 +112,7 @@ class _BalanceState extends State<Balance> {
 
     final counter = AnimatedFlipCounter(
       key: ValueKey(_balance),
-      value: _balance,
+      value: widget.showFraction ? _balance : _balance.toInt(),
       fractionDigits: widget.showFraction ? 2 : 0,
       suffix: widget.suffix,
       prefix: widget.prefix,

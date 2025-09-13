@@ -9,6 +9,6 @@ class SimpleUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(child: Obx(() => services.auth.authorized ? SimpleBalance(depositable: true) : AuthButton()));
+    return SizedBox(child: Obx(() => services.auth.authorized ? SimpleBalance(key: ValueKey(services.user.balance.value), depositable: true) : AuthButton()));
   }
 }

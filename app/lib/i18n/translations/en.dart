@@ -4,7 +4,7 @@ const Map<String, String> en = {
   "app.login": "Log In",
   "app.register": "Sign up",
   "app.claim.now": "Claim Now",
-  "app.deposit": "TopUp",
+  "app.deposit": "Top-up",
   "app.withdraw": "Withdraw",
   "app.foru": "Hot",
   "app.slots": "Slots",
@@ -77,6 +77,11 @@ const Map<String, String> en = {
   "complete.mobile": "Mobile Number",
   "complete.email": "Email Address (Optional)",
   "complete.button": "Submit and Accept to\nGet Up to 58.00MMK",
+
+  /// 每日签到 daily check in
+  "dci.title": "Daily check-in",
+  "dci.button": "Check-in",
+  "dci.rules": "Daily check-in rules",
 
   // 游戏收藏页面
   "fav.title": "My Favorites",

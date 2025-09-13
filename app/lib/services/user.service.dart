@@ -32,16 +32,16 @@ class _UserService extends GetxService {
   }
 
   queryActivity() {
-    print('item222222222');
-    Dialogs.to.show(DialogNames.dailyCheckIn);
-    // if (userInfo.value?.payTimes != 0) {
-    //   Dialogs.to.show(DialogNames.topUpBouns);
-    // }
-    // if (userInfo.value?.mobile.isEmpty == true) {
-    //   Dialogs.to.show(DialogNames.completion);
-    // }
-    // if (userInfo.value?.isSignIn == false) {
-    //   Dialogs.to.show(DialogNames.dailyCheckIn);
-    // }
+    final info = userInfo.value;
+    if (info == null) return;
+    if (info.payTimes == 0) {
+      Dialogs.to.show(DialogNames.topUpBouns);
+    }
+    if (info.mobile.isEmpty == true) {
+      Dialogs.to.show(DialogNames.completion);
+    }
+    if (info.isSignIn == false) {
+      Dialogs.to.show(DialogNames.dailyCheckIn);
+    }
   }
 }

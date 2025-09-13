@@ -74,7 +74,17 @@ class _AnnouncementModalState extends State<AnnouncementModal> {
         setState(() {});
       },
       childrenPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-      children: <Widget>[Text(announcement.content, style: TextStyle(fontSize: 14, color: AppColors.label))],
+
+      children: <Widget>[
+        Align(
+          alignment: AlignmentGeometry.topLeft,
+          child: Text(
+            announcement.content,
+            style: TextStyle(fontSize: 14, color: AppColors.label),
+            textAlign: TextAlign.left,
+          ),
+        ),
+      ],
     );
   }
 }

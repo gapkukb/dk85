@@ -64,7 +64,7 @@ class _CompletionModalState extends State<CompletionModal> {
                   AKMobileInput(onSaved: form.saveAs('mobile')),
                   Text('complete.email'.tr),
                   AKEmailInput(optional: true, onSaved: form.saveAs('email')),
-                  AKButton(onPressed: form.submit, minWidth: double.infinity, height: 128 / 2, text: 'complete.button'.tr),
+                  AKButton(onPressed: form.submit, minWidth: double.infinity, height: 128 / 2, child: Text('complete.button'.tr)),
                 ],
               ),
             ),

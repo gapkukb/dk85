@@ -12,6 +12,19 @@ class Dialogs extends GetxService {
     // 初始化时删除period = launch的缓存
   }
 
+  initlize() async {
+    await Future.delayed(Duration(seconds: 1));
+    _authorized = services.auth.authorized;
+
+    add(DialogBuilder(id: DialogNames.completion, builder: () => CompletionModal()));
+    add(DialogBuilder(id: DialogNames.topUpBouns, builder: () => TopUpBonusModal()));
+    add(DialogBuilder(id: DialogNames.dailyCheckIn, builder: () => DailyCheckInModal()));
+    add(DialogBuilder(id: DialogNames.announcement, manual: false, requireAuth: false, builder: () => AnnouncementModal()));
+
+    services.user.queryActivity();
+    active();
+  }
+
   // 添加到队列，并立即检查是否满足显示条件，满足条件会直接展示
   add(DialogBuilder dialog) async {
     final exist = _queue.any((item) => item.id == dialog.id);
@@ -71,7 +84,7 @@ class Dialogs extends GetxService {
     if (_queue.isEmpty) return;
     final dialog = _queue.firstWhereOrNull((item) {
       // 跳过手动控制的弹窗
-      // if (item.manual) return false;
+      if (item.manual) return false;
       if (item.requireAuth && !_authorized) return false;
       // if (item.routes.isNotEmpty && !item.routes.contains(_curretRoute)) {
       //   return false;

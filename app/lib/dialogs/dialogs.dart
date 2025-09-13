@@ -12,4 +12,3 @@ import 'package:get/get.dart';
 part 'dialog_names.dart';
 part 'dialog_builder.dart';
 part 'dialog_service.dart';
-part 'dialog_registration.dart';
