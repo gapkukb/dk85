@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 class IconFont{
 	static const String _family = 'iconfont';
 	IconFont._();
-		static const IconData qiandao = IconData(0xe64d, fontFamily: _family);
+		static const IconData qiandao = IconData(0xe63a, fontFamily: _family);
 		static const IconData unselected = IconData(0xe60f, fontFamily: _family);
 		static const IconData gift_fill = IconData(0xe8b5, fontFamily: _family);
 		static const IconData wallet = IconData(0xe63d, fontFamily: _family);

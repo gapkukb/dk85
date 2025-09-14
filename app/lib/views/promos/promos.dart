@@ -63,15 +63,20 @@ class _PromosView extends StatelessWidget {
       title: const SimpleUser(),
       actionsPadding: EdgeInsets.only(right: 12),
       actions: [
-        IconButton(
-          onPressed: () {
+        GestureDetector(
+          onTap: () {
             Dialogs.to.dailyCheckIn();
             Dialogs.to.show(DialogNames.dailyCheckIn);
           },
-          icon: Icon(IconFont.qiandao),
-          iconSize: 18,
-          color: AppColors.highlight,
+
+          child: Container(
+            decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(36)),
+            width: 36,
+            height: 36,
+            child: Icon(IconFont.qiandao, color: AppColors.highlight),
+          ),
         ),
+        SizedBox(width: 4),
         CustomerService(),
       ],
     );

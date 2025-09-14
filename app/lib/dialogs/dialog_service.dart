@@ -4,6 +4,7 @@ class Dialogs extends GetxService {
   static Dialogs get to => Get.find<Dialogs>();
   final List<DialogBuilder> _queue = [];
   final Set<String> _launched = {};
+  bool _initlized = false;
   bool _authorized = false;
   bool _paused = true;
   String _curretRoute = '';
@@ -13,6 +14,9 @@ class Dialogs extends GetxService {
   }
 
   initlize() async {
+    // 防止输入框聚焦，语言切换等操作触发整个app构建导致重复弹出
+    if (_initlized) return;
+    _initlized = true;
     await Future.delayed(Duration(seconds: 1));
     _authorized = services.auth.authorized;
 

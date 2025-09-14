@@ -29,7 +29,7 @@ class _AKMobileInputState extends State<AKMobileInput> {
       onSaved: (newValue) {
         widget.onSaved?.call("${areaCode.value}$newValue");
       },
-      maxLength: 10,
+      maxLength: 12,
       keyboardType: TextInputType.phone,
       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
       validator: (value) {

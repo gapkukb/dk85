@@ -47,11 +47,11 @@ class _HomeViewState extends State<HomeView> {
             unselectedItemColor: AppColors.label,
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            services.app.playTopUpAudio();
-          },
-        ),
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () {
+        //     services.app.playTopUpAudio();
+        //   },
+        // ),
       ),
     );
   }
