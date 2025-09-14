@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:app/shared/confirmation/confirmation.dart';
+import 'package:app/theme/index.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:get/get.dart';
@@ -28,7 +31,9 @@ class _WebviewState extends State<Webview> {
     if (widget.content == null) {
       controller.loadRequest(Uri.parse(widget.url!));
     } else {
+      // controller.loadHtmlString(widget.content!);
       controller.loadHtmlString(widget.content!);
+      controller.setBackgroundColor(AppColors.background);
     }
     super.initState();
   }

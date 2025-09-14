@@ -7,6 +7,9 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 class HistoryGamesController extends DataViewLogic<GameRecord> with MixinDatePicker, MixinGameKindPicker {
   @override
+  bool get show30days => false;
+
+  @override
   fetch() async {
     final payload = {'start_date': start, 'end_date': end, 'platform': 'one_api_game', 'page': page, 'size': size};
     if (kind.value != 'ALL') {

@@ -70,7 +70,9 @@ class SimpleBalance extends StatelessWidget {
     return MaterialButton(
       elevation: 0,
       highlightElevation: 0,
-      onPressed: () {},
+      onPressed: () {
+        services.app.toFundsView();
+      },
       minWidth: 78,
       height: 32,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),

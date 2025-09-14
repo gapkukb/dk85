@@ -16,13 +16,13 @@ class GamingView extends StatelessWidget {
     if (!r.containsKey('url')) {
       throw '未找到url地址';
     }
-    Get.toNamed(Routes.gaming, parameters: r.cast());
+    Get.toNamed(Routes.gaming, arguments: resp.data['url']);
   }
 
   const GamingView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Webview(url: Get.parameters['url']!);
+    return Webview(url: Get.arguments as String);
   }
 }

@@ -3,13 +3,16 @@ import 'package:app/shared/formatter/formatter.dart';
 import 'package:get/get.dart';
 
 mixin MixinDatePicker {
-  final dateOptions = [
-    Choose(title: 'Today', value: 0),
-    Choose(title: 'Yesterday', value: 1),
-    Choose(title: 'Last 3 days', value: 3),
-    Choose(title: 'Last 7 days', value: 7),
-    Choose(title: 'Last 30 days', value: 30),
-  ];
+  bool get show30days => true;
+  List<Choose<int>> get dateOptions {
+    final optinos = [Choose(title: 'Today', value: 0), Choose(title: 'Yesterday', value: 1), Choose(title: 'Last 3 days', value: 3), Choose(title: 'Last 7 days', value: 7)];
+
+    if (show30days) {
+      optinos.add(Choose(title: 'Last 30 days', value: 30));
+    }
+
+    return optinos;
+  }
 
   final date = 0.obs;
 

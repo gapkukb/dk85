@@ -37,7 +37,7 @@ class _PromosView extends StatelessWidget {
               itemBuilder: (context, index) {
                 final promo = controller.promos[index];
                 return GestureDetector(
-                  onTap: () => Get.toNamed(Routes.activityDetail, arguments: 81),
+                  onTap: promo.url.isEmpty ? null : () => Get.toNamed(Routes.activityDetail, arguments: promo.url),
                   child: PhysicalModel(
                     color: Colors.transparent,
                     clipBehavior: Clip.antiAlias,

@@ -2,6 +2,7 @@ import 'package:app/apis/apis.dart';
 import 'package:app/models/ad_list.model.dart';
 import 'package:app/routes/app_pages.dart';
 import 'package:app/theme/index.dart';
+import 'package:app/views/activity_detail/activity_detail.dart';
 import 'package:app/widgets/network_picture.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -64,7 +65,7 @@ class _SliverGameSwiperState extends State<SliverGameSwiper> {
 
   Widget buildItem(AdModel ad) {
     return GestureDetector(
-      onTap: () => Get.toNamed(Routes.activityDetail, arguments: ad.id),
+      onTap: ad.url.isEmpty ? null : () => Get.toNamed(Routes.activityDetail, arguments: ad.url),
       child: SizedBox.expand(
         child: Material(
           color: AppColors.skeleton,
