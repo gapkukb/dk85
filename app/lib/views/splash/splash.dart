@@ -31,7 +31,7 @@ class _SplashViewState extends State<SplashView> {
           height: double.infinity,
           decoration: BoxDecoration(
             color: Colors.white,
-            image: DecorationImage(image: AssetImage("assets/images/splash.webp"), fit: BoxFit.fill),
+            image: DecorationImage(image: AssetImage("assets/images/launch_background.webp"), fit: BoxFit.fill),
           ),
           child: AKLoading(
             style: widget.erorr ? TextStyle(color: AppColors.danger) : null,

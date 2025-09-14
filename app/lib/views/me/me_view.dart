@@ -83,6 +83,7 @@ class _MeView extends StatelessWidget {
                     onPressed: () {
                       services.app.toFundsView(0);
                     },
+                    rounded: true,
                     text: 'app.deposit'.tr,
                     color: AppColors.white,
                     textColor: AppColors.primary,
@@ -94,6 +95,8 @@ class _MeView extends StatelessWidget {
                     onPressed: () {
                       services.app.toFundsView(1);
                     },
+                    rounded: true,
+                    outlined: true,
                     text: 'app.withdraw'.tr,
                     color: Colors.white,
                   ),

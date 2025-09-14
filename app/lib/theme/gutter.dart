@@ -44,28 +44,18 @@ class _Inner {
 abstract class Gutter {
   static final all = _Inner((value) => EdgeInsets.all(value));
 
-  static final horizontal = _Inner(
-    (value) => EdgeInsets.symmetric(horizontal: value),
-  );
-  static final vertical = _Inner(
-    (value) => EdgeInsets.symmetric(vertical: value),
-  );
+  static final horizontal = _Inner((value) => EdgeInsets.symmetric(horizontal: value));
+  static final vertical = _Inner((value) => EdgeInsets.symmetric(vertical: value));
 
   static final left = _Inner((value) => EdgeInsets.only(left: value));
   static final right = _Inner((value) => EdgeInsets.only(right: value));
   static final top = _Inner((value) => EdgeInsets.only(top: value));
   static final bottom = _Inner((value) => EdgeInsets.only(bottom: value));
 
-  static final bottomLess = _Inner(
-    (value) => EdgeInsets.fromLTRB(value, value, value, 0),
-  );
-  static final topLess = _Inner(
-    (value) => EdgeInsets.fromLTRB(value, 0, value, value),
-  );
-  static final leftLess = _Inner(
-    (value) => EdgeInsets.fromLTRB(0, value, value, value),
-  );
-  static final rightLess = _Inner(
-    (value) => EdgeInsets.fromLTRB(value, value, 0, value),
-  );
+  static final bottomLess = _Inner((value) => EdgeInsets.fromLTRB(value, value, value, 0));
+  static final topLess = _Inner((value) => EdgeInsets.fromLTRB(value, 0, value, value));
+  static final leftLess = _Inner((value) => EdgeInsets.fromLTRB(0, value, value, value));
+  static final rightLess = _Inner((value) => EdgeInsets.fromLTRB(value, value, 0, value));
+
+  static const page = EdgeInsets.fromLTRB(12, 0, 12, 12);
 }

@@ -64,7 +64,7 @@ class _SliverGameSwiperState extends State<SliverGameSwiper> {
 
   Widget buildItem(AdModel ad) {
     return GestureDetector(
-      onTap: () => Get.toNamed(Routes.activityDetail, parameters: {'id': ad.name}),
+      onTap: () => Get.toNamed(Routes.activityDetail, arguments: ad.id),
       child: SizedBox.expand(
         child: Material(
           color: AppColors.skeleton,

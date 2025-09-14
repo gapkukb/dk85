@@ -68,7 +68,7 @@ class DailyCheckInModal extends GetView<DailyCheckInController> {
   }
 
   void showRules() {
-    Get.bottomSheet(DailyCheckInRules(), isScrollControlled: true);
+    Get.bottomSheet(DailyCheckInRules(rules: controller.rules.value), isScrollControlled: true);
   }
 
   void claim() async {

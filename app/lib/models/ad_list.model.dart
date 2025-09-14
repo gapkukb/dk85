@@ -19,6 +19,7 @@ class AdModelWrapper {
 }
 
 class AdModel {
+  final int id;
   final String name;
   final String image;
   final String url;
@@ -27,14 +28,31 @@ class AdModel {
   final num position;
   final num sort;
 
-  AdModel({required this.name, required this.image, required this.url, required this.type, required this.beforeLogin, required this.position, required this.sort});
+  AdModel({
+    required this.id,
+    required this.name,
+    required this.image,
+    required this.url,
+    required this.type,
+    required this.beforeLogin,
+    required this.position,
+    required this.sort,
+  });
 
   factory AdModel.fromRawJson(String str) => AdModel.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory AdModel.fromJson(Map<String, dynamic> json) =>
-      AdModel(name: json["name"], image: json["image"], url: json["url"], type: json["type"], beforeLogin: json["before_login"], position: json["position"], sort: json["sort"]);
+  factory AdModel.fromJson(Map<String, dynamic> json) => AdModel(
+    id: json["id"],
+    name: json["name"],
+    image: json["image"],
+    url: json["url"],
+    type: json["type"],
+    beforeLogin: json["before_login"],
+    position: json["position"],
+    sort: json["sort"],
+  );
 
-  Map<String, dynamic> toJson() => {"name": name, "image": image, "url": url, "type": type, "before_login": beforeLogin, "position": position, "sort": sort};
+  Map<String, dynamic> toJson() => {"id": id, "name": name, "image": image, "url": url, "type": type, "before_login": beforeLogin, "position": position, "sort": sort};
 }

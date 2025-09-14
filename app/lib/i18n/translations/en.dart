@@ -31,7 +31,7 @@ const Map<String, String> en = {
   "app.change": "Change",
   "app.bind": "Bind",
   "app.submit": "Submit",
-  "app.required": "Requried",
+  "app.required": "Required",
 
   /// 认证页面，登录|注册
   "auth.forgot": "Forgot password?",
@@ -71,6 +71,10 @@ const Map<String, String> en = {
 
   /// 公告
   "announcement.title": "Announcement",
+
+  /// 公告
+  "act.title": "Activities",
+  "act.detail": "Activity Details",
 
   /// 完善信息
   "complete.title": "Complete Profile",
@@ -137,9 +141,9 @@ const Map<String, String> en = {
   "form.graphic.error": "The code must be 4 characters",
   "form.email.placed": "Enter your email address",
   "form.email.error": "Your email incorrect",
-  "form.tel.placed": "Enter your tel number",
-  "form.tel.required": "Tel number is required",
-  "form.tel.error": "Your tel number incorrect",
+  "form.tel.placed": "Enter your mobile number",
+  "form.tel.required": "Mobile number is required",
+  "form.tel.error": "Your mobile number incorrect",
   "form.required": "Please fill this field",
   "form.min.error": "Minimum amount @min",
   "form.max.error": "Maximum amount @max",

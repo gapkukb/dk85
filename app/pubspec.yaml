@@ -62,7 +62,7 @@ dependencies:
   uuid: ^4.5.1
   advertising_id: ^2.7.1
   pretty_dio_logger: ^1.4.0
-  flutter_html: ^3.0.0
+  # flutter_html: ^3.0.0
   audioplayers: ^6.5.1
   flutter_cache_manager: ^3.4.1
   url_launcher: ^6.3.2

@@ -1,3 +1,4 @@
+import 'package:app/services/index.dart';
 import 'package:app/shared/balance/balance.dart';
 import 'package:app/theme/index.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class AccountBalance extends StatelessWidget {
       trailingStyle: TextStyle(fontSize: 20, height: 1.5),
       refresherSize: 24,
       builder: (context, amount, refresher) {
+        final text = services.auth.authorized ? "${services.user.userInfo.value?.username}'s ${"app.balance".tr}" : "app.balance".tr;
         return Container(
           height: height,
           margin: EdgeInsets.only(left: 12, right: 12),
@@ -23,11 +25,7 @@ class AccountBalance extends StatelessWidget {
           decoration: BoxDecoration(
             color: AppColors.primary,
             borderRadius: BorderRadius.circular(4),
-            image: const DecorationImage(
-              alignment: Alignment(0, 0.2),
-              image: AssetImage("assets/images/balance-bg.png"),
-              fit: BoxFit.fitWidth,
-            ),
+            image: const DecorationImage(alignment: Alignment(0, 0.2), image: AssetImage("assets/images/balance-bg.png"), fit: BoxFit.fitWidth),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,10 +36,7 @@ class AccountBalance extends StatelessWidget {
                 spacing: 8,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "app.balance".tr,
-                    style: TextStyle(fontSize: 16, color: AppColors.white),
-                  ),
+                  Text(text, style: TextStyle(fontSize: 16, color: AppColors.white)),
                   refresher,
                 ],
               ),

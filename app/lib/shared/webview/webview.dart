@@ -10,8 +10,10 @@ class Webview extends StatefulWidget {
   final bool cacheable;
   final bool showScorllbar;
   final bool backButton;
-  final String url;
-  const Webview({super.key, required this.url, this.allowFullscreen = false, this.cacheable = true, this.showScorllbar = true, this.backButton = false});
+  final String? url;
+  final String? content;
+  const Webview({super.key, this.url, this.allowFullscreen = false, this.cacheable = true, this.showScorllbar = true, this.backButton = false, this.content})
+    : assert(url != null || content != null, 'url和content不得同时为空');
 
   @override
   _WebviewState createState() => _WebviewState();
@@ -23,7 +25,11 @@ class _WebviewState extends State<Webview> {
   @override
   void initState() {
     _initilize();
-    controller.loadRequest(Uri.parse(widget.url));
+    if (widget.content == null) {
+      controller.loadRequest(Uri.parse(widget.url!));
+    } else {
+      controller.loadHtmlString(widget.content!);
+    }
     super.initState();
   }
 

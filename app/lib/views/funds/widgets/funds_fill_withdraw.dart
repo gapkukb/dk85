@@ -21,6 +21,7 @@ class FundsFillWithdraw extends GetView<FundsController> {
       await apis.funds.withdraw(data: {...values, 'withdraw_id': channel.id});
       await showSuccess();
       Get.back();
+      services.user.queryBalance();
     });
   }
 

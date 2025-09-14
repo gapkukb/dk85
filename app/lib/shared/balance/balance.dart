@@ -5,6 +5,7 @@ import 'package:app/iconfont/index.dart';
 import 'package:app/services/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
 class Balance extends StatefulWidget {
   final double? spacing;
@@ -110,18 +111,19 @@ class _BalanceState extends State<Balance> {
       height: 1,
     ).merge(widget.amountStyle);
 
-    final counter = AnimatedFlipCounter(
-      key: ValueKey(_balance),
-      value: widget.showFraction ? _balance : _balance.toInt(),
-      fractionDigits: widget.showFraction ? 2 : 0,
-      suffix: widget.suffix,
-      prefix: widget.prefix,
-      padding: widget.amountPadding ?? EdgeInsets.zero,
-      decimalSeparator: widget.decimalSeparator ?? '.',
-      textStyle: style,
-      wholeDigits: widget.wholeDigits ?? 1,
-      thousandSeparator: widget.thousandSeparator,
-      hideLeadingZeroes: widget.hideLeadingZeroes ?? false,
+    final counter = Obx(
+      () => AnimatedFlipCounter(
+        value: widget.showFraction ? _balance : _balance.toInt(),
+        fractionDigits: widget.showFraction ? 2 : 0,
+        suffix: widget.suffix,
+        prefix: widget.prefix,
+        padding: widget.amountPadding ?? EdgeInsets.zero,
+        decimalSeparator: widget.decimalSeparator ?? '.',
+        textStyle: style,
+        wholeDigits: widget.wholeDigits ?? 1,
+        thousandSeparator: widget.thousandSeparator,
+        hideLeadingZeroes: widget.hideLeadingZeroes ?? false,
+      ),
     );
 
     if (!widget.trailing) return counter;

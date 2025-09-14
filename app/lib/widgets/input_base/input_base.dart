@@ -168,7 +168,7 @@ class _AKBaseInputState extends State<AKBaseInput> {
 
   Widget buildSuffix() {
     if (widget.suffix == null) return buildClearButton();
-    return Wrap(crossAxisAlignment: WrapCrossAlignment.center, children: [buildClearButton(), widget.suffix!]);
+    return Wrap(spacing: 8, crossAxisAlignment: WrapCrossAlignment.center, children: [buildClearButton(), widget.suffix!]);
   }
 
   StreamBuilder<bool> buildClearButton() {

@@ -7,6 +7,7 @@ class DailyCheckInController extends GetxController {
 
   final loading = true.obs;
   final list = <DailyCheckInModel>[].obs;
+  final rules = ''.obs;
 
   void onTap() {}
 
@@ -15,7 +16,8 @@ class DailyCheckInController extends GetxController {
     super.onInit();
     list.value = mock();
     apis.app.checkInList().then((resp) {
-      list.value = resp.data;
+      list.value = resp.data.list;
+      rules.value = resp.data.rules;
       loading.value = false;
     });
   }

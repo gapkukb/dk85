@@ -1,176 +1,153 @@
 const Map<String, String> my = {
-  /// 通用
-  "app.deposit": "ငွေဖြည့်",
-  "app.withdraw": "ငွေထုတ်",
+  /// 全局
+  "app.language": "ဘာသာစကား",
   "app.login": "လော့ဂ်အင်",
-  "app.register": "မှတ်ပုံတင်",
-  "app.foru": "သင့်အတွက်",
+  "app.register": "ဆိုင်းအပ်",
+  "app.claim.now": "ရယူပါ။",
+  "app.deposit": "သိုက်",
+  "app.withdraw": "ငွေထုတ်",
+  "app.foru": "Hot",
   "app.slots": "စလော့",
   "app.fishing": "ငါးပစ်",
   "app.poker": "ပိုကာ",
-  "app.popular": "လူကြိုက်အများဆုံး",
-  "app.newGames": "ဂိမ်းအသစ်များ",
+  "app.popular": "နာမည်ကြီး",
+  "app.newGames": "ဂိမ်းအသစ်",
   "app.allGames": "ဂိမ်းအားလုံး",
   "app.balance": "လက်ကျန်",
   "app.service": "ဧည့်ဝန်ဆောင်မှု",
-  "app.transcation.detail": "လဲလှယ်မှုအသေးစိတ်",
+  "app.transcation.detail": "ငွေလွှဲခြင်း။",
   "app.all": "အားလုံး",
-  "app.confirm": "သေချာတယ်။",
-  "app.cancel": "မလုပ်တော့ပါ",
-  "app.close": "ပိတ်ခြင်း။",
+  "app.confirm": "အိုကေ",
+  "app.cancel": "မဟုတ်ဘူး",
   "app.logout": "ထွက်လိုက်ပါ။",
-  "app.logout.confirm": "ထွက်လိုသည်မှာ သေချာပါသလား။",
-  "app.nomore": "အားလုံးကိုပြသရန်",
-  "app.nodata": "မှတ်တမ်းတွေ မရှိသေးပါ",
-  "app.version": "လက်ရှိဗားရှင်း",
-  "app.bgm": "နောက်ခံဂီတ",
-  "app.filter": "ဇကာ",
-  "app.required": "လိုအပ်သည်",
-  "app.exit": "ထွက်ရန် ထပ်မံနှိပ်ပါ။",
-  "app.exit.game": "ဂိမ်းမှထွက်မလား။",
-  "app.change": "ပြန်လည်ပြင်ဆင်ပါ။",
-  "announcement": "ကြေငြာချက်",
+  "app.logout.confirm": "အကောင့်ထွက်ရန် သေချာပါသလား။",
+  "app.more": "နောက်ထပ်",
+  "app.nomore": "မရှိတော့ပါ",
+  "app.nodata": "ဒီမှာ ဘာမှမရှိ။",
+  "app.version": "ဗားရှင်း",
+  "app.bgm": "BGM",
+  "app.state.empty": "ဘာမှမဖြစ်",
+  "app.state.network": "ကွန်ရက် အမှား",
+  "app.change": "ပြောင်းလဲပါ။",
+  "app.bind": "စည်းပါ။",
+  "app.submit": "တင်ပြပါ။",
+  "app.required": "လုပ်ရမယ်။",
 
-  /// 页面名称
-  "page.me": "ပုဂ္ဗဟို",
-  "page.account": "အကောင့်",
-  "page.vip": "VIP အကျိုးကျေးဇူးများ",
-  "page.favorites": "ကျွန်ုပ်၏စုစည်းမှု",
-  "page.invitation": "သူငယ်ချင်းများကို ဖိတ်ခေါ်ပါ။",
-  "page.service": "ဝန်ဆောင်မှုများ",
-  "page.inbox": "အချက်အလက်",
-  "page.inbox.detail": "အသေးစိတ်",
-  "page.more": "နောက်ထပ်",
-  "page.promo": "ဘောနပ်",
-  "page.funds": "ပိုက်ဆံအိပ်",
-  "page.home": "ပထမစာမျက်နှာ",
-  "page.detail": "အသေးစိတ်",
+  /// 认证页面，登录|注册
+  "auth.forgot": "စကားဝှက်မေ့နေပါသလား",
+  "auth.guide": "ဝင်ရောက်မိတ်ဆက်ခြင်း။",
+  "auth.guide.text":
+      "သင်စာရင်းသွင်းရန်အသုံးပြုသည့်အသုံးပြုသူအမည်ကိုထည့်ပါ၊ ၎င်းသည် 6-12 လုံး၊ အက္ခရာစဉ်ဂဏန်းမျှသာဖြစ်သင့်သည်၊ အက္ခရာဖြင့်အစပြုပါသည်။ သင်အကူအညီလိုအပ်ပါက ကျွန်ုပ်တို့၏ဖောက်သည်ဝန်ဆောင်မှုကိုဆက်သွယ်ပါ။",
 
-  /// 充值相关
-  "payment.method": "ငွေပေးချေမှုနည်းလမ်းများ",
-  "payment.amount": "ငွေသွင်းသည့်ပမာဏ",
-  "payment.limit": "ထုတ်ငွေပမာဏထည့်ပါ။: 2000-1000000",
-  "payment.record": "အပ်ငွေမှတ်တမ်းများ",
-  "payment.receiver.title": "လဲလှယ်မှုအသေးစိတ်",
-  "payment.receiver": "လဲလှယ်မှုအသေးစိတ်",
-  "payment.receiver.mark": "လဲလှယ်မှုအသေးစိတ်",
-  "payment.receiver.method": "ငွေသွင်းခြင်းနည်းလမ်းများ",
-  "payment.receiver.No.": "အကောင့်လက်ခံခြင်း။",
-  "payment.receiver.amount": "ပေးဆောင်ရန်ပမာဏ",
-  "payment.receiver.bill.No.": "လုပ်ငန်းနံပါတ်",
-  "payment.receiver.placeholder": "အမှာစာနံပါတ်၏နောက်ဆုံးဂဏန်း 6 လုံးကိုထည့်ပါ။",
-  "payment.receiver.guide": "ငွေသွင်းနည်းကိုညွန်ပြ",
-  "payment.receiver.submit": "တင်ပြခြင်း",
-  "payment.receiver.acc": "လက်ခံ အကောင့်",
-  "payment.receiver.target": "ဤအကောင့်သို့ လွှဲပေးပါ။",
+  /// 钱包
+  "funds.title": "ပိုက်ဆံအိတ်",
+  "funds.account": "ငွေထုတ်ခြင်း\nအကောင့်",
+  "funds.gameHistory": "ငွေလွှဲခြင်း\nမှတ်တမ်း",
+  "funds.history": "ငွေဝင်/ထွက် မှတ်တမ်း",
+  "funds.topup.title": "အပ်ငွေအသေးစိတ်",
+  "funds.topup.method": "ငွေပေးချေစနစ်",
+  "funds.topup.amount": "ငွေပေးချေမှုပမာဏ",
+  "funds.topup.limit": "နံပါတ် @min-@max ထည့်ပါ။",
+  "funds.withdraw.title": "ငွေထုတ်အကောင့်",
+  "funds.withdraw.acc": "သင်၏လက်ခံအကောင့်-",
+  "funds.withdraw.amount": "ငွေထုတ်ပမာဏ",
+  "funds.withdraw.balance": "ထုတ်ယူနိုင်သော လက်ကျန်- ",
+  "funds.withdraw.limit": "အနည်းဆုံး ငွေထုတ်ပမာဏ- ",
+  "funds.withdraw.add": "အကောင့်ထည့်ပါ။",
+  "funds.withdraw.list": "အကောင့်လက်ခံပါ။",
 
-  /// 提款相关
-  "withdraw.account": "သင့်လက်ခံအကောင့်:",
-  "withdraw.account.add": "လက်ခံအကောင့်ထည့်ပါ",
-  "withdraw.account.placeholder": "ငွေထုတ်သည့်ပမာဏကိုဖြည့်ပါ။",
-  "withdraw.amount": "ငွေထုတ်ပမာဏ",
-  "withdraw.amount.mark": "ငွေထုတ်ယူရန် 56.00 MMK လောင်းကြေးလိုအပ်ပါသည်",
-  "withdraw.amount.able": "ထုတ်ယူနိုင်သော လက်ကျန်-",
-  "withdraw.amount.min": "တစ်ကြိမ်လျှင် အနည်းဆုံးထုတ်ငွေ",
-  "withdraw.amount.placeholder": "ငွေထုတ်သည့်ပမာဏကိုဖြည့်ပါ။",
-  "withdraw.limit.toast": "ငွေထုတ်ယူရန်လောင်းကြေး 56.00 လိုအပ်",
-  "withdraw.record": "ငွေထုတ်မှတ်တမ်း",
-  "withdraw.button": "ငွေထုတ်ကြောင်း အတည်ပြုပါ။",
+  /// paylee page
+  "payee.title": "အပ်ငွေအတည်ပြုချက်",
+  "payee.acc": "အကောင့်လက်ခံပါ။",
+  "payee.extra": "Transfer here",
+  "payee.transId": "ငွေပေးငွေယူ ID",
+  "payee.guide": "လမ်းညွှန်",
 
-  /// 提款账户
-  "withdraw.acc.title": "အကောင့်ငွေထုတ်ခြင်း။",
-  "withdraw.acc.add": "အကောင့်ထည့်ပါ။",
-  "withdraw.acc.list": "လက်ခံ အကောင့်",
+  /// 记录
+  "records.change.title": "ရန်ပုံငွေမှတ်တမ်း",
+  "records.game.title": "ဂိမ်းမှတ်တမ်း",
+  "records.topup.title": "အပ်ငွေသမိုင်း",
+  "records.withdraw.title": "ငွေထုတ်မှတ်တမ်း",
 
-  /// 账变记录
-  "records.funds": "ငွေပြောင်းလဲမှုများ",
+  /// 公告
+  "announcement.title": "ကြေငြာချက်",
 
-  /// 游戏记录
-  "records.games": "ဂိမ်းမှတ်တမ်းများ",
+  /// 公告
+  "act.title": "လှုပ်ရှားမှုများ",
+  "act.detail": "ပွဲအသေးစိတ်",
 
-  /// 存款记录
-  "records.deposit": "ငွေသွင်းခြင်းမှတ်တမ်းများ",
+  /// 完善信息
+  "complete.title": "အချက်အလက်အပြည့်အစုံ",
+  "complete.mobile": "ဖုန်းနံပါတ်",
+  "complete.email": "အီးမေးလ်လိပ်စာ (ချန်လှပ်ထားနိုင်သည်)",
+  "complete.button": "တင်သွင်းပြီး လက်ခံရန်\n58.00MMK အထိ ရယူပါ။",
 
-  /// 取款记录
-  "records.withdraw": "ငွေထုတ်မှတ်တမ်း",
+  /// 每日签到 daily check in
+  "dci.title": "Daily check-in",
+  "dci.button": "Check-in",
+  "dci.rules": "စည်းကမ်း",
 
-  /// 游戏相关
-  "game.enter.confirm": "ဂိမ်းဝင်ပါ",
-  "game.enter.cancel": "မလုပ်တော့ပါ",
-  "game.enter.title": "ဂိမ်းထဲသို့ အလျင်အမြန် ဝင်ပါမည်",
-  "game.type.selector": "ပြည်နယ်ရွေးခြင်း",
+  // 游戏收藏页面
+  "fav.title": "ကျွန်ုပ်၏စုစည်းမှု",
+  "fav.browser": "ဂိမ်းအားလုံးကို ကြည့်ပါ။",
 
-  /// 优惠活动相关
-  "checkin.title": "စာရင်းထည့်လုပ်ငန်း",
-  "checkin.do": "စာရင်းထည့်ရန်",
-  "checkin.required": "နောက်ထပ် 5000.00 MMK ဖြည့်ပါက ဆုငွေရယူနိုင်ပါသည်",
+  // 洗码返利页面
+  "rebate.title": "ပြန်အမ်းငွေ",
+  "rebate.level": "စသည်ဖြင့်",
+  "rebate.wagering": "Wagering Volume",
 
-  ///
-  "funds.chanage.record": "ငွေပြောင်းလဲမှုများ",
-  "funds.game.record": "ဂိမ်းမှတ်တမ်းများ",
-  "funds.withdraw.record": "ပလက်ဖောင်းငွေရလွှဲမှု",
-  "funds.detail.title": "ငွေပေးချေမှု မပြုလုပ်ရသေး",
-  "funds.detail.orderNo": "လုပ်ငန်းစဉ်နံပါတ်",
-  "funds.detail.amount": "ငွေသွင်းပမာဏ",
-  "funds.detail.receiver": "ငွေသွင်းသူ၏ အမည်",
-  "funds.detail.time": "ငွေသွင်းသည့်အချိန်",
-  "funds.detail.question": "ဤအမှာစာနှင့်ပတ်သက်၍ မေးစရာများ ရှိပါသလား။",
-  "funds.detail.pay": "အခပေး",
-  // 日期相关
-  "time": "အချိန်:",
-  "time.today": "ဒီနေ့",
-  "time.yesterday": "မနေ့က",
-  "time.last3days": "ဒီ3ရက်အတွင်း",
-  "time.last7days": "ဒီ7ရက်အတွင်း",
-  "time.last30days": "ဒီ30ရက်အတွင်း",
-  "time.selector": "အချိန်ရွေးခြင်း",
+  // 账户页面
+  "acc.title": "အကောင့်",
+  "acc.password": "စကားဝှက်ကို ဝင်ပါ။",
+  "acc.password.change": "စကားဝှက်ကိုပြောင်းရန်",
+  "acc.password.set": "စကားဝှက်တစ်ခု သတ်မှတ်ပါ။",
+  "acc.mobile": "ဖုန်းနံပါတ်",
+  "acc.mobile.bind": "မိုဘိုင်းလ်ဖုန်းနံပါတ်ကို ချိတ်ပါ။",
+  "acc.mobile.is": "သင့်မိုဘိုင်းဖုန်းနံပါတ်-",
+  "acc.email": "အီးမေးလ်လိပ်စာ",
+  "acc.email.bind": "အီးမေးလ်လိပ်စာကို စည်းပါ။",
+  "acc.email.is": "သင့်အီးမေးလ်လိပ်စာ:",
 
-  /// account page
-  "account.password": "စကားဝှတ်ဖြင့်ဝင်ခြင်း",
-  "account.mobile": "ဖုန်းနံပါတ်",
-  "account.email": "အီးမေးလ်",
-  "account.realname": "အမည်ရင်း",
-  "account.unsettle": "မသတ်မှတ်ထားသော",
+  // 消息页面
+  "inbox.title": "အချက်အလက်",
+  "inbox.detail": "မက်ဆေ့ခ်ျအသေးစိတ်",
 
-  /// favorite page
-  "fav.action": "စုဆောင်းပါ။",
+  //vip
+  "vip.title": "VIP Club",
+  "vip.need.bet": "လောင်းကစား ",
+  "vip.need.charge": "သိုက် ",
+  "vip.prev.level": "အရင်",
+  "vip.next.level": "နောက်တစ်ခု",
+  "vip.level.rights": "VIP@level Rights",
+  "vip.advance": "ပရိုမိုးရှင်း အပိုဆု",
+  "vip.weekly": "အပတ်စဉ် ဘောနပ်စ်",
+  "vip.monthly": "လစဉ်ဘောနပ်စ်",
+  "vip.annual": "နှစ်စဉ်ခံစားခွင့်",
+  "vip.valid.bet": "Valid Bet:",
+  "vip.details": "VIP Details",
 
-  /// messages page
-  "msg.system": "အချက်အလက်",
-  "msg.message": "အကြောင်းကြားပါ။",
+  // more page
+  "more.title": "နောက်ထပ်",
 
-  "form.acc.placed": "သင့်အကောင့်နံပါတ်ကို ထည့်ပါ။",
-  "form.acc.error": "သင့်အကောင့်နံပါတ်ကို ထည့်ပါ။",
-
-  "form.pwd.old": "သင့်စကားဝှက်ဟောင်းကို ထည့်ပါ။",
-  "form.pwd.placed": "စကားဝှက်ကို ထည့်ပါ။",
-  "form.pwd.error": "စကားဝှက်သည် 6-20 လုံးရှိရမည်။",
-
-  "form.repwd.placed": "စကားဝှက်ကို ပြန်လုပ်ပါ။",
-  "form.repwd.error": "စကားဝှက်နှစ်ခု မကိုက်ညီပါ။",
-
-  "form.graphic.placed": "ဂရပ်ဖစ် အတည်ပြုကုဒ်",
-  "form.graphic.error": "ဂရပ်ဖစ်အတည်ပြုကုဒ်သည် စာလုံး 4 လုံးဖြစ်သင့်သည်။",
-
-  "form.email.placed": "ကျေးဇူးပြု၍ အီးမေးလ်ထည့်ပါ။",
-  "form.email.error": "အီးမေးလ်ဖော်မတ်သည် မမှန်ကန်ပါ။",
-
-  "form.tel.placed": "ဖုန်းနံပါတ်",
-  "form.tel.required": "သင့်ဖုန်းနံပါတ်ကို ထည့်ပါ။",
-  "form.tel.error": "ဖုန်းနံပါတ် မမှန်ပါ။",
-
-  "login.remember": "သတိရပါ။",
-  "login.forgot": "စကားဝှက်မေ့",
-  "login.guide.title": "လော့ဂ်အင်အညွှန်း",
-  "login.guide.desc":
-      "သင်မှတ်ပုံတင်သည့်အမည်ကိုထည့်ပါ၊ 6-12 လက္ခဏာရှိရမည်၊ အင်္ဂလိပ်စာလုံးနှင့်နံပါတ်များသာ၊ စတင်မည့်အရာသည်စာလုံးဖြစ်ရမည်။ အကူအညီလိုအပ်ပါက ကျေးဇူးပြု၍ကျွန်ုပ်တို့၏ဖောက်သည်ဝန်ဆောင်မှုကိုဆက်သွယ်ပါ။**",
-
-  "user.change.mobile": "မိုဘိုင်းဖုန်းနံပါတ်ပြောင်းပါ။",
-  "user.change.password": "စကားဝှက်ကိုပြောင်းရန်",
-  "user.change.email": "အီးမေးလ်ကို ပြင်ဆင်ပါ။",
-
-  "pwd.set": "စကားဝှက်တစ်ခု သတ်မှတ်ပါ။",
-  "pwd.change": "စကားဝှက်ကိုပြောင်းရန်",
-
-  "logout.title": "သင်ထွက်လိုသည်မှာ သေချာပါသလား။",
+  /// 表单相关
+  "form.acc.placed": "သင့်အကောင့်ကိုထည့်ပါ။",
+  "form.acc.error": "အကောင့်အမှား",
+  "form.pwd.old": "စကားဝှက်ဟောင်းကို ထည့်ပါ။",
+  "form.pwd.placed": "စကားဝှက်ထည့်ပါ။",
+  "form.pwd.error": "စကားဝှက်သည် အက္ခရာ 6-20 ရှိရမည်။",
+  "form.repwd.placed": "စကားဝှက်အားပြန်ရိုက်ပါ",
+  "form.repwd.error": "စကားဝှက်နှစ်ခုသည် မတိုက်ဆိုင်ပါ။",
+  "form.graphic.placed": "စာလုံး 4 လုံးထည့်ပါ။",
+  "form.graphic.error": "စာလုံး 4 လုံးရှိရမည်။",
+  "form.email.placed": "သင့်အီးမေးလ်လိပ်စာကို ထည့်ပါ။",
+  "form.email.error": "အီးမေးလ် အမှား",
+  "form.tel.placed": "သင့်မိုဘိုင်းနံပါတ်ကို ထည့်ပါ။",
+  "form.tel.required": "သင့်မိုဘိုင်းနံပါတ်ကို ထည့်ပါ။",
+  "form.tel.error": "မိုဘိုင်းနံပါတ်မှား",
+  "form.required": "ဤအရာကို ဖြည့်စွက်ပါ။",
+  "form.min.error": "အနည်းဆုံးပမာဏ- @min",
+  "form.max.error": "အများဆုံးပမာဏ- @max",
+  "form.withdraw.acc": "ငွေထုတ်အကောင့်ထည့်ပါ။",
+  "form.withdraw.amount": "ငွေထုတ်သည့်ပမာဏကို ထည့်ပါ။",
+  "form.payee.placed": "ကျေးဇူးပြု၍ ဂဏန်း 6 လုံး အမှာစာနံပါတ်ကို ထည့်ပါ။",
 };

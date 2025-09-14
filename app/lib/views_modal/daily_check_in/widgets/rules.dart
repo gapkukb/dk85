@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DailyCheckInRules extends StatelessWidget {
-  const DailyCheckInRules({super.key});
+  final String rules;
+  const DailyCheckInRules({super.key, required this.rules});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class DailyCheckInRules extends StatelessWidget {
         children: [
           Text('dci.rules'.tr, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
-          Text('dci.rules.desc'.tr, style: TextStyle(color: AppColors.label)),
+          Text(rules, style: TextStyle(color: AppColors.label)),
         ],
       ),
     );
