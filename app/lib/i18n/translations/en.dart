@@ -32,12 +32,16 @@ const Map<String, String> en = {
   "app.bind": "Bind",
   "app.submit": "Submit",
   "app.required": "Required",
+  "app.exit": "Are you sure exit current page?",
 
   /// 认证页面，登录|注册
   "auth.forgot": "Forgot password?",
   "auth.guide": "Login Instructions",
   "auth.guide.text":
       "Enter the Username you used to register,It should be 6-12 characters, only alphanumeric, begin with alphabet.If you need any help, please contact our customer service.",
+
+  // 游戏相关
+  "game.enter.title": "You will enter the Game",
 
   /// 钱包
   "funds.title": "Wallet",
@@ -55,6 +59,7 @@ const Map<String, String> en = {
   "funds.withdraw.limit": "Minimum single withdrawal amount is ",
   "funds.withdraw.add": "Add Account",
   "funds.withdraw.list": "Receiving Account",
+  "funds.insft": "Insufficient balance",
 
   /// paylee page
   "payee.title": "Recharge confirmation",

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:app/services/index.dart';
 import 'package:app/shared/confirmation/confirmation.dart';
 import 'package:app/theme/index.dart';
 import 'package:flutter/material.dart';
@@ -9,14 +10,23 @@ import 'package:get/get.dart';
 part 'interrupt_fullscreen.dart';
 
 class Webview extends StatefulWidget {
+  final bool pauseAudio;
   final bool allowFullscreen;
   final bool cacheable;
   final bool showScorllbar;
   final bool backButton;
   final String? url;
   final String? content;
-  const Webview({super.key, this.url, this.allowFullscreen = false, this.cacheable = true, this.showScorllbar = true, this.backButton = false, this.content})
-    : assert(url != null || content != null, 'url和content不得同时为空');
+  const Webview({
+    super.key,
+    this.url,
+    this.allowFullscreen = false,
+    this.cacheable = true,
+    this.showScorllbar = true,
+    this.backButton = false,
+    this.pauseAudio = false,
+    this.content,
+  }) : assert(url != null || content != null, 'url和content不得同时为空');
 
   @override
   _WebviewState createState() => _WebviewState();
@@ -28,6 +38,9 @@ class _WebviewState extends State<Webview> {
   @override
   void initState() {
     _initilize();
+    if (widget.pauseAudio) {
+      services.app.pauseAudio();
+    }
     if (widget.content == null) {
       controller.loadRequest(Uri.parse(widget.url!));
     } else {
@@ -36,6 +49,14 @@ class _WebviewState extends State<Webview> {
       controller.setBackgroundColor(AppColors.background);
     }
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    if (widget.pauseAudio) {
+      services.app.resumeAudio();
+    }
+    super.dispose();
   }
 
   @override
@@ -60,7 +81,7 @@ class _WebviewState extends State<Webview> {
   }
 
   askExit() async {
-    final guaranteed = await Get.confirm(title: 'app.exit.game'.tr) == true;
+    final guaranteed = await Get.confirm(title: 'app.exit'.tr) == true;
     if (guaranteed) Get.back();
   }
 

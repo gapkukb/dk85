@@ -18,16 +18,20 @@ class FundsController extends GetxController with GetSingleTickerProviderStateMi
   /// 提款金额控制器
   final withdrawAmountCtrl = TextEditingController();
 
-  openDepositChannel(TopUpModel channel) {
-    Get.bottomSheet(FundsFillDeposit(channel), isScrollControlled: true);
+  openDepositChannel(TopUpModel channel) async {
+    services.app.playTopUpAudio();
+    await Get.bottomSheet(FundsFillDeposit(channel), isScrollControlled: true);
+    services.app.playBackgroundAudio();
+  }
+
+  openWithdrawChannel(WithdrawlModel channel) async {
+    services.app.playTopUpAudio();
+    await Get.bottomSheet(FundsFillWithdraw(channel), isScrollControlled: true);
+    services.app.playBackgroundAudio();
   }
 
   deposit() {
     Get.toNamed(Routes.payee);
-  }
-
-  openWithdrawChannel(WithdrawlModel channel) {
-    Get.bottomSheet(FundsFillWithdraw(channel), isScrollControlled: true);
   }
 
   withdraw() {}

@@ -115,7 +115,7 @@ class FundsFillWithdraw extends GetView<FundsController> {
         final max = channel.eachMax;
         final min = channel.eachMin;
         if (amount < min) return 'form.min.error'.trParams({'min': min.toString()});
-        if (amount > services.user.balance.value) return '您的余额不足';
+        if (amount > services.user.balance.value) return 'funds.insft'.tr;
         if (amount > max) return 'form.max.error'.trParams({'max': max.toString()});
         return null;
       },
