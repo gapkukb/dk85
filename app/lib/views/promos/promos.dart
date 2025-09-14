@@ -1,3 +1,5 @@
+import 'package:app/dialogs/dialogs.dart';
+import 'package:app/iconfont/index.dart';
 import 'package:app/routes/app_pages.dart';
 import 'package:app/shared/customer_service/customer_service.dart';
 import 'package:app/shared/simple_user/simple_user.dart';
@@ -60,7 +62,18 @@ class _PromosView extends StatelessWidget {
       automaticallyImplyLeading: false,
       title: const SimpleUser(),
       actionsPadding: EdgeInsets.only(right: 12),
-      actions: [CustomerService()],
+      actions: [
+        IconButton(
+          onPressed: () {
+            Dialogs.to.dailyCheckIn();
+            Dialogs.to.show(DialogNames.dailyCheckIn);
+          },
+          icon: Icon(IconFont.qiandao),
+          iconSize: 18,
+          color: AppColors.highlight,
+        ),
+        CustomerService(),
+      ],
     );
   }
 }

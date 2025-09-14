@@ -25,6 +25,11 @@ class Dialogs extends GetxService {
     active();
   }
 
+  // 优惠页面可以再次手动唤起弹窗
+  dailyCheckIn() {
+    add(DialogBuilder(id: DialogNames.dailyCheckIn, manual: false, builder: () => DailyCheckInModal()));
+  }
+
   // 添加到队列，并立即检查是否满足显示条件，满足条件会直接展示
   add(DialogBuilder dialog) async {
     final exist = _queue.any((item) => item.id == dialog.id);
@@ -93,7 +98,7 @@ class Dialogs extends GetxService {
     });
     if (dialog == null) return;
     // 检查是否满足周期限制
-    if (!_validatePeriod(dialog)) return;
+    // if (!_validatePeriod(dialog)) return;
     await Get.dialog(dialog.builder(), barrierDismissible: dialog.barrierDismissible);
     remove(dialog.id);
     _launched.add(dialog.id);
