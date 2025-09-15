@@ -36,7 +36,7 @@ class LoginView extends GetView<AuthCotroller> {
             AKGraphicInput(imageKey: controller.imageKey, onSaved: form.saveAs('code'), onFieldSubmitted: form.submit, onImageChange: form.saveAs('time')),
             AKButton(onPressed: form.submit, text: 'app.login'.tr),
             buildTool(),
-            ...buildInstructions(),
+            // ...buildInstructions(),
           ],
         ),
       ),

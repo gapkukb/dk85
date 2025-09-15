@@ -13,7 +13,7 @@ import '../flavors.dart';
 
 Future<void> startup() async {
   /// 初始化接口地址，本地缓存和包信息
-  await Future.wait([backendApiManager.initialize(), Storage.initialize(), packageInfo.initialize()]);
+  await Future.wait([BackendApi.initialize(), Storage.initialize(), packageInfo.initialize()]);
 
   /// 初始化设备信息
   await Future.wait([deviceInfo.initialize()]);

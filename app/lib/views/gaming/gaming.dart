@@ -11,7 +11,7 @@ class GamingView extends StatelessWidget {
   static void play(GameModel game) async {
     await services.auth.ensureAuthorizedAsync;
     await Get.confirm(title: 'game.enter.title'.tr);
-    final resp = await apis.game.queryGameUrl(queryParameters: {'game_id': 17, 'key': game.code, 'game_platform': game.platform, 'mobile': 1});
+    final resp = await apis.game.queryGameUrl(data: {'game_id': game.platformId, 'key': game.code, 'game_platform': game.platform, 'mobile': 1});
     final r = resp.data;
     if (!r.containsKey('url')) {
       throw 'Not found the game url';

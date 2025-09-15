@@ -1,58 +1,42 @@
-import 'dart:async';
+import 'dart:convert';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
+import 'package:encrypt/encrypt.dart';
 
-class _BackendApiManager {
-  late final String api;
-  final List<String> presets = ['https://www.google.com', 'https://www.github.com'];
-
-  /// 接口防封查询
-  Future<String> _query() async {
-    return 'https://www.jjj2.com';
-
-    Never reject() {
-      debugPrint('未查询到接口地址列表');
-      throw 'server error!';
-    }
-
-    final dio = Dio();
-    final o = Options(responseType: ResponseType.plain);
-    final preset = await Future.any<Response<String>>(presets.map((item) => dio.get(item, options: o)));
-    if (preset.data == null || preset.data!.isEmpty) {
-      reject();
-    }
-    // 获取接口地址列表
-    final resp = await dio.get<String>(preset.data!, options: o);
-    if (resp.data == null || resp.data!.isEmpty) {
-      reject();
-    }
-
-    final List<String> uris = resp.data!.split(";");
-
-    if (uris.isEmpty) {
-      reject();
-    }
-
-    // 批量查询，只取第一个成功的;
-
-    final querys = uris.map((uri) => dio.head(uri));
-
-    try {
-      final uri = await Future.any(querys);
-      return uri.requestOptions.path;
-    } catch (e) {
-      reject();
-    }
-  }
-
-  Future initialize() async {
-    try {
-      api = await _query();
-    } catch (e) {
-      debugPrint('获取接口地址失败');
-      rethrow;
-    }
-  }
+List<String> _parse(String source) {
+  final key = Key.fromUtf8(utf8.decode(base64Decode("YXNkZmxAc2ZnYUhzOCNhYQ==")));
+  final iv = IV.fromUtf8(utf8.decode(base64Decode('amFzbGtmeGpAYWYjM0hzOA==')));
+  final encrypter = Encrypter(AES(key, mode: AESMode.cbc));
+  Encrypted encryptedFromBase64 = Encrypted.fromBase64(source);
+  String decryptedText = encrypter.decrypt(encryptedFromBase64, iv: iv);
+  return decryptedText.split("\n");
 }
 
-final backendApiManager = _BackendApiManager();
+Future<String?> _query() async {
+  final urls = ["https://md-business-prd.oss-cn-hongkong.aliyuncs.com/uris.txt", "https://pub-20eccd78af9f4e04beeae26f65cf746c.r2.dev/uris.txt"];
+
+  final dio = Dio(BaseOptions(receiveTimeout: Duration(seconds: 5)));
+  while (urls.isNotEmpty) {
+    final r = await dio.getUri(Uri.parse(urls.removeAt(0)));
+    if (r.data is String) {
+      final urls = _parse(r.data as String);
+      while (urls.isNotEmpty) {
+        final url = urls.removeAt(0);
+        try {
+          await dio.getUri(Uri.parse('$url/md-app-version?t=${DateTime.now().millisecondsSinceEpoch}'));
+        } on DioException catch (_) {
+          continue;
+        }
+        return url;
+      }
+    }
+  }
+
+  return null;
+}
+
+abstract class BackendApi {
+  static String? apiUrl;
+  static Future<void> initialize() async {
+    apiUrl = await _query();
+  }
+}
