@@ -19,20 +19,27 @@ class PwdManagerView extends StatefulWidget {
 }
 
 class _PwdManagerState extends State<PwdManagerView> {
-  final form = Useform((values) async {
-    try {
-      BotToast.showLoading();
-      await apis.user.changePwd(data: values);
-      BotToast.closeAllLoading();
-      await showSuccess();
-      Get.back();
-    } catch (e) {
-      BotToast.closeAllLoading();
-      rethrow;
-    }
-  });
+  late final Useform form;
   final ctrl = TextEditingController();
   final hasPass = services.user.userInfo.value?.hasPass == 1;
+
+  @override
+  void initState() {
+    form = Useform((values) async {
+      try {
+        BotToast.showLoading();
+        await (hasPass ? apis.user.changePwd(data: values) : apis.user.bindPwd(data: values));
+        BotToast.closeAllLoading();
+        await showSuccess();
+        services.user.queryUserInfo();
+        Get.back();
+      } catch (e) {
+        BotToast.closeAllLoading();
+        rethrow;
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

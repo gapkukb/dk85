@@ -27,6 +27,9 @@ class _UserApi {
   ///绑定手机号
   final bindMobile = http.post('/app/bind-mobile');
 
+  ///设置登陆密码
+  final bindPwd = http.post('/app/bind-login-password');
+
   ///修改登陆密码
   final changePwd = http.post('/app/change-login-password');
 

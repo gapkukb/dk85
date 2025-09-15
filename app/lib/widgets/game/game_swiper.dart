@@ -39,7 +39,7 @@ class _SliverGameSwiperState extends State<SliverGameSwiper> {
 
   Widget buildBanner() {
     final single = banners.length == 1;
-    const height = 90.0;
+    const height = 264 / 2;
 
     if (single) {
       return Padding(

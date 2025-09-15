@@ -44,7 +44,7 @@ class _PromosView extends StatelessWidget {
                     color: Colors.transparent,
                     clipBehavior: Clip.antiAlias,
                     borderRadius: BorderRadius.circular(8),
-                    child: NetworkPicture(imageUrl: promo.image, height: 128, fit: BoxFit.cover),
+                    child: NetworkPicture(imageUrl: promo.image, height: 264 / 2, fit: BoxFit.cover),
                   ),
                 );
               },

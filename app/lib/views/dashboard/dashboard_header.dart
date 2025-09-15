@@ -10,10 +10,10 @@ import '/theme/index.dart';
 import '/widgets/rounded_tab_indicator.dart';
 
 final tabs = <_Tab>[
-  _Tab('assets/icons/hot.webp', 'app.foru'.tr),
-  _Tab('assets/icons/slots.webp', 'app.slots'.tr),
-  _Tab('assets/icons/fishing.webp', 'app.fishing'.tr),
-  _Tab('assets/icons/poker.webp', 'app.poker'.tr),
+  _Tab('assets/icons/hot.webp', 'app.foru'),
+  _Tab('assets/icons/slots.webp', 'app.slots'),
+  _Tab('assets/icons/fishing.webp', 'app.fishing'),
+  _Tab('assets/icons/poker.webp', 'app.poker'),
 ];
 
 class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
@@ -58,7 +58,7 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
       indicatorWeight: 0,
       labelColor: Colors.white,
       indicator: RoundedTabIndicator(height: 24, color: AppColors.primary, bottom: 5),
-      tabs: [...tabs.map((tab) => Tab(height: 64, icon: Image.asset(tab.iconPath, width: 32, height: 32), text: tab.name))],
+      tabs: [...tabs.map((tab) => Tab(height: 64, icon: Image.asset(tab.iconPath, width: 32, height: 32), text: tab.name.tr))],
     );
   }
 

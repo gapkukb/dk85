@@ -6,7 +6,6 @@ import 'dart:typed_data';
 
 import 'package:app/storage/storage.dart';
 import 'package:dio/dio.dart';
-import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
 
 part 'http_adapter.dart';

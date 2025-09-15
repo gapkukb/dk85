@@ -9,11 +9,11 @@ class GroupGames {
   GroupGames(final List<GameModel>? games) {
     if (games == null) return;
     for (var game in games) {
-      if (game.hot == 1) {
+      if (game.hot) {
         hotGames.add(game);
-      } else if (game.recommend == 1) {
+      } else if (game.recommend) {
         recommendeds.add(game);
-      } else if (game.isNew == 1) {
+      } else if (game.isNew) {
         newGames.add(game);
       } else {
         others.add(game);

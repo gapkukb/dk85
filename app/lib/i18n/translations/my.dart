@@ -42,6 +42,9 @@ const Map<String, String> my = {
 
   // 游戏相关
   "game.enter.title": "သင်သည် ဂိမ်းထဲသို့ ဝင်တော့မည်။",
+  "game.hot": "လူကြိုက်အများဆုံး",
+  "game.news": "ဂိမ်းအသစ်များ",
+  "game.all": "ဂိမ်းအားလုံး",
 
   /// 钱包
   "funds.title": "ပိုက်ဆံအိတ်",

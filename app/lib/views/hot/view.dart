@@ -24,7 +24,7 @@ class _HotViewState extends State<HotView> with AutomaticKeepAliveClientMixin {
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
-          slivers: [SliverGameSwiper(position: 1), Obx(() => SliverGameSection("Hot Games", games.hotGames)), Obx(() => SliverGameSection("New Games", games.newGames))],
+          slivers: [SliverGameSwiper(position: 1), Obx(() => SliverGameSection("game.hot".tr, games.hotGames)), Obx(() => SliverGameSection("game.news".tr, games.newGames))],
         ),
       ),
     );

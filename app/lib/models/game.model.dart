@@ -59,11 +59,11 @@ class GameModel {
   final String code;
   final String language;
   final String currency;
-  final int hot;
-  final int recommend;
+  final bool hot;
+  final bool recommend;
   final int likeNum;
-  final int isNew;
-  final int status;
+  final bool isNew;
+  final bool status;
   final int sort;
   bool liked;
   final String createdAt;
@@ -110,11 +110,11 @@ class GameModel {
     code: json["code"] ?? '',
     language: json["language"] ?? '',
     currency: json["currency"] ?? '',
-    hot: json["hot"] ?? 0,
-    recommend: json["recommend"] ?? 0,
+    hot: json["hot"] ?? false,
+    recommend: json["recommend"] ?? false,
     likeNum: json["like_num"] ?? 0,
-    isNew: json["is_new"] ?? 0,
-    status: json["status"] ?? 0,
+    isNew: json["is_new"] ?? false,
+    status: json["status"] ?? false,
     sort: json["sort"] ?? 0,
     liked: false,
     createdAt: json["created_at"] ?? '',

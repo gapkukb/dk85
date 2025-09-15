@@ -33,7 +33,7 @@ class _GamePageViewState extends State<GamePageView> with AutomaticKeepAliveClie
           SliverGameSwiper(position: widget.adPosition),
           // Obx(() => SliverGameSection("Hot Games", games.hotGames)),
           // Obx(() => SliverGameSection("New Games", games.newGames)),
-          Obx(() => SliverGameSection("All Games", games)),
+          Obx(() => SliverGameSection("game.all".tr, games)),
         ],
       ),
     );

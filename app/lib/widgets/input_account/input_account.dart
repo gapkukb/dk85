@@ -21,7 +21,6 @@ class _AKAccInputState extends State<AKAccInput> {
       placeholder: "form.acc.placed".tr,
       prefixIconName: IconFont.user,
       onSaved: widget.onSaved,
-      maxLength: 11,
       validator: (value) {
         if (value == null || value.isEmpty) return "form.acc.placed".tr;
         if (!REGEXP_ACCOUNT.hasMatch(value)) return "form.acc.error".tr;

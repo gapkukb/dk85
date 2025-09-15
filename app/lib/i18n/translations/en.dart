@@ -42,6 +42,9 @@ const Map<String, String> en = {
 
   // 游戏相关
   "game.enter.title": "You will enter the Game",
+  "game.hot": "Hot Games",
+  "game.news": "New Games",
+  "game.all": "All Games",
 
   /// 钱包
   "funds.title": "Wallet",

@@ -20,7 +20,7 @@ class Storage {
   }
 
   final box = _box;
-  final locale = _box.app.$string("locale", 'en');
+  final locale = _box.app.$string("locale", 'my');
   final audio = _box.app.$bool("music", true);
   final showGuide = _box.app.$bool("show_guide", true);
   final token = _box.app.$string("token", '');

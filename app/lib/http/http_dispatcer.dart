@@ -11,7 +11,16 @@ typedef HttpDispatcher<T> =
       ProgressCallback? onSendProgress,
     });
 
-typedef HttpMethod = HttpDispatcher<T> Function<T>(String path, {T Function(Map<String, dynamic> json)? decoder, bool? loading, bool? error, bool? silent, bool? decompressable, bool? normalizable});
+typedef HttpMethod =
+    HttpDispatcher<T> Function<T>(
+      String path, {
+      T Function(Map<String, dynamic> json)? decoder,
+      bool? loading,
+      bool? error,
+      bool? silent,
+      bool? decompressable,
+      bool? normalizable,
+    });
 
 HttpMethod _http(Dio dio, String method) {
   final withBody = method == 'post' || method == 'put' || method == 'patch';
