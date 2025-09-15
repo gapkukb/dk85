@@ -1,4 +1,5 @@
 import 'package:app/widgets/game/index.dart';
+import 'package:app/widgets/state_block/state_block.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,7 +17,11 @@ class SearchingPage extends GetView<SearchingController> {
           appBar: SearchingBar(),
           body: SafeArea(
             child: Obx(() {
+              if (controller.filteredGames.isEmpty) {
+                return StateBlock();
+              }
               return GridView.builder(
+                key: ValueKey(controller.keywords + controller.kind.toString()),
                 padding: EdgeInsets.only(left: 12, right: 12, bottom: 12),
                 itemCount: controller.filteredGames.length,
                 gridDelegate: GameGridView.delegate,

@@ -42,7 +42,8 @@ class SearchingController extends GetxController with GetSingleTickerProviderSta
   }
 
   List<GameModel> _filterWithKeywords(int kind, String keywords) {
-    bool predicate(GameModel game) => game.name.contains(keywords) || game.platform.contains(keywords);
+    final k = keywords.toLowerCase();
+    bool predicate(GameModel game) => game.name.toLowerCase().contains(k) || game.platform.toLowerCase().contains(k);
 
     List<GameModel> filter(Iterable<GameModel> games) => games.where(predicate).toList();
 

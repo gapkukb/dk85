@@ -23,7 +23,7 @@ class _AKAccInputState extends State<AKAccInput> {
       onSaved: widget.onSaved,
       validator: (value) {
         if (value == null || value.isEmpty) return "form.acc.placed".tr;
-        if (!REGEXP_ACCOUNT.hasMatch(value)) return "form.acc.error".tr;
+        // if (!REGEXP_ACCOUNT.hasMatch(value)) return "form.acc.error".tr;
         return null;
       },
     );
