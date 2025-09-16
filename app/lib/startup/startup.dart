@@ -12,10 +12,10 @@ import 'package:flutter/services.dart';
 import '../flavors.dart';
 
 Future<void> startup() async {
-  /// 初始化接口地址，本地缓存和包信息
-  await Future.wait([BackendApi.initialize(), Storage.initialize(), packageInfo.initialize()]);
+  /// 轮询并初始化接口地址，本地缓存和读取应用信息
+  await Future.wait([ApiBaseUrl.initialize(), Storage.initialize(), packageInfo.initialize()]);
 
-  /// 初始化设备信息
+  /// 读取设备信息
   await Future.wait([deviceInfo.initialize()]);
 
   /// 初始化本地化
@@ -23,7 +23,6 @@ Future<void> startup() async {
 
   /// 初始化services,内部会初始化用户信息（如果需要）
   await services.initialize();
-  // services.initialize();
 
   Flavor.appFlavor = AppFlavor.values.firstWhere((element) => element.name == appFlavor);
   final appLinks = AppLinks();

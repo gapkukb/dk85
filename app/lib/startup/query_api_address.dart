@@ -14,29 +14,40 @@ List<String> _parse(String source) {
 Future<String?> _query() async {
   final urls = ["https://md-business-prd.oss-cn-hongkong.aliyuncs.com/uris.txt", "https://pub-20eccd78af9f4e04beeae26f65cf746c.r2.dev/uris.txt"];
 
-  final dio = Dio(BaseOptions(receiveTimeout: Duration(seconds: 5)));
+  final dio = Dio(BaseOptions(receiveTimeout: Duration(seconds: 3)));
   while (urls.isNotEmpty) {
-    final r = await dio.getUri(Uri.parse(urls.removeAt(0)));
-    if (r.data is String) {
-      final urls = _parse(r.data as String);
-      while (urls.isNotEmpty) {
-        final url = urls.removeAt(0);
-        try {
-          await dio.getUri(Uri.parse('$url/md-app-version?t=${DateTime.now().millisecondsSinceEpoch}'));
-        } on DioException catch (_) {
-          continue;
+    try {
+      final r = await dio.getUri(Uri.parse(urls.removeAt(0)));
+      if (r.data is String) {
+        final urls = _parse(r.data as String);
+        while (urls.isNotEmpty) {
+          final url = urls.removeAt(0);
+          try {
+            await dio.getUri(Uri.parse('$url/md-app-version1?t=${DateTime.now().millisecondsSinceEpoch}'));
+            return url;
+          } catch (e) {
+            continue;
+          }
         }
-        return url;
       }
+    } catch (e) {
+      continue;
     }
   }
-
   return null;
 }
 
-abstract class BackendApi {
+abstract class ApiBaseUrl {
   static String? apiUrl;
   static Future<void> initialize() async {
-    apiUrl = await _query();
+    final baseUrl = await _query();
+    // 域名轮询失败
+    if (baseUrl == null) throw Exception('Disconnected from server.\n Please contact us.');
+    print(baseUrl);
+    // http.setBaseUrl(baseUrl);
   }
+}
+
+void main(List<String> args) async {
+  await ApiBaseUrl.initialize();
 }

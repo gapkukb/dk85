@@ -6,7 +6,7 @@ const Map<String, String> my = {
   "app.claim.now": "ရယူပါ။",
   "app.deposit": "သိုက်",
   "app.withdraw": "ငွေထုတ်",
-  "app.foru": "Hot",
+  "app.foru": "သင့်အတွက်",
   "app.slots": "စလော့",
   "app.fishing": "ငါးပစ်",
   "app.poker": "ပိုကာ",

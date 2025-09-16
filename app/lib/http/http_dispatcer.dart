@@ -67,10 +67,15 @@ class Http {
   late final HttpMethod post;
   late final HttpMethod put;
   late final HttpMethod delete;
-  Http(Dio dio) {
+  final Dio dio;
+  Http(this.dio) {
     get = _http(dio, 'get');
     post = _http(dio, 'post');
     put = _http(dio, 'put');
     delete = _http(dio, 'delete');
+  }
+
+  void setBaseUrl(String baseUrl) {
+    dio.options.baseUrl = baseUrl;
   }
 }
