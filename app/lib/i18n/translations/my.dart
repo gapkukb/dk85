@@ -102,7 +102,7 @@ const Map<String, String> my = {
   // 洗码返利页面
   "rebate.title": "ပြန်အမ်းငွေ",
   "rebate.level": "စသည်ဖြင့်",
-  "rebate.wagering": "Wagering Volume",
+  "rebate.wagering": "ဆေးပမာဏ",
 
   // 账户页面
   "acc.title": "အကောင့်",

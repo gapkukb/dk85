@@ -47,7 +47,3 @@ abstract class ApiBaseUrl {
     // http.setBaseUrl(baseUrl);
   }
 }
-
-void main(List<String> args) async {
-  await ApiBaseUrl.initialize();
-}

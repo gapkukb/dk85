@@ -1,6 +1,5 @@
 import 'package:app/extensions/num.dart';
 import 'package:app/iconfont/index.dart';
-import 'package:app/services/index.dart';
 import 'package:app/shared/amount/amount.dart';
 import 'package:app/shared/customer_service/customer_service.dart';
 import 'package:app/theme/index.dart';

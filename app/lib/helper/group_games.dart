@@ -19,5 +19,6 @@ class GroupGames {
         others.add(game);
       }
     }
+    hotGames.sort((x, y) => x.sort - y.sort);
   }
 }

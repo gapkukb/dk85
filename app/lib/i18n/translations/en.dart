@@ -102,7 +102,7 @@ const Map<String, String> en = {
   // 洗码返利页面
   "rebate.title": "Rebate",
   "rebate.level": "Level",
-  "rebate.wagering": "Wagering Volume",
+  "rebate.wagering": "Washing Amount",
 
   // 账户页面
   "acc.title": "Account",
