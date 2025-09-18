@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
-import '../../styles/styles.dart';
+import '/styles/styles.dart';
 
 const _kItemHeight = 48.0;
 const _kRdius = BorderRadius.all(Radius.circular(8.0));
@@ -17,9 +17,11 @@ class VicAction<T> {
   final TextStyle? subtitleStyle;
   final bool disabled;
   final String? toName;
-  final IconData? iconData;
-  final Widget? icon;
-  final double iconSize;
+  final IconData? leadingIcon;
+  final Color? leadingIconColor;
+  final Widget? leading;
+  final double minLeadingWidth;
+  final double leadingGap;
   final VicActionCallback? onTap;
   final VicActionAsyncCallback? onSelect;
   const VicAction({
@@ -30,39 +32,58 @@ class VicAction<T> {
     this.subtitle,
     this.titleStyle,
     this.subtitleStyle,
-    this.iconData,
-    this.icon,
-    this.iconSize = 20.0,
+    this.leadingIcon,
+    this.leading,
+    this.leadingGap = 8.0,
+    this.minLeadingWidth = 20.0,
+    this.leadingIconColor,
     this.onTap,
     this.onSelect,
   });
 }
 
 class VicActionSheet<T> extends StatefulWidget {
-  final T initValue;
   final List<VicAction<T>> actions;
   final bool closeOnTap;
-  final ValueChanged<List<T>>? onChanged;
-  final bool _selectable;
+  final ValueChanged<List<T>>? _onChanged;
   final bool _multiple;
+  final List<T>? _initValues;
 
-  const VicActionSheet({super.key, required this.actions, this.closeOnTap = true, required this.initValue, this.onChanged}) : _selectable = true, _multiple = false;
+  const VicActionSheet({super.key, required this.actions, this.closeOnTap = true}) : _multiple = false, _initValues = null, _onChanged = null;
 
   @override
   _VicActionSheetState<T> createState() => _VicActionSheetState<T>();
+
+  VicActionSheet.single({super.key, required T initValue, required this.actions, this.closeOnTap = true, ValueChanged<T>? onChanged})
+    : _multiple = false,
+      _initValues = [initValue],
+      _onChanged = ((List<T> values) => onChanged?.call(values.first));
+
+  const VicActionSheet.multiple({
+    super.key,
+    required List<T> initValue,
+    required this.actions,
+    this.closeOnTap = false,
+    ValueChanged<List<T>>? onChanged,
+  }) : _multiple = true,
+       _initValues = initValue,
+       _onChanged = onChanged;
 }
 
 class _VicActionSheetState<T> extends State<VicActionSheet<T>> {
   final values = <T>[];
   final backup = <T>[];
 
-  bool get multiple => widget._selectable && widget._multiple;
-  bool get changed => multiple && values.join('') != backup.join('');
+  bool get selecteable => widget._initValues != null;
+  bool get isMultiple => selecteable && widget._multiple;
+  bool get changed => isMultiple && values.join('') != backup.join('');
 
   @override
   void initState() {
-    values.add(widget.initValue);
-    backup.add(widget.initValue);
+    if (widget._initValues != null) {
+      values.addAll(widget._initValues!);
+      backup.addAll(widget._initValues!);
+    }
     super.initState();
   }
 
@@ -70,39 +91,42 @@ class _VicActionSheetState<T> extends State<VicActionSheet<T>> {
   Widget build(BuildContext context) {
     final maxHeight = (Get.height * 0.8 / _kItemHeight).floor() * _kItemHeight;
 
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Material(
-            clipBehavior: Clip.antiAlias,
-            borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-            child: ConstrainedBox(
-              constraints: BoxConstraints(maxHeight: maxHeight),
-              child: ListView(
-                // padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                shrinkWrap: true,
-                children: buildTiles(context),
+    return SizedBox(
+      width: Get.width,
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Material(
+              clipBehavior: Clip.antiAlias,
+              borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxHeight: maxHeight),
+                child: ListView(
+                  // padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  shrinkWrap: true,
+                  children: buildTiles(context),
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 4.0),
-          ListTile(
-            title: Text(multiple ? '完成' : '取消', textAlign: TextAlign.center, style: const TextStyle(fontSize: 14)),
-            textColor: multiple ? Colors.red : const Color(0xff666666),
-            tileColor: Colors.white,
-            minTileHeight: _kItemHeight,
-            shape: const RoundedRectangleBorder(borderRadius: _kRdius),
-            onTap: () {
-              if (multiple && values.join('') != backup.join('')) {
-                widget.onChanged?.call(values);
-              }
-              Get.back();
-            },
-          ),
-        ],
+            const SizedBox(height: 4.0),
+            ListTile(
+              title: Text(isMultiple ? '完成' : '取消', textAlign: TextAlign.center, style: const TextStyle(fontSize: 14)),
+              textColor: isMultiple ? Colors.red : const Color(0xff666666),
+              tileColor: Colors.white,
+              minTileHeight: _kItemHeight,
+              shape: const RoundedRectangleBorder(borderRadius: _kRdius),
+              onTap: () {
+                if (isMultiple && values.join('') != backup.join('')) {
+                  widget._onChanged?.call(values);
+                }
+                Get.back();
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -112,48 +136,56 @@ class _VicActionSheetState<T> extends State<VicActionSheet<T>> {
       context: context,
       color: const Color(0xffeeeeee),
       tiles: widget.actions.map((action) {
-        return _VicActionWidget(action: action, selectable: widget._selectable, selected: values.contains(action.value), onTap: () => tap(action));
+        return _VicActionWidget(
+          action: action,
+          selectable: selecteable,
+          selected: values.contains(action.value),
+          onTap: () => tap(action),
+        );
       }),
     ).toList();
   }
 
   void tap(VicAction action) {
     action.onTap?.call(action, widget.actions);
-    if (widget._selectable) {
-      select(action);
+    if (selecteable) {
+      isMultiple ? multiple(action) : single(action);
     } else {
       if (action.toName != null) {
         Get.toNamed(action.toName!);
       }
-      if (widget.closeOnTap) {
-        Get.back();
-      }
+      _tryClose();
     }
   }
 
-  void select(VicAction action) async {
+  void single(VicAction action) async {
     final selected = values.contains(action.value);
-    if (widget._multiple) {
-      final sure = await action.onSelect?.call(selected, action, widget.actions);
-      if (sure != false) {
-        selected ? values.remove(action.value) : values.add(action.value);
-        setState(() {});
-      }
-      return;
-    }
-    if (!selected) {
-      final sure = await action.onSelect?.call(selected, action, widget.actions);
-      if (sure != false) {
-        values
-          ..clear()
-          ..add(action.value);
-        setState(() {});
-        widget.onChanged?.call(values);
-      }
-    }
 
+    if (selected) return _tryClose();
+
+    final sure = await action.onSelect?.call(selected, action, widget.actions);
+
+    if (sure == false) return _tryClose();
+    values.clear();
+    values.add(action.value);
+    setState(() {});
+
+    widget._onChanged?.call(values);
+
+    _tryClose();
+  }
+
+  void multiple(VicAction action) async {
+    final selected = values.contains(action.value);
+    final sure = await action.onSelect?.call(selected, action, widget.actions);
+    if (sure == false) return _tryClose();
+    selected ? values.remove(action.value) : values.add(action.value);
+    setState(() {});
+  }
+
+  void _tryClose() {
     if (widget.closeOnTap) {
-      Get.back();
+      Timer(Durations.medium1, Get.back);
     }
   }
 }
@@ -163,7 +195,13 @@ class _VicActionWidget<T> extends StatelessWidget {
   final bool selected;
   final VicAction action;
   final VoidCallback onTap;
-  const _VicActionWidget({super.key, required this.selectable, required this.action, required this.onTap, this.selected = false});
+  const _VicActionWidget({
+    super.key,
+    required this.selectable,
+    required this.action,
+    required this.onTap,
+    this.selected = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -175,8 +213,17 @@ class _VicActionWidget<T> extends StatelessWidget {
       subtitle: action.subtitle == null ? null : Text(action.title),
       subtitleTextStyle: const TextStyle(fontSize: 12, color: Color(0xff999999)).merge(action.subtitleStyle),
       trailing: icon,
-      leading: action.icon ?? (action.iconData == null ? null : Icon(Icons.chair, size: action.iconSize)),
-      minLeadingWidth: action.iconSize,
+      leading:
+          action.leading ??
+          (action.leadingIcon == null
+              ? null
+              : Icon(
+                  action.leadingIcon,
+                  color: action.leadingIconColor,
+                  size: action.minLeadingWidth,
+                )),
+      minLeadingWidth: action.minLeadingWidth,
+      horizontalTitleGap: action.leadingGap,
       onTap: action.disabled ? null : onTap,
       tileColor: action.disabled ? const Color(0xffe9e9e9) : Colors.white,
       selectedColor: Colors.red,
@@ -186,7 +233,7 @@ class _VicActionWidget<T> extends StatelessWidget {
   }
 
   Icon get icon {
-    double size = action.iconSize;
+    double size = action.minLeadingWidth;
     IconData icon = Symbols.arrow_forward_ios_rounded;
     if (selectable) {
       icon = selected ? Symbols.check_circle_filled_rounded : Symbols.circle;
@@ -195,4 +242,9 @@ class _VicActionWidget<T> extends StatelessWidget {
     }
     return Icon(icon, size: size, weight: 300, fill: selectable && selected ? 1 : 0);
   }
+}
+
+Future<void> showVicActionSheet<T>(VicActionSheet<T> actionsheet) async {
+  if (actionsheet.actions.isEmpty) return;
+  return Get.bottomSheet<void>(actionsheet, isScrollControlled: true, enableDrag: false);
 }

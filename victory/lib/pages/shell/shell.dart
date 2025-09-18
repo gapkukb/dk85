@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 import '../../components/action_sheet/action_sheet.dart';
 import '../../components/button/button.dart';
@@ -19,22 +20,7 @@ class _ShellPageState extends State<ShellPage> {
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Get.bottomSheet(
-        VicActionSheet<int>(
-          initValue: 1,
-          onChanged: (value) => print(value.join(',')),
-          actions: [
-            VicAction(title: '操作', value: 1, onTap: (action, actions) {}),
-            VicAction(title: '操作', value: 2, onTap: (action, actions) {}),
-            VicAction(title: '操作', value: 3, onTap: (action, actions) {}),
-            VicAction(title: '操作', value: 4, onTap: (action, actions) {}),
-          ],
-        ),
-        isScrollControlled: true,
-        enableDrag: true,
-      );
-    });
+    WidgetsBinding.instance.addPostFrameCallback((_) {});
     super.initState();
   }
 
@@ -44,7 +30,23 @@ class _ShellPageState extends State<ShellPage> {
       body: ListView(
         padding: styles.gutter.all.px12,
         children: [
-          // const VicActionSheet(actions: [VicActionSheetAction()]),
+          VicButton(
+            text: '测试',
+            onPressed: () async {
+              await showVicActionSheet(
+                VicActionSheet<int>.single(
+                  initValue: 1,
+                  onChanged: (value) => print('xxxxxx:$value'),
+                  actions: [
+                    VicAction(title: '操作', value: 1, leadingIcon: Symbols.body_system, onTap: (action, actions) {}),
+                    VicAction(title: '操作', value: 2, onTap: (action, actions) {}),
+                    VicAction(title: '操作', value: 3, onTap: (action, actions) {}),
+                    VicAction(title: '操作', value: 4, onTap: (action, actions) {}),
+                  ],
+                ),
+              );
+            },
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

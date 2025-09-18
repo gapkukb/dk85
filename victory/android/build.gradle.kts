@@ -1,3 +1,18 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven("https://jitpack.io")
+        maven("https://maven.aliyun.com/repository/google")
+        maven("https://maven.aliyun.com/repository/jcenter")
+    }
+
+    dependencies {
+        // 腾讯的vasdolly多渠道打包插件，暂时没有用到
+        classpath("com.tencent.vasdolly:plugin:3.0.6")
+    }
+}
+
 allprojects {
     repositories {
         google()

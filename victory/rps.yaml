@@ -1,0 +1,37 @@
+scripts:
+  # run is a default script. To use it, simply type
+  # in the command line: "rps" - that's all!
+  run: "flutter run -t lib/main_development.dart --flavor development"
+  # you can define more commands like this: "rps gen"
+  gen: "flutter pub run build_runner watch --delete-conflicting-outputs"
+  # and even nest them!
+  build:
+    # You can use hooks to! (and even nest them!)
+    $before: flutter pub get
+    $after: echo "Build done!"
+    android:
+      # rps build android apk
+      apk:
+        $before: echo "Building android apk..."
+        $script: "flutter build apk --target-platform android-arm,android-arm64 --obfuscate --split-debug-info=./debug-info"
+      # rps build android appbundle
+      appbundle: "flutter build --release appbundle --flavor production"
+      # and so on...
+  # too long command? no problem! define alias using reference syntax!
+  bab: rps build android appbundle
+  # as simple as typing "rps baa"
+  baa: rps build android apk
+  # some commands may vary from platform to platform
+  # but that's not a problem
+  clear:
+    # use the $script key to define platform specific scripts
+    $script:
+      # define the default script
+      $default: rm -rf ./app/cache
+      # And different script for the windows platform.
+      $windows: rd /s /q app\cache
+      # now "rps clear" will work on any platform!
+  # want to run multi line script, here is an example
+  reset: |
+    flutter clean 
+    flutter pub get

@@ -9,3 +9,5 @@ void main() async {
 
   runApp(const Application());
 }
+
+void test(int a, int b) {}
