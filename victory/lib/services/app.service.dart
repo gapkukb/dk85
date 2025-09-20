@@ -1,5 +1,7 @@
 part of 'services.dart';
 
-class AppService extends GetxService {
-  Future initialize() async {}
+class _AppService extends GetxService with VicRouterMixin, VicLocaleMixin, AudioMixin {
+  Future initialize() async {
+    initLocale();
+  }
 }

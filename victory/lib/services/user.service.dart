@@ -1,5 +1,5 @@
 part of 'services.dart';
 
-class UserService extends GetxService {
+class _UserService extends GetxService {
   Future initialize() async {}
 }

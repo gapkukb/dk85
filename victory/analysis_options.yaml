@@ -8,7 +8,7 @@ linter:
     non_constant_identifier_names: false
     prefer_relative_imports: true
     require_trailing_commas: false
-
+    constant_identifier_names: false,
 analyzer:
   errors:
     prefer_const_constructors: warning

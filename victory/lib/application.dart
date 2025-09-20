@@ -1,8 +1,14 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'components/button/button.dart';
+import 'package:scaled_app/scaled_app.dart';
 import 'pages/about/about.dart';
 import 'pages/shell/shell.dart';
+import 'routes/app_pages.dart';
+import 'services/services.dart';
+import 'startup/startup.dart';
+import 'styles/styles.dart';
+import 'translations/translations.dart';
 
 class Application extends StatefulWidget {
   const Application({super.key});
@@ -20,11 +26,34 @@ class _ApplicationState extends State<Application> {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      theme: ThemeData(splashFactory: NoSplash.splashFactory),
-      title: 'Flutter Demo',
-      home: const ShellPage(),
-      getPages: [GetPage(name: '/about', participatesInRootNavigator: true, page: () => const AboutPage())],
+    return MediaQuery(
+      data: MediaQuery.of(context).scale(),
+      child: GetMaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          splashFactory: NoSplash.splashFactory,
+          scaffoldBackgroundColor: AppColor.background,
+          appBarTheme: const AppBarTheme(
+            backgroundColor: AppColor.background,
+            elevation: 0,
+            scrolledUnderElevation: 0,
+          ),
+          tabBarTheme: const TabBarThemeData(dividerHeight: 0),
+          colorScheme: ColorScheme.fromSwatch(
+            accentColor: AppColor.background,
+            backgroundColor: AppColor.background,
+            cardColor: AppColor.background,
+            primarySwatch: MaterialColor(AppColor.primary.toARGB32(), {}),
+          ),
+        ),
+        navigatorObservers: [BotToastNavigatorObserver()],
+        locale: services.app.locale.value,
+        popGesture: false,
+        translations: VicTranslations(),
+        builder: startup,
+        home: const ShellView(),
+        getPages: AppPages.routes,
+      ),
     );
   }
 }

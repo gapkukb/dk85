@@ -1,5 +1,5 @@
 part of 'services.dart';
 
-class GameService extends GetxService {
+class _GameService extends GetxService {
   Future initialize() async {}
 }

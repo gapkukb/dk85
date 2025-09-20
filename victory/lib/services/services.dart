@@ -1,21 +1,29 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../http/http.dart';
+import '../iconfont/iconfont.dart';
+import '../mixins/audio.mixin.dart';
+import '../mixins/locale.mixin.dart';
+import '../mixins/router.mixin.dart';
+import '../routes/app_pages.dart';
 
 part 'app.service.dart';
 part 'game.service.dart';
-part 'auth.mixin.dart';
+part 'auth.service.dart';
 part 'user.service.dart';
 
 class _Services {
-  late final AuthService auth;
-  late final AppService app;
-  late final GameService game;
-  late final UserService user;
+  late final _AuthService auth;
+  late final _AppService app;
+  late final _GameService game;
+  late final _UserService user;
 
   Future initialize() async {
-    auth = AuthService();
-    app = AppService();
-    game = GameService();
-    user = UserService();
+    auth = _AuthService();
+    app = _AppService();
+    game = _GameService();
+    user = _UserService();
 
     Get.put(auth);
     Get.put(app);
