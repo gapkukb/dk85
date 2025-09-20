@@ -21,7 +21,11 @@ class _AuthService extends GetxService {
   }
 
   Future autoLogin() async {}
-  Future login() async {}
+  Future login() async {
+    _tokenManager.value.update('accessToken', 'refreshToken');
+    _tokenManager.refresh();
+  }
+
   Future register() async {}
   Future quickRegister() async {}
   Future logout() async {}

@@ -20,7 +20,7 @@ const tabs = <_Tab>[
 
 class HomeTabBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeTabBar({Key? key}) : super(key: key);
-
+  static const _size = 52.0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,19 +28,24 @@ class HomeTabBar extends StatelessWidget implements PreferredSizeWidget {
       child: TabBar(
         unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),
         indicatorWeight: 0,
-        labelStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+        labelStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, height: 1),
         labelColor: AppColor.white,
-        indicator: RoundedTabIndicator(height: 24, color: AppColor.primary, bottom: 5),
+        indicator: RoundedTabIndicator(height: 16, color: AppColor.primary, bottom: -2),
         dividerHeight: 0,
         tabs: tabs
             .map(
               (e) => Tab(
+                height: _size,
                 icon: Image.asset(
                   e.iconPath,
                   width: 32,
                   height: 32,
                 ),
-                text: e.name.tr,
+                child: Padding(
+                  padding: AppGutter.top_4,
+                  child: Text(e.name.tr),
+                ),
+                // text: e.name.tr,
               ),
             )
             .toList(),
@@ -49,5 +54,5 @@ class HomeTabBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(64);
+  Size get preferredSize => const Size.fromHeight(_size);
 }

@@ -19,6 +19,7 @@ const Map<String, String> _en = {
   "app.service": "Customer Service",
   "app.transcation.detail": "Transcation",
   "app.all": "All",
+  "app.done": "Done",
   "app.confirm": "Confirm",
   "app.cancel": "Cancel",
   "app.logout": "Log out",

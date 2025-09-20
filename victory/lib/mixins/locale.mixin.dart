@@ -5,13 +5,14 @@ import '/storage/storage.dart';
 
 mixin VicLocaleMixin {
   static const my = VicLocale('my', 'မြန်မာဘာသာ');
-  static const en = VicLocale('my', 'English');
-  static const fil = VicLocale('my', 'Filipino');
-  static const supportedLocales = const [my, en, fil];
+  static const en = VicLocale('en', 'English');
+  static const fil = VicLocale('fil', 'Filipino');
+  static const _supportedLocales = const [my, en, fil];
   static const fallbackLocale = en;
 
   ///
   final locale = Rx(my);
+  List<VicLocale> get supportedLocales => _supportedLocales;
   String get currentLocaleName => locale.value.localeName;
   String get currentLocaleCode => locale.value.languageCode;
   String get _code {
@@ -40,7 +41,7 @@ mixin VicLocaleMixin {
   }
 
   VicLocale _codeToLocale(String code) {
-    return supportedLocales.firstWhere(
+    return _supportedLocales.firstWhere(
       (item) => item.languageCode == code,
       orElse: () => fallbackLocale,
     );

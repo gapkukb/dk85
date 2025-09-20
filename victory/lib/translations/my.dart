@@ -19,6 +19,7 @@ const Map<String, String> _my = {
   "app.service": "ဧည့်ဝန်ဆောင်မှု",
   "app.transcation.detail": "ငွေလွှဲခြင်း။",
   "app.all": "အားလုံး",
+  "app.done": "Done",
   "app.confirm": "အိုကေ",
   "app.cancel": "မဟုတ်ဘူး",
   "app.logout": "ထွက်လိုက်ပါ။",

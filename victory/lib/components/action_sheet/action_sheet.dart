@@ -6,8 +6,8 @@ import '/styles/styles.dart';
 
 const _kItemHeight = 48.0;
 const _kRdius = BorderRadius.all(Radius.circular(8.0));
-typedef VicActionCallback = void Function(VicAction action, List<VicAction> actions);
-typedef VicActionAsyncCallback = FutureOr<bool?> Function(bool selected, VicAction action, List<VicAction> actions);
+typedef VicActionCallback = void Function(VicAction action, Iterable<VicAction> actions);
+typedef VicActionAsyncCallback = FutureOr<bool?> Function(bool selected, VicAction action, Iterable<VicAction> actions);
 
 class VicAction<T> {
   final String title;
@@ -43,7 +43,7 @@ class VicAction<T> {
 }
 
 class VicActionSheet<T> extends StatefulWidget {
-  final List<VicAction<T>> actions;
+  final Iterable<VicAction<T>> actions;
   final bool closeOnTap;
   final ValueChanged<List<T>>? _onChanged;
   final bool _multiple;
@@ -92,41 +92,29 @@ class _VicActionSheetState<T> extends State<VicActionSheet<T>> {
     final maxHeight = (Get.height * 0.8 / _kItemHeight).floor() * _kItemHeight;
 
     return SizedBox(
-      width: Get.width,
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Material(
-              clipBehavior: Clip.antiAlias,
-              borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-              child: ConstrainedBox(
-                constraints: BoxConstraints(maxHeight: maxHeight),
-                child: ListView(
-                  // padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                  shrinkWrap: true,
-                  children: buildTiles(context),
-                ),
+      width: MediaQuery.of(context).size.width - AppGutter.size_24,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Material(
+            clipBehavior: Clip.antiAlias,
+            borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxHeight: maxHeight),
+              child: ListView(
+                // padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                shrinkWrap: true,
+                children: buildTiles(context),
               ),
             ),
-            const SizedBox(height: 4.0),
-            ListTile(
-              title: Text(isMultiple ? '完成' : '取消', textAlign: TextAlign.center, style: const TextStyle(fontSize: 14)),
-              textColor: isMultiple ? Colors.red : const Color(0xff666666),
-              tileColor: Colors.white,
-              minTileHeight: _kItemHeight,
-              shape: const RoundedRectangleBorder(borderRadius: _kRdius),
-              onTap: () {
-                if (isMultiple && values.join('') != backup.join('')) {
-                  widget._onChanged?.call(values);
-                }
-                Get.back();
-              },
-            ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 4.0),
+          buildCancel(),
+          const SizedBox(
+            height: AppGutter.size_12,
+          ),
+        ],
       ),
     );
   }
@@ -144,6 +132,22 @@ class _VicActionSheetState<T> extends State<VicActionSheet<T>> {
         );
       }),
     ).toList();
+  }
+
+  Widget buildCancel() {
+    return ListTile(
+      title: Text(isMultiple ? "app.done".tr : 'app.cancel'.tr, textAlign: TextAlign.center, style: const TextStyle(fontSize: 14)),
+      textColor: isMultiple ? Colors.red : const Color(0xff666666),
+      tileColor: Colors.white,
+      minTileHeight: _kItemHeight,
+      shape: const RoundedRectangleBorder(borderRadius: _kRdius),
+      onTap: () {
+        if (isMultiple && values.join('') != backup.join('')) {
+          widget._onChanged?.call(values);
+        }
+        Get.back();
+      },
+    );
   }
 
   void tap(VicAction action) {
