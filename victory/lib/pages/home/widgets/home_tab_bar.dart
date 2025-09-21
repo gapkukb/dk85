@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../components/rounded_tab_indicator/rounded_tab_indicator.dart';
-import '../../../styles/styles.dart';
+import '../../../theme/theme.dart';
 
 class _Tab {
   final String iconPath;
@@ -29,8 +29,8 @@ class HomeTabBar extends StatelessWidget implements PreferredSizeWidget {
         unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),
         indicatorWeight: 0,
         labelStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, height: 1),
-        labelColor: AppColor.white,
-        indicator: RoundedTabIndicator(height: 16, color: AppColor.primary, bottom: -2),
+        labelColor: AppColors.white,
+        indicator: RoundedTabIndicator(height: 16, color: AppColors.primary, bottom: -2),
         dividerHeight: 0,
         tabs: tabs
             .map(
@@ -42,7 +42,7 @@ class HomeTabBar extends StatelessWidget implements PreferredSizeWidget {
                   height: 32,
                 ),
                 child: Padding(
-                  padding: AppSize.pad_t_4,
+                  padding: AppSizes.pad_t_4,
                   child: Text(e.name.tr),
                 ),
                 // text: e.name.tr,

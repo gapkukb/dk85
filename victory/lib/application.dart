@@ -7,7 +7,7 @@ import 'pages/shell/shell.dart';
 import 'routes/app_pages.dart';
 import 'stores/stores.dart';
 import 'startup/startup.dart';
-import 'styles/styles.dart';
+import 'theme/theme.dart';
 import 'translations/translations.dart';
 
 class Application extends StatefulWidget {
@@ -32,18 +32,18 @@ class _ApplicationState extends State<Application> {
         title: 'Flutter Demo',
         theme: ThemeData(
           splashFactory: NoSplash.splashFactory,
-          scaffoldBackgroundColor: AppColor.background,
+          scaffoldBackgroundColor: AppColors.background,
           appBarTheme: const AppBarTheme(
-            backgroundColor: AppColor.background,
+            backgroundColor: AppColors.background,
             elevation: 0,
             scrolledUnderElevation: 0,
           ),
           tabBarTheme: const TabBarThemeData(dividerHeight: 0),
           colorScheme: ColorScheme.fromSwatch(
-            accentColor: AppColor.background,
-            backgroundColor: AppColor.background,
-            cardColor: AppColor.background,
-            primarySwatch: MaterialColor(AppColor.primary.toARGB32(), {}),
+            accentColor: AppColors.background,
+            backgroundColor: AppColors.background,
+            cardColor: AppColors.background,
+            primarySwatch: MaterialColor(AppColors.primary.toARGB32(), {}),
           ),
         ),
         initialRoute: AppPages.INITIAL,

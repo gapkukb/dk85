@@ -8,7 +8,7 @@ import '../../components/button/button.dart';
 import '../../components/vip_badge/vip_badge.dart';
 import '../../iconfont/iconfont.dart';
 import '../../stores/stores.dart';
-import '../../styles/styles.dart';
+import '../../theme/theme.dart';
 import '../balance/balance.dart';
 
 class UserMeta extends StatelessWidget {
@@ -39,13 +39,13 @@ class UserMeta extends StatelessWidget {
       child: Container(
         height: 36,
         padding: const EdgeInsets.all(2),
-        decoration: const BoxDecoration(color: AppColor.primary, borderRadius: AppSize.radius_a_24),
+        decoration: const BoxDecoration(color: AppColors.primary, borderRadius: AppSizes.radius_a_24),
         child: Row(
           spacing: 8,
           children: [
             const CircleAvatar(
               radius: 16,
-              backgroundColor: AppColor.fff0e2,
+              backgroundColor: AppColors.fff0e2,
               backgroundImage: AssetImage('assets/icons/logo-3.webp'),
             ),
             Column(
@@ -58,7 +58,7 @@ class UserMeta extends StatelessWidget {
                   children: [
                     Text(
                       n,
-                      style: const TextStyle(fontSize: 10, color: AppColor.white, height: 1),
+                      style: const TextStyle(fontSize: 10, color: AppColors.white, height: 1),
                     ),
                     const SizedBox(
                       height: 12,
@@ -68,7 +68,7 @@ class UserMeta extends StatelessWidget {
                 ),
                 Balance(
                   showFraction: false,
-                  amountStyle: const TextStyle(height: 1, fontSize: 12, fontWeight: FontWeight.bold, color: AppColor.white),
+                  amountStyle: const TextStyle(height: 1, fontSize: 12, fontWeight: FontWeight.bold, color: AppColors.white),
                   builder: (context, amount, button, _) {
                     return Row(
                       spacing: 4,
@@ -92,8 +92,8 @@ class UserMeta extends StatelessWidget {
     return VicButton(
       height: 32,
       rounded: true,
-      backgroundColor: AppColor.fff0e2,
-      color: AppColor.highlight,
+      backgroundColor: AppColors.fff0e2,
+      color: AppColors.highlight,
       text: 'app.deposit'.tr,
       textBold: true,
       fontSize: 14,

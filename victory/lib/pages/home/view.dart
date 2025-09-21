@@ -6,8 +6,8 @@ import '../../routes/app_pages.dart';
 import '../../stores/stores.dart';
 import '../../shared/locale/locale.dart';
 import '../../shared/user_meta/user_meta.dart';
-import '../../styles/size.dart';
-import '../../styles/styles.dart';
+import '../../theme/size.dart';
+import '../../theme/theme.dart';
 import '../customer_service/customer_service.dart';
 import '../fishing/index.dart';
 import '../hot/view.dart';
@@ -50,25 +50,25 @@ class _HomeViewGetX extends GetView<HomeController> {
             appBar: AppBar(
               toolbarHeight: 56,
               // backgroundColor: AppColor.danger,
-              titleSpacing: AppSize.size_12,
+              titleSpacing: AppSizes.size_12,
               title: const UserMeta(),
               actions: [
                 VicButton(
                   size: 36,
                   padding: 0,
                   rounded: true,
-                  backgroundColor: AppColor.white,
-                  color: AppColor.highlight,
-                  iconColor: AppColor.highlight,
+                  backgroundColor: AppColors.white,
+                  color: AppColors.highlight,
+                  iconColor: AppColors.highlight,
                   iconData: IconFont.sousuo,
                   onPressed: () => Get.toNamed(AppRoutes.search),
                 ),
                 const SizedBox(
-                  width: AppSize.size_8,
+                  width: AppSizes.size_8,
                 ),
                 const LocalePicker(),
                 const SizedBox(
-                  width: AppSize.size_8,
+                  width: AppSizes.size_8,
                 ),
                 const CustomerService(),
               ],

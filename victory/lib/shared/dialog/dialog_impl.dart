@@ -1,10 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+part of 'dialog.dart';
 
-import '../../components/button/button.dart';
-import '../../styles/styles.dart';
-
-class VicDialogView extends StatelessWidget {
+class _VicDialogView extends StatelessWidget {
   final String? title;
   final String? content;
   final Widget? child;
@@ -12,11 +8,11 @@ class VicDialogView extends StatelessWidget {
   final String? confirmText;
   final VoidCallback? onCancel;
   final VoidCallback? onConfirm;
-  final bool showCancel;
-  final bool showConfirm;
-  final bool autoClose;
+  final bool? showCancel;
+  final bool? showConfirm;
+  final bool? autoClose;
 
-  const VicDialogView({
+  const _VicDialogView({
     super.key,
     this.title,
     this.content,
@@ -25,16 +21,16 @@ class VicDialogView extends StatelessWidget {
     this.onCancel,
     this.onConfirm,
     this.child,
-    this.showCancel = true,
-    this.showConfirm = true,
-    this.autoClose = true,
+    this.showCancel,
+    this.showConfirm,
+    this.autoClose,
   });
 
   @override
   Widget build(BuildContext context) {
     return Dialog(
       // insetPadding: AppSize.pad_a_12,
-      shape: const RoundedRectangleBorder(borderRadius: AppSize.radius_a_12),
+      shape: const RoundedRectangleBorder(borderRadius: AppSizes.radius_a_12),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 24),
         child: Column(
@@ -43,27 +39,27 @@ class VicDialogView extends StatelessWidget {
           children: [
             Text(
               title ?? 'dialog.title'.tr,
-              style: AppTextStyle.f14_title_bold,
+              style: AppTextStyles.f14_title_bold,
             ),
             if (child != null) child!,
             if (content != null)
               Padding(
-                padding: AppSize.pad_t_4,
+                padding: AppSizes.pad_t_4,
                 child: Text(
                   content!,
-                  style: AppTextStyle.f14_label,
+                  style: AppTextStyles.f14_label,
                 ),
               ),
             // actions
             Row(
               spacing: 8,
               children: [
-                if (showCancel)
+                if (showCancel ?? true)
                   Expanded(
                     child: VicButton(
                       outlined: true,
                       backgroundColor: Colors.transparent,
-                      color: AppColor.primary,
+                      color: AppColors.primary,
                       text: 'app.cancel'.tr,
                       onPressed: () {
                         Get.back();
@@ -71,12 +67,12 @@ class VicDialogView extends StatelessWidget {
                       },
                     ),
                   ),
-                if (showConfirm)
+                if (showConfirm ?? true)
                   Expanded(
                     child: VicButton(
                       text: 'app.confirm'.tr,
                       onPressed: () {
-                        if (autoClose) {
+                        if (autoClose ?? true) {
                           Get.back();
                         }
                         onConfirm?.call();
@@ -90,32 +86,4 @@ class VicDialogView extends StatelessWidget {
       ),
     );
   }
-
-  const VicDialogView.alert({
-    super.key,
-    this.cancelText,
-    this.child,
-    this.confirmText,
-    this.content,
-    this.onCancel,
-    this.onConfirm,
-    this.title,
-    this.showCancel = false,
-    this.showConfirm = true,
-    this.autoClose = true,
-  });
-
-  const VicDialogView.confirm({
-    super.key,
-    this.cancelText,
-    this.child,
-    this.confirmText,
-    this.content,
-    this.onCancel,
-    this.onConfirm,
-    this.title,
-    this.showCancel = true,
-    this.showConfirm = true,
-    this.autoClose = true,
-  });
 }

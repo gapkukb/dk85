@@ -6,7 +6,7 @@ import '../../apis/apis.dart';
 import '../../components/network_image/network_image.dart';
 import '../../models/banner.dart';
 import '../../routes/app_pages.dart';
-import '../../styles/styles.dart';
+import '../../theme/theme.dart';
 
 class SliverGameSwiper extends StatefulWidget {
   final int position;
@@ -42,7 +42,7 @@ class _SliverGameSwiperState extends State<SliverGameSwiper> {
 
     if (single) {
       return Padding(
-        padding: AppSize.pad_x_12,
+        padding: AppSizes.pad_x_12,
         child: SizedBox(height: height, width: double.infinity, child: buildItem(banners.first)),
       );
     }
@@ -67,7 +67,7 @@ class _SliverGameSwiperState extends State<SliverGameSwiper> {
       onTap: banner.url.isEmpty ? null : () => Get.toNamed(AppRoutes.activityDetail, arguments: banner.url),
       child: SizedBox.expand(
         child: Material(
-          color: AppColor.skeleton,
+          color: AppColors.skeleton,
           borderRadius: const BorderRadius.all(Radius.circular(4)),
           clipBehavior: Clip.hardEdge,
           child: VicNetworkImage(fit: BoxFit.fill, imageUrl: banner.image, colorBlendMode: BlendMode.src),

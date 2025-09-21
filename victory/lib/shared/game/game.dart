@@ -8,7 +8,7 @@ import '../../iconfont/iconfont.dart';
 import '../../models/models.dart';
 import '../../pages/gaming/gaming.dart';
 import '../../stores/stores.dart';
-import '../../styles/styles.dart';
+import '../../theme/theme.dart';
 import '/iconfont/iconfont.dart';
 import 'package:flutter/material.dart';
 

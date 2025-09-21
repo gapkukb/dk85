@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../../stores/stores.dart';
-import '/styles/styles.dart';
+import '../../theme/theme.dart';
 
 part 'interrupt_fullscreen.dart';
 
@@ -42,7 +42,7 @@ class _WebviewState extends State<Webview> {
     } else {
       // controller.loadHtmlString(widget.content!);
       controller.loadHtmlString(widget.content!);
-      controller.setBackgroundColor(AppColor.background);
+      controller.setBackgroundColor(AppColors.background);
     }
     super.initState();
   }

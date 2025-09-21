@@ -10,7 +10,7 @@ import '../../helper/success.dart';
 import '../../helper/toast.dart';
 import '../../routes/app_pages.dart';
 import '../../stores/stores.dart';
-import '../../styles/styles.dart';
+import '../../theme/theme.dart';
 import '../bonus/view.dart';
 import '../funds/view.dart';
 import '../home/index.dart';
@@ -66,7 +66,7 @@ class _ShellViewState extends State<ShellView> {
         ),
         bottomNavigationBar: Obx(
           () => BottomNavigationBar(
-            selectedItemColor: AppColor.primary,
+            selectedItemColor: AppColors.primary,
             backgroundColor: Colors.white.withAlpha(240),
             iconSize: 22,
             elevation: 0,
@@ -76,7 +76,7 @@ class _ShellViewState extends State<ShellView> {
             items: stores.app.footNavItems,
             unselectedFontSize: 10,
             selectedFontSize: 10,
-            unselectedItemColor: AppColor.label,
+            unselectedItemColor: AppColors.label,
           ),
         ),
       ),

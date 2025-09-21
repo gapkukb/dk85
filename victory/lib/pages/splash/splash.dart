@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../constants/cs_url.dart';
 import '/helper/loading.dart';
-import '/styles/styles.dart';
+import '../../theme/theme.dart';
 
 class SplashPage extends StatefulWidget {
   final String? erorr;
@@ -22,7 +22,7 @@ class _SplashPageState extends State<SplashPage> {
           onPressed: () {
             launchUrl(Uri.parse(customerServiceUrl));
           },
-          child: const Text('Customer Service', style: TextStyle(color: AppColor.highlight)),
+          child: const Text('Customer Service', style: TextStyle(color: AppColors.highlight)),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
         body: Container(
@@ -34,7 +34,7 @@ class _SplashPageState extends State<SplashPage> {
             image: DecorationImage(image: AssetImage("assets/images/launch_background.webp"), fit: BoxFit.fill),
           ),
           child: VicLoading(
-            style: widget.erorr == null ? null : const TextStyle(color: AppColor.danger),
+            style: widget.erorr == null ? null : const TextStyle(color: AppColors.danger),
             text: widget.erorr ?? 'Initializing...\nPlease wait',
           ),
         ),

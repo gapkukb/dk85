@@ -3,7 +3,7 @@ import '../../components/action_sheet/action_sheet.dart';
 import '../../components/button/button.dart';
 import '../../components/svg_view/svg_view.dart';
 import '../../stores/stores.dart';
-import '../../styles/styles.dart';
+import '../../theme/theme.dart';
 
 class LocalePicker extends StatelessWidget {
   const LocalePicker({Key? key}) : super(key: key);
@@ -11,7 +11,7 @@ class LocalePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return VicButton(
-      backgroundColor: AppColor.white,
+      backgroundColor: AppColors.white,
       rounded: true,
       size: 36,
       padding: 0,

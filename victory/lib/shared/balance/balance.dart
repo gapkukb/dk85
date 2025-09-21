@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:get/get.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import '../../styles/colors.dart';
+import '../../theme/colors.dart';
 
 import '../../stores/stores.dart';
 

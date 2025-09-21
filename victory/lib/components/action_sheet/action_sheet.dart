@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
-import '/styles/styles.dart';
+import '../../theme/theme.dart';
 
 const _kItemHeight = 48.0;
 const _kRdius = BorderRadius.all(Radius.circular(8.0));
@@ -92,7 +92,7 @@ class _VicActionSheetState<T> extends State<VicActionSheet<T>> {
     final maxHeight = (Get.height * 0.8 / _kItemHeight).floor() * _kItemHeight;
 
     return SizedBox(
-      width: MediaQuery.of(context).size.width - AppSize.size_24,
+      width: MediaQuery.of(context).size.width - AppSizes.size_24,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -112,7 +112,7 @@ class _VicActionSheetState<T> extends State<VicActionSheet<T>> {
           const SizedBox(height: 4.0),
           buildCancel(),
           const SizedBox(
-            height: AppSize.size_12,
+            height: AppSizes.size_12,
           ),
         ],
       ),
@@ -210,7 +210,7 @@ class _VicActionWidget<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: AppSize.pad_x_12,
+      contentPadding: AppSizes.pad_x_12,
       minTileHeight: _kItemHeight,
       title: Text(action.title),
       titleTextStyle: const TextStyle(fontSize: 14, color: Colors.black).merge(action.titleStyle),

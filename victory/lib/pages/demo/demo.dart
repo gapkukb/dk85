@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
-
-import '../../shared/dialog/dialog_impl.dart';
+import '../../shared/dialog/dialog.dart';
 import '../../stores/stores.dart';
 
 class DemoPage extends StatefulWidget {
@@ -16,12 +13,7 @@ class _DemoPageState extends State<DemoPage> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Get.dialog(
-        VicDialogView.confirm(
-          content: 'you will enter the game',
-        ),
-        barrierDismissible: false,
-      );
+      VicDialog.confirm(title: 'xxxx', content: 'yyy');
     });
     super.initState();
   }

@@ -21,7 +21,7 @@ class VicGameItem extends StatelessWidget {
                 AspectRatio(
                   aspectRatio: 1,
                   child: Skeleton.replace(
-                    replacement: Container(color: AppColor.skeleton),
+                    replacement: Container(color: AppColors.skeleton),
                     child: VicNetworkImage(imageUrl: game.img),
                   ),
                 ),

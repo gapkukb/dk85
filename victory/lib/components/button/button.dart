@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../styles/colors.dart';
+import '../../theme/colors.dart';
 
 abstract class VicButtonHeight {
   static const mini = 24.0;
@@ -126,7 +126,7 @@ class VicButton extends StatelessWidget {
     this.gradientRadius,
     this.gradientType,
     this.gradientDirection = VicButtonGradientDirection.topToBottom,
-    this.gradientColors = const [AppColor.primary, AppColor.highlight],
+    this.gradientColors = const [AppColors.primary, AppColors.highlight],
   });
 
   double get _height => height ?? size ?? defaultHeight;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../styles/styles.dart';
+import '../../theme/theme.dart';
 
 class VipBadge extends StatelessWidget {
   final int level;
@@ -12,10 +12,10 @@ class VipBadge extends StatelessWidget {
       child: Container(
         height: 100,
         padding: const EdgeInsets.symmetric(horizontal: 40.0),
-        decoration: BoxDecoration(color: AppColor.warn, borderRadius: BorderRadius.circular(100)),
+        decoration: BoxDecoration(color: AppColors.warn, borderRadius: BorderRadius.circular(100)),
         child: Text(
           'vip$level',
-          style: const TextStyle(fontSize: 86, color: AppColor.highlight, fontStyle: FontStyle.italic, fontWeight: FontWeight.bold, height: 1),
+          style: const TextStyle(fontSize: 86, color: AppColors.highlight, fontStyle: FontStyle.italic, fontWeight: FontWeight.bold, height: 1),
         ),
       ),
     );

@@ -1,4 +1,4 @@
-import '../../styles/styles.dart';
+import '../../theme/theme.dart';
 import '../button/button.dart';
 import '/iconfont/iconfont.dart';
 import 'package:flutter/material.dart';
@@ -16,11 +16,11 @@ class StateBlock extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Icon(IconFont.nothing, size: 108, color: AppColor.description),
+          const Icon(IconFont.nothing, size: 108, color: AppColors.description),
           if (text != null)
             Padding(
-              padding: AppSize.pad_y_48,
-              child: Text(text!.tr, style: const TextStyle(fontSize: 14, color: AppColor.description)),
+              padding: AppSizes.pad_y_48,
+              child: Text(text!.tr, style: const TextStyle(fontSize: 14, color: AppColors.description)),
             ),
           if (buttonText != null && onPressed != null) VicButton(onPressed: onPressed, text: buttonText, height: 32),
           SizedBox(height: Get.height / 4),

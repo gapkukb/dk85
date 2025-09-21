@@ -2,19 +2,19 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../styles/styles.dart';
+import '../../theme/theme.dart';
 
 final placeHolderImage = const Skeletonizer(
   effect: ShimmerEffect(
     begin: AlignmentDirectional(-2, -0.3),
     end: AlignmentDirectional(2, 0.3),
-    baseColor: AppColor.skeleton,
+    baseColor: AppColors.skeleton,
     highlightColor: Color(0xffeeeeee),
   ),
   child: SizedBox(
     width: double.infinity,
     height: double.infinity,
-    child: DecoratedBox(decoration: BoxDecoration(color: AppColor.title)),
+    child: DecoratedBox(decoration: BoxDecoration(color: AppColors.title)),
   ),
 );
 

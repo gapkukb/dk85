@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../components/back_button/back_button.dart';
 import '../../../components/rounded_tab_indicator/rounded_tab_indicator.dart';
 import '../../../iconfont/iconfont.dart';
-import '../../../styles/styles.dart';
+import '../../../theme/theme.dart';
 import '../index.dart';
 
 class SearchingBar extends GetView<SearchingController> implements PreferredSizeWidget {
@@ -41,11 +41,11 @@ class SearchingBar extends GetView<SearchingController> implements PreferredSize
           padding: const EdgeInsets.only(bottom: 4),
           dividerHeight: 0,
           indicator: RoundedTabIndicator(
-            color: AppColor.primary,
+            color: AppColors.primary,
             height: barHeight + 8,
             // bottom: 0,
           ),
-          labelColor: AppColor.white,
+          labelColor: AppColors.white,
           onTap: controller.search,
           tabs: controller.tabs.map((tab) => Tab(height: 20, text: tab.name.tr)).toList(),
         ),
