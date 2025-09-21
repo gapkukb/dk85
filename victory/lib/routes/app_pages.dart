@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import '../env.dart';
+import '../pages/customer_service/customer_service.dart';
 import '../pages/shell/shell.dart';
 import '/pages/demo/demo.dart';
 
@@ -6,11 +8,10 @@ part 'app_routes.dart';
 
 // ignore: avoid_classes_with_only_static_members
 class AppPages {
-  // static const INITIAL = Routes.favorites;
-  static const INITIAL = null;
-
+  static const INITIAL = Environment.isDev ? AppRoutes.demo : null;
   static final List<GetPage> routes = [
     // GetPage(name: '/', page: () => const ShellView(), preventDuplicates: true, popGesture: false, participatesInRootNavigator: true),
     GetPage(name: AppRoutes.demo, page: () => const DemoPage()),
+    GetPage(name: AppRoutes.customerService, page: () => const CustomerServiceView()),
   ];
 }

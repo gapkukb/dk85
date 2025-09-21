@@ -161,4 +161,6 @@ const Map<String, String> _my = {
   "form.withdraw.acc": "ငွေထုတ်အကောင့်ထည့်ပါ။",
   "form.withdraw.amount": "ငွေထုတ်သည့်ပမာဏကို ထည့်ပါ။",
   "form.payee.placed": "ကျေးဇူးပြု၍ ဂဏန်း 6 လုံး အမှာစာနံပါတ်ကို ထည့်ပါ။",
+
+  "dialog.title": "အရိပ်အမြွက်",
 };

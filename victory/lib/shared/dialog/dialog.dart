@@ -7,9 +7,22 @@ abstract class VicDialog {
     String? title,
     String? content,
   }) async {
-    Get.dialog(const VicDialogView());
+    Get.dialog(
+      const VicDialogView.alert(
+        content: 'you will enter the game',
+      ),
+      barrierDismissible: false,
+    );
   }
 
-  static Future<void> confirm({String? title}) async {}
+  static Future<void> confirm({String? title}) async {
+    Get.dialog(
+      const VicDialogView.confirm(
+        content: 'you will enter the game',
+      ),
+      barrierDismissible: false,
+    );
+  }
+
   static Future<void> prompt() async {}
 }

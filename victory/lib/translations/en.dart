@@ -161,4 +161,6 @@ const Map<String, String> _en = {
   "form.withdraw.acc": "Enter receiving account",
   "form.withdraw.amount": "Enter the withdrawal amount",
   "form.payee.placed": "Enter last 6 digits of order",
+
+  "dialog.title": "Note",
 };

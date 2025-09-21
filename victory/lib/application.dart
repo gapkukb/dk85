@@ -46,6 +46,7 @@ class _ApplicationState extends State<Application> {
             primarySwatch: MaterialColor(AppColor.primary.toARGB32(), {}),
           ),
         ),
+        initialRoute: AppPages.INITIAL,
         navigatorObservers: [BotToastNavigatorObserver()],
         locale: stores.app.locale.value,
         popGesture: false,

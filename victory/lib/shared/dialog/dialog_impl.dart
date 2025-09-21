@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../components/button/button.dart';
+import '../../styles/styles.dart';
 
 class VicDialogView extends StatelessWidget {
   final String? title;
@@ -31,34 +32,66 @@ class VicDialogView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        spacing: 8,
-        children: [
-          const Text('title'),
-          const Text('content'),
-          // actions
-          Row(
-            spacing: 8,
-            children: [
-              VicButton(
-                text: 'app.cancel'.tr,
-                onPressed: () => Get.back(),
+    return Dialog(
+      // insetPadding: AppSize.pad_a_12,
+      shape: const RoundedRectangleBorder(borderRadius: AppSize.radius_a_12),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          spacing: 16,
+          children: [
+            Text(
+              title ?? 'dialog.title'.tr,
+              style: AppTextStyle.f14_title_bold,
+            ),
+            if (child != null) child!,
+            if (content != null)
+              Padding(
+                padding: AppSize.pad_t_4,
+                child: Text(
+                  content!,
+                  style: AppTextStyle.f14_label,
+                ),
               ),
-              VicButton(
-                text: 'app.confrim'.tr,
-                onPressed: () {
-                  Get.back();
-                },
-              ),
-            ],
-          ),
-        ],
+            // actions
+            Row(
+              spacing: 8,
+              children: [
+                if (showCancel)
+                  Expanded(
+                    child: VicButton(
+                      outlined: true,
+                      backgroundColor: Colors.transparent,
+                      color: AppColor.primary,
+                      text: 'app.cancel'.tr,
+                      onPressed: () {
+                        Get.back();
+                        onCancel?.call();
+                      },
+                    ),
+                  ),
+                if (showConfirm)
+                  Expanded(
+                    child: VicButton(
+                      text: 'app.confirm'.tr,
+                      onPressed: () {
+                        if (autoClose) {
+                          Get.back();
+                        }
+                        onConfirm?.call();
+                      },
+                    ),
+                  ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  VicDialogView.alert({
+  const VicDialogView.alert({
     super.key,
     this.cancelText,
     this.child,
@@ -71,7 +104,8 @@ class VicDialogView extends StatelessWidget {
     this.showConfirm = true,
     this.autoClose = true,
   });
-  VicDialogView.confirm({
+
+  const VicDialogView.confirm({
     super.key,
     this.cancelText,
     this.child,
