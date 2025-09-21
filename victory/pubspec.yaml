@@ -29,6 +29,9 @@ dependencies:
   flutter_cache_manager: ^3.4.1
   url_launcher: ^6.3.2
   webview_flutter: ^4.13.0
+  animate_do: ^4.2.0
+  animated_flip_counter: ^0.3.4
+  expand_tap_area: ^1.1.1
 
 dev_dependencies:
   flutter_test:

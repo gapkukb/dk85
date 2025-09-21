@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../components/button/button.dart';
+import '../../routes/app_pages.dart';
 import '../../services/services.dart';
 import '../../shared/locale/locale.dart';
-import '../../shared/simle_profile/simle_profile.dart';
-import '../../styles/gutter.dart';
+import '../../shared/user_meta/user_meta.dart';
+import '../../styles/size.dart';
 import '../../styles/styles.dart';
 import '../customer_service/customer_service.dart';
 import '../fishing/index.dart';
@@ -48,10 +49,10 @@ class _HomeViewGetX extends GetView<HomeController> {
             appBar: AppBar(
               toolbarHeight: 56,
               // backgroundColor: AppColor.danger,
-              titleSpacing: AppGutter.size_12,
-              title: const SimleProfile(),
+              titleSpacing: AppSize.size_12,
+              title: const UserMeta(),
               actions: [
-                const VicButton(
+                VicButton(
                   size: 36,
                   padding: 0,
                   rounded: true,
@@ -59,13 +60,14 @@ class _HomeViewGetX extends GetView<HomeController> {
                   color: AppColor.highlight,
                   iconColor: AppColor.highlight,
                   iconData: IconFont.sousuo,
+                  onPressed: () => Get.toNamed(AppRoutes.search),
                 ),
                 const SizedBox(
-                  width: AppGutter.size_8,
+                  width: AppSize.size_8,
                 ),
                 const LocalePicker(),
                 const SizedBox(
-                  width: AppGutter.size_8,
+                  width: AppSize.size_8,
                 ),
                 const CustomerService(),
               ],

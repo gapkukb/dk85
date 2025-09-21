@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 class IconFont{
 	static const String _family = 'iconfont';
 	IconFont._();
+		static const IconData shuaxin1 = IconData(0xe648, fontFamily: _family);
 		static const IconData debug = IconData(0xe607, fontFamily: _family);
 		static const IconData qiandao = IconData(0xe63a, fontFamily: _family);
 		static const IconData unselected = IconData(0xe60f, fontFamily: _family);
@@ -44,6 +45,7 @@ class IconFont{
 		static const IconData genzongjilu = IconData(0xe66c, fontFamily: _family);
 		static const IconData yuyuejilu = IconData(0xe68d, fontFamily: _family);
 		static const IconData zidongqukuanji = IconData(0xe7e6, fontFamily: _family);
+		static const IconData shuaxin = IconData(0xe69b, fontFamily: _family);
 		static const IconData refresh = IconData(0xe675, fontFamily: _family);
 		static const IconData mima = IconData(0xe850, fontFamily: _family);
 		static const IconData protect = IconData(0xe632, fontFamily: _family);

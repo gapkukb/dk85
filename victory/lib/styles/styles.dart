@@ -1,3 +1,3 @@
 export 'colors.dart';
-export 'gutter.dart';
+export 'size.dart';
 export 'text.dart';

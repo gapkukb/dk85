@@ -92,7 +92,7 @@ class _VicActionSheetState<T> extends State<VicActionSheet<T>> {
     final maxHeight = (Get.height * 0.8 / _kItemHeight).floor() * _kItemHeight;
 
     return SizedBox(
-      width: MediaQuery.of(context).size.width - AppGutter.size_24,
+      width: MediaQuery.of(context).size.width - AppSize.size_24,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -112,7 +112,7 @@ class _VicActionSheetState<T> extends State<VicActionSheet<T>> {
           const SizedBox(height: 4.0),
           buildCancel(),
           const SizedBox(
-            height: AppGutter.size_12,
+            height: AppSize.size_12,
           ),
         ],
       ),
@@ -210,7 +210,7 @@ class _VicActionWidget<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: AppGutter.x_12,
+      contentPadding: AppSize.x_12,
       minTileHeight: _kItemHeight,
       title: Text(action.title),
       titleTextStyle: const TextStyle(fontSize: 14, color: Colors.black).merge(action.titleStyle),

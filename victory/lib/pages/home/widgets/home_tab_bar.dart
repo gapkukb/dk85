@@ -42,7 +42,7 @@ class HomeTabBar extends StatelessWidget implements PreferredSizeWidget {
                   height: 32,
                 ),
                 child: Padding(
-                  padding: AppGutter.top_4,
+                  padding: AppSize.pad_t_4,
                   child: Text(e.name.tr),
                 ),
                 // text: e.name.tr,

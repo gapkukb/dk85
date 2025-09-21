@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'dart:math' as math;
 import '../http/http.dart';
 import '../iconfont/iconfont.dart';
 import '../mixins/audio.mixin.dart';
