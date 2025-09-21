@@ -22,7 +22,7 @@ class _SplashPageState extends State<SplashPage> {
           onPressed: () {
             launchUrl(Uri.parse(customerServiceUrl));
           },
-          child: Text('Customer Service', style: TextStyle(color: AppColor.highlight)),
+          child: const Text('Customer Service', style: TextStyle(color: AppColor.highlight)),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
         body: Container(
@@ -34,7 +34,7 @@ class _SplashPageState extends State<SplashPage> {
             image: DecorationImage(image: AssetImage("assets/images/launch_background.webp"), fit: BoxFit.fill),
           ),
           child: VicLoading(
-            style: widget.erorr == null ? TextStyle(color: AppColor.danger) : null,
+            style: widget.erorr == null ? null : const TextStyle(color: AppColor.danger),
             text: widget.erorr ?? 'Initializing...\nPlease wait',
           ),
         ),

@@ -6,6 +6,7 @@ import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:scaled_app/scaled_app.dart';
 import 'application.dart';
+import 'bootstrap/query_api_address.dart';
 import 'env.dart';
 import 'helper/charles_monitor.dart';
 import 'pages/splash/splash.dart';
@@ -13,6 +14,27 @@ import 'services/services.dart';
 import 'storage/storage.dart';
 
 void main() async {
+  initializeUI();
+
+  if (Environment.isNotProd) {
+    HttpOverrides.global = CharlesProxyHttpOverride();
+  }
+
+  final errorMessage = Rxn<String>();
+
+  /// 显示开屏页
+  runApp(Obx(() => SplashPage(errorMessage.value)));
+
+  await ApiBaseUrl.initialize(onError: (msg) => errorMessage.value = msg);
+
+  await Storage.initialize();
+
+  await services.initialize();
+
+  runApp(const Application());
+}
+
+void initializeUI() {
   ScaledWidgetsFlutterBinding.ensureInitialized(
     scaleFactor: (deviceSize) => deviceSize.width / 375,
   );
@@ -27,24 +49,4 @@ void main() async {
       systemNavigationBarIconBrightness: Brightness.dark, // 设置导航栏图标颜色为深色
     ),
   );
-
-  final errorMessage = Rxn<String>();
-
-  /// 显示开屏页
-  runApp(
-    MaterialApp(
-      builder: BotToastInit(),
-      home: Obx(() => SplashPage(errorMessage.value)),
-    ),
-  );
-
-  await Storage.initialize();
-
-  if (Environment.isNotProd) {
-    HttpOverrides.global = CharlesProxyHttpOverride();
-  }
-
-  await services.initialize();
-
-  runApp(const Application());
 }

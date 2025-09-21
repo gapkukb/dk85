@@ -39,7 +39,7 @@ class UserMeta extends StatelessWidget {
       child: Container(
         height: 36,
         padding: const EdgeInsets.all(2),
-        decoration: const BoxDecoration(color: AppColor.primary, borderRadius: BorderRadius.all(Radius.circular(10))),
+        decoration: const BoxDecoration(color: AppColor.primary, borderRadius: AppSize.radius_a_24),
         child: Row(
           spacing: 8,
           children: [

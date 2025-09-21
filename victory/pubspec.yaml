@@ -32,6 +32,7 @@ dependencies:
   animate_do: ^4.2.0
   animated_flip_counter: ^0.3.4
   expand_tap_area: ^1.1.1
+  encrypt: ^5.0.3
 
 dev_dependencies:
   flutter_test:

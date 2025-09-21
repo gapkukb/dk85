@@ -210,7 +210,7 @@ class _VicActionWidget<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: AppSize.x_12,
+      contentPadding: AppSize.pad_x_12,
       minTileHeight: _kItemHeight,
       title: Text(action.title),
       titleTextStyle: const TextStyle(fontSize: 14, color: Colors.black).merge(action.titleStyle),
