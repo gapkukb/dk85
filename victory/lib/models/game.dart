@@ -78,7 +78,7 @@ class Game {
   final num likeNum;
   final bool isNew;
   final bool status;
-  final num sort;
+  final int sort;
   final DateTime? createdAt;
   final DateTime? updatedAt;
   final int platformId;

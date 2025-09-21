@@ -27,7 +27,7 @@ class _SliverGameSwiperState extends State<SliverGameSwiper> {
 
   void _queryAdList() async {
     final value = await Apis.app.queryAdList(queryParameters: {"type": "3", "position": widget.position});
-    banners.addAll(value.data);
+    banners.addAll(value);
     setState(() {});
   }
 

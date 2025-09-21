@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../components/button/button.dart';
+import '../../components/keep_alive_wrapper/keep_alive_wrapper.dart';
 import '../../routes/app_pages.dart';
 import '../../stores/stores.dart';
 import '../../shared/locale/locale.dart';
@@ -74,7 +75,14 @@ class _HomeViewGetX extends GetView<HomeController> {
               bottom: const HomeTabBar(),
             ),
             body: const SafeArea(
-              child: TabBarView(children: [HotPage(), SlotsPage(), FishingPage(), PokerPage()]),
+              child: TabBarView(
+                children: [
+                  VicKeepAlive(child: HotPage()),
+                  VicKeepAlive(child: SlotsPage()),
+                  VicKeepAlive(child: FishingPage()),
+                  VicKeepAlive(child: PokerPage()),
+                ],
+              ),
             ),
           );
         },

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../shared/game/game_section.dart';
+import '../../shared/game/game_swiper.dart';
 import 'index.dart';
 
 class HotPage extends GetView<HotController> {
@@ -20,9 +22,14 @@ class HotPage extends GetView<HotController> {
       id: "hot",
       builder: (_) {
         return Scaffold(
-          appBar: AppBar(title: const Text("hot")),
           body: SafeArea(
-            child: _buildView(),
+            child: CustomScrollView(
+              slivers: [
+                const SliverGameSwiper(position: 1),
+                Obx(() => VicGameSection("game.hot".tr, controller.hotGames.value)),
+                Obx(() => VicGameSection("game.news".tr, controller.newGames.value)),
+              ],
+            ),
           ),
         );
       },

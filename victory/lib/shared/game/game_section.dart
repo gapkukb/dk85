@@ -23,7 +23,7 @@ class VicGameSection extends StatelessWidget {
         slivers: [
           const SliverPadding(padding: AppSize.pad_t_12),
           SliverToBoxAdapter(child: buildTitle(title)),
-          const SliverPadding(padding: AppSize.pad_t_4),
+          const SliverPadding(padding: AppSize.pad_t_8),
           VicGameGrid.sliver(gameList: games),
         ],
       ),
