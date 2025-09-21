@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 part 'wrapper.dart';
@@ -19,4 +18,7 @@ class Storage {
   final user = _user('user', false);
   final debug = _app('debug', false);
   final locale = _app.nullable<String>('locale');
+  final token = _user("token", '');
+  final deviceId = _app("device_id", '');
+  final showGuide = _app("show_guide", true);
 }

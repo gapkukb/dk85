@@ -1,3 +1,3 @@
 library models;
 
-part 'game.dart';
+part 'game.model.dart';

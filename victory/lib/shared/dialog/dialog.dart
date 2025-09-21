@@ -1,9 +1,14 @@
+import 'dart:async';
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import '../../components/button/button.dart';
 import '../../theme/theme.dart';
+import '../lottie/lottie.dart';
 
 part 'dialog_impl.dart';
+part 'dialog_success.dart';
 
 abstract class VicDialog {
   static Future<void> alert({
@@ -65,4 +70,27 @@ abstract class VicDialog {
   }
 
   static Future<void> prompt() async {}
+  static Future<void> success({
+    String? text = 'Opration Successful',
+    Widget? widget,
+    VoidCallback? onClose,
+  }) async {
+    final c = Completer<void>();
+    BotToast.showCustomLoading(
+      toastBuilder: (cancelFunc) {
+        return _VicDialogSuccess(
+          text: text,
+          onClose: cancelFunc,
+          widget: widget,
+        );
+      },
+      onClose: () {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          c.complete();
+          onClose?.call();
+        });
+      },
+    );
+    return c.future;
+  }
 }

@@ -21,13 +21,67 @@ class _AuthService extends GetxService {
   }
 
   Future autoLogin() async {}
-  Future login() async {
-    tokenManager.value.update('accessToken', 'refreshToken');
-    tokenManager.refresh();
+
+  Future login(Object values) async {
+    final t = await Apis.auth.login(data: values);
+    await _nextAction(t.data.token);
   }
 
-  Future register() async {}
-  Future quickRegister() async {}
-  Future logout() async {}
+  Future register(Object values) async {
+    final t = await Apis.auth.register(data: values);
+    await _nextAction(t.data.token);
+  }
+
+  Future quickRegister(Object values) async {
+    final t = await Apis.auth.fastRegister(payload: {'device_code': storage.deviceId.value});
+    await _nextAction(t.data.token);
+  }
+
+  Future logout() async {
+    // 调用退出接口，无需等待
+    Apis.auth.logout();
+    Timer(const Duration(milliseconds: 1), clear);
+  }
+
+  clear() {
+    // 清空token和登录态
+    tokenManager.value.clear();
+    tokenManager.refresh();
+    stores.user.balance.value = 0;
+    stores.app.toHomePage();
+  }
+
   Future initialize() async {}
+
+  Future _nextAction(String token) async {
+    // 更新token
+    try {
+      tokenManager.value.update('accessToken', 'refreshToken');
+      tokenManager.refresh();
+      storage.token.update(token);
+      // 获取用户信息
+      await stores.user.queryUserInfo(updateBalance: true);
+      // 修改认证状态
+      // authorized.value = true;
+    } catch (e) {
+      debugPrint(e.toString());
+      rethrow;
+    }
+  }
+
+  void toAuth() {
+    Get.toNamed(AppRoutes.auth);
+  }
+
+  @override
+  void onInit() {
+    final token = storage.token.value;
+    if (token.isNotEmpty) {
+      tokenManager.value.update(token, token);
+    }
+    Future.delayed(Duration.zero).then((_) {
+      // Dialogs.to.onAuthChanged(authorized);
+    });
+    super.onInit();
+  }
 }

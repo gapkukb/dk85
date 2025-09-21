@@ -6,16 +6,29 @@ import '../../stores/stores.dart';
 import '../../theme/theme.dart';
 
 class LocalePicker extends StatelessWidget {
-  const LocalePicker({Key? key}) : super(key: key);
+  final Widget? child;
+  final double size;
+  final double iconSize;
+  final Color? color;
+  const LocalePicker({Key? key, this.child, this.size = 36, this.iconSize = 24, this.color});
 
   @override
   Widget build(BuildContext context) {
+    if (child != null) {
+      return GestureDetector(
+        child: child,
+        onTap: _showPicker,
+      );
+    }
     return VicButton(
       backgroundColor: AppColors.white,
       rounded: true,
-      size: 36,
+      size: size,
       padding: 0,
-      icon: const SvgView(name: 'translator.svg'),
+      icon: SvgView(
+        name: 'translator.svg',
+        size: iconSize,
+      ),
       onPressed: _showPicker,
     );
   }

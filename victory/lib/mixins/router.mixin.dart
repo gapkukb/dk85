@@ -17,8 +17,8 @@ mixin VicRouterMixin {
       Get.back();
     }
     if (index == currentFootNavIndex) return;
-    if (footNavItems[index].protected) {
-      stores.auth.login();
+    if (footNavItems[index].protected && stores.auth.unauthorized) {
+      stores.auth.toAuth();
       currentFootNavIndex.value = index;
     } else {
       currentFootNavIndex.value = index;

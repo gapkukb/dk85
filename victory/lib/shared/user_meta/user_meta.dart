@@ -28,7 +28,7 @@ class UserMeta extends StatelessWidget {
       textBold: true,
       text: 'SIGN IN | SIGN UP',
       onPressed: () {
-        stores.auth.login();
+        // stores.auth.login();
       },
     );
   }
