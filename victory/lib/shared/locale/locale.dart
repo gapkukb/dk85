@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../components/action_sheet/action_sheet.dart';
 import '../../components/button/button.dart';
 import '../../components/svg_view/svg_view.dart';
-import '../../services/services.dart';
+import '../../stores/stores.dart';
 import '../../styles/styles.dart';
 
 class LocalePicker extends StatelessWidget {
@@ -21,14 +21,14 @@ class LocalePicker extends StatelessWidget {
   }
 
   void _showPicker() {
-    final actions = services.app.supportedLocales.map(
+    final actions = stores.app.supportedLocales.map(
       (e) => VicAction(title: e.localeName, value: e.languageCode),
     );
     showVicActionSheet(
       VicActionSheet.single(
-        initValue: services.app.currentLocaleCode,
+        initValue: stores.app.currentLocaleCode,
         actions: actions,
-        onChanged: services.app.updateLocaleByCode,
+        onChanged: stores.app.updateLocaleByCode,
       ),
     );
   }

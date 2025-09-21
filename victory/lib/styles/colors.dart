@@ -16,6 +16,7 @@ abstract class AppColor {
   static const white = Colors.white;
   static const highlight = const Color(0xffff5800);
   static const fff0e2 = const Color(0xfffff0e2);
+  static const skeleton = const Color(0xFFE8E6EC);
   static const buttonGradient = const RadialGradient(
     colors: [Color.fromRGBO(255, 255, 255, 0.3), Color.fromRGBO(255, 230, 215, 0.0001)],
     center: Alignment(-0.8, -0.6),

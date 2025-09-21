@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../../services/services.dart';
+import '../../stores/stores.dart';
 
 class DemoPage extends StatefulWidget {
   const DemoPage({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class _DemoPageState extends State<DemoPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          services.app.toHomePage();
+          stores.app.toHomePage();
         },
       ),
     );

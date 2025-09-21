@@ -9,7 +9,7 @@ import '../../components/button/button.dart';
 import '../../helper/success.dart';
 import '../../helper/toast.dart';
 import '../../routes/app_pages.dart';
-import '../../services/services.dart';
+import '../../stores/stores.dart';
 import '../../styles/styles.dart';
 import '../bonus/view.dart';
 import '../funds/view.dart';
@@ -40,21 +40,21 @@ class _ShellViewState extends State<ShellView> {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
-        if (services.app.currentFootNavIndex == 0) {
+        if (stores.app.currentFootNavIndex == 0) {
           MoveToBack.execute();
         } else {
-          services.app.toHomePage();
+          stores.app.toHomePage();
         }
       },
       child: Scaffold(
         body: Obx(() {
           return IndexedStack(
-            index: services.app.currentFootNavIndex.value,
+            index: stores.app.currentFootNavIndex.value,
             children: [
               const HomePage(),
               const BonusPage(),
-              services.auth.authorized ? const FundsPage() : const SizedBox.shrink(),
-              services.auth.authorized ? const ProfilePage() : const SizedBox.shrink(),
+              stores.auth.authorized ? const FundsPage() : const SizedBox.shrink(),
+              stores.auth.authorized ? const ProfilePage() : const SizedBox.shrink(),
             ],
           );
         }),
@@ -71,9 +71,9 @@ class _ShellViewState extends State<ShellView> {
             iconSize: 22,
             elevation: 0,
             type: BottomNavigationBarType.fixed,
-            currentIndex: services.app.currentFootNavIndex.value,
-            onTap: services.app.navigateTo,
-            items: services.app.footNavItems,
+            currentIndex: stores.app.currentFootNavIndex.value,
+            onTap: stores.app.navigateTo,
+            items: stores.app.footNavItems,
             unselectedFontSize: 10,
             selectedFontSize: 10,
             unselectedItemColor: AppColor.label,

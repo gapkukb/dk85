@@ -1,4 +1,4 @@
-part of 'services.dart';
+part of 'stores.dart';
 
 class _UserService extends GetxService {
   final balance = RxNum(0);

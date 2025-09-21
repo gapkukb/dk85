@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import '../../services/services.dart';
+import '../../stores/stores.dart';
 import '/routes/app_pages.dart';
 
 class EnsureAuthMiddleware extends GetMiddleware {
@@ -12,7 +12,7 @@ class EnsureAuthMiddleware extends GetMiddleware {
     print("EnsureAuthMiddleware");
 
     // 未登录则跳转登录
-    if (!services.auth.authorized) {
+    if (!stores.auth.authorized) {
       final newRoute = AppRoutes.loginThen(route.locationString);
       return GetNavConfig.fromRoute(newRoute);
     }
@@ -23,7 +23,7 @@ class EnsureAuthMiddleware extends GetMiddleware {
 class EnsureNotAuthedMiddleware extends GetMiddleware {
   @override
   Future<GetNavConfig?> redirectDelegate(GetNavConfig route) async {
-    if (services.auth.authorized) {
+    if (stores.auth.authorized) {
       //NEVER navigate to auth screen, when user is already authed
       return null;
 

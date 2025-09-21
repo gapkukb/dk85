@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import '../../styles/colors.dart';
 
-import '../../services/services.dart';
+import '../../stores/stores.dart';
 
 class Balance extends StatefulWidget {
   final int? fractionDigits;
@@ -46,7 +46,7 @@ class Balance extends StatefulWidget {
 }
 
 class _BalanceState extends State<Balance> {
-  num get balance => services.user.balance.value;
+  num get balance => stores.user.balance.value;
   final loading = false.obs;
 
   @override
@@ -82,7 +82,7 @@ class _BalanceState extends State<Balance> {
 
   void refresh() {
     loading.value = true;
-    services.user.refreshBalance().whenComplete(() {
+    stores.user.refreshBalance().whenComplete(() {
       loading.value = false;
     });
   }

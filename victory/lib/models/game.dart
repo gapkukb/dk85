@@ -58,6 +58,7 @@ class Game {
     required this.createdAt,
     required this.updatedAt,
     required this.platformId,
+    this.liked = false,
   });
 
   final int id;
@@ -81,6 +82,7 @@ class Game {
   final DateTime? createdAt;
   final DateTime? updatedAt;
   final int platformId;
+  bool liked;
 
   factory Game.fromJson(Map<String, dynamic> json) {
     return Game(

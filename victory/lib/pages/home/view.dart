@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../components/button/button.dart';
 import '../../routes/app_pages.dart';
-import '../../services/services.dart';
+import '../../stores/stores.dart';
 import '../../shared/locale/locale.dart';
 import '../../shared/user_meta/user_meta.dart';
 import '../../styles/size.dart';

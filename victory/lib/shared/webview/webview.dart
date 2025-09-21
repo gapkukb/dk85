@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import '/services/services.dart';
+import '../../stores/stores.dart';
 import '/styles/styles.dart';
 
 part 'interrupt_fullscreen.dart';
@@ -35,7 +35,7 @@ class _WebviewState extends State<Webview> {
   void initState() {
     _initilize();
     if (widget.pauseAudio) {
-      services.app.pauseAudio();
+      stores.app.pauseAudio();
     }
     if (widget.content == null) {
       controller.loadRequest(Uri.parse(widget.url!));
@@ -50,7 +50,7 @@ class _WebviewState extends State<Webview> {
   @override
   void dispose() {
     if (widget.pauseAudio) {
-      services.app.resumeAudio();
+      stores.app.resumeAudio();
     }
     super.dispose();
   }

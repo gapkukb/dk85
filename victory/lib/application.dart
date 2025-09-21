@@ -5,7 +5,7 @@ import 'package:scaled_app/scaled_app.dart';
 import 'pages/about/about.dart';
 import 'pages/shell/shell.dart';
 import 'routes/app_pages.dart';
-import 'services/services.dart';
+import 'stores/stores.dart';
 import 'startup/startup.dart';
 import 'styles/styles.dart';
 import 'translations/translations.dart';
@@ -47,7 +47,7 @@ class _ApplicationState extends State<Application> {
           ),
         ),
         navigatorObservers: [BotToastNavigatorObserver()],
-        locale: services.app.locale.value,
+        locale: stores.app.locale.value,
         popGesture: false,
         translations: VicTranslations(),
         builder: startup,

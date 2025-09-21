@@ -7,7 +7,7 @@ import 'package:material_symbols_icons/material_symbols_icons.dart';
 import '../../components/button/button.dart';
 import '../../components/vip_badge/vip_badge.dart';
 import '../../iconfont/iconfont.dart';
-import '../../services/services.dart';
+import '../../stores/stores.dart';
 import '../../styles/styles.dart';
 import '../balance/balance.dart';
 
@@ -17,7 +17,7 @@ class UserMeta extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => services.auth.authorized ? meta : meta,
+      () => stores.auth.authorized ? meta : meta,
     );
   }
 
@@ -28,7 +28,7 @@ class UserMeta extends StatelessWidget {
       textBold: true,
       text: 'SIGN IN | SIGN UP',
       onPressed: () {
-        services.auth.login();
+        stores.auth.login();
       },
     );
   }
@@ -97,7 +97,7 @@ class UserMeta extends StatelessWidget {
       text: 'app.deposit'.tr,
       textBold: true,
       fontSize: 14,
-      onPressed: () => services.app.toFundsPage(),
+      onPressed: () => stores.app.toFundsPage(),
     );
   }
 }

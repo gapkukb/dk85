@@ -7,17 +7,18 @@ import '../apis/apis.dart';
 import '../http/http.dart';
 import '../iconfont/iconfont.dart';
 import '../mixins/audio.mixin.dart';
+import '../mixins/auth.mixin.dart';
 import '../mixins/locale.mixin.dart';
 import '../mixins/router.mixin.dart';
 import '../models/models.dart';
 import '../routes/app_pages.dart';
 
-part 'app.service.dart';
-part 'game.service.dart';
-part 'auth.service.dart';
-part 'user.service.dart';
+part 'app.store.dart';
+part 'game.store.dart';
+part 'auth.store.dart';
+part 'user.store.dart';
 
-class _Services {
+class _Stores {
   late final _AuthService auth;
   late final _AppService app;
   late final _GameService game;
@@ -38,4 +39,4 @@ class _Services {
   }
 }
 
-final services = _Services();
+final stores = _Stores();

@@ -30,13 +30,13 @@ class TokenManager {
 
 class HttpAuthInterceptor extends Interceptor {
   final TokenManager tokenManager;
-  final bool Function(Response response) shouldRefresh;
-  final Future<void> Function(Dio refreshDio, TokenManager tokenManager) onRefresh;
+  // final bool Function(Response response) shouldRefresh;
+  // final Future<void> Function(Dio refreshDio, TokenManager tokenManager) onRefresh;
   final void Function() onLogin;
   late final Dio _refetcher;
   var _completer = Completer<void>()..complete();
 
-  HttpAuthInterceptor({required Dio dio, required this.tokenManager, required this.shouldRefresh, required this.onRefresh, required this.onLogin}) {
+  HttpAuthInterceptor({required Dio dio, required this.tokenManager, required this.onLogin}) {
     _refetcher = dio.clone();
   }
 

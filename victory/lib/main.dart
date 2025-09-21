@@ -10,7 +10,7 @@ import 'bootstrap/query_api_address.dart';
 import 'env.dart';
 import 'helper/charles_monitor.dart';
 import 'pages/splash/splash.dart';
-import 'services/services.dart';
+import 'stores/stores.dart';
 import 'storage/storage.dart';
 
 void main() async {
@@ -29,7 +29,7 @@ void main() async {
 
   await Storage.initialize();
 
-  await services.initialize();
+  await stores.initialize();
 
   runApp(const Application());
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import '../services/services.dart';
+import '../stores/stores.dart';
 import '/iconfont/iconfont.dart';
 
 mixin VicRouterMixin {
@@ -18,7 +18,7 @@ mixin VicRouterMixin {
     }
     if (index == currentFootNavIndex) return;
     if (footNavItems[index].protected) {
-      services.auth.login();
+      stores.auth.login();
       currentFootNavIndex.value = index;
     } else {
       currentFootNavIndex.value = index;

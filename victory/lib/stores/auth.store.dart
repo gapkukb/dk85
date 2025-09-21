@@ -1,10 +1,10 @@
-part of 'services.dart';
+part of 'stores.dart';
 
-final tokenManager = TokenManager();
+final globalTokenManager = TokenManager();
 
 class _AuthService extends GetxService {
-  final _tokenManager = tokenManager.obs;
-  bool get authorized => _tokenManager.value.accessToken != null;
+  final tokenManager = globalTokenManager.obs;
+  bool get authorized => tokenManager.value.accessToken != null;
   bool get unauthorized => !authorized;
   bool get ensureUnauthorize => !ensureAuthorized;
 
@@ -22,8 +22,8 @@ class _AuthService extends GetxService {
 
   Future autoLogin() async {}
   Future login() async {
-    _tokenManager.value.update('accessToken', 'refreshToken');
-    _tokenManager.refresh();
+    tokenManager.value.update('accessToken', 'refreshToken');
+    tokenManager.refresh();
   }
 
   Future register() async {}
