@@ -36,7 +36,7 @@ class VicSignUpView extends GetView<VicAuthCotroller> {
             VicPwdInput(reference: controller.pwd),
             VicMobileInput(onSaved: form.saveAs('mobile')),
             VicGraphicInput(onSaved: form.saveAs('code'), onFieldSubmitted: form.submit, onImageChange: form.saveAs('time')),
-            VicButton(onPressed: form.submit, text: 'app.register'.tr),
+            VicButton(height: VicButtonHeight.medium, onPressed: form.submit, text: 'app.register'.tr),
           ],
         ),
       ),

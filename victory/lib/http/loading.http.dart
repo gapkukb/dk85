@@ -8,7 +8,7 @@ class HttpLoadingAdapter implements HttpClientAdapter {
 
   @override
   Future<ResponseBody> fetch(RequestOptions options, Stream<Uint8List>? requestStream, Future<void>? cancelFuture) {
-    final showable = options.custom.showLoading;
+    final showable = options.custom.loading;
     if (showable && _count++ == 0) {
       onTrigger(true);
     }

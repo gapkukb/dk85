@@ -24,17 +24,17 @@ class _AuthService extends GetxService {
 
   Future login(Object values) async {
     final t = await Apis.auth.login(data: values);
-    await _nextAction(t.data.token);
+    await _nextAction(t.token);
   }
 
   Future register(Object values) async {
     final t = await Apis.auth.register(data: values);
-    await _nextAction(t.data.token);
+    await _nextAction(t.token);
   }
 
   Future quickRegister(Object values) async {
     final t = await Apis.auth.fastRegister(payload: {'device_code': storage.deviceId.value});
-    await _nextAction(t.data.token);
+    await _nextAction(t.token);
   }
 
   Future logout() async {

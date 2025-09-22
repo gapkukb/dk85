@@ -30,22 +30,8 @@ class _ApplicationState extends State<Application> {
       data: MediaQuery.of(context).scale(),
       child: GetMaterialApp(
         title: 'Flutter Demo',
-        theme: ThemeData(
-          splashFactory: NoSplash.splashFactory,
-          scaffoldBackgroundColor: AppColors.background,
-          appBarTheme: const AppBarTheme(
-            backgroundColor: AppColors.background,
-            elevation: 0,
-            scrolledUnderElevation: 0,
-          ),
-          tabBarTheme: const TabBarThemeData(dividerHeight: 0),
-          colorScheme: ColorScheme.fromSwatch(
-            accentColor: AppColors.background,
-            backgroundColor: AppColors.background,
-            cardColor: AppColors.background,
-            primarySwatch: MaterialColor(AppColors.primary.toARGB32(), {}),
-          ),
-        ),
+        theme: lightTheme,
+        themeMode: ThemeMode.light,
         initialRoute: AppPages.INITIAL,
         navigatorObservers: [BotToastNavigatorObserver()],
         locale: stores.app.locale.value,

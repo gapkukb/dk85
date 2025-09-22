@@ -1,70 +1,152 @@
 part of 'http.dart';
 
-typedef HttpDispatch<T> =
-    Future<T> Function({
-      Object? payload,
-      Object? data,
-      Map<String, dynamic>? queryParameters,
-      CancelToken? cancelToken,
-      Options? options,
-      void Function(int, int)? onSendProgress,
-      void Function(int, int)? onReceiveProgress,
-    });
+class VicHttpImpl<R, T> {
+  final Dio dio;
+  final String path;
+  final String method;
+  final bool? cancelable;
+  final T Function(Map<String, dynamic> json)? decoder;
+  late final HttpOptions httpOptions;
+  late final bool _isList;
+  CancelToken? cancelToken;
 
-typedef HttpMethod =
-    HttpDispatch<R> Function<R, T>(
-      String path, {
-      bool? loading,
-      bool? silent,
-      bool? throwable,
-      bool? normalize,
-      int? retry,
-      T Function(Map<String, dynamic> json)? decoder,
-    });
+  VicHttpImpl(
+    this.dio,
+    this.method,
+    this.path, {
+    final bool? loading,
+    final bool? silent,
+    final bool? debug,
+    final bool? showError,
+    final bool? raw,
+    final int? retry,
+    this.cancelable,
+    this.decoder,
+  }) {
+    _isList = R.toString().startsWith('List');
+    httpOptions = HttpOptions(
+      loading: loading ?? false,
+      silent: silent ?? false,
+      showError: showError ?? true,
+      raw: raw ?? false,
+      retry: retry ?? 0,
+      debug: debug ?? false,
+    );
+  }
 
-class Http {
-  late final Dio dio;
-  late final HttpMethod get;
-  late final HttpMethod post;
+  Future<R> call({
+    Object? payload,
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    void Function(int, int)? onSendProgress,
+    void Function(int, int)? onReceiveProgress,
+  }) {
+    if (this.cancelable == true) {
+      cancelToken = CancelToken();
+    }
+    options ??= Options();
+    options.method ??= method;
+    options.httpOptions = httpOptions;
+    print(dio.options.baseUrl + path);
+    return dio
+        .request(
+          path,
+          data: data ?? payload,
+          queryParameters: queryParameters ?? (payload as Map<String, dynamic>?),
+          cancelToken: cancelToken,
+          options: options,
+          onSendProgress: onSendProgress,
+          onReceiveProgress: onReceiveProgress,
+        )
+        .then<R>((
+          response,
+        ) {
+          if (httpOptions.raw) return response.data;
+          final data = response.data['data'];
+          if (decoder == null) return data;
+          if (data is Map<String, dynamic>) return decoder!(data) as R;
+          if (data is List) {
+            if (_isList) return List<T>.from(data.map((x) => decoder!(x))) as R;
+            throw Exception("泛型不匹配返回值 , $R ===> ${data.runtimeType}");
+          }
+          return data;
+        })
+        .whenComplete(() {
+          cancelToken = null;
+        });
+  }
 
-  Http(BaseOptions options) {
-    dio = Dio(options);
-    get = _factory(dio, 'get');
-    post = _factory(dio, 'post');
+  abort([String? reason]) {
+    cancelToken?.cancel(reason);
   }
 }
 
-HttpMethod _factory(Dio dio, String method) {
-  return <R, T>(path, {loading, silent, throwable, normalize, retry, decoder}) {
-    final o = HttpOptions(
-      showLoading: loading ?? false,
-      silent: silent ?? false,
-      throwable: throwable ?? true,
-      normalizable: normalize ?? true,
-      retry: retry ?? 0,
+class VicHttpMethod {
+  final String method;
+  final Dio dio;
+
+  const VicHttpMethod(this.method, this.dio);
+
+  VicHttpImpl<R, R> call<R>(
+    String path, {
+    final bool? loading,
+    final bool? silent,
+    final bool? showError,
+    final bool? raw,
+    final bool? cancelable,
+    final bool? debug,
+    int? retry,
+    R Function(Map<String, dynamic> json)? decoder,
+  }) {
+    return VicHttpImpl(
+      dio,
+      method,
+      path,
+      decoder: decoder,
+      loading: loading,
+      raw: raw,
+      retry: retry,
+      silent: silent,
+      showError: showError,
+      debug: debug,
     );
-    return ({payload, data, queryParameters, cancelToken, options, onSendProgress, onReceiveProgress}) {
-      options ??= Options();
-      options.method ??= method;
-      options.httpOptions = o;
-      return dio
-          .request(
-            path,
-            options: options,
-            data: data,
-            queryParameters: queryParameters,
-            onSendProgress: onSendProgress,
-            onReceiveProgress: onReceiveProgress,
-          )
-          .then<R>((
-            response,
-          ) {
-            final data = response.data['data'];
-            if (decoder == null) return data;
-            if (data is Map<String, dynamic>) return decoder(data) as R;
-            if (data is List) return List<T>.from(data.map((x) => decoder(x))) as R;
-            return data;
-          });
-    };
-  };
+  }
+
+  VicHttpImpl<List<R>, R> list<R>(
+    String path, {
+    final bool? loading,
+    final bool? silent,
+    final bool? showError,
+    final bool? raw,
+    final bool? cancelable,
+    final bool? debug,
+    int? retry,
+    R Function(Map<String, dynamic> json)? decoder,
+  }) {
+    return VicHttpImpl(
+      dio,
+      method,
+      path,
+      decoder: decoder,
+      loading: loading,
+      raw: raw,
+      retry: retry,
+      silent: silent,
+      showError: showError,
+      debug: debug,
+    );
+  }
+}
+
+class VicHttp {
+  late final Dio dio;
+  late final VicHttpMethod get;
+  late final VicHttpMethod post;
+
+  VicHttp(BaseOptions baseOptions) {
+    dio = Dio(baseOptions);
+    get = VicHttpMethod('get', dio);
+    post = VicHttpMethod('post', dio);
+  }
 }

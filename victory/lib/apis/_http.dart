@@ -1,8 +1,8 @@
 part of 'apis.dart';
 
-Http _create() {
+VicHttp _create() {
   const duration = const Duration(seconds: 10);
-  final http = Http(BaseOptions(connectTimeout: duration, sendTimeout: duration, receiveTimeout: duration));
+  final http = VicHttp(BaseOptions(connectTimeout: duration, sendTimeout: duration, receiveTimeout: duration));
 
   VoidCallback? cancel;
   http.dio.httpClientAdapter = HttpLoadingAdapter(

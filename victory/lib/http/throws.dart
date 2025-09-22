@@ -7,7 +7,7 @@ class ThrowsHttpInterceptor extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    if (err.requestOptions.custom.throwable) {
+    if (err.requestOptions.custom.showError) {
       final msg = err.message ?? err.response?.statusMessage;
       if (msg != null) {
         showError(msg);

@@ -16,7 +16,7 @@ class HttpBackgroundTransformer extends BackgroundTransformer {
   @override
   Future transformResponse(RequestOptions options, ResponseBody responseBody) {
     return super.transformResponse(options, responseBody).then((body) {
-      if (!options.custom.normalizable || options.responseType != ResponseType.json) return body;
+      if (options.custom.raw || options.responseType != ResponseType.json) return body;
       // {code:200,message:string,data:any}
       if (body is Map && body[code] == 200) {
         if (body[data] is List && body[data].isEmpty) {

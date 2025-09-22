@@ -30,7 +30,7 @@ class LoginView extends GetView<VicAuthCotroller> {
       child: DecoratedBox(
         decoration: const BoxDecoration(color: Colors.white),
         child: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+          padding: AppSizes.pad_x_12,
           children: [
             VicAccInput(onSaved: form.saveAs('username')),
             VicPwdInput(onSaved: form.saveAs('password')),
@@ -40,7 +40,7 @@ class LoginView extends GetView<VicAuthCotroller> {
               onFieldSubmitted: form.submit,
               onImageChange: form.saveAs('time'),
             ),
-            VicButton(onPressed: form.submit, text: 'app.login'.tr),
+            VicButton(height: VicButtonHeight.medium, onPressed: form.submit, text: 'app.login'.tr),
             buildTool(),
             // ...buildInstructions(),
           ],

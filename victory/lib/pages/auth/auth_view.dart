@@ -24,7 +24,7 @@ class VicAuthPage extends StatelessWidget {
           child: DefaultTabController(
             length: 2,
             child: Scaffold(
-              backgroundColor: Colors.transparent,
+               backgroundColor: Colors.transparent,
               appBar: buildAppBar(),
               body: const TabBarView(children: [LoginView(), VicSignUpView()]),
             ),
@@ -38,11 +38,8 @@ class VicAuthPage extends StatelessWidget {
     return PreferredSize(
       preferredSize: const Size.fromHeight(248),
       child: AppBar(
-        // systemOverlayStyle: const SystemUiOverlayStyle(
-        //   statusBarColor: Colors.transparent,
-        //   statusBarIconBrightness: Brightness.light,
-        // ),
         forceMaterialTransparency: true,
+        elevation: 0,
         titleSpacing: 8,
         title: const LocalePicker(
           size: 28,
