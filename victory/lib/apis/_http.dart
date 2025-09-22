@@ -26,6 +26,11 @@ VicHttp _create() {
       },
     ),
   );
+  http.dio.interceptors.add(
+    showErrorsHttpInterceptor(
+      showError: (msg) => toast(msg),
+    ),
+  );
 
   return http;
 }

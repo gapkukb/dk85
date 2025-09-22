@@ -56,7 +56,7 @@ class _AuthService extends GetxService {
   Future _nextAction(String token) async {
     // 更新token
     try {
-      tokenManager.value.update('accessToken', 'refreshToken');
+      tokenManager.value.update(token, token);
       tokenManager.refresh();
       storage.token.update(token);
       // 获取用户信息

@@ -17,7 +17,7 @@ void main() async {
   initializeUI();
 
   if (Environment.isNotProd) {
-    // HttpOverrides.global = CharlesProxyHttpOverride();
+    HttpOverrides.global = CharlesProxyHttpOverride();
   }
 
   final errorMessage = Rxn<String>();

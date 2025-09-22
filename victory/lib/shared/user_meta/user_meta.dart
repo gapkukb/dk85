@@ -1,12 +1,7 @@
-import 'package:expand_tap_area/expand_tap_area.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
-import 'package:animate_do/animate_do.dart';
-import 'package:material_symbols_icons/material_symbols_icons.dart';
 import '../../components/button/button.dart';
 import '../../components/vip_badge/vip_badge.dart';
-import '../../iconfont/iconfont.dart';
 import '../../stores/stores.dart';
 import '../../theme/theme.dart';
 import '../balance/balance.dart';
@@ -26,7 +21,7 @@ class UserMeta extends StatelessWidget {
       rounded: true,
       height: 36,
       textBold: true,
-      text: 'SIGN IN | SIGN UP',
+      text: 'LOG IN | SIGN UP',
       onPressed: () {
         // stores.auth.login();
       },
@@ -34,7 +29,6 @@ class UserMeta extends StatelessWidget {
   }
 
   Widget get meta {
-    final n = 'sdf13f';
     return UnconstrainedBox(
       child: Container(
         height: 36,
@@ -57,8 +51,8 @@ class UserMeta extends StatelessWidget {
                   spacing: 4,
                   children: [
                     Text(
-                      n,
-                      style: const TextStyle(fontSize: 10, color: AppColors.white, height: 1),
+                      stores.user.info.value.username,
+                      style: const TextStyle(fontSize: 10, color: AppColors.FFF3C5, height: 1, fontWeight: FontWeight.normal),
                     ),
                     const SizedBox(
                       height: 12,

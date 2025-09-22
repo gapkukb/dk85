@@ -23,6 +23,8 @@ abstract class AppColors {
   static const info = Colors.blue;
   static const helper = const Color(0xffbbbbbb);
   static const fff0e2 = const Color(0xfffff0e2);
+  static const fffac4 = const Color(0xfffffac4);
+  static const FFF3C5 = const Color(0xffFFF3C5);
 
   static const buttonGradient = const RadialGradient(
     colors: [Color.fromRGBO(255, 255, 255, 0.3), Color.fromRGBO(255, 230, 215, 0.0001)],

@@ -6,7 +6,6 @@ import '../../hooks/useForm.dart';
 import '../../shared/input_account/input_account.dart';
 import '../../shared/input_graphic/input_graphic.dart';
 import '../../shared/input_password/input_password.dart';
-import '../../stores/stores.dart';
 import '../../theme/theme.dart';
 import '../customer_service/customer_service.dart';
 import 'controller.dart';
@@ -16,14 +15,7 @@ class LoginView extends GetView<VicAuthCotroller> {
 
   @override
   Widget build(BuildContext context) {
-    final form = Useform((values) {
-      return controller.action(
-        text: 'Logged in',
-        todo: () {
-          return stores.auth.login(values);
-        },
-      );
-    });
+    final form = Useform(controller.login);
 
     return Form(
       key: form.key,

@@ -124,7 +124,7 @@ class UserModel {
     "mobile": mobile,
     "qq": qq,
     "sex": sex,
-    "birthday": birthday.toString(),
+    "birthday": birthday?.toIso8601String(),
     "last_login_time": lastLoginTime?.toIso8601String(),
     "last_login_address": lastLoginAddress,
     "show_beginner_guide": showBeginnerGuide,

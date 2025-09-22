@@ -1,9 +1,9 @@
 part of 'http.dart';
 
-class ThrowsHttpInterceptor extends Interceptor {
+class showErrorsHttpInterceptor extends Interceptor {
   final void Function(String msg) showError;
 
-  ThrowsHttpInterceptor({required this.showError});
+  showErrorsHttpInterceptor({required this.showError});
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
