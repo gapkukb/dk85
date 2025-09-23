@@ -11,7 +11,7 @@ import 'env.dart';
 
 void main() async {
   if (Environment.isNotProd) {
-    HttpOverrides.global = CharlesProxyHttpOverride();
+    // HttpOverrides.global = CharlesProxyHttpOverride();
   }
 
   setupSystemUI();
