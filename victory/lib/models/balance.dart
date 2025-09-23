@@ -1,5 +1,7 @@
-class VicBalanceModel {
-  VicBalanceModel({
+import 'base_model.dart';
+
+class VicBalanceModel extends VicBaseModel {
+  const VicBalanceModel({
     required this.balance,
     required this.balanceFrozen,
     required this.points,

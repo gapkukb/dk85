@@ -5,6 +5,7 @@ import 'package:restart_app/restart_app.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
 import '../iconfont/iconfont.dart';
+import '../shared/dialog/dialog.dart';
 
 class DebugView extends StatefulWidget {
   static bool enbale = false;
@@ -35,9 +36,8 @@ class _DebugViewState extends State<DebugView> {
       floatingWidget: FloatingActionButton.small(
         child: const Icon(IconFont.debug),
         onPressed: () {
-          // showAsking();
-          // Get.dialog(TalkerScreen(talker: talker));
-          Get.toNamed('/about');
+          showAsking();
+          Get.dialog(TalkerScreen(talker: talker));
         },
       ),
     );
@@ -52,12 +52,13 @@ class _DebugViewState extends State<DebugView> {
       titleStyle: const TextStyle(fontSize: 14),
       content: TextField(
         controller: controller,
-        decoration: const InputDecoration(helperText: 'APP将重新启动'),
+        decoration: const InputDecoration(helperText: ''),
       ),
       textCancel: '取消',
       textConfirm: '确认',
       onConfirm: () {
-        Restart.restartApp();
+        Get.back();
+        VicDialog.confirm(title: 'APP将重新启动', onConfirm: () => Restart.restartApp());
       },
     );
 

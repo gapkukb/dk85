@@ -3,22 +3,23 @@ import 'package:get_storage/get_storage.dart';
 part 'wrapper.dart';
 
 final _app = _Storage('app');
-final _user = _Storage('user');
+// game数据量会比较大，单开一个存储容器
 final _game = _Storage('game');
 
 late final Storage storage;
 
 class Storage {
-  static Future initialize() async {
-    await Future.wait([_app.init(), _game.init(), _game.init()]);
+  static Future ensureInitialized() async {
+    await Future.wait([_app.init(), _game.init()]);
     storage = Storage();
   }
 
   final audio = _app.reactive('audio', true);
-  final user = _user('user', false);
-  final debug = _app('debug', false);
+  final user = _app.reactive('user', false);
+  final token = _app.reactive("token", '');
   final locale = _app.nullable<String>('locale');
-  final token = _user("token", '');
+  final appInfo = _app.nullable<Map<String, dynamic>>("app_info");
+  final debug = _app('debug', false);
   final deviceId = _app("device_id", '');
   final showGuide = _app("show_guide", true);
 }

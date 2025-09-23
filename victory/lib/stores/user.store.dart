@@ -3,7 +3,7 @@ part of 'stores.dart';
 class _UserService extends GetxService {
   final balance = RxNum(0);
   var refreshing = false;
-  final info = UserModel.fromJson({}).obs;
+  final info = VicUserModel.fromJson({}).obs;
 
   Future queryUserInfo({bool updateBalance = false, bool initial = false}) async {
     try {
@@ -27,5 +27,5 @@ class _UserService extends GetxService {
     balance.value = r[0].balance;
   }
 
-  Future initialize() async {}
+  Future ensureInitialized() async {}
 }

@@ -1,5 +1,7 @@
-class AuthModel {
-  AuthModel({
+import 'base_model.dart';
+
+class VicAuthModel extends VicBaseModel {
+  const VicAuthModel({
     required this.token,
     required this.expiresIn,
   });
@@ -7,8 +9,8 @@ class AuthModel {
   final String token;
   final num expiresIn;
 
-  factory AuthModel.fromJson(Map<String, dynamic> json) {
-    return AuthModel(
+  factory VicAuthModel.fromJson(Map<String, dynamic> json) {
+    return VicAuthModel(
       token: json["token"] ?? "",
       expiresIn: json["expires_in"] ?? 0,
     );
@@ -18,9 +20,6 @@ class AuthModel {
     "token": token,
     "expires_in": expiresIn,
   };
-
-  @override
-  String toString() {
-    return "$token, $expiresIn, ";
-  }
 }
+
+void main(List<String> args) {}

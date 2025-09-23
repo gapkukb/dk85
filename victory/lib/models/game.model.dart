@@ -1,7 +1,7 @@
 part of models;
 
-class GamePlatform {
-  GamePlatform({
+class VicGamesModel {
+  VicGamesModel({
     required this.fish,
     required this.slots,
     required this.poker,
@@ -13,8 +13,8 @@ class GamePlatform {
   final List<Game> poker;
   final List<Game> mini;
 
-  factory GamePlatform.fromJson(Map<String, dynamic> json) {
-    return GamePlatform(
+  factory VicGamesModel.fromJson(Map<String, dynamic> json) {
+    return VicGamesModel(
       fish: json["FISH"] == null ? [] : List<Game>.from(json["FISH"]!.map((x) => Game.fromJson(x))),
       slots: json["SLOTS"] == null ? [] : List<Game>.from(json["SLOTS"]!.map((x) => Game.fromJson(x))),
       poker: json["POKER"] == null ? [] : List<Game>.from(json["POKER"]!.map((x) => Game.fromJson(x))),

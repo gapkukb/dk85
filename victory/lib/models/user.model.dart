@@ -1,5 +1,5 @@
-class UserModel {
-  UserModel({
+class VicUserModel {
+  VicUserModel({
     required this.id,
     required this.username,
     required this.realname,
@@ -75,8 +75,8 @@ class UserModel {
   final num totalRebateAmount;
   final bool isSignIn;
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
-    return UserModel(
+  factory VicUserModel.fromJson(Map<String, dynamic> json) {
+    return VicUserModel(
       id: json["id"] ?? 0,
       username: json["username"] ?? "",
       realname: json["realname"] ?? "",

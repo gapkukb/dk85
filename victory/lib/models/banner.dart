@@ -1,5 +1,7 @@
-class BannerModel {
-  BannerModel({
+import 'base_model.dart';
+
+class VicBannerModel extends VicBaseModel {
+  const VicBannerModel({
     required this.id,
     required this.name,
     required this.image,
@@ -19,8 +21,8 @@ class BannerModel {
   final num position;
   final num sort;
 
-  factory BannerModel.fromJson(Map<String, dynamic> json) {
-    return BannerModel(
+  factory VicBannerModel.fromJson(Map<String, dynamic> json) {
+    return VicBannerModel(
       id: json["id"] ?? 0,
       name: json["name"] ?? "",
       image: json["image"] ?? "",

@@ -27,7 +27,7 @@ class _Stores {
   late final _GameService game;
   late final _UserService user;
 
-  Future initialize() async {
+  Future ensureInitialized() async {
     auth = _AuthService();
     app = _AppService();
     game = _GameService();
@@ -38,7 +38,12 @@ class _Stores {
     Get.put(game);
     Get.put(user);
 
-    return Future.wait([auth.initialize(), app.initialize(), game.initialize(), user.initialize()]);
+    return Future.wait([
+      auth.ensureInitialized(),
+      app.ensureInitialized(),
+      game.ensureInitialized(),
+      user.ensureInitialized(),
+    ]);
   }
 }
 

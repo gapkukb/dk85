@@ -51,7 +51,7 @@ class _AuthService extends GetxService {
     stores.app.toHomePage();
   }
 
-  Future initialize() async {}
+  Future ensureInitialized() async {}
 
   Future _nextAction(String token) async {
     // 更新token

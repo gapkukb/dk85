@@ -8,7 +8,3 @@ abstract class Environment {
   static const bool isProd = env == 'PROD';
   static const bool isNotProd = env != 'PROD';
 }
-
-void main(List<String> args) {
-  print(DateTime.tryParse(""));
-}

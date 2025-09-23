@@ -2,7 +2,7 @@ part of 'stores.dart';
 
 class _GameService extends GetxService with AuthMixin {
   final loading = true.obs;
-  final platform = GamePlatform.fromJson({}).obs;
+  final platform = VicGamesModel.fromJson({}).obs;
   List<Game> get slots => platform.value.slots;
   List<Game> get fish => platform.value.fish;
   List<Game> get poker => platform.value.poker;
@@ -17,8 +17,8 @@ class _GameService extends GetxService with AuthMixin {
 
   Future queryLikes() async {}
 
-  Future initialize() async {
-    super.initialize();
+  Future ensureInitialized() async {
+    super.ensureInitialized();
     queryGames();
     if (stores.auth.authorized) {
       queryLikes();

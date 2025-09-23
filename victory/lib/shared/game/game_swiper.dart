@@ -17,7 +17,7 @@ class SliverGameSwiper extends StatefulWidget {
 }
 
 class _SliverGameSwiperState extends State<SliverGameSwiper> {
-  final banners = <BannerModel>[];
+  final banners = <VicBannerModel>[];
 
   @override
   void initState() {
@@ -62,7 +62,7 @@ class _SliverGameSwiperState extends State<SliverGameSwiper> {
     );
   }
 
-  Widget buildItem(BannerModel banner) {
+  Widget buildItem(VicBannerModel banner) {
     return GestureDetector(
       onTap: banner.url.isEmpty ? null : () => Get.toNamed(AppRoutes.activityDetail, arguments: banner.url),
       child: SizedBox.expand(

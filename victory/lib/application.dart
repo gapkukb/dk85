@@ -5,6 +5,7 @@ import 'package:scaled_app/scaled_app.dart';
 import 'pages/about/about.dart';
 import 'pages/shell/shell.dart';
 import 'routes/app_pages.dart';
+import 'shared/app_info/app_info.dart';
 import 'stores/stores.dart';
 import 'startup/startup.dart';
 import 'theme/theme.dart';
@@ -29,7 +30,7 @@ class _ApplicationState extends State<Application> {
     return MediaQuery(
       data: MediaQuery.of(context).scale(),
       child: GetMaterialApp(
-        title: 'Flutter Demo',
+        title: VicAppInfo.shared.appName,
         theme: lightTheme,
         themeMode: ThemeMode.light,
         initialRoute: AppPages.INITIAL,
