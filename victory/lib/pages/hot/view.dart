@@ -5,8 +5,8 @@ import '../../shared/game/game_section.dart';
 import '../../shared/game/game_swiper.dart';
 import 'index.dart';
 
-class HotPage extends GetView<HotController> {
-  const HotPage({super.key});
+class VicHotPage extends GetView<VicHotController> {
+  const VicHotPage({super.key});
 
   // 主视图
   Widget _buildView() {
@@ -17,8 +17,8 @@ class HotPage extends GetView<HotController> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HotController>(
-      init: HotController(),
+    return GetBuilder<VicHotController>(
+      init: VicHotController(),
       id: "hot",
       builder: (_) {
         return Scaffold(

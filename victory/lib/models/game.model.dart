@@ -1,6 +1,6 @@
 part of models;
 
-class VicGamesModel {
+class VicGamesModel extends VicBaseModel {
   VicGamesModel({
     required this.fish,
     required this.slots,

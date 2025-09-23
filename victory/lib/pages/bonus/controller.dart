@@ -1,27 +1,16 @@
 import 'package:get/get.dart';
 
-class BonusController extends GetxController {
-  BonusController();
+import '../../apis/apis.dart';
+import '../../models/models.dart';
 
-  _initData() {
-    update(["bonus"]);
-  }
-
-  void onTap() {}
-
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  // }
+class VicBonusController extends GetxController {
+  final data = <VicBannerModel>[].obs;
 
   @override
-  void onReady() {
-    super.onReady();
-    _initData();
+  void onInit() {
+    super.onInit();
+    Apis.app.queryAdList(queryParameters: {'type': '3', 'position': '5'}).then((value) {
+      data.value = value ?? [];
+    });
   }
-
-  // @override
-  // void onClose() {
-  //   super.onClose();
-  // }
 }

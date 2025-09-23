@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:animated_digit/animated_digit.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:get/get.dart';
@@ -63,17 +64,20 @@ class _BalanceState extends State<Balance> {
     );
 
     final amount = Obx(
-      () => AnimatedFlipCounter(
+      () => AnimatedDigitWidget(
+        duration: const Duration(seconds: 1),
+        curve: Curves.bounceInOut,
         value: widget.showFraction ? balance : balance.toInt(),
         fractionDigits: widget.showFraction ? 2 : 0,
         suffix: widget.suffix,
         prefix: widget.prefix,
-        padding: widget.amountPadding ?? EdgeInsets.zero,
+        enableSeparator: true,
+        // padding: widget.amountPadding ?? EdgeInsets.zero,
         decimalSeparator: widget.decimalSeparator ?? '.',
         textStyle: widget.amountStyle,
-        wholeDigits: widget.wholeDigits ?? 1,
-        thousandSeparator: widget.thousandSeparator,
-        hideLeadingZeroes: widget.hideLeadingZeroes ?? false,
+        // wholeDigits: widget.wholeDigits ?? 1,
+        // thousandSeparator: widget.thousandSeparator,
+        // hideLeadingZeroes: widget.hideLeadingZeroes ?? false,
       ),
     );
 
@@ -82,7 +86,7 @@ class _BalanceState extends State<Balance> {
 
   void refresh() {
     loading.value = true;
-    stores.user.refreshBalance().whenComplete(() {
+    stores.user.queryBalance().whenComplete(() {
       loading.value = false;
     });
   }

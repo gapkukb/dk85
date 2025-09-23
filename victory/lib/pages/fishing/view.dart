@@ -5,13 +5,13 @@ import '../../shared/game/game_page.dart';
 import '../../stores/stores.dart';
 import 'index.dart';
 
-class FishingPage extends GetView<FishingController> {
-  const FishingPage({super.key});
+class VicFishingPage extends GetView<VicFishingController> {
+  const VicFishingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<FishingController>(
-      init: FishingController(),
+    return GetBuilder<VicFishingController>(
+      init: VicFishingController(),
       id: "fishing",
       builder: (_) {
         return GamePageView(dataBuilder: () => stores.game.slots, adPosition: 3);

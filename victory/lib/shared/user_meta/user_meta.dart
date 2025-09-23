@@ -6,8 +6,8 @@ import '../../stores/stores.dart';
 import '../../theme/theme.dart';
 import '../balance/balance.dart';
 
-class UserMeta extends StatelessWidget {
-  const UserMeta({Key? key}) : super(key: key);
+class VicUserMeta extends StatelessWidget {
+  const VicUserMeta({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

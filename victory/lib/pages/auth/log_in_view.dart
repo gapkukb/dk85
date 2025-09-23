@@ -10,8 +10,8 @@ import '../../theme/theme.dart';
 import '../customer_service/customer_service.dart';
 import 'controller.dart';
 
-class LoginView extends GetView<VicAuthCotroller> {
-  const LoginView({super.key});
+class VicLoginView extends GetView<VicAuthCotroller> {
+  const VicLoginView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +62,7 @@ class LoginView extends GetView<VicAuthCotroller> {
           // Obx(() => AKCheckbox(value: controller.rememberMe.value, onChanged: controller.remember)),
           const SizedBox(),
           TextButton(
-            onPressed: CustomerService.call,
+            onPressed: VicCustomerService.call,
             child: Text("auth.forgot".tr, style: const TextStyle(fontSize: 12, color: AppColors.primary)),
           ),
         ],

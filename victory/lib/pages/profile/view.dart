@@ -3,15 +3,14 @@ import 'package:get/get.dart';
 
 import 'index.dart';
 
-class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+class VicProfilePage extends StatefulWidget {
+  const VicProfilePage({Key? key}) : super(key: key);
 
   @override
-  State<ProfilePage> createState() => _ProfilePageState();
+  State<VicProfilePage> createState() => _VicProfilePageState();
 }
 
-class _ProfilePageState extends State<ProfilePage>
-    with AutomaticKeepAliveClientMixin {
+class _VicProfilePageState extends State<VicProfilePage> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
 
@@ -22,7 +21,7 @@ class _ProfilePageState extends State<ProfilePage>
   }
 }
 
-class _ProfileViewGetX extends GetView<ProfileController> {
+class _ProfileViewGetX extends GetView<VicProfileController> {
   const _ProfileViewGetX({Key? key}) : super(key: key);
 
   // 主视图
@@ -34,8 +33,8 @@ class _ProfileViewGetX extends GetView<ProfileController> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<ProfileController>(
-      init: ProfileController(),
+    return GetBuilder<VicProfileController>(
+      init: VicProfileController(),
       id: "profile",
       builder: (_) {
         return Scaffold(

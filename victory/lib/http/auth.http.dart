@@ -26,6 +26,10 @@ class TokenManager {
   Map<String, String>? getAuthHeader() {
     return _header;
   }
+
+  Map<String, dynamic> toJson() {
+    return {'accessToken': accessToken, 'refreshToken': refreshToken};
+  }
 }
 
 class HttpAuthInterceptor extends Interceptor {

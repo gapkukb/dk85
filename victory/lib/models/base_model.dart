@@ -1,4 +1,4 @@
-import 'dart:convert';
+part of models;
 
 /// 响应模型基类
 abstract class VicBaseModel {

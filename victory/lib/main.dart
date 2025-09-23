@@ -19,7 +19,7 @@ void main() async {
   final errorMessage = Rxn<String>();
 
   /// 显示开屏页
-  runApp(Obx(() => SplashPage(errorMessage.value)));
+  runApp(Obx(() => VicSplashPage(errorMessage.value)));
 
   await ApiBaseUrl.initialize(onError: (msg) => errorMessage.value = msg);
 

@@ -7,7 +7,7 @@ import '../../../iconfont/iconfont.dart';
 import '../../../theme/theme.dart';
 import '../index.dart';
 
-class SearchingBar extends GetView<SearchingController> implements PreferredSizeWidget {
+class SearchingBar extends GetView<VicSearchController> implements PreferredSizeWidget {
   const SearchingBar({super.key});
 
   @override

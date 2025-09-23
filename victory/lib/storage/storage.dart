@@ -15,7 +15,7 @@ class Storage {
   }
 
   final audio = _app.reactive('audio', true);
-  final user = _app.reactive('user', false);
+  final user = _app.nullable<Map<String, dynamic>>('user');
   final token = _app.reactive("token", '');
   final locale = _app.nullable<String>('locale');
   final appInfo = _app.nullable<Map<String, dynamic>>("app_info");

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class PokerController extends GetxController {
-  PokerController();
+class VicPokerController extends GetxController {
+  VicPokerController();
 
   _initData() {
     update(["poker"]);

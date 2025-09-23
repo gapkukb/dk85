@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../components/network_image/network_image.dart';
+import '../../iconfont/iconfont.dart';
+import '../../routes/app_pages.dart';
+import '../../shared/user_meta/user_meta.dart';
+import '../../theme/theme.dart';
+import '../customer_service/customer_service.dart';
 import 'index.dart';
 
-class BonusPage extends StatefulWidget {
-  const BonusPage({Key? key}) : super(key: key);
+class VicBonusPage extends StatefulWidget {
+  const VicBonusPage({Key? key}) : super(key: key);
 
   @override
-  State<BonusPage> createState() => _BonusPageState();
+  State<VicBonusPage> createState() => _VicBonusPageState();
 }
 
-class _BonusPageState extends State<BonusPage>
-    with AutomaticKeepAliveClientMixin {
+class _VicBonusPageState extends State<VicBonusPage> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
 
@@ -22,29 +27,65 @@ class _BonusPageState extends State<BonusPage>
   }
 }
 
-class _BonusViewGetX extends GetView<BonusController> {
+class _BonusViewGetX extends GetView<VicBonusController> {
   const _BonusViewGetX({Key? key}) : super(key: key);
-
-  // 主视图
-  Widget _buildView() {
-    return const Center(
-      child: Text("BonusPage"),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<BonusController>(
-      init: BonusController(),
+    return GetBuilder<VicBonusController>(
+      init: VicBonusController(),
       id: "bonus",
       builder: (_) {
         return Scaffold(
-          appBar: AppBar(title: const Text("bonus")),
-          body: SafeArea(
-            child: _buildView(),
-          ),
+          appBar: buildAppBar(),
+          body: Obx(() {
+            return ListView.separated(
+              padding: const EdgeInsets.all(12),
+              itemCount: controller.data.length,
+              separatorBuilder: (context, index) => const SizedBox(height: 12),
+              itemBuilder: (context, index) {
+                final promo = controller.data[index];
+                return GestureDetector(
+                  onTap: promo.url.isEmpty ? null : () => Get.toNamed(AppRoutes.activityDetail, arguments: promo.url),
+                  child: PhysicalModel(
+                    color: Colors.transparent,
+                    clipBehavior: Clip.antiAlias,
+                    borderRadius: BorderRadius.circular(8),
+                    child: VicNetworkImage(imageUrl: promo.image, height: 264 / 2, fit: BoxFit.cover),
+                  ),
+                );
+              },
+            );
+          }),
         );
       },
+    );
+  }
+
+  AppBar buildAppBar() {
+    return AppBar(
+      backgroundColor: AppColors.background,
+      titleSpacing: 12,
+      automaticallyImplyLeading: false,
+      title: const VicUserMeta(),
+      actionsPadding: const EdgeInsets.only(right: 12),
+      actions: [
+        GestureDetector(
+          onTap: () {
+            // Dialogs.to.dailyCheckIn();
+            // Dialogs.to.show(DialogNames.dailyCheckIn);
+          },
+
+          child: Container(
+            decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(36)),
+            width: 36,
+            height: 36,
+            child: const Icon(IconFont.qiandao, color: AppColors.highlight),
+          ),
+        ),
+        const SizedBox(width: 4),
+        const VicCustomerService(),
+      ],
     );
   }
 }

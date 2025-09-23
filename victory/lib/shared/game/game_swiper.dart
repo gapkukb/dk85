@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../../apis/apis.dart';
 import '../../components/network_image/network_image.dart';
-import '../../models/banner.dart';
+import '../../models/models.dart';
 import '../../routes/app_pages.dart';
 import '../../theme/theme.dart';
 

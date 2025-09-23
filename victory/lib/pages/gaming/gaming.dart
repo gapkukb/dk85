@@ -8,7 +8,7 @@ import '../../shared/dialog/dialog.dart';
 import '../../shared/webview/webview.dart';
 import '../../stores/stores.dart';
 
-class GamingPage extends StatefulWidget {
+class VicGamingPage extends StatefulWidget {
   static void playGame(Game game) async {
     play(game.platformId, game.code, game.platform);
   }
@@ -24,13 +24,13 @@ class GamingPage extends StatefulWidget {
     Get.toNamed(AppRoutes.gaming, arguments: resp.data['url']);
   }
 
-  const GamingPage({Key? key}) : super(key: key);
+  const VicGamingPage({Key? key}) : super(key: key);
 
   @override
   _GamingState createState() => _GamingState();
 }
 
-class _GamingState extends State<GamingPage> {
+class _GamingState extends State<VicGamingPage> {
   @override
   Widget build(BuildContext context) {
     return Webview(url: Get.arguments as String, backButton: true, pauseAudio: true);

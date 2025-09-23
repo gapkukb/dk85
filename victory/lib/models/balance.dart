@@ -1,4 +1,4 @@
-import 'base_model.dart';
+part of models;
 
 class VicBalanceModel extends VicBaseModel {
   const VicBalanceModel({

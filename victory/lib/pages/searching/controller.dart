@@ -12,8 +12,8 @@ class _Tab {
   _Tab({required this.name, required this.value});
 }
 
-class SearchingController extends GetxController with GetSingleTickerProviderStateMixin {
-  SearchingController();
+class VicSearchController extends GetxController with GetSingleTickerProviderStateMixin {
+  VicSearchController();
 
   late final TabController tab;
   final input = TextEditingController();

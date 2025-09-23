@@ -1,4 +1,6 @@
-class VicUserModel {
+part of models;
+
+class VicUserModel extends VicBaseModel {
   VicUserModel({
     required this.id,
     required this.username,
@@ -70,8 +72,8 @@ class VicUserModel {
   final LastRecharge? lastRecharge;
   final LastWithdraw? lastWithdraw;
   final LastMessage? lastMessage;
-  final String totalDepositAmount;
-  final String totalBetAmount;
+  final num totalDepositAmount;
+  final num totalBetAmount;
   final num totalRebateAmount;
   final bool isSignIn;
 
@@ -109,8 +111,8 @@ class VicUserModel {
       lastRecharge: json["last_recharge"] == null ? null : LastRecharge.fromJson(json["last_recharge"]),
       lastWithdraw: json["last_withdraw"] == null ? null : LastWithdraw.fromJson(json["last_withdraw"]),
       lastMessage: json["last_message"] == null ? null : LastMessage.fromJson(json["last_message"]),
-      totalDepositAmount: json["total_deposit_amount"] ?? "",
-      totalBetAmount: json["total_bet_amount"] ?? "",
+      totalDepositAmount: json["total_deposit_amount"] ?? 0,
+      totalBetAmount: json["total_bet_amount"] ?? 0,
       totalRebateAmount: json["total_rebate_amount"] ?? 0,
       isSignIn: json["is_sign_in"] ?? false,
     );
@@ -124,7 +126,7 @@ class VicUserModel {
     "mobile": mobile,
     "qq": qq,
     "sex": sex,
-    "birthday": birthday?.toIso8601String(),
+    "birthday": "${birthday.toString()}",
     "last_login_time": lastLoginTime?.toIso8601String(),
     "last_login_address": lastLoginAddress,
     "show_beginner_guide": showBeginnerGuide,

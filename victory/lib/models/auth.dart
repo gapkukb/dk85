@@ -1,4 +1,4 @@
-import 'base_model.dart';
+part of models;
 
 class VicAuthModel extends VicBaseModel {
   const VicAuthModel({

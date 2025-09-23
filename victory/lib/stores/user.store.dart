@@ -3,14 +3,14 @@ part of 'stores.dart';
 class _UserService extends GetxService {
   final balance = RxNum(0);
   var refreshing = false;
-  final info = VicUserModel.fromJson({}).obs;
+  final info = VicUserModel.fromJson(storage.user.value ?? {}).obs;
 
   Future queryUserInfo({bool updateBalance = false, bool initial = false}) async {
     try {
       info.value = await Apis.user.queryUserInfo();
       info.refresh();
       if (updateBalance == true) {
-        refreshBalance();
+        queryBalance();
       }
     } catch (e) {
       debugPrint(e.toString());
@@ -18,13 +18,22 @@ class _UserService extends GetxService {
     }
   }
 
-  Future refreshBalance() async {
+  Future queryBalance() async {
     if (stores.auth.unauthorized || refreshing) return;
     refreshing = true;
     final r = await Future.wait([Apis.user.queryBalance(), Future.delayed(const Duration(seconds: 1))]).whenComplete(() {
       refreshing = false;
     });
     balance.value = r[0].balance;
+  }
+
+  @override
+  onInit() {
+    super.onInit();
+    if (stores.auth.authorized) {
+      queryUserInfo();
+      queryBalance();
+    }
   }
 
   Future ensureInitialized() async {}

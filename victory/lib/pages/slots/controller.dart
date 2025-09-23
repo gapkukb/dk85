@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class SlotsController extends GetxController {
-  SlotsController();
+class VicSlotsController extends GetxController {
+  VicSlotsController();
 
   _initData() {
     update(["slots"]);

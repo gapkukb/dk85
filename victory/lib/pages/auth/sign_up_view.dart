@@ -7,7 +7,6 @@ import '../../shared/input_account/input_account.dart';
 import '../../shared/input_graphic/input_graphic.dart';
 import '../../shared/input_password/input_password.dart';
 import '../../shared/input_mobile/input_mobile.dart';
-import '../../stores/stores.dart';
 import 'controller.dart';
 
 class VicSignUpView extends GetView<VicAuthCotroller> {
@@ -15,14 +14,7 @@ class VicSignUpView extends GetView<VicAuthCotroller> {
 
   @override
   Widget build(BuildContext context) {
-    final form = Useform((values) {
-      return controller.action(
-        text: 'Register successful',
-        todo: () {
-          return stores.auth.register(values);
-        },
-      );
-    });
+    final form = Useform(controller.register);
 
     return Form(
       key: form.key,

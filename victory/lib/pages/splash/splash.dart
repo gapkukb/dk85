@@ -4,15 +4,15 @@ import '../../constants/cs_url.dart';
 import '/helper/loading.dart';
 import '../../theme/theme.dart';
 
-class SplashPage extends StatefulWidget {
+class VicSplashPage extends StatefulWidget {
   final String? erorr;
-  const SplashPage(this.erorr, {super.key});
+  const VicSplashPage(this.erorr, {super.key});
 
   @override
-  _SplashPageState createState() => _SplashPageState();
+  _VicSplashPageState createState() => _VicSplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage> {
+class _VicSplashPageState extends State<VicSplashPage> {
   @override
   Widget build(BuildContext context) {
     return Directionality(

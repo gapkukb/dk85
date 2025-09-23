@@ -1,6 +1,6 @@
 part of 'customer_service.dart';
 
-class CustomerService extends StatelessWidget {
+class VicCustomerService extends StatelessWidget {
   final BoxDecoration decoration;
   final Widget? child;
   final double size;
@@ -9,7 +9,7 @@ class CustomerService extends StatelessWidget {
   final bool rounded;
 
   final Function(BuildContext context, Widget child)? builder;
-  const CustomerService({
+  const VicCustomerService({
     super.key,
     this.child,
     this.color,

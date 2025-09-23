@@ -15,19 +15,19 @@ class VicAuthCotroller extends GetxController with VicGraphicInputController {
   }
 
   void login(Object values) async {
-    await stores.auth.login(values);
-    VicDialog.success(text: 'Log In successful', onClose: stores.app.toHomePage);
+    try {
+      await stores.auth.login(values);
+      VicDialog.success(text: 'Log In successful', onClose: stores.app.toHomePage);
+    } catch (e) {
+      refreshImage();
+      rethrow;
+    }
   }
 
   void register(Object values) async {
-    await stores.auth.register(values);
-    VicDialog.success(text: 'Log In successful', onClose: Get.back);
-  }
-
-  Future action({required String text, required Future Function() todo}) async {
     try {
-      await todo();
-      VicDialog.success(text: text, onClose: Get.back);
+      await stores.auth.register(values);
+      VicDialog.success(text: 'Sign up successful', onClose: Get.back);
     } catch (e) {
       refreshImage();
       rethrow;

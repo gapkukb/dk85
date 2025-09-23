@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class ProfileController extends GetxController {
-  ProfileController();
+class VicProfileController extends GetxController {
+  VicProfileController();
 
   _initData() {
     update(["profile"]);

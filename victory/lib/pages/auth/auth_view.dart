@@ -24,9 +24,9 @@ class VicAuthPage extends StatelessWidget {
           child: DefaultTabController(
             length: 2,
             child: Scaffold(
-               backgroundColor: Colors.transparent,
+              backgroundColor: Colors.transparent,
               appBar: buildAppBar(),
-              body: const TabBarView(children: [LoginView(), VicSignUpView()]),
+              body: const TabBarView(children: [VicLoginView(), VicSignUpView()]),
             ),
           ),
         );
@@ -83,7 +83,7 @@ class VicAuthPage extends StatelessWidget {
 
   List<Widget> buildActions() {
     return [
-      const CustomerService(size: 28, iconSize: 20),
+      const VicCustomerService(size: 28, iconSize: 20),
       const SizedBox(width: 8),
       buildCloseButton(icon: IconFont.close, onTap: Get.back),
     ];

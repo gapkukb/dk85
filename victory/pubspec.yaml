@@ -38,6 +38,7 @@ dependencies:
   mobile_device_identifier: ^0.0.3
   advertising_id: ^2.7.1
   uuid: ^4.5.1
+  animated_digit: ^3.3.1+2
 
 dev_dependencies:
   flutter_test:

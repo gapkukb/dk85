@@ -39,7 +39,7 @@ class _ApplicationState extends State<Application> {
         popGesture: false,
         translations: VicTranslations(),
         builder: startup,
-        home: const ShellView(),
+        home: const VicShellView(),
         getPages: AppPages.routes,
       ),
     );

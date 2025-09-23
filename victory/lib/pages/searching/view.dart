@@ -6,12 +6,12 @@ import '../../shared/game/game.dart';
 import 'index.dart';
 import 'widgets/widgets.dart';
 
-class SearchingPage extends GetView<SearchingController> {
-  const SearchingPage({super.key});
+class VicSearchPage extends GetView<VicSearchController> {
+  const VicSearchPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<SearchingController>(
+    return GetBuilder<VicSearchController>(
       builder: (_) {
         return Scaffold(
           appBar: const SearchingBar(),

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../../models/models.dart';
 import '../../stores/stores.dart';
 
-class HotController extends GetxController {
+class VicHotController extends GetxController {
   final hotGames = <Game>[].obs;
   final newGames = <Game>[].obs;
   final recommendeds = <Game>[].obs;

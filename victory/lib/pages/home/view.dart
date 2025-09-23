@@ -17,14 +17,14 @@ import 'index.dart';
 import 'widgets/home_tab_bar.dart';
 import '../../iconfont/iconfont.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class VicHomePage extends StatefulWidget {
+  const VicHomePage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<VicHomePage> createState() => _VicHomePageState();
 }
 
-class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin {
+class _VicHomePageState extends State<VicHomePage> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
 
@@ -35,15 +35,15 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
   }
 }
 
-class _HomeViewGetX extends GetView<HomeController> {
+class _HomeViewGetX extends GetView<VicHomeController> {
   const _HomeViewGetX({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 4,
-      child: GetBuilder<HomeController>(
-        init: HomeController(),
+      child: GetBuilder<VicHomeController>(
+        init: VicHomeController(),
         id: "home",
         builder: (_) {
           return Scaffold(
@@ -51,7 +51,7 @@ class _HomeViewGetX extends GetView<HomeController> {
               toolbarHeight: 56,
               // backgroundColor: AppColor.danger,
               titleSpacing: AppSizes.size_12,
-              title: const UserMeta(),
+              title: const VicUserMeta(),
               actions: [
                 VicButton(
                   size: 36,
@@ -70,17 +70,17 @@ class _HomeViewGetX extends GetView<HomeController> {
                 const SizedBox(
                   width: AppSizes.size_8,
                 ),
-                const CustomerService(),
+                const VicCustomerService(),
               ],
               bottom: const HomeTabBar(),
             ),
             body: const SafeArea(
               child: TabBarView(
                 children: [
-                  VicKeepAlive(child: HotPage()),
-                  VicKeepAlive(child: SlotsPage()),
-                  VicKeepAlive(child: FishingPage()),
-                  VicKeepAlive(child: PokerPage()),
+                  VicKeepAlive(child: VicHotPage()),
+                  VicKeepAlive(child: VicSlotsPage()),
+                  VicKeepAlive(child: VicFishingPage()),
+                  VicKeepAlive(child: VicPokerPage()),
                 ],
               ),
             ),

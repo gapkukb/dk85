@@ -1,4 +1,4 @@
-import 'base_model.dart';
+part of models;
 
 class VicBannerModel extends VicBaseModel {
   const VicBannerModel({

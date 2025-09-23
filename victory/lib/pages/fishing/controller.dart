@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class FishingController extends GetxController {
-  FishingController();
+class VicFishingController extends GetxController {
+  VicFishingController();
 
   _initData() {
     update(["fishing"]);

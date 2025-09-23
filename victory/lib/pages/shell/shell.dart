@@ -1,13 +1,6 @@
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:material_symbols_icons/symbols.dart';
 import 'package:move_to_back/move_to_back.dart';
-
-import '../../components/action_sheet/action_sheet.dart';
-import '../../components/button/button.dart';
-import '../../helper/success.dart';
-import '../../helper/toast.dart';
 import '../../routes/app_pages.dart';
 import '../../stores/stores.dart';
 import '../../theme/theme.dart';
@@ -16,21 +9,20 @@ import '../funds/view.dart';
 import '../home/index.dart';
 import '../profile/view.dart';
 
-class ShellView extends StatefulWidget {
-  const ShellView({super.key});
+class VicShellView extends StatefulWidget {
+  const VicShellView({super.key});
 
   @override
-  _ShellViewState createState() => _ShellViewState();
+  _VicShellViewState createState() => _VicShellViewState();
 }
 
-class _ShellViewState extends State<ShellView> {
+class _VicShellViewState extends State<VicShellView> {
   int _currentIndex = 0;
 
   final tabs = ['/home', '/user'];
 
   @override
   void initState() {
-    print('xxxxxxxxxxxxxxxxxxxxxx');
     WidgetsBinding.instance.addPostFrameCallback((_) {});
     super.initState();
   }
@@ -51,10 +43,10 @@ class _ShellViewState extends State<ShellView> {
           return IndexedStack(
             index: stores.app.currentFootNavIndex.value,
             children: [
-              const HomePage(),
-              const BonusPage(),
+              const VicHomePage(),
+              const VicBonusPage(),
               stores.auth.authorized ? const FundsPage() : const SizedBox.shrink(),
-              stores.auth.authorized ? const ProfilePage() : const SizedBox.shrink(),
+              stores.auth.authorized ? const VicProfilePage() : const SizedBox.shrink(),
             ],
           );
         }),

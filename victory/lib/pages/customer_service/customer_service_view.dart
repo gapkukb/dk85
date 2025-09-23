@@ -1,13 +1,13 @@
 part of 'customer_service.dart';
 
-class CustomerServiceView extends StatefulWidget {
-  const CustomerServiceView({super.key});
+class VicCustomerServiceView extends StatefulWidget {
+  const VicCustomerServiceView({super.key});
 
   @override
-  _CustomerServiceViewState createState() => _CustomerServiceViewState();
+  _VicCustomerServiceViewState createState() => _VicCustomerServiceViewState();
 }
 
-class _CustomerServiceViewState extends State<CustomerServiceView> {
+class _VicCustomerServiceViewState extends State<VicCustomerServiceView> {
   @override
   Widget build(BuildContext context) {
     return const Webview(url: customerServiceUrl, backButton: true);

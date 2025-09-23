@@ -9,7 +9,7 @@ class VicGameItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => GamingPage.playGame(game),
+      onTap: () => VicGamingPage.playGame(game),
       child: Container(
         clipBehavior: Clip.hardEdge,
         decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(4))),
