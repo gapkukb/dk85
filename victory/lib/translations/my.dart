@@ -6,7 +6,7 @@ const Map<String, String> _my = {
   "app.login": "လော့ဂ်အင်",
   "app.register": "ဆိုင်းအပ်",
   "app.claim.now": "ရယူပါ။",
-  "app.deposit": "သိုက်",
+  "app.deposit": "ငွေသွင်း ",
   "app.withdraw": "ငွေထုတ်",
   "app.foru": "သင့်အတွက်",
   "app.slots": "စလော့",

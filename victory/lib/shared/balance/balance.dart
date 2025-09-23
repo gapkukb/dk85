@@ -8,7 +8,7 @@ import '../../theme/colors.dart';
 
 import '../../stores/stores.dart';
 
-class Balance extends StatefulWidget {
+class VicBalanceBuilder extends StatefulWidget {
   final int? fractionDigits;
   final String? prefix;
   final String? suffix;
@@ -24,7 +24,7 @@ class Balance extends StatefulWidget {
   final bool showFraction;
 
   final Widget Function(BuildContext context, Widget amount, Widget button, VoidCallback refresh) builder;
-  const Balance({
+  const VicBalanceBuilder({
     Key? key,
     this.color = Colors.white,
     required this.builder,
@@ -43,10 +43,10 @@ class Balance extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _BalanceState createState() => _BalanceState();
+  _VicBalanceBuilderState createState() => _VicBalanceBuilderState();
 }
 
-class _BalanceState extends State<Balance> {
+class _VicBalanceBuilderState extends State<VicBalanceBuilder> {
   num get balance => stores.user.balance.value;
   final loading = false.obs;
 
@@ -74,7 +74,7 @@ class _BalanceState extends State<Balance> {
         enableSeparator: true,
         // padding: widget.amountPadding ?? EdgeInsets.zero,
         decimalSeparator: widget.decimalSeparator ?? '.',
-        textStyle: widget.amountStyle,
+        textStyle: const TextStyle(fontWeight: FontWeight.bold, color: AppColors.white).merge(widget.amountStyle),
         // wholeDigits: widget.wholeDigits ?? 1,
         // thousandSeparator: widget.thousandSeparator,
         // hideLeadingZeroes: widget.hideLeadingZeroes ?? false,

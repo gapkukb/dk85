@@ -21,7 +21,7 @@ class _VicMobileInputState extends State<VicMobileInput> {
 
   @override
   Widget build(BuildContext context) {
-    return AKBaseInput(
+    return VicBaseInput(
       placeholder: "form.tel.placed".tr,
       backgroundColor: widget.backgroundColor,
       prefixIconName: IconFont.mobile,

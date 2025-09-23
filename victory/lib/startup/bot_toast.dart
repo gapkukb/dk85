@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 final botToastBuilder = BotToastInit();
 Widget setupBotToast(BuildContext context, Widget? child) {
   ///例如：全局修改标准通知的动画时间为 1 秒。
-  BotToast.defaultOption.notification.animationDuration = const Duration(seconds: 1);
+  BotToast.defaultOption.text
+    ..contentColor = Colors.black.withAlpha(180)
+    ..borderRadius = BorderRadius.circular(4)
+    ..textStyle = const TextStyle(fontSize: 14, color: Colors.white);
 
   ///更多默认选项参考下述配置
   ///[BotToast.defaultOption.simpleNotification] 对应 [showSimpleNotification] 的默认值

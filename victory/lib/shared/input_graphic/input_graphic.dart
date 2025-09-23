@@ -28,7 +28,7 @@ class _VicGraphicInputState extends State<VicGraphicInput> {
     const maxLength = 4;
     return Stack(
       children: [
-        AKBaseInput(
+        VicBaseInput(
           controller: logic,
           placeholder: "form.graphic.placed".tr,
           prefixIconName: IconFont.tuxingma1,

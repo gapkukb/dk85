@@ -29,7 +29,7 @@ class _VicPwdInputState extends State<VicPwdInput> {
 
   @override
   Widget build(BuildContext context) {
-    return AKBaseInput(
+    return VicBaseInput(
       backgroundColor: widget.backgroundColor,
       obscureText: obscureText,
       placeholder: widget.placeholder ?? (widget.reference == null ? "form.pwd.placed".tr : "form.repwd.placed".tr),

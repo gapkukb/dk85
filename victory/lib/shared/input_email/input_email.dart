@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '/constants/regexp.dart';
 import '../../components/input_base/input_base.dart';
 
-class AKEmailInput extends AKBaseInput {
+class AKEmailInput extends VicBaseInput {
   final bool optional;
 
   AKEmailInput({super.key, super.onSaved, this.optional = false, super.backgroundColor})

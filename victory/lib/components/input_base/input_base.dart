@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '/theme/theme.dart';
 
-class AKBaseInput extends StatefulWidget {
+class VicBaseInput extends StatefulWidget {
   final TextEditingController? controller;
   final String? initialValue;
   final FocusNode? focusNode;
@@ -46,7 +46,7 @@ class AKBaseInput extends StatefulWidget {
   final double marginBottom;
   final Color? backgroundColor;
 
-  const AKBaseInput({
+  const VicBaseInput({
     super.key,
     this.controller,
     this.initialValue,
@@ -86,10 +86,10 @@ class AKBaseInput extends StatefulWidget {
     this.backgroundColor,
   });
   @override
-  State<AKBaseInput> createState() => _AKBaseInputState();
+  State<VicBaseInput> createState() => _VicBaseInputState();
 }
 
-class _AKBaseInputState extends State<AKBaseInput> {
+class _VicBaseInputState extends State<VicBaseInput> {
   late final TextEditingController controller;
   final stream = StreamController<bool>();
 

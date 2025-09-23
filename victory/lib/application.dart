@@ -35,6 +35,7 @@ class _ApplicationState extends State<Application> {
         themeMode: ThemeMode.light,
         initialRoute: AppPages.INITIAL,
         navigatorObservers: [BotToastNavigatorObserver()],
+        defaultTransition: Transition.cupertino,
         locale: stores.app.locale.value,
         popGesture: false,
         translations: VicTranslations(),

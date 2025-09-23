@@ -15,7 +15,7 @@ class VicAccInput extends StatefulWidget {
 class _VicAccInputState extends State<VicAccInput> {
   @override
   Widget build(BuildContext context) {
-    return AKBaseInput(
+    return VicBaseInput(
       placeholder: "form.acc.placed".tr,
       prefixIconName: IconFont.user,
       onSaved: widget.onSaved,

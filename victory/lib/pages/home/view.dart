@@ -77,10 +77,10 @@ class _HomeViewGetX extends GetView<VicHomeController> {
             body: const SafeArea(
               child: TabBarView(
                 children: [
-                  VicKeepAlive(child: VicHotPage()),
-                  VicKeepAlive(child: VicSlotsPage()),
-                  VicKeepAlive(child: VicFishingPage()),
-                  VicKeepAlive(child: VicPokerPage()),
+                  VicAutoKeepAlive(child: VicHotPage()),
+                  VicAutoKeepAlive(child: VicSlotsPage()),
+                  VicAutoKeepAlive(child: VicFishingPage()),
+                  VicAutoKeepAlive(child: VicPokerPage()),
                 ],
               ),
             ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class VicKeepAlive extends StatefulWidget {
-  const VicKeepAlive({
+class VicAutoKeepAlive extends StatefulWidget {
+  const VicAutoKeepAlive({
     super.key,
     this.keepAlive = true,
     required this.child,
@@ -10,10 +10,10 @@ class VicKeepAlive extends StatefulWidget {
   final Widget child;
 
   @override
-  VicKeepAliveState createState() => VicKeepAliveState();
+  _VicAutoKeepAliveState createState() => _VicAutoKeepAliveState();
 }
 
-class VicKeepAliveState extends State<VicKeepAlive> with AutomaticKeepAliveClientMixin {
+class _VicAutoKeepAliveState extends State<VicAutoKeepAlive> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     super.build(context);

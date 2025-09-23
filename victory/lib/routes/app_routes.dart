@@ -14,7 +14,7 @@ abstract class AppRoutes {
   static const history2 = '/historyWallet';
   static const historyRechargeDetial = '/historyRechargeDetial';
   static const search = '/search';
-  static const profile = '/profile';
+  static const account = '/profile';
   static const vip = '/vip';
   static const vipDetail = '/vipDetail';
   static const mobile = '/mobile';

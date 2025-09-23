@@ -60,7 +60,7 @@ class VicUserMeta extends StatelessWidget {
                     ),
                   ],
                 ),
-                Balance(
+                VicBalanceBuilder(
                   showFraction: false,
                   amountStyle: const TextStyle(height: 1, fontSize: 12, fontWeight: FontWeight.bold, color: AppColors.white),
                   builder: (context, amount, button, _) {
