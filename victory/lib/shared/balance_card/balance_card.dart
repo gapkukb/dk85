@@ -18,7 +18,7 @@ class VicBalanceCard extends StatelessWidget {
       // trailingStyle: TextStyle(fontSize: 20, height: 1.5),
       refresherSize: 24,
       builder: (context, amount, button, _) {
-        final text = stores.auth.authorized ? "${stores.user.info.value.username}'s ${"app.balance".tr}" : "app.balance".tr;
+        final text = "app.balance".tr;
         return Container(
           height: height,
           margin: const EdgeInsets.only(left: 12, right: 12),

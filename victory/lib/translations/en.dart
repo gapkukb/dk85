@@ -15,7 +15,7 @@ const Map<String, String> _en = {
   "app.popular": "Popular",
   "app.newGames": "New Games",
   "app.allGames": "All Games",
-  "app.balance": "Balance",
+  "app.balance": "Your Balance",
   "app.service": "Customer Service",
   "app.transcation.detail": "Transcation",
   "app.all": "All",

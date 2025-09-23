@@ -15,7 +15,7 @@ const Map<String, String> _my = {
   "app.popular": "နာမည်ကြီး",
   "app.newGames": "ဂိမ်းအသစ်",
   "app.allGames": "ဂိမ်းအားလုံး",
-  "app.balance": "လက်ကျန်",
+  "app.balance": "သင်၏လက်ကျန်",
   "app.service": "ဧည့်ဝန်ဆောင်မှု",
   "app.transcation.detail": "ငွေလွှဲခြင်း။",
   "app.all": "အားလုံး",
