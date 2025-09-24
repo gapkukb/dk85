@@ -16,7 +16,7 @@ VicHttp _create() {
   );
 
   http.dio.transformer = HttpBackgroundTransformer();
-
+  http.dio.interceptors.add(HeadersHttpInterceptor());
   http.dio.interceptors.add(
     HttpAuthInterceptor(
       dio: http.dio,
@@ -29,6 +29,18 @@ VicHttp _create() {
   http.dio.interceptors.add(
     showErrorsHttpInterceptor(
       showError: (msg) => toast(msg),
+    ),
+  );
+  http.dio.interceptors.add(
+    TalkerDioLogger(
+      talker: talker,
+      settings: TalkerDioLoggerSettings(
+        printRequestHeaders: true,
+        printResponseHeaders: true,
+        printResponseMessage: true,
+        requestFilter: (options) => options.custom.debug,
+        responseFilter: (response) => response.requestOptions.custom.debug,
+      ),
     ),
   );
 

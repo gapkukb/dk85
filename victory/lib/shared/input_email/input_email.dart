@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import '/constants/regexp.dart';
 import '../../components/input_base/input_base.dart';
 
-class AKEmailInput extends VicBaseInput {
+class VicEmailInput extends VicBaseInput {
   final bool optional;
 
-  AKEmailInput({super.key, super.onSaved, this.optional = false, super.backgroundColor})
+  VicEmailInput({super.key, super.onSaved, this.optional = false, super.backgroundColor})
     : super(
         placeholder: "form.email.placed".tr,
         validator: (value) {

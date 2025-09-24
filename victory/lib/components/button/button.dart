@@ -35,7 +35,7 @@ abstract class VicButtonGradientDirection {
   static const rightTopToLeftBottom = (Alignment(1, -1), Alignment(-1, 1));
 }
 
-enum VicButtonDisabledStyle { grayscale, opacity }
+enum VicButtonDisabledType { grayscale, opacity }
 
 enum VicButtonGradientType { linear, radial }
 
@@ -51,7 +51,7 @@ class VicButton extends StatelessWidget {
   static double? defaultPadding;
 
   final bool disabled;
-  final VicButtonDisabledStyle disabledStyle;
+  final VicButtonDisabledType disabledStyle;
   final bool? rounded;
   final bool? outlined;
   final bool fullWidth;
@@ -92,7 +92,7 @@ class VicButton extends StatelessWidget {
   const VicButton({
     super.key,
     this.disabled = false,
-    this.disabledStyle = VicButtonDisabledStyle.opacity,
+    this.disabledStyle = VicButtonDisabledType.opacity,
     this.rounded,
     this.outlined,
     this.fullWidth = false,
@@ -173,8 +173,8 @@ class VicButton extends StatelessWidget {
   }
 
   Widget computeChild(Color? foreground) {
-    final _color = iconColor ?? color ?? defaultColor;
-    final _size = iconSize ?? _height / 1.4;
+    final _color = iconColor ?? foreground ?? defaultColor;
+    final _size = iconSize ?? fontSize ?? _height / 1.4;
 
     final List<Widget> children = [
       if (icon != null) icon!,
@@ -238,7 +238,7 @@ class VicButton extends StatelessWidget {
   Color? computeBackground(Gradient? gradient) {
     if (_outlined || gradient != null) return null;
     if (backgroundColor != null && disabled) {
-      if (disabledStyle == VicButtonDisabledStyle.grayscale) return _toGray(backgroundColor!);
+      if (disabledStyle == VicButtonDisabledType.grayscale) return _toGray(backgroundColor!);
       return backgroundColor!.withAlpha(154);
     }
     return backgroundColor;

@@ -6,6 +6,7 @@ import 'package:talker_flutter/talker_flutter.dart';
 
 import '../../iconfont/iconfont.dart';
 import '../../shared/dialog/dialog.dart';
+import '../../shared/talker/talker.dart';
 
 class DebugView extends StatefulWidget {
   static bool enbale = false;
@@ -17,8 +18,6 @@ class DebugView extends StatefulWidget {
 }
 
 class _DebugViewState extends State<DebugView> {
-  final talker = TalkerFlutter.init();
-
   @override
   void dispose() {
     super.dispose();

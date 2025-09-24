@@ -118,6 +118,8 @@ class VicUserModel extends VicBaseModel {
     );
   }
 
+  String get shortName => username.length > 8 ? '${username.substring(0, 4)}***${username.substring(username.length - 3)}' : username;
+
   Map<String, dynamic> toJson() => {
     "id": id,
     "username": username,

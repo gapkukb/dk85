@@ -1,11 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:talker_dio_logger/talker_dio_logger.dart';
 import '../helper/loading.dart';
 import '../helper/toast.dart';
 import '../http/http.dart';
 import '../models/models.dart' as models;
+import '../models/vip.model.dart';
 import '../routes/app_pages.dart';
+import '../shared/talker/talker.dart';
 import '../stores/stores.dart';
 
 part 'helper.dart';
