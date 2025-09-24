@@ -23,7 +23,7 @@ class HistoryTopUpTile extends StatelessWidget {
     final amount = '+${record.money}';
 
     return GestureDetector(
-      onTap: () => Get.toNamed(AppRoutes.historyRechargeDetial, arguments: record),
+      onTap: () => Get.toNamed(AppRoutes.historyDepositDetails, arguments: record),
       child: Container(
         height: 86,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),

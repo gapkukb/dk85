@@ -7,14 +7,14 @@ import '../customer_service/customer_service.dart';
 import '../history_top_up/index.dart';
 import '../history_withdraw/index.dart';
 
-class HistoryPage2View extends StatefulWidget {
-  const HistoryPage2View({super.key});
+class VicHistoryList2Page extends StatefulWidget {
+  const VicHistoryList2Page({super.key});
 
   @override
-  _HistoryPage2ViewState createState() => _HistoryPage2ViewState();
+  _VicHistoryList2PageState createState() => _VicHistoryList2PageState();
 }
 
-class _HistoryPage2ViewState extends State<HistoryPage2View> with SingleTickerProviderStateMixin {
+class _VicHistoryList2PageState extends State<VicHistoryList2Page> with SingleTickerProviderStateMixin {
   late final TabController controller;
 
   @override

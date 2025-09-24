@@ -4,6 +4,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../components/action_sheet/action_sheet.dart';
+import '../../components/action_sheet/action_sheet_builder.dart';
 import '../../components/state_block/state_block.dart';
 import 'index.dart';
 
@@ -22,13 +23,16 @@ class VicWithdrawalHistory extends GetView<WithdrawHisotryLogic> {
             child: Center(
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 8),
-                child: VicActionSheet.single(
-                  initValue: controller.date.value,
-                  actions: controller.dateActions,
-                  onChanged: (value) {
-                    controller.date.value = value;
-                    controller.reset();
-                  },
+                child: Obx(
+                  () => HistoryActionSheet(
+                    title: "Date:${controller.dateLabel}",
+                    initValue: controller.date.value,
+                    actions: controller.dateActions,
+                    onChanged: (value) {
+                      controller.date.value = value;
+                      controller.reset();
+                    },
+                  ),
                 ),
               ),
             ),

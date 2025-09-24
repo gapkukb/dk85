@@ -189,7 +189,7 @@ class VicButton extends StatelessWidget {
         Text(
           text!,
           style: TextStyle(
-            fontSize: fontSize ?? _height / 2.5,
+            fontSize: fontSize ?? _height / 2.8,
             color: foreground,
             height: 1,
             fontWeight: textBold ? FontWeight.bold : null,

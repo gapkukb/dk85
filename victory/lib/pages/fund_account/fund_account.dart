@@ -6,8 +6,8 @@ import '../../components/back_button/back_button.dart';
 import '../../iconfont/iconfont.dart';
 import '../../theme/theme.dart';
 
-class VicFundAccount extends StatelessWidget {
-  const VicFundAccount({super.key});
+class VicFundAccountPage extends StatelessWidget {
+  const VicFundAccountPage({super.key});
 
   @override
   Widget build(BuildContext context) {

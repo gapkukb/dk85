@@ -47,7 +47,7 @@ class _VicTransHistoryPageState extends State<VicTransHistoryPage> with SingleTi
         child: TabBarView(
           controller: controller,
           children: [
-            const VicAutoKeepAlive(child: VicFundHistory()),
+            const VicAutoKeepAlive(child: VicFundHistoryListPage()),
             const VicAutoKeepAlive(child: VicGameHistory()),
           ],
         ),

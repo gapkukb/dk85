@@ -22,7 +22,7 @@ class HistoryWithdrawTile extends StatelessWidget {
     final amount = '${record.status == 3 ? '+' : '-'}${record.money}';
 
     return GestureDetector(
-      onTap: () => Get.toNamed(AppRoutes.historyWithdrawalDetial, arguments: record),
+      onTap: () => Get.toNamed(AppRoutes.historyWithdrawalDetials, arguments: record),
       child: Container(
         height: 86,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),

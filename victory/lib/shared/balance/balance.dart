@@ -7,6 +7,7 @@ import 'package:material_symbols_icons/symbols.dart';
 import '../../theme/colors.dart';
 
 import '../../stores/stores.dart';
+import '../logger/logger.dart';
 
 class VicBalanceBuilder extends StatefulWidget {
   final int? fractionDigits;
@@ -52,8 +53,9 @@ class _VicBalanceBuilderState extends State<VicBalanceBuilder> {
 
   @override
   Widget build(BuildContext context) {
-    final button = GestureDetector(
-      onTap: refresh,
+    final button = Listener(
+      // onTap: refresh,
+      onPointerUp: (_) => refresh(),
       child: Obx(
         () => Icon(
           Symbols.refresh,
@@ -85,6 +87,7 @@ class _VicBalanceBuilderState extends State<VicBalanceBuilder> {
   }
 
   void refresh() {
+    Logger.debug('refresh');
     loading.value = true;
     stores.user.queryBalance().whenComplete(() {
       loading.value = false;

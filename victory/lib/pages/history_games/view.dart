@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../components/action_sheet/action_sheet.dart';
+import '../../components/action_sheet/action_sheet_builder.dart';
 import '../../models/game_record.model.dart';
 import '../../shared/date_view/data_view.dart';
 import 'index.dart';
@@ -18,23 +19,29 @@ class VicGameHistory extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                VicActionSheet.single(
-                  initValue: controller.date.value,
-                  actions: controller.dateActions,
-                  onChanged: (value) {
-                    controller.date.value = value;
-                    controller.reset();
-                  },
+                Obx(
+                  () => HistoryActionSheet(
+                    title: "Date:${controller.dateLabel}",
+                    initValue: controller.date.value,
+                    actions: controller.dateActions,
+                    onChanged: (value) {
+                      controller.date.value = value;
+                      controller.reset();
+                    },
+                  ),
                 ),
-                VicActionSheet.single(
-                  initValue: controller.date.value,
-                  actions: controller.dateActions,
-                  onChanged: (value) {
-                    controller.date.value = value;
-                    controller.reset();
-                  },
+                Obx(
+                  () => HistoryActionSheet(
+                    title: "Game:${controller.kindLabel}",
+                    initValue: controller.kind.value,
+                    actions: controller.kindsActions,
+                    onChanged: (value) {
+                      controller.kind.value = value;
+                      controller.reset();
+                    },
+                  ),
                 ),
               ],
             ),

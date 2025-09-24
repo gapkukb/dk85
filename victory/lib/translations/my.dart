@@ -29,7 +29,7 @@ const Map<String, String> _my = {
   "app.nodata": "ဒီမှာ ဘာမှမရှိ။",
   "app.version": "ဗားရှင်း",
   "app.bgm": "BGM",
-  "app.state.empty": "ဘာမှမဖြစ်",
+  "app.state.empty": "ဒီမှာ ဘာမှ မရှိဘူး။",
   "app.state.network": "ကွန်ရက် အမှား",
   "app.change": "ပြောင်းလဲပါ။",
   "app.bind": "စည်းပါ။",
@@ -163,4 +163,5 @@ const Map<String, String> _my = {
   "form.payee.placed": "ကျေးဇူးပြု၍ ဂဏန်း 6 လုံး အမှာစာနံပါတ်ကို ထည့်ပါ။",
 
   "dialog.title": "အရိပ်အမြွက်",
+  "logout.title": "ထွက်လိုပါသလား။",
 };

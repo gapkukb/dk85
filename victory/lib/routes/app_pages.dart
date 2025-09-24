@@ -8,15 +8,22 @@ import '../pages/debug/settings.dart';
 import '../pages/email_mng/email_mng.dart';
 import '../pages/favorites/index.dart';
 import '../pages/favorites/view.dart';
+import '../pages/fund_account/fund_account.dart';
 import '../pages/gaming/gaming.dart';
+import '../pages/history_detail/history_detail.dart';
+import '../pages/history_funds/view.dart';
 import '../pages/history_page_1/history_page_1.dart';
+import '../pages/history_page_2/history_page_2.dart';
 import '../pages/inbox/index.dart';
 import '../pages/inbox/view.dart';
 import '../pages/inbox_detail/view.dart';
 import '../pages/mobile_mng/mobile_mng.dart';
+import '../pages/more/more.dart';
 import '../pages/payee/payee.dart';
 import '../pages/pwd_mng/pwd_mng.dart';
 import '../pages/rebate/view.dart';
+import '../pages/search/bindings.dart';
+import '../pages/search/view.dart';
 import '../pages/shell/shell.dart';
 import '../pages/vip/detail_view.dart';
 import '../pages/vip/view.dart';
@@ -32,6 +39,7 @@ class AppPages {
     if (Environment.isNotProd) GetPage(name: AppRoutes.demo, page: () => const DemoPage()),
     GetPage(name: AppRoutes.debug, page: () => const DebugSettings()),
     GetPage(name: AppRoutes.auth, page: () => const VicAuthPage()),
+    GetPage(name: AppRoutes.more, page: () => const VicMorePage()),
     GetPage(name: AppRoutes.gaming, page: () => const VicGamingPage()),
     GetPage(name: AppRoutes.activity, page: () => const VicActivityPage()),
     GetPage(name: AppRoutes.customerService, page: () => const VicCustomerServiceView()),
@@ -46,6 +54,11 @@ class AppPages {
     GetPage(name: AppRoutes.favorites, page: () => const VicFavPage(), binding: VicFavBinding()),
     GetPage(name: AppRoutes.inbox, page: () => const VicInboxPage(), binding: VicInboxBinding()),
     GetPage(name: AppRoutes.inboxDetail, page: () => const VicInboxDetailsPage()),
+    GetPage(name: AppRoutes.fundAccount, page: () => const VicFundAccountPage()),
     GetPage(name: AppRoutes.history1, page: () => const VicTransHistoryPage()),
+    GetPage(name: AppRoutes.history2, page: () => const VicHistoryList2Page()),
+    GetPage(name: AppRoutes.historyDepositDetails, page: () => const VicFundHistoryDetailPage(1)),
+    GetPage(name: AppRoutes.historyWithdrawalDetials, page: () => const VicFundHistoryDetailPage(2)),
+    GetPage(name: AppRoutes.search, page: () => const VicSearchPage(), binding: VicSearchBinding()),
   ];
 }

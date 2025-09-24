@@ -12,7 +12,7 @@ abstract class AppRoutes {
   static const inboxDetail = '/inboxDetail';
   static const history1 = '/historyFunds';
   static const history2 = '/historyWallet';
-  static const historyRechargeDetial = '/historyRechargeDetial';
+  static const historyDepositDetails = '/historyRechargeDetial';
   static const search = '/search';
   static const account = '/profile';
   static const vip = '/vip';
@@ -21,10 +21,10 @@ abstract class AppRoutes {
   static const email = '/email';
   static const pwd = '/pwd';
   static const gaming = '/gaming';
-  static const fundsManager = '/fundsManager';
+  static const fundAccount = '/fundsManager';
   static const activity = '/activityDetail';
   static const rebate = '/rebate';
-  static const historyWithdrawalDetial = '/historyWithdrawalDetial';
+  static const historyWithdrawalDetials = '/historyWithdrawalDetial';
   static const debug = '/debug';
 
   // 登陆后重定向到参数

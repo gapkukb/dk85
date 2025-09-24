@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../components/action_sheet/action_sheet.dart';
+import '../../components/action_sheet/action_sheet_builder.dart';
+import '../../components/button/button.dart';
 import '../../models/fund_record.model.dart';
 import '../../shared/date_view/data_view.dart';
 import '../../theme/theme.dart';
 import 'index.dart';
 
-class VicFundHistory extends StatelessWidget {
-  const VicFundHistory({super.key});
+class VicFundHistoryListPage extends StatelessWidget {
+  const VicFundHistoryListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +25,16 @@ class VicFundHistory extends StatelessWidget {
           child: Center(
             child: Padding(
               padding: const EdgeInsets.only(bottom: 8),
-              child: VicActionSheet.single(
-                initValue: controller.date.value,
-                actions: controller.dateActions,
-                onChanged: (value) {
-                  controller.date.value = value;
-                  controller.reset();
-                },
+              child: Obx(
+                () => HistoryActionSheet(
+                  title: "Date:${controller.dateLabel}",
+                  initValue: controller.date.value,
+                  actions: controller.dateActions,
+                  onChanged: (value) {
+                    controller.date.value = value;
+                    controller.reset();
+                  },
+                ),
               ),
             ),
           ),

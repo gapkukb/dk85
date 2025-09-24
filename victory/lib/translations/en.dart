@@ -163,4 +163,5 @@ const Map<String, String> _en = {
   "form.payee.placed": "Enter last 6 digits of order",
 
   "dialog.title": "Note",
+  "logout.title": "Are you sure log out?",
 };

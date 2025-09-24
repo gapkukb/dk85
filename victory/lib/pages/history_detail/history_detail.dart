@@ -15,10 +15,10 @@ import '../../routes/app_pages.dart';
 import '../../theme/theme.dart';
 import '../customer_service/customer_service.dart';
 
-class HistoryDetailView extends StatelessWidget {
+class VicFundHistoryDetailPage extends StatelessWidget {
   // 详情页类型：1-充值，2-提现
   final int type;
-  const HistoryDetailView(this.type, {super.key});
+  const VicFundHistoryDetailPage(this.type, {super.key});
 
   @override
   Widget build(BuildContext context) {

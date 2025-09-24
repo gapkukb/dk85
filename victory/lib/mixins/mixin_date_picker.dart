@@ -21,6 +21,12 @@ mixin DatePickerMixin {
   }
 
   final date = 0.obs;
+  String get dateLabel => dateActions
+      .firstWhere(
+        (i) => i.value == date.value,
+        orElse: () => dateActions.first,
+      )
+      .title;
 
   final end = VicFormatter.dateTime.end(DateTime.now());
 

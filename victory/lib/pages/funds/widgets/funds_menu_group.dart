@@ -19,7 +19,7 @@ class VicFundMenuGroup extends GetView<FundsController> {
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4, childAspectRatio: 1 / 2),
         children: [
-          VicFundMenu(IconFont.zidongqukuanji, "funds.account".tr, to: AppRoutes.fundsManager),
+          VicFundMenu(IconFont.zidongqukuanji, "funds.account".tr, to: AppRoutes.fundAccount),
           VicFundMenu(IconFont.yuyuejilu, "funds.gameHistory".tr, to: AppRoutes.history1),
           VicFundMenu(IconFont.genzongjilu, "funds.history".tr, to: AppRoutes.history2),
           VicFundMenu(IconFont.kefu, "app.service".tr, to: AppRoutes.customerService),
