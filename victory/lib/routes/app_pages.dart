@@ -1,12 +1,18 @@
 import 'package:get/get.dart';
 import '../env.dart';
 import '../pages/account/account.dart';
+import '../pages/activity/activity.dart';
 import '../pages/auth/auth_view.dart';
 import '../pages/customer_service/customer_service.dart';
 import '../pages/debug/settings.dart';
 import '../pages/email_mng/email_mng.dart';
 import '../pages/favorites/index.dart';
 import '../pages/favorites/view.dart';
+import '../pages/gaming/gaming.dart';
+import '../pages/history_page_1/history_page_1.dart';
+import '../pages/inbox/index.dart';
+import '../pages/inbox/view.dart';
+import '../pages/inbox_detail/view.dart';
 import '../pages/mobile_mng/mobile_mng.dart';
 import '../pages/payee/payee.dart';
 import '../pages/pwd_mng/pwd_mng.dart';
@@ -26,6 +32,8 @@ class AppPages {
     if (Environment.isNotProd) GetPage(name: AppRoutes.demo, page: () => const DemoPage()),
     GetPage(name: AppRoutes.debug, page: () => const DebugSettings()),
     GetPage(name: AppRoutes.auth, page: () => const VicAuthPage()),
+    GetPage(name: AppRoutes.gaming, page: () => const VicGamingPage()),
+    GetPage(name: AppRoutes.activity, page: () => const VicActivityPage()),
     GetPage(name: AppRoutes.customerService, page: () => const VicCustomerServiceView()),
     GetPage(name: AppRoutes.account, page: () => const VicAccountPage()),
     GetPage(name: AppRoutes.payee, page: () => const VicPayeePage()),
@@ -36,5 +44,8 @@ class AppPages {
     GetPage(name: AppRoutes.vip, page: () => const VicVipPage()),
     GetPage(name: AppRoutes.vipDetail, page: () => const VicVipDetailsPage()),
     GetPage(name: AppRoutes.favorites, page: () => const VicFavPage(), binding: VicFavBinding()),
+    GetPage(name: AppRoutes.inbox, page: () => const VicInboxPage(), binding: VicInboxBinding()),
+    GetPage(name: AppRoutes.inboxDetail, page: () => const VicInboxDetailsPage()),
+    GetPage(name: AppRoutes.history1, page: () => const VicTransHistoryPage()),
   ];
 }

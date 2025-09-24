@@ -7,7 +7,7 @@ import '../dialog/dialog.dart';
 
 part 'interrupt_fullscreen.dart';
 
-class Webview extends StatefulWidget {
+class VicWebview extends StatefulWidget {
   final bool pauseAudio;
   final bool allowFullscreen;
   final bool cacheable;
@@ -15,7 +15,7 @@ class Webview extends StatefulWidget {
   final bool backButton;
   final String? url;
   final String? content;
-  const Webview({
+  const VicWebview({
     super.key,
     this.url,
     this.allowFullscreen = false,
@@ -27,10 +27,10 @@ class Webview extends StatefulWidget {
   }) : assert(url != null || content != null, 'url和content不得同时为空');
 
   @override
-  _WebviewState createState() => _WebviewState();
+  _VicWebviewState createState() => _VicWebviewState();
 }
 
-class _WebviewState extends State<Webview> {
+class _VicWebviewState extends State<VicWebview> {
   late final WebViewController controller;
 
   @override

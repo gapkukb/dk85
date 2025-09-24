@@ -41,4 +41,13 @@ class _UserApi {
 
   ///升级礼金领取
   final claimVipUpgradeBonus = http.post('/app/get-vip-bonus', loading: true);
+
+  ///获取消息列表
+  final queryInbox = http.get('/app/message-list', decoder: VicInboxGroupModel.fromJson);
+
+  ///查询账变，充值，提现记录
+  final queryRecords = http.get('/app/balance-log', decoder: VicFundHistoryListModel.fromJson);
+
+  ///获取会员投注记录
+  final queryGameRecords = http.get('/app/game-record', decoder: VicGameHistoryGroupModel.fromJson);
 }

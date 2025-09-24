@@ -10,6 +10,6 @@ class VicCustomerServiceView extends StatefulWidget {
 class _VicCustomerServiceViewState extends State<VicCustomerServiceView> {
   @override
   Widget build(BuildContext context) {
-    return const Webview(url: customerServiceUrl, backButton: true);
+    return const VicWebview(url: customerServiceUrl, backButton: true);
   }
 }

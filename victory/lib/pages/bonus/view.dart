@@ -46,7 +46,7 @@ class _BonusViewGetX extends GetView<VicBonusController> {
               itemBuilder: (context, index) {
                 final promo = controller.data[index];
                 return GestureDetector(
-                  onTap: promo.url.isEmpty ? null : () => Get.toNamed(AppRoutes.activityDetail, arguments: promo.url),
+                  onTap: promo.url.isEmpty ? null : () => Get.toNamed(AppRoutes.activity, arguments: promo.url),
                   child: PhysicalModel(
                     color: Colors.transparent,
                     clipBehavior: Clip.antiAlias,

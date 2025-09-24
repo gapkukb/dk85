@@ -64,7 +64,7 @@ class _SliverGameSwiperState extends State<SliverGameSwiper> {
 
   Widget buildItem(VicBannerModel banner) {
     return GestureDetector(
-      onTap: banner.url.isEmpty ? null : () => Get.toNamed(AppRoutes.activityDetail, arguments: banner.url),
+      onTap: banner.url.isEmpty ? null : () => Get.toNamed(AppRoutes.activity, arguments: banner.url),
       child: SizedBox.expand(
         child: Material(
           color: AppColors.skeleton,

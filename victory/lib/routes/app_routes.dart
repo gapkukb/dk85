@@ -22,7 +22,7 @@ abstract class AppRoutes {
   static const pwd = '/pwd';
   static const gaming = '/gaming';
   static const fundsManager = '/fundsManager';
-  static const activityDetail = '/activityDetail';
+  static const activity = '/activityDetail';
   static const rebate = '/rebate';
   static const historyWithdrawalDetial = '/historyWithdrawalDetial';
   static const debug = '/debug';

@@ -33,6 +33,6 @@ class VicGamingPage extends StatefulWidget {
 class _GamingState extends State<VicGamingPage> {
   @override
   Widget build(BuildContext context) {
-    return Webview(url: Get.arguments as String, backButton: true, pauseAudio: true);
+    return VicWebview(url: Get.arguments as String, backButton: true, pauseAudio: true);
   }
 }
