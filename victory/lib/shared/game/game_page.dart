@@ -7,7 +7,7 @@ import 'game_section.dart';
 import 'game_swiper.dart';
 
 class GamePageView extends StatefulWidget {
-  final List<Game> Function() dataBuilder;
+  final List<VicGameModel> Function() dataBuilder;
   final int adPosition;
 
   const GamePageView({super.key, required this.dataBuilder, required this.adPosition});
@@ -17,7 +17,7 @@ class GamePageView extends StatefulWidget {
 }
 
 class _GamePageViewState extends State<GamePageView> with AutomaticKeepAliveClientMixin {
-  List<Game> get games => widget.dataBuilder();
+  List<VicGameModel> get games => widget.dataBuilder();
 
   final refresher = RefreshController();
 

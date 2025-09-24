@@ -18,7 +18,7 @@ class VicSearchPage extends GetView<VicSearchController> {
           body: SafeArea(
             child: Obx(() {
               if (controller.filteredGames.isEmpty) {
-                return const StateBlock();
+                return const VicStateBlock();
               }
               return GridView.builder(
                 key: ValueKey(controller.keywords + controller.kind.toString()),

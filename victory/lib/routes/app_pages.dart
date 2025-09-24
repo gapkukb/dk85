@@ -5,6 +5,8 @@ import '../pages/auth/auth_view.dart';
 import '../pages/customer_service/customer_service.dart';
 import '../pages/debug/settings.dart';
 import '../pages/email_mng/email_mng.dart';
+import '../pages/favorites/index.dart';
+import '../pages/favorites/view.dart';
 import '../pages/mobile_mng/mobile_mng.dart';
 import '../pages/payee/payee.dart';
 import '../pages/pwd_mng/pwd_mng.dart';
@@ -33,5 +35,6 @@ class AppPages {
     GetPage(name: AppRoutes.rebate, page: () => const VicRebatePage()),
     GetPage(name: AppRoutes.vip, page: () => const VicVipPage()),
     GetPage(name: AppRoutes.vipDetail, page: () => const VicVipDetailsPage()),
+    GetPage(name: AppRoutes.favorites, page: () => const VicFavPage(), binding: VicFavBinding()),
   ];
 }

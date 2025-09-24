@@ -2,7 +2,7 @@ part of 'game.dart';
 
 class VicGameItem extends StatelessWidget {
   final num likes;
-  final Game game;
+  final VicGameModel game;
 
   const VicGameItem({super.key, this.likes = 0, required this.game});
 

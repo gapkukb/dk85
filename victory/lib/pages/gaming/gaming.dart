@@ -9,7 +9,7 @@ import '../../shared/webview/webview.dart';
 import '../../stores/stores.dart';
 
 class VicGamingPage extends StatefulWidget {
-  static void playGame(Game game) async {
+  static void playGame(VicGameModel game) async {
     play(game.platformId, game.code, game.platform);
   }
 

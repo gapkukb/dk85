@@ -8,7 +8,7 @@ class VicGameGrid extends StatelessWidget {
     childAspectRatio: 76 / 100,
   );
 
-  final List<Game> gameList;
+  final List<VicGameModel> gameList;
   final bool _sliver;
   final bool loading;
   final RefreshController? refresher;
@@ -25,7 +25,7 @@ class VicGameGrid extends StatelessWidget {
       return Skeletonizer(enabled: true, child: view);
     }
 
-    if (gameList.isEmpty) return empty?.call() ?? const StateBlock();
+    if (gameList.isEmpty) return empty?.call() ?? const VicStateBlock();
 
     if (refresher == null) return view;
 
@@ -35,12 +35,12 @@ class VicGameGrid extends StatelessWidget {
   const VicGameGrid.sliver({super.key, this.gameList = const [], this.loading = false, this.refresher, this.mockCount = 24, this.empty})
     : _sliver = true;
 
-  List<Game> mock() {
-    return List.filled(mockCount, Game.fromJson({'platform': 'one', 'name': BoneMock.words(8)}));
+  List<VicGameModel> mock() {
+    return List.filled(mockCount, VicGameModel.fromJson({'platform': 'one', 'name': BoneMock.words(8)}));
   }
 
   Widget buildView() {
-    final List<Game> n = loading ? mock() : gameList;
+    final List<VicGameModel> n = loading ? mock() : gameList;
 
     return (_sliver ? SliverGrid.builder : GridView.builder)(
       itemCount: n.length,

@@ -4,18 +4,18 @@ import '../../models/models.dart';
 import '../../stores/stores.dart';
 
 class VicHotController extends GetxController {
-  final hotGames = <Game>[].obs;
-  final newGames = <Game>[].obs;
-  final recommendeds = <Game>[].obs;
-  final mostLikes = <Game>[].obs;
-  final others = <Game>[].obs;
+  final hotGames = <VicGameModel>[].obs;
+  final newGames = <VicGameModel>[].obs;
+  final recommendeds = <VicGameModel>[].obs;
+  final mostLikes = <VicGameModel>[].obs;
+  final others = <VicGameModel>[].obs;
 
   void _react(_) {
-    final List<Game> hotGames = [];
-    final List<Game> newGames = [];
-    final List<Game> recommendeds = [];
-    final List<Game> mostLikes = [];
-    final List<Game> others = [];
+    final List<VicGameModel> hotGames = [];
+    final List<VicGameModel> newGames = [];
+    final List<VicGameModel> recommendeds = [];
+    final List<VicGameModel> mostLikes = [];
+    final List<VicGameModel> others = [];
 
     for (var game in stores.game.all) {
       if (game.hot) {

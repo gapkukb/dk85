@@ -7,7 +7,7 @@ import 'game.dart';
 
 class VicGameSection extends StatelessWidget {
   final String title;
-  final List<Game> games;
+  final List<VicGameModel> games;
 
   const VicGameSection(this.title, this.games, {super.key});
 

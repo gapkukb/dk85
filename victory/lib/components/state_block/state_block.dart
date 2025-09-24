@@ -4,11 +4,11 @@ import '/iconfont/iconfont.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class StateBlock extends StatelessWidget {
+class VicStateBlock extends StatelessWidget {
   final String? buttonText;
   final String? text;
   final VoidCallback? onPressed;
-  const StateBlock({super.key, this.buttonText, this.text = 'app.state.empty', this.onPressed});
+  const VicStateBlock({super.key, this.buttonText, this.text = 'app.state.empty', this.onPressed});
 
   @override
   Widget build(BuildContext context) {

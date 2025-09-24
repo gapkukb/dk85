@@ -1,12 +1,12 @@
 const path = require("path");
 const fs = require("fs");
-const output = path.join(__dirname, "gutter.dart");
+const output = path.join(__dirname, "size.dart");
 
 write();
 
 async function write(content) {
   let c = `import 'package:flutter/material.dart';\n\n`;
-  c += `abstract class AppSize {\n`;
+  c += `abstract class AppSizes {\n`;
 
   c += size();
   c += "\n";
@@ -76,7 +76,7 @@ function edgeInsets() {
       (value) => `EdgeInsets.fromLTRB(${value}, ${value}, ${value}, 0)`
     ),
   ];
-
+  tasks.push(`static const pad_page = pad_not_t_12;\n`);
   return tasks.join("\n");
 }
 

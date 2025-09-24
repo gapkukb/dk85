@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../../stores/stores.dart';
 import '../../theme/theme.dart';
+import '../dialog/dialog.dart';
 
 part 'interrupt_fullscreen.dart';
 
@@ -82,8 +84,10 @@ class _WebviewState extends State<Webview> {
   }
 
   askExit() async {
-    // final guaranteed = await Get.confirm(title: 'app.exit'.tr) == true;
-    // if (guaranteed) Get.back();
+    VicDialog.confirm(
+      title: 'app.exit'.tr,
+      onConfirm: Get.back,
+    );
   }
 
   _initilize() {

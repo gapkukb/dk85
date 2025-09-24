@@ -8,17 +8,17 @@ class VicGamesModel extends VicBaseModel {
     required this.mini,
   });
 
-  final List<Game> fish;
-  final List<Game> slots;
-  final List<Game> poker;
-  final List<Game> mini;
+  final List<VicGameModel> fish;
+  final List<VicGameModel> slots;
+  final List<VicGameModel> poker;
+  final List<VicGameModel> mini;
 
   factory VicGamesModel.fromJson(Map<String, dynamic> json) {
     return VicGamesModel(
-      fish: json["FISH"] == null ? [] : List<Game>.from(json["FISH"]!.map((x) => Game.fromJson(x))),
-      slots: json["SLOTS"] == null ? [] : List<Game>.from(json["SLOTS"]!.map((x) => Game.fromJson(x))),
-      poker: json["POKER"] == null ? [] : List<Game>.from(json["POKER"]!.map((x) => Game.fromJson(x))),
-      mini: json["MINI"] == null ? [] : List<Game>.from(json["MINI"]!.map((x) => Game.fromJson(x))),
+      fish: json["FISH"] == null ? [] : List<VicGameModel>.from(json["FISH"]!.map((x) => VicGameModel.fromJson(x))),
+      slots: json["SLOTS"] == null ? [] : List<VicGameModel>.from(json["SLOTS"]!.map((x) => VicGameModel.fromJson(x))),
+      poker: json["POKER"] == null ? [] : List<VicGameModel>.from(json["POKER"]!.map((x) => VicGameModel.fromJson(x))),
+      mini: json["MINI"] == null ? [] : List<VicGameModel>.from(json["MINI"]!.map((x) => VicGameModel.fromJson(x))),
     );
   }
 
@@ -35,8 +35,8 @@ class VicGamesModel extends VicBaseModel {
   }
 }
 
-class Game {
-  Game({
+class VicGameModel {
+  VicGameModel({
     required this.id,
     required this.platform,
     required this.aliasName,
@@ -84,8 +84,8 @@ class Game {
   final int platformId;
   bool liked;
 
-  factory Game.fromJson(Map<String, dynamic> json) {
-    return Game(
+  factory VicGameModel.fromJson(Map<String, dynamic> json) {
+    return VicGameModel(
       id: json["id"] ?? 0,
       platform: json["platform"] ?? "",
       aliasName: json["alias_name"],
@@ -138,4 +138,64 @@ class Game {
   String toString() {
     return "$id, $platform, $aliasName, $name, $style, $img, $img1, $device, $vendor, $code, $language, $currency, $hot, $recommend, $likeNum, $isNew, $status, $sort, $createdAt, $updatedAt, $platformId, ";
   }
+}
+
+class VicFavsModel {
+  final List<VicFavModel> list;
+  final int count;
+
+  VicFavsModel({required this.list, required this.count});
+
+  factory VicFavsModel.fromRawJson(String str) => VicFavsModel.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory VicFavsModel.fromJson(Map<String, dynamic> json) =>
+      VicFavsModel(list: List<VicFavModel>.from((json["list"] ?? []).map((x) => VicFavModel.fromJson(x))), count: json["count"]);
+
+  Map<String, dynamic> toJson() => {"list": List<dynamic>.from(list.map((x) => x.toJson())), "count": count};
+}
+
+class VicFavModel {
+  final int id;
+  final int siteId;
+  final int platformId;
+  final int gameId;
+  final int userId;
+  final String createdAt;
+  final String updatedAt;
+
+  VicFavModel({
+    required this.id,
+    required this.platformId,
+    required this.siteId,
+    required this.gameId,
+    required this.userId,
+    required this.createdAt,
+    required this.updatedAt,
+  });
+
+  factory VicFavModel.fromRawJson(String str) => VicFavModel.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory VicFavModel.fromJson(Map<String, dynamic> json) => VicFavModel(
+    id: json["id"] ?? 0,
+    platformId: json["platform_id"] ?? 0,
+    siteId: json["site_id"] ?? 0,
+    gameId: json["game_id"] ?? 0,
+    userId: json["user_id"] ?? '',
+    createdAt: json["created_at"] ?? '',
+    updatedAt: json["updated_at"] ?? '',
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "platform_id": platformId,
+    "site_id": siteId,
+    "game_id": gameId,
+    "user_id": userId,
+    "created_at": createdAt,
+    "updated_at": updatedAt,
+  };
 }

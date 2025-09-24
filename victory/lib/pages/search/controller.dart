@@ -29,12 +29,12 @@ class VicSearchController extends GetxController with GetSingleTickerProviderSta
     _Tab(name: GameKind.poker.displayName, value: GameKind.poker.id),
   ];
 
-  List<Game> get filteredGames {
+  List<VicGameModel> get filteredGames {
     if (keywords.isEmpty) return _filterWithoutKeywords(kind.value);
     return _filterWithKeywords(kind.value, keywords.value);
   }
 
-  List<Game> _filterWithoutKeywords(int kind) {
+  List<VicGameModel> _filterWithoutKeywords(int kind) {
     if (kind == GameKind.all.id) return gameService.all;
     if (kind == GameKind.slots.id) return gameService.slots;
     if (kind == GameKind.fishing.id) return gameService.fish;
@@ -42,11 +42,11 @@ class VicSearchController extends GetxController with GetSingleTickerProviderSta
     return [];
   }
 
-  List<Game> _filterWithKeywords(int kind, String keywords) {
+  List<VicGameModel> _filterWithKeywords(int kind, String keywords) {
     final k = keywords.toLowerCase();
-    bool predicate(Game game) => game.name.toLowerCase().contains(k) || game.platform.toLowerCase().contains(k);
+    bool predicate(VicGameModel game) => game.name.toLowerCase().contains(k) || game.platform.toLowerCase().contains(k);
 
-    List<Game> filter(Iterable<Game> games) => games.where(predicate).toList();
+    List<VicGameModel> filter(Iterable<VicGameModel> games) => games.where(predicate).toList();
 
     if (kind == GameKind.all.id) {
       return filter(gameService.all);
