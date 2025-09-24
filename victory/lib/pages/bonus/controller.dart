@@ -9,7 +9,7 @@ class VicBonusController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    Apis.app.queryAdList(queryParameters: {'type': '3', 'position': '5'}).then((value) {
+    apis.app.queryAdList(queryParameters: {'type': '3', 'position': '5'}).then((value) {
       data.value = value ?? [];
     });
   }

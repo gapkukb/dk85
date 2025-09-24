@@ -48,7 +48,6 @@ class VicHttpImpl<R, T> {
     options ??= Options();
     options.method ??= method;
     options.httpOptions = httpOptions;
-    print(dio.options.baseUrl + path);
     return dio
         .request(
           path,

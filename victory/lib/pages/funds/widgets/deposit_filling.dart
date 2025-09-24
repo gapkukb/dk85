@@ -23,7 +23,7 @@ class VicDepositFilling extends GetView<FundsController> {
   @override
   Widget build(BuildContext context) {
     final form = Useform((values) async {
-      final order = await Apis.fund.createDepositOrder(
+      final order = await apis.fund.createDepositOrder(
         data: {
           // 	string	支付接口ID
           'account_id': channel.id,

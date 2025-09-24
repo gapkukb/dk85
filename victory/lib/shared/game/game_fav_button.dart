@@ -20,7 +20,7 @@ class _VicFavButtonState extends State<VicFavButton> {
         padding: EdgeInsets.zero,
         icon: Icon(widget.liked ? IconFont.heart_fill : IconFont.heart, color: widget.liked ? const Color(0xffff5800) : Colors.black, size: 16),
         onPressed: () async {
-          final f = widget.liked ? Apis.game.favorite : Apis.game.unfavorite;
+          final f = widget.liked ? apis.game.favorite : apis.game.unfavorite;
           await f(payload: {'platform_id': widget.platormId, 'game_id': widget.gameId});
           widget.liked = !widget.liked;
           stores.game.queryLikes();

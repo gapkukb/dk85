@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import '../debug/debug_view.dart';
-import '../storage/storage.dart';
+import '../env.dart';
+import '../helper/charles_monitor.dart';
+import '../pages/debug/view.dart';
 import 'bot_toast.dart';
 
 /// 显示初始化
 Widget startup(BuildContext context, Widget? child) {
   child = setupBotToast(context, child);
-  if (storage.debug.value) {
-    storage.debug.clear();
+  if (Environment.isDev || CharlesProxyHttpOverride.debug) {
     child = DebugView(child: child);
   }
   return child;

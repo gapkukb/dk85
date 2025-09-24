@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:move_to_back/move_to_back.dart';
+import '../../env.dart';
 import '../../routes/app_pages.dart';
 import '../../stores/stores.dart';
 import '../../theme/theme.dart';
@@ -50,12 +51,14 @@ class _VicShellViewState extends State<VicShellView> {
             ],
           );
         }),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            // showSuccess();
-            Get.toNamed(AppRoutes.demo);
-          },
-        ),
+        floatingActionButton: Environment.isDev
+            ? null
+            : FloatingActionButton(
+                onPressed: () {
+                  // showSuccess();
+                  Get.toNamed(AppRoutes.demo);
+                },
+              ),
         bottomNavigationBar: Obx(
           () => BottomNavigationBar(
             selectedItemColor: AppColors.primary,

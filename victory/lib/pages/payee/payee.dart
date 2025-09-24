@@ -164,7 +164,7 @@ class _VicPayeePageState extends State<VicPayeePage> {
       BotToast.showText(text: 'form.payee.placed'.tr);
       return;
     }
-    await Apis.fund.matchTopup(data: {'sys_trade_no': order.sysTradeNo, 'bank_serial': value, 'account_id': order.channelId});
+    await apis.fund.matchTopup(data: {'sys_trade_no': order.sysTradeNo, 'bank_serial': value, 'account_id': order.channelId});
     await showSuccess();
     Get.back();
     Get.back();

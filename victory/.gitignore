@@ -253,3 +253,5 @@ google-services.json
 
 node_modules/
 pnpm-lock.yaml
+
+.kotlin/

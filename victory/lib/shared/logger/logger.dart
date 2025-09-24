@@ -27,7 +27,8 @@ class Logger {
   }
 
   /// 格式化日志消息
-  static String _formatMessage(String message, String color, String emoji) {
+  static String _formatMessage(dynamic message, String color, String emoji) {
+    message = message.toString();
     final timestamp = _getTimestamp();
     if (kDebugMode) {
       return '$color[$timestamp] $emoji $message$_colorReset';
@@ -37,37 +38,37 @@ class Logger {
   }
 
   /// 错误日志
-  static void error(String message, {String? color, Object? error, StackTrace? stackTrace, String? tag}) {
+  static void error(dynamic message, {String? color, Object? error, StackTrace? stackTrace, String? tag}) {
     final formattedMessage = _formatMessage(message, color ?? _colorRed, '❌');
     developer.log(formattedMessage, name: tag ?? 'ERROR', level: 1000, error: error, stackTrace: stackTrace);
   }
 
   /// 警告日志
-  static void warning(String message, {String? color, String? tag}) {
+  static void warning(dynamic message, {String? color, String? tag}) {
     final formattedMessage = _formatMessage(message, color ?? _colorYellow, '⚠️');
     developer.log(formattedMessage, name: tag ?? 'WARNING', level: 900);
   }
 
   /// 信息日志
-  static void info(String message, {String? color, String? tag}) {
+  static void info(dynamic message, {String? color, String? tag}) {
     final formattedMessage = _formatMessage(message, color ?? _colorBlue, 'ℹ️');
     developer.log(formattedMessage, name: tag ?? 'INFO', level: 800);
   }
 
   /// 调试日志
-  static void debug(String message, {String? color, String? tag}) {
+  static void debug(dynamic message, {String? color, String? tag}) {
     final formattedMessage = _formatMessage(message, color ?? _colorGreen, '🐞');
     developer.log(formattedMessage, name: tag ?? 'DEBUG', level: 700);
   }
 
   /// 成功日志
-  static void success(String message, {String? color}) {
+  static void success(dynamic message, {String? color}) {
     final formattedMessage = _formatMessage('SUCCESS: $message', color ?? _colorGreen, '❤️');
     developer.log(formattedMessage, name: 'SUCCESS', level: 800);
   }
 
   /// 致命错误日志
-  static void fatal(String message, {Object? error, StackTrace? stackTrace}) {
+  static void fatal(dynamic message, {Object? error, StackTrace? stackTrace}) {
     final formattedMessage = _formatMessage(message, _colorBgRed + _colorWhite, '💀');
     developer.log(formattedMessage, name: 'FATAL', level: 1200, error: error, stackTrace: stackTrace);
   }

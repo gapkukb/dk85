@@ -9,8 +9,6 @@ class EnsureAuthMiddleware extends GetMiddleware {
     // but it's preferable to make this method fast
     // await Future.delayed(Duration(milliseconds: 500));
 
-    print("EnsureAuthMiddleware");
-
     // 未登录则跳转登录
     if (!stores.auth.authorized) {
       final newRoute = AppRoutes.loginThen(route.locationString);

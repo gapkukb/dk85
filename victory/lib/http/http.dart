@@ -5,6 +5,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:dio/dio.dart';
 
+import '../shared/logger/logger.dart';
 import '../storage/storage.dart';
 import '../stores/stores.dart';
 

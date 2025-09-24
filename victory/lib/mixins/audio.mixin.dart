@@ -1,3 +1,4 @@
+import '../shared/logger/logger.dart';
 import '/storage/storage.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
@@ -66,13 +67,13 @@ mixin class AudioMixin {
 
     if (cached == null) {
       if (!waitings.containsKey(url)) {
-        debugPrint('缓存音频开始');
+        Logger.debug('缓存音频开始');
         waitings[url] = _cacheManager.downloadFile(url).whenComplete(() {
           waitings.remove(url);
         });
       }
       cached = await waitings[url]!;
-      debugPrint('缓存{$url}成功');
+      Logger.debug('缓存{$url}成功');
     }
     return DeviceFileSource(cached.file.path);
   }

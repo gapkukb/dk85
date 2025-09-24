@@ -25,6 +25,7 @@ abstract class AppRoutes {
   static const activityDetail = '/activityDetail';
   static const rebate = '/rebate';
   static const historyWithdrawalDetial = '/historyWithdrawalDetial';
+  static const debug = '/debug';
 
   // 登陆后重定向到参数
   static String loginThen(String to) {

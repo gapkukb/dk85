@@ -23,23 +23,23 @@ class _AuthService extends GetxService {
   Future autoLogin() async {}
 
   Future login(Object values) async {
-    final t = await Apis.auth.login(data: values);
+    final t = await apis.auth.login(data: values);
     await _nextAction(t.token);
   }
 
   Future register(Object values) async {
-    final t = await Apis.auth.register(data: values);
+    final t = await apis.auth.register(data: values);
     await _nextAction(t.token);
   }
 
   Future quickRegister(Object values) async {
-    final t = await Apis.auth.fastRegister(payload: {'device_code': storage.deviceId.value});
+    final t = await apis.auth.fastRegister(payload: {'device_code': storage.deviceId.value});
     await _nextAction(t.token);
   }
 
   Future logout() async {
     // 调用退出接口，无需等待
-    Apis.auth.logout();
+    apis.auth.logout();
     Timer(const Duration(milliseconds: 1), clear);
   }
 
@@ -64,7 +64,7 @@ class _AuthService extends GetxService {
       // 修改认证状态
       // authorized.value = true;
     } catch (e) {
-      debugPrint(e.toString());
+      Logger.error('获取用户信息和余额失败');
       rethrow;
     }
   }

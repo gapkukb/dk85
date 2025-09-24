@@ -14,6 +14,8 @@ class Storage {
     storage = Storage();
   }
 
+  final proxyHost = _app.nullable<String>('charles_host');
+  final proxyPort = _app.nullable<int>('charles_port');
   final audio = _app.reactive('audio', true);
   final user = _app.nullable<Map<String, dynamic>>('user');
   final token = _app.reactive("token", '');

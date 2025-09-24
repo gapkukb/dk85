@@ -45,7 +45,7 @@ Future<String?> _query() async {
 
 abstract class ApiBaseUrl {
   static String? apiUrl;
-  static Future<void> initialize({required void Function(String msg) onError}) async {
+  static Future<void> ensureInitialized({required void Function(String msg) onError}) async {
     final baseUrl = await _query();
     // 域名轮询失败
     if (baseUrl == null) {
@@ -53,8 +53,7 @@ abstract class ApiBaseUrl {
       onError(s);
       throw Exception(s);
     } else {
-      http.dio.options.baseUrl = baseUrl;
-      print(http.dio.options.baseUrl);
+      apis.setBaseUrl(baseUrl);
     }
   }
 }

@@ -8,18 +8,24 @@ import '../models/models.dart' as models;
 import '../routes/app_pages.dart';
 import '../stores/stores.dart';
 
-part '_helper.dart';
-part '_http.dart';
+part 'helper.dart';
+part 'http.dart';
 part 'app.api.dart';
 part 'auth.api.dart';
 part 'game.api.dart';
 part 'user.api.dart';
 part 'funds.api.dart';
 
-abstract class Apis {
-  static final app = _AppApi();
-  static final auth = _AuthApi();
-  static final game = _GameApi();
-  static final user = _UserApi();
-  static final fund = _FundApi();
+class _Apis {
+  final app = _AppApi();
+  final auth = _AuthApi();
+  final game = _GameApi();
+  final user = _UserApi();
+  final fund = _FundApi();
+
+  setBaseUrl(String baseUrl) {
+    http.dio.options.baseUrl = baseUrl;
+  }
 }
+
+final apis = _Apis();

@@ -19,7 +19,7 @@ class VicWithdrawalFilling extends GetView<FundsController> {
   late final Useform form;
   VicWithdrawalFilling(this.channel, {super.key}) {
     form = Useform((values) async {
-      await Apis.fund.withdraw(data: {...values, 'withdraw_id': channel.id});
+      await apis.fund.withdraw(data: {...values, 'withdraw_id': channel.id});
       await showSuccess();
       Get.back();
       stores.user.queryBalance();

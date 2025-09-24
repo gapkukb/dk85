@@ -9,6 +9,7 @@ import '../mixins/locale.mixin.dart';
 import '../mixins/router.mixin.dart';
 import '../models/models.dart';
 import '../routes/app_pages.dart';
+import '../shared/logger/logger.dart';
 import '../storage/storage.dart';
 
 part 'app.store.dart';

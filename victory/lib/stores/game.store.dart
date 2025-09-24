@@ -11,7 +11,7 @@ class _GameService extends GetxService with AuthMixin {
   final likes = RxList<Game>([]);
   void queryGames() async {
     loading.value = true;
-    platform.value = await Apis.game.queryGame(payload: {'game_id': '17'});
+    platform.value = await apis.game.queryGame(payload: {'game_id': '17'});
     loading.value = false;
   }
 
