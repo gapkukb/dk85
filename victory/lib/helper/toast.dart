@@ -11,7 +11,7 @@ void Function() toast(String text) {
             constraints: constraints.copyWith(maxWidth: constraints.biggest.width * 0.8),
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             decoration: BoxDecoration(
-              color: Colors.black54,
+              color: Colors.black87,
               borderRadius: BorderRadius.circular(4),
             ),
             child: Text(

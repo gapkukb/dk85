@@ -4,6 +4,8 @@ import 'package:encrypt/encrypt.dart';
 
 import 'package:victory/apis/apis.dart';
 import 'package:victory/env.dart';
+import 'package:victory/shared/logger/logger.dart';
+import 'package:victory/shared/talker/talker.dart';
 
 List<String> _parse(String source) {
   final key = Key.fromUtf8(utf8.decode(base64Decode("YXNkZmxAc2ZnYUhzOCNhYQ==")));
@@ -19,10 +21,11 @@ Future<String?> _query() async {
     return "https://mdgametest.xyz";
   }
   final urls = ["https://md-business-prd.oss-cn-hongkong.aliyuncs.com/uris.txt", "https://pub-20eccd78af9f4e04beeae26f65cf746c.r2.dev/uris.txt"];
-
+  talker.debug('开始请求域名列表...');
   final dio = Dio(BaseOptions(receiveTimeout: const Duration(seconds: 3)));
   while (urls.isNotEmpty) {
     try {
+      talker.debug('请求域名列表: ${urls.first}');
       final r = await dio.getUri(Uri.parse(urls.removeAt(0)));
       if (r.data is String) {
         final urls = _parse(r.data as String);
@@ -53,6 +56,7 @@ abstract class ApiBaseUrl {
       onError(s);
       throw Exception(s);
     } else {
+      Logger.success('当前API调用地址: $baseUrl');
       apis.setBaseUrl(baseUrl);
     }
   }

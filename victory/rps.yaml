@@ -13,7 +13,8 @@ scripts:
       # rps build android apk
       apk:
         $before: echo "Building android apk..."
-        $script: "flutter build apk --target-platform android-arm,android-arm64 --obfuscate --split-debug-info=./debug-info"
+        # $script: "flutter build apk --target-platform android-arm,android-arm64 --obfuscate --split-debug-info=./debug-info --dart-define=ENV=production --flavor production"
+        $script: "flutter build apk --target-platform android-arm,android-arm64 --obfuscate --split-debug-info=./debug-info --dart-define=ENV=production"
       # rps build android appbundle
       appbundle: "flutter build --release appbundle --flavor production"
       # and so on...

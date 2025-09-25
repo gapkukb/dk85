@@ -11,7 +11,7 @@ class _GameService extends GetxService with AuthMixin {
 
   final likes = RxList<VicGameModel>([]);
 
-  void queryGames() async {
+  Future queryGames() async {
     loading.value = true;
     platform.value = await apis.game.queryGame(payload: {'game_id': '17'});
     loading.value = false;
@@ -31,10 +31,11 @@ class _GameService extends GetxService with AuthMixin {
   @override
   Future ensureInitialized() async {
     super.ensureInitialized();
-    queryGames();
-    if (services.auth.authorized) {
-      queryLikes();
-    }
+    queryGames().then((_) {
+      if (services.auth.authorized) {
+        queryLikes();
+      }
+    });
   }
 
   @override

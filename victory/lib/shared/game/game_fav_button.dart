@@ -20,13 +20,15 @@ class _VicFavButtonState extends State<VicFavButton> {
         padding: EdgeInsets.zero,
         icon: Icon(widget.liked ? IconFont.heart_fill : IconFont.heart, color: widget.liked ? const Color(0xffff5800) : Colors.black, size: 16),
         onPressed: () async {
-          talker.debug("fav ${widget.gameId} ${widget.platormId} ${widget.liked} ");
-          final f = widget.liked ? apis.game.unfavorite : apis.game.favorite;
-          await f(payload: {'platform_id': widget.platormId, 'game_id': widget.gameId});
-          widget.liked = !widget.liked;
-          services.game.queryLikes();
-          widget.onLike?.call(widget.liked);
-          setState(() {});
+          if (services.auth.ensureAuthorized) {
+            talker.debug("fav ${widget.gameId} ${widget.platormId} ${widget.liked} ");
+            final f = widget.liked ? apis.game.unfavorite : apis.game.favorite;
+            await f(payload: {'platform_id': widget.platormId, 'game_id': widget.gameId});
+            widget.liked = !widget.liked;
+            services.game.queryLikes();
+            widget.onLike?.call(widget.liked);
+            setState(() {});
+          }
         },
       ),
     );

@@ -8,13 +8,6 @@ import 'package:victory/pages/hot/index.dart';
 class VicHotPage extends GetView<VicHotController> {
   const VicHotPage({super.key});
 
-  // 主视图
-  Widget _buildView() {
-    return const Center(
-      child: Text("HotPage"),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<VicHotController>(

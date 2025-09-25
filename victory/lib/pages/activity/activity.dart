@@ -47,8 +47,8 @@ class _VicActivityPageState extends State<VicActivityPage> {
       setState(() {});
     });
 
-    if (r is Map && r['data'] is Map) {
-      details = r['data']['mobile_content'];
+    if (r is Map) {
+      details = r['mobile_content'];
       if (details!.isNotEmpty) {
         details = toHtml(details!);
       }

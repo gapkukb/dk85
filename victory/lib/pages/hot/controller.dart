@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 
 import 'package:victory/models/models.dart';
 import 'package:victory/services/services.dart';
+import 'package:victory/shared/logger/logger.dart';
 
 class VicHotController extends GetxController {
   final hotGames = <VicGameModel>[].obs;
@@ -32,7 +33,9 @@ class VicHotController extends GetxController {
     // hotGames.sort((a, b) => a.sort - b.sort);
 
     this.hotGames.value = hotGames;
+    Logger.debug('Hot Games: ${hotGames.length}');
     this.newGames.value = newGames;
+    Logger.debug('New Games: ${newGames.length}');
     this.recommendeds.value = recommendeds;
     this.mostLikes.value = mostLikes;
     this.others.value = others;
