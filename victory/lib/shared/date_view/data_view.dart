@@ -1,5 +1,5 @@
-import '../../components/state_block/state_block.dart';
-import 'data_view_logic.dart';
+import 'package:victory/components/state_block/state_block.dart';
+import 'package:victory/shared/date_view/data_view_logic.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';

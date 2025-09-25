@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../apis/apis.dart';
-import '../../components/back_button/back_button.dart';
-import '../../components/button/button.dart';
-import '../../helper/success.dart';
-import '../../hooks/useForm.dart';
-import '../../models/models.dart';
-import '../../shared/input_email/input_email.dart';
-import '../../stores/stores.dart';
-import '../../theme/theme.dart';
-import '../customer_service/customer_service.dart';
+import 'package:victory/apis/apis.dart';
+import 'package:victory/components/back_button/back_button.dart';
+import 'package:victory/components/button/button.dart';
+import 'package:victory/hooks/useForm.dart';
+import 'package:victory/models/models.dart';
+import 'package:victory/shared/dialogs/dialog.dart';
+import 'package:victory/shared/input_email/input_email.dart';
+import 'package:victory/services/services.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/pages/customer_service/customer_service.dart';
 
 class VicEmailMngPage extends StatefulWidget {
   const VicEmailMngPage({super.key});
@@ -20,11 +20,11 @@ class VicEmailMngPage extends StatefulWidget {
 }
 
 class _EmaileState extends State<VicEmailMngPage> {
-  VicUserModel get user => stores.user.info.value;
+  VicUserModel get user => services.user.info.value;
   final form = Useform((values) async {
     await apis.user.bindEmail(data: values);
-    await showSuccess();
-    stores.user.queryUserInfo();
+    await VicDialog.success();
+    services.user.queryUserInfo();
     Get.back();
   });
 

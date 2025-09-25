@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'application.dart';
-import 'bootstrap/bootstrap.dart';
-import 'bootstrap/query_api_address.dart';
-import 'pages/splash/splash.dart';
-import 'shared/talker/talker.dart';
+import 'package:victory/application.dart';
+import 'package:victory/bootstrap/bootstrap.dart';
+import 'package:victory/bootstrap/query_api_address.dart';
+import 'package:victory/pages/splash/splash.dart';
+import 'package:victory/shared/talker/talker.dart';
 
 void main() async {
   runZonedGuarded(

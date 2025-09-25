@@ -20,6 +20,7 @@ class VicDepositChannelsModel extends VicBaseModel {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() => {
     "activity_list": activityList.map((x) => x).toList(),
     "account_list": accountList.map((x) => x.toJson()).toList(),

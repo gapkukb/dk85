@@ -1,7 +1,7 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
-import '../shared/lottie/lottie.dart';
+import 'package:victory/shared/lottie/lottie.dart';
 
 class VicLoading extends StatelessWidget {
   final String? text;

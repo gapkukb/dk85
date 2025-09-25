@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../constants/game.dart';
-import '../../models/models.dart';
-import '../../stores/stores.dart';
+import 'package:victory/constants/game.dart';
+import 'package:victory/models/models.dart';
+import 'package:victory/services/services.dart';
 
 class _Tab {
   final String name;
@@ -17,7 +17,7 @@ class VicSearchController extends GetxController with GetSingleTickerProviderSta
 
   late final TabController tab;
   final input = TextEditingController();
-  final gameService = stores.game;
+  final gameService = services.game;
   final keywords = ''.obs;
   final kind = GameKind.all.id.obs;
   final platforms = ['all'].obs;

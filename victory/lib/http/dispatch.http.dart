@@ -42,7 +42,7 @@ class VicHttpImpl<R, T> {
     void Function(int, int)? onSendProgress,
     void Function(int, int)? onReceiveProgress,
   }) {
-    if (this.cancelable == true) {
+    if (cancelable == true) {
       cancelToken = CancelToken();
     }
     options ??= Options();
@@ -69,6 +69,7 @@ class VicHttpImpl<R, T> {
             if (_isList) return List<T>.from(data.map((x) => decoder!(x))) as R;
             throw Exception("泛型不匹配返回值 , $R ===> ${data.runtimeType}");
           }
+          if (_isList) return [] as R;
           return data;
         })
         .whenComplete(() {

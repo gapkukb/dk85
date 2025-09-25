@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../components/rounded_tab_indicator/rounded_tab_indicator.dart';
-import '../../../theme/theme.dart';
+import 'package:victory/components/rounded_tab_indicator/rounded_tab_indicator.dart';
+import 'package:victory/theme/theme.dart';
 
 class _Tab {
   final String iconPath;
@@ -19,7 +19,7 @@ const tabs = <_Tab>[
 ];
 
 class HomeTabBar extends StatelessWidget implements PreferredSizeWidget {
-  const HomeTabBar({Key? key}) : super(key: key);
+  const HomeTabBar({super.key});
   static const _size = 52.0;
   @override
   Widget build(BuildContext context) {

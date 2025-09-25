@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../apis/apis.dart';
-import '../../components/back_button/back_button.dart';
-import '../../components/state_block/state_block.dart';
-import '../../shared/webview/webview.dart';
+import 'package:victory/apis/apis.dart';
+import 'package:victory/components/back_button/back_button.dart';
+import 'package:victory/components/state_block/state_block.dart';
+import 'package:victory/shared/webview/webview.dart';
 
 class VicActivityPage extends StatefulWidget {
   const VicActivityPage({super.key});

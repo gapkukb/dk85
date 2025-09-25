@@ -19,6 +19,7 @@ class VicBalanceModel extends VicBaseModel {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() => {
     "balance": balance,
     "balance_frozen": balanceFrozen,

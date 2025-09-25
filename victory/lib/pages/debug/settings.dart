@@ -4,16 +4,16 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:restart_app/restart_app.dart';
 
-import '../../components/button/button.dart';
-import '../../helper/charles_monitor.dart';
-import '../../helper/toast.dart';
-import '../../hooks/useForm.dart';
-import '../../shared/dialog/dialog.dart';
-import '../../shared/logger/logger.dart';
-import '../../storage/storage.dart';
+import 'package:victory/components/button/button.dart';
+import 'package:victory/helper/charles_monitor.dart';
+import 'package:victory/helper/toast.dart';
+import 'package:victory/hooks/useForm.dart';
+import 'package:victory/shared/dialogs/dialog.dart';
+import 'package:victory/shared/logger/logger.dart';
+import 'package:victory/storage/storage.dart';
 
 class DebugSettings extends StatefulWidget {
-  const DebugSettings({Key? key}) : super(key: key);
+  const DebugSettings({super.key});
 
   @override
   _DebugSettingsState createState() => _DebugSettingsState();

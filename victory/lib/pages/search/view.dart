@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../components/state_block/state_block.dart';
-import '../../shared/game/game.dart';
-import 'index.dart';
-import 'widgets/widgets.dart';
+import 'package:victory/components/state_block/state_block.dart';
+import 'package:victory/shared/game/game.dart';
+import 'package:victory/pages/search/index.dart';
+import 'package:victory/pages/search/widgets/widgets.dart';
 
 class VicSearchPage extends GetView<VicSearchController> {
   const VicSearchPage({super.key});

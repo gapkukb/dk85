@@ -1,39 +1,35 @@
 import 'package:get/get.dart';
-import '../env.dart';
-import '../pages/account/account.dart';
-import '../pages/activity/activity.dart';
-import '../pages/auth/auth_view.dart';
-import '../pages/customer_service/customer_service.dart';
-import '../pages/debug/settings.dart';
-import '../pages/email_mng/email_mng.dart';
-import '../pages/favorites/index.dart';
-import '../pages/favorites/view.dart';
-import '../pages/fund_account/fund_account.dart';
-import '../pages/gaming/gaming.dart';
-import '../pages/history_detail/history_detail.dart';
-import '../pages/history_funds/view.dart';
-import '../pages/history_page_1/history_page_1.dart';
-import '../pages/history_page_2/history_page_2.dart';
-import '../pages/inbox/index.dart';
-import '../pages/inbox/view.dart';
-import '../pages/inbox_detail/view.dart';
-import '../pages/mobile_mng/mobile_mng.dart';
-import '../pages/more/more.dart';
-import '../pages/payee/payee.dart';
-import '../pages/pwd_mng/pwd_mng.dart';
-import '../pages/rebate/view.dart';
-import '../pages/search/bindings.dart';
-import '../pages/search/view.dart';
-import '../pages/shell/shell.dart';
-import '../pages/vip/detail_view.dart';
-import '../pages/vip/view.dart';
-import '/pages/demo/demo.dart';
+import 'package:victory/env.dart';
+import 'package:victory/pages/account/account.dart';
+import 'package:victory/pages/activity/activity.dart';
+import 'package:victory/pages/auth/auth_view.dart';
+import 'package:victory/pages/customer_service/customer_service.dart';
+import 'package:victory/pages/debug/settings.dart';
+import 'package:victory/pages/email_mng/email_mng.dart';
+import 'package:victory/pages/favorites/index.dart';
+import 'package:victory/pages/fund_account/fund_account.dart';
+import 'package:victory/pages/gaming/gaming.dart';
+import 'package:victory/pages/history_detail/history_detail.dart';
+import 'package:victory/pages/history_page_1/history_page_1.dart';
+import 'package:victory/pages/history_page_2/history_page_2.dart';
+import 'package:victory/pages/inbox/index.dart';
+import 'package:victory/pages/inbox_detail/view.dart';
+import 'package:victory/pages/mobile_mng/mobile_mng.dart';
+import 'package:victory/pages/more/more.dart';
+import 'package:victory/pages/payee/payee.dart';
+import 'package:victory/pages/pwd_mng/pwd_mng.dart';
+import 'package:victory/pages/rebate/view.dart';
+import 'package:victory/pages/search/bindings.dart';
+import 'package:victory/pages/search/view.dart';
+import 'package:victory/pages/vip/detail_view.dart';
+import 'package:victory/pages/vip/view.dart';
+import 'package:victory/pages/demo/demo.dart';
 part 'app_routes.dart';
 
 // ignore: avoid_classes_with_only_static_members
 class AppPages {
   static const INITIAL = Environment.isDev ? null : null;
-  // static const INITIAL = Environment.isDev ? AppRoutes.debug : null;
+  // static const INITIAL = Environment.isDev ? AppRoutes.demo : null;
   static final List<GetPage> routes = [
     // GetPage(name: '/', page: () => const ShellView(), preventDuplicates: true, popGesture: false, participatesInRootNavigator: true),
     if (Environment.isNotProd) GetPage(name: AppRoutes.demo, page: () => const DemoPage()),

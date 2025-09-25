@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../components/amount/amount.dart';
-import '../../components/back_button/back_button.dart';
-import '../../components/button/button.dart';
-import '../../components/multiple_text/multiple_text.dart';
-import '../../extensions/currency.extension.dart';
-import '../../iconfont/iconfont.dart';
-import '../../theme/theme.dart';
-import '../customer_service/customer_service.dart';
-import 'index.dart';
+import 'package:victory/components/amount/amount.dart';
+import 'package:victory/components/back_button/back_button.dart';
+import 'package:victory/components/button/button.dart';
+import 'package:victory/components/multiple_text/multiple_text.dart';
+import 'package:victory/extensions/currency.extension.dart';
+import 'package:victory/iconfont/iconfont.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/pages/customer_service/customer_service.dart';
+import 'package:victory/pages/rebate/index.dart';
 
 class VicRebatePage extends GetView<RebateController> {
   const VicRebatePage({super.key});

@@ -6,12 +6,14 @@ linter:
     library_private_types_in_public_api: false
     prefer_const_constructors: true
     non_constant_identifier_names: false
-    prefer_relative_imports: true
     require_trailing_commas: false
-    constant_identifier_names: false,
+    constant_identifier_names: false
+    unnecessary_library_name: false
+    # always_use_package_imports: true
 analyzer:
   errors:
     prefer_const_constructors: warning
+    # prefer_relative_imports: error
 
 formatter:
   page_width: 150

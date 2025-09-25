@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../shared/dialog/dialog.dart';
-import '../../stores/stores.dart';
+import 'package:get/get.dart';
+import 'package:victory/animations/fade_scale.dart';
+import 'package:victory/modals/views/announcement/announcement.dart';
+import 'package:victory/modals/views/completion/completion.dart';
+import 'package:victory/services/services.dart';
 
 class DemoPage extends StatefulWidget {
-  const DemoPage({Key? key}) : super(key: key);
+  const DemoPage({super.key});
 
   @override
   _DemoPageState createState() => _DemoPageState();
@@ -12,9 +15,14 @@ class DemoPage extends StatefulWidget {
 class _DemoPageState extends State<DemoPage> {
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      VicDialog.confirm(title: 'xxxx', content: 'yyy');
+    Future.delayed(const Duration(seconds: 1), () {
+      Get.generalDialog(
+        pageBuilder: (context, animation, secondaryAnimation) => const VicAnnouncementModal(),
+        // transitionDuration: const Duration(seconds: 3),
+        transitionBuilder: vicFadeScaleAnimationBuilder,
+      );
     });
+
     super.initState();
   }
 
@@ -29,7 +37,7 @@ class _DemoPageState extends State<DemoPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          stores.app.toHomePage();
+          services.app.toHomePage();
         },
       ),
     );

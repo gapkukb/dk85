@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../components/action_sheet/action_sheet.dart';
-import '../../components/action_sheet/action_sheet_builder.dart';
-import '../../components/state_block/state_block.dart';
-import 'index.dart';
+import 'package:victory/components/action_sheet/action_sheet.dart';
+import 'package:victory/components/action_sheet/action_sheet_builder.dart';
+import 'package:victory/components/state_block/state_block.dart';
+import 'package:victory/pages/history_withdraw/index.dart';
 
 class VicWithdrawalHistory extends GetView<WithdrawHisotryLogic> {
   const VicWithdrawalHistory({super.key});

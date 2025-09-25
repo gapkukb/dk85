@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../components/back_button/back_button.dart';
-import '../../models/inbox.model.dart';
-import '../../shared/date_view/data_view.dart';
-import 'index.dart';
-import 'widgets/widgets.dart';
+import 'package:victory/components/back_button/back_button.dart';
+import 'package:victory/models/inbox.model.dart';
+import 'package:victory/shared/date_view/data_view.dart';
+import 'package:victory/pages/inbox/index.dart';
+import 'package:victory/pages/inbox/widgets/widgets.dart';
 
 class VicInboxPage extends StatelessWidget {
   const VicInboxPage({super.key});

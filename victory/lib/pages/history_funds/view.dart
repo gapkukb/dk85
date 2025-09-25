@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../components/action_sheet/action_sheet.dart';
-import '../../components/action_sheet/action_sheet_builder.dart';
-import '../../components/button/button.dart';
-import '../../models/fund_record.model.dart';
-import '../../shared/date_view/data_view.dart';
-import '../../theme/theme.dart';
-import 'index.dart';
+import 'package:victory/components/action_sheet/action_sheet.dart';
+import 'package:victory/components/action_sheet/action_sheet_builder.dart';
+import 'package:victory/components/button/button.dart';
+import 'package:victory/models/fund_record.model.dart';
+import 'package:victory/shared/date_view/data_view.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/pages/history_funds/index.dart';
 
 class VicFundHistoryListPage extends StatelessWidget {
   const VicFundHistoryListPage({super.key});

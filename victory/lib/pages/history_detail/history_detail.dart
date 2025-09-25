@@ -2,18 +2,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../components/back_button/back_button.dart';
-import '../../components/button/button.dart';
-import '../../components/clipboard/clipboard.dart';
-import '../../components/multiple_text/multiple_text.dart';
-import '../../components/tile/tile.dart';
-import '../../constants/fund_state.dart';
-import '../../iconfont/iconfont.dart';
-import '../../models/fund_record.model.dart';
-import '../../models/models.dart';
-import '../../routes/app_pages.dart';
-import '../../theme/theme.dart';
-import '../customer_service/customer_service.dart';
+import 'package:victory/components/back_button/back_button.dart';
+import 'package:victory/components/button/button.dart';
+import 'package:victory/components/clipboard/clipboard.dart';
+import 'package:victory/components/multiple_text/multiple_text.dart';
+import 'package:victory/components/tile/tile.dart';
+import 'package:victory/constants/fund_state.dart';
+import 'package:victory/iconfont/iconfont.dart';
+import 'package:victory/models/fund_record.model.dart';
+import 'package:victory/models/models.dart';
+import 'package:victory/routes/app_pages.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/pages/customer_service/customer_service.dart';
 
 class VicFundHistoryDetailPage extends StatelessWidget {
   // 详情页类型：1-充值，2-提现

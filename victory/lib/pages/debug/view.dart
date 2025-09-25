@@ -4,9 +4,9 @@ import 'package:get/route_manager.dart';
 import 'package:restart_app/restart_app.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
-import '../../iconfont/iconfont.dart';
-import '../../shared/dialog/dialog.dart';
-import '../../shared/talker/talker.dart';
+import 'package:victory/iconfont/iconfont.dart';
+import 'package:victory/shared/dialogs/dialog.dart';
+import 'package:victory/shared/talker/talker.dart';
 
 class DebugView extends StatefulWidget {
   static bool enbale = false;
@@ -33,7 +33,7 @@ class _DebugViewState extends State<DebugView> {
       floatingWidgetHeight: 36,
       autoAlign: true,
       dx: 0,
-      dy: MediaQuery.of(context).size.height / 2,
+      dy: MediaQuery.of(context).size.height - 36,
       floatingWidget: FloatingActionButton.small(
         backgroundColor: Colors.red,
         heroTag: 'debug',

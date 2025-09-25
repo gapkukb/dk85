@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../iconfont/iconfont.dart';
-import '../../shared/locale/locale.dart';
-import '../customer_service/customer_service.dart';
-import 'controller.dart';
-import '../../theme/theme.dart';
-import 'log_in_view.dart';
-import 'sign_up_view.dart';
+import 'package:victory/iconfont/iconfont.dart';
+import 'package:victory/shared/locale/locale.dart';
+import 'package:victory/pages/customer_service/customer_service.dart';
+import 'package:victory/pages/auth/controller.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/pages/auth/log_in_view.dart';
+import 'package:victory/pages/auth/sign_up_view.dart';
 
 class VicAuthPage extends StatelessWidget {
   const VicAuthPage({super.key});

@@ -1,14 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../components/back_button/back_button.dart';
-import '../../components/button/button.dart';
-import '../../iconfont/iconfont.dart';
-import '../../routes/app_pages.dart';
-import '../../theme/theme.dart';
-import 'widgets/vip_level.dart';
-import 'widgets/widgets.dart';
-import 'index.dart';
+import 'package:victory/components/back_button/back_button.dart';
+import 'package:victory/components/button/button.dart';
+import 'package:victory/iconfont/iconfont.dart';
+import 'package:victory/routes/app_pages.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/pages/vip/widgets/vip_level.dart';
+import 'package:victory/pages/vip/widgets/widgets.dart';
+import 'package:victory/pages/vip/index.dart';
 
 class VicVipPage extends GetView<VicVipController> {
   const VicVipPage({super.key});

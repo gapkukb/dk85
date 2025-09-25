@@ -1,4 +1,4 @@
-part of 'stores.dart';
+part of 'services.dart';
 
 class _GameService extends GetxService with AuthMixin {
   final loading = true.obs;
@@ -18,7 +18,7 @@ class _GameService extends GetxService with AuthMixin {
   }
 
   Future queryLikes() async {
-    if (!stores.auth.authorized) return;
+    if (!services.auth.authorized) return;
     final r = await apis.game.queryFavorites();
     likesLoading.value = false;
     final likesMap = Map.fromEntries(r.list.map((item) => MapEntry("${item.platformId}${item.gameId}", 1)));
@@ -28,10 +28,11 @@ class _GameService extends GetxService with AuthMixin {
     platform.refresh();
   }
 
+  @override
   Future ensureInitialized() async {
     super.ensureInitialized();
     queryGames();
-    if (stores.auth.authorized) {
+    if (services.auth.authorized) {
       queryLikes();
     }
   }

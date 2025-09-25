@@ -1,12 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
-
-import '../../apis/apis.dart';
-import '../../extensions/string.extension.dart';
-import '../../helper/success.dart';
-import '../../models/models.dart';
-import '../../models/vip.model.dart';
-import '../../stores/stores.dart';
+import 'package:victory/apis/apis.dart';
+import 'package:victory/extensions/string.extension.dart';
+import 'package:victory/models/models.dart';
+import 'package:victory/models/vip.model.dart';
+import 'package:victory/shared/dialogs/dialog.dart';
+import 'package:victory/services/services.dart';
 
 class VicVipController extends GetxController {
   VicVipController();
@@ -18,7 +17,7 @@ class VicVipController extends GetxController {
   final hasMonthlyBouns = false.obs;
   final upgradeBouns = <VicVipBounsModel>[].obs;
 
-  VicUserModel get user => stores.user.info.value;
+  VicUserModel get user => services.user.info.value;
   int get level => int.tryParse(user.gradeName) ?? 0;
   VicVipLevelModel get nextLevel => grades.firstWhereOrNull((i) => i.name == (level + 1).toString()) ?? VicVipLevelModel.fromJson({});
   num get betLimit => nextLevel.betLimit.toNum();
@@ -94,8 +93,8 @@ class VicVipController extends GetxController {
   }
 
   void _next() {
-    stores.user.queryBalance();
-    showSuccess();
+    services.user.queryBalance();
+    VicDialog.success();
   }
 
   void jumpTo(int level) {

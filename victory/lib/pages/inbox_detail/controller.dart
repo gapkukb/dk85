@@ -1,4 +1,4 @@
-import '../../shared/view_model/view_model.dart';
+import 'package:victory/shared/view_model/view_model.dart';
 
 class InboxDetailController extends VicViewModel {
   @override

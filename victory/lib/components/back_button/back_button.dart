@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../iconfont/iconfont.dart';
+import 'package:victory/iconfont/iconfont.dart';
 
 class VicBackButton extends StatelessWidget {
   const VicBackButton({super.key});

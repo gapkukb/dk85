@@ -23,7 +23,7 @@ class _VicFavButtonState extends State<VicFavButton> {
           final f = widget.liked ? apis.game.favorite : apis.game.unfavorite;
           await f(payload: {'platform_id': widget.platormId, 'game_id': widget.gameId});
           widget.liked = !widget.liked;
-          stores.game.queryLikes();
+          services.game.queryLikes();
           // setState(() {});
           widget.onLike?.call(widget.liked);
         },

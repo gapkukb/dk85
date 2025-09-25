@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../shared/game/game_section.dart';
-import '../../shared/game/game_swiper.dart';
-import 'index.dart';
+import 'package:victory/shared/game/game_section.dart';
+import 'package:victory/shared/game/game_swiper.dart';
+import 'package:victory/pages/hot/index.dart';
 
 class VicHotPage extends GetView<VicHotController> {
   const VicHotPage({super.key});

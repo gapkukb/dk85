@@ -1,6 +1,6 @@
-import '../../theme/theme.dart';
-import '../button/button.dart';
-import '/iconfont/iconfont.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/components/button/button.dart';
+import 'package:victory/iconfont/iconfont.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

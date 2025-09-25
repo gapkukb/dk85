@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../components/amount/amount.dart';
-import '../../../extensions/currency.extension.dart';
-import '../../../extensions/string.extension.dart';
-import '../../../iconfont/iconfont.dart';
-import '../../../models/vip.model.dart';
-import '../../../theme/theme.dart';
-import '../index.dart';
+import 'package:victory/components/amount/amount.dart';
+import 'package:victory/extensions/currency.extension.dart';
+import 'package:victory/extensions/string.extension.dart';
+import 'package:victory/iconfont/iconfont.dart';
+import 'package:victory/models/vip.model.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/pages/vip/index.dart';
 
 class VicVipLevelTileWidget extends GetView<VicVipController> {
   final VicVipLevelModel vip;
@@ -36,7 +36,7 @@ class VicVipLevelTileWidget extends GetView<VicVipController> {
                 const Spacer(),
                 Text('vip.valid.bet'.tr, style: const TextStyle(fontSize: 12)),
                 Text(
-                  '${vip.betLimit.amount()}',
+                  vip.betLimit.amount(),
                   style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: AppColors.highlight),
                 ),
               ],

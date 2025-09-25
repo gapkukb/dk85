@@ -1,18 +1,18 @@
 part of 'storage.dart';
 
 class _Storage {
-  late final GetStorage _cache;
+  late final GetStorage cacher;
 
   _Storage(String name) {
-    _cache = GetStorage(name);
+    cacher = GetStorage(name);
   }
 
-  _Reactive<T> reactive<T>(String name, T defaultValue) => _Reactive<T>(name, defaultValue, _cache);
-  _Static<T> call<T>(String name, T defaultValue) => _Static<T>(name, defaultValue, _cache);
-  _Static<T?> nullable<T>(String name) => _Static<T?>(name, null, _cache);
+  _Reactive<T> reactive<T>(String name, T defaultValue) => _Reactive<T>(name, defaultValue, cacher);
+  _Static<T> call<T>(String name, T defaultValue) => _Static<T>(name, defaultValue, cacher);
+  _Static<T?> nullable<T>(String name) => _Static<T?>(name, null, cacher);
 
   Future init() {
-    return _cache.initStorage;
+    return cacher.initStorage;
   }
 }
 

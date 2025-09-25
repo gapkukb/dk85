@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../components/amount/amount.dart';
-import '../../../theme/theme.dart';
-import '../index.dart';
+import 'package:victory/components/amount/amount.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/pages/vip/index.dart';
 
 class VipBounsWidget extends GetView<VicVipController> {
   final IconData icon;

@@ -4,10 +4,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import '../../apis/apis.dart';
-import '../../components/input_base/input_base.dart';
-import '../../iconfont/iconfont.dart';
-import '../../theme/theme.dart';
+import 'package:victory/apis/apis.dart';
+import 'package:victory/components/input_base/input_base.dart';
+import 'package:victory/iconfont/iconfont.dart';
+import 'package:victory/theme/theme.dart';
 
 class VicGraphicInput extends StatefulWidget {
   final ValueChanged<String> onImageChange;

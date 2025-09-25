@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'theme.dart';
+import 'package:victory/theme/theme.dart';
 
-const _style = const TextStyle(fontSize: 14, color: AppColors.title);
-const textTeme = const TextTheme(
+const _style = TextStyle(fontSize: 14, color: AppColors.title);
+const textTeme = TextTheme(
   bodyLarge: _style,
   bodyMedium: _style,
   bodySmall: _style,
@@ -86,5 +86,9 @@ final lightTheme = ThemeData(
     focusedBorder: inputBorder,
     disabledBorder: inputBorder,
     focusedErrorBorder: inputBorder,
+  ),
+  dialogTheme: const DialogThemeData(
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
+    insetPadding: EdgeInsets.all(24),
   ),
 );

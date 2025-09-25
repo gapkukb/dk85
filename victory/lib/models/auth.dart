@@ -16,10 +16,9 @@ class VicAuthModel extends VicBaseModel {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() => {
     "token": token,
     "expires_in": expiresIn,
   };
 }
-
-void main(List<String> args) {}

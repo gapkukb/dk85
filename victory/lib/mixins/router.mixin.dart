@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import '../stores/stores.dart';
-import '/iconfont/iconfont.dart';
+import 'package:victory/services/services.dart';
+import 'package:victory/iconfont/iconfont.dart';
 
 mixin VicRouterMixin {
   final currentFootNavIndex = 0.obs;
@@ -17,8 +17,8 @@ mixin VicRouterMixin {
       Get.back();
     }
     if (index == currentFootNavIndex) return;
-    if (footNavItems[index].protected && stores.auth.unauthorized) {
-      stores.auth.toAuth();
+    if (footNavItems[index].protected && services.auth.unauthorized) {
+      services.auth.toAuth();
     } else {
       currentFootNavIndex.value = index;
     }

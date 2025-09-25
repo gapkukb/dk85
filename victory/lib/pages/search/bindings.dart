@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import 'controller.dart';
+import 'package:victory/pages/search/controller.dart';
 
 class VicSearchBinding implements Bindings {
   @override

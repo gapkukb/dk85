@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../components/button/button.dart';
-import '../../hooks/useForm.dart';
-import '../../shared/input_account/input_account.dart';
-import '../../shared/input_graphic/input_graphic.dart';
-import '../../shared/input_password/input_password.dart';
-import '../../shared/input_mobile/input_mobile.dart';
-import 'controller.dart';
+import 'package:victory/components/button/button.dart';
+import 'package:victory/hooks/useForm.dart';
+import 'package:victory/shared/input_account/input_account.dart';
+import 'package:victory/shared/input_graphic/input_graphic.dart';
+import 'package:victory/shared/input_password/input_password.dart';
+import 'package:victory/shared/input_mobile/input_mobile.dart';
+import 'package:victory/pages/auth/controller.dart';
 
 class VicSignUpView extends GetView<VicAuthCotroller> {
   const VicSignUpView({super.key});

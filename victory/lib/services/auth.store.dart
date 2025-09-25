@@ -1,4 +1,4 @@
-part of 'stores.dart';
+part of 'services.dart';
 
 final globalTokenManager = TokenManager();
 
@@ -47,8 +47,8 @@ class _AuthService extends GetxService {
     // 清空token和登录态
     tokenManager.value.clear();
     tokenManager.refresh();
-    stores.user.balance.value = 0;
-    stores.app.toHomePage();
+    services.user.balance.value = 0;
+    services.app.toHomePage();
   }
 
   Future ensureInitialized() async {}
@@ -60,7 +60,7 @@ class _AuthService extends GetxService {
       tokenManager.refresh();
       storage.token.update(token);
       // 获取用户信息
-      await stores.user.queryUserInfo(updateBalance: true);
+      await services.user.queryUserInfo(updateBalance: true);
       // 修改认证状态
       // authorized.value = true;
     } catch (e) {

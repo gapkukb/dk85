@@ -1,4 +1,4 @@
-part of 'stores.dart';
+part of 'services.dart';
 
 class _UserService extends GetxService {
   final balance = RxNum(0);
@@ -19,7 +19,7 @@ class _UserService extends GetxService {
   }
 
   Future queryBalance() async {
-    if (stores.auth.unauthorized || refreshing) return;
+    if (services.auth.unauthorized || refreshing) return;
     refreshing = true;
     final r = await Future.wait([apis.user.queryBalance(), Future.delayed(const Duration(seconds: 1))]).whenComplete(() {
       refreshing = false;
@@ -30,7 +30,7 @@ class _UserService extends GetxService {
   @override
   onInit() {
     super.onInit();
-    if (stores.auth.authorized) {
+    if (services.auth.authorized) {
       queryUserInfo();
       queryBalance();
     }

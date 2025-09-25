@@ -2,16 +2,16 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../apis/apis.dart';
-import '../../components/back_button/back_button.dart';
-import '../../components/button/button.dart';
-import '../../helper/success.dart';
-import '../../hooks/useForm.dart';
-import '../../shared/input_password/input_password.dart';
-import '../../stores/stores.dart';
-import '../../theme/colors.dart';
-import '../../theme/size.dart';
-import '../customer_service/customer_service.dart';
+import 'package:victory/apis/apis.dart';
+import 'package:victory/components/back_button/back_button.dart';
+import 'package:victory/components/button/button.dart';
+import 'package:victory/hooks/useForm.dart';
+import 'package:victory/shared/dialogs/dialog.dart';
+import 'package:victory/shared/input_password/input_password.dart';
+import 'package:victory/services/services.dart';
+import 'package:victory/theme/colors.dart';
+import 'package:victory/theme/size.dart';
+import 'package:victory/pages/customer_service/customer_service.dart';
 
 class VicPwdMngPage extends StatefulWidget {
   const VicPwdMngPage({super.key});
@@ -23,14 +23,14 @@ class VicPwdMngPage extends StatefulWidget {
 class _PwdManagerState extends State<VicPwdMngPage> {
   late final Useform form;
   final ctrl = TextEditingController();
-  final hasPass = stores.user.info.value.hasPass == 1;
+  final hasPass = services.user.info.value.hasPass == 1;
 
   @override
   void initState() {
     form = Useform((values) async {
       await (hasPass ? apis.user.changePwd(data: values) : apis.user.bindPwd(data: values));
-      await showSuccess();
-      stores.user.queryUserInfo();
+      await VicDialog.success();
+      services.user.queryUserInfo();
       Get.back();
     });
     super.initState();

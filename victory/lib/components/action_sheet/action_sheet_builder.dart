@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../theme/theme.dart';
-import '../button/button.dart';
-import 'action_sheet.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/components/button/button.dart';
+import 'package:victory/components/action_sheet/action_sheet.dart';
 
 class HistoryActionSheet<T> extends StatelessWidget {
   final String title;

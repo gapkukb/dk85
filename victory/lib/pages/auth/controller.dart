@@ -2,9 +2,9 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-import '../../shared/dialog/dialog.dart';
-import '../../shared/input_graphic/input_graphic.dart';
-import '../../stores/stores.dart';
+import 'package:victory/shared/dialogs/dialog.dart';
+import 'package:victory/shared/input_graphic/input_graphic.dart';
+import 'package:victory/services/services.dart';
 
 class VicAuthCotroller extends GetxController with VicGraphicInputController {
   final pwd = TextEditingController();
@@ -16,8 +16,8 @@ class VicAuthCotroller extends GetxController with VicGraphicInputController {
 
   void login(Object values) async {
     try {
-      await stores.auth.login(values);
-      VicDialog.success(text: 'Log In successful', onClose: stores.app.toHomePage);
+      await services.auth.login(values);
+      VicDialog.success(text: 'Log In successful', onClose: services.app.toHomePage);
     } catch (e) {
       refreshImage();
       rethrow;
@@ -26,7 +26,7 @@ class VicAuthCotroller extends GetxController with VicGraphicInputController {
 
   void register(Object values) async {
     try {
-      await stores.auth.register(values);
+      await services.auth.register(values);
       VicDialog.success(text: 'Sign up successful', onClose: Get.back);
     } catch (e) {
       refreshImage();

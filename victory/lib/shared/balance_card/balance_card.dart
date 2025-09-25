@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../stores/stores.dart';
-import '../../theme/theme.dart';
-import '../balance/balance.dart';
+import 'package:victory/services/services.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/shared/balance/balance.dart';
 
 class VicBalanceCard extends StatelessWidget {
   final double height;

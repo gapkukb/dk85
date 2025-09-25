@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
-import '../iconfont/iconfont.dart';
-import '../theme/theme.dart';
+import 'package:victory/iconfont/iconfont.dart';
+import 'package:victory/theme/theme.dart';
 
 class VicFundState {
   late final String text;

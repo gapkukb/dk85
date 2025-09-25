@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../components/network_image/network_image.dart';
-import '../../../iconfont/iconfont.dart';
-import '../../../models/models.dart';
-import '../../../theme/colors.dart';
-import '../controller.dart';
+import 'package:victory/components/network_image/network_image.dart';
+import 'package:victory/iconfont/iconfont.dart';
+import 'package:victory/models/models.dart';
+import 'package:victory/theme/colors.dart';
+import 'package:victory/pages/funds/controller.dart';
 
 class VicDepositChannels extends GetView<FundsController> {
+  const VicDepositChannels({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Material(

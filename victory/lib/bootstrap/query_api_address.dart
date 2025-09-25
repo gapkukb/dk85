@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:encrypt/encrypt.dart';
 
-import '../apis/apis.dart';
-import '../env.dart';
+import 'package:victory/apis/apis.dart';
+import 'package:victory/env.dart';
 
 List<String> _parse(String source) {
   final key = Key.fromUtf8(utf8.decode(base64Decode("YXNkZmxAc2ZnYUhzOCNhYQ==")));

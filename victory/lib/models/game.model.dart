@@ -22,6 +22,7 @@ class VicGamesModel extends VicBaseModel {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() => {
     "FISH": fish.map((x) => x.toJson()).toList(),
     "SLOTS": slots.map((x) => x.toJson()).toList(),

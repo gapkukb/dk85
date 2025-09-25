@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../components/button/button.dart';
-import '../../components/keep_alive_wrapper/keep_alive_wrapper.dart';
-import '../../routes/app_pages.dart';
-import '../../stores/stores.dart';
-import '../../shared/locale/locale.dart';
-import '../../shared/user_meta/user_meta.dart';
-import '../../theme/size.dart';
-import '../../theme/theme.dart';
-import '../customer_service/customer_service.dart';
-import '../fishing/index.dart';
-import '../hot/view.dart';
-import '../poker/view.dart';
-import '../slots/index.dart';
-import 'index.dart';
-import 'widgets/home_tab_bar.dart';
-import '../../iconfont/iconfont.dart';
+import 'package:victory/components/button/button.dart';
+import 'package:victory/components/keep_alive_wrapper/keep_alive_wrapper.dart';
+import 'package:victory/routes/app_pages.dart';
+import 'package:victory/services/services.dart';
+import 'package:victory/shared/locale/locale.dart';
+import 'package:victory/shared/user_meta/user_meta.dart';
+import 'package:victory/theme/size.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/pages/customer_service/customer_service.dart';
+import 'package:victory/pages/fishing/index.dart';
+import 'package:victory/pages/hot/view.dart';
+import 'package:victory/pages/poker/view.dart';
+import 'package:victory/pages/slots/index.dart';
+import 'package:victory/pages/home/index.dart';
+import 'package:victory/pages/home/widgets/home_tab_bar.dart';
+import 'package:victory/iconfont/iconfont.dart';
 
 class VicHomePage extends StatefulWidget {
-  const VicHomePage({Key? key}) : super(key: key);
+  const VicHomePage({super.key});
 
   @override
   State<VicHomePage> createState() => _VicHomePageState();
@@ -36,7 +36,7 @@ class _VicHomePageState extends State<VicHomePage> with AutomaticKeepAliveClient
 }
 
 class _HomeViewGetX extends GetView<VicHomeController> {
-  const _HomeViewGetX({Key? key}) : super(key: key);
+  const _HomeViewGetX({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,13 +1,13 @@
-import '../shared/logger/logger.dart';
-import '/storage/storage.dart';
+import 'package:victory/shared/logger/logger.dart';
+import 'package:victory/storage/storage.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 mixin class AudioMixin {
   static const _baseUrl = 'http://md-business-prd.oss-cn-hongkong.aliyuncs.com/files';
-  static const backgroundAudioUrl = _baseUrl + '/bgm.mp3';
-  static const topUpAudioUrl = _baseUrl + '/deposit.mp3';
+  static const backgroundAudioUrl = '$_baseUrl/bgm.mp3';
+  static const topUpAudioUrl = '$_baseUrl/deposit.mp3';
 
   final Map<String, Future<FileInfo>> waitings = {};
   AudioPlayer? _audioPlayer;

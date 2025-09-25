@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../components/network_image/network_image.dart';
-import '../../iconfont/iconfont.dart';
-import '../../routes/app_pages.dart';
-import '../../shared/user_meta/user_meta.dart';
-import '../../theme/theme.dart';
-import '../customer_service/customer_service.dart';
-import 'index.dart';
+import 'package:victory/components/network_image/network_image.dart';
+import 'package:victory/iconfont/iconfont.dart';
+import 'package:victory/routes/app_pages.dart';
+import 'package:victory/shared/user_meta/user_meta.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/pages/customer_service/customer_service.dart';
+import 'package:victory/pages/bonus/index.dart';
 
 class VicBonusPage extends StatefulWidget {
-  const VicBonusPage({Key? key}) : super(key: key);
+  const VicBonusPage({super.key});
 
   @override
   State<VicBonusPage> createState() => _VicBonusPageState();
@@ -28,7 +28,7 @@ class _VicBonusPageState extends State<VicBonusPage> with AutomaticKeepAliveClie
 }
 
 class _BonusViewGetX extends GetView<VicBonusController> {
-  const _BonusViewGetX({Key? key}) : super(key: key);
+  const _BonusViewGetX({super.key});
 
   @override
   Widget build(BuildContext context) {

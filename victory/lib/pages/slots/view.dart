@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../shared/game/game_page.dart';
-import '../../stores/stores.dart';
-import 'index.dart';
+import 'package:victory/shared/game/game_page.dart';
+import 'package:victory/services/services.dart';
+import 'package:victory/pages/slots/index.dart';
 
 class VicSlotsPage extends GetView<VicSlotsController> {
   const VicSlotsPage({super.key});
@@ -14,7 +14,7 @@ class VicSlotsPage extends GetView<VicSlotsController> {
       init: VicSlotsController(),
       id: "slots",
       builder: (_) {
-        return GamePageView(dataBuilder: () => stores.game.slots, adPosition: 2);
+        return GamePageView(dataBuilder: () => services.game.slots, adPosition: 2);
       },
     );
   }

@@ -1,11 +1,11 @@
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../apis/apis.dart';
-import '../../mixins/mixin_date_picker.dart';
-import '../../mixins/mixin_game_kind_picker.dart';
-import '../../models/game_record.model.dart';
-import '../../models/models.dart';
-import '../../shared/date_view/data_view_logic.dart';
+import 'package:victory/apis/apis.dart';
+import 'package:victory/mixins/mixin_date_picker.dart';
+import 'package:victory/mixins/mixin_game_kind_picker.dart';
+import 'package:victory/models/game_record.model.dart';
+import 'package:victory/models/models.dart';
+import 'package:victory/shared/date_view/data_view_logic.dart';
 
 class HistoryGamesController extends DataViewLogic<VicGameHistoryModel> with DatePickerMixin, GameKindPickerMixin {
   @override

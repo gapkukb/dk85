@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../components/button/button.dart';
-import '../../components/tap_counter/tap_counter.dart';
-import '../../components/vip_badge/vip_badge.dart';
-import '../../routes/app_pages.dart';
-import '../../stores/stores.dart';
-import '../../theme/theme.dart';
-import '../balance/balance.dart';
-import '../logger/logger.dart';
+import 'package:victory/components/button/button.dart';
+import 'package:victory/components/tap_counter/tap_counter.dart';
+import 'package:victory/components/vip_badge/vip_badge.dart';
+import 'package:victory/routes/app_pages.dart';
+import 'package:victory/services/services.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/shared/balance/balance.dart';
+import 'package:victory/shared/logger/logger.dart';
 
 class VicUserMeta extends StatelessWidget {
-  const VicUserMeta({Key? key}) : super(key: key);
+  const VicUserMeta({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => stores.auth.authorized ? meta : meta,
+      () => services.auth.authorized ? meta : authButton,
     );
   }
 
@@ -26,7 +26,7 @@ class VicUserMeta extends StatelessWidget {
       textBold: true,
       text: 'LOG IN | SIGN UP',
       onPressed: () {
-        // stores.auth.login();
+        // services.auth.login();
       },
     );
   }
@@ -59,7 +59,7 @@ class VicUserMeta extends StatelessWidget {
                     spacing: 4,
                     children: [
                       Text(
-                        stores.user.info.value.username,
+                        services.user.info.value.username,
                         style: const TextStyle(fontSize: 10, color: AppColors.FFF3C5, height: 1, fontWeight: FontWeight.normal),
                       ),
                       const SizedBox(
@@ -83,7 +83,7 @@ class VicUserMeta extends StatelessWidget {
                   ),
                 ],
               ),
-              _topUpButton,
+              _depositButton,
             ],
           ),
         ),
@@ -91,7 +91,7 @@ class VicUserMeta extends StatelessWidget {
     );
   }
 
-  Widget get _topUpButton {
+  Widget get _depositButton {
     return VicButton(
       height: 32,
       rounded: true,
@@ -100,7 +100,7 @@ class VicUserMeta extends StatelessWidget {
       text: 'app.deposit'.tr,
       textBold: true,
       fontSize: 14,
-      onPressed: () => stores.app.toFundsPage(),
+      onPressed: () => services.app.toFundsPage(),
     );
   }
 }

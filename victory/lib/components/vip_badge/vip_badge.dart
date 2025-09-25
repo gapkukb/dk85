@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../theme/theme.dart';
+import 'package:victory/theme/theme.dart';
 
 class VipBadge extends StatelessWidget {
   final int level;
-  const VipBadge({Key? key, required this.level}) : super(key: key);
+  const VipBadge({super.key, required this.level});
 
   @override
   Widget build(BuildContext context) {

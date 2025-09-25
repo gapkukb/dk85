@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../stores/stores.dart';
-import '../../../theme/theme.dart';
-import '../index.dart';
-import 'requirement.dart';
+import 'package:victory/services/services.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/pages/vip/index.dart';
+import 'package:victory/pages/vip/widgets/requirement.dart';
 
 /// hello
 class VicVipCardWidget extends GetView<VicVipController> {
@@ -23,7 +23,7 @@ class VicVipCardWidget extends GetView<VicVipController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 4),
-          Text("${stores.user.info.value.shortName}", style: const TextStyle(fontSize: 12)),
+          Text(services.user.info.value.shortName, style: const TextStyle(fontSize: 12)),
           const SizedBox(height: 20),
           buildLevel(),
           const SizedBox(height: 8),
@@ -60,7 +60,7 @@ class VicVipCardWidget extends GetView<VicVipController> {
           return gradient.createShader(bounds);
         },
         child: Text(
-          "${stores.user.info.value.gradeId}",
+          "${services.user.info.value.gradeId}",
           style: const TextStyle(fontSize: 48, fontWeight: FontWeight.w900, fontStyle: FontStyle.italic, color: Colors.white, height: 1),
         ),
       ),

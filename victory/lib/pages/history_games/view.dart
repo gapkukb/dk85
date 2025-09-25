@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../components/action_sheet/action_sheet.dart';
-import '../../components/action_sheet/action_sheet_builder.dart';
-import '../../models/game_record.model.dart';
-import '../../shared/date_view/data_view.dart';
-import 'index.dart';
+import 'package:victory/components/action_sheet/action_sheet.dart';
+import 'package:victory/components/action_sheet/action_sheet_builder.dart';
+import 'package:victory/models/game_record.model.dart';
+import 'package:victory/shared/date_view/data_view.dart';
+import 'package:victory/pages/history_games/index.dart';
 
 class VicGameHistory extends StatelessWidget {
   const VicGameHistory({super.key});

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-import '../../models/models.dart';
-import '../../stores/stores.dart';
+import 'package:victory/models/models.dart';
+import 'package:victory/services/services.dart';
 
 class VicHotController extends GetxController {
   final hotGames = <VicGameModel>[].obs;
@@ -17,7 +17,7 @@ class VicHotController extends GetxController {
     final List<VicGameModel> mostLikes = [];
     final List<VicGameModel> others = [];
 
-    for (var game in stores.game.all) {
+    for (var game in services.game.all) {
       if (game.hot) {
         hotGames.add(game);
       } else if (game.recommend) {
@@ -42,6 +42,6 @@ class VicHotController extends GetxController {
   void onReady() {
     super.onReady();
     // _react(1);
-    ever(stores.game.loading, _react);
+    ever(services.game.loading, _react);
   }
 }

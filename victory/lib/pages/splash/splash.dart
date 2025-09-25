@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../constants/cs_url.dart';
-import '/helper/loading.dart';
-import '../../theme/theme.dart';
+import 'package:victory/constants/cs_url.dart';
+import 'package:victory/helper/loading.dart';
+import 'package:victory/theme/theme.dart';
 
 class VicSplashPage extends StatefulWidget {
   final String? erorr;

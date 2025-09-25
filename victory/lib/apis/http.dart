@@ -1,7 +1,7 @@
 part of 'apis.dart';
 
 VicHttp _create() {
-  const duration = const Duration(seconds: 10);
+  const duration = Duration(seconds: 10);
   final http = VicHttp(BaseOptions(connectTimeout: duration, sendTimeout: duration, receiveTimeout: duration));
 
   VoidCallback? cancel;
@@ -31,18 +31,18 @@ VicHttp _create() {
       showError: (msg) => toast(msg),
     ),
   );
-  http.dio.interceptors.add(
-    TalkerDioLogger(
-      talker: talker,
-      settings: TalkerDioLoggerSettings(
-        printRequestHeaders: true,
-        printResponseHeaders: true,
-        printResponseMessage: true,
-        requestFilter: (options) => options.custom.debug,
-        responseFilter: (response) => response.requestOptions.custom.debug,
-      ),
-    ),
-  );
+  // http.dio.interceptors.add(
+  //   TalkerDioLogger(
+  //     talker: talker,
+  //     settings: TalkerDioLoggerSettings(
+  //       printRequestHeaders: true,
+  //       printResponseHeaders: true,
+  //       printResponseMessage: true,
+  //       requestFilter: (options) => options.custom.debug,
+  //       responseFilter: (response) => response.requestOptions.custom.debug,
+  //     ),
+  //   ),
+  // );
 
   return http;
 }

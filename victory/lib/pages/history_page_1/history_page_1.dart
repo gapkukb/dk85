@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../components/back_button/back_button.dart';
-import '../../components/keep_alive_wrapper/keep_alive_wrapper.dart';
-import '../customer_service/customer_service.dart';
-import '../history_funds/index.dart';
-import '../history_games/index.dart';
+import 'package:victory/components/back_button/back_button.dart';
+import 'package:victory/components/keep_alive_wrapper/keep_alive_wrapper.dart';
+import 'package:victory/pages/customer_service/customer_service.dart';
+import 'package:victory/pages/history_funds/index.dart';
+import 'package:victory/pages/history_games/index.dart';
 
 class VicTransHistoryPage extends StatefulWidget {
   const VicTransHistoryPage({super.key});

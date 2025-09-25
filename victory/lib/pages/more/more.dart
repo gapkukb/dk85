@@ -2,15 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../components/back_button/back_button.dart';
-import '../../components/button/button.dart';
-import '../../components/tile/tile.dart';
-import '../../shared/app_info/app_info.dart';
-import '../../shared/dialog/dialog.dart';
-import '../../shared/locale/locale.dart';
-import '../../storage/storage.dart';
-import '../../stores/stores.dart';
-import '../../theme/theme.dart';
+import 'package:victory/components/back_button/back_button.dart';
+import 'package:victory/components/button/button.dart';
+import 'package:victory/components/tile/tile.dart';
+import 'package:victory/shared/app_info/app_info.dart';
+import 'package:victory/shared/dialogs/dialog.dart';
+import 'package:victory/shared/locale/locale.dart';
+import 'package:victory/storage/storage.dart';
+import 'package:victory/services/services.dart';
+import 'package:victory/theme/theme.dart';
 
 class VicMorePage extends StatefulWidget {
   const VicMorePage({super.key});
@@ -32,7 +32,7 @@ class _VicMorePageState extends State<VicMorePage> {
             margin: const EdgeInsets.all(0),
             children: [
               LocalePicker(
-                child: VicTile(titleText: 'app.language'.tr, trailing: Obx(() => Text(stores.app.currentLocaleName))),
+                child: VicTile(titleText: 'app.language'.tr, trailing: Obx(() => Text(services.app.currentLocaleName))),
               ),
 
               VicTile(titleText: 'app.version'.tr, trailing: Text(VicAppInfo.shared.buildNumber), isLink: false),
@@ -46,7 +46,7 @@ class _VicMorePageState extends State<VicMorePage> {
                       value: storage.audio.value,
                       onChanged: (value) {
                         storage.audio.update(value);
-                        value ? stores.app.activeAudio() : stores.app.deactiveAudio();
+                        value ? services.app.activeAudio() : services.app.deactiveAudio();
                       },
                     ),
                   ),
@@ -63,7 +63,7 @@ class _VicMorePageState extends State<VicMorePage> {
             // height: VicButtonHeight.medium,
             backgroundColor: AppColors.highlight,
             onPressed: () {
-              VicDialog.confirm(title: 'logout.title'.tr, onConfirm: stores.auth.logout);
+              VicDialog.confirm(title: 'logout.title'.tr, onConfirm: services.auth.logout);
             },
             text: 'app.logout'.tr,
           ),

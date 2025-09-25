@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../models/fund_record.model.dart';
-import '../../../routes/app_pages.dart';
-import '../../../theme/theme.dart';
+import 'package:victory/models/fund_record.model.dart';
+import 'package:victory/routes/app_pages.dart';
+import 'package:victory/theme/theme.dart';
 
 const Map<int, Color> _colorMap = {1: AppColors.warn, 2: AppColors.success, 3: AppColors.warn};
 const Map<int, String> _titleMap = {1: 'Pending Payment', 2: 'Payment Successful', 3: 'Payment Failed'};

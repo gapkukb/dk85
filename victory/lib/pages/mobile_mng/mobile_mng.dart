@@ -1,17 +1,15 @@
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../apis/apis.dart';
-import '../../components/back_button/back_button.dart';
-import '../../components/button/button.dart';
-import '../../helper/success.dart';
-import '../../hooks/useForm.dart';
-import '../../models/models.dart';
-import '../../shared/input_mobile/input_mobile.dart';
-import '../../stores/stores.dart';
-import '../../theme/theme.dart';
-import '../customer_service/customer_service.dart';
+import 'package:victory/apis/apis.dart';
+import 'package:victory/components/back_button/back_button.dart';
+import 'package:victory/components/button/button.dart';
+import 'package:victory/hooks/useForm.dart';
+import 'package:victory/models/models.dart';
+import 'package:victory/shared/dialogs/dialog.dart';
+import 'package:victory/shared/input_mobile/input_mobile.dart';
+import 'package:victory/services/services.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/pages/customer_service/customer_service.dart';
 
 class VicMobileMngPage extends StatefulWidget {
   const VicMobileMngPage({super.key});
@@ -21,15 +19,15 @@ class VicMobileMngPage extends StatefulWidget {
 }
 
 class _MobileState extends State<VicMobileMngPage> {
-  VicUserModel get user => stores.user.info.value;
+  VicUserModel get user => services.user.info.value;
   late final Useform form;
 
   @override
   void initState() {
     form = Useform((values) async {
       await apis.user.bindMobile(data: values);
-      showSuccess();
-      stores.user.queryUserInfo();
+      VicDialog.success();
+      services.user.queryUserInfo();
       setState(() {});
     });
     super.initState();

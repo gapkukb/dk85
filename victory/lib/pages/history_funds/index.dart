@@ -1,4 +1,4 @@
-library history_funds;
+library;
 
 export './controller.dart';
 export './view.dart';

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../apis/apis.dart';
-import '../../models/models.dart';
-import '../../routes/app_pages.dart';
-import '../../stores/stores.dart';
-import 'widgets/deposit_filling.dart';
-import 'widgets/withdrawal_filling.dart';
+import 'package:victory/apis/apis.dart';
+import 'package:victory/models/models.dart';
+import 'package:victory/routes/app_pages.dart';
+import 'package:victory/services/services.dart';
+import 'package:victory/pages/funds/widgets/deposit_filling.dart';
+import 'package:victory/pages/funds/widgets/withdrawal_filling.dart';
 
 class FundsController extends GetxController with GetSingleTickerProviderStateMixin {
   final channelsDeposit = <VicDepositChannelModel>[].obs;
@@ -19,15 +19,15 @@ class FundsController extends GetxController with GetSingleTickerProviderStateMi
   final withdrawAmountCtrl = TextEditingController();
 
   openDepositChannel(VicDepositChannelModel channel) async {
-    stores.app.playTopUpAudio();
+    services.app.playTopUpAudio();
     await Get.bottomSheet(VicDepositFilling(channel), isScrollControlled: true);
-    stores.app.playBackgroundAudio();
+    services.app.playBackgroundAudio();
   }
 
   openWithdrawChannel(VicWithdrawalChannelModel channel) async {
-    stores.app.playTopUpAudio();
+    services.app.playTopUpAudio();
     await Get.bottomSheet(VicWithdrawalFilling(channel), isScrollControlled: true);
-    stores.app.playBackgroundAudio();
+    services.app.playBackgroundAudio();
   }
 
   deposit() {
@@ -36,7 +36,7 @@ class FundsController extends GetxController with GetSingleTickerProviderStateMi
 
   withdraw() {}
   withdrawAll() {
-    withdrawAmountCtrl.text = stores.user.balance.toString();
+    withdrawAmountCtrl.text = services.user.balance.toString();
   }
 
   void setAmount(String n) {

@@ -34,6 +34,7 @@ class VicBannerModel extends VicBaseModel {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() => {
     "id": id,
     "name": name,

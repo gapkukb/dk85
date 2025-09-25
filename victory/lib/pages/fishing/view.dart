@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../shared/game/game_page.dart';
-import '../../stores/stores.dart';
-import 'index.dart';
+import 'package:victory/shared/game/game_page.dart';
+import 'package:victory/services/services.dart';
+import 'package:victory/pages/fishing/index.dart';
 
 class VicFishingPage extends GetView<VicFishingController> {
   const VicFishingPage({super.key});
@@ -14,7 +14,7 @@ class VicFishingPage extends GetView<VicFishingController> {
       init: VicFishingController(),
       id: "fishing",
       builder: (_) {
-        return GamePageView(dataBuilder: () => stores.game.slots, adPosition: 3);
+        return GamePageView(dataBuilder: () => services.game.slots, adPosition: 3);
       },
     );
   }

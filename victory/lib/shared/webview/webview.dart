@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import '../../stores/stores.dart';
-import '../../theme/theme.dart';
-import '../dialog/dialog.dart';
+import 'package:victory/services/services.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/shared/dialogs/dialog.dart';
 
 part 'interrupt_fullscreen.dart';
 
@@ -37,7 +37,7 @@ class _VicWebviewState extends State<VicWebview> {
   void initState() {
     _initilize();
     if (widget.pauseAudio) {
-      stores.app.pauseAudio();
+      services.app.pauseAudio();
     }
     if (widget.content == null) {
       controller.loadRequest(Uri.parse(widget.url!));
@@ -52,7 +52,7 @@ class _VicWebviewState extends State<VicWebview> {
   @override
   void dispose() {
     if (widget.pauseAudio) {
-      stores.app.resumeAudio();
+      services.app.resumeAudio();
     }
     super.dispose();
   }

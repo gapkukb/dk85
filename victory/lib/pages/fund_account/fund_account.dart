@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../components/back_button/back_button.dart';
-import '../../iconfont/iconfont.dart';
-import '../../theme/theme.dart';
+import 'package:victory/components/back_button/back_button.dart';
+import 'package:victory/iconfont/iconfont.dart';
+import 'package:victory/theme/theme.dart';
 
 class VicFundAccountPage extends StatelessWidget {
   const VicFundAccountPage({super.key});

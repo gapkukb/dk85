@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../models/inbox.model.dart';
-import '../../shared/single_child_view/single_child_view.dart';
-import '../inbox/widgets/widgets.dart';
+import 'package:victory/models/inbox.model.dart';
+import 'package:victory/shared/single_child_view/single_child_view.dart';
+import 'package:victory/pages/inbox/widgets/widgets.dart';
 
 class VicInboxDetailsPage extends StatelessWidget {
   const VicInboxDetailsPage({super.key});

@@ -3,7 +3,7 @@ import 'package:uuid/uuid.dart';
 import 'package:advertising_id/advertising_id.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:mobile_device_identifier/mobile_device_identifier.dart';
-import '/storage/storage.dart';
+import 'package:victory/storage/storage.dart';
 
 class VicAppInfo {
   static final VicAppInfo shared = VicAppInfo._internal();

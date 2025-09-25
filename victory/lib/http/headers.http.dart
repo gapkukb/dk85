@@ -8,7 +8,7 @@ class HeadersHttpInterceptor extends Interceptor {
       'X-App-Package': VicAppInfo.shared.packageName,
       'X-Qid': _uuid.generate(),
       'X-Version': VicAppInfo.shared.buildNumber,
-      HttpHeaders.acceptLanguageHeader: stores.app.locale.value,
+      HttpHeaders.acceptLanguageHeader: services.app.locale.value,
     });
     super.onRequest(options, handler);
   }

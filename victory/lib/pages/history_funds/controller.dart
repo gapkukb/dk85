@@ -1,9 +1,9 @@
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../apis/apis.dart';
-import '../../mixins/mixin_date_picker.dart';
-import '../../models/fund_record.model.dart';
-import '../../shared/date_view/data_view_logic.dart';
+import 'package:victory/apis/apis.dart';
+import 'package:victory/mixins/mixin_date_picker.dart';
+import 'package:victory/models/fund_record.model.dart';
+import 'package:victory/shared/date_view/data_view_logic.dart';
 
 class HistoryFundsController extends DataViewLogic<VicFundHisotryModel> with DatePickerMixin {
   @override

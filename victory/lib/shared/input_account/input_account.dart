@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../components/input_base/input_base.dart';
-import '../../iconfont/iconfont.dart';
+import 'package:victory/components/input_base/input_base.dart';
+import 'package:victory/iconfont/iconfont.dart';
 
 class VicAccInput extends StatefulWidget {
   final bool changeable;

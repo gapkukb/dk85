@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../components/back_button/back_button.dart';
-import '../../components/state_block/state_block.dart';
-import '../../shared/game/game.dart';
-import '../../stores/stores.dart';
-import '../../theme/size.dart';
-import 'index.dart';
+import 'package:victory/components/back_button/back_button.dart';
+import 'package:victory/components/state_block/state_block.dart';
+import 'package:victory/shared/game/game.dart';
+import 'package:victory/services/services.dart';
+import 'package:victory/theme/size.dart';
+import 'package:victory/pages/favorites/index.dart';
 
 class VicFavPage extends GetView<VicFavController> {
   const VicFavPage({super.key});
@@ -23,9 +23,9 @@ class VicFavPage extends GetView<VicFavController> {
             child: SafeArea(
               child: Obx(
                 () => VicGameGrid(
-                  loading: stores.game.likesLoading.value,
+                  loading: services.game.likesLoading.value,
                   gameList: controller.games,
-                  empty: () => VicStateBlock(buttonText: 'fav.browser'.tr, onPressed: stores.app.toHomePage),
+                  empty: () => VicStateBlock(buttonText: 'fav.browser'.tr, onPressed: services.app.toHomePage),
                 ),
               ),
             ),

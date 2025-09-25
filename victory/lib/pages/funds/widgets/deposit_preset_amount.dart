@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/state_manager.dart';
-import '../../../theme/theme.dart';
-import '../index.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/pages/funds/index.dart';
 
 class VicDepositPresets extends GetView<FundsController> {
   final List<String> presets;

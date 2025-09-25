@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
-import '../../theme/theme.dart';
+import 'package:victory/theme/theme.dart';
 
 const _kItemHeight = 48.0;
 const _kRdius = BorderRadius.all(Radius.circular(8.0));

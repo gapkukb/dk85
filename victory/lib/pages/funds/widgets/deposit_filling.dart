@@ -3,23 +3,23 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../../apis/apis.dart';
-import '../../../components/button/button.dart';
-import '../../../components/input_base/input_base.dart';
-import '../../../components/network_image/network_image.dart';
-import '../../../hooks/useForm.dart';
-import '../../../iconfont/iconfont.dart';
-import '../../../models/models.dart';
-import '../../../routes/app_pages.dart';
-import '../../../theme/colors.dart';
-import '../../customer_service/customer_service.dart';
-import '../controller.dart';
-import 'deposit_preset_amount.dart';
+import 'package:victory/apis/apis.dart';
+import 'package:victory/components/button/button.dart';
+import 'package:victory/components/input_base/input_base.dart';
+import 'package:victory/components/network_image/network_image.dart';
+import 'package:victory/hooks/useForm.dart';
+import 'package:victory/iconfont/iconfont.dart';
+import 'package:victory/models/models.dart';
+import 'package:victory/routes/app_pages.dart';
+import 'package:victory/theme/colors.dart';
+import 'package:victory/pages/customer_service/customer_service.dart';
+import 'package:victory/pages/funds/controller.dart';
+import 'package:victory/pages/funds/widgets/deposit_preset_amount.dart';
 
 class VicDepositFilling extends GetView<FundsController> {
   final VicDepositChannelModel channel;
 
-  VicDepositFilling(this.channel);
+  const VicDepositFilling(this.channel, {super.key});
   @override
   Widget build(BuildContext context) {
     final form = Useform((values) async {

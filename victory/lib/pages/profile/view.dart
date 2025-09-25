@@ -2,17 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../components/button/button.dart';
-import '../../components/tile/tile.dart';
-import '../../routes/app_pages.dart';
-import '../../shared/balance_card/balance_card.dart';
-import '../../stores/stores.dart';
-import '../../theme/theme.dart';
-import '../customer_service/customer_service.dart';
-import 'index.dart';
+import 'package:victory/components/button/button.dart';
+import 'package:victory/components/tile/tile.dart';
+import 'package:victory/routes/app_pages.dart';
+import 'package:victory/shared/balance_card/balance_card.dart';
+import 'package:victory/services/services.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/pages/customer_service/customer_service.dart';
+import 'package:victory/pages/profile/index.dart';
 
 class VicProfilePage extends StatefulWidget {
-  const VicProfilePage({Key? key}) : super(key: key);
+  const VicProfilePage({super.key});
 
   @override
   State<VicProfilePage> createState() => _VicProfilePageState();
@@ -30,7 +30,7 @@ class _VicProfilePageState extends State<VicProfilePage> with AutomaticKeepAlive
 }
 
 class _ProfileViewGetX extends GetView<VicProfileController> {
-  const _ProfileViewGetX({Key? key}) : super(key: key);
+  const _ProfileViewGetX({super.key});
 
   // 主视图
   Widget _buildView() {
@@ -75,7 +75,7 @@ class _ProfileViewGetX extends GetView<VicProfileController> {
             padding: const EdgeInsets.symmetric(horizontal: 8),
             decoration: BoxDecoration(color: const Color(0xfffffac4), borderRadius: BorderRadius.circular(100)),
             child: Text(
-              'VIP${stores.user.info.value.gradeName}',
+              'VIP${services.user.info.value.gradeName}',
               style: const TextStyle(fontSize: 12, fontStyle: FontStyle.italic, color: AppColors.primary, fontWeight: FontWeight.bold),
             ),
           ),
@@ -96,7 +96,7 @@ class _ProfileViewGetX extends GetView<VicProfileController> {
                 Flexible(
                   fit: FlexFit.tight,
                   child: VicButton(
-                    onPressed: stores.app.toFundsPage,
+                    onPressed: services.app.toFundsPage,
                     rounded: true,
                     text: 'app.deposit'.tr,
                     backgroundColor: AppColors.white,
@@ -107,7 +107,7 @@ class _ProfileViewGetX extends GetView<VicProfileController> {
                   fit: FlexFit.tight,
                   child: VicButton(
                     onPressed: () {
-                      stores.app.toFundsPage(1);
+                      services.app.toFundsPage(1);
                     },
                     rounded: true,
                     outlined: true,

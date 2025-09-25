@@ -3,18 +3,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
-import '../../apis/apis.dart';
-import '../../components/amount/amount.dart';
-import '../../components/back_button/back_button.dart';
-import '../../components/button/button.dart';
-import '../../components/clipboard/clipboard.dart';
-import '../../components/network_image/network_image.dart';
-import '../../helper/success.dart';
-import '../../iconfont/iconfont.dart';
-import '../../models/models.dart';
-import '../../theme/theme.dart';
-import '../customer_service/customer_service.dart';
+import 'package:victory/apis/apis.dart';
+import 'package:victory/components/amount/amount.dart';
+import 'package:victory/components/back_button/back_button.dart';
+import 'package:victory/components/button/button.dart';
+import 'package:victory/components/clipboard/clipboard.dart';
+import 'package:victory/components/network_image/network_image.dart';
+import 'package:victory/iconfont/iconfont.dart';
+import 'package:victory/models/models.dart';
+import 'package:victory/shared/dialogs/dialog.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/pages/customer_service/customer_service.dart';
 
 class VicPayeePage extends StatefulWidget {
   const VicPayeePage({super.key});
@@ -165,7 +164,7 @@ class _VicPayeePageState extends State<VicPayeePage> {
       return;
     }
     await apis.fund.matchTopup(data: {'sys_trade_no': order.sysTradeNo, 'bank_serial': value, 'account_id': order.channelId});
-    await showSuccess();
+    await VicDialog.success();
     Get.back();
     Get.back();
   }

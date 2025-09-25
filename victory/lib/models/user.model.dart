@@ -120,6 +120,7 @@ class VicUserModel extends VicBaseModel {
 
   String get shortName => username.length > 8 ? '${username.substring(0, 4)}***${username.substring(username.length - 3)}' : username;
 
+  @override
   Map<String, dynamic> toJson() => {
     "id": id,
     "username": username,
@@ -128,7 +129,7 @@ class VicUserModel extends VicBaseModel {
     "mobile": mobile,
     "qq": qq,
     "sex": sex,
-    "birthday": "${birthday.toString()}",
+    "birthday": birthday.toString(),
     "last_login_time": lastLoginTime?.toIso8601String(),
     "last_login_address": lastLoginAddress,
     "show_beginner_guide": showBeginnerGuide,

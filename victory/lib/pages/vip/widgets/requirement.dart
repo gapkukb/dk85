@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../extensions/currency.extension.dart';
-import '../../../theme/theme.dart';
-import '../index.dart';
+import 'package:victory/extensions/currency.extension.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/pages/vip/index.dart';
 
 /// hello
 class VicRequirementWidget extends GetView<VicVipController> {

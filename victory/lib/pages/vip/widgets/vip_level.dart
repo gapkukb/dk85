@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../extensions/currency.extension.dart';
-import '../../../extensions/string.extension.dart';
-import '../../../iconfont/iconfont.dart';
-import '../../../models/vip.model.dart';
-import '../../../stores/stores.dart';
-import '../../../theme/theme.dart';
-import '../index.dart';
-import 'vip_bouns.dart';
+import 'package:victory/extensions/currency.extension.dart';
+import 'package:victory/extensions/string.extension.dart';
+import 'package:victory/iconfont/iconfont.dart';
+import 'package:victory/models/vip.model.dart';
+import 'package:victory/services/services.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/pages/vip/index.dart';
+import 'package:victory/pages/vip/widgets/vip_bouns.dart';
 
 class VicVipLevelWidget extends GetView<VicVipController> {
   final VicVipLevelModel grade;
   const VicVipLevelWidget(this.grade, {super.key});
 
-  bool get enable => grade.name == stores.user.info.value.gradeId.toString();
+  bool get enable => grade.name == services.user.info.value.gradeId.toString();
   VicVipBounsModel? get current => controller.upgradeBouns.firstWhereOrNull((item) {
     return item.gradeId == grade.id;
   });

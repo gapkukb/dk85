@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../components/back_button/back_button.dart';
-import '../../components/tile/tile.dart';
-import '../../models/models.dart';
-import '../../routes/app_pages.dart';
-import '../../stores/stores.dart';
-import '../../theme/theme.dart';
+import 'package:victory/components/back_button/back_button.dart';
+import 'package:victory/components/tile/tile.dart';
+import 'package:victory/models/models.dart';
+import 'package:victory/routes/app_pages.dart';
+import 'package:victory/services/services.dart';
+import 'package:victory/theme/theme.dart';
 
 class VicAccountPage extends StatefulWidget {
   const VicAccountPage({super.key});
@@ -17,7 +17,7 @@ class VicAccountPage extends StatefulWidget {
 }
 
 class _VicAccountPageState extends State<VicAccountPage> {
-  VicUserModel get user => stores.user.info.value;
+  VicUserModel get user => services.user.info.value;
   final bindStyle = const TextStyle(backgroundColor: AppColors.primary);
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import 'controller.dart';
+import 'package:victory/pages/inbox/controller.dart';
 
 class VicInboxBinding implements Bindings {
   @override

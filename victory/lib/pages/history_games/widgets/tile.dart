@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../components/multiple_text/multiple_text.dart';
-import '../../../models/game_record.model.dart';
-import '../../../theme/theme.dart';
+import 'package:victory/components/multiple_text/multiple_text.dart';
+import 'package:victory/models/game_record.model.dart';
+import 'package:victory/theme/theme.dart';
 
 class HistoryGamesTile extends StatelessWidget {
   final VicGameHistoryModel record;

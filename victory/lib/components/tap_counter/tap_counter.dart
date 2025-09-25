@@ -6,11 +6,11 @@ class VicTapCounter extends StatelessWidget {
   final int count;
   final void Function(int count)? onTaps;
 
-  const VicTapCounter({Key? key, required this.child, this.count = 1, this.onTaps}) : super(key: key);
+  const VicTapCounter({super.key, required this.child, this.count = 1, this.onTaps});
 
   @override
   Widget build(BuildContext context) {
-    if (count <= 0 || this.onTaps == null) return child;
+    if (count <= 0 || onTaps == null) return child;
     return RawGestureDetector(
       gestures: {
         SerialTapGestureRecognizer: GestureRecognizerFactoryWithHandlers<SerialTapGestureRecognizer>(SerialTapGestureRecognizer.new, (
@@ -18,7 +18,7 @@ class VicTapCounter extends StatelessWidget {
         ) {
           instance.onSerialTapDown = (SerialTapDownDetails details) {
             if (details.count == count) {
-              this.onTaps!(details.count);
+              onTaps!(details.count);
             }
           };
         }),

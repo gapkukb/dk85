@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../helper/string_to_num.dart';
+import 'package:victory/helper/string_to_num.dart';
 
 class VicFundHistoryListModel {
   final num totalRecharge;

@@ -2,11 +2,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../apis/apis.dart';
-import '../../components/network_image/network_image.dart';
-import '../../models/models.dart';
-import '../../routes/app_pages.dart';
-import '../../theme/theme.dart';
+import 'package:victory/apis/apis.dart';
+import 'package:victory/components/network_image/network_image.dart';
+import 'package:victory/models/models.dart';
+import 'package:victory/routes/app_pages.dart';
+import 'package:victory/theme/theme.dart';
 
 class SliverGameSwiper extends StatefulWidget {
   final int position;

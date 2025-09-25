@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../components/back_button/back_button.dart';
+import 'package:victory/components/back_button/back_button.dart';
 
 class VicStateScrollView extends StatelessWidget {
   final String title;

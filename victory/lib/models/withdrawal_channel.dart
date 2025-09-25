@@ -61,6 +61,7 @@ class VicWithdrawalChannelModel extends VicBaseModel {
     );
   }
 
+  @override
   Map<String, dynamic> toJson() => {
     "id": id,
     "withdraw_id": withdrawId,

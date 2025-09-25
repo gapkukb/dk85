@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../components/action_sheet/action_sheet.dart';
+import 'package:victory/components/action_sheet/action_sheet.dart';
 
 mixin GameKindPickerMixin {
   final kindsActions = [

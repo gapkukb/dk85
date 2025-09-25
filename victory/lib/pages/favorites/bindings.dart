@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import 'controller.dart';
+import 'package:victory/pages/favorites/controller.dart';
 
 class VicFavBinding implements Bindings {
   @override

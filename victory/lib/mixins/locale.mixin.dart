@@ -1,13 +1,13 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '/storage/storage.dart';
+import 'package:victory/storage/storage.dart';
 
 mixin VicLocaleMixin {
   static const my = VicLocale('my', 'မြန်မာဘာသာ');
   static const en = VicLocale('en', 'English');
   static const fil = VicLocale('fil', 'Filipino');
-  static const _supportedLocales = const [my, en, fil];
+  static const _supportedLocales = [my, en, fil];
   static const fallbackLocale = en;
 
   ///

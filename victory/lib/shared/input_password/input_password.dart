@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import '../../iconfont/iconfont.dart';
-import '/constants/regexp.dart';
-import '../../components/input_base/input_base.dart';
+import 'package:victory/iconfont/iconfont.dart';
+import 'package:victory/constants/regexp.dart';
+import 'package:victory/components/input_base/input_base.dart';
 
 class VicPwdInput extends StatefulWidget {
   const VicPwdInput({

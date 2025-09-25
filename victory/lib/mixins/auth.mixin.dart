@@ -1,9 +1,9 @@
-import '../stores/stores.dart';
+import 'package:victory/services/services.dart';
 
 mixin AuthMixin {
   onAuth(bool authorized);
   ensureInitialized() {
-    stores.auth.tokenManager.listen(
+    services.auth.tokenManager.listen(
       (token) {
         onAuth(token.accessToken == null);
       },

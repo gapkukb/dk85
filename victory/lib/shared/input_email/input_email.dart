@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '/constants/regexp.dart';
-import '../../components/input_base/input_base.dart';
+import 'package:victory/constants/regexp.dart';
+import 'package:victory/components/input_base/input_base.dart';
 
 class VicEmailInput extends VicBaseInput {
   final bool optional;

@@ -2,17 +2,20 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 part 'wrapper.dart';
 
-final _app = _Storage('app');
-// game数据量会比较大，单开一个存储容器
-final _game = _Storage('game');
-
 late final Storage storage;
 
 class Storage {
+  static final _app = _Storage('app');
+  // game数据量会比较大，单开一个存储容器
+  static final _game = _Storage('game');
+
   static Future ensureInitialized() async {
     await Future.wait([_app.init(), _game.init()]);
     storage = Storage();
   }
+
+  _Storage get app => _app;
+  _Storage get game => _game;
 
   final proxyHost = _app.nullable<String>('charles_host');
   final proxyPort = _app.nullable<int>('charles_port');

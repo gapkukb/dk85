@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../iconfont/iconfont.dart';
-import '../../theme/colors.dart';
+import 'package:victory/iconfont/iconfont.dart';
+import 'package:victory/theme/colors.dart';
 
 class VicTile extends StatelessWidget {
   final Widget? leading;

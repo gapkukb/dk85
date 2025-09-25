@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../components/back_button/back_button.dart';
-import '../../../components/rounded_tab_indicator/rounded_tab_indicator.dart';
-import '../../../iconfont/iconfont.dart';
-import '../../../theme/theme.dart';
-import '../index.dart';
+import 'package:victory/components/back_button/back_button.dart';
+import 'package:victory/components/rounded_tab_indicator/rounded_tab_indicator.dart';
+import 'package:victory/iconfont/iconfont.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/pages/search/index.dart';
 
 class SearchingBar extends GetView<VicSearchController> implements PreferredSizeWidget {
   const SearchingBar({super.key});

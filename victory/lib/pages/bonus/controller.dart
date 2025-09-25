@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-import '../../apis/apis.dart';
-import '../../models/models.dart';
+import 'package:victory/apis/apis.dart';
+import 'package:victory/models/models.dart';
 
 class VicBonusController extends GetxController {
   final data = <VicBannerModel>[].obs;

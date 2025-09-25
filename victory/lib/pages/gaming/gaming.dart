@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../apis/apis.dart';
-import '../../models/models.dart';
-import '../../routes/app_pages.dart';
-import '../../shared/dialog/dialog.dart';
-import '../../shared/webview/webview.dart';
-import '../../stores/stores.dart';
+import 'package:victory/apis/apis.dart';
+import 'package:victory/models/models.dart';
+import 'package:victory/routes/app_pages.dart';
+import 'package:victory/shared/dialogs/dialog.dart';
+import 'package:victory/shared/webview/webview.dart';
+import 'package:victory/services/services.dart';
 
 class VicGamingPage extends StatefulWidget {
   static void playGame(VicGameModel game) async {
@@ -14,7 +14,7 @@ class VicGamingPage extends StatefulWidget {
   }
 
   static void play(num platformId, String gameCode, String platform) async {
-    await stores.auth.ensureAuthorizedAsync;
+    await services.auth.ensureAuthorizedAsync;
     await VicDialog.confirm(title: 'game.enter.title'.tr);
     final resp = await apis.game.queryGameUrl(data: {'game_id': platformId, 'key': gameCode, 'game_platform': platform, 'mobile': 1});
     final r = resp.data;
@@ -24,7 +24,7 @@ class VicGamingPage extends StatefulWidget {
     Get.toNamed(AppRoutes.gaming, arguments: resp.data['url']);
   }
 
-  const VicGamingPage({Key? key}) : super(key: key);
+  const VicGamingPage({super.key});
 
   @override
   _GamingState createState() => _GamingState();

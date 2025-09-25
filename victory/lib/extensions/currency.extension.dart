@@ -28,7 +28,7 @@ extension DoubleCurrencyExtension on double {
   }
 
   String currency({int? decimal}) {
-    return amount(decimal: decimal) + 'MMK';
+    return '${amount(decimal: decimal)}MMK';
   }
 }
 

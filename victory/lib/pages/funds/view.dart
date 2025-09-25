@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../components/keep_alive_wrapper/keep_alive_wrapper.dart';
-import '../../shared/balance_card/balance_card.dart';
-import '../../theme/colors.dart';
-import 'widgets/deposit_channels.dart';
-import 'widgets/funds_menu_group.dart';
-import 'widgets/withdrawal_channels.dart';
-import 'index.dart';
+import 'package:victory/components/keep_alive_wrapper/keep_alive_wrapper.dart';
+import 'package:victory/shared/balance_card/balance_card.dart';
+import 'package:victory/theme/colors.dart';
+import 'package:victory/pages/funds/widgets/deposit_channels.dart';
+import 'package:victory/pages/funds/widgets/funds_menu_group.dart';
+import 'package:victory/pages/funds/widgets/withdrawal_channels.dart';
+import 'package:victory/pages/funds/index.dart';
 
 class FundsPage extends StatefulWidget {
-  const FundsPage({Key? key}) : super(key: key);
+  const FundsPage({super.key});
 
   @override
   State<FundsPage> createState() => _FundsPageState();
@@ -28,7 +28,7 @@ class _FundsPageState extends State<FundsPage> with AutomaticKeepAliveClientMixi
 }
 
 class _FundsViewGetX extends GetView<FundsController> {
-  const _FundsViewGetX({Key? key}) : super(key: key);
+  const _FundsViewGetX({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +62,8 @@ class _FundsViewGetX extends GetView<FundsController> {
           body: TabBarView(
             controller: controller.tab,
             children: [
-              VicAutoKeepAlive(child: VicDepositChannels()),
-              VicAutoKeepAlive(child: VicWithdrawalChannels()),
+              const VicAutoKeepAlive(child: VicDepositChannels()),
+              const VicAutoKeepAlive(child: VicWithdrawalChannels()),
             ],
           ),
         );

@@ -1,17 +1,18 @@
 import 'package:scaled_app/scaled_app.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import '../helper/charles_monitor.dart';
-import '../shared/app_info/app_info.dart';
-import '../storage/storage.dart';
-import '../stores/stores.dart';
+import 'package:victory/helper/charles_monitor.dart';
+import 'package:victory/modals/modals.dart';
+import 'package:victory/shared/app_info/app_info.dart';
+import 'package:victory/storage/storage.dart';
+import 'package:victory/services/services.dart';
 
 /// APP启动初始化
 Future<void> bootstrap() async {
   await Storage.ensureInitialized();
   await CharlesProxyHttpOverride.ensureInitialized();
   await VicAppInfo().ensureInitialized();
-  await stores.ensureInitialized();
+  await services.ensureInitialized();
 }
 
 void setupSystemUI() {

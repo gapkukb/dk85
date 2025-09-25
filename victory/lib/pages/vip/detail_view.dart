@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../components/back_button/back_button.dart';
-import '../../theme/theme.dart';
-import 'index.dart';
-import 'widgets/vip_level_tile.dart';
-import 'widgets/widgets.dart';
+import 'package:victory/components/back_button/back_button.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/pages/vip/index.dart';
+import 'package:victory/pages/vip/widgets/vip_level_tile.dart';
+import 'package:victory/pages/vip/widgets/widgets.dart';
 
 class VicVipDetailsPage extends GetView<VicVipController> {
   const VicVipDetailsPage({super.key});

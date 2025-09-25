@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../models/models.dart';
-import '../../theme/size.dart';
-import '../../theme/theme.dart';
-import 'game.dart';
+import 'package:victory/models/models.dart';
+import 'package:victory/theme/size.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/shared/game/game.dart';
 
 class VicGameSection extends StatelessWidget {
   final String title;

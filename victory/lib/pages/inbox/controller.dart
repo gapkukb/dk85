@@ -1,8 +1,8 @@
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../apis/apis.dart';
-import '../../models/inbox.model.dart';
-import '../../shared/date_view/data_view_logic.dart';
+import 'package:victory/apis/apis.dart';
+import 'package:victory/models/inbox.model.dart';
+import 'package:victory/shared/date_view/data_view_logic.dart';
 
 class InboxController extends DataViewLogic<VicInboxModel> {
   @override

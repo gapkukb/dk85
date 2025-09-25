@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../iconfont/iconfont.dart';
-import '../../../routes/app_pages.dart';
-import '../../../theme/theme.dart';
+import 'package:victory/iconfont/iconfont.dart';
+import 'package:victory/routes/app_pages.dart';
+import 'package:victory/theme/theme.dart';
 
-import '../../../models/inbox.model.dart';
+import 'package:victory/models/inbox.model.dart';
 
 const messageTitleStyle = TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Color(0xff333333));
 const messageSubtitleStyle = TextStyle(fontSize: 12, color: AppColors.label);

@@ -1,4 +1,4 @@
-import '/shared/logger/logger.dart';
+import 'package:victory/shared/logger/logger.dart';
 import 'package:get/get.dart';
 import 'package:rxdart/rxdart.dart';
 

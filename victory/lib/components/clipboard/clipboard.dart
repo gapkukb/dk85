@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
-import '../../helper/toast.dart';
+import 'package:victory/helper/toast.dart';
 
 class VicClipboard extends StatelessWidget {
   static Future<void> copy(String content) async {
@@ -11,7 +11,7 @@ class VicClipboard extends StatelessWidget {
   }
 
   final String content;
-  const VicClipboard({Key? key, required this.content}) : super(key: key);
+  const VicClipboard({super.key, required this.content});
 
   @override
   Widget build(BuildContext context) {

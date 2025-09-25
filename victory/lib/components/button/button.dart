@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../theme/colors.dart';
+import 'package:victory/theme/colors.dart';
 
 abstract class VicButtonHeight {
   static const mini = 24.0;
@@ -138,7 +138,7 @@ class VicButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final gradient = computeGradient();
     final background = computeBackground(gradient);
-    final foreground = computeForeground(context, background);
+    final foreground = computeForeground(context, background, gradient);
 
     final widget = RawMaterialButton(
       enableFeedback: false,
@@ -173,16 +173,16 @@ class VicButton extends StatelessWidget {
   }
 
   Widget computeChild(Color? foreground) {
-    final _color = iconColor ?? foreground ?? defaultColor;
-    final _size = iconSize ?? fontSize ?? _height / 1.4;
+    final color = iconColor ?? foreground ?? defaultColor;
+    final size = iconSize ?? fontSize ?? _height / 1.4;
 
     final List<Widget> children = [
       if (icon != null) icon!,
       if (iconData != null)
         Icon(
           iconData,
-          color: _color,
-          size: _size,
+          color: color,
+          size: size,
         ),
       if (child != null) child!,
       if (text != null)
@@ -191,10 +191,10 @@ class VicButton extends StatelessWidget {
           style: TextStyle(
             fontSize: fontSize ?? _height / 2.8,
             color: foreground,
-            height: 1,
+            height: 1.2,
             fontWeight: textBold ? FontWeight.bold : null,
           ).merge(textStyle),
-          maxLines: 1,
+          // maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),
 
@@ -202,8 +202,8 @@ class VicButton extends StatelessWidget {
       if (iconRightData != null)
         Icon(
           iconRightData,
-          color: _color,
-          size: _size,
+          color: color,
+          size: size,
         ),
     ];
 
@@ -245,9 +245,9 @@ class VicButton extends StatelessWidget {
   }
 
   // 计算前景色
-  Color? computeForeground(BuildContext context, Color? background) {
+  Color? computeForeground(BuildContext context, Color? background, Gradient? gradient) {
     if (color != null) return color;
-    if (background == Colors.white) return Colors.black;
+    if (background == Colors.white || gradient == null) return Colors.black;
     // if (background == null || background == Colors.transparent) {
     //   final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     //   final themeTextCOlor = Theme.of(context).textTheme.bodyMedium?.color;

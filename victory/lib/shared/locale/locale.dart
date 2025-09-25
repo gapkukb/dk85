@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import '../../components/action_sheet/action_sheet.dart';
-import '../../components/button/button.dart';
-import '../../components/svg_view/svg_view.dart';
-import '../../stores/stores.dart';
-import '../../theme/theme.dart';
+import 'package:victory/components/action_sheet/action_sheet.dart';
+import 'package:victory/components/button/button.dart';
+import 'package:victory/components/svg_view/svg_view.dart';
+import 'package:victory/services/services.dart';
+import 'package:victory/theme/theme.dart';
 
 class LocalePicker extends StatelessWidget {
   final Widget? child;
   final double size;
   final double iconSize;
   final Color? color;
-  const LocalePicker({Key? key, this.child, this.size = 36, this.iconSize = 24, this.color});
+  const LocalePicker({super.key, this.child, this.size = 36, this.iconSize = 24, this.color});
 
   @override
   Widget build(BuildContext context) {
     if (child != null) {
       return GestureDetector(
-        child: child,
         onTap: _showPicker,
+        child: child,
       );
     }
     return VicButton(
@@ -34,14 +34,14 @@ class LocalePicker extends StatelessWidget {
   }
 
   void _showPicker() {
-    final actions = stores.app.supportedLocales.map(
+    final actions = services.app.supportedLocales.map(
       (e) => VicAction(title: e.localeName, value: e.languageCode),
     );
     showVicActionSheet(
       VicActionSheet.single(
-        initValue: stores.app.currentLocaleCode,
+        initValue: services.app.currentLocaleCode,
         actions: actions,
-        onChanged: stores.app.updateLocaleByCode,
+        onChanged: services.app.updateLocaleByCode,
       ),
     );
   }

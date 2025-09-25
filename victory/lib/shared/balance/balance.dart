@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:get/get.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import '../../theme/colors.dart';
-
-import '../../stores/stores.dart';
-import '../logger/logger.dart';
+import 'package:victory/theme/colors.dart';
+import 'package:victory/services/services.dart';
+import 'package:victory/shared/logger/logger.dart';
 
 class VicBalanceBuilder extends StatefulWidget {
   final int? fractionDigits;
@@ -26,7 +25,7 @@ class VicBalanceBuilder extends StatefulWidget {
 
   final Widget Function(BuildContext context, Widget amount, Widget button, VoidCallback refresh) builder;
   const VicBalanceBuilder({
-    Key? key,
+    super.key,
     this.color = Colors.white,
     required this.builder,
     this.fractionDigits,
@@ -41,14 +40,14 @@ class VicBalanceBuilder extends StatefulWidget {
     this.refresherColor,
     this.refresherSize = 18.0,
     this.showFraction = true,
-  }) : super(key: key);
+  });
 
   @override
   _VicBalanceBuilderState createState() => _VicBalanceBuilderState();
 }
 
 class _VicBalanceBuilderState extends State<VicBalanceBuilder> {
-  num get balance => stores.user.balance.value;
+  num get balance => services.user.balance.value;
   final loading = false.obs;
 
   @override
@@ -89,7 +88,7 @@ class _VicBalanceBuilderState extends State<VicBalanceBuilder> {
   void refresh() {
     Logger.debug('refresh');
     loading.value = true;
-    stores.user.queryBalance().whenComplete(() {
+    services.user.queryBalance().whenComplete(() {
       loading.value = false;
     });
   }

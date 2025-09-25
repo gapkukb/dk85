@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import '../../models/models.dart';
-import 'game_section.dart';
-import 'game_swiper.dart';
+import 'package:victory/models/models.dart';
+import 'package:victory/shared/game/game_section.dart';
+import 'package:victory/shared/game/game_swiper.dart';
 
 class GamePageView extends StatefulWidget {
   final List<VicGameModel> Function() dataBuilder;

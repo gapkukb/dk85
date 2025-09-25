@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../iconfont/iconfont.dart';
-import '../../../routes/app_pages.dart';
-import '../index.dart';
-import 'funds_menu.dart';
+import 'package:victory/iconfont/iconfont.dart';
+import 'package:victory/routes/app_pages.dart';
+import 'package:victory/pages/funds/index.dart';
+import 'package:victory/pages/funds/widgets/funds_menu.dart';
 
 class VicFundMenuGroup extends GetView<FundsController> {
   const VicFundMenuGroup({super.key});

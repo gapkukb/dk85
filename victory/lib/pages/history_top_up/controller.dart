@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
-import '../../apis/apis.dart';
-import '../../mixins/mixin_date_picker.dart';
-import '../../mixins/pagination.mixin.dart';
-import '../../models/fund_record.model.dart';
+import 'package:victory/apis/apis.dart';
+import 'package:victory/mixins/mixin_date_picker.dart';
+import 'package:victory/mixins/pagination.mixin.dart';
+import 'package:victory/models/fund_record.model.dart';
 
 class HistoryTopUpController extends GetxController with DatePickerMixin, PaginationMixin<VicFundHisotryModel> {
   HistoryTopUpController();

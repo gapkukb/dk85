@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import '../../../apis/apis.dart';
-import '../../../components/amount/amount.dart';
-import '../../../components/button/button.dart';
-import '../../../components/input_base/input_base.dart';
-import '../../../helper/success.dart';
-import '../../../hooks/useForm.dart';
-import '../../../models/models.dart';
-import '../../../stores/stores.dart';
-import '../../../theme/colors.dart';
-import '../../customer_service/customer_service.dart';
-import '../controller.dart';
+import 'package:victory/apis/apis.dart';
+import 'package:victory/components/amount/amount.dart';
+import 'package:victory/components/button/button.dart';
+import 'package:victory/components/input_base/input_base.dart';
+import 'package:victory/hooks/useForm.dart';
+import 'package:victory/models/models.dart';
+import 'package:victory/shared/dialogs/dialog.dart';
+import 'package:victory/services/services.dart';
+import 'package:victory/theme/colors.dart';
+import 'package:victory/pages/customer_service/customer_service.dart';
+import 'package:victory/pages/funds/controller.dart';
 
 class VicWithdrawalFilling extends GetView<FundsController> {
   final VicWithdrawalChannelModel channel;
@@ -20,9 +20,9 @@ class VicWithdrawalFilling extends GetView<FundsController> {
   VicWithdrawalFilling(this.channel, {super.key}) {
     form = Useform((values) async {
       await apis.fund.withdraw(data: {...values, 'withdraw_id': channel.id});
-      await showSuccess();
+      await VicDialog.success();
       Get.back();
-      stores.user.queryBalance();
+      services.user.queryBalance();
     });
   }
   @override
@@ -115,7 +115,7 @@ class VicWithdrawalFilling extends GetView<FundsController> {
         final max = channel.eachMax;
         final min = channel.eachMin;
         if (amount < min) return 'form.min.error'.trParams({'min': min.toString()});
-        if (amount > stores.user.balance.value) return 'funds.insft'.tr;
+        if (amount > services.user.balance.value) return 'funds.insft'.tr;
         if (amount > max) return 'form.max.error'.trParams({'max': max.toString()});
         return null;
       },
@@ -128,7 +128,7 @@ class VicWithdrawalFilling extends GetView<FundsController> {
       style: const TextStyle(fontSize: 14, color: AppColors.title),
       amountstyle: const TextStyle(color: AppColors.primary),
       before: "funds.withdraw.balance".tr,
-      amount: ' ${stores.user.balance.value}',
+      amount: ' ${services.user.balance.value}',
     );
   }
 

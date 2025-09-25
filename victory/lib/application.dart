@@ -2,14 +2,14 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scaled_app/scaled_app.dart';
-import 'pages/about/about.dart';
-import 'pages/shell/shell.dart';
-import 'routes/app_pages.dart';
-import 'shared/app_info/app_info.dart';
-import 'stores/stores.dart';
-import 'startup/startup.dart';
-import 'theme/theme.dart';
-import 'translations/translations.dart';
+import 'package:victory/modals/modals.dart';
+import 'package:victory/pages/shell/shell.dart';
+import 'package:victory/routes/app_pages.dart';
+import 'package:victory/shared/app_info/app_info.dart';
+import 'package:victory/services/services.dart';
+import 'package:victory/startup/startup.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/translations/translations.dart';
 
 class Application extends StatefulWidget {
   const Application({super.key});
@@ -21,7 +21,9 @@ class Application extends StatefulWidget {
 class _ApplicationState extends State<Application> {
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((a) {});
+    WidgetsBinding.instance.addPostFrameCallback((a) {
+      VicModals.shared.resume();
+    });
     super.initState();
   }
 
@@ -36,7 +38,7 @@ class _ApplicationState extends State<Application> {
         initialRoute: AppPages.INITIAL,
         navigatorObservers: [BotToastNavigatorObserver()],
         defaultTransition: Transition.cupertino,
-        locale: stores.app.locale.value,
+        locale: services.app.locale.value,
         popGesture: false,
         translations: VicTranslations(),
         builder: startup,

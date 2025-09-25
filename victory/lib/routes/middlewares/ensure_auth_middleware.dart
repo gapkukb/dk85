@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import '../../stores/stores.dart';
-import '/routes/app_pages.dart';
+import 'package:victory/services/services.dart';
+import 'package:victory/routes/app_pages.dart';
 
 class EnsureAuthMiddleware extends GetMiddleware {
   @override
@@ -10,7 +10,7 @@ class EnsureAuthMiddleware extends GetMiddleware {
     // await Future.delayed(Duration(milliseconds: 500));
 
     // 未登录则跳转登录
-    if (!stores.auth.authorized) {
+    if (!services.auth.authorized) {
       final newRoute = AppRoutes.loginThen(route.locationString);
       return GetNavConfig.fromRoute(newRoute);
     }
@@ -21,7 +21,7 @@ class EnsureAuthMiddleware extends GetMiddleware {
 class EnsureNotAuthedMiddleware extends GetMiddleware {
   @override
   Future<GetNavConfig?> redirectDelegate(GetNavConfig route) async {
-    if (stores.auth.authorized) {
+    if (services.auth.authorized) {
       //NEVER navigate to auth screen, when user is already authed
       return null;
 

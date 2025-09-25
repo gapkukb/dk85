@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../../../theme/theme.dart';
+import 'package:victory/theme/theme.dart';
 
 class VicFundMenu extends StatelessWidget {
   final IconData iconName;
