@@ -85,7 +85,7 @@ class _VicWebviewState extends State<VicWebview> {
 
   askExit() async {
     VicDialog.confirm(
-      title: 'app.exit'.tr,
+      content: 'app.exit'.tr,
       onConfirm: Get.back,
     );
   }

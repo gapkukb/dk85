@@ -1,5 +1,6 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
+import 'package:victory/helper/toast.dart';
 
 final botToastBuilder = BotToastInit();
 Widget setupBotToast(BuildContext context, Widget? child) {

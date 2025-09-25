@@ -14,7 +14,7 @@ class VicGamingPage extends StatefulWidget {
   }
 
   static void play(num platformId, String gameCode, String platform) async {
-    await services.auth.ensureAuthorizedAsync;
+    if (!services.auth.ensureAuthorized) return;
     await VicDialog.confirm(title: 'game.enter.title'.tr);
     final resp = await apis.game.queryGameUrl(data: {'game_id': platformId, 'key': gameCode, 'game_platform': platform, 'mobile': 1});
     final r = resp.data;

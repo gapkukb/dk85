@@ -17,6 +17,7 @@ abstract class VicDialog {
     final String? confirmText,
     final VoidCallback? onConfirm,
     final bool? autoClose,
+    final bool? barrierDismissible,
   }) {
     return show<T>(
       title: title,
@@ -25,6 +26,8 @@ abstract class VicDialog {
       confirmText: confirmText,
       onConfirm: onConfirm,
       autoClose: autoClose,
+      barrierDismissible: barrierDismissible,
+      showCancel: false,
     );
   }
 
@@ -37,6 +40,7 @@ abstract class VicDialog {
     final VoidCallback? onCancel,
     final VoidCallback? onConfirm,
     final bool? autoClose,
+    final bool? barrierDismissible,
   }) {
     return show<T>(
       title: title,
@@ -44,9 +48,12 @@ abstract class VicDialog {
       child: child,
       cancelText: cancelText,
       confirmText: confirmText,
+      showConfirm: true,
+      showCancel: true,
       onCancel: onCancel,
       onConfirm: onConfirm,
       autoClose: autoClose,
+      barrierDismissible: barrierDismissible,
     );
   }
 
@@ -87,9 +94,11 @@ abstract class VicDialog {
     final bool? showCancel,
     final bool? showConfirm,
     final bool? autoClose,
+    final bool? barrierDismissible,
   }) async {
     final completer = Completer<T>();
     final r = await Get.dialog<T>(
+      barrierDismissible: barrierDismissible ?? true,
       _VicQuickDialogView(
         title: title,
         content: content,
@@ -102,7 +111,6 @@ abstract class VicDialog {
         autoClose: autoClose,
         child: child,
       ),
-      barrierDismissible: false,
     );
     if (r == null) {
       completer.completeError('cancel!');

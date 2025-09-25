@@ -14,7 +14,7 @@ class VicFishingPage extends GetView<VicFishingController> {
       init: VicFishingController(),
       id: "fishing",
       builder: (_) {
-        return GamePageView(dataBuilder: () => services.game.slots, adPosition: 3);
+        return GamePageView(dataBuilder: () => services.game.fish, adPosition: 3);
       },
     );
   }

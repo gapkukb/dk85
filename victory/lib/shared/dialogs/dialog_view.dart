@@ -34,7 +34,7 @@ class _VicQuickDialogView extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 24),
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          spacing: 16,
+          spacing: 8,
           children: [
             Text(
               title ?? 'dialog.title'.tr,
@@ -43,7 +43,7 @@ class _VicQuickDialogView extends StatelessWidget {
             if (child != null) child!,
             if (content != null)
               Padding(
-                padding: AppSizes.pad_t_4,
+                padding: AppSizes.pad_b_16,
                 child: Text(
                   content!,
                   style: AppTextStyles.f14_label,

@@ -14,7 +14,7 @@ class VicPokerPage extends GetView<VicPokerController> {
       init: VicPokerController(),
       id: "poker",
       builder: (_) {
-        return GamePageView(dataBuilder: () => services.game.slots, adPosition: 4);
+        return GamePageView(dataBuilder: () => services.game.poker, adPosition: 4);
       },
     );
   }

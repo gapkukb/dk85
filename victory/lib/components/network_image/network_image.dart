@@ -1,8 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
 import 'package:victory/theme/theme.dart';
+import 'dart:ui' as ui;
+
+final _dpr = ui.PlatformDispatcher.instance.views.first.devicePixelRatio;
+
+int? dpr(num? value) => (value == null || value == double.infinity) ? null : (value * _dpr).toInt();
 
 final placeHolderImage = const Skeletonizer(
   effect: ShimmerEffect(
@@ -36,10 +40,13 @@ class VicNetworkImage extends CachedNetworkImage {
     super.colorBlendMode,
     super.errorListener,
     super.imageBuilder,
-    super.memCacheWidth,
-    super.memCacheHeight,
-    super.maxWidthDiskCache,
-    super.maxHeightDiskCache,
     super.scale,
-  }) : super(placeholder: _placeholder, errorWidget: _placeholder);
+  }) : super(
+         placeholder: _placeholder,
+         errorWidget: _placeholder,
+         memCacheWidth: dpr(width),
+         memCacheHeight: dpr(height),
+         maxWidthDiskCache: dpr(width),
+         maxHeightDiskCache: dpr(height),
+       );
 }

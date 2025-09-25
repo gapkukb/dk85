@@ -64,7 +64,6 @@ class VicModalDailyCheckIn extends GetView<DailyCheckInController> {
               }),
               const SizedBox(height: 8),
               Obx(() => VicButton(height: 40, onPressed: controller.loading.value ? null : claim, text: 'dci.button'.tr)),
-
               const SizedBox(height: 12),
             ],
           ),
