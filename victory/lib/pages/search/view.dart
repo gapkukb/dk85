@@ -26,7 +26,7 @@ class VicSearchPage extends GetView<VicSearchController> {
                 itemCount: controller.filteredGames.length,
                 gridDelegate: VicGameGrid.delegate,
                 itemBuilder: (context, index) {
-                  return VicGameItem(game: controller.filteredGames[index]);
+                  return VicGameCard(game: controller.filteredGames[index]);
                 },
               );
             }),

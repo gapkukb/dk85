@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,13 +25,18 @@ class VicModalFirstDepositBonus extends StatelessWidget {
           decoration: const BoxDecoration(
             image: DecorationImage(image: AssetImage('assets/images/try-game.webp'), alignment: Alignment(0, -1)),
           ),
-          child: VicModalActionButton(
-            text: 'Deposit Now',
-            onTap: () {
-              services.app.toFundsPage();
-              Get.back();
-            },
-          ),
+          child:
+              VicModalActionButton(
+                text: 'Deposit Now',
+                onTap: () {
+                  services.app.toFundsPage();
+                  Get.back();
+                },
+              ).pulse(
+                from: 1,
+                to: 1.1,
+                infinite: true,
+              ),
         ),
       ),
     );

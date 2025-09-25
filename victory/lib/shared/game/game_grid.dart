@@ -46,7 +46,8 @@ class VicGameGrid extends StatelessWidget {
       itemCount: n.length,
       gridDelegate: delegate,
       itemBuilder: (context, index) {
-        return VicGameItem(likes: 0, game: n[index]);
+        final item = n[index];
+        return VicGameCard(key: ValueKey("${item.platformId}${item.id}"), likes: 0, game: item);
       },
     );
   }

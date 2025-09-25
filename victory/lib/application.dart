@@ -2,6 +2,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scaled_app/scaled_app.dart';
+import 'package:victory/mixins/locale.mixin.dart';
 import 'package:victory/modals/modals.dart';
 import 'package:victory/pages/shell/shell.dart';
 import 'package:victory/routes/app_pages.dart';
@@ -29,8 +30,12 @@ class _ApplicationState extends State<Application> {
 
   @override
   Widget build(BuildContext context) {
+    double textScaler = 1.0;
+    if (services.app.locale.value == VicLocaleMixin.my) {
+      textScaler = 0.95;
+    }
     return MediaQuery(
-      data: MediaQuery.of(context).scale(),
+      data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(textScaler)).scale(),
       child: GetMaterialApp(
         title: VicAppInfo.shared.appName,
         theme: lightTheme,

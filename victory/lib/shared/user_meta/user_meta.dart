@@ -26,7 +26,7 @@ class VicUserMeta extends StatelessWidget {
       textBold: true,
       text: 'LOG IN | SIGN UP',
       onPressed: () {
-        // services.auth.login();
+        Get.toNamed(AppRoutes.auth);
       },
     );
   }

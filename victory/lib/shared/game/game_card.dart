@@ -1,10 +1,10 @@
 part of 'game.dart';
 
-class VicGameItem extends StatelessWidget {
+class VicGameCard extends StatelessWidget {
   final num likes;
   final VicGameModel game;
 
-  const VicGameItem({super.key, this.likes = 0, required this.game});
+  const VicGameCard({super.key, this.likes = 0, required this.game});
 
   @override
   Widget build(BuildContext context) {

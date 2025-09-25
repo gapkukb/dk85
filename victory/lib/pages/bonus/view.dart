@@ -40,7 +40,7 @@ class _BonusViewGetX extends GetView<VicBonusController> {
           appBar: buildAppBar(),
           body: Obx(() {
             return ListView.separated(
-              padding: const EdgeInsets.all(12),
+              padding: AppSizes.pad_page,
               itemCount: controller.data.length,
               separatorBuilder: (context, index) => const SizedBox(height: 12),
               itemBuilder: (context, index) {

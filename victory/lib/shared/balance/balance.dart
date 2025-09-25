@@ -1,7 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:animated_digit/animated_digit.dart';
 import 'package:flutter/material.dart';
-import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:get/get.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:victory/theme/colors.dart';

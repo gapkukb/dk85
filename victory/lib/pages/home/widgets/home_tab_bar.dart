@@ -20,39 +20,35 @@ const tabs = <_Tab>[
 
 class HomeTabBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeTabBar({super.key});
-  static const _size = 52.0;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-      child: TabBar(
-        unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),
-        indicatorWeight: 0,
-        labelStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, height: 1),
-        labelColor: AppColors.white,
-        indicator: RoundedTabIndicator(height: 16, color: AppColors.primary, bottom: -2),
-        dividerHeight: 0,
-        tabs: tabs
-            .map(
-              (e) => Tab(
-                height: _size,
-                icon: Image.asset(
-                  e.iconPath,
-                  width: 32,
-                  height: 32,
-                ),
-                child: Padding(
-                  padding: AppSizes.pad_t_4,
-                  child: Text(e.name.tr),
-                ),
-                // text: e.name.tr,
+    return TabBar(
+      unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal, height: 1),
+      indicatorWeight: 0,
+      labelStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, height: 1),
+      labelColor: AppColors.white,
+      indicator: RoundedTabIndicator(height: 20, color: AppColors.primary, bottom: 2),
+      dividerHeight: 0,
+      // padding: const EdgeInsets.only(bottom: 4),
+      labelPadding: const EdgeInsets.only(bottom: 4),
+
+      tabs: tabs
+          .map(
+            (e) => Tab(
+              iconMargin: const EdgeInsets.only(bottom: 12),
+              height: 56.0,
+              icon: Image.asset(
+                e.iconPath,
+                width: 32,
+                height: 32,
               ),
-            )
-            .toList(),
-      ),
+              text: e.name.tr,
+            ),
+          )
+          .toList(),
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(_size);
+  Size get preferredSize => const Size.fromHeight(0);
 }

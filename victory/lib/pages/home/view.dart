@@ -48,8 +48,8 @@ class _HomeViewGetX extends GetView<VicHomeController> {
         builder: (_) {
           return Scaffold(
             appBar: AppBar(
-              toolbarHeight: 56,
-              // backgroundColor: AppColor.danger,
+              toolbarHeight: 116,
+              actionsPadding: AppSizes.pad_r_12,
               titleSpacing: AppSizes.size_12,
               title: const VicUserMeta(),
               actions: [
