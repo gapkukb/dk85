@@ -3,6 +3,7 @@ import 'package:uuid/uuid.dart';
 import 'package:advertising_id/advertising_id.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:mobile_device_identifier/mobile_device_identifier.dart';
+import 'package:victory/helper/crypto.dart';
 import 'package:victory/storage/storage.dart';
 
 class VicAppInfo {
@@ -47,8 +48,7 @@ class VicAppInfo {
     final r = await Future.wait([PackageInfo.fromPlatform(), _findDeviceId()]);
     final PackageInfo packageInfo = r[0] as PackageInfo;
 
-    deviceId = r[1] as String;
-
+    deviceId = VicCryptoHelper.toMd5(r[1] as String);
     appName = packageInfo.appName;
     packageName = packageInfo.packageName;
     version = packageInfo.version;

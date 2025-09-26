@@ -3,11 +3,14 @@ import 'package:get/get.dart';
 
 import 'package:victory/components/network_image/network_image.dart';
 import 'package:victory/iconfont/iconfont.dart';
+import 'package:victory/modals/modals.dart';
 import 'package:victory/routes/app_pages.dart';
+import 'package:victory/services/services.dart';
 import 'package:victory/shared/user_meta/user_meta.dart';
 import 'package:victory/theme/theme.dart';
 import 'package:victory/pages/customer_service/customer_service.dart';
 import 'package:victory/pages/bonus/index.dart';
+import 'package:victory/extensions/function.dart';
 
 class VicBonusPage extends StatefulWidget {
   const VicBonusPage({super.key});
@@ -65,16 +68,13 @@ class _BonusViewGetX extends GetView<VicBonusController> {
   AppBar buildAppBar() {
     return AppBar(
       backgroundColor: AppColors.background,
-      titleSpacing: 12,
+      titleSpacing: AppSizes.size_12,
       automaticallyImplyLeading: false,
       title: const VicUserMeta(),
-      actionsPadding: const EdgeInsets.only(right: 12),
+      actionsPadding: AppSizes.pad_r_12,
       actions: [
         GestureDetector(
-          onTap: () {
-            // Dialogs.to.dailyCheckIn();
-            // Dialogs.to.show(DialogNames.dailyCheckIn);
-          },
+          onTap: (() => VicModals.shared.show(VicModalName.daily_check_in)).safely(),
 
           child: Container(
             decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(36)),
@@ -83,7 +83,7 @@ class _BonusViewGetX extends GetView<VicBonusController> {
             child: const Icon(IconFont.qiandao, color: AppColors.highlight),
           ),
         ),
-        const SizedBox(width: 4),
+        const SizedBox(width: 8),
         const VicCustomerService(),
       ],
     );

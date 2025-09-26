@@ -43,9 +43,9 @@ class VicModalBuilder {
     required this.name,
     required this.builder,
     this.priority = 0,
-    this.peroidic = VicModalPeriodic.any,
-    this.requireAuth = false,
-    this.manual = false,
+    this.peroidic = VicModalPeriodic.launch,
+    this.requireAuth = true,
+    this.manual = true,
     this.barrierDismissible = false,
     this.routes,
     this.times = 9999,
@@ -56,14 +56,12 @@ class VicModalBuilder {
 
   String get keyName => 'modal_${name.name}';
 
-  String get _key => 'modal_$keyName';
-
   // 已经显示次数
-  int get _count => _counter[_key] ?? 0;
+  int get _count => _counter[keyName] ?? 0;
 
   /// 检查是否在冷却期
   bool get inCooldown {
-    final value = storage.app.cacher.read<String>(_key);
+    final value = storage.app.cacher.read<String>(keyName);
     if (value == null) return false;
     final recently = DateTime.parse(value);
     final now = DateTime.now();
@@ -85,7 +83,6 @@ class VicModalBuilder {
 
   // 匹配路由和登录态
   bool match(String crrentRoute, bool authorized) {
-    // return true;
     if (requireAuth && !authorized) return false;
     if (routes == null) return true;
     return routes!.contains(crrentRoute);
@@ -95,11 +92,11 @@ class VicModalBuilder {
     // 内存计数
     countUp();
     // 本地缓存
-    return storage.app.cacher.write(_key, DateTime.now().toIso8601String());
+    return storage.app.cacher.write(keyName, DateTime.now().toIso8601String());
   }
 
   void countUp() {
-    _counter.putIfAbsent(_key, () => 0);
-    _counter[_key] = _counter[_key]! + 1;
+    _counter.putIfAbsent(keyName, () => 0);
+    _counter[keyName] = _counter[keyName]! + 1;
   }
 }

@@ -42,6 +42,7 @@ class VicModalDailyCheckIn extends GetView<DailyCheckInController> {
               ),
               Obx(() {
                 final view = GridView.builder(
+                  padding: AppSizes.zero,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: controller.list.length,
@@ -78,7 +79,7 @@ class VicModalDailyCheckIn extends GetView<DailyCheckInController> {
 
   void claim() async {
     await apis.app.checkIn();
-    services.user.queryBalance();
+    services.user.updateBalance();
     await VicDialog.success();
     Get.back();
   }

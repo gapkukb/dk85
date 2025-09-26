@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:victory/animations/fade_scale.dart';
 import 'package:victory/apis/apis.dart';
 import 'package:victory/modals/views/announcement/announcement.dart';
 import 'package:victory/modals/views/completion/completion.dart';

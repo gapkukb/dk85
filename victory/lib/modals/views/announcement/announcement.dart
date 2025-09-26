@@ -45,7 +45,14 @@ class _VicAnnouncementModalState extends State<VicAnnouncementModal> {
               clipBehavior: Clip.hardEdge,
               color: Colors.white,
               borderRadius: BorderRadius.circular(8),
-              child: Obx(() => ListView.builder(shrinkWrap: true, itemCount: announcements.length, itemBuilder: buildItem)),
+              child: Obx(
+                () => ListView.builder(
+                  padding: AppSizes.zero,
+                  shrinkWrap: true,
+                  itemCount: announcements.length,
+                  itemBuilder: buildItem,
+                ),
+              ),
             ),
           ),
         ],

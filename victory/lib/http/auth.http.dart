@@ -81,7 +81,7 @@ class HttpAuthInterceptor extends Interceptor {
 
     /// 只有第一次过期的接口进行token刷新
     if (headerToken == tokenManager.accessToken) {
-      final token = await _refresh(options, handler);
+      final token = await _refresh(options);
       tokenManager.update(token, token);
     }
 
@@ -99,11 +99,10 @@ class HttpAuthInterceptor extends Interceptor {
     if (resp == null) return false;
     if (resp.statusCode == 401) return true;
     if (resp.data is! Map) return false;
-    if (resp.data['data'] is! Map) return false;
-    return resp.data['data']['code'] == 666;
+    return resp.data['code'] == 666;
   }
 
-  Future<String> _refresh(RequestOptions options, ErrorInterceptorHandler handler) async {
+  Future<String> _refresh(RequestOptions options) async {
     _completer = Completer();
     return Dio()
         .fetch(options.copyWith(path: '/refresh')..headers.remove(HttpHeaders.contentLengthHeader))
@@ -117,7 +116,6 @@ class HttpAuthInterceptor extends Interceptor {
         })
         .catchError((e) {
           _completer.completeError(e);
-          handler.reject(e);
           throw e;
         });
   }

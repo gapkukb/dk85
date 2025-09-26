@@ -60,10 +60,10 @@ class _VicMorePageState extends State<VicMorePage> {
           const SizedBox(height: 24),
 
           VicButton(
-            // height: VicButtonHeight.medium,
-            backgroundColor: AppColors.highlight,
+            height: VicButtonHeight.medium,
+            backgroundColor: AppColors.danger,
             onPressed: () {
-              VicDialog.confirm(title: 'logout.title'.tr, onConfirm: services.auth.logout);
+              VicDialog.confirm(content: 'logout.title'.tr, onConfirm: services.auth.logout);
             },
             text: 'app.logout'.tr,
           ),

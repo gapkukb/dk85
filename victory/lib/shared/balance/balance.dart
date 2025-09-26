@@ -84,11 +84,11 @@ class _VicBalanceBuilderState extends State<VicBalanceBuilder> {
     return widget.builder(context, amount, button, refresh);
   }
 
-  void refresh() {
-    Logger.debug('refresh');
+  void refresh() async {
     loading.value = true;
-    services.user.queryBalance().whenComplete(() {
+    await services.user.updateBalance().whenComplete(() {
       loading.value = false;
     });
+    Logger.debug('refresh balance $balance');
   }
 }

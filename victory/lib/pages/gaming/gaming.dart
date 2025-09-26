@@ -15,13 +15,12 @@ class VicGamingPage extends StatefulWidget {
 
   static void play(num platformId, String gameCode, String platform) async {
     if (!services.auth.ensureAuthorized) return;
-    await VicDialog.confirm(title: 'game.enter.title'.tr);
+    await VicDialog.confirm(content: 'game.enter.title'.tr);
     final resp = await apis.game.queryGameUrl(data: {'game_id': platformId, 'key': gameCode, 'game_platform': platform, 'mobile': 1});
-    final r = resp.data;
-    if (!r.containsKey('url')) {
+    if (!resp.containsKey('url')) {
       throw 'Not found the game url';
     }
-    Get.toNamed(AppRoutes.gaming, arguments: resp.data['url']);
+    Get.toNamed(AppRoutes.gaming, arguments: resp['url']);
   }
 
   const VicGamingPage({super.key});

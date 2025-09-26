@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:victory/components/button/button.dart';
+import 'package:victory/constants/string.dart';
+import 'package:victory/iconfont/iconfont.dart';
 import 'package:victory/theme/theme.dart';
 import 'package:victory/shared/lottie/lottie.dart';
 part 'dialog_view.dart';
@@ -113,7 +115,7 @@ abstract class VicDialog {
       ),
     );
     if (r == null) {
-      completer.completeError('cancel!');
+      completer.completeError(cancelTextConst, StackTrace.current);
     } else {
       completer.complete(r);
     }

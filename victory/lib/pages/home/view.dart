@@ -6,6 +6,7 @@ import 'package:victory/routes/app_pages.dart';
 import 'package:victory/services/services.dart';
 import 'package:victory/shared/locale/locale.dart';
 import 'package:victory/shared/user_meta/user_meta.dart';
+import 'package:victory/startup/guide/guide.dart';
 import 'package:victory/theme/size.dart';
 import 'package:victory/theme/theme.dart';
 import 'package:victory/pages/customer_service/customer_service.dart';
@@ -51,7 +52,10 @@ class _HomeViewGetX extends GetView<VicHomeController> {
               toolbarHeight: 116,
               actionsPadding: AppSizes.pad_r_12,
               titleSpacing: AppSizes.size_12,
-              title: const VicUserMeta(),
+              title: SizedBox(
+                key: guideStep1Key,
+                child: const VicUserMeta(),
+              ),
               actions: [
                 VicButton(
                   size: 36,
@@ -83,6 +87,11 @@ class _HomeViewGetX extends GetView<VicHomeController> {
                   VicAutoKeepAlive(child: VicPokerPage()),
                 ],
               ),
+            ),
+            floatingActionButton: FloatingActionButton.small(
+              onPressed: () {
+                services.user.queryUserInfo();
+              },
             ),
           );
         },

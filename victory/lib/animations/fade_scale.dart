@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-final vicFadeScaleAnimationBuilder = (context, animation, secondaryAnimation, child) {
+Widget vicFadeScaleAnimationBuilder(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
   final curved = CurvedAnimation(parent: animation, curve: Curves.easeOutBack);
   return FadeTransition(
     opacity: curved,
@@ -9,4 +9,4 @@ final vicFadeScaleAnimationBuilder = (context, animation, secondaryAnimation, ch
       child: child,
     ),
   );
-};
+}

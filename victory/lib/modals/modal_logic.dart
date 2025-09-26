@@ -25,8 +25,8 @@ class VicModals extends GetxService {
   void onInit() {
     _registerModals();
     // 同步登录态
-    _changeAuthorized();
-    ever(services.auth.authorized.obs, _changeAuthorized);
+    services.auth.listen(_changeAuthorized);
+    services.app.listenRouting(_changeRouting);
     super.onInit();
   }
 
@@ -60,10 +60,10 @@ class VicModals extends GetxService {
   /// 手动触发
   Future show(VicModalName name) async {
     final modal = _get(name);
-    if (modal != null) {
+    if (modal == null) {
       talker.error("[modal_service] builder: $name 未找到");
     } else {
-      modal!.manual = false;
+      modal.manual = false;
       return _tryNext();
     }
   }
@@ -85,6 +85,12 @@ class VicModals extends GetxService {
   }
 
   VicModalBuilder? _get(VicModalName name) {
+    if (name == VicModalName.completion) {
+      talker.debug(modals);
+      for (var modal in modals) {
+        talker.debug(modal.name == name);
+      }
+    }
     return modals.firstWhereOrNull((modal) => modal.name == name);
   }
 
@@ -106,23 +112,27 @@ class VicModals extends GetxService {
 
       return true;
     });
-    talker.debug(modal);
     if (modal == null) return;
-
+    modal.manual = true;
     await Get.generalDialog(
       pageBuilder: (context, animation, secondaryAnimation) => modal.builder(),
-      transitionBuilder: modal.transitionBuilder,
+      transitionBuilder: modal.transitionBuilder ?? vicFadeScaleAnimationBuilder,
       barrierDismissible: modal.barrierDismissible,
       routeSettings: RouteSettings(name: modal.keyName),
       transitionDuration: modal.transitionDuration,
     );
 
-    if (modal.autoRemove) remove(modal.name);
+    if (modal.peroidic.isAutoRemove) remove(modal.name);
     modal.close();
     Future.delayed(Durations.medium2, _tryNext);
   }
 
   _changeAuthorized([_]) {
     _authorized = services.auth.authorized;
+    _tryNext();
+  }
+
+  _changeRouting(String current) {
+    Logger.debug(current);
   }
 }

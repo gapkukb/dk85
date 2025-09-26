@@ -93,7 +93,7 @@ class VicVipController extends GetxController {
   }
 
   void _next() {
-    services.user.queryBalance();
+    services.user.updateBalance();
     VicDialog.success();
   }
 

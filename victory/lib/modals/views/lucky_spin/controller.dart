@@ -1,24 +1,9 @@
 import 'package:get/get.dart';
+import 'package:roulette/roulette.dart';
 
 class LuckySpinController extends GetxController {
-  LuckySpinController();
-
-  _initData() {
-    update(["lucky_spin"]);
-  }
-
-  void onTap() {}
-
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  // }
-
-  @override
-  void onReady() {
-    super.onReady();
-    _initData();
-  }
+  final controller = RouletteController();
+  final bool _clockwise = true;
 
   // @override
   // void onClose() {

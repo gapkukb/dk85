@@ -3,8 +3,8 @@ part of 'game.dart';
 class VicGameCard extends StatelessWidget {
   final num likes;
   final VicGameModel game;
-
-  const VicGameCard({super.key, this.likes = 0, required this.game});
+  final ValueChanged<bool>? onChanged;
+  const VicGameCard({super.key, this.likes = 0, required this.game, this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class VicGameCard extends StatelessWidget {
                   ),
                   Align(
                     alignment: Alignment.centerRight,
-                    child: VicFavButton(gameId: game.id, platormId: 17, liked: game.liked),
+                    child: VicFavButton(game: game, onChanged: onChanged),
                   ),
                 ],
               ),

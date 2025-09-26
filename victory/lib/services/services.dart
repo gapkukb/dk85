@@ -1,15 +1,19 @@
 import 'dart:async';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:victory/apis/apis.dart';
+import 'package:victory/extensions/string.extension.dart';
 import 'package:victory/http/http.dart';
 import 'package:victory/mixins/audio.mixin.dart';
-import 'package:victory/mixins/auth.mixin.dart';
 import 'package:victory/mixins/locale.mixin.dart';
 import 'package:victory/mixins/router.mixin.dart';
 import 'package:victory/modals/modals.dart';
 import 'package:victory/models/models.dart';
 import 'package:victory/routes/app_pages.dart';
+import 'package:victory/shared/app_info/app_info.dart';
+import 'package:victory/shared/dialogs/dialog.dart';
 import 'package:victory/shared/logger/logger.dart';
 import 'package:victory/storage/storage.dart';
 

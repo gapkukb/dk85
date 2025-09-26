@@ -22,7 +22,7 @@ class VicWithdrawalFilling extends GetView<FundsController> {
       await apis.fund.withdraw(data: {...values, 'withdraw_id': channel.id});
       await VicDialog.success();
       Get.back();
-      services.user.queryBalance();
+      services.user.updateBalance();
     });
   }
   @override

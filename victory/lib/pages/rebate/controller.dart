@@ -18,7 +18,7 @@ class RebateController extends GetxController {
 
   void cliam() async {
     await apis.user.rebate();
-    services.user.queryUserInfo(updateBalance: true);
+    services.user.updateBalance();
     await VicDialog.success();
   }
 

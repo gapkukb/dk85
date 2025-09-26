@@ -5,6 +5,7 @@ import 'package:victory/components/tap_counter/tap_counter.dart';
 import 'package:victory/components/vip_badge/vip_badge.dart';
 import 'package:victory/routes/app_pages.dart';
 import 'package:victory/services/services.dart';
+import 'package:victory/startup/guide/guide.dart';
 import 'package:victory/theme/theme.dart';
 import 'package:victory/shared/balance/balance.dart';
 import 'package:victory/shared/logger/logger.dart';
@@ -26,66 +27,69 @@ class VicUserMeta extends StatelessWidget {
       textBold: true,
       text: 'LOG IN | SIGN UP',
       onPressed: () {
-        Get.toNamed(AppRoutes.auth);
+        // Get.toNamed(AppRoutes.auth);
+        services.auth.tokenManager.value.update('accessToken', 'refreshToken');
+        services.auth.tokenManager.refresh();
       },
     );
   }
 
   Widget get meta {
-    return UnconstrainedBox(
-      child: VicTapCounter(
-        count: 9,
-        onTaps: (count) {
-          Get.toNamed(AppRoutes.debug);
-        },
-        child: Container(
-          height: 36,
-          padding: const EdgeInsets.all(2),
-          decoration: const BoxDecoration(color: AppColors.primary, borderRadius: AppSizes.radius_a_24),
-          child: Row(
-            spacing: 8,
-            children: [
-              const CircleAvatar(
-                radius: 16,
-                backgroundColor: AppColors.fff0e2,
-                backgroundImage: AssetImage('assets/icons/logo-3.webp'),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                // spacing: 4,
-                children: [
-                  Row(
-                    spacing: 4,
-                    children: [
-                      Text(
-                        services.user.info.value.username,
-                        style: const TextStyle(fontSize: 10, color: AppColors.FFF3C5, height: 1, fontWeight: FontWeight.normal),
-                      ),
-                      const SizedBox(
-                        height: 12,
-                        child: VipBadge(level: 1),
-                      ),
-                    ],
-                  ),
-                  VicBalanceBuilder(
-                    showFraction: false,
-                    amountStyle: const TextStyle(height: 1, fontSize: 12, fontWeight: FontWeight.bold, color: AppColors.white),
-                    builder: (context, amount, button, _) {
-                      return Row(
-                        spacing: 4,
-                        children: [
-                          amount,
-                          button,
-                        ],
-                      );
-                    },
-                  ),
-                ],
-              ),
-              _depositButton,
-            ],
-          ),
+    return VicTapCounter(
+      count: 9,
+      onTaps: (count) {
+        Get.toNamed(AppRoutes.debug);
+      },
+      child: Container(
+        width: 210,
+        height: 36,
+        padding: const EdgeInsets.all(2),
+        decoration: const BoxDecoration(color: AppColors.primary, borderRadius: AppSizes.radius_a_24),
+        child: Row(
+          spacing: 8,
+          children: [
+            const CircleAvatar(
+              radius: 16,
+              backgroundColor: AppColors.fff0e2,
+              backgroundImage: AssetImage('assets/icons/logo-3.webp'),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              // spacing: 4,
+              children: [
+                Row(
+                  spacing: 4,
+                  children: [
+                    Text(
+                      services.user.info.value.username,
+                      style: const TextStyle(fontSize: 10, color: AppColors.FFF3C5, height: 1, fontWeight: FontWeight.normal),
+                    ),
+                    const SizedBox(
+                      height: 12,
+                      child: VipBadge(level: 1),
+                    ),
+                  ],
+                ),
+                VicBalanceBuilder(
+                  showFraction: false,
+                  amountStyle: const TextStyle(height: 1, fontSize: 12, fontWeight: FontWeight.bold, color: AppColors.white),
+                  builder: (context, amount, button, _) {
+                    return Row(
+                      spacing: 4,
+                      children: [
+                        amount,
+                        button,
+                      ],
+                    );
+                  },
+                ),
+              ],
+            ),
+
+            const Spacer(),
+            _depositButton,
+          ],
         ),
       ),
     );

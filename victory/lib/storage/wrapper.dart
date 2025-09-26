@@ -40,7 +40,6 @@ class _Reactive<T> {
 
   void clear() {
     storage.remove(_name);
-    rxvlue.close();
   }
 }
 

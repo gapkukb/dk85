@@ -30,58 +30,74 @@ class _VicQuickDialogView extends StatelessWidget {
     return Dialog(
       // insetPadding: AppSize.pad_a_12,
       shape: const RoundedRectangleBorder(borderRadius: AppSizes.radius_a_12),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          spacing: 8,
-          children: [
-            Text(
-              title ?? 'dialog.title'.tr,
-              style: AppTextStyles.f14_title_bold,
-            ),
-            if (child != null) child!,
-            if (content != null)
-              Padding(
-                padding: AppSizes.pad_b_16,
-                child: Text(
-                  content!,
-                  style: AppTextStyles.f14_label,
-                ),
+      child: Stack(
+        children: [
+          const Positioned(
+            right: 0,
+            top: 0,
+            child: Opacity(
+              opacity: 0.04,
+              child: Icon(
+                IconFont.casino,
+                size: 102,
+                color: AppColors.danger,
               ),
-            // actions
-            Row(
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               spacing: 8,
               children: [
-                if (showCancel ?? true)
-                  Expanded(
-                    child: VicButton(
-                      outlined: true,
-                      backgroundColor: Colors.transparent,
-                      color: AppColors.primary,
-                      text: 'app.cancel'.tr,
-                      onPressed: () {
-                        Get.back();
-                        onCancel?.call();
-                      },
+                Text(
+                  title ?? 'dialog.title'.tr,
+                  style: AppTextStyles.f14_title_bold,
+                ),
+                if (child != null) child!,
+                if (content != null)
+                  Padding(
+                    padding: AppSizes.pad_b_16,
+                    child: Text(
+                      content!,
+                      style: AppTextStyles.f14_label,
                     ),
                   ),
-                if (showConfirm ?? true)
-                  Expanded(
-                    child: VicButton(
-                      text: 'app.confirm'.tr,
-                      onPressed: () {
-                        if (autoClose ?? true) {
-                          Get.back(result: true);
-                        }
-                        onConfirm?.call();
-                      },
-                    ),
-                  ),
+                // actions
+                Row(
+                  spacing: 8,
+                  children: [
+                    if (showCancel ?? true)
+                      Expanded(
+                        child: VicButton(
+                          outlined: true,
+                          backgroundColor: Colors.transparent,
+                          color: AppColors.primary,
+                          text: 'app.cancel'.tr,
+                          onPressed: () {
+                            Get.back();
+                            onCancel?.call();
+                          },
+                        ),
+                      ),
+                    if (showConfirm ?? true)
+                      Expanded(
+                        child: VicButton(
+                          text: 'app.confirm'.tr,
+                          onPressed: () {
+                            if (autoClose ?? true) {
+                              Get.back(result: true);
+                            }
+                            onConfirm?.call();
+                          },
+                        ),
+                      ),
+                  ],
+                ),
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

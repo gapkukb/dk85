@@ -4,33 +4,35 @@ void _registerModals() {
   VicModals.shared
     ..add(
       VicModalBuilder(
+        name: VicModalName.first_deposit_bouns,
+        builder: () => const VicModalFirstDepositBonus(),
+      ),
+    )
+    ..add(
+      VicModalBuilder(
         name: VicModalName.completion,
         builder: () => const VicModalCompletionProfile(),
       ),
     )
     ..add(
       VicModalBuilder(
-        name: VicModalName.firstDepositBouns,
-        builder: () => const VicModalFirstDepositBonus(),
-      ),
-    )
-    ..add(
-      VicModalBuilder(
-        name: VicModalName.luckSpin,
+        name: VicModalName.lucky_spin,
         builder: () => const VicModalLuckySpin(),
       ),
     )
     ..add(
       VicModalBuilder(
-        name: VicModalName.dailyCheckIn,
+        name: VicModalName.daily_check_in,
         builder: () => const VicModalDailyCheckIn(),
-        // autoRemove: false,
+        peroidic: VicModalPeriodic.any,
       ),
     )
     ..add(
       VicModalBuilder(
         name: VicModalName.announcement,
         builder: () => const VicAnnouncementModal(),
+        requireAuth: false,
+        manual: false,
       ),
     );
 }

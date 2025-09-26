@@ -51,7 +51,7 @@ class VicButton extends StatelessWidget {
   static double? defaultPadding;
 
   final bool disabled;
-  final VicButtonDisabledType disabledStyle;
+  final VicButtonDisabledType disabledType;
   final bool? rounded;
   final bool? outlined;
   final bool fullWidth;
@@ -92,7 +92,7 @@ class VicButton extends StatelessWidget {
   const VicButton({
     super.key,
     this.disabled = false,
-    this.disabledStyle = VicButtonDisabledType.opacity,
+    this.disabledType = VicButtonDisabledType.opacity,
     this.rounded,
     this.outlined,
     this.fullWidth = false,
@@ -236,18 +236,20 @@ class VicButton extends StatelessWidget {
 
   // 计算背景色
   Color? computeBackground(Gradient? gradient) {
+    if (disabled) return AppColors.disabled;
     if (_outlined || gradient != null) return null;
-    if (backgroundColor != null && disabled) {
-      if (disabledStyle == VicButtonDisabledType.grayscale) return _toGray(backgroundColor!);
-      return backgroundColor!.withAlpha(154);
-    }
+    // if (backgroundColor != null) {
+    //   // if (disabledType == VicButtonDisabledType.grayscale) return _toGray(backgroundColor!);
+    //   if (disabledType == VicButtonDisabledType.grayscale) return AppColors.disabled;
+    //   return backgroundColor!.withAlpha(154);
+    // }
     return backgroundColor;
   }
 
   // 计算前景色
   Color? computeForeground(BuildContext context, Color? background, Gradient? gradient) {
     if (color != null) return color;
-    if (background == Colors.white || gradient == null) return Colors.black;
+    if (background == Colors.white || background == Colors.transparent) return Colors.black;
     // if (background == null || background == Colors.transparent) {
     //   final isDarkMode = Theme.of(context).brightness == Brightness.dark;
     //   final themeTextCOlor = Theme.of(context).textTheme.bodyMedium?.color;
@@ -269,7 +271,7 @@ class VicButton extends StatelessWidget {
   }
 
   Gradient? computeGradient() {
-    if (backgroundColor != null) return null;
+    if (backgroundColor != null || disabled) return null;
     if (gradient != null) return gradient;
     if (gradientColors == null) return null;
     if (gradientType == VicButtonGradientType.radial) return RadialGradient(colors: gradientColors!, radius: gradientRadius ?? 1.0);

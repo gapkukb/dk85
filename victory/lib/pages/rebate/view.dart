@@ -30,9 +30,10 @@ class VicRebatePage extends GetView<RebateController> {
           ),
           body: SafeArea(
             child: ListView(
-              padding: const EdgeInsets.all(12),
+              padding: AppSizes.pad_page,
               children: [
                 ListTile(
+                  contentPadding: AppSizes.pad_x_12,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                   minTileHeight: 100,
                   leading: const Icon(IconFont.chouma, color: Color.fromRGBO(255, 130, 64, 1)),
@@ -45,8 +46,12 @@ class VicRebatePage extends GetView<RebateController> {
                       style: const TextStyle(fontSize: 24, color: AppColors.primary, fontWeight: FontWeight.bold),
                     ),
                   ),
-                  trailing: Obx(
-                    () => VicButton(height: 48, disabled: controller.amount == 0, onPressed: controller.cliam, child: Text("app.claim.now".tr)),
+                  trailing: VicButton(
+                    height: VicButtonHeight.normal,
+                    disabled: true,
+                    disabledType: VicButtonDisabledType.grayscale,
+                    onPressed: controller.cliam,
+                    text: "app.claim.now".tr,
                   ),
                 ),
 

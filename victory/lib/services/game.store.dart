@@ -1,6 +1,6 @@
 part of 'services.dart';
 
-class _GameService extends GetxService with AuthMixin {
+class _GameService extends GetxService {
   final loading = true.obs;
   final likesLoading = true.obs;
   final platform = VicGamesModel.fromJson({}).obs;
@@ -11,6 +11,21 @@ class _GameService extends GetxService with AuthMixin {
 
   final likes = RxList<VicGameModel>([]);
 
+  @override
+  onInit() {
+    super.onInit();
+    services.auth.listen((authorized) {
+      if (authorized) {
+        queryLikes();
+      } else {
+        for (var item in all) {
+          item.liked = false;
+        }
+        platform.refresh();
+      }
+    });
+  }
+
   Future queryGames() async {
     loading.value = true;
     platform.value = await apis.game.queryGame(payload: {'game_id': '17'});
@@ -18,7 +33,6 @@ class _GameService extends GetxService with AuthMixin {
   }
 
   Future queryLikes() async {
-    if (!services.auth.authorized) return;
     final r = await apis.game.queryFavorites();
     likesLoading.value = false;
     final likesMap = Map.fromEntries(r.list.map((item) => MapEntry("${item.platformId}${item.gameId}", 1)));
@@ -28,22 +42,19 @@ class _GameService extends GetxService with AuthMixin {
     platform.refresh();
   }
 
-  @override
+  Future switchFavorite(VicGameModel game) async {
+    if (!services.auth.ensureAuthorized) return;
+    final f = game.liked ? apis.game.unfavorite : apis.game.favorite;
+    await f(payload: {'platform_id': game.platformId, 'game_id': game.id});
+    game.liked = !game.liked;
+    services.game.queryLikes();
+  }
+
   Future ensureInitialized() async {
-    super.ensureInitialized();
     queryGames().then((_) {
       if (services.auth.authorized) {
         queryLikes();
       }
     });
-  }
-
-  @override
-  onAuth(bool authorized) {
-    if (authorized) {
-      queryLikes();
-    } else {
-      likes.clear();
-    }
   }
 }

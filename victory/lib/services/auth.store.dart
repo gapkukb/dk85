@@ -7,7 +7,6 @@ class _AuthService extends GetxService {
   bool get authorized => tokenManager.value.accessToken != null;
   bool get unauthorized => !authorized;
   bool get ensureUnauthorize => !ensureAuthorized;
-
   bool get ensureAuthorized {
     if (authorized) return true;
     Get.toNamed(AppRoutes.auth);
@@ -20,52 +19,43 @@ class _AuthService extends GetxService {
     return authorized;
   }
 
-  Future autoLogin() async {}
-
   Future login(Object values) async {
     final t = await apis.auth.login(data: values);
-    await _nextAction(t.token);
+    _saveAndUpdate(t.token);
   }
 
   Future register(Object values) async {
     final t = await apis.auth.register(data: values);
-    await _nextAction(t.token);
+    _saveAndUpdate(t.token);
   }
 
-  Future quickRegister(Object values) async {
-    final t = await apis.auth.fastRegister(payload: {'device_code': storage.deviceId.value});
-    await _nextAction(t.token);
+  Future quickRegister() async {
+    Logger.debug('使用设备号注册:${VicAppInfo.shared.deviceId}');
+    final t = await apis.auth.fastRegister(payload: {'device_code': VicAppInfo.shared.deviceId});
+    Logger.debug('设备号注册成功');
+    _saveAndUpdate(t.token);
   }
 
   Future logout() async {
-    // 调用退出接口，无需等待
-    apis.auth.logout();
-    Timer(const Duration(milliseconds: 1), clear);
-  }
-
-  clear() {
-    // 清空token和登录态
+    if (services.user.mobile.isEmpty) {
+      try {
+        // 用户绑定了手机执行真实退出流程
+        await apis.auth.logout(options: Options(receiveTimeout: const Duration(seconds: 3)));
+        storage.token.clear();
+      } catch (e) {
+        rethrow;
+      }
+    }
     tokenManager.value.clear();
     tokenManager.refresh();
-    services.user.balance.value = 0;
     services.app.toHomePage();
   }
 
-  Future ensureInitialized() async {}
-
-  Future _nextAction(String token) async {
-    // 更新token
+  Future ensureInitialized() async {
     try {
-      tokenManager.value.update(token, token);
-      tokenManager.refresh();
-      storage.token.update(token);
-      // 获取用户信息
-      await services.user.queryUserInfo(updateBalance: true);
-      // 修改认证状态
-      // authorized.value = true;
+      if (unauthorized) return quickRegister();
     } catch (e) {
-      Logger.error('获取用户信息和余额失败');
-      rethrow;
+      Logger.error('设备号注册失败，进入游客模式...................');
     }
   }
 
@@ -73,15 +63,27 @@ class _AuthService extends GetxService {
     Get.toNamed(AppRoutes.auth);
   }
 
+  Worker listen(Function(bool authorized) listener) {
+    listener(authorized);
+    return ever(tokenManager, (_) => listener(authorized));
+  }
+
   @override
   void onInit() {
     final token = storage.token.value;
     if (token.isNotEmpty) {
+      Logger.debug('token已存在，直接登录:$token');
       tokenManager.value.update(token, token);
+    } else {
+      Logger.debug('token未存在，执行设备号注册');
     }
-    Future.delayed(Duration.zero).then((_) {
-      // Dialogs.to.onAuthChanged(authorized);
-    });
     super.onInit();
+  }
+
+  _saveAndUpdate(String token) {
+    // 更新token
+    tokenManager.value.update(token, token);
+    tokenManager.refresh();
+    storage.token.update(token);
   }
 }

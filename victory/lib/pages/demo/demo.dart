@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:victory/animations/fade_scale.dart';
 import 'package:victory/modals/views/announcement/announcement.dart';
 import 'package:victory/modals/views/completion/completion.dart';
+import 'package:victory/modals/views/lucky_spin/view.dart';
 import 'package:victory/services/services.dart';
 
 class DemoPage extends StatefulWidget {
@@ -17,7 +18,7 @@ class _DemoPageState extends State<DemoPage> {
   void initState() {
     Future.delayed(const Duration(seconds: 1), () {
       Get.generalDialog(
-        pageBuilder: (context, animation, secondaryAnimation) => const VicAnnouncementModal(),
+        pageBuilder: (context, animation, secondaryAnimation) => const VicModalLuckySpin(),
         // transitionDuration: const Duration(seconds: 3),
         transitionBuilder: vicFadeScaleAnimationBuilder,
       );
