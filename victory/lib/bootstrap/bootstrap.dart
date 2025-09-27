@@ -10,7 +10,7 @@ import 'package:victory/services/services.dart';
 /// APP启动初始化
 Future<void> bootstrap() async {
   await Storage.ensureInitialized();
-  // await CharlesProxyHttpOverride.ensureInitialized();
+  await CharlesProxyHttpOverride.ensureInitialized();
   await VicAppInfo().ensureInitialized();
   await services.ensureInitialized();
 }

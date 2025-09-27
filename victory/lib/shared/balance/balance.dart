@@ -20,7 +20,6 @@ class VicBalanceBuilder extends StatefulWidget {
   final bool? hideLeadingZeroes;
   final double refresherSize;
   final Color? refresherColor;
-  final bool showFraction;
 
   final Widget Function(BuildContext context, Widget amount, Widget button, VoidCallback refresh) builder;
   const VicBalanceBuilder({
@@ -38,7 +37,6 @@ class VicBalanceBuilder extends StatefulWidget {
     this.hideLeadingZeroes,
     this.refresherColor,
     this.refresherSize = 18.0,
-    this.showFraction = true,
   });
 
   @override
@@ -46,6 +44,8 @@ class VicBalanceBuilder extends StatefulWidget {
 }
 
 class _VicBalanceBuilderState extends State<VicBalanceBuilder> {
+  static const int _million = 1000000;
+  bool get overmax => balance >= _million;
   num get balance => services.user.balance.value;
   final loading = false.obs;
 
@@ -67,12 +67,11 @@ class _VicBalanceBuilderState extends State<VicBalanceBuilder> {
       () => AnimatedDigitWidget(
         duration: const Duration(seconds: 1),
         curve: Curves.bounceInOut,
-        value: widget.showFraction ? balance : balance.toInt(),
-        fractionDigits: widget.showFraction ? 2 : 0,
+        value: balance,
+        fractionDigits: overmax ? 0 : 2,
         suffix: widget.suffix,
         prefix: widget.prefix,
-        enableSeparator: true,
-        // padding: widget.amountPadding ?? EdgeInsets.zero,
+        enableSeparator: balance > _million ? false : true,
         decimalSeparator: widget.decimalSeparator ?? '.',
         textStyle: const TextStyle(fontWeight: FontWeight.bold, color: AppColors.white).merge(widget.amountStyle),
         // wholeDigits: widget.wholeDigits ?? 1,

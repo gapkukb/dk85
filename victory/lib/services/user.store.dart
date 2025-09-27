@@ -53,7 +53,7 @@ class _UserService extends GetxService {
     balance.refresh();
   }
 
-  void _callModals() {
+  void _callModals() async {
     if (info.value.payTimes <= 0) {
       VicModals.shared.show(VicModalName.first_deposit_bouns);
     }
@@ -72,5 +72,9 @@ class _UserService extends GetxService {
     if (info.value.applyBirthdayBonus == 0) {
       VicModals.shared.show(VicModalName.lucky_spin);
     }
+
+    await apis.user.queryLuckySpinAvalible().catchError((e) {
+      Logger.error('查询转盘活动失败: $e');
+    });
   }
 }

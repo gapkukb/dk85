@@ -96,7 +96,7 @@ class VicUserModel extends VicBaseModel {
       balanceFrozen: json["balance_frozen"] ?? 0,
       points: json["points"] ?? 0,
       gradeId: json["grade_id"] ?? 0,
-      gradeName: json["grade_name"] ?? "",
+      gradeName: json["grade_name"] ?? "1",
       bindSafeQuestion: json["bind_safe_question"] ?? 0,
       bindPayPassword: json["bind_pay_password"] ?? 0,
       unreadMessageCount: json["unread_message_count"] ?? 0,

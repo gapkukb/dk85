@@ -27,9 +27,7 @@ class VicUserMeta extends StatelessWidget {
       textBold: true,
       text: 'LOG IN | SIGN UP',
       onPressed: () {
-        // Get.toNamed(AppRoutes.auth);
-        services.auth.tokenManager.value.update('accessToken', 'refreshToken');
-        services.auth.tokenManager.refresh();
+        Get.toNamed(AppRoutes.auth);
       },
     );
   }
@@ -46,13 +44,13 @@ class VicUserMeta extends StatelessWidget {
         padding: const EdgeInsets.all(2),
         decoration: const BoxDecoration(color: AppColors.primary, borderRadius: AppSizes.radius_a_24),
         child: Row(
-          spacing: 8,
           children: [
             const CircleAvatar(
               radius: 16,
               backgroundColor: AppColors.fff0e2,
               backgroundImage: AssetImage('assets/icons/logo-3.webp'),
             ),
+            const SizedBox(width: 4),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -62,7 +60,7 @@ class VicUserMeta extends StatelessWidget {
                   spacing: 4,
                   children: [
                     Text(
-                      services.user.info.value.username,
+                      "ID:${services.user.info.value.id}",
                       style: const TextStyle(fontSize: 10, color: AppColors.FFF3C5, height: 1, fontWeight: FontWeight.normal),
                     ),
                     const SizedBox(
@@ -72,7 +70,6 @@ class VicUserMeta extends StatelessWidget {
                   ],
                 ),
                 VicBalanceBuilder(
-                  showFraction: false,
                   amountStyle: const TextStyle(height: 1, fontSize: 12, fontWeight: FontWeight.bold, color: AppColors.white),
                   builder: (context, amount, button, _) {
                     return Row(

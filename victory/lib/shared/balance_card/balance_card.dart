@@ -24,7 +24,7 @@ class VicBalanceCard extends StatelessWidget {
           margin: const EdgeInsets.only(left: 12, right: 12),
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
           decoration: BoxDecoration(
-            gradient: const RadialGradient(colors: [Color(0xffFF8544), Color(0xffFF5800)], center: Alignment(-0.5, -1), radius: 1.3),
+            gradient: const RadialGradient(colors: [Color(0xffff9963), Color(0xffff8240)], center: Alignment(-0.5, -1), radius: 1.3),
             borderRadius: BorderRadius.circular(12),
             image: const DecorationImage(alignment: Alignment(0, 0.2), image: AssetImage("assets/images/balance-bg.png"), fit: BoxFit.fitWidth),
           ),

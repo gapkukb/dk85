@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:roulette/roulette.dart';
+import '/3rd/roulette/roulette.dart';
 
 class LuckySpinController extends GetxController {
   final controller = RouletteController();

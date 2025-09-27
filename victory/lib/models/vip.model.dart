@@ -34,25 +34,25 @@ class VicVipLevelModel {
 
   final int id;
   final String name;
-  final String depositAmount;
-  final String betAmount;
+  final num depositAmount;
+  final num betAmount;
   final num pointsUpgrade;
-  final String bonusUpgrade;
-  final String bonusBirthday;
+  final num bonusUpgrade;
+  final num bonusBirthday;
   final String rebatePercentSports;
   final String rebatePercentLottery;
   final String rebatePercentLive;
   final String rebatePercentEgame;
   final String rebatePercentPoker;
-  final String paymentLimit;
-  final String betLimit;
-  final String moneyLimit;
-  final String paymentLimitMonth;
-  final String betLimitMonth;
-  final String moneyMonth;
-  final String paymentLimitWeek;
-  final String betLimitWeek;
-  final String moneyWeek;
+  final num paymentLimit;
+  final num betLimit;
+  final num moneyLimit;
+  final num paymentLimitMonth;
+  final num betLimitMonth;
+  final num moneyMonth;
+  final num paymentLimitWeek;
+  final num betLimitWeek;
+  final num moneyWeek;
   final num dailyWithdrawTimes;
   final num userCount;
   final String fieldsDisable;
@@ -63,25 +63,25 @@ class VicVipLevelModel {
     return VicVipLevelModel(
       id: json["id"] ?? 0,
       name: json["name"] ?? "",
-      depositAmount: json["deposit_amount"] ?? "",
-      betAmount: json["bet_amount"] ?? "",
+      depositAmount: json["deposit_amount"] ?? 0,
+      betAmount: json["bet_amount"] ?? 0,
       pointsUpgrade: json["points_upgrade"] ?? 0,
-      bonusUpgrade: json["bonus_upgrade"] ?? "",
-      bonusBirthday: json["bonus_birthday"] ?? "",
+      bonusUpgrade: json["bonus_upgrade"] ?? 0,
+      bonusBirthday: json["bonus_birthday"] ?? 0,
       rebatePercentSports: json["rebate_percent_sports"] ?? "",
       rebatePercentLottery: json["rebate_percent_lottery"] ?? "",
       rebatePercentLive: json["rebate_percent_live"] ?? "",
       rebatePercentEgame: json["rebate_percent_egame"] ?? "",
       rebatePercentPoker: json["rebate_percent_poker"] ?? "",
-      paymentLimit: json["payment_limit"] ?? "",
-      betLimit: json["bet_limit"] ?? "",
-      moneyLimit: json["money_limit"] ?? "",
-      paymentLimitMonth: json["payment_limit_month"] ?? "",
-      betLimitMonth: json["bet_limit_month"] ?? "",
-      moneyMonth: json["money_month"] ?? "",
-      paymentLimitWeek: json["payment_limit_week"] ?? "",
-      betLimitWeek: json["bet_limit_week"] ?? "",
-      moneyWeek: json["money_week"] ?? "",
+      paymentLimit: json["payment_limit"] ?? 0,
+      betLimit: json["bet_limit"] ?? 0,
+      moneyLimit: json["money_limit"] ?? 0,
+      paymentLimitMonth: json["payment_limit_month"] ?? 0,
+      betLimitMonth: json["bet_limit_month"] ?? 0,
+      moneyMonth: json["money_month"] ?? 0,
+      paymentLimitWeek: json["payment_limit_week"] ?? 0,
+      betLimitWeek: json["bet_limit_week"] ?? 0,
+      moneyWeek: json["money_week"] ?? 0,
       dailyWithdrawTimes: json["daily_withdraw_times"] ?? 0,
       userCount: json["user_count"] ?? 0,
       fieldsDisable: json["fields_disable"] ?? "",

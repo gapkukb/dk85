@@ -18,10 +18,10 @@ class VicVipController extends GetxController {
   final upgradeBouns = <VicVipBounsModel>[].obs;
 
   VicUserModel get user => services.user.info.value;
-  int get level => int.tryParse(user.gradeName) ?? 0;
+  int get level => services.user.vipLevel - 1;
   VicVipLevelModel get nextLevel => grades.firstWhereOrNull((i) => i.name == (level + 1).toString()) ?? VicVipLevelModel.fromJson({});
-  num get betLimit => nextLevel.betLimit.toNum();
-  num get paymentLimit => nextLevel.paymentLimit.toNum();
+  num get betLimit => nextLevel.betLimit;
+  num get paymentLimit => nextLevel.paymentLimit;
 
   double get betProgress {
     if (betLimit == 0) return 0;
@@ -48,7 +48,7 @@ class VicVipController extends GetxController {
 
   void queryConfig() async {
     grades.value = await apis.user.queryGradeList();
-    jumpTo(level - 1);
+    // jumpTo(level - 1);
   }
 
   void queryAdvanceBouns() async {

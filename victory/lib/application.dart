@@ -26,8 +26,8 @@ class _ApplicationState extends State<Application> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       // 显示引导浮层
-      await showGuide();
-      VicModals.shared.resume();
+      // await showGuide();
+      // VicModals.shared.resume();
     });
     super.initState();
   }

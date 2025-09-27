@@ -2,19 +2,12 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:roulette/roulette.dart';
+import '/3rd/roulette/roulette.dart';
 import 'package:victory/modals/views/modal_template.dart';
 import 'index.dart';
 
 class VicModalLuckySpin extends GetView<LuckySpinController> {
   const VicModalLuckySpin({super.key});
-
-  // 主视图
-  Widget _buildView() {
-    return const Center(
-      child: Text("LuckySpinPage"),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,15 +49,15 @@ class VicModalLuckySpin extends GetView<LuckySpinController> {
           // ResizeImage(...)
         ];
 
-        late final group = RouletteGroup.uniformImages(
+        late final group = RouletteGroup.uniform(
           colors.length,
-          colorBuilder: (index) => colors[index],
-          imageBuilder: (index) => images[index],
+          colorBuilder: (index) => Colors.transparent,
+          // imageBuilder: (index) => images[index],
           textBuilder: (index) {
             if (index == 0) return 'Hi';
             return '25\n00\n05\n00\n\uFFE8\u00A0';
           },
-          styleBuilder: (_) => const TextStyle(color: Colors.amber, height: 1, letterSpacing: 3, fontSize: 20),
+          // styleBuilder: (_) => const TextStyle(color: Colors.amber, height: 1, letterSpacing: 3, fontSize: 20),
           // textStyleBuilder: (index) {
           //   return const TextStyle(color: Colors.amber, height: 1, letterSpacing: 3, fontSize: 20);
           // },
@@ -80,16 +73,21 @@ class VicModalLuckySpin extends GetView<LuckySpinController> {
               clockwise: clockwise,
               offset: random.nextDouble(),
             ),
-            child: Roulette(
-              group: group,
-              // Provide controller to update its state
-              controller: controller.controller,
-              // Configure roulette's appearance
-              style: const RouletteStyle(
-                dividerThickness: 0.0,
-                dividerColor: Colors.black,
-                centerStickSizePercent: 0.05,
-                centerStickerColor: Colors.black,
+            child: DecoratedBox(
+              decoration: const BoxDecoration(
+                image: DecorationImage(image: AssetImage('assets/images/lucky_spin_main.webp'), fit: BoxFit.cover),
+              ),
+              child: Roulette(
+                group: group,
+                // Provide controller to update its state
+                controller: controller.controller,
+                // Configure roulette's appearance
+                style: const RouletteStyle(
+                  dividerThickness: 0.0,
+                  dividerColor: Colors.black,
+                  centerStickSizePercent: 0.05,
+                  centerStickerColor: Colors.black,
+                ),
               ),
             ),
           ),

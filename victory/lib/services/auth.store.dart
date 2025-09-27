@@ -42,9 +42,7 @@ class _AuthService extends GetxService {
         // 用户绑定了手机执行真实退出流程
         await apis.auth.logout(options: Options(receiveTimeout: const Duration(seconds: 3)));
         storage.token.clear();
-      } catch (e) {
-        rethrow;
-      }
+      } finally {}
     }
     tokenManager.value.clear();
     tokenManager.refresh();
