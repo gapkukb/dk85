@@ -33,7 +33,7 @@ class _VicShellViewState extends State<VicShellView> {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
-        if (services.app.currentFootNavIndex == 0) {
+        if (services.app.currentFootNavIndex.value == 0) {
           MoveToBack.execute();
         } else {
           services.app.toHomePage();
@@ -51,14 +51,6 @@ class _VicShellViewState extends State<VicShellView> {
             ],
           );
         }),
-        floatingActionButton: Environment.isDev
-            ? null
-            : FloatingActionButton(
-                onPressed: () {
-                  // showSuccess();
-                  Get.toNamed(AppRoutes.demo);
-                },
-              ),
         bottomNavigationBar: Obx(
           () => BottomNavigationBar(
             selectedItemColor: AppColors.primary,

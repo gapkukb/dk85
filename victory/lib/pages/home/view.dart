@@ -88,11 +88,6 @@ class _HomeViewGetX extends GetView<VicHomeController> {
                 ],
               ),
             ),
-            floatingActionButton: FloatingActionButton.small(
-              onPressed: () {
-                services.user.queryUserInfo();
-              },
-            ),
           );
         },
       ),

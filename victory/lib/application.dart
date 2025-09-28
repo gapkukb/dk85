@@ -5,6 +5,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:scaled_app/scaled_app.dart';
 import 'package:victory/mixins/locale.mixin.dart';
 import 'package:victory/modals/modals.dart';
+import 'package:victory/pages/root/view.dart';
 import 'package:victory/pages/shell/shell.dart';
 import 'package:victory/routes/app_pages.dart';
 import 'package:victory/shared/app_info/app_info.dart';
@@ -57,7 +58,7 @@ class _ApplicationState extends State<Application> {
           locale: services.app.locale.value,
           popGesture: false,
           translations: VicTranslations(),
-          builder: startup,
+          builder: (context, child) => RootView(child: child!),
           home: const VicShellView(),
           getPages: AppPages.routes,
           routingCallback: services.app.onRouting,
