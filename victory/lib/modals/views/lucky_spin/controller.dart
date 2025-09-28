@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import '/3rd/roulette/roulette.dart';
 
 class LuckySpinController extends GetxController {
-  final controller = RouletteController();
+  final roulette = RouletteController();
   final bool _clockwise = true;
 
   // @override

@@ -87,6 +87,13 @@ class _RoulettePainter extends CustomPainter {
 
     double drewSweep = 0;
 
+    final image = imageInfos[-1]?.image;
+
+    if (image != null) {
+      final src = Rect.fromLTWH(0, 0, image.width.toDouble(), image.height.toDouble());
+      canvas.drawImageRect(image, src, rect, Paint());
+    }
+
     for (var i = 0; i < group.divide; i++) {
       final RouletteUnit unit = group.units[i];
       final double sweep = 2 * pi * unit.weight / group.totalWeights;
@@ -103,7 +110,7 @@ class _RoulettePainter extends CustomPainter {
       final resolvedImage = imageInfos[i]?.image;
       if (unit.image != null && resolvedImage != null) {
         // Draws the section background image
-        _drawBackgroundImage(canvas, radius, rect, unit, sweep, resolvedImage);
+        _drawBackgroundImage(canvas, radius, rect, sweep, resolvedImage);
       }
 
       // Draws the section border
@@ -118,7 +125,7 @@ class _RoulettePainter extends CustomPainter {
   }
 
   /// Draws the image to the background of the current section.
-  void _drawBackgroundImage(Canvas canvas, double radius, Rect rect, RouletteUnit unit, double sweep, ui.Image image) {
+  void _drawBackgroundImage(Canvas canvas, double radius, Rect rect, double sweep, ui.Image image) {
     // Draws the section background image
 
     // Path for this section.

@@ -1,6 +1,8 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:defer_pointer/defer_pointer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:victory/modals/views/modal_action_button.dart';
 
 import '../../iconfont/iconfont.dart';
 import '../../theme/theme.dart';
@@ -18,6 +20,10 @@ class VicModalTemplate extends StatelessWidget {
   final double margin;
   final EdgeInsets padding;
   final BoxDecoration? decoration;
+  final String? title;
+  final String? subtitle;
+  final String? buttoText;
+  final VoidCallback? onButtonTap;
   const VicModalTemplate({
     super.key,
     required this.child,
@@ -32,6 +38,10 @@ class VicModalTemplate extends StatelessWidget {
     this.backgroundColor,
     this.closePosition = const (top: -48.0, right: 24.0),
     this.alignment,
+    this.title,
+    this.subtitle,
+    this.buttoText,
+    this.onButtonTap,
   });
 
   @override
@@ -46,12 +56,37 @@ class VicModalTemplate extends StatelessWidget {
             child: Stack(
               clipBehavior: Clip.none,
               children: [
-                Dialog(
-                  alignment: alignment,
-                  backgroundColor: backgroundColor,
-                  insetPadding: EdgeInsets.symmetric(horizontal: margin),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                  child: Padding(padding: padding, child: child),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  spacing: 12,
+                  children: [
+                    Dialog(
+                      alignment: alignment,
+                      backgroundColor: backgroundColor,
+                      insetPadding: EdgeInsets.symmetric(horizontal: margin),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                      child: Padding(padding: padding, child: child),
+                    ),
+                    if (title != null)
+                      Text(
+                        title!,
+                        style: const TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold),
+                      ),
+                    if (subtitle != null)
+                      Text(
+                        subtitle!,
+                        style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    if (buttoText != null)
+                      VicModalActionButton(
+                        text: buttoText!,
+                        onTap: onButtonTap,
+                      ).pulse(
+                        from: 1,
+                        to: 1.1,
+                        infinite: true,
+                      ),
+                  ],
                 ),
                 closeButton(),
               ],

@@ -7,6 +7,10 @@ class _UserService extends GetxService {
   String get mobile => info.value.mobile;
   String get email => info.value.email;
   String get username => info.value.username;
+
+  // -1 不满足条件，0 未参与，显示抽奖转盘，1.已抽奖，显示倒计时挂件，2，已抽奖，弹出奖励金额
+  final lotteryStatus = (-1).obs;
+
   int get vipLevel => info.value.gradeName.toInt();
   int get id => info.value.id;
 
@@ -73,8 +77,13 @@ class _UserService extends GetxService {
       VicModals.shared.show(VicModalName.lucky_spin);
     }
 
-    await apis.user.queryLuckySpinAvalible().catchError((e) {
-      Logger.error('查询转盘活动失败: $e');
-    });
+    _queryLuckySpinStatus();
+  }
+
+  _queryLuckySpinStatus() async {
+    final r = await apis.user.queryLuckySpinAvalible();
+    if (r.activityStatus == 1) {
+      lotteryStatus.value = r.lotteryStatus.toInt();
+    }
   }
 }

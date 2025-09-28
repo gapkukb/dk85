@@ -17,6 +17,7 @@ class Roulette extends StatefulWidget {
     super.key,
     required this.group,
     required this.controller,
+    this.backgroundImage,
     this.style = const RouletteStyle(),
   });
 
@@ -25,6 +26,7 @@ class Roulette extends StatefulWidget {
 
   /// The display style of the roulette.
   final RouletteStyle style;
+  final ImageProvider? backgroundImage;
 
   /// The [RouletteGroup] to display.
   final RouletteGroup group;
@@ -119,6 +121,7 @@ class RouletteState extends State<Roulette> with SingleTickerProviderStateMixin 
 
   void _updateImageInfo() {
     final units = widget.group.units;
+
     if (units.isEmpty) {
       _imageInfoNotifier.value.forEach((_, value) => value.dispose());
       _imageInfoNotifier.value = {};
@@ -149,6 +152,29 @@ class RouletteState extends State<Roulette> with SingleTickerProviderStateMixin 
           ),
         );
       }
+    }
+
+    if (widget.backgroundImage != null) {
+      final provider = widget.backgroundImage;
+      final stream = provider!.resolve(imageConfiguration);
+      stream.addListener(
+        ImageStreamListener(
+          (image, synchronousCall) {
+            WidgetsBinding.instance.endOfFrame.then((_) {
+              _replaceImage(-1, image);
+            });
+          },
+          onError: (exception, stackTrace) {
+            assert(() {
+              log('image load error', error: exception, stackTrace: stackTrace);
+              WidgetsBinding.instance.endOfFrame.then((_) {
+                _replaceImage(-1, _createErrorImage(const Size(400, 400)));
+              });
+              return true;
+            }());
+          },
+        ),
+      );
     }
   }
 

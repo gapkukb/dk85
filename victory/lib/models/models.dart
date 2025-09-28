@@ -11,3 +11,4 @@ part 'user.model.dart';
 part 'deposit_channel.dart';
 part 'withdrawal_channel.dart';
 part 'payment_order.dart';
+part 'lucky_spin.model.dart';

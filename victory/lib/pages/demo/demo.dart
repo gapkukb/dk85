@@ -20,11 +20,11 @@ class _DemoPageState extends State<DemoPage> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 1), () {
-      // Get.generalDialog(
-      //   pageBuilder: (context, animation, secondaryAnimation) => const VicModalLuckySpin(),
-      //   // transitionDuration: const Duration(seconds: 3),
-      //   transitionBuilder: vicFadeScaleAnimationBuilder,
-      // );
+      Get.generalDialog(
+        pageBuilder: (context, animation, secondaryAnimation) => const VicModalLuckySpin(),
+        // transitionDuration: const Duration(seconds: 3),
+        transitionBuilder: vicFadeScaleAnimationBuilder,
+      );
     });
 
     super.initState();
@@ -37,7 +37,7 @@ class _DemoPageState extends State<DemoPage> {
         title: const Text('data'),
       ),
       body: ListView(
-        children: [const UnconstrainedBox(child: LuckySpinFloating())],
+        children: [],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

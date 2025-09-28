@@ -37,7 +37,7 @@ class _RootViewGetX extends GetView<RootController> {
           body: Stack(
             children: [
               child,
-              if (controller.showFloatingButton.value) const LuckySpinFloating(),
+              // if (controller.showFloatingButton.value) const LuckySpinFloating(),
             ],
           ),
         );

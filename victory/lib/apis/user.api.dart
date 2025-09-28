@@ -52,7 +52,7 @@ class _UserApi {
   final queryGameRecords = http.get('/app/game-record', decoder: VicGameHistoryGroupModel.fromJson);
 
   ///查询用户是否可参与转盘活动
-  final queryLuckySpinAvalible = http.get('/app/query-user-current-first-deposit-lottery-activity');
+  final queryLuckySpinAvalible = http.get('/app/query-user-current-first-deposit-lottery-activity', decoder: models.LuckySpinModel.fromJson);
 
   /// 用户参与转盘抽奖
   final drawLuckySpin = http.post('/app/draw-first-deposit-lottery-result');
