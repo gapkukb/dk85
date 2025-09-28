@@ -9,8 +9,11 @@ import 'package:victory/startup/bot_toast.dart';
 /// 显示初始化
 Widget startup(BuildContext context, Widget? child) {
   child = setupBotToast(context, child);
-  // if (Environment.isDev || CharlesProxyHttpOverride.debug) {
-  //   child = DebugView(child: child);
-  // }
+  if (Environment.isDev || CharlesProxyHttpOverride.debug) {
+    child = DebugView(child: child);
+  }
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    // VicModals.shared.resume();
+  });
   return RootView(child: child);
 }

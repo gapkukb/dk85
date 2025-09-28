@@ -16,14 +16,16 @@ class _VicFavButtonState extends State<VicFavButton> {
       dimension: 28,
       child: IconButton(
         padding: EdgeInsets.zero,
-        icon: Icon(
-          widget.game.liked ? IconFont.heart_fill : IconFont.heart,
-          color: widget.game.liked ? const Color(0xffff5800) : Colors.black,
-          size: 16,
+        icon: Obx(
+          () => Icon(
+            widget.game.liked.value ? IconFont.heart_fill : IconFont.heart,
+            color: widget.game.liked.value ? const Color(0xffff5800) : Colors.black,
+            size: 16,
+          ),
         ),
         onPressed: () async {
           await services.game.switchFavorite(widget.game);
-          widget.onChanged?.call(widget.game.liked);
+          widget.onChanged?.call(widget.game.liked.value);
           setState(() {});
         },
       ),

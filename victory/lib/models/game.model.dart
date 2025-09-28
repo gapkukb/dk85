@@ -59,8 +59,10 @@ class VicGameModel {
     required this.createdAt,
     required this.updatedAt,
     required this.platformId,
-    this.liked = false,
-  });
+    bool liked = false,
+  }) {
+    this.liked = liked.obs;
+  }
 
   final int id;
   final String platform;
@@ -83,7 +85,7 @@ class VicGameModel {
   final DateTime? createdAt;
   final DateTime? updatedAt;
   final int platformId;
-  bool liked;
+  late RxBool liked;
 
   factory VicGameModel.fromJson(Map<String, dynamic> json) {
     return VicGameModel(

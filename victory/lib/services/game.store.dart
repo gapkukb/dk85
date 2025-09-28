@@ -19,7 +19,7 @@ class _GameService extends GetxService {
         queryLikes();
       } else {
         for (var item in all) {
-          item.liked = false;
+          item.liked.value = false;
         }
         platform.refresh();
       }
@@ -37,16 +37,16 @@ class _GameService extends GetxService {
     likesLoading.value = false;
     final likesMap = Map.fromEntries(r.list.map((item) => MapEntry("${item.platformId}${item.gameId}", 1)));
     for (var item in all) {
-      item.liked = likesMap.containsKey("${item.platformId}${item.id}");
+      item.liked.value = likesMap.containsKey("${item.platformId}${item.id}");
     }
     platform.refresh();
   }
 
   Future switchFavorite(VicGameModel game) async {
     if (!services.auth.ensureAuthorized) return;
-    final f = game.liked ? apis.game.unfavorite : apis.game.favorite;
+    final f = game.liked.value ? apis.game.unfavorite : apis.game.favorite;
     await f(payload: {'platform_id': game.platformId, 'game_id': game.id});
-    game.liked = !game.liked;
+    game.liked.value = !game.liked.value;
     services.game.queryLikes();
   }
 

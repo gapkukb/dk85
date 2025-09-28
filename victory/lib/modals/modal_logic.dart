@@ -5,21 +5,18 @@ class VicModals extends GetxService {
   factory VicModals() => shared;
   VicModals._internal();
 
-  /// 待处理的队列
-  final List<VicModalBuilder> modals = [];
+  /// 弹窗合集
+  final Map<VicModalName, VicModalBuilder> modals = {};
 
-  /// TODO: 处理完成，等待展示的队列
-  final List<Widget> _widgets = [];
+  /// 显示队列
+  final List<VicModalBuilder> queue = [];
 
   /// 默认暂停队列，等待initlize被调用
   bool paused = true;
   bool _authorized = false;
-  bool _initlized = false;
   final String _currentRoute = '/';
 
-  Future ensureInitialized() async {
-    _initlized = true;
-  }
+  Future ensureInitialized() async {}
 
   @override
   void onInit() {
@@ -30,28 +27,15 @@ class VicModals extends GetxService {
     super.onInit();
   }
 
-  // initlize() async {
-  //   // 防止输入框聚焦，语言切换等操作触发整个app构建导致重复弹出
-  //   if (_initlized) return;
-  //   _initlized = true;
-  //   await Future.delayed(const Duration(seconds: 1));
-  //   _authorized = services.auth.authorized;
-
-  //   add(DialogBuilder(id: DialogNames.completion, builder: () => CompletionModal()));
-  //   add(DialogBuilder(id: DialogNames.topUpBouns, builder: () => TopUpBonusModal()));
-  //   add(DialogBuilder(id: DialogNames.dailyCheckIn, builder: () => DailyCheckInModal()));
-  //   add(DialogBuilder(id: DialogNames.announcement, manual: false, requireAuth: false, builder: () => AnnouncementModal()));
-
-  //   services.user.queryActivity();
-  //   active();
-  // }
-
   /// 添加到队列
   add(VicModalBuilder builder) {
-    if (_get(builder.name) != null) {
+    if (modals[builder.name] != null) {
       talker.error("builder: ${builder.keyName} 已经存在，无法重复添加");
     } else {
-      modals.add(builder);
+      modals.putIfAbsent(builder.name, () => builder);
+      if (!builder.manual) {
+        queue.add(builder);
+      }
       _sort();
       _tryNext();
     }
@@ -63,7 +47,9 @@ class VicModals extends GetxService {
     if (modal == null) {
       talker.error("[modal_service] builder: $name 未找到");
     } else {
-      modal.manual = false;
+      queue.add(modal);
+      _sort();
+      // modal.manual = false;
       return _tryNext();
     }
   }
@@ -81,39 +67,40 @@ class VicModals extends GetxService {
 
   /// 从队列删除
   void remove(VicModalName name) {
-    modals.removeWhere((modal) => modal.name == name);
+    queue.removeWhere((modal) => modal.name == name);
   }
 
   VicModalBuilder? _get(VicModalName name) {
-    if (name == VicModalName.completion) {
-      talker.debug(modals);
-      for (var modal in modals) {
-        talker.debug(modal.name == name);
-      }
-    }
-    return modals.firstWhereOrNull((modal) => modal.name == name);
+    return modals[name];
+    // if (name == VicModalName.completion) {
+    //   talker.debug(modals);
+    //   for (var modal in queue) {
+    //     talker.debug(modal.name == name);
+    //   }
+    // }
+    // return queue.firstWhereOrNull((modal) => modal.name == name);
   }
 
   void _sort() {
-    modals.sort((a, b) => b.priority.compareTo(a.priority));
+    queue.sort((a, b) => b.priority.compareTo(a.priority));
   }
 
   Future _tryNext([_]) async {
     if (paused) return;
     if (Get.isDialogOpen == true) return;
     if (modals.isEmpty) return;
-    final modal = modals.firstWhereOrNull((builder) {
-      // 跳过手动控制的
-      if (builder.manual) return false;
-      // 检查路由和登录态
-      if (!builder.match(_currentRoute, _authorized)) return false;
-      // 检查冷却期
-      if (builder.inCooldown) return false;
+    // final modal = queue.firstWhereOrNull((builder) {
+    //   // 跳过手动控制的
+    //   if (builder.manual) return false;
+    //   // 检查路由和登录态
+    //   if (!builder.match(_currentRoute, _authorized)) return false;
+    //   // 检查冷却期
+    //   if (builder.inCooldown) return false;
 
-      return true;
-    });
-    if (modal == null) return;
-    modal.manual = true;
+    //   return true;
+    // });
+
+    final modal = queue.first;
     await Get.generalDialog(
       pageBuilder: (context, animation, secondaryAnimation) => modal.builder(),
       transitionBuilder: modal.transitionBuilder ?? vicFadeScaleAnimationBuilder,
@@ -122,7 +109,7 @@ class VicModals extends GetxService {
       transitionDuration: modal.transitionDuration,
     );
 
-    if (modal.peroidic.isAutoRemove) remove(modal.name);
+    queue.removeAt(0);
     modal.close();
     Future.delayed(Durations.medium2, _tryNext);
   }

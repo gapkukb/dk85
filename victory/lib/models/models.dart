@@ -2,6 +2,8 @@ library models;
 
 import 'dart:convert';
 
+import 'package:get/get_rx/get_rx.dart';
+
 part 'base_model.dart';
 part 'game.model.dart';
 part 'auth.dart';

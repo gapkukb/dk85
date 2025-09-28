@@ -17,7 +17,7 @@ class VicAuthCotroller extends GetxController with VicGraphicInputController {
   void login(Object values) async {
     try {
       await services.auth.login(values);
-      VicDialog.success(text: 'Log In successful', onClose: () => Get.back(result: true));
+      Get.back();
     } catch (e) {
       refreshImage();
       rethrow;
@@ -27,7 +27,7 @@ class VicAuthCotroller extends GetxController with VicGraphicInputController {
   void register(Object values) async {
     try {
       await services.auth.register(values);
-      VicDialog.success(text: 'Sign up successful', onClose: () => Get.back(result: true));
+      Get.back();
     } catch (e) {
       refreshImage();
       rethrow;

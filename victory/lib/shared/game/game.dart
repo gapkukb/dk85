@@ -1,3 +1,4 @@
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 

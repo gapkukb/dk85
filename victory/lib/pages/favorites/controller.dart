@@ -9,7 +9,7 @@ class VicFavController extends GetxController {
   VicFavController();
 
   final refresher = RefreshController();
-  List<VicGameModel> get games => services.game.all.where((i) => i.liked).toList();
+  List<VicGameModel> get games => services.game.all.where((i) => i.liked.value).toList();
 
   @override
   void onInit() {

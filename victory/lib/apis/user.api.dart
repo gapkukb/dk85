@@ -55,5 +55,11 @@ class _UserApi {
   final queryLuckySpinAvalible = http.get('/app/query-user-current-first-deposit-lottery-activity', decoder: models.LuckySpinModel.fromJson);
 
   /// 用户参与转盘抽奖
-  final drawLuckySpin = http.post('/app/draw-first-deposit-lottery-result');
+  final drawLuckySpin = http.post('/app/draw-first-deposit-lottery-result', loading: true);
+
+  /// 用户参与转盘抽奖
+  final claimLuckySpin = http.post('/app/claim-first-deposit-lottery-price', decoder: models.LuckySpinClaimModel.fromJson, loading: true);
+
+  /// 测试接口  重置转盘抽奖
+  final resetLuckySpin = http.post('/app/reset-first-deposit-lottery-activity-user');
 }

@@ -20,10 +20,12 @@ class VicModalTemplate extends StatelessWidget {
   final double margin;
   final EdgeInsets padding;
   final BoxDecoration? decoration;
+  final BoxDecoration? foregroundDecoration;
   final String? title;
   final String? subtitle;
   final String? buttoText;
   final VoidCallback? onButtonTap;
+  final VoidCallback? onBeforeClose;
   const VicModalTemplate({
     super.key,
     required this.child,
@@ -35,6 +37,7 @@ class VicModalTemplate extends StatelessWidget {
     this.margin = 24,
     this.padding = const EdgeInsets.symmetric(horizontal: 12),
     this.decoration,
+    this.foregroundDecoration,
     this.backgroundColor,
     this.closePosition = const (top: -48.0, right: 24.0),
     this.alignment,
@@ -42,6 +45,7 @@ class VicModalTemplate extends StatelessWidget {
     this.subtitle,
     this.buttoText,
     this.onButtonTap,
+    this.onBeforeClose,
   });
 
   @override
@@ -70,22 +74,23 @@ class VicModalTemplate extends StatelessWidget {
                     if (title != null)
                       Text(
                         title!,
-                        style: const TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold),
+                        style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
                       ),
                     if (subtitle != null)
                       Text(
                         subtitle!,
-                        style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                        style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
                       ),
                     if (buttoText != null)
                       VicModalActionButton(
                         text: buttoText!,
                         onTap: onButtonTap,
-                      ).pulse(
-                        from: 1,
-                        to: 1.1,
-                        infinite: true,
                       ),
+                    // .pulse(
+                    //   from: 1,
+                    //   to: 1.1,
+                    //   infinite: true,
+                    // ),
                   ],
                 ),
                 closeButton(),
@@ -104,7 +109,7 @@ class VicModalTemplate extends StatelessWidget {
       right: closePosition.right,
       child: DeferPointer(
         child: GestureDetector(
-          onTap: Get.back,
+          onTap: onBeforeClose ?? Get.back,
           child: close ?? const Icon(IconFont.guanbi, size: 36, color: AppColors.white),
         ),
       ),

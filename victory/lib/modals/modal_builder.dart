@@ -32,7 +32,7 @@ class VicModalBuilder {
   final VicModalPeriodic peroidic;
 
   /// 视图构造器
-  final Widget Function() builder;
+  final Widget Function([Object? params]) builder;
 
   /// 动画构造器
   final RouteTransitionsBuilder? transitionBuilder;

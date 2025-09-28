@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:victory/pages/demo/lucky_spin_floating.dart';
+import 'package:victory/services/services.dart';
 
 import 'index.dart';
 
@@ -37,7 +38,10 @@ class _RootViewGetX extends GetView<RootController> {
           body: Stack(
             children: [
               child,
-              // if (controller.showFloatingButton.value) const LuckySpinFloating(),
+              Obx(() {
+                if (services.user.showLotteryPendant.value) return const LuckySpinFloating();
+                return const SizedBox.square();
+              }),
             ],
           ),
         );

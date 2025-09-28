@@ -132,3 +132,42 @@ class UserParticipateInfo {
     return "$participateId, ";
   }
 }
+
+class LuckySpinClaimModel {
+  LuckySpinClaimModel({
+    required this.participateId,
+    required this.priceRatio,
+    required this.priceAmount,
+    required this.depositAmount,
+    required this.baseAmount,
+  });
+
+  final int participateId;
+  final num priceRatio;
+  final num priceAmount;
+  final num depositAmount;
+  final num baseAmount;
+
+  factory LuckySpinClaimModel.fromJson(Map<String, dynamic> json) {
+    return LuckySpinClaimModel(
+      participateId: json["participate_id"] ?? 0,
+      priceRatio: json["price_ratio"] ?? 0,
+      priceAmount: json["price_amount"] ?? 0,
+      depositAmount: json["deposit_amount"] ?? 0,
+      baseAmount: json["base_amount"] ?? 0,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    "participate_id": participateId,
+    "price_ratio": priceRatio,
+    "price_amount": priceAmount,
+    "deposit_amount": depositAmount,
+    "base_amount": baseAmount,
+  };
+
+  @override
+  String toString() {
+    return "$participateId, $priceRatio, $priceAmount, $depositAmount, $baseAmount, ";
+  }
+}

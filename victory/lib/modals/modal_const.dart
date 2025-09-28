@@ -47,6 +47,9 @@ enum VicModalName {
   /// 转盘活动
   lucky_spin,
 
+  /// 转盘活动-第二步
+  lucky_spin_next,
+
   /// 强更
   force_update,
 }

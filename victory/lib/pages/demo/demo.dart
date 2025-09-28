@@ -6,6 +6,7 @@ import 'package:victory/animations/fade_scale.dart';
 import 'package:victory/modals/views/announcement/announcement.dart';
 import 'package:victory/modals/views/completion/completion.dart';
 import 'package:victory/modals/views/lucky_spin/view.dart';
+import 'package:victory/modals/views/lucky_spin/view_next.dart';
 import 'package:victory/pages/demo/lucky_spin_floating.dart';
 import 'package:victory/services/services.dart';
 
@@ -20,11 +21,11 @@ class _DemoPageState extends State<DemoPage> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 1), () {
-      Get.generalDialog(
-        pageBuilder: (context, animation, secondaryAnimation) => const VicModalLuckySpin(),
-        // transitionDuration: const Duration(seconds: 3),
-        transitionBuilder: vicFadeScaleAnimationBuilder,
-      );
+      // Get.generalDialog(
+      //   pageBuilder: (context, animation, secondaryAnimation) => const VicModalLuckySpin(),
+      //   // transitionDuration: const Duration(seconds: 3),
+      //   transitionBuilder: vicFadeScaleAnimationBuilder,
+      // );
     });
 
     super.initState();

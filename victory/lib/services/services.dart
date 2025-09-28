@@ -16,6 +16,7 @@ import 'package:victory/routes/app_pages.dart';
 import 'package:victory/shared/app_info/app_info.dart';
 import 'package:victory/shared/dialogs/dialog.dart';
 import 'package:victory/shared/logger/logger.dart';
+import 'package:victory/shared/talker/talker.dart';
 import 'package:victory/storage/storage.dart';
 
 part 'app.store.dart';

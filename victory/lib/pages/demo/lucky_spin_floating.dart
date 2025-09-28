@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/instance_manager.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 import 'package:victory/3rd/text_with_border.dart';
+import 'package:victory/modals/views/lucky_spin/view_next.dart';
+import 'package:victory/services/services.dart';
 
 class LuckySpinFloating extends StatefulWidget {
   const LuckySpinFloating({super.key});
@@ -15,20 +19,26 @@ class _LuckySpinFloatingState extends State<LuckySpinFloating> {
     return Positioned(
       right: 0,
       bottom: 80,
-      child: Container(
-        width: 128 / 2,
-        height: 146 / 2,
-        alignment: const Alignment(0, 1),
-        decoration: const BoxDecoration(
-          // color: Colors.yellow,
-          image: DecorationImage(
-            image: AssetImage('assets/images/lucky_spin_main.webp'),
-            alignment: Alignment.topCenter,
-            // fit: BoxFit.fitWidth,
-            // scale: 11,
+      child: GestureDetector(
+        onTap: () {
+          // services.user.showLotteryPendant.value = false;
+          Get.dialog(const VicModalLuckySpinNext());
+        },
+        child: Container(
+          width: 128 / 2,
+          height: 146 / 2,
+          alignment: const Alignment(0, 1),
+          decoration: const BoxDecoration(
+            // color: Colors.yellow,
+            image: DecorationImage(
+              image: AssetImage('assets/images/lucky_spin_main.webp'),
+              alignment: Alignment.topCenter,
+              // fit: BoxFit.fitWidth,
+              // scale: 11,
+            ),
           ),
+          child: countdown,
         ),
-        child: countdown,
       ),
     );
   }
@@ -58,28 +68,30 @@ class _LuckySpinFloatingState extends State<LuckySpinFloating> {
   }
 
   Widget get countdown {
-    return SlideCountdown(
-      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 0),
-      shouldShowDays: (_) => false,
-      separator: ':',
-      separatorPadding: const EdgeInsets.all(0),
-      separatorStyle: const TextStyle(
-        fontSize: 11,
-        color: Colors.black,
-        // letterSpacing: -,
-        fontWeight: FontWeight.bold,
+    return Obx(
+      () => SlideCountdown(
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 0),
+        shouldShowDays: (_) => false,
+        separator: ':',
+        separatorPadding: const EdgeInsets.all(0),
+        separatorStyle: const TextStyle(
+          fontSize: 11,
+          color: Colors.black,
+          // letterSpacing: -,
+          fontWeight: FontWeight.bold,
+        ),
+        style: const TextStyle(
+          fontSize: 11,
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+        ),
+        decoration: BoxDecoration(
+          color: const Color(0xfffff421),
+          border: Border.all(color: const Color(0xff898200), width: 2),
+          borderRadius: const BorderRadius.all(Radius.circular(24)),
+        ),
+        duration: services.user.lotteryCountdown.value,
       ),
-      style: const TextStyle(
-        fontSize: 11,
-        color: Colors.black,
-        fontWeight: FontWeight.bold,
-      ),
-      decoration: BoxDecoration(
-        color: const Color(0xfffff421),
-        border: Border.all(color: const Color(0xff898200), width: 2),
-        borderRadius: const BorderRadius.all(Radius.circular(24)),
-      ),
-      duration: const Duration(days: 2),
     );
   }
 }
