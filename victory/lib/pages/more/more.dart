@@ -35,7 +35,7 @@ class _VicMorePageState extends State<VicMorePage> {
                 child: VicTile(titleText: 'app.language'.tr, trailing: Obx(() => Text(services.app.currentLocaleName))),
               ),
 
-              VicTile(titleText: 'app.version'.tr, trailing: Text(VicAppInfo.shared.buildNumber), isLink: false),
+              VicTile(titleText: 'app.version'.tr, trailing: Text(VicAppInfo.shared.version), isLink: false),
               VicTile(
                 titleText: 'app.bgm'.tr,
                 trailing: Transform.scale(

@@ -63,10 +63,7 @@ class VicHttpImpl<R, T> {
         ) {
           if (httpOptions.raw) return response.data;
           final data = response.data['data'];
-          if (data == null) {
-            if (_isList) return [] as R;
-            if (decoder == null) return null;
-          }
+          if (data == null) return null;
           if (decoder == null) return data;
           if (data is Map<String, dynamic>) return decoder!(data) as R;
           if (data is List) {

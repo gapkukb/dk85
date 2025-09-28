@@ -18,17 +18,14 @@ class VicAppInfo {
   late final String deviceId;
 
   Future<void> ensureInitialized() async {
-    if (storage.appInfo.value == null) {
-      await initialize();
-    } else {
-      final appInfo = storage.appInfo.value!;
+    final r = await Future.wait([PackageInfo.fromPlatform(), _findDeviceId()]);
+    final PackageInfo packageInfo = r[0] as PackageInfo;
 
-      appName = appInfo['appName'];
-      packageName = appInfo['packageName'];
-      version = appInfo['version'];
-      buildNumber = appInfo['buildNumber'];
-      deviceId = appInfo['deviceId'];
-    }
+    deviceId = r[1] as String;
+    appName = packageInfo.appName;
+    packageName = packageInfo.packageName;
+    version = packageInfo.version;
+    buildNumber = packageInfo.buildNumber;
   }
 
   Map<String, dynamic> toJson() => {
@@ -43,30 +40,18 @@ class VicAppInfo {
   String toString() {
     return "$appName, $packageName, $version, $buildNumber,$deviceId, ";
   }
-
-  Future<VicAppInfo> initialize() async {
-    final r = await Future.wait([PackageInfo.fromPlatform(), _findDeviceId()]);
-    final PackageInfo packageInfo = r[0] as PackageInfo;
-
-    deviceId = VicCryptoHelper.toMd5(r[1] as String);
-    appName = packageInfo.appName;
-    packageName = packageInfo.packageName;
-    version = packageInfo.version;
-    buildNumber = packageInfo.buildNumber;
-    storage.appInfo.update(toJson());
-
-    return this;
-  }
 }
 
 Future<String> _findDeviceId() async {
   String? id;
+  if (storage.dviceId.value != null) return storage.dviceId.value!;
   // 优先取设备MediaDrm
   id = await MobileDeviceIdentifier().getDeviceId();
-  if (id != null) return id;
   // 其次取广告id
-  id = await AdvertisingId.id(true);
-  if (id != null) return id;
+  id ??= await AdvertisingId.id(true);
   // 最后随机
-  return const Uuid().v4();
+  id ??= const Uuid().v4();
+  id = VicCryptoHelper.toMd5(id);
+  storage.deviceId.update(id);
+  return id;
 }

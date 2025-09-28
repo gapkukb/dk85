@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:victory/constants/cs_url.dart';
 import 'package:victory/helper/loading.dart';
+import 'package:victory/startup/bot_toast.dart';
 import 'package:victory/theme/theme.dart';
 
 class VicSplashPage extends StatefulWidget {
@@ -13,6 +14,12 @@ class VicSplashPage extends StatefulWidget {
 }
 
 class _VicSplashPageState extends State<VicSplashPage> {
+  @override
+  void initState() {
+    setupBotToast(context, widget);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Directionality(

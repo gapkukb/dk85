@@ -23,7 +23,7 @@ class Storage {
   final user = _app.nullable<Map<String, dynamic>>('user');
   final token = _app.reactive("token", '');
   final locale = _app.nullable<String>('locale');
-  final appInfo = _app.nullable<Map<String, dynamic>>("app_info");
+  final dviceId = _app.nullable<String>("dviceId");
   final debug = _app('debug', false);
   final deviceId = _app("device_id", '');
   final showGuide = _app("show_guide", true);
