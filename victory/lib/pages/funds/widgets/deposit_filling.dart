@@ -45,6 +45,7 @@ class VicDepositFilling extends GetView<FundsController> {
           'nonce': const Uuid().v1(),
         },
       );
+      if (order == null) return;
       order.logo = channel.logo;
       order.amount = int.tryParse(values['amount']) ?? 0;
       order.channelId = channel.id.toInt();

@@ -8,11 +8,10 @@ final guideStep1Key = GlobalKey();
 final guideStepTwoKey = GlobalKey();
 
 Future<void> showGuide() {
-  // if (!storage.showGuide.value) return Future.value();
+  if (!storage.showGuide.value) return Future.value();
 
   final completer = Completer();
   List<TargetFocus> targets = [];
-  // if (storage.showGuide.value) return;
 
   late final TutorialCoachMark tutorial;
   targets.add(

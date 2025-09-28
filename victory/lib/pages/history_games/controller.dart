@@ -17,9 +17,10 @@ class HistoryGamesController extends DataViewLogic<VicGameHistoryModel> with Dat
     if (kind.value != 'ALL') {
       payload['cate'] = kind.value;
     }
-    final resp = await apis.user.queryGameRecords(payload: payload);
-    count = resp.count;
-    return resp.list;
+    final r = await apis.user.queryGameRecords(payload: payload);
+    if (r == null) return [];
+    count = r.count;
+    return r.list;
   }
 
   @override

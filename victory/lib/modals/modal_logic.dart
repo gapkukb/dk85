@@ -88,7 +88,7 @@ class VicModals extends GetxService {
   Future _tryNext([_]) async {
     if (paused) return;
     if (Get.isDialogOpen == true) return;
-    if (modals.isEmpty) return;
+    if (queue.isEmpty) return;
     // final modal = queue.firstWhereOrNull((builder) {
     //   // 跳过手动控制的
     //   if (builder.manual) return false;

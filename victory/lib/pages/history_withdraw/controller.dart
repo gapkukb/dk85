@@ -15,7 +15,7 @@ class WithdrawHisotryLogic extends GetxController with DatePickerMixin, Paginati
 
   @override
   fetch() async {
-    final resp = await apis.user.queryRecords(
+    final r = await apis.user.queryRecords(
       payload: {
         'start': start,
         'end': end,
@@ -25,8 +25,8 @@ class WithdrawHisotryLogic extends GetxController with DatePickerMixin, Paginati
         'size': size,
       },
     );
-
-    return (data: resp.list, count: resp.count as int);
+    if (r == null) return (data: <VicFundHisotryModel>[], count: 0);
+    return (data: r.list, count: r.count as int);
   }
 
   @override

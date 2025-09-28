@@ -43,7 +43,7 @@ class AppPages {
     GetPage(name: AppRoutes.payee, page: () => const VicPayeePage()),
     GetPage(name: AppRoutes.pwd, page: () => const VicPwdMngPage()),
     GetPage(name: AppRoutes.mobile, page: () => const VicMobileMngPage()),
-    GetPage(name: AppRoutes.mobile, page: () => const VicEmailMngPage()),
+    GetPage(name: AppRoutes.email, page: () => const VicEmailMngPage()),
     GetPage(name: AppRoutes.rebate, page: () => const VicRebatePage()),
     GetPage(name: AppRoutes.vip, page: () => const VicVipPage()),
     GetPage(name: AppRoutes.vipDetail, page: () => const VicVipDetailsPage()),

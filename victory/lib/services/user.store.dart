@@ -22,7 +22,6 @@ class _UserService extends GetxService {
   onInit() {
     super.onInit();
     services.auth.listen((authorized) async {
-      talker.log('authorized:$authorized');
       if (authorized) {
         await queryUserInfo();
         _callModals();
@@ -37,11 +36,13 @@ class _UserService extends GetxService {
   Future queryUserInfo({bool initial = false}) async {
     if (services.auth.unauthorized) return;
     try {
-      info.value = await apis.user.queryUserInfo();
+      final r = await apis.user.queryUserInfo();
+      if (r == null) return;
+      info.value = r;
       balance.value = info.value.balance;
       info.refresh();
     } catch (e) {
-      Logger.error(e.toString());
+      talker.error(e.toString());
       rethrow;
     }
   }
@@ -87,6 +88,9 @@ class _UserService extends GetxService {
 
   queryLuckySpin() async {
     final r = await apis.user.queryLuckySpinAvalible();
+    // ignore: dead_code, unnecessary_null_comparison
+    if (r == null) return;
+    talker.debug("转盘当前状态，activityStatus${r.activityStatus},lotteryStatus:${r.lotteryStatus}");
     // ==0 活动未开启
     if (r.activityStatus == 0) return;
     lotteryStatus.value = r.lotteryStatus.toInt();
@@ -96,7 +100,6 @@ class _UserService extends GetxService {
     lotteryActiveId.value = r.activityId;
     lotteryParticipateId.value = r.userParticipateInfo?.participateId ?? -1;
     lotteryCountdown.value = Duration(seconds: r.activityCountDownSeconds.toInt());
-
     if (lotteryStatus.value == 0) {
       VicModals().show(VicModalName.lucky_spin);
     } else if (lotteryStatus.value == 1) {

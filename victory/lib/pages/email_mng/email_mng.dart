@@ -41,33 +41,29 @@ class _EmaileState extends State<VicEmailMngPage> {
 
   Widget buildBindView() {
     return ListView(
-      padding: const EdgeInsets.all(12),
+      padding: AppSizes.pad_page,
       children: [
         Text("acc.email.bind".tr, style: const TextStyle(fontSize: 12, color: AppColors.label)),
         const SizedBox(height: 16),
         VicEmailInput(backgroundColor: Colors.white, onSaved: form.saveAs('email')),
-        const SizedBox(height: 16),
-        VicButton(onPressed: form.submit, text: 'app.bind'.tr),
+        const SizedBox(height: 8),
+        VicButton(height: VicButtonHeight.medium, onPressed: form.submit, text: 'app.bind'.tr),
       ],
     );
   }
 
   Widget buildUpdateView() {
     return ListView(
-      padding: const EdgeInsets.all(12),
+      padding: AppSizes.pad_page,
       children: [
         Text("acc.email.is".tr, style: const TextStyle(fontSize: 12, color: AppColors.label)),
-
-        const SizedBox(height: 8),
-
+        const SizedBox(height: 16),
         Text(
           user.email,
           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.title),
         ),
-
-        const SizedBox(height: 24),
-
-        VicButton(onPressed: VicCustomerService.call, text: 'app.change'.tr),
+        const SizedBox(height: 8),
+        VicButton(height: VicButtonHeight.medium, onPressed: VicCustomerService.call, text: 'app.change'.tr),
       ],
     );
   }

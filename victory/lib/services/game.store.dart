@@ -28,13 +28,16 @@ class _GameService extends GetxService {
 
   Future queryGames() async {
     loading.value = true;
-    platform.value = await apis.game.queryGame(payload: {'game_id': '17'});
+    final r = await apis.game.queryGame(payload: {'game_id': '17'});
     loading.value = false;
+    if (r == null) return;
+    platform.value = r;
   }
 
   Future queryLikes() async {
     final r = await apis.game.queryFavorites();
     likesLoading.value = false;
+    if (r == null) return;
     final likesMap = Map.fromEntries(r.list.map((item) => MapEntry("${item.platformId}${item.gameId}", 1)));
     for (var item in all) {
       item.liked.value = likesMap.containsKey("${item.platformId}${item.id}");

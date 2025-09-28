@@ -7,7 +7,7 @@ class _AppService extends GetxService with VicRouterMixin, VicLocaleMixin, Audio
 
   queryAnnouncements() async {
     final r = await apis.app.queryAnnouncements();
-    if (r.isNotEmpty) {
+    if (r != null && r.isNotEmpty) {
       VicModals.shared.show(VicModalName.announcement);
     }
   }

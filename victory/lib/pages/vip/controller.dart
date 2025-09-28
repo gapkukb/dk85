@@ -47,27 +47,34 @@ class VicVipController extends GetxController {
   }
 
   void queryConfig() async {
-    grades.value = await apis.user.queryGradeList();
+    final r = await apis.user.queryGradeList();
+    if (r == null) return;
+    grades.value = r;
     // jumpTo(level - 1);
   }
 
   void queryAdvanceBouns() async {
     final r = await apis.user.queryMonthlyBonus();
+    if (r == null) return;
     hasAdvanceBouns.value = r.isAvailable;
   }
 
   void queryWeeklyBouns() async {
     final r = await apis.user.queryWeeklyBonus();
+    if (r == null) return;
     hasWeeklyBouns.value = r.isAvailable;
   }
 
   void queryMonthlyBouns() async {
     final r = await apis.user.queryMonthlyBonus();
+    if (r == null) return;
     hasMonthlyBouns.value = r.isAvailable;
   }
 
   void queryVipUpgradeBouns() async {
-    upgradeBouns.value = await apis.user.queryVipUpgradeBonus();
+    final r = await apis.user.queryVipUpgradeBonus();
+    if (r == null) return;
+    upgradeBouns.value = r;
     if (upgradeBouns.isNotEmpty) {
       final index = upgradeBouns.first.gradeId.toInt();
       jumpTo(index);

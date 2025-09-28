@@ -20,20 +20,23 @@ class _AuthService extends GetxService {
   }
 
   Future login(Object values) async {
-    final t = await apis.auth.login(data: values);
-    _saveAndUpdate(t.token);
+    final r = await apis.auth.login(data: values);
+    if (r == null) return;
+    _saveAndUpdate(r.token);
   }
 
   Future register(Object values) async {
-    final t = await apis.auth.register(data: values);
-    _saveAndUpdate(t.token);
+    final r = await apis.auth.register(data: values);
+    if (r == null) return;
+    _saveAndUpdate(r.token);
   }
 
   Future quickRegister() async {
     Logger.debug('使用设备号注册:${VicAppInfo.shared.deviceId}');
-    final t = await apis.auth.fastRegister(payload: {'device_code': VicAppInfo.shared.deviceId});
+    final r = await apis.auth.fastRegister(payload: {'device_code': VicAppInfo.shared.deviceId});
+    if (r == null) return;
     Logger.debug('设备号注册成功');
-    _saveAndUpdate(t.token);
+    _saveAndUpdate(r.token);
   }
 
   Future logout() async {

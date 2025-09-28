@@ -21,9 +21,8 @@ class CharlesProxyHttpOverride extends HttpOverrides {
 
   static Future ensureInitialized() async {
     // 生产环境不开启
-    // TODO:生产环境条件开启;
 
-    if (Environment.isProd) return;
+    // if (Environment.isProd) return;
     // if (storage.proxyHost.value == null || storage.proxyPort.value == null) return;
     // host = storage.proxyHost.value ?? '192.168.254.112';
     // port = storage.proxyPort.value ?? 8888;

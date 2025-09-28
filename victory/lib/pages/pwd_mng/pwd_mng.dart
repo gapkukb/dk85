@@ -49,7 +49,7 @@ class _PwdManagerState extends State<VicPwdMngPage> {
         ),
         body: SafeArea(
           child: Padding(
-            padding: AppSizes.pad_a_12,
+            padding: AppSizes.pad_page,
             child: Column(
               spacing: 8,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -60,9 +60,7 @@ class _PwdManagerState extends State<VicPwdMngPage> {
 
                 VicPwdInput(reference: ctrl, backgroundColor: AppColors.white),
 
-                const SizedBox(height: 8),
-
-                VicButton(onPressed: form.submit, text: hasPass ? 'app.change'.tr : 'app.bind'.tr),
+                VicButton(height: VicButtonHeight.medium, onPressed: form.submit, text: hasPass ? 'app.change'.tr : 'app.bind'.tr),
               ],
             ),
           ),

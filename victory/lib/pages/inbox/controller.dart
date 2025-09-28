@@ -12,6 +12,7 @@ class InboxController extends DataViewLogic<VicInboxModel> {
     final r = await apis.user.queryInbox(payload: {'page': 1, 'size': size}).whenComplete(() {
       loading.value = false;
     });
+    if (r == null) return [];
     count = r.count;
     return r.list;
   }

@@ -23,8 +23,11 @@ class RebateController extends GetxController {
   }
 
   void _queryConfig() async {
-    config.value = await apis.user.queryGradeList().whenComplete(() {
+    final r = await apis.user.queryGradeList().whenComplete(() {
       loading.value = false;
     });
+
+    if (r == null) return;
+    config.value = r;
   }
 }

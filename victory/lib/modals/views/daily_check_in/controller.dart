@@ -17,6 +17,7 @@ class DailyCheckInController extends GetxController {
     super.onInit();
     list.value = mock();
     apis.app.checkInList().then((resp) {
+      if (resp == null) return;
       list.value = resp.list;
       rules.value = resp.rules;
       loading.value = false;

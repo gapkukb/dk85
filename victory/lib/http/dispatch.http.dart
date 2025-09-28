@@ -34,7 +34,7 @@ class VicHttpImpl<R, T> {
     );
   }
 
-  Future<R> call({
+  Future<R?> call({
     Object? payload,
     Object? data,
     Map<String, dynamic>? queryParameters,
@@ -58,11 +58,15 @@ class VicHttpImpl<R, T> {
           onSendProgress: onSendProgress,
           onReceiveProgress: onReceiveProgress,
         )
-        .then<R>((
+        .then<R?>((
           response,
         ) {
           if (httpOptions.raw) return response.data;
           final data = response.data['data'];
+          if (data == null) {
+            if (_isList) return [] as R;
+            if (decoder == null) return null;
+          }
           if (decoder == null) return data;
           if (data is Map<String, dynamic>) return decoder!(data) as R;
           if (data is List) {

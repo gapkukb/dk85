@@ -50,6 +50,7 @@ class FundsController extends GetxController with GetSingleTickerProviderStateMi
 
   void queryTopUpChannels() async {
     final r = await apis.fund.queryDepositChannels();
+    if (r == null) return;
     channelsDeposit.value = r.map((e) => e.accountList.first).where((i) => i != null).toList();
   }
 

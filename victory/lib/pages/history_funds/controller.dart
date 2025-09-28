@@ -8,8 +8,9 @@ import 'package:victory/shared/date_view/data_view_logic.dart';
 class HistoryFundsController extends DataViewLogic<VicFundHisotryModel> with DatePickerMixin {
   @override
   fetch() async {
-    final resp = await apis.user.queryRecords(payload: {'start': start, 'end': end, 'status': '2', 'page': page, 'size': size});
-    return resp.list;
+    final r = await apis.user.queryRecords(payload: {'start': start, 'end': end, 'status': '2', 'page': page, 'size': size});
+    if (r == null) return [];
+    return r.list;
   }
 
   @override

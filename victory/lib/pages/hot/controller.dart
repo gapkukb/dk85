@@ -45,6 +45,6 @@ class VicHotController extends GetxController {
   void onReady() {
     super.onReady();
     // _react(1);
-    ever(services.game.loading, _react);
+    ever(services.game.platform, _react);
   }
 }

@@ -31,6 +31,7 @@ class _VicModalLuckySpinNextState extends State<VicModalLuckySpinNext> {
             "participate_id": services.user.lotteryParticipateId.value,
           },
         );
+        if (r == null) return;
         prizeAmount = r.priceAmount.toDouble();
         setState(() {});
       },

@@ -45,10 +45,9 @@ class _MobileState extends State<VicMobileMngPage> {
     return Form(
       key: form.key,
       child: ListView(
-        padding: const EdgeInsets.all(12),
+        padding: AppSizes.pad_page,
         children: [
           Text("acc.mobile.bind".tr, style: const TextStyle(fontSize: 12, color: AppColors.label)),
-          const SizedBox(height: 16),
 
           Text(
             user.mobile,
@@ -56,8 +55,8 @@ class _MobileState extends State<VicMobileMngPage> {
           ),
 
           VicMobileInput(onSaved: form.saveAs('mobile'), backgroundColor: Colors.white),
-          const SizedBox(height: 16),
-          VicButton(onPressed: form.submit, text: 'app.bind'.tr),
+
+          VicButton(height: VicButtonHeight.medium, onPressed: form.submit, text: 'app.bind'.tr),
         ],
       ),
     );
@@ -65,20 +64,16 @@ class _MobileState extends State<VicMobileMngPage> {
 
   Widget buildUpdateView() {
     return ListView(
-      padding: const EdgeInsets.all(12),
+      padding: AppSizes.pad_page,
       children: [
         Text("acc.mobile.is".tr, style: const TextStyle(fontSize: 12, color: AppColors.label)),
-
-        const SizedBox(height: 8),
 
         Text(
           user.mobile,
           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.title),
         ),
 
-        const SizedBox(height: 24),
-
-        VicButton(onPressed: VicCustomerService.call, text: 'app.change'.tr),
+        VicButton(height: VicButtonHeight.medium, onPressed: VicCustomerService.call, text: 'app.change'.tr),
       ],
     );
   }

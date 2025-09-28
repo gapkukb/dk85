@@ -18,7 +18,9 @@ class _VicAnnouncementModalState extends State<VicAnnouncementModal> {
   final border = const Border(bottom: BorderSide(color: AppColors.background, width: 1));
   final announcements = <VicAnnouncementModel>[].obs;
   void queryAnnouncements() async {
-    announcements.value = await apis.app.queryAnnouncements();
+    final r = await apis.app.queryAnnouncements();
+    if (r == null) return;
+    announcements.value = r;
     setState(() {});
   }
 
