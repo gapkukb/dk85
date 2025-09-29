@@ -32,6 +32,7 @@ class _VicModalLuckySpinNextState extends State<VicModalLuckySpinNext> {
         if (done) {
           Get.back();
           services.user.updateBalance();
+          services.user.luckySpinDisplay.value = LuckySpinDisplay.none;
           services.user.queryLuckySpin();
         } else {
           claim();
@@ -39,9 +40,9 @@ class _VicModalLuckySpinNextState extends State<VicModalLuckySpinNext> {
       },
       onBeforeClose: () async {
         if (!done) {
-          // services.user.queryLuckySpin();
           services.user.luckySpinDisplay.value = LuckySpinDisplay.miniPending;
           Get.back();
+          services.user.queryLuckySpin();
         }
       },
       child: Container(
@@ -92,6 +93,7 @@ class _VicModalLuckySpinNextState extends State<VicModalLuckySpinNext> {
           onTap: () {
             Get.back();
             services.app.toFundsPage();
+            services.user.luckySpinDisplay.value = LuckySpinDisplay.miniPending;
           },
         );
       } else if (e.message != null) {

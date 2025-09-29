@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:victory/constants/lucky_spin.dart';
 import 'package:victory/modals/views/lucky_spin/view_init.dart';
 import 'package:victory/modals/views/lucky_spin/view_next.dart';
 import 'package:victory/services/services.dart';
@@ -10,7 +11,7 @@ class VicModalLuckySpin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => services.user.luckySpinDisplay.value == 0 ? const VicModalLuckySpinInit() : const VicModalLuckySpinNext(),
+      () => services.user.luckySpinDisplay.value == LuckySpinDisplay.waiting ? const VicModalLuckySpinInit() : const VicModalLuckySpinNext(),
     );
   }
 }

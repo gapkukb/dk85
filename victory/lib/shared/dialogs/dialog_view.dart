@@ -73,7 +73,7 @@ class _VicQuickDialogView extends StatelessWidget {
                           outlined: true,
                           backgroundColor: Colors.transparent,
                           color: AppColors.primary,
-                          text: 'app.cancel'.tr,
+                          text: cancelText ?? 'app.cancel'.tr,
                           onPressed: () {
                             Get.back();
                             onCancel?.call();
@@ -83,7 +83,7 @@ class _VicQuickDialogView extends StatelessWidget {
                     if (showConfirm ?? true)
                       Expanded(
                         child: VicButton(
-                          text: 'app.confirm'.tr,
+                          text: confirmText ?? 'app.confirm'.tr,
                           onPressed: () {
                             if (autoClose ?? true) {
                               Get.back(result: true);

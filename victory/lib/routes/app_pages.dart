@@ -28,8 +28,8 @@ part 'app_routes.dart';
 
 // ignore: avoid_classes_with_only_static_members
 class AppPages {
-  // static const INITIAL = Environment.isDev ? null : null;
-  static const INITIAL = Environment.isDev ? AppRoutes.demo : null;
+  static const INITIAL = Environment.isDev ? null : null;
+  // static const INITIAL = Environment.isDev ? AppRoutes.demo : null;
   static final List<GetPage> routes = [
     // GetPage(name: '/', page: () => const ShellView(), preventDuplicates: true, popGesture: false, participatesInRootNavigator: true),
     if (Environment.isNotProd) GetPage(name: AppRoutes.demo, page: () => const DemoPage()),

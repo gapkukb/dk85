@@ -18,34 +18,30 @@ class LuckySpinFloating extends StatefulWidget {
 class _LuckySpinFloatingState extends State<LuckySpinFloating> {
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      right: 0,
-      bottom: 80,
-      child: GestureDetector(
-        onTap: () {
-          if (services.user.luckySpinDisplay.value == LuckySpinDisplay.miniWating) {
-            VicModals.shared.show(VicModalName.lucky_spin);
-            services.user.luckySpinDisplay.value = LuckySpinDisplay.waiting;
-          } else {
-            VicModals.shared.show(VicModalName.lucky_spin_next);
-            services.user.luckySpinDisplay.value = LuckySpinDisplay.pending;
-          }
-        },
-        child: Container(
-          width: 128 / 2,
-          height: 146 / 2,
-          alignment: const Alignment(0, 1),
-          decoration: const BoxDecoration(
-            // color: Colors.yellow,
-            image: DecorationImage(
-              image: AssetImage('assets/images/lucky_spin_main.webp'),
-              alignment: Alignment.topCenter,
-              // fit: BoxFit.fitWidth,
-              // scale: 11,
-            ),
+    return GestureDetector(
+      onTap: () {
+        if (services.user.luckySpinDisplay.value == LuckySpinDisplay.miniWating) {
+          VicModals.shared.show(VicModalName.lucky_spin);
+          services.user.luckySpinDisplay.value = LuckySpinDisplay.waiting;
+        } else {
+          VicModals.shared.show(VicModalName.lucky_spin_next);
+          services.user.luckySpinDisplay.value = LuckySpinDisplay.pending;
+        }
+      },
+      child: Container(
+        width: 128 / 2,
+        height: 146 / 2,
+        alignment: const Alignment(0, 1),
+        decoration: const BoxDecoration(
+          // color: Colors.yellow,
+          image: DecorationImage(
+            image: AssetImage('assets/images/lucky_spin_main.webp'),
+            alignment: Alignment.topCenter,
+            // fit: BoxFit.fitWidth,
+            // scale: 11,
           ),
-          child: countdown,
         ),
+        child: countdown,
       ),
     );
   }

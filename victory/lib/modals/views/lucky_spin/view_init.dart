@@ -68,7 +68,6 @@ class _VicModalLuckySpinInitState extends State<VicModalLuckySpinInit> {
           clockwise: true,
           offset: random.nextDouble(),
         );
-        await services.user.queryLuckySpin();
       },
       child: Container(
         padding: const EdgeInsets.only(top: 60),

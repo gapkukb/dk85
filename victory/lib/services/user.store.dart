@@ -100,8 +100,7 @@ class _UserService extends GetxService {
       luckySpinDisplay.value = LuckySpinDisplay.waiting;
       VicModals().show(VicModalName.lucky_spin);
     } else {
-      luckySpinDisplay.value = LuckySpinDisplay.pending;
-      VicModals().show(VicModalName.lucky_spin_next);
+      luckySpinDisplay.value = LuckySpinDisplay.miniPending;
     }
 
     luckySpinCountdown.value = Duration(seconds: r.activityCountDownSeconds.toInt());

@@ -5,8 +5,8 @@ import 'package:victory/shared/logger/logger.dart';
 import 'package:victory/storage/storage.dart';
 
 class CharlesProxyHttpOverride extends HttpOverrides {
-  static final String host = '192.168.254.112';
-  static final int port = 8888;
+  static String host = '192.168.254.112';
+  static int port = 8888;
   static String get proxyUri => Uri(host: host, port: port).toString();
   static bool debug = false;
 
@@ -21,18 +21,19 @@ class CharlesProxyHttpOverride extends HttpOverrides {
 
   static Future ensureInitialized() async {
     // 生产环境不开启
+    if (storage.proxyHost.value != null) {
+      host = storage.proxyHost.value!;
+    }
 
-    // if (Environment.isProd) return;
-    // if (storage.proxyHost.value == null || storage.proxyPort.value == null) return;
-    // host = storage.proxyHost.value ?? '192.168.254.112';
-    // port = storage.proxyPort.value ?? 8888;
-    // host = '192.168.254.112';
-    // port = 8888;
-    // storage
-    //   ..proxyHost.clear()
-    //   ..proxyPort.clear();
+    if (storage.proxyPort.value != null) {
+      port = storage.proxyPort.value!;
+    }
 
-    Logger.debug('检测到charles设置，开始配置代理...');
+    storage
+      ..proxyHost.clear()
+      ..proxyPort.clear();
+
+    Logger.debug('开始配置代理...$host:$port');
     try {
       // 非生产环境尝试开启
       await detect(host, port);
