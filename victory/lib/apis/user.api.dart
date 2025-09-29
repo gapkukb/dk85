@@ -58,7 +58,12 @@ class _UserApi {
   final drawLuckySpin = http.post('/app/draw-first-deposit-lottery-result', loading: true);
 
   /// 用户参与转盘抽奖
-  final claimLuckySpin = http.post('/app/claim-first-deposit-lottery-price', decoder: models.LuckySpinClaimModel.fromJson, loading: true);
+  final claimLuckySpin = http.post(
+    '/app/claim-first-deposit-lottery-price',
+    decoder: models.LuckySpinClaimModel.fromJson,
+    loading: true,
+    showError: false,
+  );
 
   /// 测试接口  重置转盘抽奖
   final resetLuckySpin = http.post('/app/reset-first-deposit-lottery-activity-user');

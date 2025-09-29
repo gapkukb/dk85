@@ -10,7 +10,7 @@ class VicModalLuckySpin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => services.user.lotteryStatus.value == 0 ? const VicModalLuckySpinInit() : const VicModalLuckySpinNext(),
+      () => services.user.luckySpinDisplay.value == 0 ? const VicModalLuckySpinInit() : const VicModalLuckySpinNext(),
     );
   }
 }

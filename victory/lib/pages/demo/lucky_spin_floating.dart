@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:slide_countdown/slide_countdown.dart';
 import 'package:victory/3rd/text_with_border.dart';
+import 'package:victory/constants/lucky_spin.dart';
+import 'package:victory/modals/modals.dart';
 import 'package:victory/modals/views/lucky_spin/view_next.dart';
 import 'package:victory/services/services.dart';
 
@@ -21,8 +23,13 @@ class _LuckySpinFloatingState extends State<LuckySpinFloating> {
       bottom: 80,
       child: GestureDetector(
         onTap: () {
-          // services.user.showLotteryPendant.value = false;
-          Get.dialog(const VicModalLuckySpinNext());
+          if (services.user.luckySpinDisplay.value == LuckySpinDisplay.miniWating) {
+            VicModals.shared.show(VicModalName.lucky_spin);
+            services.user.luckySpinDisplay.value = LuckySpinDisplay.waiting;
+          } else {
+            VicModals.shared.show(VicModalName.lucky_spin_next);
+            services.user.luckySpinDisplay.value = LuckySpinDisplay.pending;
+          }
         },
         child: Container(
           width: 128 / 2,
@@ -90,7 +97,7 @@ class _LuckySpinFloatingState extends State<LuckySpinFloating> {
           border: Border.all(color: const Color(0xff898200), width: 2),
           borderRadius: const BorderRadius.all(Radius.circular(24)),
         ),
-        duration: services.user.lotteryCountdown.value,
+        duration: services.user.luckySpinCountdown.value,
       ),
     );
   }

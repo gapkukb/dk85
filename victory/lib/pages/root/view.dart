@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:talker_flutter/talker_flutter.dart';
+import 'package:victory/constants/lucky_spin.dart';
 import 'package:victory/env.dart';
 import 'package:victory/iconfont/iconfont.dart';
 import 'package:victory/pages/demo/lucky_spin_floating.dart';
@@ -40,6 +41,8 @@ class _RootViewGetX extends GetView<RootController> {
   final Widget child;
   const _RootViewGetX({required this.child});
 
+  LuckySpinDisplay get display => services.user.luckySpinDisplay.value;
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<RootController>(
@@ -53,19 +56,22 @@ class _RootViewGetX extends GetView<RootController> {
 
               /// 用来放一些全局的挂件
               Obx(() {
-                if (services.user.showLotteryPendant.value) return const LuckySpinFloating();
-                return const SizedBox.square();
+                if (display == LuckySpinDisplay.none) return const SizedBox.square();
+                return Offstage(
+                  offstage: display == LuckySpinDisplay.waiting || display == LuckySpinDisplay.pending,
+                  child: const LuckySpinFloating(),
+                );
               }),
             ],
           ),
-          floatingActionButton: Align(
-            alignment: const Alignment(1, 0.85),
-            child: FloatingActionButton.small(
-              onPressed: () => Get.dialog(TalkerScreen(talker: talker)),
-              backgroundColor: Colors.red,
-              child: const Icon(IconFont.debug),
-            ),
-          ),
+          // floatingActionButton: Align(
+          //   alignment: const Alignment(1, 0.85),
+          //   child: FloatingActionButton.small(
+          //     onPressed: () => Get.dialog(TalkerScreen(talker: talker)),
+          //     backgroundColor: Colors.red,
+          //     child: const Icon(IconFont.debug),
+          //   ),
+          // ),
         );
       },
     );

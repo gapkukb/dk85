@@ -9,6 +9,8 @@ import 'package:victory/modals/views/lucky_spin/view.dart';
 import 'package:victory/modals/views/lucky_spin/view_next.dart';
 import 'package:victory/pages/demo/lucky_spin_floating.dart';
 import 'package:victory/services/services.dart';
+import 'package:victory/shared/dialogs/dialog.dart';
+import 'package:victory/shared/dialogs/dialog_luck_spin.dart';
 
 class DemoPage extends StatefulWidget {
   const DemoPage({super.key});
@@ -26,6 +28,8 @@ class _DemoPageState extends State<DemoPage> {
       //   // transitionDuration: const Duration(seconds: 3),
       //   transitionBuilder: vicFadeScaleAnimationBuilder,
       // );
+
+      VicDialog.luckyspin(title: 'title', onTap: () {});
     });
 
     super.initState();
