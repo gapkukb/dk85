@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:victory/apis/apis.dart';
+import 'package:victory/constants/lucky_spin.dart';
 import 'package:victory/modals/modals.dart';
 import 'package:victory/modals/views/lucky_spin/view_next.dart';
 import 'package:victory/services/services.dart';
@@ -47,14 +48,15 @@ class _VicModalLuckySpinInitState extends State<VicModalLuckySpinInit> {
       title: 'Free Spin',
       subtitle: 'The more you charge, the more you get',
       buttoText: 'Try Now',
+      onBeforeClose: () {},
       onButtonTap: () async {
         if (doing) return;
         doing = true;
         await apis.user
             .drawLuckySpin(
               payload: {
-                "activity_id": services.user.lotteryActiveId.value,
-                "participate_id": services.user.lotteryParticipateId.value,
+                "activity_id": services.user.luckySpinActiveId,
+                "participate_id": services.user.luckySpinParticipateId,
               },
             )
             .whenComplete(() {
@@ -66,8 +68,6 @@ class _VicModalLuckySpinInitState extends State<VicModalLuckySpinInit> {
           clockwise: true,
           offset: random.nextDouble(),
         );
-        services.user.lotteryStatus.value = 1;
-        services.user.queryLuckySpin();
       },
       child: Container(
         padding: const EdgeInsets.only(top: 60),

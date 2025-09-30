@@ -46,6 +46,8 @@ class VicModals extends GetxService {
     final modal = _get(name);
     if (modal == null) {
       talker.error("[modal_service] builder: $name 未找到");
+    } else if (queue.contains(modal)) {
+      talker.error("[modal_service] builder: $name 已在显示队列，不能重复添加");
     } else {
       queue.add(modal);
       _sort();

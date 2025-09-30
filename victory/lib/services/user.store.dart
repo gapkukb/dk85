@@ -8,12 +8,10 @@ class _UserService extends GetxService {
   String get email => info.value.email;
   String get username => info.value.username;
 
-  // -1 不满足条件，0 未参与，显示抽奖转盘，1.已抽奖，显示倒计时挂件，2，已抽奖，弹出奖励金额
-  final lotteryStatus = (-1).obs;
-  final lotteryActiveId = (-1).obs;
-  final lotteryParticipateId = (-1).obs;
-  final lotteryCountdown = Duration.zero.obs;
-  final showLotteryPendant = false.obs;
+  var luckySpinActiveId = -1;
+  var luckySpinParticipateId = -1;
+  final luckySpinCountdown = Duration.zero.obs;
+  final luckySpinDisplay = LuckySpinDisplay.none.obs;
 
   int get vipLevel => info.value.gradeName.toInt();
   int get id => info.value.id;
@@ -61,11 +59,10 @@ class _UserService extends GetxService {
     info.value = VicUserModel.fromJson({});
     info.refresh();
     balance.refresh();
-    lotteryStatus.value = -1;
-    lotteryActiveId.value = -1;
-    lotteryParticipateId.value = -1;
-    lotteryCountdown.value = Duration.zero;
-    showLotteryPendant.value = false;
+    luckySpinActiveId = -1;
+    luckySpinParticipateId = -1;
+    luckySpinCountdown.value = Duration.zero;
+    luckySpinDisplay.value = LuckySpinDisplay.none;
   }
 
   void _callModals() async {
@@ -93,17 +90,19 @@ class _UserService extends GetxService {
     talker.debug("转盘当前状态，activityStatus${r.activityStatus},lotteryStatus:${r.lotteryStatus}");
     // ==0 活动未开启
     if (r.activityStatus == 0) return;
-    lotteryStatus.value = r.lotteryStatus.toInt();
     // ==2 已领奖
-    if (lotteryStatus.value == 2) return;
+    if (r.lotteryStatus == 2) return;
 
-    lotteryActiveId.value = r.activityId;
-    lotteryParticipateId.value = r.userParticipateInfo?.participateId ?? -1;
-    lotteryCountdown.value = Duration(seconds: r.activityCountDownSeconds.toInt());
-    if (lotteryStatus.value == 0) {
+    luckySpinActiveId = r.activityId;
+    luckySpinParticipateId = r.userParticipateInfo?.participateId ?? -1;
+
+    if (r.lotteryStatus == 0) {
+      luckySpinDisplay.value = LuckySpinDisplay.waiting;
       VicModals().show(VicModalName.lucky_spin);
-    } else if (lotteryStatus.value == 1) {
-      showLotteryPendant.value = true;
+    } else {
+      luckySpinDisplay.value = LuckySpinDisplay.miniPending;
     }
+
+    luckySpinCountdown.value = Duration(seconds: r.activityCountDownSeconds.toInt());
   }
 }

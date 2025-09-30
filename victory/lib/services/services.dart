@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:victory/apis/apis.dart';
+import 'package:victory/constants/lucky_spin.dart';
 import 'package:victory/extensions/string.extension.dart';
 import 'package:victory/http/http.dart';
 import 'package:victory/mixins/audio.mixin.dart';

@@ -6,6 +6,7 @@ import 'package:lottie/lottie.dart';
 import 'package:victory/components/button/button.dart';
 import 'package:victory/constants/string.dart';
 import 'package:victory/iconfont/iconfont.dart';
+import 'package:victory/shared/dialogs/dialog_luck_spin.dart';
 import 'package:victory/theme/theme.dart';
 import 'package:victory/shared/lottie/lottie.dart';
 part 'dialog_view.dart';
@@ -120,5 +121,17 @@ abstract class VicDialog {
       completer.complete(r);
     }
     return completer.future;
+  }
+
+  static Future<void> luckyspin({
+    required String title,
+    required VoidCallback onTap,
+  }) {
+    return Get.dialog(
+      DialogLuckSpin(
+        title: title,
+        onTap: onTap,
+      ),
+    );
   }
 }

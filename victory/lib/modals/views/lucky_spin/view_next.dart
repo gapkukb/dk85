@@ -1,7 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:victory/apis/apis.dart';
+import 'package:victory/constants/lucky_spin.dart';
+import 'package:victory/extensions/currency.extension.dart';
 import 'package:victory/modals/views/modal_template.dart';
 import 'package:victory/services/services.dart';
 import 'package:victory/shared/dialogs/dialog.dart';
@@ -15,6 +18,7 @@ class VicModalLuckySpinNext extends StatefulWidget {
 
 class _VicModalLuckySpinNextState extends State<VicModalLuckySpinNext> {
   double prizeAmount = 0.0;
+  bool get done => prizeAmount != 0.0;
   @override
   Widget build(BuildContext context) {
     return VicModalTemplate(
@@ -23,21 +27,23 @@ class _VicModalLuckySpinNextState extends State<VicModalLuckySpinNext> {
       backgroundColor: Colors.transparent,
       title: 'Congratulations',
       // subtitle: 'The more you charge, the more you get',
-      buttoText: 'Got it',
+      buttoText: done ? 'Close' : 'Got it',
       onButtonTap: () async {
-        final r = await apis.user.claimLuckySpin(
-          payload: {
-            "activity_id": services.user.lotteryActiveId.value,
-            "participate_id": services.user.lotteryParticipateId.value,
-          },
-        );
-        if (r == null) return;
-        prizeAmount = r.priceAmount.toDouble();
-        setState(() {});
+        if (done) {
+          Get.back();
+          services.user.updateBalance();
+          services.user.luckySpinDisplay.value = LuckySpinDisplay.none;
+          services.user.queryLuckySpin();
+        } else {
+          claim();
+        }
       },
       onBeforeClose: () async {
-        services.user.showLotteryPendant.value = true;
-        Get.back();
+        if (!done) {
+          services.user.luckySpinDisplay.value = LuckySpinDisplay.miniPending;
+          Get.back();
+          services.user.queryLuckySpin();
+        }
       },
       child: Container(
         alignment: const Alignment(0, 0.1),
@@ -55,16 +61,49 @@ class _VicModalLuckySpinNextState extends State<VicModalLuckySpinNext> {
             fit: BoxFit.fitWidth,
           ),
         ),
-        child: prizeAmount == 0.0
-            ? const Text(
-                "Congratulations",
-                style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
+        child: done
+            ? Text(
+                prizeAmount.amount(),
+                style: const TextStyle(fontSize: 48, color: Color(0xfffff957), fontWeight: FontWeight.bold),
               )
             : const Text(
-                "5.22K",
-                style: TextStyle(fontSize: 48, color: Color(0xfffff957), fontWeight: FontWeight.bold),
+                "Congratulations",
+                style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
               ),
       ),
     );
+  }
+
+  void claim() async {
+    try {
+      final r = await apis.user.claimLuckySpin(
+        payload: {
+          "activity_id": services.user.luckySpinActiveId,
+          "participate_id": services.user.luckySpinParticipateId,
+        },
+      );
+      if (r == null) return;
+      prizeAmount = r.priceAmount.toDouble();
+      services.user.updateBalance();
+      setState(() {});
+    } on DioException catch (e) {
+      if (e.response?.data is Map && e.response!.data['code'] == 1001) {
+        VicDialog.luckyspin(
+          title: 'You can get rewards\n after recharging',
+          onTap: () {
+            Get.back();
+            services.app.toFundsPage();
+            services.user.luckySpinDisplay.value = LuckySpinDisplay.miniPending;
+          },
+        );
+      } else if (e.message != null) {
+        VicDialog.luckyspin(
+          title: e.message ?? '',
+          onTap: Get.back,
+        );
+      } else {
+        rethrow;
+      }
+    }
   }
 }
