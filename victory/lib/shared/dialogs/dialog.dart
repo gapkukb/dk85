@@ -125,11 +125,13 @@ abstract class VicDialog {
 
   static Future<void> luckyspin({
     required String title,
+    String? buttonText,
     required VoidCallback onTap,
   }) {
     return Get.dialog(
       DialogLuckSpin(
         title: title,
+        buttonText: buttonText,
         onTap: onTap,
       ),
     );

@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:victory/apis/apis.dart';
 import 'package:victory/modals/modals.dart';
+import 'package:victory/services/services.dart';
 import 'package:victory/shared/dialogs/dialog.dart';
 import 'package:victory/shared/talker/talker.dart';
 
@@ -10,7 +11,11 @@ enum LuckyWheelDisplay {
   waiting,
   pending,
   miniWaiting,
-  miniPending,
+  miniPending;
+
+  bool get show => this == miniWaiting || this == miniPending;
+  bool get isMiniWaiting => this == miniWaiting;
+  bool get isMiniPending => this == miniPending;
 }
 
 mixin LuckyWheelMixin {
@@ -19,8 +24,6 @@ mixin LuckyWheelMixin {
   var luckyWheelParticipateId = -1;
   final luckyWheelCountdown = Duration.zero.obs;
   final luckyWheelDisplay = LuckyWheelDisplay.none.obs;
-
-  bool get showLuckWheelEntry => luckyWheelDisplay.value == LuckyWheelDisplay.miniWaiting || luckyWheelDisplay.value == LuckyWheelDisplay.miniPending;
 
   clearLuckyWheel() {
     luckyWheelActiveId = -1;
@@ -80,10 +83,21 @@ mixin LuckyWheelMixin {
         },
       );
       if (r == null) return 0.0;
+      Future.microtask(() => services.user.updateBalance());
       return r.priceAmount.toDouble();
     } on DioException catch (e) {
-      if (e.message != null) {
-        VicDialog.luckyspin(title: e.message!, onTap: () => Get.back());
+      if (e.response?.data is Map && e.response!.data['code'] == 1001) {
+        VicDialog.luckyspin(
+          title: e.message!,
+          buttonText: "app.deposit".tr,
+          onTap: () {
+            Get.close(2);
+            services.app.toFundsPage();
+            luckyWheelDisplay.value = LuckyWheelDisplay.miniPending;
+          },
+        );
+      } else if (e.message != null) {
+        VicDialog.luckyspin(title: e.message!, onTap: Get.back);
       }
       rethrow;
     }

@@ -8,14 +8,16 @@ class LuckyWheelEnter extends StatefulWidget {
 }
 
 class _LuckyWheelEnterState extends State<LuckyWheelEnter> {
+  LuckyWheelDisplay get display => services.user.luckyWheelDisplay.value;
+
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       return Offstage(
-        offstage: !services.user.showLuckWheelEntry,
+        offstage: !services.user.luckyWheelDisplay.value.show,
         child: GestureDetector(
           onTap: () {
-            if (services.user.luckyWheelDisplay.value == LuckyWheelDisplay.miniWaiting) {
+            if (display.isMiniWaiting) {
               services.user.luckyWheelDisplay.value = LuckyWheelDisplay.waiting;
             } else {
               services.user.luckyWheelDisplay.value = LuckyWheelDisplay.pending;

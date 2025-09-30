@@ -17,7 +17,7 @@ mixin VicRouterMixin {
 
   void navigateTo(int index) {
     while (Get.currentRoute != '/') {
-      Get.back();
+      Get.back(closeOverlays: true);
     }
     if (index == currentFootNavIndex.value) return;
     final current = footNavItems[index];

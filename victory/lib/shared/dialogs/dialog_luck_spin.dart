@@ -3,8 +3,9 @@ import 'package:victory/modals/views/modal_action_button.dart';
 
 class DialogLuckSpin extends StatelessWidget {
   final String title;
+  final String? buttonText;
   final VoidCallback onTap;
-  const DialogLuckSpin({super.key, required this.title, required this.onTap});
+  const DialogLuckSpin({super.key, required this.title, this.buttonText, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,7 @@ class DialogLuckSpin extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              VicModalActionButton(text: 'Got it', onTap: onTap),
+              VicModalActionButton(text: buttonText ?? 'Got it', onTap: onTap),
             ],
           ),
         ),

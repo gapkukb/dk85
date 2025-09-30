@@ -49,7 +49,13 @@ class VicGameCard extends StatelessWidget {
               child: Row(
                 children: [
                   Expanded(
-                    child: Text(game.name, maxLines: 1, softWrap: false, overflow: TextOverflow.ellipsis, style: const TextStyle(fontSize: 12)),
+                    child: Text(
+                      game.aliasName ?? game.name,
+                      maxLines: 1,
+                      softWrap: false,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(fontSize: 12),
+                    ),
                   ),
                   Align(
                     alignment: Alignment.centerRight,
