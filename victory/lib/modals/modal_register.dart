@@ -17,13 +17,7 @@ void _registerModals() {
     ..add(
       VicModalBuilder(
         name: VicModalName.lucky_spin,
-        builder: ([Object? params]) => const VicModalLuckySpin(),
-      ),
-    )
-    ..add(
-      VicModalBuilder(
-        name: VicModalName.lucky_spin_next,
-        builder: ([Object? params]) => const VicModalLuckySpinNext(),
+        builder: ([Object? params]) => const VicModalLuckyWheel(),
       ),
     )
     ..add(

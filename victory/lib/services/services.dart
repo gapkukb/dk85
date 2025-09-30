@@ -10,6 +10,7 @@ import 'package:victory/extensions/string.extension.dart';
 import 'package:victory/http/http.dart';
 import 'package:victory/mixins/audio.mixin.dart';
 import 'package:victory/mixins/locale.mixin.dart';
+import 'package:victory/mixins/lucky_wheel.mixin.dart';
 import 'package:victory/mixins/router.mixin.dart';
 import 'package:victory/modals/modals.dart';
 import 'package:victory/models/models.dart';

@@ -1,52 +1,44 @@
-import 'package:app/dialogs/dialogs.dart';
-import 'package:app/flavors.dart';
-import 'package:app/i18n/index.dart';
-import 'package:app/views_modal/guide/guide.dart';
-import 'package:app/routes/app_pages.dart';
-import 'package:app/services/index.dart';
-import 'package:app/setup/easyloading.dart';
-import 'package:app/storage/storage.dart';
-import 'package:app/widgets/loading/loading.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
-import 'package:app/theme/index.dart';
-import 'package:app/views/home/home_view.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:scaled_app/scaled_app.dart';
-import 'package:skeletonizer/skeletonizer.dart';
+import 'package:victory/mixins/locale.mixin.dart';
+import 'package:victory/pages/root/view.dart';
+import 'package:victory/pages/shell/shell.dart';
+import 'package:victory/routes/app_pages.dart';
+import 'package:victory/shared/app_info/app_info.dart';
+import 'package:victory/services/services.dart';
+import 'package:victory/theme/theme.dart';
+import 'package:victory/translations/translations.dart';
 
-class Application extends StatelessWidget {
+class Application extends StatefulWidget {
   const Application({super.key});
 
-  // This widget is the root of your application.
+  @override
+  _ApplicationState createState() => _ApplicationState();
+}
+
+class _ApplicationState extends State<Application> {
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      // 显示引导浮层
+      // await showGuide();
+      // VicModals.shared.resume();
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double textScaler = 1.0;
-    if (I18n.locale?.languageCode == I18n.my_MM.languageCode) {
+    if (services.app.locale.value == VicLocaleMixin.my) {
       textScaler = 0.95;
     }
     return RefreshConfiguration(
-      headerBuilder: () => WaterDropMaterialHeader(backgroundColor: AppColors.background, color: AppColors.highlight, distance: 40),
-      // footerBuilder: () => CustomFooter(
-      //   builder: (context, mode) {
-      //     final List<Widget> children = [];
-      //     final style = TextStyle(fontSize: 12, color: AppColors.description);
-      //     if (mode == LoadStatus.noMore) {
-      //       final divider = Expanded(child: Divider(color: AppColors.e1e1e1, thickness: 1, indent: 12, endIndent: 12, height: 1));
-      //       children.addAll([divider, Text('No more', style: style), divider]);
-      //     } else {
-      //       children.addAll([SizedBox.square(dimension: 48, child: loadingWidget), Text('loading more...', style: style)]);
-      //     }
-      //     return Center(
-      //       child: Row(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: children),
-      //     );
-      //   },
-      //   height: 36,
-      //   onOffsetChange: (offset) {},
-      //   loadStyle: LoadStyle.ShowWhenLoading,
-      // ),
-      footerBuilder: () => ClassicFooter(),
+      headerBuilder: () => const WaterDropMaterialHeader(backgroundColor: AppColors.background, color: AppColors.highlight, distance: 40),
+      footerBuilder: () => const ClassicFooter(),
       springDescription: SpringDescription.withDurationAndBounce(bounce: 0),
       maxOverScrollExtent: 0,
       maxUnderScrollExtent: 0,
@@ -54,46 +46,21 @@ class Application extends StatelessWidget {
       child: MediaQuery(
         data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(textScaler)).scale(),
         child: GetMaterialApp(
-          builder: (context, child) {
-            WidgetsBinding.instance.addPostFrameCallback((_) async {
-              // 显示引导浮层
-              if (services.auth.authorized) {
-                await showGuide();
-              }
-              Dialogs.to.initlize();
-            });
-            return setupBotToast(context, child!);
-          },
-          navigatorObservers: [BotToastNavigatorObserver()],
-          title: Flavor.title,
-          scrollBehavior: AppScrollBehavior(),
+          title: VicAppInfo.shared.appName,
           theme: lightTheme,
-          defaultTransition: Transition.cupertino,
-          locale: I18n.locale,
-          fallbackLocale: I18n.fallbackLocale,
-          translations: i18n,
+          themeMode: ThemeMode.light,
           initialRoute: AppPages.INITIAL,
+          navigatorObservers: [BotToastNavigatorObserver()],
+          defaultTransition: Transition.cupertino,
+          locale: services.app.locale.value,
+          popGesture: false,
+          translations: VicTranslations(),
+          builder: (context, child) => RootView(child: child!),
+          home: const VicShellView(),
           getPages: AppPages.routes,
-          home: const HomeView(),
-          routingCallback: Dialogs.to.onRouteChanged,
+          routingCallback: services.app.onRouting,
         ),
       ),
     );
-  }
-}
-
-class AppScrollBehavior extends MaterialScrollBehavior {
-  const AppScrollBehavior();
-
-  // 统一物理效果：禁止回弹
-  @override
-  ScrollPhysics getScrollPhysics(BuildContext context) {
-    return const ClampingScrollPhysics();
-  }
-
-  // 统一 Overscroll 指示器：使用 StretchingOverscrollIndicator
-  @override
-  Widget buildOverscrollIndicator(BuildContext context, Widget child, ScrollableDetails details) {
-    return StretchingOverscrollIndicator(axisDirection: details.direction, child: child);
   }
 }

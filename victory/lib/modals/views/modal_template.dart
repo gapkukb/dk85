@@ -24,8 +24,9 @@ class VicModalTemplate extends StatelessWidget {
   final String? title;
   final String? subtitle;
   final String? buttoText;
-  final VoidCallback? onButtonTap;
-  final VoidCallback? onBeforeClose;
+  final VoidCallback? onCancel;
+  final VoidCallback? onConfirm;
+  final VoidCallback? onClose;
   const VicModalTemplate({
     super.key,
     required this.child,
@@ -44,60 +45,69 @@ class VicModalTemplate extends StatelessWidget {
     this.title,
     this.subtitle,
     this.buttoText,
-    this.onButtonTap,
-    this.onBeforeClose,
+    this.onCancel,
+    this.onConfirm,
+    this.onClose,
   });
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: canPop,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          DeferredPointerHandler(
-            child: Stack(
-              clipBehavior: Clip.none,
-              children: [
-                Column(
-                  mainAxisSize: MainAxisSize.min,
-                  spacing: 12,
-                  children: [
-                    Dialog(
-                      alignment: alignment,
-                      backgroundColor: backgroundColor,
-                      insetPadding: EdgeInsets.symmetric(horizontal: margin),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                      child: Padding(padding: padding, child: child),
-                    ),
-                    if (title != null)
-                      Text(
-                        title!,
-                        style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+    return Material(
+      color: Colors.transparent,
+      child: PopScope(
+        canPop: false,
+        onPopInvokedWithResult: (didPop, result) {
+          if (didPop) return;
+          onCancel?.call();
+          Get.back();
+        },
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            DeferredPointerHandler(
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    spacing: 12,
+                    children: [
+                      Dialog(
+                        alignment: alignment,
+                        backgroundColor: backgroundColor,
+                        insetPadding: EdgeInsets.symmetric(horizontal: margin),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        child: Padding(padding: padding, child: child),
                       ),
-                    if (subtitle != null)
-                      Text(
-                        subtitle!,
-                        style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
-                      ),
-                    if (buttoText != null)
-                      VicModalActionButton(
-                        text: buttoText!,
-                        onTap: onButtonTap,
-                      ),
-                    // .pulse(
-                    //   from: 1,
-                    //   to: 1.1,
-                    //   infinite: true,
-                    // ),
-                  ],
-                ),
-                closeButton(),
-              ],
+                      if (title != null)
+                        Text(
+                          title!,
+                          style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+                        ),
+                      if (subtitle != null)
+                        Text(
+                          subtitle!,
+                          style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
+                        ),
+                      if (buttoText != null)
+                        VicModalActionButton(
+                          text: buttoText!,
+                          onTap: onConfirm,
+                        ),
+                      // .pulse(
+                      //   from: 1,
+                      //   to: 1.1,
+                      //   infinite: true,
+                      // ),
+                    ],
+                  ),
+                  closeButton(),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -109,7 +119,10 @@ class VicModalTemplate extends StatelessWidget {
       right: closePosition.right,
       child: DeferPointer(
         child: GestureDetector(
-          onTap: onBeforeClose ?? Get.back,
+          onTap: () {
+            onCancel?.call();
+            Get.back();
+          },
           child: close ?? const Icon(IconFont.guanbi, size: 36, color: AppColors.white),
         ),
       ),

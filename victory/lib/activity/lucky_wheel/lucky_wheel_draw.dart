@@ -1,24 +1,13 @@
-import 'dart:math';
+part of 'lucky_wheel.dart';
 
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:victory/apis/apis.dart';
-import 'package:victory/constants/lucky_spin.dart';
-import 'package:victory/modals/modals.dart';
-import 'package:victory/modals/views/lucky_spin/view_next.dart';
-import 'package:victory/services/services.dart';
-import '/3rd/roulette/roulette.dart';
-import 'package:victory/modals/views/modal_template.dart';
-import 'index.dart';
-
-class VicModalLuckySpinInit extends StatefulWidget {
-  const VicModalLuckySpinInit({super.key});
+class _LuckyWheelDraw extends StatefulWidget {
+  const _LuckyWheelDraw({super.key});
 
   @override
-  State<VicModalLuckySpinInit> createState() => _VicModalLuckySpinInitState();
+  State<_LuckyWheelDraw> createState() => _LuckyWheelDrawState();
 }
 
-class _VicModalLuckySpinInitState extends State<VicModalLuckySpinInit> {
+class _LuckyWheelDrawState extends State<_LuckyWheelDraw> {
   final controller = RouletteController();
   final length = 6;
   var doing = false;
@@ -48,26 +37,24 @@ class _VicModalLuckySpinInitState extends State<VicModalLuckySpinInit> {
       title: 'Free Spin',
       subtitle: 'The more you charge, the more you get',
       buttoText: 'Try Now',
-      onBeforeClose: () {},
-      onButtonTap: () async {
+      onCancel: () {
+        services.user.luckyWheelDisplay.value = LuckyWheelDisplay.miniWaiting;
+      },
+      onConfirm: () async {
         if (doing) return;
         doing = true;
-        await apis.user
-            .drawLuckySpin(
-              payload: {
-                "activity_id": services.user.luckySpinActiveId,
-                "participate_id": services.user.luckySpinParticipateId,
-              },
-            )
-            .whenComplete(() {
-              doing = false;
-            });
-
-        await controller.rollTo(
-          Random().nextInt(6),
-          clockwise: true,
-          offset: random.nextDouble(),
-        );
+        try {
+          await services.user.drawLuckyWheel();
+          await controller.rollTo(
+            Random().nextInt(6),
+            clockwise: true,
+            offset: random.nextDouble(),
+          );
+        } finally {
+          doing = false;
+        }
+        // await services.user.queryLuckyWheel();
+        services.user.luckyWheelDisplay.value = LuckyWheelDisplay.pending;
       },
       child: Container(
         padding: const EdgeInsets.only(top: 60),

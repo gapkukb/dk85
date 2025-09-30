@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:move_to_back/move_to_back.dart';
+import 'package:victory/activity/lucky_wheel/lucky_wheel.dart';
 import 'package:victory/env.dart';
+import 'package:victory/mixins/lucky_wheel.mixin.dart';
 import 'package:victory/routes/app_pages.dart';
 import 'package:victory/services/services.dart';
 import 'package:victory/theme/theme.dart';
@@ -51,6 +53,7 @@ class _VicShellViewState extends State<VicShellView> {
             ],
           );
         }),
+
         bottomNavigationBar: Obx(
           () => BottomNavigationBar(
             selectedItemColor: AppColors.primary,
@@ -65,6 +68,10 @@ class _VicShellViewState extends State<VicShellView> {
             selectedFontSize: 10,
             unselectedItemColor: AppColors.label,
           ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        floatingActionButton: Obx(
+          () => services.user.luckyWheelDisplay.value == LuckyWheelDisplay.none ? const SizedBox.shrink() : const LuckyWheelEnter(),
         ),
       ),
     );

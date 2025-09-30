@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:scaled_app/scaled_app.dart';
+import 'package:victory/apis/apis.dart';
 import 'package:victory/mixins/locale.mixin.dart';
-import 'package:victory/pages/root/view.dart';
+import 'package:victory/modals/modals.dart';
 import 'package:victory/pages/shell/shell.dart';
 import 'package:victory/routes/app_pages.dart';
 import 'package:victory/shared/app_info/app_info.dart';
 import 'package:victory/services/services.dart';
+import 'package:victory/startup/bot_toast.dart';
+import 'package:victory/startup/guide/guide.dart';
 import 'package:victory/theme/theme.dart';
 import 'package:victory/translations/translations.dart';
 
@@ -20,16 +23,6 @@ class Application extends StatefulWidget {
 }
 
 class _ApplicationState extends State<Application> {
-  @override
-  void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      // 显示引导浮层
-      // await showGuide();
-      // VicModals.shared.resume();
-    });
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     double textScaler = 1.0;
@@ -53,14 +46,34 @@ class _ApplicationState extends State<Application> {
           navigatorObservers: [BotToastNavigatorObserver()],
           defaultTransition: Transition.cupertino,
           locale: services.app.locale.value,
-          popGesture: false,
+          onReady: () async {
+            await showGuide();
+            VicModals.shared.resume();
+          },
+          scrollBehavior: const AppScrollBehavior(),
           translations: VicTranslations(),
-          builder: (context, child) => RootView(child: child!),
+          builder: setupBotToast,
           home: const VicShellView(),
           getPages: AppPages.routes,
           routingCallback: services.app.onRouting,
         ),
       ),
     );
+  }
+}
+
+class AppScrollBehavior extends MaterialScrollBehavior {
+  const AppScrollBehavior();
+
+  // 统一物理效果：禁止回弹
+  @override
+  ScrollPhysics getScrollPhysics(BuildContext context) {
+    return const ClampingScrollPhysics();
+  }
+
+  // 统一 Overscroll 指示器：使用 StretchingOverscrollIndicator
+  @override
+  Widget buildOverscrollIndicator(BuildContext context, Widget child, ScrollableDetails details) {
+    return StretchingOverscrollIndicator(axisDirection: details.direction, child: child);
   }
 }
