@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:material_symbols_icons/material_symbols_icons.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 import 'package:victory/components/button/button.dart';
 import 'package:victory/components/keep_alive_wrapper/keep_alive_wrapper.dart';
+import 'package:victory/pages/debug/view.dart';
 import 'package:victory/routes/app_pages.dart';
 import 'package:victory/services/services.dart';
 import 'package:victory/shared/locale/locale.dart';
+import 'package:victory/shared/talker/talker.dart';
 import 'package:victory/shared/user_meta/user_meta.dart';
 import 'package:victory/startup/guide/guide.dart';
 import 'package:victory/theme/size.dart';
@@ -88,6 +92,8 @@ class _HomeViewGetX extends GetView<VicHomeController> {
                 ],
               ),
             ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
+            floatingActionButton: const DebugView(),
           );
         },
       ),

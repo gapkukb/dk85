@@ -29,14 +29,9 @@ class _DebugSettingsState extends State<DebugSettings> {
     final port = int.tryParse(values['port']) ?? 0;
     try {
       await CharlesProxyHttpOverride.detect(host, port);
-      VicDialog.confirm(
-        title: '即将重启?',
-        onConfirm: () async {
-          await storage.proxyHost.update(host);
-          await storage.proxyPort.update(port);
-          Restart.restartApp();
-        },
-      );
+      await storage.proxyHost.update(host);
+      await storage.proxyPort.update(port);
+      Restart.restartApp();
     } catch (e) {
       toast('代理地址不可用,请检查IP和端口是否填写正确，charles是否开启');
     }
@@ -44,7 +39,6 @@ class _DebugSettingsState extends State<DebugSettings> {
 
   @override
   void initState() {
-    ask();
     super.initState();
   }
 
@@ -56,58 +50,8 @@ class _DebugSettingsState extends State<DebugSettings> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(''),
-      ),
-      body: Obx(
-        () => !show.value
-            ? const SizedBox.shrink()
-            : Form(
-                key: form.key,
-                child: ListView(
-                  padding: const EdgeInsets.all(12.0),
-                  children: [
-                    const Text('IP'),
-
-                    TextFormField(
-                      initialValue: '192.168.0.1',
-                      onSaved: form.saveAs('ip'),
-                      keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                      validator: (value) => value == null || value.isEmpty ? '必须填写' : null,
-                      decoration: InputDecoration(
-                        enabledBorder: border,
-                        errorBorder: border,
-                        focusedBorder: border,
-                        border: border,
-                      ),
-                    ),
-
-                    const Text('port'),
-
-                    TextFormField(
-                      initialValue: '8888',
-                      onSaved: form.saveAs('port'),
-                      validator: (value) => value == null || value.isEmpty ? '必须填写' : null,
-                      keyboardType: const TextInputType.numberWithOptions(),
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      maxLength: 5,
-                      decoration: InputDecoration(
-                        enabledBorder: border,
-                        errorBorder: border,
-                        focusedBorder: border,
-                        border: border,
-                      ),
-                    ),
-
-                    VicButton(
-                      text: '提交',
-                      onPressed: form.submit,
-                    ),
-                  ],
-                ),
-              ),
-      ),
+    return Dialog(
+      child: main,
     );
   }
 
@@ -139,5 +83,52 @@ class _DebugSettingsState extends State<DebugSettings> {
         },
       );
     });
+  }
+
+  Widget get main {
+    return Form(
+      key: form.key,
+      child: ListView(
+        shrinkWrap: true,
+        padding: const EdgeInsets.all(12.0),
+        children: [
+          const Text('IP'),
+          TextFormField(
+            initialValue: '192.168.0.1',
+            onSaved: form.saveAs('ip'),
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
+            validator: (value) => value == null || value.isEmpty ? '必须填写' : null,
+            decoration: InputDecoration(
+              enabledBorder: border,
+              errorBorder: border,
+              focusedBorder: border,
+              border: border,
+            ),
+          ),
+
+          const Text('port'),
+
+          TextFormField(
+            initialValue: '8888',
+            onSaved: form.saveAs('port'),
+            validator: (value) => value == null || value.isEmpty ? '必须填写' : null,
+            keyboardType: const TextInputType.numberWithOptions(),
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+            maxLength: 5,
+            decoration: InputDecoration(
+              enabledBorder: border,
+              errorBorder: border,
+              focusedBorder: border,
+              border: border,
+            ),
+          ),
+
+          VicButton(
+            text: '重启app生效',
+            onPressed: form.submit,
+          ),
+        ],
+      ),
+    );
   }
 }
