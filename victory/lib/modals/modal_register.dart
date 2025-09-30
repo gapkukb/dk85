@@ -32,7 +32,6 @@ void _registerModals() {
         name: VicModalName.announcement,
         builder: ([Object? params]) => const VicAnnouncementModal(),
         requireAuth: false,
-        manual: false,
       ),
     );
 }

@@ -50,6 +50,7 @@ class _UserService extends GetxService with LuckyWheelMixin {
   }
 
   void clear() {
+    apis.user.queryUserInfo.abort();
     balance.value = 0;
     info.value = VicUserModel.fromJson({});
     info.refresh();
@@ -71,7 +72,6 @@ class _UserService extends GetxService with LuckyWheelMixin {
       VicModals.shared.show(VicModalName.daily_check_in);
     }
 
-    //TODO: 查询转盘活动
     queryLuckyWheel();
   }
 }
