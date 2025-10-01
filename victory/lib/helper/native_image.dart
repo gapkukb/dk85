@@ -23,6 +23,6 @@ abstract class NativeImage {
   static ensureInitialized() async {
     logo = await NativeBridge.nativeImage('logo.webp');
     logo2 = await NativeBridge.nativeImage('logo_reverse.webp');
-    splash = await NativeBridge.nativeImage('background.webp');
+    splash = await NativeBridge.nativeImage('splash.webp');
   }
 }

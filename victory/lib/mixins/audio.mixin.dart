@@ -60,6 +60,10 @@ mixin class AudioMixin {
     }
     _downloadAudioIfNeed(backgroundAudioUrl);
     _downloadAudioIfNeed(topUpAudioUrl);
+    AppLifecycleListener(
+      onShow: _onAppShow,
+      onHide: _onAppHide,
+    );
   }
 
   Future<DeviceFileSource> _downloadAudioIfNeed(String url) async {
@@ -76,5 +80,13 @@ mixin class AudioMixin {
       Logger.debug('缓存{$url}成功');
     }
     return DeviceFileSource(cached.file.path);
+  }
+
+  void _onAppShow() {
+    resumeAudio();
+  }
+
+  void _onAppHide() {
+    pauseAudio();
   }
 }
