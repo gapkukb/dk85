@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:victory/constants/cs_url.dart';
 import 'package:victory/helper/loading.dart';
+import 'package:victory/helper/native_image.dart';
 import 'package:victory/startup/bot_toast.dart';
 import 'package:victory/theme/theme.dart';
 
@@ -36,9 +39,9 @@ class _VicSplashPageState extends State<VicSplashPage> {
           alignment: Alignment.center,
           width: double.infinity,
           height: double.infinity,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             color: Colors.white,
-            image: DecorationImage(image: AssetImage("assets/images/launch_background.webp"), fit: BoxFit.fill),
+            image: DecorationImage(image: FileImage(File(NativeImage.splash)), fit: BoxFit.fill),
           ),
           child: VicLoading(
             style: widget.erorr == null ? null : const TextStyle(color: AppColors.danger),

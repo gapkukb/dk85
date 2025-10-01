@@ -1,18 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--android9.0启动页全屏适配-->
     <!-- Theme applied to the Android Window while the process is starting when the OS's Dark Mode setting is off -->
-    <style name="LaunchTheme" parent="@android:style/Theme.Light.NoTitleBar">
-        <!-- Show a splash screen on the activity. Automatically removed when
-             the Flutter engine draws its first frame -->
-        <item name="android:windowBackground">@drawable/launch_background</item>
-    </style>
-    <!-- Theme applied to the Android Window as soon as the process has started.
-         This theme determines the color of the Android Window while your
-         Flutter UI initializes, as well as behind your Flutter UI while its
-         running.
+    <style name="LaunchTheme" parent="android:Theme.NoTitleBar.Fullscreen">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowDisablePreview">false</item>
+        <item name="android:forceDarkAllowed">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+        <!-- Android P 异性屏适配 可以达到全面屏的效果 -->
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <!-- 关闭 decorView 裁剪系统栏 -->
+        <item name="android:fitsSystemWindows">false</item>
 
-         This Theme is only used starting with V2 of Flutter's Android embedding. -->
+    </style>
+
     <style name="NormalTheme" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="android:windowBackground">?android:colorBackground</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarDividerColor">@android:color/transparent</item>
+        <item name="android:enforceStatusBarContrast">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
 </resources>

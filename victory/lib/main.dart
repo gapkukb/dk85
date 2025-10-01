@@ -3,10 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:scaled_app/scaled_app.dart';
 import 'package:victory/application.dart';
 import 'package:victory/bootstrap/bootstrap.dart';
 import 'package:victory/bootstrap/query_api_address.dart';
 import 'package:victory/constants/string.dart';
+import 'package:victory/helper/native_image.dart';
 import 'package:victory/pages/splash/splash.dart';
 import 'package:victory/shared/talker/talker.dart';
 
@@ -20,6 +22,7 @@ void main() async {
   runZonedGuarded(
     () async {
       setupSystemUI();
+      await NativeImage.ensureInitialized();
       final errorMessage = Rxn<String>();
 
       /// 显示开屏页

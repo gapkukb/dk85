@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:victory/components/button/button.dart';
 import 'package:victory/components/tap_counter/tap_counter.dart';
 import 'package:victory/components/vip_badge/vip_badge.dart';
+import 'package:victory/helper/native_image.dart';
 import 'package:victory/routes/app_pages.dart';
 import 'package:victory/services/services.dart';
 import 'package:victory/startup/guide/guide.dart';
@@ -45,10 +48,10 @@ class VicUserMeta extends StatelessWidget {
         decoration: const BoxDecoration(color: AppColors.primary, borderRadius: AppSizes.radius_a_24),
         child: Row(
           children: [
-            const CircleAvatar(
+            CircleAvatar(
               radius: 16,
               backgroundColor: AppColors.fff0e2,
-              backgroundImage: AssetImage('assets/icons/logo-3.webp'),
+              backgroundImage: FileImage(File(NativeImage.logo2)),
             ),
             const SizedBox(width: 4),
             Column(

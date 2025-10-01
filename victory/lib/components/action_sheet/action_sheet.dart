@@ -250,5 +250,9 @@ class _VicActionWidget<T> extends StatelessWidget {
 
 Future<void> showVicActionSheet<T>(VicActionSheet<T> actionsheet) async {
   if (actionsheet.actions.isEmpty) return;
-  return Get.bottomSheet<void>(actionsheet, isScrollControlled: true, enableDrag: false);
+  return Get.bottomSheet<void>(
+    SafeArea(child: actionsheet),
+    isScrollControlled: true,
+    enableDrag: false,
+  );
 }
