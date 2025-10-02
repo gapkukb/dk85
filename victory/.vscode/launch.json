@@ -11,6 +11,12 @@
       "toolArgs": ["--dart-define", "ENV=dev"]
     },
     {
+      "name": "dev prod",
+      "request": "launch",
+      "type": "dart",
+      "toolArgs": ["--dart-define", "ENV=production"]
+    },
+    {
       "name": "dev profile mode",
       "request": "launch",
       "type": "dart",

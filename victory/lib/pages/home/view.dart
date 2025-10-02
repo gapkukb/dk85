@@ -4,6 +4,7 @@ import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import 'package:victory/components/button/button.dart';
 import 'package:victory/components/keep_alive_wrapper/keep_alive_wrapper.dart';
+import 'package:victory/env.dart';
 import 'package:victory/pages/debug/view.dart';
 import 'package:victory/routes/app_pages.dart';
 import 'package:victory/services/services.dart';
@@ -93,7 +94,7 @@ class _HomeViewGetX extends GetView<VicHomeController> {
               ),
             ),
             floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
-            floatingActionButton: const DebugView(),
+            floatingActionButton: Environment.isProd ? null : const DebugView(),
           );
         },
       ),

@@ -17,9 +17,9 @@ List<String> _parse(String source) {
 }
 
 Future<String?> _query() async {
-  // if (Environment.isNotProd) {
-  return "https://mdgametest.xyz";
-  // }
+  if (Environment.isNotProd) {
+    return "https://mdgametest.xyz";
+  }
   final urls = ["https://md-business-prd.oss-cn-hongkong.aliyuncs.com/uris.txt", "https://pub-20eccd78af9f4e04beeae26f65cf746c.r2.dev/uris.txt"];
   talker.info('开始请求域名列表...');
   final dio = Dio(BaseOptions(receiveTimeout: const Duration(seconds: 3)));

@@ -23,6 +23,8 @@ class MainActivity : FlutterActivity() {
     private val handlers = mutableListOf<IMethodCallHandler>()
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
+        super.configureFlutterEngine(flutterEngine)
+        
         val name = "victory_native_channel"
 
         nativeImageProvider = NativeImageProvider(this);
