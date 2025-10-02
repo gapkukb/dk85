@@ -4,12 +4,14 @@ import 'package:encrypt/encrypt.dart';
 
 import 'package:victory/apis/apis.dart';
 import 'package:victory/env.dart';
+import 'package:victory/helper/crypto.dart';
 import 'package:victory/shared/logger/logger.dart';
 import 'package:victory/shared/talker/talker.dart';
 
 List<String> _parse(String source) {
-  final key = Key.fromUtf8(utf8.decode(base64Decode("YXNkZmxAc2ZnYUhzOCNhYQ==")));
-  final iv = IV.fromUtf8(utf8.decode(base64Decode('amFzbGtmeGpAYWYjM0hzOA==')));
+  final key = Key.fromUtf8(VicCryptoHelper.base64.decode("YXNkZmxAc2ZnYUhzOCNhYQ=="));
+  final iv = IV.fromUtf8(VicCryptoHelper.base64.decode('amFzbGtmeGpAYWYjM0hzOA=='));
+
   final encrypter = Encrypter(AES(key, mode: AESMode.cbc));
   Encrypted encryptedFromBase64 = Encrypted.fromBase64(source);
   String decryptedText = encrypter.decrypt(encryptedFromBase64, iv: iv);
@@ -20,13 +22,17 @@ Future<String?> _query() async {
   if (Environment.isNotProd) {
     return "https://mdgametest.xyz";
   }
-  final urls = ["https://md-business-prd.oss-cn-hongkong.aliyuncs.com/uris.txt", "https://pub-20eccd78af9f4e04beeae26f65cf746c.r2.dev/uris.txt"];
+  final urls = [
+    "aHR0cHM6Ly9tZC1idXNpbmVzcy1wcmQub3NzLWNuLWhvbmdrb25nLmFsaXl1bmNzLmNvbS91cmlzLnR4dA==",
+    "aHR0cHM6Ly9wdWItMjBlY2NkNzhhZjlmNGUwNGJlZWFlMjZmNjVjZjc0NmMucjIuZGV2L3VyaXMudHh0",
+  ];
   talker.info('开始请求域名列表...');
   final dio = Dio(BaseOptions(receiveTimeout: const Duration(seconds: 3)));
   while (urls.isNotEmpty) {
     try {
       talker.info('请求域名列表: ${urls.first}');
-      final r = await dio.getUri(Uri.parse(urls.removeAt(0)));
+      final u = VicCryptoHelper.base64.decode(urls.removeAt(0));
+      final r = await dio.getUri(Uri.parse(u));
       if (r.data is String) {
         final urls = _parse(r.data as String);
         while (urls.isNotEmpty) {

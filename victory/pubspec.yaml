@@ -49,6 +49,7 @@ dependencies:
   slide_countdown: ^2.0.2
   # stroke_text: ^1.0.0
   textuality: ^0.0.4
+  string_validator: ^1.2.0
 
 dependency_overrides:
   lottie: ^3.3.2
