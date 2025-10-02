@@ -25,7 +25,7 @@ class SplashActivity : Activity() {
 
         Handler(Looper.getMainLooper()).postDelayed({
             activeMain()
-        },500)
+        },300)
     }
 
     private fun initStatusBar() {
@@ -43,7 +43,9 @@ class SplashActivity : Activity() {
         val mainIntent = Intent(this@SplashActivity, MainActivity::class.java)
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
         startActivity(mainIntent)
-        overridePendingTransition(0, android.R.anim.fade_out);
+        // 这里让取巧采用自定义的动画插值，300毫秒内，最后一帧直接从1到0，实现 splash 盖在 mainActivity上的效果,最后一帧移除splash从而显示mainActivity。
+        // 目的是留足时间让flutter端(尤其是flutter读取启动图)读取安卓端的本地图片，避免flutter侧因mainActivity启动时还没有读取到图片导致的白屏
+        overridePendingTransition(0, R.anim.fade_out_hold);
 //        finish();
 //        overridePendingTransition(0, 0)
         ImmersionBar.with(this)
