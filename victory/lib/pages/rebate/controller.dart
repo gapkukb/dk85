@@ -13,12 +13,13 @@ class RebateController extends GetxController {
   @override
   void onInit() {
     _queryConfig();
+    services.user.queryUserInfo();
     super.onInit();
   }
 
-  void cliam() async {
+  void claim() async {
     await apis.user.rebate();
-    services.user.updateBalance();
+    services.user.queryUserInfo();
     await VicDialog.success();
   }
 

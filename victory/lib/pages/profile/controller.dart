@@ -1,27 +1,12 @@
 import 'package:get/get.dart';
+import 'package:victory/services/services.dart';
 
 class VicProfileController extends GetxController {
   VicProfileController();
 
-  _initData() {
-    update(["profile"]);
-  }
-
-  void onTap() {}
-
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  // }
-
   @override
-  void onReady() {
-    super.onReady();
-    _initData();
+  void onInit() {
+    super.onInit();
+    services.user.queryUserInfo();
   }
-
-  // @override
-  // void onClose() {
-  //   super.onClose();
-  // }
 }

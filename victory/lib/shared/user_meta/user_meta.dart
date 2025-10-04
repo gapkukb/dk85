@@ -8,10 +8,8 @@ import 'package:victory/components/vip_badge/vip_badge.dart';
 import 'package:victory/helper/native_image.dart';
 import 'package:victory/routes/app_pages.dart';
 import 'package:victory/services/services.dart';
-import 'package:victory/startup/guide/guide.dart';
 import 'package:victory/theme/theme.dart';
 import 'package:victory/shared/balance/balance.dart';
-import 'package:victory/shared/logger/logger.dart';
 
 class VicUserMeta extends StatelessWidget {
   const VicUserMeta({super.key});
@@ -48,10 +46,10 @@ class VicUserMeta extends StatelessWidget {
         decoration: const BoxDecoration(color: AppColors.primary, borderRadius: AppSizes.radius_a_24),
         child: Row(
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               radius: 16,
               backgroundColor: AppColors.fff0e2,
-              backgroundImage: FileImage(File(NativeImage.logoLight)),
+              backgroundImage: AssetImage('assets/images/default_avatar.webp'),
             ),
             const SizedBox(width: 4),
             Column(

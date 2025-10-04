@@ -51,7 +51,7 @@ class VicRebatePage extends GetView<RebateController> {
                       height: VicButtonHeight.normal,
                       disabled: controller.amount <= 0,
                       disabledType: VicButtonDisabledType.grayscale,
-                      onPressed: controller.cliam,
+                      onPressed: controller.claim,
                       text: "app.claim.now".tr,
                     ),
                   ),
