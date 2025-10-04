@@ -8,8 +8,7 @@ class NativeBridge {
     try {
       final String path = await _channel.invokeMethod('native_image', {'name': fileNameWithSuffix});
       return path;
-    } on PlatformException catch (e) {
-      print('Failed to save image: ${e.message}');
+    } catch (e) {
       return "null";
     }
   }
@@ -17,12 +16,12 @@ class NativeBridge {
 
 abstract class NativeImage {
   static late final String logo;
-  static late final String logo2;
+  static late final String logoLight;
   static late final String splash;
 
   static ensureInitialized() async {
     logo = await NativeBridge.nativeImage('logo.webp');
-    logo2 = await NativeBridge.nativeImage('logo_reverse.webp');
+    logoLight = await NativeBridge.nativeImage('logo_light.webp');
     splash = await NativeBridge.nativeImage('splash.webp');
   }
 }

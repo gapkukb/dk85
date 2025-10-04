@@ -75,9 +75,9 @@ class VicVipController extends GetxController {
     final r = await apis.user.queryVipUpgradeBonus();
     if (r == null) return;
     upgradeBouns.value = r;
-    if (upgradeBouns.isNotEmpty) {
+    if (upgradeBouns.isNotEmpty && upgradeBouns.first.isAvailable) {
       final index = upgradeBouns.first.gradeId.toInt();
-      jumpTo(index);
+      jumpTo(index - 1);
     }
   }
 

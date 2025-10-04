@@ -20,7 +20,8 @@ class VicGamingPage extends StatefulWidget {
     if (!resp.containsKey('url')) {
       throw 'Not found the game url';
     }
-    Get.toNamed(AppRoutes.gaming, arguments: resp['url']);
+    await Get.toNamed(AppRoutes.gaming, arguments: resp['url']);
+    services.user.queryUserInfo();
   }
 
   const VicGamingPage({super.key});

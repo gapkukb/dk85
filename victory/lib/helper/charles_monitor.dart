@@ -46,7 +46,12 @@ class CharlesProxyHttpOverride extends HttpOverrides {
   }
 
   static Future detect(String host, int port) async {
-    final request = HttpClient()..connectionTimeout = const Duration(seconds: 1);
-    return await request.head(host, port, '').whenComplete(() => request.close(force: true));
+    final request = HttpClient()..connectionTimeout = const Duration(seconds: 10);
+    return await request
+        .get('192.168.254.112', 8888, '')
+        .then((e) {
+          return e;
+        })
+        .whenComplete(() => request.close(force: true));
   }
 }

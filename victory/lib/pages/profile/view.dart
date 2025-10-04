@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:victory/components/button/button.dart';
 import 'package:victory/components/tile/tile.dart';
+import 'package:victory/helper/native_image.dart';
 import 'package:victory/routes/app_pages.dart';
 import 'package:victory/shared/balance_card/balance_card.dart';
 import 'package:victory/services/services.dart';
@@ -31,13 +34,6 @@ class _VicProfilePageState extends State<VicProfilePage> with AutomaticKeepAlive
 
 class _ProfileViewGetX extends GetView<VicProfileController> {
   const _ProfileViewGetX({super.key});
-
-  // 主视图
-  Widget _buildView() {
-    return const Center(
-      child: Text("ProfilePage"),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +66,7 @@ class _ProfileViewGetX extends GetView<VicProfileController> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          const CircleAvatar(radius: 30, backgroundImage: AssetImage("assets/icons/logo-3.webp")),
+          CircleAvatar(radius: 30, backgroundImage: FileImage(File(NativeImage.logoLight))),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             decoration: BoxDecoration(color: const Color(0xfffffac4), borderRadius: BorderRadius.circular(100)),

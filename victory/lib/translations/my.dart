@@ -105,7 +105,7 @@ const Map<String, String> _my = {
   // 洗码返利页面
   "rebate.title": "ပြန်အမ်းငွေ",
   "rebate.level": "စသည်ဖြင့်",
-  "rebate.wagering": "Wagering Volume",
+  "rebate.amount": "ပြောင်းလို့ရတဲ့ ကုဒ်ပမာဏ",
 
   // 账户页面
   "acc.title": "အကောင့်",

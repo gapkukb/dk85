@@ -46,12 +46,14 @@ class VicRebatePage extends GetView<RebateController> {
                       style: const TextStyle(fontSize: 24, color: AppColors.primary, fontWeight: FontWeight.bold),
                     ),
                   ),
-                  trailing: VicButton(
-                    height: VicButtonHeight.normal,
-                    disabled: true,
-                    disabledType: VicButtonDisabledType.grayscale,
-                    onPressed: controller.cliam,
-                    text: "app.claim.now".tr,
+                  trailing: Obx(
+                    () => VicButton(
+                      height: VicButtonHeight.normal,
+                      disabled: controller.amount <= 0,
+                      disabledType: VicButtonDisabledType.grayscale,
+                      onPressed: controller.cliam,
+                      text: "app.claim.now".tr,
+                    ),
                   ),
                 ),
 

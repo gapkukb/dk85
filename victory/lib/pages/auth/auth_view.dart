@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:victory/helper/native_image.dart';
 import 'package:victory/iconfont/iconfont.dart';
 import 'package:victory/shared/locale/locale.dart';
 import 'package:victory/pages/customer_service/customer_service.dart';
@@ -72,8 +75,8 @@ class VicAuthPage extends StatelessWidget {
     return UnconstrainedBox(
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
-        child: Image.asset(
-          "assets/icons/logo-3.webp",
+        child: Image.file(
+          File(NativeImage.logoLight),
           width: 80,
           height: 80,
         ),

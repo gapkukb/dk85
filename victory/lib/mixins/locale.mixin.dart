@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:victory/services/services.dart';
 import 'package:victory/storage/storage.dart';
 
 mixin VicLocaleMixin {
@@ -28,6 +29,7 @@ mixin VicLocaleMixin {
     this.locale.value = locale;
     Get.updateLocale(locale);
     storage.locale.update(locale.languageCode);
+    services.game.queryGames();
   }
 
   void updateLocaleByCode(String code) {

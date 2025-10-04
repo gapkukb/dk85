@@ -23,7 +23,7 @@ class VicVipCardWidget extends GetView<VicVipController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 4),
-          Text(services.user.info.value.shortName, style: const TextStyle(fontSize: 12)),
+          Text("ID:${services.user.info.value.id}", style: const TextStyle(fontSize: 12)),
           const SizedBox(height: 20),
           buildLevel(),
           const SizedBox(height: 8),
@@ -60,7 +60,7 @@ class VicVipCardWidget extends GetView<VicVipController> {
           return gradient.createShader(bounds);
         },
         child: Text(
-          "${services.user.info.value.gradeId}",
+          services.user.vipLevel.toString(),
           style: const TextStyle(fontSize: 48, fontWeight: FontWeight.w900, fontStyle: FontStyle.italic, color: Colors.white, height: 1),
         ),
       ),

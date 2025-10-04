@@ -39,10 +39,10 @@ class _VicSplashPageState extends State<VicSplashPage> {
           alignment: Alignment.center,
           width: double.infinity,
           height: double.infinity,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             color: Colors.white,
-            // image: DecorationImage(image: FileImage(File(NativeImage.splash)), fit: BoxFit.cover),
-            image: DecorationImage(image: AssetImage('assets/images/launch_background.webp'), fit: BoxFit.cover),
+            image: DecorationImage(image: FileImage(File(NativeImage.splash)), fit: BoxFit.cover),
+            // image: DecorationImage(image: AssetImage('assets/images/launch_background.webp'), fit: BoxFit.cover),
           ),
           child: VicLoading(
             style: widget.erorr == null ? null : const TextStyle(color: AppColors.danger),

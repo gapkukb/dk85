@@ -51,7 +51,7 @@ class VicUserMeta extends StatelessWidget {
             CircleAvatar(
               radius: 16,
               backgroundColor: AppColors.fff0e2,
-              backgroundImage: FileImage(File(NativeImage.logo2)),
+              backgroundImage: FileImage(File(NativeImage.logoLight)),
             ),
             const SizedBox(width: 4),
             Column(

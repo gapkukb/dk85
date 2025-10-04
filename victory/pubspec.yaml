@@ -69,6 +69,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/lottie/
+    - assets/fonts/Padauk/
     - path: assets/svg/
       transformers:
         - package: vector_graphics_compiler
@@ -77,3 +78,9 @@ flutter:
     - family: iconfont
       fonts:
         - asset: assets/iconfont/iconfont.ttf
+    - family: Padauk
+      fonts:
+        - asset: assets/fonts/Padauk/Padauk-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Padauk/Padauk-Bold.ttf
+          weight: 600
