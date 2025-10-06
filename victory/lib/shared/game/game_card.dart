@@ -25,22 +25,22 @@ class VicGameCard extends StatelessWidget {
                     child: VicNetworkImage(imageUrl: game.img),
                   ),
                 ),
-                Positioned(
-                  right: 0,
-                  top: 0,
-                  child: Skeleton.ignore(
-                    child: DecoratedBox(
-                      decoration: const BoxDecoration(color: Colors.black54),
-                      child: Padding(
-                        padding: const EdgeInsetsGeometry.only(left: 4, right: 4),
-                        child: Text(
-                          game.platform,
-                          style: const TextStyle(fontSize: 10, color: Colors.white, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                // Positioned(
+                //   right: 0,
+                //   top: 0,
+                //   child: Skeleton.ignore(
+                //     child: DecoratedBox(
+                //       decoration: const BoxDecoration(color: Colors.black54),
+                //       child: Padding(
+                //         padding: const EdgeInsetsGeometry.only(left: 4, right: 4),
+                //         child: Text(
+                //           game.platform,
+                //           style: const TextStyle(fontSize: 10, color: Colors.white, fontWeight: FontWeight.bold),
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
 

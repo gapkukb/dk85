@@ -66,7 +66,7 @@ class _ProfileViewGetX extends GetView<VicProfileController> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          CircleAvatar(radius: 30, backgroundImage: FileImage(File(NativeImage.logoLight))),
+          const CircleAvatar(radius: 30, backgroundImage: AssetImage('assets/images/default_avatar.webp')),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             decoration: BoxDecoration(color: const Color(0xfffffac4), borderRadius: BorderRadius.circular(100)),

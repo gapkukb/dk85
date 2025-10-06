@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:victory/components/multiple_text/multiple_text.dart';
+import 'package:victory/extensions/currency.extension.dart';
 import 'package:victory/models/game_record.model.dart';
 import 'package:victory/theme/theme.dart';
 
@@ -26,20 +27,20 @@ class HistoryGamesTile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               VicInlineText(
-                text: 'Bet Amount:',
+                text: 'Bet Amount: ',
                 fontSize: 14,
                 color: AppColors.title,
-                subText: '-${record.validAmount}',
+                subText: '-${record.validAmount.amount()}',
                 subFontWeight: FontWeight.bold,
                 subColor: AppColors.danger,
               ),
               VicInlineText(
-                text: 'Reward Amount:',
+                text: 'Reward Amount: ',
                 fontSize: 14,
                 color: AppColors.title,
-                subText: '+${record.winAmount}',
+                subText: '+${record.winAmount.amount()}',
                 subFontWeight: FontWeight.bold,
-                subColor: record.win.startsWith('-') ? AppColors.warn : AppColors.success,
+                subColor: record.winAmount > 0 ? AppColors.success : AppColors.warn,
               ),
             ],
           ),

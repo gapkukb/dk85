@@ -62,11 +62,14 @@ class _Tile extends StatelessWidget {
       leadingAndTrailingTextStyle: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.bold,
-        color: record.changeType == 2 ? AppColors.danger : AppColors.success,
+        color: record.symbol == 1 ? AppColors.success : AppColors.danger,
       ),
       title: Padding(padding: const EdgeInsets.only(top: 8, bottom: 16.0), child: Text(record.time)),
       subtitle: Text(record.remark),
-      trailing: Text('${record.changeType == 2 ? '-' : '+'}${record.money}'),
+      trailing: Text('$symbol${record.money}'),
     );
   }
+
+  //类型。1=充值；2=提款；3=红利；4=返水；5=转账
+  String get symbol => record.symbol == 1 ? '+' : '-';
 }
