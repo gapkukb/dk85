@@ -41,41 +41,44 @@ class VicHttpImpl<R, T> {
     Options? options,
     void Function(int, int)? onSendProgress,
     void Function(int, int)? onReceiveProgress,
-  }) {
+  }) async {
     if (cancelable == true) {
       cancelToken = CancelToken();
     }
     options ??= Options();
     options.method ??= method;
     options.httpOptions = httpOptions;
-    return dio
-        .request(
-          path,
-          data: data ?? payload,
-          queryParameters: queryParameters ?? (payload as Map<String, dynamic>?),
-          cancelToken: cancelToken,
-          options: options,
-          onSendProgress: onSendProgress,
-          onReceiveProgress: onReceiveProgress,
-        )
-        .then<R?>((
-          response,
-        ) {
-          if (httpOptions.raw) return response.data;
-          final data = response.data['data'];
-          if (data == null) return null;
-          if (decoder == null) return data;
-          if (data is Map<String, dynamic>) return decoder!(data) as R;
-          if (data is List) {
-            if (_isList) return List<T>.from(data.map((x) => decoder!(x))) as R;
-            throw Exception("泛型不匹配返回值 , $R ===> ${data.runtimeType}");
-          }
-          if (_isList) return [] as R;
-          return data;
-        })
-        .whenComplete(() {
-          cancelToken = null;
-        });
+    try {
+      final response = await dio.request(
+        path,
+        data: data ?? payload,
+        queryParameters: queryParameters ?? (payload as Map<String, dynamic>?),
+        cancelToken: cancelToken,
+        options: options,
+        onSendProgress: onSendProgress,
+        onReceiveProgress: onReceiveProgress,
+      );
+
+      if (httpOptions.raw) return response.data;
+      final responseData = response.data['data'];
+      if (responseData == null) return null as R?;
+      if (decoder == null) return responseData as R?;
+      if (responseData is Map<String, dynamic>) return decoder!(responseData) as R;
+      if (responseData is List) {
+        if (_isList) return List<T>.from(responseData.map((x) => decoder!(x))) as R;
+        throw Exception("泛型不匹配返回值 , $R ===> ${responseData.runtimeType}");
+      }
+      if (_isList) return [] as R;
+      return responseData;
+    } on DioException catch (_) {
+      if (httpOptions.silent == true) {
+        return Future.value(null);
+      } else {
+        rethrow;
+      }
+    } finally {
+      cancelToken = null;
+    }
   }
 
   abort([String? reason]) {
@@ -89,7 +92,7 @@ class VicHttpMethod {
 
   const VicHttpMethod(this.method, this.dio);
 
-  VicHttpImpl<R, R> call<R>(
+  VicHttpImpl<R?, R> call<R>(
     String path, {
     final bool? loading,
     final bool? silent,
@@ -100,7 +103,7 @@ class VicHttpMethod {
     int? retry,
     R Function(Map<String, dynamic> json)? decoder,
   }) {
-    return VicHttpImpl(
+    return VicHttpImpl<R, R>(
       dio,
       method,
       path,
@@ -114,7 +117,7 @@ class VicHttpMethod {
     );
   }
 
-  VicHttpImpl<List<R>, R> list<R>(
+  VicHttpImpl<List<R>?, R> list<R>(
     String path, {
     final bool? loading,
     final bool? silent,
@@ -125,7 +128,7 @@ class VicHttpMethod {
     int? retry,
     R Function(Map<String, dynamic> json)? decoder,
   }) {
-    return VicHttpImpl(
+    return VicHttpImpl<List<R>?, R>(
       dio,
       method,
       path,

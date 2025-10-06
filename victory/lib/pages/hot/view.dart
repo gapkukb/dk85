@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:victory/shared/app_info/app_info.dart';
 
 import 'package:victory/shared/game/game_section.dart';
 import 'package:victory/shared/game/game_swiper.dart';
@@ -18,6 +19,9 @@ class VicHotPage extends GetView<VicHotController> {
           body: SafeArea(
             child: CustomScrollView(
               slivers: [
+                SliverToBoxAdapter(
+                  child: Text(VicAppInfo.shared.packageName),
+                ),
                 const SliverGameSwiper(position: 1),
                 Obx(() => VicGameSection("game.hot".tr, controller.hotGames.value)),
                 Obx(() => VicGameSection("game.news".tr, controller.newGames.value)),
