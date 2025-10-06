@@ -7,18 +7,16 @@ import 'package:victory/storage/storage.dart';
 mixin VicLocaleMixin {
   static const my = VicLocale('my', 'မြန်မာဘာသာ');
   static const en = VicLocale('en', 'English');
-  static const fil = VicLocale('fil', 'Filipino');
-  static const _supportedLocales = [my, en, fil];
+  // static const fil = VicLocale('fil', 'Filipino');
+  // static const _supportedLocales = [my, en, fil];
+  static const _supportedLocales = [my, en];
   static const fallbackLocale = en;
 
-  ///
   final locale = Rx(my);
   List<VicLocale> get supportedLocales => _supportedLocales;
   String get currentLocaleName => locale.value.localeName;
   String get currentLocaleCode => locale.value.languageCode;
-  String get _code {
-    return storage.locale.value ?? Get.deviceLocale?.languageCode ?? Platform.localeName.split('_').first;
-  }
+  String get _code => locale.value.languageCode;
 
   VicLocale get _current {
     final code = _code.toLowerCase();
@@ -37,9 +35,9 @@ mixin VicLocaleMixin {
   }
 
   void initLocale() {
-    final c = _current;
-    if (locale.value == c) return;
-    updateLocale(c);
+    if (storage.locale.value == null) return;
+    if (storage.locale.value == locale.value.languageCode) return;
+    locale.value = _codeToLocale(storage.locale.value!);
   }
 
   VicLocale _codeToLocale(String code) {

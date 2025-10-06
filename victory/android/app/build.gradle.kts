@@ -51,7 +51,6 @@ android {
 
     buildTypes {
         release {
-            applicationId = "com.jjj.jjj2.ddd2"
             signingConfig = signingConfigs.getByName("release")
         }
     }

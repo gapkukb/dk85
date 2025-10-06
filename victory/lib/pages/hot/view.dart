@@ -19,9 +19,6 @@ class VicHotPage extends GetView<VicHotController> {
           body: SafeArea(
             child: CustomScrollView(
               slivers: [
-                SliverToBoxAdapter(
-                  child: Text(VicAppInfo.shared.packageName),
-                ),
                 const SliverGameSwiper(position: 1),
                 Obx(() => VicGameSection("game.hot".tr, controller.hotGames.value)),
                 Obx(() => VicGameSection("game.news".tr, controller.newGames.value)),
