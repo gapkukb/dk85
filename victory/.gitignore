@@ -255,3 +255,5 @@ node_modules/
 pnpm-lock.yaml
 
 .kotlin/
+
+apks*
