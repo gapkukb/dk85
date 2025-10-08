@@ -7,7 +7,7 @@ scripts:
   # and even nest them!
   build:
     # You can use hooks to! (and even nest them!)
-    $before: flutter pub get
+    # $before: flutter pub get
     $after: echo "Build done!"
     android:
       # rps build android apk

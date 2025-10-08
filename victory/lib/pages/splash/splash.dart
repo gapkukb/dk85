@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:victory/constants/cs_url.dart';
 import 'package:victory/helper/loading.dart';
 import 'package:victory/helper/native_image.dart';
+import 'package:victory/shared/app_info/app_info.dart';
 import 'package:victory/startup/bot_toast.dart';
 import 'package:victory/theme/theme.dart';
 
@@ -35,19 +36,33 @@ class _VicSplashPageState extends State<VicSplashPage> {
           child: const Text('Customer Service', style: TextStyle(color: AppColors.highlight)),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,
-        body: Container(
-          alignment: Alignment.center,
-          width: double.infinity,
-          height: double.infinity,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            image: DecorationImage(image: FileImage(File(NativeImage.splash)), fit: BoxFit.cover),
-            // image: DecorationImage(image: AssetImage('assets/images/launch_background.webp'), fit: BoxFit.cover),
-          ),
-          child: VicLoading(
-            style: widget.erorr == null ? null : const TextStyle(color: AppColors.danger),
-            text: widget.erorr ?? 'Initializing...\nPlease wait',
-          ),
+        body: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            Container(
+              alignment: Alignment.center,
+              width: double.infinity,
+              height: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                image: DecorationImage(image: FileImage(File(NativeImage.splash)), fit: BoxFit.cover),
+                // image: DecorationImage(image: AssetImage('assets/images/launch_background.webp'), fit: BoxFit.cover),
+              ),
+              child: VicLoading(
+                style: widget.erorr == null ? null : const TextStyle(color: AppColors.danger),
+                text: widget.erorr ?? 'Initializing...\nPlease wait',
+              ),
+            ),
+            Positioned(
+              bottom: 4,
+              child: SafeArea(
+                child: Text(
+                  "Powered by:${VicAppInfo.shared.packageName}".toUpperCase(),
+                  style: const TextStyle(fontSize: 12, color: Colors.black12),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

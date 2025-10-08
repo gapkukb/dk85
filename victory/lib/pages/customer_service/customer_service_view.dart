@@ -10,6 +10,6 @@ class VicCustomerServiceView extends StatefulWidget {
 class _VicCustomerServiceViewState extends State<VicCustomerServiceView> {
   @override
   Widget build(BuildContext context) {
-    return const VicWebview(url: customerServiceUrl, backButton: true);
+    return VicWebview(url: "$customerServiceUrl&CUSTOM!user_id=${services.user.id}", backButton: true);
   }
 }

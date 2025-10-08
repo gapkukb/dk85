@@ -20,13 +20,13 @@ class FundsController extends GetxController with GetSingleTickerProviderStateMi
 
   openDepositChannel(VicDepositChannelModel channel) async {
     services.app.playTopUpAudio();
-    await Get.bottomSheet(VicDepositFilling(channel), isScrollControlled: true);
+    await Get.bottomSheet(SafeArea(child: VicDepositFilling(channel)), isScrollControlled: true);
     services.app.playBackgroundAudio();
   }
 
   openWithdrawChannel(VicWithdrawalChannelModel channel) async {
     services.app.playTopUpAudio();
-    await Get.bottomSheet(VicWithdrawalFilling(channel), isScrollControlled: true);
+    await Get.bottomSheet(SafeArea(child: VicWithdrawalFilling(channel)), isScrollControlled: true);
     services.app.playBackgroundAudio();
   }
 

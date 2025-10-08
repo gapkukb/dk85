@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:victory/services/services.dart';
@@ -13,6 +14,7 @@ class VicWebview extends StatefulWidget {
   final bool cacheable;
   final bool showScorllbar;
   final bool backButton;
+  final bool lockPortrait;
   final String? url;
   final String? content;
   const VicWebview({
@@ -23,6 +25,7 @@ class VicWebview extends StatefulWidget {
     this.showScorllbar = true,
     this.backButton = false,
     this.pauseAudio = false,
+    this.lockPortrait = true,
     this.content,
   }) : assert(url != null || content != null, 'url和content不得同时为空');
 
@@ -35,7 +38,16 @@ class _VicWebviewState extends State<VicWebview> {
 
   @override
   void initState() {
+    if (!widget.lockPortrait) {
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+        DeviceOrientation.landscapeLeft,
+        DeviceOrientation.landscapeRight,
+      ]);
+    }
     _initilize();
+
     if (widget.pauseAudio) {
       services.app.pauseAudio();
     }
@@ -54,6 +66,7 @@ class _VicWebviewState extends State<VicWebview> {
     if (widget.pauseAudio) {
       services.app.resumeAudio();
     }
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     super.dispose();
   }
 
@@ -94,7 +107,7 @@ class _VicWebviewState extends State<VicWebview> {
     controller = WebViewController()
       ..enableZoom(false)
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..clearLocalStorage()
+      // ..clearLocalStorage()
       ..setNavigationDelegate(
         NavigationDelegate(
           onProgress: (int progress) {
@@ -116,9 +129,9 @@ class _VicWebviewState extends State<VicWebview> {
         ),
       );
 
-    if (!widget.cacheable) {
-      controller.clearCache();
-    }
+    // if (!widget.cacheable) {
+    //   controller.clearCache();
+    // }
 
     if (!widget.showScorllbar) {
       controller

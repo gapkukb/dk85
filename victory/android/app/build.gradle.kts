@@ -74,8 +74,35 @@ flutter {
 }
 
 
+// gradle.taskGraph.whenReady {
+//      val isRelease = gradle.startParameter.taskNames.any { 
+//             it.contains("release", ignoreCase = true) 
+//         }
+        
+//         if (isRelease) {
+            
+//         val flavor = flutter.versionName as String? ?: "default"
+//         val dir = file("../../scripts")
+
+//         // 在构建前执行脚本
+//         exec {
+//             workingDir = dir
+//             commandLine("sh","pre_build.sh", flavor)
+//         }
+
+//         // 构建后恢复
+//         gradle.buildFinished {
+//             exec {
+//                 workingDir = dir
+//                 commandLine("sh", "post_build.sh", flavor)
+//             }
+//         }
+//     }
+// }
+
 
 dependencies {
     implementation("androidx.appcompat:appcompat:1.7.1")
     implementation("com.geyifeng.immersionbar:immersionbar:3.2.2")
 }
+ 

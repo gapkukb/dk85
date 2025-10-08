@@ -51,7 +51,7 @@ class VicAuthPage extends StatelessWidget {
         actionsPadding: const EdgeInsets.only(right: 8),
         actions: buildActions(),
         automaticallyImplyLeading: false,
-        flexibleSpace: FlexibleSpaceBar(background: buildLogo()),
+        // flexibleSpace: FlexibleSpaceBar(background: buildLogo()),
         bottom: buildTabs(),
       ),
     );
