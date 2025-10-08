@@ -20,7 +20,7 @@ abstract class NativeImage {
   static late final String splash;
 
   static ensureInitialized() async {
-    logo = await NativeBridge.nativeImage('logo.webp');
-    splash = await NativeBridge.nativeImage('splash.webp');
+    logo = await NativeBridge.nativeImage('launch_icon.webp');
+    splash = await NativeBridge.nativeImage('launch_image.webp');
   }
 }

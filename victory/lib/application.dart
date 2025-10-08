@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:scaled_app/scaled_app.dart';
 import 'package:victory/apis/apis.dart';
+import 'package:victory/env.dart';
+import 'package:victory/helper/toast.dart';
 import 'package:victory/mixins/locale.mixin.dart';
 import 'package:victory/modals/modals.dart';
 import 'package:victory/pages/shell/shell.dart';
@@ -49,6 +51,7 @@ class _ApplicationState extends State<Application> {
           onReady: () async {
             await showGuide();
             VicModals.shared.resume();
+            toast(Environment.env);
           },
           scrollBehavior: const AppScrollBehavior(),
           translations: VicTranslations(),
