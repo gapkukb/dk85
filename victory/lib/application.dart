@@ -51,7 +51,6 @@ class _ApplicationState extends State<Application> {
           onReady: () async {
             await showGuide();
             VicModals.shared.resume();
-            toast(Environment.env);
           },
           scrollBehavior: const AppScrollBehavior(),
           translations: VicTranslations(),
