@@ -35,7 +35,7 @@ sed -i "s|<string name=\"app_name\">.*</string>|<string name=\"app_name\">$APP_N
 
 echo "✅[$CHANNEL] 开始flutter构建"
 
-flutter build apk
+flutter build apk --target-platform android-arm,android-arm64 --obfuscate --split-debug-info=./debug-info --dart-define=ENV=production
 
 # 查找构建完成后的.apk并移动到指定目录并改名
 find "$BASE_DIR/build/app/outputs/apk/release" -type f -iname "*.apk" | while read -r apk_file; do

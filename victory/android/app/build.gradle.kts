@@ -59,14 +59,14 @@ android {
         checkReleaseBuilds = false
     }
 
-    applicationVariants.all {
-        if (buildType.name != "release") return@all
-        val sdf = SimpleDateFormat("yyyyMMdd_HHmm", Locale.US)
-        val currentDateAndTime = sdf.format(Date())
-        outputs.filterIsInstance<ApkVariantOutputImpl>().forEach { output ->
-            output.outputFileName = "${defaultConfig.applicationId}_$currentDateAndTime.apk"
-        }
-    }
+    // applicationVariants.all {
+    //     if (buildType.name != "release") return@all
+    //     val sdf = SimpleDateFormat("yyyyMMdd_HHmm", Locale.US)
+    //     val currentDateAndTime = sdf.format(Date())
+    //     outputs.filterIsInstance<ApkVariantOutputImpl>().forEach { output ->
+    //         output.outputFileName = "${defaultConfig.applicationId}_$currentDateAndTime.apk"
+    //     }
+    // }
 }
 
 flutter {
