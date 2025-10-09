@@ -57,6 +57,7 @@ android {
             manifestPlaceholders["usesCleartextTraffic"] = true
         }
         release {
+            manifestPlaceholders["usesCleartextTraffic"] = false
             signingConfig = signingConfigs.getByName("release")
         }
     }
