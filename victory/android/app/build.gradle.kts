@@ -50,6 +50,12 @@ android {
     }
 
     buildTypes {
+        debug {
+            manifestPlaceholders["usesCleartextTraffic"] = true
+        }
+        maybeCreate("profile").apply {
+            manifestPlaceholders["usesCleartextTraffic"] = true
+        }
         release {
             signingConfig = signingConfigs.getByName("release")
         }

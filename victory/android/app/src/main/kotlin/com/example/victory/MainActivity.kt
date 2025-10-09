@@ -1,17 +1,9 @@
 package com.example.app
 
-import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
-import com.example.victory.IMethodCallHandler
-import androidx.lifecycle.lifecycleScope
-import com.gyf.immersionbar.ImmersionBar
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class MainActivity : FlutterActivity() {
 

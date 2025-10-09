@@ -1,4 +1,4 @@
-package com.example.victory
+package com.example.app
 
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel

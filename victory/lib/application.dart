@@ -1,4 +1,5 @@
 import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -50,7 +51,7 @@ class _ApplicationState extends State<Application> {
           locale: services.app.locale.value,
           onReady: () async {
             await showGuide();
-            VicModals.shared.resume();
+            if (!kDebugMode) VicModals.shared.resume();
           },
           scrollBehavior: const AppScrollBehavior(),
           translations: VicTranslations(),

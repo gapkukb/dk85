@@ -1,4 +1,4 @@
-package com.example.victory
+package com.example.app
 
 import android.app.Application
 

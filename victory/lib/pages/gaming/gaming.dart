@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'package:victory/apis/apis.dart';
+import 'package:victory/mixins/webview.mixin.dart';
 import 'package:victory/models/models.dart';
 import 'package:victory/routes/app_pages.dart';
 import 'package:victory/shared/dialogs/dialog.dart';
 import 'package:victory/shared/webview/webview.dart';
 import 'package:victory/services/services.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class VicGamingPage extends StatefulWidget {
   static void playGame(VicGameModel game) async {
@@ -30,14 +33,37 @@ class VicGamingPage extends StatefulWidget {
   _GamingState createState() => _GamingState();
 }
 
-class _GamingState extends State<VicGamingPage> {
+class _GamingState extends State<VicGamingPage> with WebviewMixin {
+  @override
+  void initState() {
+    ensureInitialized();
+    webview.loadRequest(Uri.parse(Get.arguments as String));
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    clearWebview();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return VicWebview(
-      url: Get.arguments as String,
-      backButton: true,
-      pauseAudio: true,
-      lockPortrait: false,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (didPop) return;
+        askExit();
+      },
+      child: Scaffold(
+        body: WebViewWidget(
+          controller: webview,
+        ),
+        floatingActionButton: backButton,
+        floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
+      ),
     );
   }
 }
