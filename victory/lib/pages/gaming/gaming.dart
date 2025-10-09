@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'package:victory/apis/apis.dart';
+import 'package:victory/helper/system_ui.dart';
 import 'package:victory/mixins/webview.mixin.dart';
 import 'package:victory/models/models.dart';
 import 'package:victory/routes/app_pages.dart';
@@ -36,16 +37,17 @@ class VicGamingPage extends StatefulWidget {
 class _GamingState extends State<VicGamingPage> with WebviewMixin {
   @override
   void initState() {
-    ensureInitialized();
+    ensureInitialized(showLoading: false);
     webview.loadRequest(Uri.parse(Get.arguments as String));
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    SystemUIHelper.unlockOrientation();
+    SystemUIHelper.immersiveSticky();
     super.initState();
   }
 
   @override
   void dispose() {
     clearWebview();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    SystemUIHelper.restore();
     super.dispose();
   }
 

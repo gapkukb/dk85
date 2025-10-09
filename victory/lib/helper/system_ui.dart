@@ -7,9 +7,35 @@ final class SystemUIHelper {
     ScaledWidgetsFlutterBinding.ensureInitialized(
       scaleFactor: (deviceSize) => deviceSize.width / 375,
     );
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    restore();
+  }
+
+  static void immersiveSticky() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  }
+
+  static void immersive() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+  }
+
+  static void edgeToEdge() {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    // 设置状态栏透明并防止状态栏变黑
+  }
+
+  static void lockOrientation() {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  }
+
+  static void unlockOrientation() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
+  }
+
+  static void transparentStatus() {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent, // 设置状态栏透明
@@ -18,5 +44,11 @@ final class SystemUIHelper {
         systemNavigationBarIconBrightness: Brightness.dark, // 设置导航栏图标颜色为深色
       ),
     );
+  }
+
+  static void restore() {
+    edgeToEdge();
+    transparentStatus();
+    lockOrientation();
   }
 }

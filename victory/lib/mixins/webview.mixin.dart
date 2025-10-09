@@ -17,7 +17,7 @@ mixin WebviewMixin {
   late final WebViewController webview;
   final ValueNotifier<double> _progress = ValueNotifier<double>(0.0);
 
-  void ensureInitialized() {
+  void ensureInitialized({bool showLoading = true}) {
     late final PlatformWebViewControllerCreationParams params;
     // 设置 Android 的 WebViewController
     if (WebViewPlatform.instance is AndroidWebViewPlatform) {
@@ -34,6 +34,10 @@ mixin WebviewMixin {
       AndroidWebViewController androidController = webview.platform as AndroidWebViewController;
       // 讓安卓webview支持文件選擇,ios默認支持
       androidController.setOnShowFileSelector(_androidFilePicker);
+    }
+
+    if (showLoading) {
+      _showLoadingBar();
     }
 
     _preprocess();
@@ -160,7 +164,6 @@ mixin WebviewMixin {
   }
 
   void _preprocess() {
-    _showLoadingBar();
     webview.setNavigationDelegate(
       NavigationDelegate(
         onProgress: (int progress) {
@@ -185,11 +188,14 @@ mixin WebviewMixin {
   Widget get backButton {
     return Transform.translate(
       offset: const Offset(0, 6),
-      child: FloatingActionButton.small(
-        heroTag: 'client-care',
-        onPressed: askExit,
-        backgroundColor: Colors.transparent,
-        child: Image.asset('assets/icons/back-icon.webp'),
+      child: Builder(
+        builder: (context) {
+          final landscape = MediaQuery.of(context).orientation == Orientation.landscape;
+          return GestureDetector(
+            onTap: askExit,
+            child: SizedBox.square(dimension: landscape ? 16 : 36, child: Image.asset('assets/icons/back-icon.webp')),
+          );
+        },
       ),
     );
   }
