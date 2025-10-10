@@ -1,34 +1,23 @@
 import 'dart:io';
 
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:victory/constants/cs_url.dart';
 import 'package:victory/helper/loading.dart';
 import 'package:victory/helper/native_image.dart';
 import 'package:victory/shared/app_info/app_info.dart';
-import 'package:victory/startup/bot_toast.dart';
 import 'package:victory/theme/theme.dart';
 
-class VicSplashPage extends StatefulWidget {
+class VicSplashPage extends StatelessWidget {
   final String? erorr;
   const VicSplashPage(this.erorr, {super.key});
 
   @override
-  _VicSplashPageState createState() => _VicSplashPageState();
-}
-
-class _VicSplashPageState extends State<VicSplashPage> {
-  @override
-  void initState() {
-    setupBotToast(context, widget);
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.ltr,
-      child: Scaffold(
+    return MaterialApp(
+      builder: BotToastInit(),
+      home: Scaffold(
         floatingActionButton: TextButton(
           onPressed: () {
             launchUrl(Uri.parse(customerServiceUrl));
@@ -49,8 +38,8 @@ class _VicSplashPageState extends State<VicSplashPage> {
                 // image: DecorationImage(image: AssetImage('assets/images/launch_background.webp'), fit: BoxFit.cover),
               ),
               child: VicLoading(
-                style: widget.erorr == null ? null : const TextStyle(color: AppColors.danger),
-                text: widget.erorr ?? 'Initializing...\nPlease wait',
+                style: erorr == null ? null : const TextStyle(color: AppColors.danger),
+                text: erorr ?? 'Initializing...\nPlease wait',
               ),
             ),
             Positioned(
