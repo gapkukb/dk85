@@ -61,6 +61,7 @@ const Map<String, String> _en = {
   "funds.withdraw.title": "Withdrawal account",
   "funds.withdraw.acc": "Your receiving account:",
   "funds.withdraw.amount": "Withdrawal amount",
+  "funds.withdraw.bet": "Need valid bet of @amount MMK to withdraw",
   "funds.withdraw.balance": "Withdrawable balance:",
   "funds.withdraw.limit": "Minimum single withdrawal amount is ",
   "funds.withdraw.add": "Add Account",

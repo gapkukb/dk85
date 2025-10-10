@@ -61,6 +61,7 @@ const Map<String, String> _my = {
   "funds.withdraw.title": "ငွေထုတ်အကောင့်",
   "funds.withdraw.acc": "သင်၏လက်ခံအကောင့်-",
   "funds.withdraw.amount": "ငွေထုတ်ပမာဏ",
+  "funds.withdraw.bet": "ငွေထုတ်ယူရန် @amount MMK လောင်းကြေးလိုအပ်ပါသည်",
   "funds.withdraw.balance": "ထုတ်ယူနိုင်သော လက်ကျန်- ",
   "funds.withdraw.limit": "အနည်းဆုံး ငွေထုတ်ပမာဏ- ",
   "funds.withdraw.add": "အကောင့်ထည့်ပါ။",

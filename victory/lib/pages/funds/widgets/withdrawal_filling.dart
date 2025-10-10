@@ -16,6 +16,7 @@ import 'package:victory/pages/funds/controller.dart';
 
 class VicWithdrawalFilling extends GetView<FundsController> {
   final VicWithdrawalChannelModel channel;
+  num get betAmount => services.user.info.value.needWaterAmount;
   late final Useform form;
   VicWithdrawalFilling(this.channel, {super.key}) {
     form = Useform((values) async {
@@ -58,8 +59,17 @@ class VicWithdrawalFilling extends GetView<FundsController> {
               buildHeader(),
               Text("funds.withdraw.acc".tr),
               buildAccountInput(),
-              Text("funds.withdraw.amount".tr, style: const TextStyle(height: 1)),
-              // Text("ငွေထုတ်ယူရန် 56.00 MMK လောင်းကြေးလိုအပ်ပါသည်", style: TextStyle(fontSize: 10, color: AppColors.primary)),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text("funds.withdraw.amount".tr, style: const TextStyle(height: 1)),
+                  if (betAmount > 0)
+                    Text(
+                      "funds.withdraw.bet".trArgs([betAmount.toString()]),
+                      style: const TextStyle(fontSize: 10, color: AppColors.primary),
+                    ),
+                ],
+              ),
               buildAmountInput(),
               buildAvaliableAmount(),
               buildLimitMinimum(),

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:move_to_back/move_to_back.dart';
@@ -21,26 +23,25 @@ class VicShellViewState extends State<VicShellView> {
   final visible = true.obs;
   final tabs = ['/home', '/user'];
 
-  @override
-  void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {});
-    super.initState();
-    ever(
-      services.app.currentRoute,
-      (value) {
-        if (value == '/') {
-          visible.value = true;
-        } else {
-          Future.delayed(
-            Durations.medium4,
-            () {
-              visible.value = false;
-            },
-          );
-        }
-      },
-    );
-  }
+  // @override
+  // void initState() {
+  //   WidgetsBinding.instance.addPostFrameCallback((_) {});
+  //   Timer? timer;
+  //   ever(
+  //     services.app.currentRoute,
+  //     (value) {
+  //       timer?.cancel();
+  //       if (value == '/') {
+  //         visible.value = true;
+  //       } else {
+  //         timer = Timer(Durations.medium4, () {
+  //           visible.value = false;
+  //         });
+  //       }
+  //     },
+  //   );
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {

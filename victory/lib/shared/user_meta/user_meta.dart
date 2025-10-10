@@ -40,7 +40,7 @@ class VicUserMeta extends StatelessWidget {
         Get.toNamed(AppRoutes.debug);
       },
       child: Container(
-        width: 210,
+        width: 220,
         height: 36,
         padding: const EdgeInsets.all(2),
         decoration: const BoxDecoration(color: AppColors.primary, borderRadius: AppSizes.radius_a_24),

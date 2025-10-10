@@ -38,6 +38,7 @@ class VicUserModel extends VicBaseModel {
     required this.totalBetAmount,
     required this.totalRebateAmount,
     required this.isSignIn,
+    required this.needWaterAmount,
   });
 
   final int id;
@@ -76,6 +77,7 @@ class VicUserModel extends VicBaseModel {
   final num totalBetAmount;
   final num totalRebateAmount;
   final bool isSignIn;
+  final num needWaterAmount;
 
   factory VicUserModel.fromJson(Map<String, dynamic> json) {
     return VicUserModel(
@@ -115,6 +117,7 @@ class VicUserModel extends VicBaseModel {
       totalBetAmount: json["total_bet_amount"] ?? 0,
       totalRebateAmount: json["total_rebate_amount"] ?? 0,
       isSignIn: json["is_sign_in"] ?? false,
+      needWaterAmount: json["need_water_amount"] ?? 0,
     );
   }
 
@@ -158,6 +161,7 @@ class VicUserModel extends VicBaseModel {
     "total_bet_amount": totalBetAmount,
     "total_rebate_amount": totalRebateAmount,
     "is_sign_in": isSignIn,
+    "need_water_amount": needWaterAmount,
   };
 
   @override
