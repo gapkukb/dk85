@@ -64,9 +64,9 @@ class VicUserMeta extends StatelessWidget {
                       "ID:${services.user.info.value.id}",
                       style: const TextStyle(fontSize: 10, color: AppColors.FFF3C5, height: 1, fontWeight: FontWeight.normal),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 12,
-                      child: VipBadge(level: 1),
+                      child: VipBadge(level: services.user.vipLevel),
                     ),
                   ],
                 ),
