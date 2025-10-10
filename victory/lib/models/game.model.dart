@@ -62,8 +62,10 @@ class VicGameModel {
     bool liked = false,
   }) {
     this.liked = liked.obs;
+    uid = "$platformId$id";
   }
 
+  late final String uid;
   final int id;
   final String platform;
   final dynamic aliasName;
@@ -167,6 +169,7 @@ class VicFavModel {
   final int userId;
   final String createdAt;
   final String updatedAt;
+  late final String uid;
 
   VicFavModel({
     required this.id,
@@ -176,7 +179,9 @@ class VicFavModel {
     required this.userId,
     required this.createdAt,
     required this.updatedAt,
-  });
+  }) {
+    uid = "$platformId$id";
+  }
 
   factory VicFavModel.fromRawJson(String str) => VicFavModel.fromJson(json.decode(str));
 
