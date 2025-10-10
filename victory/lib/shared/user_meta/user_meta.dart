@@ -66,7 +66,7 @@ class VicUserMeta extends StatelessWidget {
                     ),
                     SizedBox(
                       height: 12,
-                      child: VipBadge(level: services.user.vipLevel),
+                      child: Obx(() => VipBadge(level: services.user.vipLevel)),
                     ),
                   ],
                 ),
