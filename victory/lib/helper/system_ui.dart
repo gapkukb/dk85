@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 
 final class SystemUIHelper {
   static void ensureInitialized() {
-    ScaledWidgetsFlutterBinding.ensureInitialized(
-      scaleFactor: (deviceSize) => deviceSize.width / 375,
-    );
+    ScaledWidgetsFlutterBinding.ensureInitialized(scaleFactor: _scaleFactor);
     restore();
   }
 
@@ -24,6 +22,7 @@ final class SystemUIHelper {
 
   static void lockOrientation() {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    scale();
   }
 
   static void unlockOrientation() {
@@ -33,6 +32,7 @@ final class SystemUIHelper {
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]);
+    scaleless();
   }
 
   static void transparentStatus() {
@@ -51,4 +51,14 @@ final class SystemUIHelper {
     transparentStatus();
     lockOrientation();
   }
+
+  static void scale() {
+    ScaledWidgetsFlutterBinding.instance.scaleFactor = _scaleFactor;
+  }
+
+  static void scaleless() {
+    ScaledWidgetsFlutterBinding.instance.scaleFactor = null;
+  }
+
+  static double _scaleFactor(Size deviceSize) => deviceSize.width / 375;
 }

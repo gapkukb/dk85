@@ -29,6 +29,7 @@ class _VicQuickDialogView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       // insetPadding: AppSize.pad_a_12,
+      constraints: const BoxConstraints(maxWidth: 400),
       shape: const RoundedRectangleBorder(borderRadius: AppSizes.radius_a_12),
       child: Stack(
         children: [

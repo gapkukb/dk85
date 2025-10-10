@@ -32,35 +32,24 @@ class _ApplicationState extends State<Application> {
     if (services.app.locale.value == VicLocaleMixin.my) {
       textScaler = 0.95;
     }
-    return RefreshConfiguration(
-      headerBuilder: () => const WaterDropMaterialHeader(backgroundColor: AppColors.background, color: AppColors.highlight, distance: 40),
-      footerBuilder: () => const ClassicFooter(),
-      springDescription: SpringDescription.withDurationAndBounce(bounce: 0),
-      maxOverScrollExtent: 0,
-      maxUnderScrollExtent: 0,
-      bottomHitBoundary: 0,
-      child: MediaQuery(
-        data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(textScaler)).scale(),
-        child: GetMaterialApp(
-          title: VicAppInfo.shared.appName,
-          theme: lightTheme,
-          themeMode: ThemeMode.light,
-          initialRoute: AppPages.INITIAL,
-          navigatorObservers: [BotToastNavigatorObserver()],
-          defaultTransition: Transition.cupertino,
-          locale: services.app.locale.value,
-          onReady: () async {
-            await showGuide();
-            if (!kDebugMode) VicModals.shared.resume();
-          },
-          scrollBehavior: const AppScrollBehavior(),
-          translations: VicTranslations(),
-          builder: setupBotToast,
-          home: const VicShellView(),
-          getPages: AppPages.routes,
-          routingCallback: services.app.onRouting,
-        ),
-      ),
+    return GetMaterialApp(
+      title: VicAppInfo.shared.appName,
+      theme: lightTheme,
+      themeMode: ThemeMode.light,
+      initialRoute: AppPages.INITIAL,
+      navigatorObservers: [BotToastNavigatorObserver()],
+      defaultTransition: Transition.cupertino,
+      locale: services.app.locale.value,
+      onReady: () async {
+        await showGuide();
+        if (!kDebugMode) VicModals.shared.resume();
+      },
+      scrollBehavior: const AppScrollBehavior(),
+      translations: VicTranslations(),
+      builder: setupBotToast,
+      home: const VicShellView(),
+      getPages: AppPages.routes,
+      routingCallback: services.app.onRouting,
     );
   }
 }
