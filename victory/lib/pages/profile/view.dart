@@ -70,9 +70,11 @@ class _ProfileViewGetX extends GetView<VicProfileController> {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             decoration: BoxDecoration(color: const Color(0xfffffac4), borderRadius: BorderRadius.circular(100)),
-            child: Text(
-              'VIP${services.user.info.value.gradeName}',
-              style: const TextStyle(fontSize: 12, fontStyle: FontStyle.italic, color: AppColors.primary, fontWeight: FontWeight.bold),
+            child: Obx(
+              () => Text(
+                'VIP${services.user.vipLevel}',
+                style: const TextStyle(fontSize: 12, fontStyle: FontStyle.italic, color: AppColors.primary, fontWeight: FontWeight.bold),
+              ),
             ),
           ),
         ],

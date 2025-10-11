@@ -24,7 +24,9 @@ class _UserService extends GetxService with LuckyWheelMixin {
     });
   }
 
-  Future ensureInitialized() async {}
+  Future ensureInitialized() async {
+    Timer.periodic(const Duration(seconds: 30), (_) => queryUserInfo());
+  }
 
   Future queryUserInfo({bool initial = false}) async {
     if (services.auth.unauthorized) return;
