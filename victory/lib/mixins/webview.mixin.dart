@@ -188,14 +188,9 @@ mixin WebviewMixin {
   Widget get backButton {
     return Transform.translate(
       offset: const Offset(0, 6),
-      child: Builder(
-        builder: (context) {
-          final landscape = MediaQuery.of(context).orientation == Orientation.landscape;
-          return GestureDetector(
-            onTap: askExit,
-            child: SizedBox.square(dimension: landscape ? 16 : 36, child: Image.asset('assets/icons/back-icon.webp')),
-          );
-        },
+      child: GestureDetector(
+        onTap: askExit,
+        child: SizedBox.square(dimension: 36, child: Image.asset('assets/icons/back-icon.webp')),
       ),
     );
   }

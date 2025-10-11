@@ -94,7 +94,7 @@ class _VicPayeePageState extends State<VicPayeePage> {
         ListTile(
           title: Text('payee.acc'.tr),
           trailing: Row(spacing: 4, mainAxisSize: MainAxisSize.min, children: [Text(order.channelCardNo), const Icon(IconFont.copy, size: 16)]),
-          onTap: () => VicClipboard.copy(order.sysTradeNo),
+          onTap: () => VicClipboard.copy(order.channelCardNo),
         ),
         ListTile(
           title: Text('funds.topup.amount'.tr),

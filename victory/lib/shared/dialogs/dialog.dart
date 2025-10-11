@@ -3,6 +3,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:scaled_app/scaled_app.dart';
 import 'package:victory/components/button/button.dart';
 import 'package:victory/constants/string.dart';
 import 'package:victory/iconfont/iconfont.dart';
