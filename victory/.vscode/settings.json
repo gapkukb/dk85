@@ -1,6 +1,7 @@
 {
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
+  "prettier.endOfLine": "lf",
   "editor.codeActionsOnSave": {
     "source.fixAll": "always"
   },
@@ -8,5 +9,8 @@
   "[dart]": {
     "editor.rulers": [150]
   },
-  "java.configuration.updateBuildConfiguration": "disabled"
+  "java.configuration.updateBuildConfiguration": "disabled",
+  "files.associations": {
+    "*.txt": "shellscript"
+  }
 }

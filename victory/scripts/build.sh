@@ -11,7 +11,7 @@ if [[ ! -f "$TARGET_FILE" ]]; then
 fi
 
 echo "即將編譯的渠道列表:"
-echo -e "$(cat targets.txt) \n"
+echo -e "$(grep -v '^#' targets.txt) \n"
 read -p "按'回車鍵'繼續"
 
 # 备份文件
