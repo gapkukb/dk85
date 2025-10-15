@@ -13,6 +13,7 @@ import 'package:file_picker/file_picker.dart' as file_picker;
 import 'package:image/image.dart' as image;
 
 mixin WebviewMixin {
+  static bool _first = true;
   void Function()? closeLoadingBar;
   late final WebViewController webview;
   final ValueNotifier<double> _progress = ValueNotifier<double>(0.0);
@@ -30,10 +31,19 @@ mixin WebviewMixin {
       ..enableZoom(false)
       ..setJavaScriptMode(JavaScriptMode.unrestricted);
 
+    if (_first) {
+      webview.clearCache();
+      _first = false;
+    }
+
     if (webview.platform is AndroidWebViewController) {
       AndroidWebViewController androidController = webview.platform as AndroidWebViewController;
       // 讓安卓webview支持文件選擇,ios默認支持
       androidController.setOnShowFileSelector(_androidFilePicker);
+      if (androidController.supportsSetScrollBarsEnabled()) {
+        androidController.setVerticalScrollBarEnabled(false);
+        androidController.setHorizontalScrollBarEnabled(false);
+      }
     }
 
     if (showLoading) {
