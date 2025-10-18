@@ -89,6 +89,7 @@ class VicFundHistoryDetailPage extends StatelessWidget {
           ? SafeArea(
               maintainBottomViewPadding: true,
               child: VicButton(
+                height: VicButtonHeight.medium,
                 onPressed: () {
                   Get.toNamed(
                     AppRoutes.payee,

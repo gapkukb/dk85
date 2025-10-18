@@ -1,11 +1,8 @@
-import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:encrypt/encrypt.dart';
-
+import 'package:flutter/foundation.dart' as f;
 import 'package:victory/apis/apis.dart';
-import 'package:victory/env.dart';
 import 'package:victory/helper/crypto.dart';
-import 'package:victory/shared/logger/logger.dart';
 import 'package:victory/shared/talker/talker.dart';
 
 List<String> _parse(String source) {
@@ -19,7 +16,7 @@ List<String> _parse(String source) {
 }
 
 Future<String?> _query() async {
-  if (Environment.isNotProd) {
+  if (!f.kReleaseMode) {
     return "https://mdgametest.xyz";
   }
   final urls = [

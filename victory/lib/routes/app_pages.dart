@@ -1,5 +1,5 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:victory/env.dart';
 import 'package:victory/pages/account/account.dart';
 import 'package:victory/pages/activity/activity.dart';
 import 'package:victory/pages/auth/auth_view.dart';
@@ -28,11 +28,11 @@ part 'app_routes.dart';
 
 // ignore: avoid_classes_with_only_static_members
 class AppPages {
-  static const INITIAL = Environment.isDev ? null : null;
+  static const INITIAL = kDebugMode ? null : null;
   // static const INITIAL = Environment.isDev ? AppRoutes.demo : null;
   static final List<GetPage> routes = [
     // GetPage(name: '/', page: () => const ShellView(), preventDuplicates: true, popGesture: false, participatesInRootNavigator: true),
-    if (Environment.isNotProd) GetPage(name: AppRoutes.demo, page: () => const DemoPage()),
+    if (kDebugMode) GetPage(name: AppRoutes.demo, page: () => const DemoPage()),
     GetPage(name: AppRoutes.debug, page: () => const DebugSettings()),
     GetPage(name: AppRoutes.auth, page: () => const VicAuthPage()),
     GetPage(name: AppRoutes.more, page: () => const VicMorePage()),

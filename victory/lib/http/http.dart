@@ -1,13 +1,10 @@
 import 'dart:async';
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart' as getx;
 import 'package:uuid/v4.dart';
-import 'package:victory/env.dart';
 import 'package:victory/shared/app_info/app_info.dart';
-import 'package:victory/shared/logger/logger.dart';
-import 'package:victory/shared/talker/talker.dart';
 import 'package:victory/services/services.dart';
 
 part 'headers.http.dart';

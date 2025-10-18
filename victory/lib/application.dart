@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:scaled_app/scaled_app.dart';
-import 'package:victory/apis/apis.dart';
-import 'package:victory/env.dart';
-import 'package:victory/helper/toast.dart';
 import 'package:victory/mixins/locale.mixin.dart';
 import 'package:victory/modals/modals.dart';
 import 'package:victory/pages/shell/shell.dart';
@@ -32,24 +29,35 @@ class _ApplicationState extends State<Application> {
     if (services.app.locale.value == VicLocaleMixin.my) {
       textScaler = 0.95;
     }
-    return GetMaterialApp(
-      title: VicAppInfo.shared.appName,
-      theme: lightTheme,
-      themeMode: ThemeMode.light,
-      initialRoute: AppPages.INITIAL,
-      navigatorObservers: [BotToastNavigatorObserver()],
-      defaultTransition: Transition.cupertino,
-      locale: services.app.locale.value,
-      onReady: () async {
-        await showGuide();
-        if (!kDebugMode) VicModals.shared.resume();
-      },
-      scrollBehavior: const AppScrollBehavior(),
-      translations: VicTranslations(),
-      builder: setupBotToast,
-      home: const VicShellView(),
-      getPages: AppPages.routes,
-      routingCallback: services.app.onRouting,
+    return RefreshConfiguration(
+      headerBuilder: () => const WaterDropMaterialHeader(backgroundColor: AppColors.background, color: AppColors.highlight, distance: 40),
+      footerBuilder: () => const ClassicFooter(),
+      springDescription: SpringDescription.withDurationAndBounce(bounce: 0),
+      maxOverScrollExtent: 0,
+      maxUnderScrollExtent: 0,
+      bottomHitBoundary: 0,
+      child: MediaQuery(
+        data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(textScaler)).scale(),
+        child: GetMaterialApp(
+          title: VicAppInfo.shared.appName,
+          theme: lightTheme,
+          themeMode: ThemeMode.light,
+          initialRoute: AppPages.INITIAL,
+          navigatorObservers: [BotToastNavigatorObserver()],
+          defaultTransition: Transition.cupertino,
+          locale: services.app.locale.value,
+          onReady: () async {
+            await showGuide();
+            if (!kDebugMode) VicModals.shared.resume();
+          },
+          scrollBehavior: const AppScrollBehavior(),
+          translations: VicTranslations(),
+          builder: setupBotToast,
+          home: const VicShellView(),
+          getPages: AppPages.routes,
+          routingCallback: services.app.onRouting,
+        ),
+      ),
     );
   }
 }
