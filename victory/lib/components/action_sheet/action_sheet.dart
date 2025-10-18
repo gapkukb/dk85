@@ -43,27 +43,42 @@ class VicAction<T> {
 }
 
 class VicActionSheet<T> extends StatefulWidget {
+  final bool showIcon;
   final Iterable<VicAction<T>> actions;
   final bool closeOnTap;
   final ValueChanged<List<T>>? _onChanged;
   final bool _multiple;
   final List<T>? _initValues;
 
-  const VicActionSheet({super.key, required this.actions, this.closeOnTap = true}) : _multiple = false, _initValues = null, _onChanged = null;
+  const VicActionSheet({
+    super.key,
+    required this.actions,
+    this.closeOnTap = true,
+    this.showIcon = true,
+  }) : _multiple = false,
+       _initValues = null,
+       _onChanged = null;
 
   @override
   _VicActionSheetState<T> createState() => _VicActionSheetState<T>();
 
-  VicActionSheet.single({super.key, required T initValue, required this.actions, this.closeOnTap = true, ValueChanged<T>? onChanged})
-    : _multiple = false,
-      _initValues = [initValue],
-      _onChanged = ((List<T> values) => onChanged?.call(values.first));
+  VicActionSheet.single({
+    super.key,
+    required T initValue,
+    required this.actions,
+    this.closeOnTap = true,
+    this.showIcon = true,
+    ValueChanged<T>? onChanged,
+  }) : _multiple = false,
+       _initValues = [initValue],
+       _onChanged = ((List<T> values) => onChanged?.call(values.first));
 
   const VicActionSheet.multiple({
     super.key,
     required List<T> initValue,
     required this.actions,
     this.closeOnTap = false,
+    this.showIcon = true,
     ValueChanged<List<T>>? onChanged,
   }) : _multiple = true,
        _initValues = initValue,
@@ -128,6 +143,7 @@ class _VicActionSheetState<T> extends State<VicActionSheet<T>> {
           action: action,
           selectable: selecteable,
           selected: values.contains(action.value),
+          showIcon: widget.showIcon,
           onTap: () => tap(action),
         );
       }),
@@ -189,7 +205,7 @@ class _VicActionSheetState<T> extends State<VicActionSheet<T>> {
 
   void _tryClose() {
     if (widget.closeOnTap) {
-      Timer(Durations.medium1, Get.back);
+      Timer(Durations.medium1, () => Get.back(result: isMultiple ? values : values.firstOrNull));
     }
   }
 }
@@ -199,10 +215,13 @@ class _VicActionWidget<T> extends StatelessWidget {
   final bool selected;
   final VicAction action;
   final VoidCallback onTap;
+  final bool showIcon;
+
   const _VicActionWidget({
     super.key,
     required this.selectable,
     required this.action,
+    required this.showIcon,
     required this.onTap,
     this.selected = false,
   });
@@ -216,7 +235,7 @@ class _VicActionWidget<T> extends StatelessWidget {
       titleTextStyle: const TextStyle(fontSize: 14, color: Colors.black).merge(action.titleStyle),
       subtitle: action.subtitle == null ? null : Text(action.title),
       subtitleTextStyle: const TextStyle(fontSize: 12, color: Color(0xff999999)).merge(action.subtitleStyle),
-      trailing: icon,
+      trailing: showIcon ? icon : null,
       leading:
           action.leading ??
           (action.leadingIcon == null
@@ -248,9 +267,9 @@ class _VicActionWidget<T> extends StatelessWidget {
   }
 }
 
-Future<void> showVicActionSheet<T>(VicActionSheet<T> actionsheet) async {
-  if (actionsheet.actions.isEmpty) return;
-  return Get.bottomSheet<void>(
+Future<U?> showVicActionSheet<U, T>(VicActionSheet<T> actionsheet) async {
+  if (actionsheet.actions.isEmpty) return null;
+  return Get.bottomSheet<U>(
     SafeArea(child: actionsheet),
     isScrollControlled: true,
     enableDrag: false,

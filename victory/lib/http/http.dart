@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:dio/dio.dart';
+import 'package:get/get.dart' as getx;
 import 'package:uuid/v4.dart';
 import 'package:victory/env.dart';
 import 'package:victory/shared/app_info/app_info.dart';

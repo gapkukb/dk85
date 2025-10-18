@@ -1,7 +1,7 @@
 part of 'apis.dart';
 
 VicHttp _create() {
-  const duration = Duration(seconds: 10);
+  const duration = Duration(seconds: 30);
   final http = VicHttp(BaseOptions(connectTimeout: duration, sendTimeout: duration, receiveTimeout: duration));
 
   VoidCallback? cancel;
@@ -27,7 +27,7 @@ VicHttp _create() {
     ),
   );
   http.dio.interceptors.add(
-    showErrorsHttpInterceptor(
+    ShowErrorsHttpInterceptor(
       showError: (msg) => toast(msg),
     ),
   );

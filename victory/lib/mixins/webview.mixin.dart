@@ -1,22 +1,20 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:bot_toast/bot_toast.dart';
+import 'package:draggable_float_widget/draggable_float_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:victory/mixins/file_picker.mixin.dart';
 import 'package:victory/shared/dialogs/dialog.dart';
 import 'package:victory/shared/talker/talker.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
-import 'package:image_picker/image_picker.dart' as image_picker;
-import 'package:file_picker/file_picker.dart' as file_picker;
-import 'package:image/image.dart' as image;
 
-mixin WebviewMixin {
+class _WebviewMixin {
   static bool _first = true;
   void Function()? closeLoadingBar;
-  late final WebViewController webview;
+  late final WebViewController controller;
   final ValueNotifier<double> _progress = ValueNotifier<double>(0.0);
+  final picker = FilePicker();
 
   void ensureInitialized({bool showLoading = true}) {
     late final PlatformWebViewControllerCreationParams params;
@@ -27,17 +25,17 @@ mixin WebviewMixin {
       params = const PlatformWebViewControllerCreationParams();
     }
 
-    webview = WebViewController.fromPlatformCreationParams(params)
+    controller = WebViewController.fromPlatformCreationParams(params)
       ..enableZoom(false)
       ..setJavaScriptMode(JavaScriptMode.unrestricted);
 
     if (_first) {
-      webview.clearCache();
+      controller.clearCache();
       _first = false;
     }
 
-    if (webview.platform is AndroidWebViewController) {
-      AndroidWebViewController androidController = webview.platform as AndroidWebViewController;
+    if (controller.platform is AndroidWebViewController) {
+      AndroidWebViewController androidController = controller.platform as AndroidWebViewController;
       // 讓安卓webview支持文件選擇,ios默認支持
       androidController.setOnShowFileSelector(_androidFilePicker);
       if (androidController.supportsSetScrollBarsEnabled()) {
@@ -54,7 +52,15 @@ mixin WebviewMixin {
   }
 
   void _interruptFullscreen() {
-    webview.runJavaScript('''
+    final css = '''
+      var style = document.createElement('style');
+      style.type = 'text/css';
+      style.innerHTML = '::-webkit-scrollbar { display: none; } body { -ms-overflow-style: none; scrollbar-width: none; }';
+      document.head.appendChild(style);
+    ''';
+
+    controller.runJavaScript(css);
+    controller.runJavaScript('''
       Element.prototype.requestFullscreen = function() {
         console.log("已拦截 requestFullscreen 调用");
         return Promise.reject(new Error("全屏已被拦截"));
@@ -79,50 +85,12 @@ mixin WebviewMixin {
   }
 
   void _injectAppSignal() {
-    webview.runJavaScript('''window.inJApp = true;''');
+    controller.runJavaScript('''window.inJApp = true;''');
   }
 
   Future<List<String>> _androidFilePicker(FileSelectorParams params) async {
-    if (params.acceptTypes.any((type) => type.startsWith('image/'))) return _androidImagePicker(params);
-    return _androidAnyFilePicker(params);
-  }
-
-  Future<List<String>> _androidAnyFilePicker(FileSelectorParams params) async {
-    final result = await file_picker.FilePicker.platform.pickFiles(
-      allowMultiple: false,
-      type: file_picker.FileType.any,
-    );
-
-    if (result != null) {
-      return result.paths.whereType<String>().map((path) => File(path).uri.toString()).toList();
-    }
-    return [];
-  }
-
-  Future<List<String>> _androidImagePicker(FileSelectorParams params) async {
-    if (params.acceptTypes.any((type) => type == 'image/*')) {
-      final picker = image_picker.ImagePicker();
-      final photo = await picker.pickImage(source: image_picker.ImageSource.camera);
-
-      if (photo == null) {
-        return [];
-      }
-
-      final imageData = await photo.readAsBytes();
-      final decodedImage = image.decodeImage(imageData)!;
-      final scaledImage = image.copyResize(decodedImage, width: 500);
-      final jpg = image.encodeJpg(scaledImage, quality: 90);
-
-      final filePath = (await getTemporaryDirectory()).uri.resolve(
-        './image_${DateTime.now().microsecondsSinceEpoch}.jpg',
-      );
-      final file = await File.fromUri(filePath).create(recursive: true);
-      await file.writeAsBytes(jpg, flush: true);
-
-      return [file.uri.toString()];
-    }
-
-    return [];
+    // if (params.acceptTypes.any((type) => type.startsWith('image/'))) return _androidImagePicker(params);
+    return await picker.showPickerOptions();
   }
 
   void postMessage(WebviewMessage message) {
@@ -139,11 +107,11 @@ mixin WebviewMixin {
         source: window
       }));
       """;
-    webview.runJavaScript(script);
+    controller.runJavaScript(script);
   }
 
   void onMessage(void Function(WebviewMessage message) callback) {
-    webview.addJavaScriptChannel(
+    controller.addJavaScriptChannel(
       'VictoryApp',
       onMessageReceived: (message) {
         // toast(message.message);
@@ -174,7 +142,7 @@ mixin WebviewMixin {
   }
 
   void _preprocess() {
-    webview.setNavigationDelegate(
+    controller.setNavigationDelegate(
       NavigationDelegate(
         onProgress: (int progress) {
           _progress.value = progress / 100;
@@ -195,20 +163,42 @@ mixin WebviewMixin {
     );
   }
 
-  Widget get backButton {
-    return Transform.translate(
-      offset: const Offset(0, 6),
-      child: GestureDetector(
-        onTap: askExit,
-        child: SizedBox.square(dimension: 36, child: Image.asset('assets/icons/back-icon.webp')),
+  Widget backButton({
+    String? message,
+    double borderLeft = 18,
+    double borderTop = 12,
+    double borderRight = 12,
+    VoidCallback? onBack,
+  }) {
+    return DraggableFloatWidget(
+      width: 36,
+      height: 36,
+      config: DraggableFloatWidgetBaseConfig(
+        initPositionXInLeft: true,
+        initPositionYInTop: true,
+        borderLeft: borderLeft,
+        borderTop: borderTop,
+        borderRight: borderRight,
+        initPositionYMarginBorder: 0,
+      ),
+      onTap: onBack,
+      child: Image.asset(
+        'assets/icons/back-icon.webp',
+        fit: BoxFit.fill,
       ),
     );
   }
 
-  void askExit() {
-    VicDialog.confirm(
-      content: 'app.exit'.tr,
-      onConfirm: Get.back,
+  Future askExit({
+    String? message,
+    VoidCallback? onConfirm,
+  }) {
+    return VicDialog.confirm(
+      content: message ?? 'app.exit'.tr,
+      onConfirm: () {
+        onConfirm?.call();
+        Get.back();
+      },
     );
   }
 
@@ -239,4 +229,8 @@ class WebviewMessage {
     "type": type,
     "data": jsonEncode(data),
   };
+}
+
+mixin WebviewMixin {
+  final webview = _WebviewMixin();
 }

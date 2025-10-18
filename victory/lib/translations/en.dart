@@ -1,6 +1,10 @@
 part of 'translations.dart';
 
 const Map<String, String> _en = {
+  "connectionTimeout": "Can't connect to the server. Please check your internet.",
+  "sendTimeout": "Request timed out. Please try again.",
+  "receiveTimeout": "Server not responding. Try again later.",
+
   /// 全局
   "app.language": "Language",
   "app.login": "Log In",
@@ -36,6 +40,7 @@ const Map<String, String> _en = {
   "app.submit": "Submit",
   "app.required": "Required",
   "app.exit": "Are you sure exit current page?",
+  "app.exit.game": "Are you sure exit current game?",
 
   /// 认证页面，登录|注册
   "auth.forgot": "Forgot password?",

@@ -34,17 +34,18 @@ class VicGamingPage extends StatefulWidget {
 class _GamingState extends State<VicGamingPage> with WebviewMixin {
   @override
   void initState() {
-    ensureInitialized(showLoading: false);
-    webview.loadRequest(Uri.parse(Get.arguments as String));
+    webview.ensureInitialized(showLoading: false);
+    webview.controller.loadRequest(Uri.parse(Get.arguments as String));
     SystemUIHelper.unlockOrientation();
     SystemUIHelper.immersiveSticky();
+    services.app.pauseAudio();
     super.initState();
   }
 
   @override
   void dispose() {
-    clearWebview();
-    SystemUIHelper.restore();
+    webview.clearWebview();
+    services.app.resumeAudio();
     super.dispose();
   }
 
@@ -54,15 +55,27 @@ class _GamingState extends State<VicGamingPage> with WebviewMixin {
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
         if (didPop) return;
-        askExit();
+        ask();
       },
       child: Scaffold(
-        body: WebViewWidget(
-          controller: webview,
+        body: Stack(
+          children: [
+            WebViewWidget(
+              controller: webview.controller,
+            ),
+            webview.backButton(message: 'app.exit.game'.tr, borderTop: 24, borderLeft: 12, onBack: ask),
+          ],
         ),
-        floatingActionButton: backButton,
-        floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
       ),
+    );
+  }
+
+  ask() {
+    webview.askExit(
+      message: 'app.exit.game'.tr,
+      onConfirm: () {
+        SystemUIHelper.restore();
+      },
     );
   }
 }

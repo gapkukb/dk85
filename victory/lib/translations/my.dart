@@ -1,6 +1,10 @@
 part of 'translations.dart';
 
 const Map<String, String> _my = {
+  "connectionTimeout": "ဆာဗာကို ချိတ်ဆက်မရပါ။ အင်တာနက်ကို စစ်ဆေးပါ။",
+  "sendTimeout": "တောင်းဆိုမှုအချိန်ကျော်သွားသည်။ ထပ်မံကြိုးစားပါ။",
+  "receiveTimeout": "ဆာဗာက မဖြေပါဘူး။ နောက်မှ ထပ်ကြိုးစားပါ။",
+
   /// 全局
   "app.language": "ဘာသာစကား",
   "app.login": "လော့ဂ်အင်",
@@ -36,6 +40,7 @@ const Map<String, String> _my = {
   "app.submit": "တင်ပြပါ။",
   "app.required": "လုပ်ရမယ်။",
   "app.exit": "လက်ရှိစာမျက်နှာမှ ထွက်မလား။",
+  "app.exit.game": "ဂိမ်းကစားနေဆဲဖြစ်ပါတယ်။ ထွက်မှာလား?",
 
   /// 认证页面，登录|注册
   "auth.forgot": "စကားဝှက်မေ့နေပါသလား",

@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:talker_dio_logger/talker_dio_logger.dart';
 import 'package:victory/helper/loading.dart';
 import 'package:victory/helper/toast.dart';
 import 'package:victory/http/http.dart';
@@ -13,7 +12,6 @@ import 'package:victory/models/inbox.model.dart';
 import 'package:victory/models/models.dart' as models;
 import 'package:victory/models/vip.model.dart';
 import 'package:victory/routes/app_pages.dart';
-import 'package:victory/shared/talker/talker.dart';
 import 'package:victory/services/services.dart';
 
 part 'helper.dart';

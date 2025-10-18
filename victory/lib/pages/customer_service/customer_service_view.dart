@@ -11,8 +11,8 @@ class _VicCustomerServiceViewState extends State<VicCustomerServiceView> with We
   @override
   void initState() {
     final url = "$customerServiceUrl&CUSTOM!user_id=${services.user.id}";
-    ensureInitialized();
-    webview.loadRequest(Uri.parse(url));
+    webview.ensureInitialized();
+    webview.controller.loadRequest(Uri.parse(url));
     super.initState();
   }
 
@@ -22,7 +22,7 @@ class _VicCustomerServiceViewState extends State<VicCustomerServiceView> with We
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
         if (didPop) return;
-        askExit();
+        webview.askExit();
       },
       child: Scaffold(
         appBar: PreferredSize(
@@ -39,12 +39,15 @@ class _VicCustomerServiceViewState extends State<VicCustomerServiceView> with We
             ),
           ),
         ),
-        floatingActionButton: backButton,
-        floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
         body: SafeArea(
           top: false,
-          child: WebViewWidget(
-            controller: webview,
+          child: Stack(
+            children: [
+              WebViewWidget(
+                controller: webview.controller,
+              ),
+              webview.backButton(message: 'app.exit.game'.tr, borderTop: 18, onBack: webview.askExit),
+            ],
           ),
         ),
       ),
