@@ -11,9 +11,14 @@ class _VicCustomerServiceViewState extends State<VicCustomerServiceView> with We
   @override
   void initState() {
     final url = "$customerServiceUrl&CUSTOM!user_id=${services.user.id}";
-    webview.ensureInitialized();
-    webview.controller.loadRequest(Uri.parse(url));
+    webview.loadRequest(url);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    webview.reset();
+    super.dispose();
   }
 
   @override

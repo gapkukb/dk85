@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 import 'package:ota_update/ota_update.dart';
 import 'package:victory/shared/app_info/app_info.dart';
 
-class OtaUpdaterPopup extends StatelessWidget {
+class OtaUpdater extends StatelessWidget {
   final progress = RxDouble(0);
   final downloading = false.obs;
   final bool isForce;
 
-  OtaUpdaterPopup({super.key, required this.isForce});
+  OtaUpdater({super.key, required this.isForce});
 
   @override
   Widget build(BuildContext context) {

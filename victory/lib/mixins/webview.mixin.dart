@@ -10,13 +10,16 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
 
 class _WebviewMixin {
-  static bool _first = true;
+  static final _WebviewMixin shared = _WebviewMixin._internal();
+  factory _WebviewMixin() => shared;
+  _WebviewMixin._internal();
+
   void Function()? closeLoadingBar;
   late final WebViewController controller;
   final ValueNotifier<double> _progress = ValueNotifier<double>(0.0);
   final picker = FilePicker();
 
-  void ensureInitialized({bool showLoading = true}) {
+  void ensureInitialized() {
     late final PlatformWebViewControllerCreationParams params;
     // 设置 Android 的 WebViewController
     if (WebViewPlatform.instance is AndroidWebViewPlatform) {
@@ -29,11 +32,6 @@ class _WebviewMixin {
       ..enableZoom(false)
       ..setJavaScriptMode(JavaScriptMode.unrestricted);
 
-    if (_first) {
-      controller.clearCache();
-      _first = false;
-    }
-
     if (controller.platform is AndroidWebViewController) {
       AndroidWebViewController androidController = controller.platform as AndroidWebViewController;
       // 讓安卓webview支持文件選擇,ios默認支持
@@ -43,12 +41,15 @@ class _WebviewMixin {
         androidController.setHorizontalScrollBarEnabled(false);
       }
     }
-
-    if (showLoading) {
-      _showLoadingBar();
-    }
-
     _preprocess();
+  }
+
+  Future<void> loadRequest(String url, {bool showLoading = true}) {
+    // if (showLoading) {
+    //   _showLoadingBar();
+    // }
+
+    return controller.loadRequest(Uri.parse(url));
   }
 
   void _interruptFullscreen() {
@@ -202,9 +203,16 @@ class _WebviewMixin {
     );
   }
 
-  clearWebview() {
+  reset() {
     closeLoadingBar?.call();
-    _progress.dispose();
+    // _progress.dispose();
+    _blank();
+    controller.clearCache();
+    controller.clearLocalStorage();
+  }
+
+  void _blank() {
+    controller.loadHtmlString('<i></i>');
   }
 }
 
@@ -232,5 +240,9 @@ class WebviewMessage {
 }
 
 mixin WebviewMixin {
-  final webview = _WebviewMixin();
+  static void ensureInitialized() {
+    _WebviewMixin.shared.ensureInitialized();
+  }
+
+  _WebviewMixin get webview => _WebviewMixin.shared;
 }

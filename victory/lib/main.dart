@@ -12,6 +12,7 @@ import 'package:victory/constants/string.dart';
 import 'package:victory/helper/charles_monitor.dart';
 import 'package:victory/helper/native_image.dart';
 import 'package:victory/helper/system_ui.dart';
+import 'package:victory/mixins/webview.mixin.dart';
 import 'package:victory/pages/splash/splash.dart';
 import 'package:victory/services/services.dart';
 import 'package:victory/shared/app_info/app_info.dart';
@@ -31,6 +32,7 @@ void main() async {
   await CharlesProxyHttpOverride.ensureInitialized();
   await ApiBaseUrl.ensureInitialized(onError: (msg) => errorMessage.value = msg);
   await services.ensureInitialized();
+  WebviewMixin.ensureInitialized();
 
   await SentryFlutter.init(
     (options) {

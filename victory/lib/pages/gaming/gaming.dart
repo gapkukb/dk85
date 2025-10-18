@@ -34,8 +34,7 @@ class VicGamingPage extends StatefulWidget {
 class _GamingState extends State<VicGamingPage> with WebviewMixin {
   @override
   void initState() {
-    webview.ensureInitialized(showLoading: false);
-    webview.controller.loadRequest(Uri.parse(Get.arguments as String));
+    webview.loadRequest(Get.arguments as String);
     SystemUIHelper.unlockOrientation();
     SystemUIHelper.immersiveSticky();
     services.app.pauseAudio();
@@ -44,7 +43,7 @@ class _GamingState extends State<VicGamingPage> with WebviewMixin {
 
   @override
   void dispose() {
-    webview.clearWebview();
+    webview.reset();
     services.app.resumeAudio();
     super.dispose();
   }
